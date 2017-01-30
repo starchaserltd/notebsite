@@ -1,0 +1,750 @@
+//FUNCTION TO SYNC INPUT BUDGET BOX WITH SLIDER 
+function sliderrangeadv(old) 
+{
+	var old=currency_val[old.oldvalue];
+		
+	if(old === undefined)
+	{	
+		old=basevalueoldadv;
+	}
+	var t = parseFloat(currency_val[$('#currencyadv').val()]);
+	var x = Math.round($('#bdgminadv').val());
+	var y = Math.round($('#bdgmaxadv').val());
+	y=Math.round(y/old*t);
+	y=Math.round(y/old*t);
+	x=Math.round(x/old*t);
+
+	minbadv=Math.round(minbudgetnomenadv*t); maxbadv=Math.round(maxbudgetnomenadv*t);
+	document.getElementById('budgetadv').noUiSlider.updateOptions({
+	range: {
+		'min': [ roundlimitadv(minbadv),roundstepadv((maxbadv-minbadv)*0.0015)],
+	//	'5%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.03),  roundstepadv((maxbadv-minbadv)*0.0015) ],
+	//	'10%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.058),  roundstepadv((maxbadv-minbadv)*0.00284) ],
+		'25%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.145),  roundstepadv((maxbadv-minbadv)*0.0071)],
+	//	'40%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.2),  roundstepadv((maxbadv-minbadv)*0.015) ],
+		'50%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.285),  roundstepadv((maxbadv-minbadv)*0.01425) ],
+	//	'60%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.428),  roundstepadv((maxbadv-minbadv)*0.02) ],
+		'70%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.571),  roundstepadv((maxbadv-minbadv)*0.0285) ],
+		'80%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.8),  roundstepadv((maxbadv-minbadv)*0.04) ],
+		'90%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.9), roundstepadv((maxbadv-minbadv)*0.045) ],		
+		'max': [ roundlimitadv(maxbadv),roundstepadv((maxbadv-minbadv)*0.055)]
+		}
+		
+	});
+	
+	document.getElementById('budgetadv').noUiSlider.set([roundlimitadv(x), roundlimitadv(y)]);
+	$('#bdgminadv').val(roundlimitadv(x));
+	$('#bdgmaxadv').val(roundlimitadv(y));
+}			
+
+//CREATE CPU DATE SLIDER						
+noUiSlider.create(document.getElementById('launchdate'), {
+	start: [cpumindateset, cpumaxdateset],
+	connect: true,
+	step: 1,
+	direction: 'ltr',
+	format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
+	range: {
+		'min': [cpumindate],
+		'max': [cpumaxdate]		
+	}
+});
+
+//SET CPU DATE SLIDER TEXT UPDATE FUNCTIONS
+document.getElementById('launchdate').noUiSlider.on('update', function( values, handle ) 
+{
+	if (typeof values[0] === 'string' || values[0] instanceof String)
+	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+
+	if (typeof values[1] === 'string' || values[1] instanceof String)
+	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+							
+	if(handle==0) {	document.getElementById('launchdatemin').value=left; filtersearch('launchdatemin',left,0); }
+	if(handle==1) {	document.getElementById('launchdatemax').value=right; filtersearch('launchdatemax',right,0); }
+	document.getElementById('launchdateval').innerHTML=left+" - "+right;
+});
+
+//CREATE CPU CORE SLIDER						
+noUiSlider.create(document.getElementById('nrcores'), {
+	start: [cpucoreminset, cpucoremaxset],
+	connect: true,
+	step: 2,
+	direction: 'ltr',
+	format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
+	range: {
+		'min': [cpumincore],
+		'max': [cpumaxcore]		
+	}
+});
+
+//SET CPU CORE SLIDER TEXT UPDATE FUNCTIONS
+document.getElementById('nrcores').noUiSlider.on('update', function( values, handle ) 
+{
+	if (typeof values[0] === 'string' || values[0] instanceof String)
+	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+
+	if (typeof values[1] === 'string' || values[1] instanceof String)
+	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+							
+	if(handle==0) {	document.getElementById('nrcoresmin').value=left; filtersearch('nrcoresmin',left,0); }
+	if(handle==1) {	document.getElementById('nrcoresmax').value=right; filtersearch('nrcoresmax',right,0); }
+	document.getElementById('nrcoresval').innerHTML=left+" - "+right;
+});
+						
+//CREATE CPU TDP SLIDER						
+noUiSlider.create(document.getElementById('cputdp'), {
+	start: [cputdpminset, cputdpmaxset],
+	connect: true,
+	//step: 1,
+	direction: 'ltr',
+	format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
+	range: {
+		'min': [cputdpmin,0.5],
+		'25%': [10,1],
+		'50%': [35,2],
+		'70%': [60,5],
+		'max': [cputdpmax,5]		
+	}
+});
+
+//SET CPU TDP SLIDER TEXT UPDATE FUNCTIONS
+document.getElementById('cputdp').noUiSlider.on('update', function( values, handle )
+{
+	
+	if (typeof values[0] === 'string' || values[0] instanceof String)
+	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+
+	if (typeof values[1] === 'string' || values[1] instanceof String)
+	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+							
+	if(handle==0) {	document.getElementById('cputdpmin').value=left; filtersearch('cputdpmin',left,0); }
+	if(handle==1) {	document.getElementById('cputdpmax').value=right; filtersearch('cputdpmax',right,0); }
+	document.getElementById('cputdpval').innerHTML=left+" - "+right;
+});
+						
+//CREATE CPU FREQ SLIDER						
+noUiSlider.create(document.getElementById('cpufreq'), {
+	start: [cpufreqminset, cpufreqmaxset],
+	connect: true,
+	step: 0.1,
+	direction: 'ltr',
+	format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
+	range: {
+		'min': [cpufreqmin],
+		'max': [cpufreqmax]		
+	}
+});
+
+//SET CPU FREQ SLIDER TEXT UPDATE FUNCTIONS
+document.getElementById('cpufreq').noUiSlider.on('update', function( values, handle )
+{
+	if (typeof values[0] === 'string' || values[0] instanceof String)
+	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+
+	if (typeof values[1] === 'string' || values[1] instanceof String)
+	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+							
+	if(handle==0) {	document.getElementById('cpufreqmin').value=left; filtersearch('cpufreqmin',left,0); }
+	if(handle==1) {	document.getElementById('cpufreqmax').value=right; filtersearch('cpufreqmax',right,0); }
+	document.getElementById('cpufreqval').innerHTML=left+" - "+right;
+});
+						
+//CREATE TECH CPU SLIDER						
+noUiSlider.create(document.getElementById('cputech'), {
+	start: [cputechminset, cputechmaxset],
+	connect: true,
+	step: 1,
+	direction: 'ltr',
+	format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
+	range: listrange(list_cputech)
+});
+
+//SET CPU TECH SLIDER TEXT UPDATE FUNCTIONS
+document.getElementById('cputech').noUiSlider.on('update', function( values, handle )
+{
+	if (typeof values[0] === 'string' || values[0] instanceof String)
+	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+
+	if (typeof values[1] === 'string' || values[1] instanceof String)
+	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+							
+	if(handle==0) {	document.getElementById('cputechmin').value=left; filtersearch('cputechmin',left,0); }
+	if(handle==1) {	document.getElementById('cputechmax').value=right; filtersearch('cputechmax',right,0); }
+	document.getElementById('cputechval').innerHTML=left+" - "+right;
+});
+
+//CREATE GPU MEM SLIDER						
+noUiSlider.create(document.getElementById('gpumem'), {
+	start: [gpumemminset, gpumemmaxset],
+	connect: true,
+	step: 1,
+	direction: 'ltr',
+	format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
+	range: listrange(list_gpumem)
+});
+
+//SET GPU MEM SLIDER TEXT UPDATE FUNCTIONS
+document.getElementById('gpumem').noUiSlider.on('update', function( values, handle )
+{
+	if (typeof values[0] === 'string' || values[0] instanceof String)
+	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+
+	if (typeof values[1] === 'string' || values[1] instanceof String)
+	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+							
+	if(handle==0) {	document.getElementById('gpumemmin').value=left;  }
+	if(handle==1) {	document.getElementById('gpumemmax').value=right; }
+	document.getElementById('gpumemval').innerHTML=left+" - "+right+" MB";
+});				
+
+document.getElementById('gpumem').setAttribute('disabled', true);
+
+//CREATE GPU BUS SLIDER						
+noUiSlider.create(document.getElementById('gpubus'), {
+	start: [gpumembusminset, gpumembusmaxset],
+	connect: true,
+	step: gpumembusmin,
+	direction: 'ltr',
+	format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
+	range: listrange(list_gpumembus)
+});
+
+//SET GPU BUS SLIDER TEXT UPDATE FUNCTIONS
+document.getElementById('gpubus').noUiSlider.on('update', function( values, handle )
+{
+	if (typeof values[0] === 'string' || values[0] instanceof String)
+	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+
+	if (typeof values[1] === 'string' || values[1] instanceof String)
+	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+							
+	if(handle==0) {	document.getElementById('gpubusmin').value=left;  }
+	if(handle==1) {	document.getElementById('gpubusmax').value=right; }
+	document.getElementById('gpubusval').innerHTML=left+" - "+right+" bit";
+});				
+
+document.getElementById('gpubus').setAttribute('disabled', true);
+
+//CREATE GPU BUS SLIDER						
+noUiSlider.create(document.getElementById('gpupower'), {
+	start: [gpupowerminset, gpupowermaxset],
+	connect: true,
+	step: 2,
+	direction: 'ltr',
+	format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
+	range: {
+		'min': [gpupowermin,1],
+		'30%': [30,2],
+		'60%': [55,5],
+		'max': [gpupowermax]		
+		}
+});
+
+//SET GPU BUS SLIDER TEXT UPDATE FUNCTIONS
+document.getElementById('gpupower').noUiSlider.on('update', function( values, handle )
+{
+	if (typeof values[0] === 'string' || values[0] instanceof String)
+	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+
+	if (typeof values[1] === 'string' || values[1] instanceof String)
+	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+							
+	if(handle==0) {	document.getElementById('gpupowermin').value=left;  }
+	if(handle==1) {	document.getElementById('gpupowermax').value=right; }
+	document.getElementById('gpupowerval').innerHTML=left+" - "+right+" W";
+});				
+
+document.getElementById('gpupower').setAttribute('disabled', true);			
+
+//CREATE DISPLAY SLIDER						
+noUiSlider.create(document.getElementById('display'), {
+	start: [displaysizeminset, displaysizemaxset],
+	connect: true,
+	step: 0.1,
+	direction: 'ltr',
+	format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
+	range: listrange(list_displaysize)
+});
+
+//SET DISPLAY SLIDER TEXT UPDATE FUNCTIONS
+document.getElementById('display').noUiSlider.on('update', function( values, handle )
+{			
+	if (typeof values[0] === 'string' || values[0] instanceof String)
+	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+
+	if (typeof values[1] === 'string' || values[1] instanceof String)
+	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+							
+	if(handle==0) {	document.getElementById('displaymin').value=left;  }
+	if(handle==1) {	document.getElementById('displaymax').value=right; }
+						
+	document.getElementById('displayval').innerHTML=left+" - "+right+ " inch";  
+});
+
+//CREATE VERTICAL RES DISPLAY SLIDER						
+noUiSlider.create(document.getElementById('verres'), {
+	start: [displayvresminset, displayvresmaxset],
+	connect: true,
+	step: 10,
+	direction: 'ltr',
+	format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
+	range: listrange(list_verres)
+});
+
+//SET VERTICAL RES DISPLAY SLIDER TEXT UPDATE FUNCTIONS
+document.getElementById('verres').noUiSlider.on('update', function( values, handle )
+{			
+	if (typeof values[0] === 'string' || values[0] instanceof String)
+	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+
+	if (typeof values[1] === 'string' || values[1] instanceof String)
+	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+							
+	if(handle==0) {	document.getElementById('verresmin').value=left; filtersearch('verresmin',left,0); }
+	if(handle==1) {	document.getElementById('verresmax').value=right; filtersearch('verresmax',right,0); }
+
+	document.getElementById('verresval').innerHTML=left+" - "+right+ " pixels";  
+});
+
+
+//CREATE CAPACITY SLIDER						
+noUiSlider.create(document.getElementById('capacity'), {
+	start: [totalcapminset, totalcapmaxset],
+	connect: true,
+	step: 1,
+	direction: 'ltr',
+	format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
+	range: {
+		'min': [hddcapmin],
+		'max': [hddcapmax]		
+		}
+});
+
+//SET CAPACITY SLIDER TEXT UPDATE FUNCTIONS
+document.getElementById('capacity').noUiSlider.on('update', function( values, handle )
+{
+	if (typeof values[0] === 'string' || values[0] instanceof String)
+	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+
+	if (typeof values[1] === 'string' || values[1] instanceof String)
+	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+	
+	if(handle==0) {	document.getElementById('capacitymin').value=left; }
+	if(handle==1) {	document.getElementById('capacitymax').value=right;  }
+	document.getElementById('capacityval').innerHTML=left+" - "+right+" GB";
+});
+
+//CREATE MEM CAP SLIDER						
+noUiSlider.create(document.getElementById('ram'), {
+	start: [memcapminset, memcapmaxset],
+	connect: true,
+	step: 1,
+	direction: 'ltr',
+	format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
+	range: listrange(list_memcap)
+});
+
+//SET MEM CAP SLIDER TEXT UPDATE FUNCTIONS
+document.getElementById('ram').noUiSlider.on('update', function( values, handle )
+{
+	if (typeof values[0] === 'string' || values[0] instanceof String)
+	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+
+	if (typeof values[1] === 'string' || values[1] instanceof String)
+	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+							
+	if(handle==0) {	document.getElementById('rammin').value=left;  }
+	if(handle==1) {	document.getElementById('rammax').value=right;  }
+	document.getElementById('ramval').innerHTML=left+" - "+right+ " GB";
+});
+						
+//CREATE MEM SPEED SLIDER						
+noUiSlider.create(document.getElementById('freq'), {
+	start: [memfreqminset, memfreqmaxset],
+	connect: true,
+	step: 1,
+	direction: 'ltr',
+	format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
+	range: listrange(list_memfreq)
+});
+
+//SET MEM SPEED SLIDER TEXT UPDATE FUNCTIONS
+document.getElementById('freq').noUiSlider.on('update', function( values, handle )
+{
+	if (typeof values[0] === 'string' || values[0] instanceof String)
+	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+
+	if (typeof values[1] === 'string' || values[1] instanceof String)
+	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+							
+	if(handle==0) {	document.getElementById('freqmin').value=left;  }
+	if(handle==1) {	document.getElementById('freqmax').value=right; }
+	document.getElementById('freqval').innerHTML=left+" - "+right+" Mhz";
+});
+
+//CREATE BATTERY SLIDER						
+noUiSlider.create(document.getElementById('batlife'), {
+	start: [batlifeminset, batlifemaxset],
+	connect: true,
+	step: 0.1,
+	direction: 'ltr',
+	format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
+	range: {
+		'min': [batlifemin],
+		'max': [batlifemax]		
+		}
+});
+
+//SET BATTERY SLIDER TEXT UPDATE FUNCTIONS
+document.getElementById('batlife').noUiSlider.on('update', function( values, handle )
+{
+	if (typeof values[0] === 'string' || values[0] instanceof String)
+	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+	
+	if (typeof values[1] === 'string' || values[1] instanceof String)
+	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+							
+	if(handle==0) {	document.getElementById('batlifemin').value=left;  }
+	if(handle==1) {	document.getElementById('batlifemax').value=right; }
+	document.getElementById('batlifeval').innerHTML=left+" - "+right+" h";
+});
+
+//CREATE ACUM CAP SLIDER						
+noUiSlider.create(document.getElementById('acumcap'), {
+	start: [acumcapminset, acumcapmaxset],
+	connect: true,
+	step: 1,
+	direction: 'ltr',
+	format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
+	range: {
+			'min': [acumcapmin],
+			'max': [acumcapmax]		
+		}
+});
+
+//SET ACUM CAP SLIDER TEXT UPDATE FUNCTIONS
+document.getElementById('acumcap').noUiSlider.on('update', function( values, handle )
+{
+	if (typeof values[0] === 'string' || values[0] instanceof String)
+	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+
+	if (typeof values[1] === 'string' || values[1] instanceof String)
+	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+							
+	if(handle==0) {	document.getElementById('acumcapmin').value=left;  }
+	if(handle==1) {	document.getElementById('acumcapmax').value=right; }
+	document.getElementById('acumcapval').innerHTML=left+" - "+right+" Whr";
+});
+
+//CREATE WEIGHT SLIDER						
+noUiSlider.create(document.getElementById('weight'), {
+	start: [chassisweightminset, chassisweightmaxset],
+	connect: true,
+	step: 0.1,
+	direction: 'ltr',
+	format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
+	range: {
+			'min': [chassisweightmin],
+			'max': [chassisweightmax]		
+		}
+});
+
+//SET WEIGHT SLIDER TEXT UPDATE FUNCTIONS
+document.getElementById('weight').noUiSlider.on('update', function( values, handle )
+{
+	if (typeof values[0] === 'string' || values[0] instanceof String)
+	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+
+	if (typeof values[1] === 'string' || values[1] instanceof String)
+	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+							
+	if(handle==0) {	document.getElementById('weightmin').value=left;  }
+	if(handle==1) {	document.getElementById('weightmax').value=right; }
+	document.getElementById('weightval').innerHTML=(left.toFixed(2)+" - "+right.toFixed(2)+ " (kg) / "+(left*2.2046226218).toFixed(2)+ " - "+ (right*2.2046226218).toFixed(2)+ " (lb)");
+});				 
+
+//CREATE THICKNESS SLIDER						
+noUiSlider.create(document.getElementById('thickness'), {
+	start: [chassisthicminset, chassisthicmaxset],
+	connect: true,
+	step: 0.1,
+	direction: 'ltr',
+	format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },							
+	range: {
+			'min': [chassisthicmin],
+			'max': [chassisthicmax]		
+		}
+});
+
+//SET THICKNESS SLIDER TEXT UPDATE FUNCTIONS
+document.getElementById('thickness').noUiSlider.on('update', function( values, handle )
+{
+	if (typeof values[0] === 'string' || values[0] instanceof String)
+	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+
+	if (typeof values[1] === 'string' || values[1] instanceof String)
+	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+							
+	if(handle==0) {	document.getElementById('thicmin').value=left;  }
+	if(handle==1) {	document.getElementById('thicmax').value=right; }
+	document.getElementById('thicval').innerHTML=(left/10).toFixed(2)+" - "+(right/10).toFixed(2)+" (cm) / "+(left/10*0.393701).toFixed(2)+" - "+(right/10*0.393701).toFixed(2)+" (inch)";
+});				 
+
+//CREATE WIDTH SLIDER						
+noUiSlider.create(document.getElementById('width'), {
+	start: [chassiswidthminset, chassiswidthmaxset],
+	connect: true,
+	step: 0.1,
+	direction: 'ltr',
+	format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
+	range: {
+			'min': [chassiswidthmin],
+			'max': [chassiswidthmax]		
+		}
+});
+
+//SET WIDTH SLIDER TEXT UPDATE FUNCTIONS
+document.getElementById('width').noUiSlider.on('update', function( values, handle )
+{
+	if (typeof values[0] === 'string' || values[0] instanceof String)
+	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+
+	if (typeof values[1] === 'string' || values[1] instanceof String)
+	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+							
+	if(handle==0) {	document.getElementById('widthmin').value=left;  }
+	if(handle==1) {	document.getElementById('widthmax').value=right; }
+	document.getElementById('widthval').innerHTML=(left/10).toFixed(2)+" - "+(right/10).toFixed(2)+" (cm) / "+(left/10*0.393701).toFixed(2)+" - "+(right/10*0.393701).toFixed(2)+" (inch)";
+});				 
+
+//CREATE DEPTH SLIDER						
+noUiSlider.create(document.getElementById('depth'), {
+	start: [chassisdepthminset, chassisdepthmaxset],
+	connect: true,
+	step: 0.1,
+	direction: 'ltr',
+	format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
+	range: {
+		'min': [chassisdepthmin],
+		'max': [chassisdepthmax]
+	}		
+});
+
+//SET DEPTH SLIDER TEXT UPDATE FUNCTIONS
+document.getElementById('depth').noUiSlider.on('update', function( values, handle )
+{
+	if (typeof values[0] === 'string' || values[0] instanceof String)
+	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+
+	if (typeof values[1] === 'string' || values[1] instanceof String)
+	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+							
+	if(handle==0) {	document.getElementById('depthmin').value=left;  }
+	if(handle==1) {	document.getElementById('depthmax').value=right; }
+	document.getElementById('depthval').innerHTML=(left/10).toFixed(2)+" - "+(right/10).toFixed(2)+" (cm) / "+(left/10*0.393701).toFixed(2)+" - "+(right/10*0.393701).toFixed(2)+" (inch)";
+});				 
+
+//CREATE WEBCAM SLIDER						
+noUiSlider.create(document.getElementById('web'), {
+	start: [chassiswebminset, chassiswebmaxset],
+	connect: true,
+	step: 0.1,
+	direction: 'ltr',
+	format: { to: function(value){ return parseFloat(value); }, from: function(value){ return parseFloat(value); } },
+	range: listrange(list_chassisweb)
+});
+
+//SET WEBCAM SPEED TEXT UPDATE FUNCTIONS
+document.getElementById('web').noUiSlider.on('update', function( values, handle )
+{
+	if (typeof values[0] === 'string' || values[0] instanceof String)
+	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+
+	if (typeof values[1] === 'string' || values[1] instanceof String)
+	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+							
+	if(handle==0) {	document.getElementById('webmin').value=left;  }
+	if(handle==1) {	document.getElementById('webmax').value=right; }
+	document.getElementById('webval').innerHTML=left+" - "+right+" Mb";
+});	
+				
+//CREATE WARRANTY SLIDER						
+noUiSlider.create(document.getElementById('years'), {
+	start: [waryearsminset, waryearsmaxset],
+	connect: true,
+	step: 1,
+	direction: 'ltr',
+	format: { to: function(value){ return parseFloat(value); }, from: function(value){ return parseFloat(value); } },
+	range: {
+			'min': [waryearsmin],
+			'max': [waryearsmax]		
+		}
+});
+
+//SET WARRANTY SLIDER TEXT UPDATE FUNCTIONS
+document.getElementById('years').noUiSlider.on('update', function( values, handle )
+{
+	if (typeof values[0] === 'string' || values[0] instanceof String)
+	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+
+	if (typeof values[1] === 'string' || values[1] instanceof String)
+	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+							
+	if(handle==0) {	document.getElementById('yearsmin').value=left;  }
+	if(handle==1) {	document.getElementById('yearsmax').value=right; }
+	document.getElementById('yearsval').innerHTML=left+" - "+right;
+});				 
+				
+
+/* ************************ */
+/* DOCUMENT READY FUNCTIONS */
+/* ************************ */
+
+$(document).ready(function()
+{
+	var t = parseFloat(currency_val[$('#currencyadv').val()]);
+	var x = minbudgetset; var y = maxbudgetset; y=parseInt(y*t); x=parseInt(x*t); minbadv=parseInt(minbudgetnomenadv*t); maxbadv=parseInt(maxbudgetnomenadv*t);
+
+	noUiSlider.create(document.getElementById('budgetadv'), {
+		start: [roundlimitadv(x), roundlimitadv(y)],
+		connect: true,
+		direction: 'ltr',
+		format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
+		range: {
+			'min': [ roundlimitadv(minbadv),roundstepadv((maxbadv-minbadv)*0.0015)],
+		//	'5%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.03),  roundstepadv((maxbadv-minbadv)*0.0015) ],
+		//	'10%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.058),  roundstepadv((maxbadv-minbadv)*0.00284) ],
+			'25%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.145),  roundstepadv((maxbadv-minbadv)*0.0071)],
+		//	'40%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.2),  roundstepadv((maxbadv-minbadv)*0.015) ],
+			'50%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.285),  roundstepadv((maxbadv-minbadv)*0.01425) ],
+		//	'60%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.428),  roundstepadv((maxbadv-minbadv)*0.02) ],
+			'70%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.571),  roundstepadv((maxbadv-minbadv)*0.0285) ],
+			'80%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.8),  roundstepadv((maxbadv-minbadv)*0.04) ],
+			'90%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.9), roundstepadv((maxbadv-minbadv)*0.045) ],		
+			'max': [ roundlimitadv(maxbadv),roundstepadv((maxbadv-minbadv)*0.055)]
+		}
+	});
+	
+	// HERE WE SET VALUES FOR INPUT BOX WHENT SLIDER IS MOVED
+	document.getElementById('budgetadv').noUiSlider.on('update', function( values, handle ) {
+		if (typeof values[0] === 'string' || values[0] instanceof String)
+		{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+
+		if (typeof values[1] === 'string' || values[1] instanceof String)
+		{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+		
+		if(handle==0) {	document.getElementById('bdgminadv').value=left; }
+		if(handle==1) {	document.getElementById('bdgmaxadv').value=right; }
+	});
+
+	$('#CPU_prod_id').multiselect(btnsearch);
+							
+	$('#CPU_prod_id').change(function()
+	{
+		var cpup=$(this).attr('id');
+		var cpusel = $('#CPU_prod_id option:selected');
+		var selected = [];
+		$(cpusel).each(function(index, cpusel){ selected.push([$(this).val()].toString()); });
+		filtersearch(cpup,selected,2);
+	});
+
+	//SETTING GPU VARIABLES
+	$('#gputype2').multiselect(btnsearch);
+	$('#gputype2').multiselect('disable');		
+	$("#GPU_prod_id").prop("disabled", true);
+	$("#GPU_model_id").prop("disabled", true);
+	$("#GPU_arch_id").prop("disabled", true);
+	$("#GPU_msc_id").prop("disabled", true);
+	
+	$("input[name=gputype]:radio").change(function(){
+		var dedic=0;
+		var idfiledgpu=$(this).attr('id');
+		if($("input[name=gputype]:radio")[1].checked)
+		{
+			dedic=1;
+		}
+						
+		if(dedic==0)
+		{
+			$('#gputype2').multiselect('disable');
+			$('#GPU_prod_id').multiselect('disable');
+			$("#GPU_model_id").prop("disabled", true);
+			$("#GPU_arch_id").prop("disabled", true);
+			$("#GPU_msc_id").prop("disabled", true);
+			document.getElementById('gpumem').setAttribute('disabled', true);
+			document.getElementById('gpubus').setAttribute('disabled', true);
+			document.getElementById('gpupower').setAttribute('disabled', true);
+		}
+		else
+		{
+			$('#gputype2').multiselect('enable');
+			$('#GPU_prod_id').multiselect('enable');
+			$("#GPU_model_id").prop("disabled", false);
+			$("#GPU_arch_id").prop("disabled", false);
+			$("#GPU_msc_id").prop("disabled", false);
+			document.getElementById('gpumem').removeAttribute('disabled', true);
+			document.getElementById('gpubus').removeAttribute('disabled', true);
+			document.getElementById('gpupower').removeAttribute('disabled', true);
+			if(jQuery.isEmptyObject($('#gputype2').val())) { $('#gputype2').val(["1","2","4"]); $('#gputype2').multiselect("refresh"); };
+		}
+	});
+	
+	$('#GPU_prod_id').multiselect(btnsearch);
+	
+	$('#GPU_prod_id').change(function(){
+		var gpup=$(this).attr('id');
+		var gpusel = $('#GPU_prod_id option:selected');
+		var selected = [];
+		$(gpusel).each(function(index, gpusel){ selected.push([$(this).val()].toString()); });
+		filtersearch(gpup,selected,2);
+		});
+	
+	$("input[name=gputype]:radio").change();
+	$('#DISPLAY_ratio_id').multiselect(btnsearch);
+							
+	$('#DISPLAY_ratio_id').change(function(){
+		var iddisp=$(this).attr('id');
+		var dispsel = $('#DISPLAY_ratio_id option:selected');
+		var selected = [];
+		$(dispsel).each(function(index, dispsel){ selected.push([$(this).val()].toString()); });
+		filtersearch(iddisp,selected,2);
+		});
+		
+	$('#surface').multiselect(btnsearch);
+	$('#rpm').multiselect(btnsearch);
+	$('#rpm').multiselect('disable');
+	$('#typehdd').multiselect(btnsearch);
+	
+	$('#typehdd').change(function(){
+		var hdd=0;
+		var iddisp=$(this).attr('id');
+		var dispsel = $('#typehdd option:selected');
+		$(dispsel).each(function(index, dispsel){
+			if("HDD"==[$(this).val()].toString())
+				{
+					hdd=1;
+				}
+			});
+		
+		if(hdd==0)
+		{
+			$('#rpm').multiselect('select',"Any");
+			$('#rpm').multiselect('disable');
+		}
+		else
+		{
+			$('#rpm').multiselect('enable');
+		}
+	});
+	
+	$('#nrhdd').multiselect(btnsearch);
+	$('#mdbslots').multiselect(btnsearch);
+	$('#mdbwwan').multiselect(btnsearch);
+	$('#memtype').multiselect(btnsearch);
+	$('#material').multiselect(btnsearch);
+	$('#wnetspeed').multiselect(btnsearch);
+	$('#oddtype').multiselect(btnsearch);
+	$('#opsist').multiselect(btnsearch);
+	
+	actbtn("SEARCH");
+});
