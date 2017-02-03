@@ -186,9 +186,9 @@ while($rand = mysqli_fetch_row($result))
 mysqli_free_result($result);
 				
 //SUPPLYING RESULTS				
-if(count($list)>20)
+/*if(count($list)>20)
 $list[]=["id"=>"-1","model"=>"More available..."];
-
+*/
 print preg_replace('/,\s*"[^"]+":null|"[^"]+":null,?/', '', json_encode($list));
 
 mysqli_close($con);

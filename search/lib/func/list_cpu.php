@@ -287,7 +287,7 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 		$sel_cpu.=$pricemax;
 	}
 	
-	
+	$sel_cpu.=" ORDER BY ldate DESC";
 	
 // DO THE SEARCH
 	

@@ -254,6 +254,7 @@ $(document).ready(function(){
         },
 		ajax: {
 			cache: false,
+			quietMillis: 100
 			dataType: "json",
 			url: "search/lib/func/m_search.php",
 			type: "POST",

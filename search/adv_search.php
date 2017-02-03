@@ -65,7 +65,7 @@ var maxbudgetset=<?php if(!isset($bdgmax)){ $bdgmax=$maxconfigprice*0.65; } echo
 				</div>
 				<div class="col-md-12 col-sm-12">
 					<div>Model</div>
-						<select class="multisearch js-example-responsive" id="CPU_model_id" name="CPU_model_id[]" data-lcom='none' data-lfield="none" data-placeholder="Processor Models" data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
+					<select class="multisearch js-example-responsive" id="CPU_model_id" name="CPU_model_id[]" data-lcom='none' data-lfield="none" data-placeholder="Processor Models" data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
 				</div>
 				<div class="col-md-12 col-sm-12">
 					<div>Socket</div>

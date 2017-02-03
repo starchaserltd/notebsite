@@ -8,7 +8,7 @@ require_once("lib/php/headermodel.php");
 require_once("lib/php/genmodel.php");
 ?>
 
-<div class="row container-fluid headerback" style="margin-right:0px;padding-right: 0px;">
+<div class=" container-fluid headerback" style="margin-right:0px;padding-right: 0px;">
 <style>
 .modal-header {
     padding:0px!important;
@@ -16,6 +16,8 @@ require_once("lib/php/genmodel.php");
 button.close {padding:2px 7px 0px 10px!important}
 .modal-header .close {margin-top:0px!important;}
 .modal-body {padding:0px 15px 15px 15px!important;}
+.btn.active, .btn:active { box-shadow:none!important;}
+.btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {outline:none!important}
 </style>
 <?php 
 if($nonexistent)

@@ -327,10 +327,10 @@ switch ($q) {
 			mysqli_free_result($result);
 			break;
 }
-
+/*
 if(count($list)>20)
-$list[]=["id"=>"-1","model"=>"More available..."];
-
+{ $list[]=["id"=>"-1","model"=>"More available..."]; }
+*/
 print preg_replace('/,\s*"[^"]+":null|"[^"]+":null,?/', '', json_encode($list));
 
 	

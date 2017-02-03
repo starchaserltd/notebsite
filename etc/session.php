@@ -13,3 +13,6 @@ if(!isset($_SESSION['conf_mem'])) {$_SESSION['conf_mem']=0;} if(!isset($_SESSION
 if(!isset($_SESSION['conf_war'])) {$_SESSION['conf_war']=0;} if(!isset($_SESSION['conf_sist'])) {$_SESSION['conf_sist']=0;} if(!isset($_SESSION['conf_gpu_model'])) {$_SESSION['conf_gpu_model']=0;} if(!isset($_SESSION['curentconf_shdd'])) {$_SESSION['curentconf_shdd']=0;}
 //session_destroy();
  ?>
+
+
+

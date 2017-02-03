@@ -5,14 +5,14 @@ $(".multisearch").each(function()
     tags: false,
     multiple: true,
     tokenSeparators: [',', ' '],
-    //minimumInputLength: 2,
-    maximResultsForSearch: 20,
+    minimumInputLength: 0,
+	//maximumResultsForSearch: 20,
 	searchType: "contains",
 	language: {
 		noResults: function() {	 names=$this[0].id.split('_'); return 'No matches found, please select different '+names[0]+' characteristics.'; },
 			},
     ajax: { 
-		delay: 50,
+		quietMillis: 100,
 		cache: false,
 		dataType: "json",
         type: "POST",

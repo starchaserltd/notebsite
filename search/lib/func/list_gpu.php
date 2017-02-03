@@ -4,9 +4,9 @@ function search_gpu ($typegpumin, $typegpumax, $prod, $model, $arch, $techmin, $
 {
 
 	if($seltdp>0)
-	$sel_gpu="SELECT id,model FROM notebro_db.GPU WHERE 1=1 ";
+	$sel_gpu="SELECT id,model FROM notebro_db.GPU WHERE valid=1 ";
 	else
-	$sel_gpu="SELECT id,model FROM notebro_db.GPU WHERE 1=1 ";
+	$sel_gpu="SELECT id,model FROM notebro_db.GPU WHERE valid=1 ";
 	
 // Add Type filter (Integrated / Dedicated / Professional)
 	
@@ -338,7 +338,10 @@ function search_gpu ($typegpumin, $typegpumax, $prod, $model, $arch, $techmin, $
 		$sel_gpu.=$pricemax;
 	}
 	
+	
 	$sel_gpu.=" GROUP BY MODEL";
+	
+	$sel_gpu.=" ORDER BY ldate DESC";
 	
 // DO THE SEARCH
 	

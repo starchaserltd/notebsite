@@ -40,16 +40,16 @@ border-top:2px solid #404040;
 padding-left:7px;
 padding-right:7px;}
 
-@media screen and (max-width: 360px){.searchresultdesc{height:210px!important;font-size:smaller;padding-left:0px!important;padding-right:0px!important}}
-@media screen and (min-width: 360px) and (max-width: 500px){.searchresultdesc{height:192px!important;font-size:smaller}}
-@media screen and (min-width: 500px) and (max-width: 767px){.searchresultdesc{height:160px!important;font-size:smaller;padding-left:20%!important}}
-@media screen and (min-width: 768px) and (max-width: 991px){.searchresultdesc{height:145px!important;font-size:smaller;padding-left:15%!important}}
-@media screen and (min-width: 992px) and (max-width: 1100px){.searchresultdesc{height:215px!important;font-size:smaller;padding-left:15%!important}}
-@media screen and (min-width: 1100px) and (max-width: 1220px){.searchresultdesc{height:210px!important;font-size:smaller;padding-left:15%!important}}
-@media screen and (min-width: 1221px) and (max-width: 1300px){.searchresultdesc{height:180px!important;font-size:smaller;padding-left:15%!important}}
-@media screen and (min-width: 1300px) and (max-width: 1400px){.searchresultdesc{height:180px!important;font-size:smaller;padding-left:20%!important}}
+@media screen and (max-width: 360px){.searchresultdesc{height:210px!important;font-size:10.5px;padding-left:0px!important;padding-right:0px!important}}
+@media screen and (min-width: 360px) and (max-width: 500px){.searchresultdesc{height:192px!important;font-size:10.5px}}
+@media screen and (min-width: 500px) and (max-width: 767px){.searchresultdesc{height:160px!important;font-size:10.5px;padding-left:20%!important}}
+@media screen and (min-width: 768px) and (max-width: 991px){.searchresultdesc{height:145px!important;font-size:10.5px;padding-left:15%!important}}
+@media screen and (min-width: 992px) and (max-width: 1100px){.searchresultdesc{height:215px!important;font-size:10.5px;padding-left:15%!important}}
+@media screen and (min-width: 1100px) and (max-width: 1220px){.searchresultdesc{height:210px!important;font-size:10.5px;padding-left:15%!important}}
+@media screen and (min-width: 1221px) and (max-width: 1300px){.searchresultdesc{height:180px!important;font-size:10.5px;padding-left:15%!important}}
+@media screen and (min-width: 1300px) and (max-width: 1400px){.searchresultdesc{height:180px!important;font-size:10.5px;padding-left:20%!important}}
 @media screen and (min-width: 1401px) and (max-width: 1500px){.searchresultdesc{height:180px!important;font-size:13.2px;padding-left:15%!important}}
-@media screen and (min-width: 1500px){.searchresultdesc{height:180px!important;font-size:13.4px;padding-left:20%!important}}
+@media screen and (min-width: 1500px){.searchresultdesc{height:180px!important;font-size:13.8px;padding-left:25%!important}}
 
 .searchresult3{
 	color: #000;
@@ -79,8 +79,8 @@ padding-right:7px;}
 
 margin-top:-15px; }
 
-@media screen and (max-width: 991px){.searchresultitlu{height:45px!important;font-size:smaller}}
-@media screen and (min-width: 991px) and (max-width: 1100px){.searchresultitlu{height:45px!important;font-size:smaller}}
+@media screen and (max-width: 991px){.searchresultitlu{height:45px!important;font-size:11.5px}}
+@media screen and (min-width: 991px) and (max-width: 1100px){.searchresultitlu{height:45px!important;font-size:13px}}
 @media screen and (min-width: 1100px) and (max-width: 1300px){.searchresultitlu{height:60px!important}}
 @media screen and (min-width: 1300px){.searchresultitlu{height:60px!important}}
 
