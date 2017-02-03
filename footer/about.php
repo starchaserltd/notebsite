@@ -1,3 +1,10 @@
+<?php
+if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],"noteb.com") ==FALSE) 
+{	$actual_link = "$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+	header("Location: http://".str_replace("noteb.com/","noteb.com/?",$actual_link)."");
+	die();
+}
+?>
 	<div style="margin-top:50px; margin-left: 20px; margin-right: 40px;">
 	<p style="font-size:18px"><b>A bit about Noteb:</b></p>
 		 	<p>

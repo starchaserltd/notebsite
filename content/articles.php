@@ -1,8 +1,12 @@
 <?php
+if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],"noteb.com") ==FALSE) 
+{	$actual_link = "$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+	header("Location: http://".str_replace("noteb.com/","noteb.com/?",$actual_link)."");
+	die();
+}
 require_once("../etc/conf.php");
 $rootpath = realpath($_SERVER["DOCUMENT_ROOT"]);
 require_once($rootpath.$admin_address.'/wp/wp-blog-header.php');
-require_once("../etc/session.php");
 require_once("../etc/con_db.php");
 require_once("lib/php/functions.php");
 

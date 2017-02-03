@@ -1,4 +1,9 @@
 <?php
+if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],"noteb.com") ==FALSE) 
+{	$actual_link = "$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+	header("Location: http://".str_replace("noteb.com/","noteb.com/?",$actual_link)."");
+	die();
+}
 require_once("lib/php/headercomp.php");
 
 if($nrconf < 1 && $nrgetconfs <1) //nrconf is from headercomp.php
