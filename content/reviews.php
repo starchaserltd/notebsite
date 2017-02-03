@@ -1,7 +1,7 @@
 <?php
 require_once("../etc/conf.php");
 $rootpath = realpath($_SERVER["DOCUMENT_ROOT"]);
-require_once($rootpath.$admin_address.'/admin/wp/wp-blog-header.php');
+require_once($rootpath.$admin_address.'/wp/wp-blog-header.php');
 require_once("../etc/session.php");
 require_once("../etc/con_db.php");
 require_once("lib/php/functions.php");
@@ -64,7 +64,7 @@ $published_posts = $category->category_count;
 			<!--Review Picture -->
 			<a onmousedown="OpenPage('<?php  echo $ad=str_replace($wpsite."/article.php","content/review.php?",get_permalink($recent_posts[$x]["ID"])); ?>',event);" style="cursor: pointer;">
 				<div class="col-lg-2 col-md-3 col-sm-3 col-xs-4" style="padding:5px">
-					<img src="<?php $url = wp_get_attachment_url( get_post_thumbnail_id($recent_posts[$x]["ID"]) ); echo $url;?>" class="img-responsive" alt="Review featured image">
+					<img src="<?php $url = str_replace($wp_address."wp/wp-content/",$web_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[$x]["ID"]) )); echo $url;?>" class="img-responsive" alt="Review featured image">
 				</div>
 			</a>
 			<!--Review Description -->

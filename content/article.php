@@ -1,7 +1,7 @@
 <?php
 require_once("../etc/conf.php");
 $rootpath = realpath($_SERVER["DOCUMENT_ROOT"]);
-require_once($rootpath.$admin_address.'/admin/wp/wp-blog-header.php');
+require_once($rootpath.$admin_address.'/wp/wp-blog-header.php');
 require_once("../etc/session.php");
 require_once("../etc/con_db.php");
 require_once("lib/php/func_article.php");
@@ -10,7 +10,7 @@ if(isset($_SESSION['lang'])) { $lang=$_SESSION['lang']; } else { $lang=0; }
 
 $absolute_url = full_url( $_SERVER );
 $ad=explode("/article.php?", $absolute_url); //var_dump($ad);
-$ad[1]="/admin/wp/article.php".$ad[1];
+$ad[1]=$wp_address."wp/article.php".$ad[1];
 $echoid = url_to_postid($ad[1]); //echo $echoid;
 
 ?>
@@ -35,11 +35,11 @@ var istime=0;
 		
 			</div>
 			<div class="col-md-8 col-sm-8 col-xs-8 col-lg-8" style="padding-left:0px">
-				<img src="<?php $url = wp_get_attachment_url( get_post_thumbnail_id($echoid) ); echo $url;?>" class="img-responsive">
+				<img src="<?php $url = str_replace($wp_address."wp/wp-content/",$web_address,wp_get_attachment_url( get_post_thumbnail_id($echoid) )); echo $url;?>" class="img-responsive">
 			</div>
 			<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style= "font-family:'verdana'; font-size:16px; line-height:30px; padding:0px; text-align:justify;">
 				<div>
-					<p><?php  echo preg_replace_callback('/\[tooltip (.*)\](.*)\[tooltip\]/U',function ($m) {return maketooltip(gettoolid($m[1]),$m[2]);},apply_filters('the_content',get_post_field('post_content', $echoid, 'display'))); 
+					<p><?php  echo preg_replace_callback('/\[tooltip (.*)\](.*)\[tooltip\]/U',function ($m) {return maketooltip(gettoolid($m[1]),$m[2]);},str_replace($wp_address."wp/wp-content/",$web_address,apply_filters('the_content',get_post_field('post_content', $echoid, 'display')))); 
 					echo "<br>"; ?> </p>
 				</div>
 			</div>

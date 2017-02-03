@@ -26,7 +26,7 @@ else
 	$sql="SELECT id FROM notebro_temp.all_conf_".$conf_model." WHERE cpu=".$conf_cpu." AND gpu=".$conf_gpu." AND display=".$conf_disp." AND hdd=".$conf_hdd." AND shdd=".$conf_shdd." AND acum=".$conf_acum." AND mdb=".$conf_mdb." AND mem=".$conf_mem." AND odd=".$conf_odd." AND chassis=".$conf_chassis." AND wnet=".$conf_wnet." AND war=".$conf_war." AND sist=".$conf_sist." LIMIT 1";
 	//error_log($sql);
 }
-
+$cons=dbs_connect();
 $result = mysqli_query($cons,$sql);
 $row = mysqli_fetch_array($result);
 mysqli_close($cons);

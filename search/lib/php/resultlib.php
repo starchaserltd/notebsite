@@ -73,8 +73,8 @@ function getdetails($id)
 
 
 function showprice($tab, $id, $exc)
-{
-	$result = mysqli_query($GLOBALS['con'], "SELECT price,err FROM $tab WHERE id = '".$id."'"); 
+{ 
+	$result = mysqli_query($GLOBALS['cons'], "SELECT price,err FROM ".$tab." WHERE id = '".$id."'"); 
 	$item = mysqli_fetch_array($result);
 	echo intval(($item['price']-($item['err']/2))*$exc)." - ".intval(($item['price']+($item['err']/2))*$exc); 
 }
@@ -82,7 +82,7 @@ function showprice($tab, $id, $exc)
 function showbat($tab, $id, $exc)
 {
 	$sel="SELECT batlife FROM ".$tab." WHERE id = '".$id."'";
-	$result = mysqli_query($GLOBALS['con'], $sel); 
+	$result = mysqli_query($GLOBALS['cons'], $sel); 
 	$item = mysqli_fetch_array($result);
 	// gmdate('H:i', floor(floatval($item['batlife']*0.95) * 3600));
 	echo "Estimated battery:"; echo " ".round($item['batlife']*0.95,1); echo " - "; echo round($item['batlife']*1.02,1); echo " h";

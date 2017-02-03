@@ -45,6 +45,7 @@ $exchangelist = mysqli_fetch_all($result);
 		</div>
 		
 		<?php
+		$cons=dbs_connect();
 		$startpos = ($page - 1) * 20;
 		for ($pos = $startpos; $pos < ($startpos + 20); $pos++)
 		{
@@ -159,7 +160,7 @@ $exchangelist = mysqli_fetch_all($result);
 	<span style="margin-top:2px;"> No results found for your criteria.<br> Try different search options. </span>
 </div>
 <?php
-		}
+		} mysqli_close($cons);
 ?>
 <script type="text/javascript">
 $.getScript("../lib/js/jquery.matchHeight-min.js");

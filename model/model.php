@@ -1,7 +1,7 @@
 <?php 
 require_once("../etc/conf.php");
 $rootpath = realpath($_SERVER["DOCUMENT_ROOT"]);
-require_once($rootpath.$admin_address.'/admin/wp/wp-blog-header.php');
+require_once($rootpath.$admin_address.'/wp/wp-blog-header.php');
 require_once("../etc/session.php");
 require_once("../etc/con_db.php");
 require_once("lib/php/headermodel.php");

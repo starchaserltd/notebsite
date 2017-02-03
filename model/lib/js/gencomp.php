@@ -20,11 +20,11 @@ for($x = 0; $x <= $nrconf; $x++)
 {
 	if($nrgetconfs>0) { $confid=$getconfs[$x]; }
 	else { $confid = $_SESSION['conf'.$idconf[$x]]['id']; }
-
+	$cons=dbs_connect();
 	$sql="SELECT * FROM notebro_temp.all_conf_".table($confid)." WHERE id = $confid";
 	$result = mysqli_query($cons,$sql);
 	$row = mysqli_fetch_assoc($result);
-
+	mysqli_close($cons);
 	$conf_model = $row['model'];
 	$cpu_conf_cpu= $row['cpu'];
 	$disp_conf_display = $row['display'];
