@@ -16,11 +16,11 @@ $absolute_url = full_url( $_SERVER );
 $ad=explode("/review.php?", $absolute_url); //var_dump($ad);
 $ad[1]=$wp_address."wp/article.php".$ad[1];
 $echoid = url_to_postid($ad[1]); //echo $echoid;
-$url = str_replace($wp_address."wp/wp-content/",$web_address,wp_get_attachment_url( get_post_thumbnail_id($echoid) )); //var_dump($url);
+$url = str_replace($wp_address.$wp_rmimg,$web_address,wp_get_attachment_url( get_post_thumbnail_id($echoid) )); //var_dump($url);
 $nrtabs=0;
 $tabnames=array();
 
-$content=str_replace($wp_address."wp/wp-content/",$web_address,$content);
+$content=str_replace($wp_address.$wp_rmimg,$web_address,$content);
 $content=preg_replace_callback('/\[tooltip (.*)\](.*)\[tooltip\]/U',function ($m) {return maketooltip(gettoolid($m[1]),$m[2]);},apply_filters('the_content',get_post_field('post_content', $echoid, 'display')));
 echo preg_replace_callback('/\[ntab (.*)\](.*)(?=\[ntab .*\]|\Z)/Us',function ($m) {return maketab($m[1],$m[2]);},$content);
 ?>

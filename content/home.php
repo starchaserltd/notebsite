@@ -58,7 +58,7 @@ $published_posts = $count_posts->publish;
 					if ($categorie == "Review") {echo $ad=str_replace($wpsite."/article.php","content/review.php?",get_permalink($recent_posts[0]["ID"]));}
 					else {echo "Not Article or Review";} 
 					?>',event);" style="cursor: pointer;">
-					<?php $url = str_replace($wp_address."wp/wp-content/",$web_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[0]["ID"]) )); ?> 
+					<?php $url = str_replace($wp_address.$wp_rmimg,$web_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[0]["ID"]) )); ?> 
 				<div class="imgcrop" style="float:left; position:relative; height:130px; width:100%;">
 					<img src="<?php echo $url;?>" class="portrait crop1" alt="Image">
 					<div class="row" style="bottom:2px; position:absolute;width:150%;">
@@ -82,7 +82,7 @@ $published_posts = $count_posts->publish;
 					if ($categorie == "Review") {echo $ad=str_replace($wpsite."/article.php","content/review.php?",get_permalink($recent_posts[1]["ID"]));}
 					else {echo "Not Article or Review";}
 					?>',event);" style="cursor: pointer;">
-					<?php $url = str_replace($wp_address."wp/wp-content/",$web_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[1]["ID"]) )); ?>
+					<?php $url = str_replace($wp_address.$wp_rmimg,$web_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[1]["ID"]) )); ?>
 				<div class="imgcrop" style="height:250px; float: left; width:100%;">
 					<img src="<?php echo $url;?>" class="portrait crop2" alt="Image">
 					<div class="row" style="bottom:2px; position:absolute;width:120%;">
@@ -106,7 +106,7 @@ $published_posts = $count_posts->publish;
 					if ($categorie == "Review") {echo $ad=str_replace($wpsite."/article.php","content/review.php?",get_permalink($recent_posts[2]["ID"]));}
 					else {echo "Not Article or Review";}
 					?>',event);" style="cursor: pointer;">
-					<?php $url = str_replace($wp_address."wp/wp-content/",$web_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[2]["ID"]) )); ?>
+					<?php $url = str_replace($wp_address.$wp_rmimg,$web_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[2]["ID"]) )); ?>
 				<div class="imgcrop" style="height:120px; position:relative; float: left; width:100%;">
 					<img src="<?php echo $url;?>" class="portrait crop3" alt="Image">
 					<div class="row" style="bottom:2px; position:absolute;width:120%;">
@@ -130,7 +130,7 @@ $published_posts = $count_posts->publish;
 					if ($categorie == "Review") {echo $ad=str_replace($wpsite."/article.php","content/review.php?",get_permalink($recent_posts[3]["ID"]));}
 					else {echo "Not Article or Review";}
 					?>',event);" style="cursor: pointer;">
-					<?php $url = str_replace($wp_address."wp/wp-content/",$web_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[3]["ID"]) )); ?>
+					<?php $url = str_replace($wp_address.$wp_rmimg,$web_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[3]["ID"]) )); ?>
 				<div class="imgcrop" style="height:126px; position:relative; float: left; width:100%;">
 					<img src="<?php echo $url;?>" class="portrait crop4" alt="Image">
 					<div class="row" style="bottom:2px; position:absolute;width:120%;">
@@ -154,7 +154,7 @@ $published_posts = $count_posts->publish;
 					if ($categorie == "Review") {echo $ad=str_replace($wpsite."/article.php","content/review.php?",get_permalink($recent_posts[4]["ID"]));}
 					else {echo "Not Article or Review";}				
 					?>',event);" style="cursor: pointer;"> 
-					<?php $url = str_replace($wp_address."wp/wp-content/",$web_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[4]["ID"]) )); ?>
+					<?php $url = str_replace($wp_address.$wp_rmimg,$web_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[4]["ID"]) )); ?>
 				<div class="imgcrop" style="height:126px; position:relative; float: left; width:100%;">
 					<img src="<?php echo $url; ?>" class="portrait crop5" alt="Image">
 					<div class="row" style="bottom:2px; position:absolute;width:120%;">
@@ -194,7 +194,7 @@ $published_posts = $count_posts->publish;
 		<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 latest2" style="margin-top:20px;display:flex">
 			<div class="col-md-4 col-lg-3 col-sm-4 col-xs-4 test" style="display: flex; align-self: center; justify-content: center;padding-right: 1px;">
 				<a onmousedown="OpenPage('<?php echo $linkart;?>',event);" style="color:black; cursor: pointer;">	
-				<img style="display:block; margin:0 auto; max-width:150px" src="<?php $url = str_replace($wp_address."wp/wp-content/",$web_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[$y]["ID"]) )); echo $url;?>" class="img-responsive" alt="Image">
+				<img style="display:block; margin:0 auto; max-width:150px" src="<?php $url = str_replace($wp_address.$wp_rmimg,$web_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[$y]["ID"]) )); echo $url;?>" class="img-responsive" alt="Image">
 				</a>
 			</div>
 			

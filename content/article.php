@@ -39,11 +39,11 @@ var istime=0;
 		
 			</div>
 			<div class="col-md-8 col-sm-8 col-xs-8 col-lg-8" style="padding-left:0px">
-				<img src="<?php $url = str_replace($wp_address."wp/wp-content/",$web_address,wp_get_attachment_url( get_post_thumbnail_id($echoid) )); echo $url;?>" class="img-responsive">
+				<img src="<?php $url = str_replace($wp_address.$wp_rmimg,$web_address,wp_get_attachment_url( get_post_thumbnail_id($echoid) )); echo $url;?>" class="img-responsive">
 			</div>
 			<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style= "font-family:'verdana'; font-size:16px; line-height:30px; padding:0px; text-align:justify;">
 				<div>
-					<p><?php  echo preg_replace_callback('/\[tooltip (.*)\](.*)\[tooltip\]/U',function ($m) {return maketooltip(gettoolid($m[1]),$m[2]);},str_replace($wp_address."wp/wp-content/",$web_address,apply_filters('the_content',get_post_field('post_content', $echoid, 'display')))); 
+					<p><?php  echo preg_replace_callback('/\[tooltip (.*)\](.*)\[tooltip\]/U',function ($m) {return maketooltip(gettoolid($m[1]),$m[2]);},str_replace($wp_address.$wp_rmimg,$web_address,apply_filters('the_content',get_post_field('post_content', $echoid, 'display')))); 
 					echo "<br>"; ?> </p>
 				</div>
 			</div>
