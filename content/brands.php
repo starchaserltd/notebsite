@@ -1,7 +1,8 @@
 <?php
-if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],"noteb.com") ==FALSE) 
+require_once("../etc/conf.php");
+if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_name) ==FALSE) 
 {	$actual_link = "$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-	header("Location: http://".str_replace("noteb.com/","noteb.com/?",$actual_link)."");
+	header("Location: http://".str_replace($site_name."/",$site_name."/?",$actual_link)."");
 	die();
 }
 require_once("../etc/con_db.php");
