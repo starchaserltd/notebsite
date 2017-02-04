@@ -12,7 +12,7 @@ for($i=0;$i<10;$i++)
 		$nrgetconfs++;
 	}
 }
-$addtojava.="} firstcompare=0; nocomperrormess=0; }); </script>";
+$addtojava.="} }); </script>";
 echo $addtojava;
 
 /* GETTING INFORMATION FROM SESSION */

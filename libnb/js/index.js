@@ -10,7 +10,6 @@ var disqusloaded=1;
 var urlold="";
 var hh=1;
 var currentPage = window.location.href;
-
 function locationHashChanged() {
    if (trigger) {
         var urlParts = window.location.href.split('?');		
