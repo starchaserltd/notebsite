@@ -68,7 +68,7 @@ $published_posts = $category->category_count;
 			<!--Review Picture -->
 			<a onmousedown="OpenPage('<?php  echo $ad=str_replace($wpsite."/article.php","content/review.php?",get_permalink($recent_posts[$x]["ID"])); ?>',event);" style="cursor: pointer;">
 				<div class="col-lg-2 col-md-3 col-sm-3 col-xs-4" style="padding:5px">
-					<img src="<?php $url = str_replace($wp_address.$wp_rmimg,$web_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[$x]["ID"]) )); echo $url;?>" class="img-responsive" alt="Review featured image">
+					<img src="<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[$x]["ID"]) )); echo $url;?>" class="img-responsive" alt="Review featured image">
 				</div>
 			</a>
 			<!--Review Description -->
