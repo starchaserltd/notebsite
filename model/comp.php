@@ -243,5 +243,4 @@ else
 		</table>
 		
 <?php } ?>
-<script>$.getScript("model/lib/js/comp.js");</script>
-<script>$.getScript("model/lib/js/gencomp.php");</script>
+<script>$.getScript("model/lib/js/comp.js").done(function(){$.getScript("model/lib/js/gencomp.php")});</script>
