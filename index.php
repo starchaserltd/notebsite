@@ -35,8 +35,8 @@ require_once("etc/session.php");
 			<div class="btn-group-justified btn-group">
 				<a class="btn btn-sus" style="padding:0px;" onmousedown="OpenPage('content/home.php',event);">NOTEB</a>
 				<a class="btn btn-sus advsearch">SEARCH</a>
-				<a class="btn btn-sus" onmousedown="OpenPage('article/articles.php',event);">ARTICLES</a>
-				<a class="btn btn-sus" onmousedown="OpenPage('review/reviews.php',event);">REVIEWS</a>
+				<a class="btn btn-sus" onmousedown="OpenPage('content/articles.php',event);">ARTICLES</a>
+				<a class="btn btn-sus" onmousedown="OpenPage('content/reviews.php',event);">REVIEWS</a>
 			</div>
 		</div>
 		<!-- right area -->
