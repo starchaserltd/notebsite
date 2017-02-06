@@ -14,7 +14,7 @@ if(isset($_SESSION['lang'])) { $lang=$_SESSION['lang']; } else { $lang=0; }
 
 $absolute_url = full_url( $_SERVER );
 $ad=explode("/review.php?", $absolute_url); //var_dump($ad);
-$ad[1]=$wp_address."wp/article.php".$ad[1];
+$ad[1]=$wp_address."wp/article.php/review".$ad[1];
 $echoid = url_to_postid($ad[1]); //echo $echoid;
 $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($echoid) )); //var_dump($url);
 $nrtabs=0;
@@ -66,7 +66,7 @@ echo preg_replace_callback('/\[ntab (.*)\](.*)(?=\[ntab .*\]|\Z)/Us',function ($
 						else
 							{ echo '<div id="tab'.$i.'" class="tab">'; }
 	
-						echo "<p id='contentoftab'>".$tabcontent[$i]."</p>";
+						echo "<p id='contentoftab'>".str_replace($wp_address.$wp_rmimg,$new_wp_address,$tabcontent[$i])."</p>";
 						echo "</div>";
 					}
 				?>

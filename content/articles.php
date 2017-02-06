@@ -61,12 +61,12 @@ $published_posts = $category->category_count;
 ?>
 		<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="min-height:260px ;display: flex;flex-wrap: wrap;">
 			<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" style="display: flex; align-self: center; justify-content: center;">	
-				<a onmousedown="OpenPage('<?php  echo $ad=str_replace($wpsite."/article.php","content/article.php?",get_permalink($recent_posts[$x]["ID"])); ?>',event);" style="cursor: pointer;" >
+				<a onmousedown="OpenPage('<?php  echo $ad=str_replace($wpsite."/article.php/article/","content/article.php?/",get_permalink($recent_posts[$x]["ID"])); ?>',event);" style="cursor: pointer;" >
 					<img style="display:block; margin:0 auto; max-width:120px" src="<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[$x]["ID"]) )); echo $url;?>" class="img-responsive" alt="Article featured image">
 				</a>
 			</div>
 			<div class="col-md-6 col-sm-7 col-xs-7 col-lg-6" style="font-size:20px; min-width: 170px;">
-				<a onmousedown="OpenPage('<?php  echo $ad=str_replace($wpsite."/article.php","content/article.php?",get_permalink($recent_posts[$x]["ID"])); ?>',event);" style=" font-weight:bold;color:#000; text-decoration:none; cursor: pointer;">
+				<a onmousedown="OpenPage('<?php  echo $ad=str_replace($wpsite."/article.php/article/","content/article.php?/",get_permalink($recent_posts[$x]["ID"])); ?>',event);" style=" font-weight:bold;color:#000; text-decoration:none; cursor: pointer;">
 				<?php echo $recent_posts[$x]["post_title"];?>
 				</a>
 				<p style="font-style:italic;font-size:14px;"><?php echo "by "; echo get_userdata($recent_posts[$x]["post_author"])->display_name; echo " - "; echo date( 'd M Y', strtotime( $recent_posts[$x]["post_date"]));?></p>	
@@ -76,7 +76,7 @@ $published_posts = $category->category_count;
 				<?php echo nobrackets(wp_trim_words($recent_posts[$x]["post_content"], 35, ' ....')); echo "<br>"; ?> 
 				</p>
 			<!--sfarsit descriere -->
-				<a onmousedown="OpenPage('<?php  echo $ad=str_replace($wpsite."/article.php","content/article.php?",get_permalink($recent_posts[$x]["ID"])); ?>',event);" style="cursor: pointer;" ><?php echo "Read more"; ?></a>
+				<a onmousedown="OpenPage('<?php  echo $ad=str_replace($wpsite."/article.php/article/","content/article.php?/",get_permalink($recent_posts[$x]["ID"])); ?>',event);" style="cursor: pointer;" ><?php echo "Read more"; ?></a>
 			</div>						
 		</div>		
 	<?php }else {} 

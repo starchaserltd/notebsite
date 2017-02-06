@@ -47,7 +47,7 @@ else
 		</strong>
 	</div>
 <?php 
-	echo "<script> var mprod='".$mprod."'; var mfamily='".$mfam."';  var mmodel='".$mmodel."'; var mid='".$idmodel."';</script>";
+	echo "<script> var mprod='".$mprod."'; var mfamily='".$mfam."';  var mmodel='".$mmodel."'; var mid='".$idmodel."'; metakeys(mprod.replace(' ',',')+','+mfamily.replace(' ',',')+','+mmodel.replace(' ',',')+',notebook,laptop');</script>";
 ?>
 	<div class="col-md-12 col-sm-12 col-xs-12" style="background-color:white; font-family:arial">
 		<!-- Pictures -->

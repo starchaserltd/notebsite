@@ -59,14 +59,14 @@ $published_posts = $category->category_count;
 		<!--Review Title -->
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12" style="font-size:20px; padding-top:20px;">
-				<a onmousedown="OpenPage('<?php  echo $ad=str_replace($wpsite."/article.php","content/review.php?",get_permalink($recent_posts[$x]["ID"])); ?>',event);" style="font-weight:bold;color:#000; text-decoration:none; cursor: pointer;">
+				<a onmousedown="OpenPage('<?php  echo $ad=str_replace($wpsite."/article.php/review/","content/review.php?/",get_permalink($recent_posts[$x]["ID"])); ?>',event);" style="font-weight:bold;color:#000; text-decoration:none; cursor: pointer;">
 				<?php echo $recent_posts[$x]["post_title"];?>
 				</a>
 			</div>
 		</div>
 		<div class="row" style="padding-bottom:5px;">	
 			<!--Review Picture -->
-			<a onmousedown="OpenPage('<?php  echo $ad=str_replace($wpsite."/article.php","content/review.php?",get_permalink($recent_posts[$x]["ID"])); ?>',event);" style="cursor: pointer;">
+			<a onmousedown="OpenPage('<?php  echo $ad=str_replace($wpsite."/article.php/review/","content/review.php?/",get_permalink($recent_posts[$x]["ID"])); ?>',event);" style="cursor: pointer;">
 				<div class="col-lg-2 col-md-3 col-sm-3 col-xs-4" style="padding:5px">
 					<img src="<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[$x]["ID"]) )); echo $url;?>" class="img-responsive" alt="Review featured image">
 				</div>
@@ -78,7 +78,7 @@ $published_posts = $category->category_count;
 				$test_review = nobrackets($recent_posts[$x]["post_content"]);
 				echo wp_trim_words($test_review, 40, ' ...');	?>
 				</p>
-				<a onmousedown="OpenPage('<?php  echo $ad=str_replace($wpsite."/article.php","content/review.php?",get_permalink($recent_posts[$x]["ID"])); ?>',event);" style="cursor: pointer;"><?php echo "Read more"; ?></a>   
+				<a onmousedown="OpenPage('<?php  echo $ad=str_replace($wpsite."/article.php/review/","content/review.php?/",get_permalink($recent_posts[$x]["ID"])); ?>',event);" style="cursor: pointer;"><?php echo "Read more"; ?></a>   
 			</div>	
 		</div>	
 		<hr style="height:2px; color:#ededed;">

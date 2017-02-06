@@ -54,9 +54,9 @@ $published_posts = $count_posts->publish;
 				<a onmousedown="OpenPage('<?php
 				$category = get_the_category( $recent_posts[0]["ID"] );
 				$categorie = $category[0]->cat_name; 				
-				if ($categorie == "Article"){echo $ad=str_replace($wpsite."/article.php","content/article.php?",str_replace("","",get_permalink($recent_posts[0]["ID"])));}
+				if ($categorie == "Article"){echo $ad=str_replace($wpsite."/article.php/article/","content/article.php?/",str_replace("","",get_permalink($recent_posts[0]["ID"])));}
 				else 
-					if ($categorie == "Review") {echo $ad=str_replace($wpsite."/article.php","content/review.php?",get_permalink($recent_posts[0]["ID"]));}
+					if ($categorie == "Review") {echo $ad=str_replace($wpsite."/article.php/review/","content/review.php?/",get_permalink($recent_posts[0]["ID"]));}
 					else {echo "Not Article or Review";} 
 					?>',event);" style="cursor: pointer;">
 					<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[0]["ID"]) )); ?> 
@@ -78,9 +78,9 @@ $published_posts = $count_posts->publish;
 				<a onmousedown="OpenPage('<?php 
 				$category = get_the_category( $recent_posts[1]["ID"] );
 				$categorie = $category[0]->cat_name; 
-				if ($categorie == "Article"){echo $ad=str_replace($wpsite."/article.php","content/article.php?",get_permalink($recent_posts[1]["ID"]));}
+				if ($categorie == "Article"){echo $ad=str_replace($wpsite."/article.php/article/","content/article.php?/",get_permalink($recent_posts[1]["ID"]));}
 				else 
-					if ($categorie == "Review") {echo $ad=str_replace($wpsite."/article.php","content/review.php?",get_permalink($recent_posts[1]["ID"]));}
+					if ($categorie == "Review") {echo $ad=str_replace($wpsite."/article.php/review/","content/review.php?/",get_permalink($recent_posts[1]["ID"]));}
 					else {echo "Not Article or Review";}
 					?>',event);" style="cursor: pointer;">
 					<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[1]["ID"]) )); ?>
@@ -102,9 +102,9 @@ $published_posts = $count_posts->publish;
 				<a onmousedown="OpenPage('<?php   
 				$category = get_the_category( $recent_posts[2]["ID"] );
 				$categorie = $category[0]->cat_name; 
-				if ($categorie == "Article"){echo $ad=str_replace($wpsite."/article.php","content/article.php?",get_permalink($recent_posts[2]["ID"]));}
+				if ($categorie == "Article"){echo $ad=str_replace($wpsite."/article.php/article/","content/article.php?/",get_permalink($recent_posts[2]["ID"]));}
 				else 
-					if ($categorie == "Review") {echo $ad=str_replace($wpsite."/article.php","content/review.php?",get_permalink($recent_posts[2]["ID"]));}
+					if ($categorie == "Review") {echo $ad=str_replace($wpsite."/article.php/review/","content/review.php?/",get_permalink($recent_posts[2]["ID"]));}
 					else {echo "Not Article or Review";}
 					?>',event);" style="cursor: pointer;">
 					<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[2]["ID"]) )); ?>
@@ -126,9 +126,9 @@ $published_posts = $count_posts->publish;
 				<a onmousedown="OpenPage('<?php    
 				$category = get_the_category( $recent_posts[3]["ID"] );
 				$categorie = $category[0]->cat_name; 
-				if ($categorie == "Article"){echo $ad=str_replace($wpsite."/article.php","content/article.php?",get_permalink($recent_posts[3]["ID"]));}
+				if ($categorie == "Article"){echo $ad=str_replace($wpsite."/article.php/article/","content/article.php?/",get_permalink($recent_posts[3]["ID"]));}
 				else 
-					if ($categorie == "Review") {echo $ad=str_replace($wpsite."/article.php","content/review.php?",get_permalink($recent_posts[3]["ID"]));}
+					if ($categorie == "Review") {echo $ad=str_replace($wpsite."/article.php/review/","content/review.php?/",get_permalink($recent_posts[3]["ID"]));}
 					else {echo "Not Article or Review";}
 					?>',event);" style="cursor: pointer;">
 					<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[3]["ID"]) )); ?>
@@ -150,9 +150,9 @@ $published_posts = $count_posts->publish;
 				<a onmousedown="OpenPage('<?php  
 				$category = get_the_category( $recent_posts[4]["ID"] );
 				$categorie = $category[0]->cat_name; 
-				if ($categorie == "Article"){echo $ad=str_replace($wpsite."/article.php","content/article.php?",get_permalink($recent_posts[4]["ID"]));}
+				if ($categorie == "Article"){echo $ad=str_replace($wpsite."/article.php/article/","content/article.php?/",get_permalink($recent_posts[4]["ID"]));}
 				else 
-					if ($categorie == "Review") {echo $ad=str_replace($wpsite."/article.php","content/review.php?",get_permalink($recent_posts[4]["ID"]));}
+					if ($categorie == "Review") {echo $ad=str_replace($wpsite."/article.php/review/","content/review.php?/",get_permalink($recent_posts[4]["ID"]));}
 					else {echo "Not Article or Review";}				
 					?>',event);" style="cursor: pointer;"> 
 					<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_addresss,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[4]["ID"]) )); ?>
@@ -182,8 +182,8 @@ $published_posts = $count_posts->publish;
 		{
 			$category = get_the_category( $recent_posts[$y]["ID"] ); 
 			$categorie = $category[0]->cat_name; 
-			if ($categorie == "Article") {$linkart=str_replace($wpsite."/article.php","content/article.php?",get_permalink($recent_posts[$y]["ID"]));}
-			else {$linkart=str_replace($wpsite."/article.php","content/review.php?",get_permalink($recent_posts[$y]["ID"]));}
+			if ($categorie == "Article") {$linkart=str_replace($wpsite."/article.php/article/","content/article.php?/",get_permalink($recent_posts[$y]["ID"]));}
+			else {$linkart=str_replace($wpsite."/article.php/review/","content/review.php?/",get_permalink($recent_posts[$y]["ID"]));}
 			
 			if  (empty($recent_posts[$y]["post_content"])){}
 			else 

@@ -9,6 +9,7 @@ require_once("etc/session.php");
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="World largest notebook and laptop information hub.">
+	<meta name="keywords" content="find,cheap,best,laptop,notebook,gaming,ultraportable,business">
 	<meta name="author" content="Starchaser">
 
 	<!-- JavaScript libraries -->   
