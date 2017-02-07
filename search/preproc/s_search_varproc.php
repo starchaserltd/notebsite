@@ -161,6 +161,7 @@ switch ($issimple)
 		
    case "3": //high performance
 		$mem_capmin = 8;
+		$mem_capmax = 32;
 		if (($_GET['type'])==1) //normal
 			{
 				$cpu_clockmin = 0.55*$nomenvalues[1][2];

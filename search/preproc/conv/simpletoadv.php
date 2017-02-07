@@ -133,6 +133,7 @@
 
 		case "3":
 			$memcapmin = 8;
+			$memcapmax = 32;
 			if (($_GET['type'])==1) // NORMAL
 			{
 				$cpufreqmin = 0.55*$cpufreqmaxi;

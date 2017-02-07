@@ -77,7 +77,7 @@ if($q>=0)
 		}
 	}
 	$rows[0]['price']=round($rows[0]['price'],2);
-	$rows[0]['bat']=floatval($rows[0]["power"])/7;
+	$rows[0]['bat']=floatval($rows[0]["power"])/8;
 	if(!$rows[0]['typegpu']) { $rows[0]['power']="-"; }
 
 	$rows[0]['rating']=sprintf("%.1f", round($rows[0]['rating'],1));

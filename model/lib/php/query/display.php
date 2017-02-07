@@ -35,9 +35,9 @@ if($q>=0)
 		}
 		
 		if(stripos($rows[0]["backt"],"OLED")!==FALSE)
-		{ $rows[0]['bat']=((floatval($rows[0]["size"])*0.10)+(pow((intval($rows[0]["hres"])*intval($rows[0]["vres"])),0.6)*0.0002))*0.9; }
+		{ $rows[0]['bat']=((floatval($rows[0]["size"])*0.10)+(pow((intval($rows[0]["hres"])*intval($rows[0]["vres"])),0.6)*0.0002))*0.6; }
 		else
-		{ $rows[0]['bat']=((floatval($rows[0]["size"])*0.10)+(pow((intval($rows[0]["hres"])*intval($rows[0]["vres"])),0.6)*0.0002))*1; }
+		{ $rows[0]['bat']=((floatval($rows[0]["size"])*0.10)+(pow((intval($rows[0]["hres"])*intval($rows[0]["vres"])),0.6)*0.0002))*0.7; }
 		$rows[0]['price']=round($rows[0]['price'],2);
 		$rows[0]['confrate'] = round($rows[0]['rating'],3)*$display_i/100;
 	}
