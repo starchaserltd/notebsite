@@ -163,5 +163,5 @@ $exchangelist = mysqli_fetch_all($result);
 		} mysqli_close($cons);
 ?>
 <script type="text/javascript">
-$.getScript("../lib/js/jquery.matchHeight-min.js");
-$.getScript("search/lib/js/results.js");</script>
+$.getScript("../lib/js/jquery.matchHeight-min.js").done(function(){ $.getScript("search/lib/js/results.js"); });
+</script>

@@ -5,8 +5,7 @@ require_once("etc/session.php");
 <html lang="en">
 <head>
 	<title>Noteb.com</title>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="World largest notebook and laptop information hub.">
 	<meta name="keywords" content="find,cheap,best,laptop,notebook,gaming,ultraportable,business">

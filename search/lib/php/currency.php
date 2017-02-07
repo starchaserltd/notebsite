@@ -11,12 +11,12 @@ if(empty($_SESSION['exchcode'])) { $excode="USD"; } else { $excode=$_SESSION['ex
 $var_currency="";
 $i=0;
 
- while ($row=mysqli_fetch_row($result))
-   {
-		$var_currency.="<option value='$row[0]' "; if($row[0]==$excode){ $var_currency.="selected='selected'"; $basevalue=$row[0];} $var_currency.=">".$row[2]."</option>";
-	   $i++; 
-	   $var_jsel[]=$row[0].":".$row[1];
-   }
+while ($row=mysqli_fetch_row($result))
+{
+	$var_currency.="<option value='$row[0]' "; if($row[0]==$excode){ $var_currency.="selected='selected'"; $basevalue=$row[0];} $var_currency.=">".$row[2]."</option>";
+	$i++; 
+	$var_jsel[]=$row[0].":".$row[1];
+}
    
 mysqli_free_result($result);
 
