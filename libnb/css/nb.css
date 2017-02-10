@@ -1,3 +1,29 @@
+.btn.active.logonb{
+	background-image: url(/../res/img/logo/logo.png);
+    -webkit-text-fill-color: transparent;    
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;	
+	transition:background-image 0.2s ease;
+}
+
+.btn.logonb {
+	background-image: url(/../res/img/logo/logo_white.png);
+    -webkit-text-fill-color: transparent;    
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;	
+	transition:background-image 0.2s ease;
+}
+
+.btn.logonb:hover {
+	background-image:url(/../res/img/logo/logo.png);
+	 -webkit-text-fill-color: transparent;    
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;	
+	transition:background-image 0.4s ease;
+}
 
 .tbltitle{color:#841313; font-weight:bold;}
 
