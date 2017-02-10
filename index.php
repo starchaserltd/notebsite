@@ -5,7 +5,8 @@ require_once("etc/session.php");
 <html lang="en">
 <head>
 	<title>Noteb</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="World largest notebook and laptop information hub.">
 	<meta name="keywords" content="find,cheap,best,laptop,notebook,gaming,ultraportable,business">
@@ -19,26 +20,27 @@ require_once("etc/session.php");
 	<script type="text/javascript" src="lib/js/bootstrap-multiselect.js"></script>
 	<script type="text/javascript" src="lib/js/nouislider.min.js"></script>
 </head>
-<body class="container-fluid headerback" style="height:100%;">
+<body>
+<div class="container-fluid headerback" style="height:100%;">
 	<div class="row" style="height:100%;">
 	<!-- upper buttons desktop -->
-		<div class="col-md-10 hidden-xs col-sm-12" style="padding:0px; float:left; position:relative;">
+		<div class="col-md-10 col-xs-12 col-sm-12" style="padding:0px; float:left; position:relative;">
 			<div class="btn-group-justified btn-group">
-				<a class="btn btn-sus" onmousedown="OpenPage('content/home.php',event);">HOME</a>
+				<a class="btn btn-sus logonb"  onmousedown="OpenPage('content/home.php',event);">HOME</a>
 				<a class="btn btn-sus advsearch" >SEARCH</a>
 				<a class="btn btn-sus" onmousedown="OpenPage('content/articles.php',event);">ARTICLES</a>
 				<a class="btn btn-sus" onmousedown="OpenPage('content/reviews.php',event);">REVIEWS</a>
 			</div>
 		</div>
-		<!-- upper buttons mobile-->
-		<div class="hidden-md col-xs-12 hidden-sm hidden-lg" style="padding:0px; float:left; position:relative;">
+		<!-- upper buttons mobile--> 
+	<!--	<div class="hidden-md col-xs-12 hidden-sm hidden-lg" style="padding:0px; float:left; position:relative;">
 			<div class="btn-group-justified btn-group">
 				<a class="btn btn-sus" style="padding:0px;" onmousedown="OpenPage('content/home.php',event);">NOTEB</a>
 				<a class="btn btn-sus advsearch">SEARCH</a>
 				<a class="btn btn-sus" onmousedown="OpenPage('content/articles.php',event);">ARTICLES</a>
 				<a class="btn btn-sus" onmousedown="OpenPage('content/reviews.php',event);">REVIEWS</a>
 			</div>
-		</div>
+		</div> -->
 		<!-- right area -->
 		<div class="col-md-2 hidden-xs col-sm-6" style="float:right; position:relative; padding-top:10px;<!-- min-height:134px;-->"> 
 		<!-- social buttons -->
@@ -53,8 +55,8 @@ require_once("etc/session.php");
 		</div>
 		<!-- div for medium resolutions with logo and social buttons-->
 		<div class="hidden-md hidden-lg hidden-xs col-sm-12 ">
-			<div class="col-sm-6" style="text-align:center"><a style="text-decoration:none" onmousedown="OpenPage('content/home.php',event);"><span style="font-weight:bold;font-size:20px;color:#000;">NOTEB</span></a></div>		
-			<div class="col-sm-6 hidden-md hidden-lg hidden-xs" style="padding:10px 0px 10px 0px; text-align:center">
+		<!--	<div class="col-sm-6" style="text-align:center"><a style="text-decoration:none" onmousedown="OpenPage('content/home.php',event);"><span style="font-weight:bold;font-size:20px;color:#000;">NOTEB</span></a></div> -->
+			<div class="col-sm-12 hidden-md hidden-lg hidden-xs" style="padding:10px 0px 10px 0px; text-align:center"> 
 				<a class="btn btn-social-icon btn-sm btn-facebook sheight" href=""><i class="socicon socicon-facebook"></i></a>
 				<a class="btn btn-social-icon btn-sm btn-twitter sheight" href=""><i class="socicon socicon-twitter"></i></a>
 				<a class="btn btn-social-icon btn-sm btn-google sheight" href=""><i class="socicon socicon-google-plus"></i></a>
@@ -66,9 +68,9 @@ require_once("etc/session.php");
 		<!-- left area -->	
 		<div class="col-md-2 col-xs-12 col-sm-12" style="padding:0px; float:left; position:relative;">
 		<!-- div logo-->
-			<div class="col-md-12 hidden-xs hidden-sm" style="padding: -30px -30px -30px -30px;text-align:center;">
+		<!--	<div class="col-md-12 hidden-xs hidden-sm" style="padding: -30px -30px -30px -30px;text-align:center;">
 				<img onmousedown="OpenPage('content/home.php',event);" src="res/img/logo/logo.png" alt="Noteb" style="width:45%; height: 45%; cursor: pointer;">
-			</div>
+			</div> -->
 		<!-- div end logo-->
 		<!-- left area -->
 		<script type="text/javascript" src="libnb/js/compjsf.js" ></script><!-- compare list functions -->
@@ -163,6 +165,7 @@ require_once("etc/session.php");
 		</div>
 		<!-- end left promotional space-->
 	</div>
+</div>
 	<!-- footer-->
 	<?php include ("footer/footer.php");?>
 	<!-- end footer-->
