@@ -49,7 +49,7 @@ require_once("etc/session.php");
 				<a class="btn btn-social-icon sheight btn-sm btn-facebook" id="sharefb" href=""><i class="socicon socicon-facebook"></i></a>
 				<a class="btn btn-social-icon btn-sm btn-twitter sheight" id="sharetw" href=""><i class="socicon socicon-twitter"></i></a>
 				<a class="btn btn-social-icon btn-sm btn-google sheight" id="sharegp" href=""><i class="socicon socicon-google-plus"></i></a>
-				<a class="btn btn-social-icon btn-sm btn-reddit sheight" href=""><i class="socicon socicon-reddit"></i></a>
+				<a class="btn btn-social-icon btn-sm btn-reddit sheight" id="sharerd" href=""><i class="socicon socicon-reddit"></i></a>
 			</div>	
 		<!-- end social buttons -->
 		</div>

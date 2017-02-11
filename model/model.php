@@ -118,8 +118,8 @@ else
 					<li><a id="amazon_link" href="" target="blank"><img src="res/img/logo/amazonlogo.png" style="height:15px; padding-top:2px;" alt="Amazon link"/> </a> </li> 
 					<li><a id="bing_link" href="" target="blank"><img src="res/img/logo/binglogo.jpg" style="height:20px;" alt="Bing link"/> </a> </li>
 					<?php $imgprod=mysqli_fetch_array(mysqli_query($con,"SELECT pic,pic2 FROM notebro_site.brands WHERE brand='".$mprod."'")); show_vars('link,link2', 'MODEL',$idmodel );?>
-					<li><a href="<?php echo $show_vars["link"].'"><img src=res/'.$imgprod["pic"].' style="height:20px;" alt="Product consumer page">'; ?></a>
-					<?php if(isset($show_vars["link2"]) && $show_vars["link2"]){ ?><li><a href="<?php echo $show_vars["link2"].'"><img src=res/'.$imgprod["pic2"].' style="height:20px;" alt="Product business page">'; ?></a></li> <?php } ?>
+					<li><a href="<?php echo $show_vars["link"].'" target="blank"><img src=res/'.$imgprod["pic"].' style="height:20px;" alt="Product consumer page">'; ?></a>
+					<?php if(isset($show_vars["link2"]) && $show_vars["link2"]){ ?><li><a href="<?php echo $show_vars["link2"].'" target="blank"><img src=res/'.$imgprod["pic2"].' style="height:20px;" alt="Product business page">'; ?></a></li> <?php } ?>
 				</ul>						
 			</div>
 		</div>

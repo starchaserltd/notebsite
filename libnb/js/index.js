@@ -91,13 +91,10 @@ function OpenPage(url,e,dontpush) {
 	
 	if(go==1 || go==2)
 	{
-		
-		document.getElementsByClassName("socicon-facebook")[0].href="https://www.facebook.com/sharer/sharer.php?u="+siteroot+"/?"+url;
-		document.getElementsByClassName("socicon-facebook")[1].href="https://www.facebook.com/sharer/sharer.php?u="+siteroot+"/?"+url;
-		document.getElementsByClassName("socicon-twitter")[0].href="https://twitter.com/home?status=Just%20found%20great%20notebook%20information%20on%20"+siteroot+"/?"+url;
-		document.getElementsByClassName("socicon-twitter")[1].href="https://twitter.com/home?status=Just%20found%20great%20notebook%20information%20on%20"+siteroot+"/?"+url;
-		document.getElementsByClassName("socicon-google-plus")[0].href="https://plus.google.com/share?url="+siteroot+"/?"+url; 
-		document.getElementsByClassName("socicon-google-plus")[1].href="https://plus.google.com/share?url="+siteroot+"/?"+url; 
+		document.getElementById("sharefb").href="https://www.facebook.com/sharer/sharer.php?u="+siteroot+"/?"+url;
+		document.getElementById("sharetw").href="https://twitter.com/home?status=Just%20found%20great%20notebook%20information%20on%20"+siteroot+"/?"+url;
+		document.getElementById("sharegp").href="https://plus.google.com/share?url="+siteroot+"/?"+url; 
+		document.getElementById("sharerd").href="https://www.reddit.com/submit?url="+siteroot+"/?"+url; 
 	}
 	
 	if(go==1)
