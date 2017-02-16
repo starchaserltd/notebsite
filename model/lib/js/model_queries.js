@@ -3,7 +3,18 @@ var binglink={};
 var amazonlink={};
 googlelink["first"]="https://www.google.com/search?q=";
 binglink["first"]="https://www.bing.com/search?q=";
-amazonlink["first"]="https://www.amazon.com/s/ref=nb_sb_noss?field-keywords=";
+switch(exchsign)
+{ 
+	case '$':
+	amazonlink["first"]="https://www.amazon.com/s/ref=nb_sb_noss?field-keywords=";
+	break;
+	case '€':
+	amazonlink["first"]="https://www.amazon.de/s/ref=nb_sb_noss?field-keywords=";
+	break;
+	case '£':
+	amazonlink["first"]="https://www.amazon.co.uk/s/ref=nb_sb_noss?field-keywords=";
+	break;
+}
 googlelink["cpu"]=""; googlelink["gpu"]=""; googlelink["mem"]=""; googlelink["resolution"]=""; googlelink["sist"]="";
 
 var cpu = {}; var cpu_price_old=0; var cpu_price_new=0; var cpu_err_new=0; var cpu_err_old=0; var cpu_rate_new=0; var cpu_rate_old=0; var cpu_gpu=0; var cpu_bat_new=0; var cpu_bat_old=0;

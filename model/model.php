@@ -47,7 +47,9 @@ else
 		</strong>
 	</div>
 <?php 
-	echo "<script> var mprod='".$mprod."'; var mfamily='".$mfam."';  var mmodel='".$mmodel."'; var mid='".$idmodel."'; metakeys(mprod.replace(' ',',')+','+mfamily.replace(' ',',')+','+mmodel.replace(' ',',')+',notebook,laptop');</script>";
+	echo "<script> var mprod='".$mprod."'; var mfamily='".$mfam."';  var mmodel='".$mmodel."'; var mid='".$idmodel."';
+	mmodel=(mmodel.replace(' dGPU','')); mmodel=(mmodel.replace(' FHD','')); mmodel=(mmodel.replace(' HD','')); mmodel=(mmodel.replace(' QHD','')); mmodel=(mmodel.replace(' WWAN','')); mmodel=(mmodel.replace(' vPro',''));
+	metakeys(mprod.replace(' ',',')+','+mfamily.replace(' ',',')+','+mmodel.replace(' ',',')+',notebook,laptop'); exchsign='".showcurrency($exch)."'; </script>";
 ?>
 	<div class="col-md-12 col-sm-12 col-xs-12" style="background-color:white; font-family:arial">
 		<!-- Pictures -->
