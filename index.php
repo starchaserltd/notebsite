@@ -30,6 +30,11 @@ require_once("etc/session.php");
 				<a class="btn btn-sus advsearch" >SEARCH</a>
 				<a class="btn btn-sus" onmousedown="OpenPage('content/articles.php',event);">ARTICLES</a>
 				<a class="btn btn-sus" onmousedown="OpenPage('content/reviews.php',event);">REVIEWS</a>
+				
+			
+		
+		
+				
 			</div>
 		</div>
 		<!-- upper buttons mobile--> 
@@ -42,27 +47,50 @@ require_once("etc/session.php");
 			</div>
 		</div> -->
 		<!-- right area -->
-		<div class="col-md-2 hidden-xs col-sm-6" style="float:right; position:relative; padding-top:10px;<!-- min-height:134px;-->"> 
+		<div class="col-md-2 hidden-xs col-sm-6" style="float:right; position:relative; padding:0px;"><!-- min-height:134px;-->
 		<!-- social buttons -->
-			<div class="col-md-12 hidden-sm" style="padding:0px 0px 10px 0px;">
-				<b>Share this:</b><br>
-				<a class="btn btn-social-icon sheight btn-sm btn-facebook" id="sharefb" href=""><i class="socicon socicon-facebook"></i></a>
-				<a class="btn btn-social-icon btn-sm btn-twitter sheight" id="sharetw" href=""><i class="socicon socicon-twitter"></i></a>
-				<a class="btn btn-social-icon btn-sm btn-google sheight" id="sharegp" href=""><i class="socicon socicon-google-plus"></i></a>
-				<a class="btn btn-social-icon btn-sm btn-reddit sheight" id="sharerd" href=""><i class="socicon socicon-reddit"></i></a>
-			</div>	
+		
+			<div class="hidden-sm hidden-xs col-md-12 col-lg-12" style="padding:0px;">
+			
+			<div class="btn-group" role="group">
+			<button type="button" class="btn btn-sus dropdown-toggle" style="width:inherit;margin-left:-1px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			  <span class="socicon-sharethis"></span>
+			  <span class="caret"></span>
+			</button>
+			<div class="dropdown-menu">
+				  <div style="margin:5px;">
+				  Share page on...
+				  </div>
+				  <div style="margin:5px;">			
+					  <a class="btn btn-block btn-social btn-facebook" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-facebook']); " id="sharefb" href="">
+					<span class="socicon socicon-facebook sheight"></span> Facebook
+					  </a>
+				  </div>
+				  <div style="margin:5px;">
+					 <a class="btn btn-block btn-social btn-twitter" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-twitter']);" id="sharetw" href="">
+					<span class="socicon socicon-twitter sheight"></span> Twitter
+					 </a>
+				  </div>
+				  <div style="margin:5px;">
+					 <a class="btn btn-block btn-social btn-google" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-google']);" id="sharegp" href="">
+					<span class="socicon socicon-google-plus sheight"></span> Google
+					 </a>
+				  </div>
+				   <div style="margin:5px;">
+					<a class="btn btn-block btn-social btn-reddit" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-reddit']);" id="sharerd" href="">
+					<span class="socicon socicon-reddit sheight"></span> Reddit
+					</a>
+				  </div>
+			</div>
+			</div>
+			
+			</div>
+			
+			
 		<!-- end social buttons -->
 		</div>
-		<!-- div for medium resolutions with logo and social buttons-->
-		<div class="hidden-md hidden-lg hidden-xs col-sm-12 ">
-		<!--	<div class="col-sm-6" style="text-align:center"><a style="text-decoration:none" onmousedown="OpenPage('content/home.php',event);"><span style="font-weight:bold;font-size:20px;color:#000;">NOTEB</span></a></div> -->
-			<div class="col-sm-12 hidden-md hidden-lg hidden-xs" style="padding:10px 0px 10px 0px; text-align:center"> 
-				<a class="btn btn-social-icon btn-sm btn-facebook sheight" href=""><i class="socicon socicon-facebook"></i></a>
-				<a class="btn btn-social-icon btn-sm btn-twitter sheight" href=""><i class="socicon socicon-twitter"></i></a>
-				<a class="btn btn-social-icon btn-sm btn-google sheight" href=""><i class="socicon socicon-google-plus"></i></a>
-				<a class="btn btn-social-icon btn-sm btn-reddit sheight" href=""><i class="socicon socicon-reddit"></i></a>
-			</div>
-		</div>			
+		
+				
 		<!-- end div middle -->
 		<!-- end right area -->
 		<!-- left area -->	
@@ -138,6 +166,17 @@ require_once("etc/session.php");
 				<?php include ("search/s_search.php");?>
 			</div>
 			<!-- end simple search -->	
+			<!-- div for medium resolutions with logo and social buttons-->
+		
+		<!--	<div class="col-sm-6" style="text-align:center"><a style="text-decoration:none" onmousedown="OpenPage('content/home.php',event);"><span style="font-weight:bold;font-size:20px;color:#000;">NOTEB</span></a></div> -->
+			<div class="col-xs-12 col-sm-12 hidden-md hidden-lg" style="padding:10px 0px 10px 0px; text-align:center;"> 
+				<!--<div class="col-xs-12 col-sm-12 hidden-md hidden-lg" style="padding:10px 0px 5px 0px; text-align:center;">Share page on...</div>-->
+				<span>Share on</span>
+				<a class="btn btn-social-icon btn-sm btn-facebook" id="sharefb" href=""><span class="socicon socicon-facebook sheight"></span></a>
+				<a class="btn btn-social-icon btn-sm btn-twitter" id="sharetw" href=""><span class="socicon socicon-twitter sheight"></span></a>
+				<a class="btn btn-social-icon btn-sm btn-google" id="sharegp" href=""><span class="socicon socicon-google-plus sheight"></span></a>
+				<a class="btn btn-social-icon btn-sm btn-reddit" id="sharerd" href=""><span class="socicon socicon-reddit sheight"></span></a>
+			</div>
 		</div>
 		<!-- end left area-->
 		<!-- main content -->
