@@ -1,3 +1,4 @@
 .modal-body {padding:0px;display: flex;align-items: center;min-height: 40vh;}
 .btn.active, .btn:active {-webkit-box-shadow:none;box-shadow:none;}
 .modal-header{padding:5px;border-bottom:none}
+@media screen and (min-width: 1800px){.modelwidht{width:100%!important;}}

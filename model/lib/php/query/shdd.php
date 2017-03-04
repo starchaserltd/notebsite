@@ -40,7 +40,8 @@ if($q>=0)
 		$rows[0]['bat']=0.3;
 		break;													
 	}
-	$rows[0]['price']=round($rows[0]['price'],2);
+	//$rows[0]['price']=round($rows[0]['price'],2);
+	$rows[0]['price']=0;
 	$rows[0]['rating']=0;
 	print json_encode($rows[0]);
 	mysqli_close($con);

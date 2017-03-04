@@ -130,7 +130,7 @@ else
 		<div class="col-md-12 col-sm-12 col-xs-12" style="background-color:white; font-family:arial;padding:0px;text-align:center;margin-right: -15px;margin-left: -15px;">
 			<div class="col-md-4 col-sm-6 col-lg-4 col-xs-12 btn" style="text-align:left;padding-top:0px">
 				<div>
-					<span class="toggler compmod" data-hide="all" style="color:black;background-color:#ffcc50;padding:2px 20px;font-weight:normal"> Show all details </span>
+					<span class="toggler compmod" data-hide="all" style="color:black;background-color:#FFD466;padding:2px 20px;font-weight:normal"> Show all details </span>
 						<!-- We take great effort to assure component compatibility for each configuration. If you think we made a mistake, please contact us. -->
 				</div>
 			</div>
@@ -138,10 +138,10 @@ else
 			<!-- START FIRST HALF OF MODEL -->
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 				<!-- CPU -->
-				<div class="row">
+				<div class="row modelwidht">
 					<div class="col-md-12 titlucomp toolinfo" data-toolid="0" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-load="1" data-original-title="data-loading..."><p><strong><span class="toolinfo1">Processor</span></strong></p></div>
 				</div>
-				<div class="row">	
+				<div class="row modelwidht">	
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">	
 						<div class="row detaliicomp">					
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Model:</div>
@@ -192,7 +192,7 @@ else
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="5" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1"><b><span  class="labelblue-s"><span id="cpu_rating" ></span> / 100</span></b></span></div>							
 						</div>	
 						<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
-							<div style="background-color:#ffcc50;  text-align:center; border-radius:3px; ">
+							<div style="background-color:#FFD466;  text-align:center; border-radius:3px; ">
 								<a  class="toggler" data-hide="cpu" style="text-decoration:none; color:black;">Show more details</a>
 							</div>
 						</div>								
@@ -200,10 +200,10 @@ else
 				</div>	
 				<br>
 				<!-- Video Card -->
-				<div class="row titlucomp toolinfo" data-toolid="20" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
+				<div class="row titlucomp toolinfo modelwidht" data-toolid="20" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
 					<div class="col-md-12"><strong><span class="toolinfo1">Video card</span></strong></div>
 				</div>
-				<div class="row">						
+				<div class="row modelwidht">						
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">	
 						<div class="row detaliicomp">					
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Model:</div>
@@ -262,7 +262,7 @@ else
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="30" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1"><b><span  class="labelblue-s"><span id="gpu_rating"></span> / 100</span></b></span></div>
 						</div>		
 						<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
-							<div  style="background-color:#ffcc50;  text-align:center; border-radius:3px;">
+							<div  style="background-color:#FFD466;  text-align:center; border-radius:3px;">
 								<a  class="toggler" data-hide="gpu" style="text-decoration:none; color:black;">Show more details</a>
 							</div>
 						</div>
@@ -270,10 +270,10 @@ else
 				</div>
 				<br>	
 				<!-- Display -->
-				<div class="row titlucomp toolinfo" data-toolid="42" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
+				<div class="row titlucomp toolinfo modelwidht" data-toolid="42" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
 					<div class="col-md-12"><strong><span class="toolinfo1">Display</span></strong></div>
 				</div>
-				<div class="row">
+				<div class="row modelwidht">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="row detaliicomp">
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Model:</div>
@@ -312,7 +312,7 @@ else
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="48" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1"><span id="display_rating"></span> / 100</span></div>
 						</div>
 						<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
-							<div style="background-color:#ffcc50;  text-align:center; border-radius:3px;">
+							<div style="background-color:#FFD466;  text-align:center; border-radius:3px;">
 								<a  class="toggler" data-hide="dis" style="text-decoration:none; color:black;">Show more details</a>
 							</div>
 						</div>
@@ -320,10 +320,10 @@ else
 				</div>
 				<br>
 				<!-- Storage -->
-				<div class="row titlucomp">
+				<div class="row titlucomp modelwidht">
 					<div class="col-md-12"><strong>Storage</strong></div>
 				</div>
-				<div class="row">						
+				<div class="row modelwidht">						
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="row detaliicomp">
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows toolinfo" data-toolid="50" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1">Model/Capacity:</span></div>
@@ -350,7 +350,7 @@ else
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows" id ="hdd_misc"></div>
 						</div>
 						<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
-							<div style="background-color:#ffcc50;  text-align:center; border-radius:3px;">
+							<div style="background-color:#FFD466;  text-align:center; border-radius:3px;">
 								<a class="toggler" data-hide="sto" style="text-decoration:none; color:black;">Show more details</a>
 							</div>
 						</div>
@@ -363,10 +363,10 @@ else
 ?>	
 					<br>
 					<!-- Secondary Storage (if exists) -->						
-					<div class="row titlucomp">
+					<div class="row titlucomp modelwidht">
 						<div class="col-md-12"><strong>Secondary Storage</strong></div>
 					</div>
-					<div class="row">						
+					<div class="row modelwidht">						
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="row detaliicomp">
 								<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows toolinfo" data-toolid="50" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1">Capacity:</span></div>
@@ -389,7 +389,7 @@ else
 								<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows" ><span id ="shdd_writes"></span> MB/s</div>
 							</div>
 							<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
-								<div style="background-color:#ffcc50;  text-align:center; border-radius:3px;">
+								<div style="background-color:#FFD466;  text-align:center; border-radius:3px;">
 									<a class="toggler" data-hide="sto1" style="text-decoration:none; color:black;">Show more details</a>
 								</div>
 							</div>
@@ -398,10 +398,10 @@ else
 <?php			} ?>
 				<br>
 				<!-- Motherboard -->	
-				<div class="row titlucomp toolinfo" data-toolid="53" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
+				<div class="row titlucomp toolinfo modelwidht" data-toolid="53" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
 					<div class="col-md-12"><strong><span class="toolinfo1">Motherboard</span></strong></div>
 				</div>
-				<div class="row">
+				<div class="row modelwidht">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="row detaliicomp">
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Submodel:</div>
@@ -436,7 +436,7 @@ else
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows" id = "mdb_misc"></div>
 						</div>
 						<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
-							<div style="background-color:#ffcc50;  text-align:center; border-radius:3px;">
+							<div style="background-color:#FFD466;  text-align:center; border-radius:3px;">
 								<a  class="toggler" data-hide="mdb" style="text-decoration:none; color:black;">Show more details</a>
 							</div>
 						</div>	
@@ -446,10 +446,10 @@ else
 			<!-- END FIRST HALF OF MODEL -->
 			<!-- START SECOND HALF OF MODEL -->
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">				
-				<div class="row titlucomp toolinfo" data-toolid="59" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
+				<div class="row titlucomp toolinfo modelwidht" data-toolid="59" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
 					<div class="col-md-12"><strong><span class="toolinfo1">Memory</span></strong></div>
 				</div>
-				<div class="row">						
+				<div class="row modelwidht">						
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="row detaliicomp">
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows toolinfo" data-toolid="62" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1">Capacity:</span></div>
@@ -472,7 +472,7 @@ else
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows" id = "mem_misc"></div>
 						</div>
 						<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
-							<div style="background-color:#ffcc50;  text-align:center; border-radius:3px;">
+							<div style="background-color:#FFD466;  text-align:center; border-radius:3px;">
 								<a  class="toggler" data-hide="mem" style="text-decoration:none; color:black;">Show more details</a>
 							</div>
 						</div>												
@@ -480,10 +480,10 @@ else
 				</div>	
 				<br>
 				<!--Optical Drive (if exists) -->		
-				<div class="row titlucomp toolinfo" data-toolid="64" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
+				<div class="row titlucomp toolinfo modelwidht" data-toolid="64" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
 					<div class="col-md-12"><strong><span class="toolinfo1">Optical drive</span></strong></div>
 				</div>
-				<div class="row">					
+				<div class="row modelwidht">					
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="row detaliicomp">					
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows toolinfo" data-toolid="65" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1">Type:</span></div>
@@ -500,7 +500,7 @@ else
 								<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows" id = "odd_misc"></div>
 							</div>
 							<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
-								<div style="background-color:#ffcc50;  text-align:center; border-radius:3px;">
+								<div style="background-color:#FFD466;  text-align:center; border-radius:3px;">
 									<a class="toggler" data-hide="odd" style="text-decoration:none; color:black;">Show more details</a>
 								</div>
 							</div>	
@@ -509,10 +509,10 @@ else
 				</div>	
 				<br>
 				<!-- Battery -->	
-				<div class="row titlucomp">
+				<div class="row titlucomp modelwidht">
 					<div class="col-md-12"><strong>Battery</strong></div>
 				</div>
-				<div class="row">					
+				<div class="row modelwidht">					
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="row detaliicomp">
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows toolinfo" data-toolid="67" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1">Capacity:</span></div>
@@ -539,7 +539,7 @@ else
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows" id = "acum_misc"></div>
 						</div>
 						<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
-							<div style="background-color:#ffcc50;  text-align:center; border-radius:3px;">
+							<div style="background-color:#FFD466;  text-align:center; border-radius:3px;">
 								<a class="toggler" data-hide="acu" style="text-decoration:none; color:black;">Show more details</a>
 							</div>
 						</div>
@@ -547,10 +547,10 @@ else
 				</div>
 				<br>
 				<!-- Chassis -->	
-				<div class="row titlucomp " data-toolid="69" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
+				<div class="row titlucomp modelwidht" data-toolid="69" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
 					<div class="col-md-12"><strong><span class="toolinfo1">Chassis</span></strong></div>
 				</div>
-				<div class="row">					
+				<div class="row modelwidht">					
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 <?php
 					$chassistext=show_chassis($modelchassis);
@@ -614,7 +614,7 @@ else
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows" id = "chassis_misc"></div>
 						</div>
 						<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
-							<div style="background-color:#ffcc50;  text-align:center; border-radius:3px;">
+							<div style="background-color:#FFD466;  text-align:center; border-radius:3px;">
 								<a class="toggler" data-hide="cha" style="text-decoration:none; color:black;">Show more details</a>
 							</div>
 						</div>
@@ -622,10 +622,10 @@ else
 				</div>
 				<br>
 				<!-- Wireless card -->	
-				<div class="row titlucomp toolinfo" data-toolid="71" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
+				<div class="row titlucomp toolinfo modelwidht" data-toolid="71" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
 					<div class="col-md-12"><strong><span class="toolinfo1">Wireless card</span></strong></div>
 				</div>
-				<div class="row">				
+				<div class="row modelwidht">				
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="row detaliicomp">
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Model:</div>
@@ -648,7 +648,7 @@ else
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows" id = "wnet_misc"></div>
 						</div>
 						<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
-							<div style="background-color:#ffcc50;  text-align:center; border-radius:3px;">
+							<div style="background-color:#FFD466;  text-align:center; border-radius:3px;">
 								<a class="toggler" data-hide="wnet" style="text-decoration:none; color:black;">Show more details</a>
 							</div>
 						</div>		
@@ -656,10 +656,10 @@ else
 				</div>
 				<br>
 				<!-- Warranty -->			
-				<div class="row">
+				<div class="row modelwidht">
 					<div class="col-md-12 titlucomp"><strong>Warranty</strong></div>
 				</div>
-				<div class="row">					
+				<div class="row modelwidht">					
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="row detaliicomp">
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Years:</div>
@@ -673,10 +673,10 @@ else
 				</div>
 				<br>
 				<!-- Operating System -->	
-				<div class="row toolinfo" data-toolid="75" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
+				<div class="row toolinfo modelwidht" data-toolid="75" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
 					<div class="col-md-12 titlucomp"><strong><span class="toolinfo1">Operating System</span></strong></div>
 				</div>
-				<div class="row">					
+				<div class="row modelwidht">					
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="row detaliicomp">
 							<div class="col-md-6 col-xs-6 col-sm-6 col-lg-6 rows">System:</div>
@@ -689,10 +689,10 @@ else
 <?php			$msctext=show_vars('msc','MODEL',$idmodel); 
 				if(!($msctext==""))
 				{ ?>
-					<div class="row">
+					<div class="row modelwidht">
 						<div class="col-md-12 titlucomp"><strong>Miscellaneous</strong></div>
 					</div>
-					<div class="row">					
+					<div class="row modelwidht">					
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="row detaliicomp">
 								<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows" data-placement="top" title="data-loading...">About:</div>

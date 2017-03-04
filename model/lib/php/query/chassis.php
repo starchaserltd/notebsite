@@ -32,7 +32,8 @@ if($q>=0)
 		if(!$rows[0]['web']) { $rows[0]['web']="None"; }
 		if(!$rows[0]['touch']) { $rows[0]['touch']="Standard"; }
 		if(!$rows[0]['charger']) { $rows[0]['charger']="-"; }
-		$rows[0]['price']=round($rows[0]['price'],2);
+		//$rows[0]['price']=round($rows[0]['price'],2);
+		$rows[0]['price']=0;
 		$rows[0]['confrate'] = round($rows[0]['rating'],3)*$chassis_i/100;	
 	}
 $rows[0]['rating']=0;

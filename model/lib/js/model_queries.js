@@ -48,18 +48,6 @@ function showCPU(str)
 				document.getElementById('cpu_misc').innerHTML = cpumisc(cpu["msc"]);
 				document.getElementById('cpu_rating').innerHTML = cpu["rating"];
 				document.getElementById('cpu_class').innerHTML = cpu["class"];
-
-				cpu_price_old = cpu_price_new;
-				cpu_price_new = cpu["price"];
-					
-				cpu_err_old = cpu_err_new;
-				cpu_err_new = cpu["err"]*cpu_price_new/100;
-
-				config_err=config_err-cpu_err_old+cpu_err_new;
-				config_price=config_price-cpu_price_old+cpu_price_new;
-
-				document.getElementById('config_price1').innerHTML=parseInt((config_price-config_err/2)*exch);
-				document.getElementById('config_price2').innerHTML=parseInt((config_price+config_err/2)*exch);
 						
 				googlelink["cpu"]=cpu["model"];
 				makelinks();
@@ -74,9 +62,8 @@ function showCPU(str)
 				config_batlife=config_batlife-cpu_bat_old+cpu_bat_new;
 				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.95);
 				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.02);
-				
 				cpu_gpu=parseInt(cpu["gpu"]);
-								
+				getconf();				
 				if($("#GPU").val()==-1)
 				{
 					if(cpu_gpu)
@@ -147,17 +134,7 @@ function showGPU(str)
 				document.getElementById('gpu_class').innerHTML = gpu["class"];
 				//document.getElementById('gpu_boost').innerHTML = gpu["bspeed"];
 				
-				gpu_price_old = gpu_price_new;
-				gpu_price_new = gpu["price"];
-				
-				gpu_err_old = gpu_err_new;
-				gpu_err_new = gpu["err"]*gpu_price_new/100;
-		
-				config_err=config_err-gpu_err_old+gpu_err_new;
-				config_price=config_price-gpu_price_old+gpu_price_new;
-				
-				document.getElementById('config_price1').innerHTML=parseInt((config_price-config_err/2)*exch);
-				document.getElementById('config_price2').innerHTML=parseInt((config_price+config_err/2)*exch);
+				getconf();	
 
 				gpu_rate_old = gpu_rate_new;
 				gpu_rate_new = gpu["confrate"];				
@@ -216,18 +193,8 @@ function showDISPLAY(str)
 				document.getElementById('display_misc').innerHTML = display["msc"];
 				document.getElementById('display_rating').innerHTML = display["rating"];
 			
-				display_price_old = display_price_new;
-				display_price_new = display["price"];
-				
-				display_err_old = display_err_new;
-				display_err_new = display["err"]*display_price_new/100;
-				
-				config_err=config_err-display_err_old+display_err_new;
-				config_price=config_price-display_price_old+display_price_new;
+				getconf();
 			
-				document.getElementById('config_price1').innerHTML=parseInt((config_price-config_err/2)*exch);
-				document.getElementById('config_price2').innerHTML=parseInt((config_price+config_err/2)*exch);	
-
 				display_rate_old = display_rate_new;
 				display_rate_new = display["confrate"];		
 				config_rate = config_rate-display_rate_old+display_rate_new;
@@ -275,18 +242,8 @@ function showHDD(str)
 				document.getElementById('hdd_misc').innerHTML = hdd["msc"];
 				document.getElementById('hdd_title').innerHTML = hdd["cap"]+"GB "+hdd["type"];
 
-				hdd_price_old = hdd_price_new;
-				hdd_price_new = hdd["price"];
-
-				hdd_err_old = hdd_err_new;
-				hdd_err_new = hdd["err"]*hdd_price_new/100;
-
-				config_err=config_err-hdd_err_old+hdd_err_new;
-				config_price=config_price-hdd_price_old+hdd_price_new;
-			
-				document.getElementById('config_price1').innerHTML=parseInt((config_price-config_err/2)*exch);
-				document.getElementById('config_price2').innerHTML=parseInt((config_price+config_err/2)*exch);	
-
+				getconf();
+				
 				hdd_rate_old = hdd_rate_new;
 				hdd_rate_new = hdd["confrate"];				
 				config_rate = config_rate-hdd_rate_old+hdd_rate_new;
@@ -341,18 +298,8 @@ function showSHDD(str)
 						document.getElementById('shdd_writes').innerHTML = shdd["writes"];
 						document.getElementById('shdd_rpm').innerHTML = shdd["rpm"];
 
-						shdd_price_old = shdd_price_new;
-						shdd_price_new = shdd["price"];
-
-						shdd_err_old = shdd_err_new;
-						shdd_err_new = shdd["err"]*shdd_price_new/100;
-
-						config_err=config_err-shdd_err_old+shdd_err_new;
-						config_price=config_price-shdd_price_old+shdd_price_new;
-					
-						document.getElementById('config_price1').innerHTML=parseInt((config_price-config_err/2)*exch);
-						document.getElementById('config_price2').innerHTML=parseInt((config_price+config_err/2)*exch);	
-					
+						getconf();
+						
 						shdd_rate_old = shdd_rate_new;
 						shdd_rate_new = shdd["confrate"];					
 						config_rate = config_rate-shdd_rate_old+shdd_rate_new;
@@ -401,20 +348,10 @@ function showMDB(str)
 				document.getElementById('mdb_hdd').innerHTML = mdb["hdd"];
 				document.getElementById('mdb_misc').innerHTML = mdb["msc"];
 				
-				mdb_price_old = mdb_price_new;
-				mdb_price_new = mdb["price"];
-				
-				mdb_err_old = mdb_err_new;
-				mdb_err_new = mdb["err"]*mdb_price_new/100;
-				
 				mdb_rate_old = mdb_rate_new;
 				mdb_rate_new = mdb["confrate"];
 
-				config_err=config_err-mdb_err_old+mdb_err_new;
-				config_price=config_price-mdb_price_old+mdb_price_new;
-			
-				document.getElementById('config_price1').innerHTML=parseInt((config_price-config_err/2)*exch);
-				document.getElementById('config_price2').innerHTML=parseInt((config_price+config_err/2)*exch);	
+				getconf();
 				
 				config_rate = config_rate-mdb_rate_old+mdb_rate_new;
 				document.getElementById('notebro_rate').innerHTML=(Math.round(config_rate * 10) / 10).toFixed(1);
@@ -452,21 +389,11 @@ function showMEM(str)
 				document.getElementById('mem_freq').innerHTML = mem["freq"];
 				document.getElementById('mem_misc').innerHTML = mem["msc"];
 
-				mem_price_old = mem_price_new;
-				mem_price_new = mem["price"];
-
-				mem_err_old = mem_err_new;
-				mem_err_new = mem["err"]*mem_price_new/100;
-
 				mem_rate_old = mem_rate_new;
 				mem_rate_new = mem["confrate"];
 
-				config_err=config_err-mem_err_old+mem_err_new;
-				config_price=config_price-mem_price_old+mem_price_new;
-			
-				document.getElementById('config_price1').innerHTML=parseInt((config_price-config_err/2)*exch);
-				document.getElementById('config_price2').innerHTML=parseInt((config_price+config_err/2)*exch);	
-		
+				getconf();
+				
 				config_rate = config_rate-mem_rate_old+mem_rate_new;
 				document.getElementById('notebro_rate').innerHTML=(Math.round(config_rate * 10) / 10).toFixed(1);
 				
@@ -502,20 +429,11 @@ function showODD(str)
 					if(odd["speed"] && odd["speed"]!=0){document.getElementById('odd_speed').innerHTML = odd["speed"]};
 					if(odd["msc"] && odd["msc"]!="-"){document.getElementById('odd_misc').innerHTML = odd["msc"];}
 
-					odd_price_old = odd_price_new;
-					odd_price_new = odd["price"];
-
-					odd_err_old = odd_err_new;
-					odd_err_new = odd["err"]*odd_price_new/100;
-
 					odd_rate_old = odd_rate_new;
 					odd_rate_new = odd["confrate"];
 
-					config_err=config_err-odd_err_old+odd_err_new;
-					config_price=config_price-odd_price_old+odd_price_new;
-				
-					document.getElementById('config_price1').innerHTML=parseInt((config_price-config_err/2)*exch);
-					document.getElementById('config_price2').innerHTML=parseInt((config_price+config_err/2)*exch);	
+					getconf();
+					
 					config_rate = config_rate-odd_rate_old+odd_rate_new;
 					document.getElementById('notebro_rate').innerHTML=(Math.round(config_rate * 10) / 10).toFixed(1);
 				}
@@ -556,17 +474,7 @@ function showACUM(str)
 				
 				document.getElementById('acum_misc').innerHTML = acum["msc"];
 
-				acum_price_old = acum_price_new;
-				acum_price_new = acum["price"];
-
-				acum_err_old = acum_err_new;
-				acum_err_new = acum["err"]*acum_price_new/100;
-				
-				config_err=config_err-acum_err_old+acum_err_new;
-				config_price=config_price-acum_price_old+acum_price_new;
-			
-				document.getElementById('config_price1').innerHTML=parseInt((config_price-config_err/2)*exch);
-				document.getElementById('config_price2').innerHTML=parseInt((config_price+config_err/2)*exch);	
+				getconf();
 				
 				acum_rate_old = acum_rate_new;
 				acum_rate_new = acum["confrate"];
@@ -627,21 +535,11 @@ function showCHASSIS(str)
 				document.getElementById('chassis_thic_i').innerHTML = (chassis["thic"]*0.0393700787).toFixed(2);
 				document.getElementById('chassis_depth_i').innerHTML = (chassis["depth"]*0.0393700787).toFixed(2);
 				document.getElementById('chassis_width_i').innerHTML = (chassis["width"]*0.0393700787).toFixed(2);
-				
-				chassis_price_old = chassis_price_new;
-				chassis_price_new = chassis["price"];
-
-				chassis_err_old = chassis_err_new;
-				chassis_err_new = chassis["err"]*chassis_price_new/100;
 
 				chassis_rate_old = chassis_rate_new;
 				chassis_rate_new = chassis["confrate"];
-
-				config_err=config_err-chassis_err_old+chassis_err_new;
-				config_price=config_price-chassis_price_old+chassis_price_new;
-			
-				document.getElementById('config_price1').innerHTML=parseInt((config_price-config_err/2)*exch);
-				document.getElementById('config_price2').innerHTML=parseInt((config_price+config_err/2)*exch);	
+				
+				getconf();
 				
 				config_rate = config_rate-chassis_rate_old+chassis_rate_new;
 				document.getElementById('notebro_rate').innerHTML=(Math.round(config_rate * 10) / 10).toFixed(1);
@@ -677,21 +575,11 @@ function showWNET(str)
 				document.getElementById('wnet_slot').innerHTML = wnet["slot"];
 				document.getElementById('wnet_misc').innerHTML = wnetmisc(wnet["msc"]);
 
-				wnet_price_old = wnet_price_new;
-				wnet_price_new = wnet["price"];
-
-				wnet_err_old = wnet_err_new;
-				wnet_err_new = wnet["err"]*wnet_price_new/100;
+				getconf();
 				
 				wnet_rate_old = wnet_rate_new;
 				wnet_rate_new = wnet["confrate"];
-				
-				config_err=config_err-wnet_err_old+wnet_err_new;
-				config_price=config_price-wnet_price_old+wnet_price_new;
 			
-				document.getElementById('config_price1').innerHTML=parseInt((config_price-config_err/2)*exch);
-				document.getElementById('config_price2').innerHTML=parseInt((config_price+config_err/2)*exch);	
-				
 				config_rate = config_rate-wnet_rate_old+wnet_rate_new;
 				document.getElementById('notebro_rate').innerHTML=(Math.round(config_rate * 10) / 10).toFixed(1);
 			}
@@ -722,21 +610,11 @@ function showWAR(str)
 			{
 				war = JSON.parse(xmlhttp.responseText);
 				document.getElementById('war_misc').innerHTML = war["msc"];
-				war_price_old = war_price_new;
-				war_price_new = war["price"];
-				
-				war_err_old = war_err_new;
-				war_err_new = war["err"]*war_price_new/100;
 
 				war_rate_old = war_rate_new;
 				war_rate_new = war["confrate"];
 
-				config_err=config_err-war_err_old+war_err_new;
-				config_price=config_price-war_price_old+war_price_new;
-			
-				document.getElementById('config_price1').innerHTML=parseInt((config_price-config_err/2)*exch);
-				document.getElementById('config_price2').innerHTML=parseInt((config_price+config_err/2)*exch);	
-				
+				getconf();
 				config_rate = config_rate-war_rate_old+war_rate_new;
 				document.getElementById('notebro_rate').innerHTML=(Math.round(config_rate * 10) / 10).toFixed(1);
 			}
@@ -772,20 +650,10 @@ function showSIST(str)
 				else
 				{ googlelink["sist"]=""; }
 
-				sist_price_old = sist_price_new;
-				sist_price_new = sist["price"];
-
-				sist_err_old = sist_err_new;
-				sist_err_new = sist["err"]*sist_price_new/100;
-
 				sist_rate_old = sist_rate_new;
 				sist_rate_new = sist["confrate"];
 
-				config_err=config_err-sist_err_old+sist_err_new;
-				config_price=config_price-sist_price_old+sist_price_new;
-				
-				document.getElementById('config_price1').innerHTML=parseInt((config_price-config_err/2)*exch);
-				document.getElementById('config_price2').innerHTML=parseInt((config_price+config_err/2)*exch);	
+				getconf();
 				
 				config_rate = config_rate-sist_rate_old+sist_rate_new;
 				document.getElementById('notebro_rate').innerHTML=(Math.round(config_rate * 10) / 10).toFixed(1);
@@ -795,6 +663,38 @@ function showSIST(str)
 		xmlhttp.open("GET","model/lib/php/query/sist.php?q="+str,true);
 		xmlhttp.send();
 	}
+}
+
+function getconf(str) 
+{
+	if (mid===undefined || cpu["id"]===undefined || display["id"]===undefined || mem["id"]===undefined || hdd["id"]===undefined || shdd["id"]===undefined || gpu["id"]===undefined || wnet["id"]===undefined || odd["id"]===undefined || mdb["id"]===undefined || chassis["id"]===undefined || acum["id"]===undefined || war["id"]===undefined || sist["id"]===undefined)
+	{
+		confdata = {};
+		return;
+	}
+	else 
+	{
+		if (window.XMLHttpRequest) 
+		{
+			var	xmlhttp = new XMLHttpRequest();
+		}
+		xmlhttp.onreadystatechange = function() 
+		{
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+			{
+				confdata = JSON.parse(xmlhttp.responseText);
+				confdata["cprice"]=parseInt(confdata["cprice"]);
+				confdata["cerr"]=parseInt(confdata["cerr"]);
+				document.getElementById('config_price1').innerHTML=parseInt((confdata["cprice"]-confdata["cerr"]/2)*exch);
+				document.getElementById('config_price2').innerHTML=parseInt((confdata["cprice"]+confdata["cerr"]/2)*exch);
+				var stateObj = { no: "empty" };
+				history.replaceState(stateObj, confdata["cid"], "?model/model.php?conf="+confdata["cid"]);
+				currentPage = window.location.href;
+			}		
+		}
+	}
+		xmlhttp.open("GET","model/lib/php/query/getconf.php?c="+mid+"-"+cpu["id"]+"-"+display["id"]+"-"+mem["id"]+"-"+hdd["id"]+"-"+shdd["id"]+"-"+gpu["id"]+"-"+wnet["id"]+"-"+odd["id"]+"-"+mdb["id"]+"-"+chassis["id"]+"-"+acum["id"]+"-"+war["id"]+"-"+sist["id"],true);
+		xmlhttp.send();
 }
 
 function cpumisc(str) 

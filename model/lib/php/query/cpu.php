@@ -20,7 +20,8 @@ if($q>=0)
 		
 		$rows[] = $r;
 		$rows[0]['clocks']=number_format($rows[0]['clocks'], 2);
-		$rows[0]['price']=round($rows[0]['price']*0.8,2);
+		//$rows[0]['price']=round($rows[0]['price']*0.8,2);
+		$row[0]['price']=0;
 		$rows[0]['maxtf']=number_format($rows[0]['maxtf'], 2); 
 		$rows[0]['msc']=str_replace(",", ", ",$rows[0]['msc']);
 		$rows[0]['ldate'] = date('F Y', strtotime($rows[0]['ldate']));
@@ -63,7 +64,7 @@ if($q>=0)
 				break;
 		}
 	}
-
+	
 	$rows[0]['rating']=sprintf("%.1f", round($rows[0]['rating'],1));
 	print json_encode($rows[0]);
 	mysqli_close($con);

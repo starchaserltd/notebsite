@@ -22,7 +22,8 @@ if($q>=0)
 		if(!$rows[0]['msc']) { $rows[0]['msc']="-"; }
 		$rows[0]['confrate'] = round($rows[0]['rating'],3)*$odd_i/100;	
 	}
-	$rows[0]['price']=round($rows[0]['price'],2);
+	//$rows[0]['price']=round($rows[0]['price'],2);
+	$rows[0]['price']=0;
 	$rows[0]['rating']=0;
 	print json_encode($rows[0]);
 	mysqli_close($con);

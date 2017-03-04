@@ -25,7 +25,8 @@ if($q>=0)
 		if(!$rows[0]['tipc']) { $rows[0]['tipc']="-"; }
 		if(!$rows[0]['nrc']) { $rows[0]['nrc']="-"; }
 		if(!$rows[0]['cap']) { $rows[0]['cap']="-"; }
-		$rows[0]['price']=round($rows[0]['price'],2);
+		//$rows[0]['price']=round($rows[0]['price'],2);
+		$rows[0]['price']=0;
 		
 		$rows[0]['confrate'] = round($rows[0]['rating'],3)*$acum_i/100;	
 	}

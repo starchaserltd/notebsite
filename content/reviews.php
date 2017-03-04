@@ -155,6 +155,9 @@ $published_posts = $category->category_count;
 		</ul>
 	</div>
 	<?php //PAGINATION CODE END ?>
+	
+		
+	
 
 <script type="text/javascript">
 	$(document).ready(function(){

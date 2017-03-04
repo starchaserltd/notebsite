@@ -56,15 +56,15 @@ $exchangelist = mysqli_fetch_all($result);
 		?>
 		<div class="col-md-3 col-sm-4 col-xs-6 col-lg-3" style="padding-left:7px !important;padding-right:7px !important" >
 			<div class="col-md-12 searchresult">
-				<div class="searchresultJPG" style="margin-top:2px;">
-					<a class="searchresult3" style="cursor:pointer;" onmousedown="OpenPage('model/model.php?conf=<?php echo $rand['id'];?>',event);">
+				<div class="searchresultJPG">
+					<a onmousedown="OpenPage('model/model.php?conf=<?php echo $rand['id'];?>',event);">
 						<img src="../res/img/models/thumb/<?php echo $t_img; ?>" class="img-responsive searchresultJPG" alt="Image for <?php echo $model; ?>">
 					</a>
 				</div>
 				<br>
 				<div class="searchresultitlu">
-					<a style="cursor:pointer; color: inherit; text-decoration: inherit; font-size: inherit;  font-family:inherit;" onmousedown="OpenPage('model/model.php?conf=<?php echo $rand['id'];?>',event);">
-						<p style="text-align:center;font-weight:bold;">
+					<a onmousedown="OpenPage('model/model.php?conf=<?php echo $rand['id'];?>',event);">
+						<p>
 							<?php
 								echo $prod; echo " ";
 								echo $fam; echo " ";
@@ -75,8 +75,8 @@ $exchangelist = mysqli_fetch_all($result);
 					</a>
 				</div>
 		        <div class="searchresultdesc">
-					<a style="cursor:pointer;color: inherit; text-decoration: inherit;" onmousedown="OpenPage('model/model.php?conf=<?php echo $rand['id'];?>',event);">
-						<ul style="margin-top:5px;margin-bottom:0px;padding-left: 5px;">
+					<a onmousedown="OpenPage('model/model.php?conf=<?php echo $rand['id'];?>',event);">
+						<ul>
 							<li class="resulspace"><?php show('size','DISPLAY',$rand['display'] );echo '" ('; show('hres','DISPLAY',$rand['display']); echo "x"; show('vres','DISPLAY',$rand['display']); echo ")";?></li>
 							<li class="resulspace"><?php show('prod', 'CPU',$rand['cpu'] ); echo " "; show('model', 'CPU',$rand['cpu'] ); echo " ("; show('clocks', 'CPU',$rand['cpu'] ); echo " MHz)"?></li>
 							<li class="resulspace"><?php show('prod', 'GPU',$rand['gpu'] ); echo " "; show('model', 'GPU',$rand['gpu'] );?></li>
@@ -87,7 +87,7 @@ $exchangelist = mysqli_fetch_all($result);
 						</ul>
 					</a>
 				</div>
-				<div style="text-align:center;font-weight:bold;margin-bottom:0px; margin-top:-5px;"><?php echo ""; echo $exchsign; echo " "; echo showprice(('notebro_temp.'.$temp_table."_".table($rand['id'])), $rand['id'], $exch );?></div>
+				<div class="searchprice"><?php echo ""; echo $exchsign; echo " "; echo showprice(('notebro_temp.'.$temp_table."_".table($rand['id'])), $rand['id'], $exch );?></div>
 				<div class="btn col-md-12 col-sm-12 col-xs-12 addtocpmp" onclick="addcompare(<?php echo $rand['id'];?>)">Add to compare</div>
 			</div>
 		</div>
