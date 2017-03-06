@@ -95,7 +95,11 @@ function OpenPage(url,e,dontpush) {
 		document.getElementById("sharefb").href="https://www.facebook.com/sharer/sharer.php?u="+siteroot+"/?"+url;
 		document.getElementById("sharetw").href="https://twitter.com/home?status=Just%20found%20great%20notebook%20information%20on%20"+siteroot+"/?"+url;
 		document.getElementById("sharegp").href="https://plus.google.com/share?url="+siteroot+"/?"+url; 
-		document.getElementById("sharerd").href="https://www.reddit.com/submit?url="+siteroot+"/?"+url; 
+		document.getElementById("sharerd").href="https://www.reddit.com/submit?url="+siteroot+"/?"+url;
+		document.getElementById("sharefbm").href="https://www.facebook.com/sharer/sharer.php?u="+siteroot+"/?"+url;
+		document.getElementById("sharetwm").href="https://twitter.com/home?status=Just%20found%20great%20notebook%20information%20on%20"+siteroot+"/?"+url;
+		document.getElementById("sharegpm").href="https://plus.google.com/share?url="+siteroot+"/?"+url; 
+		document.getElementById("sharerdm").href="https://www.reddit.com/submit?url="+siteroot+"/?"+url; 
 	}
 	
 	if(go==1)

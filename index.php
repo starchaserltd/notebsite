@@ -172,10 +172,10 @@ require_once("etc/session.php");
 			<div class="col-xs-12 col-sm-12 hidden-md hidden-lg" style="padding:10px 0px 10px 0px; text-align:center;"> 
 				<!--<div class="col-xs-12 col-sm-12 hidden-md hidden-lg" style="padding:10px 0px 5px 0px; text-align:center;">Share page on...</div>-->
 				<span>Share on</span>
-				<a class="btn btn-social-icon btn-sm btn-facebook" id="sharefb" href=""><span class="socicon socicon-facebook sheight"></span></a>
-				<a class="btn btn-social-icon btn-sm btn-twitter" id="sharetw" href=""><span class="socicon socicon-twitter sheight"></span></a>
-				<a class="btn btn-social-icon btn-sm btn-google" id="sharegp" href=""><span class="socicon socicon-google-plus sheight"></span></a>
-				<a class="btn btn-social-icon btn-sm btn-reddit" id="sharerd" href=""><span class="socicon socicon-reddit sheight"></span></a>
+				<a class="btn btn-social-icon btn-sm btn-facebook" id="sharefbm" href=""><span class="socicon socicon-facebook sheight"></span></a>
+				<a class="btn btn-social-icon btn-sm btn-twitter" id="sharetwm" href=""><span class="socicon socicon-twitter sheight"></span></a>
+				<a class="btn btn-social-icon btn-sm btn-google" id="sharegpm" href=""><span class="socicon socicon-google-plus sheight"></span></a>
+				<a class="btn btn-social-icon btn-sm btn-reddit" id="sharerdm" href=""><span class="socicon socicon-reddit sheight"></span></a>
 			</div>
 		</div>
 		<!-- end left area-->
