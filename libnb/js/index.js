@@ -18,8 +18,9 @@ function locationHashChanged() {
         if (urlParts[1] == "undefined") {
             var currentpage="content/home.php";
         } else {
-            for (var value of urlParts) {
+            for (var key in urlParts) {
               
+			  value=urlParts[key];
 				if(first) {
 					
                     if(first>1)
