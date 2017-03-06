@@ -3,7 +3,7 @@
 			<a style="cursor:pointer" href=""><i class="socicon socicon-facebook"></i></a>
 			<a style="cursor:pointer" href=""><i class="socicon socicon-twitter"></i></a>
 			<a style="cursor:pointer" href=""><i class="socicon socicon-google-plus"></i></a>
-			<a style="cursor:pointer" href=""><i class="socicon socicon-reddit"></i></a>
+			
 		</div>
 		<div class="footer-left">
 			<p class="footer-links">
