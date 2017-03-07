@@ -108,7 +108,7 @@ function OpenPage(url,e,dontpush) {
 	}
 	
 	if(go==2)
-	{  window.open(siteroot+"/?"+url,"_blank"); }
+	{  window.open(siteroot+"?"+url,"_blank"); }
 }
 
 //Function for toolbox area
