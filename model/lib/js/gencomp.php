@@ -124,6 +124,7 @@ for($x = 0; $x <= $nrconf; $x++)
 <?php
 	show('DISPLAY',$disp_conf_display);
 	$maxminvalues=bluered(floatval($resu['hres'])*floatval($resu['vres']),$maxminvalues,$x,"resol",0);
+	$addblue=""; if($resu['touch']=="YES") { $addblue='class="labelblue-s"'; }
 	$vars=array(
 		// $resu['model'],
 		$resu['size'].' "',
@@ -131,7 +132,7 @@ for($x = 0; $x <= $nrconf; $x++)
 		'<span id="resol'.$x.'">'.$resu['hres']."x".$resu['vres'].'</span>',
 		$resu['surft'],
 		$resu['backt'],
-		$resu['touch'],
+		'<span id="touch'.$x.'" '.$addblue.' >'.$resu['touch'].'</span>',
 		$resu['msc'],
 		// $resu['rating'],
 	);
@@ -367,6 +368,7 @@ if($delodd)
 	mytbl.innerHTML = "Battery"; ';
 }
 
+//var_dump($maxminvalues);
 ?>
 
 
