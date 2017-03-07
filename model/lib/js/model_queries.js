@@ -781,6 +781,8 @@ function hourminutes(str)
 	str=parseFloat(str);
 	hours=parseInt(str);
 	minutes=Math.round((((str-hours)*60)/5),0)*5;
+	if(minutes==60)
+	{hours++; minutes=0;}
 	if(minutes<10){zero="0";}else{zero="";}
 	return hours+":"+zero+minutes;
 }

@@ -7,7 +7,7 @@ if($conf)
 	require_once("../etc/con_sdb.php");
 	$sel3="SELECT * FROM notebro_temp.all_conf_".table($conf)." WHERE id=$conf LIMIT 1"; 
 	$cons=dbs_connect();
-	$result = mysqli_query($cons, $sel3) ;
+	$result = mysqli_query($cons, $sel3);
 	$row = mysqli_fetch_array($result);
 	mysqli_close($cons);
 	
