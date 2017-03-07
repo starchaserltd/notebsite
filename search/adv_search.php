@@ -17,7 +17,7 @@ var basevalueoldadv=currency_val[<?php echo '"'.$basevalue.'"'; ?>];
 var minbudgetnomenadv=<?php echo $minconfigprice; ?>;
 var maxbudgetnomenadv=<?php echo $maxconfigprice; ?>;
 var minbudgetset=<?php if(!isset($bdgmin)){ $bdgmin=$minconfigprice*2; } echo $bdgmin; ?>;
-var maxbudgetset=<?php if(!isset($bdgmax)){ $bdgmax=$maxconfigprice*0.65; } echo $bdgmax; ?>;
+var maxbudgetset=<?php if(!isset($bdgmax)){ $bdgmax=$maxconfigprice*0.35; } echo $bdgmax; ?>;
 </script>
 
 <form  method="post" id="advform" name="advform">
