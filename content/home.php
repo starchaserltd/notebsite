@@ -1,3 +1,4 @@
+
 <?php
 require_once("../etc/conf.php");
 
@@ -46,6 +47,8 @@ $count_posts = wp_count_posts();//echo $count_posts;
 $published_posts = $count_posts->publish;	
 
 ?>	
+
+<link rel="stylesheet" href="content/lib/css/home.css" type="text/css"/>	
     <script>$.getScript("content/lib/js/home.js");</script>
 		<!-- featured area -->
 		<div class="col-md-8 col-sm-12 col-xs-12" style="position:relative; float: left; padding:0px;">
@@ -193,24 +196,24 @@ $published_posts = $count_posts->publish;
 	<!-- articles & reviews -->
 
 		<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 latest2">
-			<div class="col-md-4 col-lg-3 col-sm-4 col-xs-4 test" style="display: flex; align-self: center; justify-content: center;padding-right: 1px;">
-				<a onmousedown="OpenPage('<?php echo $linkart;?>',event);" style="color:black; cursor: pointer;">	
+			<div class="col-md-4 col-lg-3 col-sm-4 col-xs-4 latest3">
+				<a onmousedown="OpenPage('<?php echo $linkart;?>',event);" >	
 				<img style="display:block; margin:0 auto;" src="<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[$y]["ID"]) )); echo $url;?>" class="img-responsive" alt="Image">
 				</a>
 			</div>
 			
 			
-			<div class="col-md-8 col-lg-9 col-sm-8 col-xs-9 test" style="padding-left:1px;padding-right:1px; min-width:220px">
+			<div class="col-md-8 col-lg-9 col-sm-8 col-xs-9 latest4">
 				<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
 					<?php echo $categorie;?>
 					<br>
-					<a onmousedown="OpenPage('<?php echo $linkart;?>',event);" style="font-size:20px; font-weight:bold;color:#000; text-decoration:none; cursor: pointer;" ><?php echo $recent_posts[$y]["post_title"];  ?></a>
+					<a onmousedown="OpenPage('<?php echo $linkart;?>',event);"><?php echo $recent_posts[$y]["post_title"];  ?></a>
 					<br><br>
 					<?php 
 						$review = nobrackets($recent_posts[$y]["post_content"]);
 						echo wp_trim_words($review, 35, ' ....');
 					?>
-					<a onmousedown="OpenPage('<?php echo $linkart;?>',event);" style="color:blue; cursor: pointer;"><br><?php echo "Read more";?> </a>
+					<a class="rmore" onmousedown="OpenPage('<?php echo $linkart;?>',event);"><br><?php echo "Read more";?> </a>
 				</div>
 				
 				<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">

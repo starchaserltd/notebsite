@@ -366,9 +366,7 @@ fieldset[disabled] .btn-result.active {
 @media screen and (min-width: 401px) and (max-width: 500px){.btn{font-size:11px!important}}
 
 
-.test{display:block}
 
-@media screen and (max-width: 500px){.test{float:none !important;margin:0 auto; width:100% !important}}
 
 
 
@@ -387,13 +385,7 @@ padding:2px;
 color:black !important;
 /*background-color:#f6f6f6;*/}
 
-.latest2 {                    
-border-top: 1px solid #DDD;
-padding:10px;
-display:flex;
-margin-top:20px;}
 
-@media screen and (max-width: 500px){.latest2{display:block;}}
 
 .table-xtra-condensed > thead > tr > th,
 .table-xtra-condensed > tbody > tr > th,
