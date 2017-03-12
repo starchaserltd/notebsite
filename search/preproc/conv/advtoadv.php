@@ -176,7 +176,7 @@
 	if(isset($_GET['surface'])) { $valuetype[56] = $_GET['surface']; }
 	if(isset($_GET['typehdd'])) { $valuetype[54] = $_GET['typehdd']; }
 	if(isset($_GET['rpm'])) { $valuetype[55] = $_GET['rpm']; }
-	if(isset($_GET['wnetspeed'])) { $valuetype[51] = $_GET['wnetspeed']; }
+	if(isset($_GET['wnetspeed'])) { $valuetype[51] = array($_GET['wnetspeed']); }
 	$wnetspeedmax = 9999999;	
 
 	if(isset($_GET['bluetooth']) && $_GET['bluetooth'] == "on") {$btcheck = "checked"; $wnet_bluetooth = "1";} else {$wnet_bluetooth = "2";}
