@@ -141,9 +141,11 @@
 			}
 			else if (($_GET['type'])==2) // ULTRAP
 			{
-				$cpufreqmin = 0.45*$cpufreqmaxi;
+				$cpufreqmin = 0.50*$cpufreqmaxi;
 				$cputdpmin = 15;
 				$cputdpmax = 45;
+				$chassisweightmax= 1.9;
+				$chassisthicmax = 19;
 			}
 			else if (($_GET['type'])==3) // BUSINESS
 			{
@@ -210,6 +212,8 @@
 				$gpupowermin = 20;
 				$gpupowermax = 50;
 				$gpumemmax = 4096;
+				$chassisweightmax= 2.0;
+				$chassisthicmax = 20;			
 			}
 			else if (($_GET['type'])==3) //BUSINESS
 			{
@@ -242,6 +246,8 @@
 			{  $gputypesel[3]="selected"; }
 			else if (($_GET['type'])==2) // ULTRAPOR
 			{
+				$chassisweightmax= 2.0;
+				$chassisthicmax = 20;
 				if($issimple=="2")
 				{ $batlifemin = 4; }
 				else

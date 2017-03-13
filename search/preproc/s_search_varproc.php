@@ -169,9 +169,12 @@ switch ($issimple)
 			}
 		else if (($_GET['type'])==2) //ultraportable
 			{
-				$cpu_clockmin = 0.45*$nomenvalues[1][2];
+				$cpu_clockmin = 0.50*$nomenvalues[1][2];
 				$cpu_tdpmin = 15;
 				$cpu_tdpmax = 45;
+				$chassis_weightmax= 1.9;
+				$chassis_thicmax = 19;
+				
 			}
 		else if (($_GET['type'])==3) //business
 			{
@@ -236,6 +239,8 @@ switch ($_GET['graphics'])
 			$gpu_powermin = 20;
 			$gpu_powermax = 50;
 			$gpu_maxmemmax = 4096;
+			$chassis_weightmax= 2.0;
+			$chassis_thicmax = 20;
 		}
 		else if (($_GET['type'])==3) //BUSINESS
 		{
@@ -267,7 +272,8 @@ switch ($_GET['graphics'])
 		if (($_GET['type'])==5) //PROFESIONAL
 		{ unset($gpu_typelist); $gpu_typelist[] = 3; }
 		else if (($_GET['type'])==2) // ULTRAPOR
-		{
+		{ 	$chassis_weightmax= 2.0;
+			$chassis_thicmax = 20;
 			if($issimple=="2")
 			{ $batlife_min = 4; }
 			else

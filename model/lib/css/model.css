@@ -2,3 +2,4 @@
 .btn.active, .btn:active {-webkit-box-shadow:none;box-shadow:none;}
 .modal-header{padding:5px;border-bottom:none}
 @media screen and (min-width: 1800px){.modelwidht{width:100%!important;}}
+.pics{cursor:pointer}

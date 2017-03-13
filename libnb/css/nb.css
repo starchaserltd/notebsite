@@ -1,6 +1,7 @@
 .btn.active.logonb{
 	background-image: url(/../res/img/logo/logo.png);
     -webkit-text-fill-color: transparent;    
+	color:transparent!important;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: contain;	
@@ -10,6 +11,7 @@
 .btn.logonb {
 	background-image: url(/../res/img/logo/logo_white.png);
     -webkit-text-fill-color: transparent;    
+	color:transparent!important;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: contain;	
@@ -18,7 +20,8 @@
 
 .btn.logonb:hover {
 	background-image:url(/../res/img/logo/logo.png);
-	 -webkit-text-fill-color: transparent;    
+	 -webkit-text-fill-color: transparent!important;
+	color:transparent!important;	
     background-position: center center;
     background-repeat: no-repeat;
     background-size: contain;	
@@ -605,12 +608,12 @@ background-color:#fff!important;
 
 .btn-sus:focus,
 .btn-sus.focus {
-  color: #000 !important;
+  color: #000;
   background-color: #fff !important;
   border-color: #122b40;
 }
 .btn-sus:hover {
-  color: #000 !important;
+  color: #000;
   background-color: #fff !important;
   border-color: #204d74;
 }
@@ -630,7 +633,7 @@ background-color:#fff!important;
 .btn-sus:active.focus,
 .btn-sus.active.focus,
 .open > .dropdown-toggle.btn-sus.focus {
-  color: #000 !important;
+  color: #000;
   background-color: #49505a;
   border-color: #122b40;
 }

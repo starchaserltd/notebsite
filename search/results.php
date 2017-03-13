@@ -20,7 +20,7 @@ $exchangelist = mysqli_fetch_all($result);
 			{ ?>
 			<div class="col-md-6 col-sm-6 col-xs-12 col-lg-6" style="padding:0px">
 				<div class="btn-group">		
-					<div class="btn-group" style="float:right;width:initial!important;margin-left:3px">
+					<div class="btn-group" style="float:right;width:auto!important;margin-left:3px">
 						<button type="button" data-toggle="dropdown" class="btn btn-result dropdown-toggle" style="width:35px;border-radius:3px 3px 3px 3px;"><?php echo $exchsign; ?>
 						<span class="caret"></span></button>
 						<ul class="dropdown-menu" style="margin-top:0px;margin-bottom:0px;padding:0px;border-radius: 3px 3px 3px 3px;min-width:35px!important;">
