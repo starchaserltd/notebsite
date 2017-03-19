@@ -65,6 +65,8 @@
 		$gpumembusmax = $_GET['gpubusmax'];//echo $gpumembusmax.";";
 		$gpupowermin = $_GET['gpupowermin'];//echo $gpupowersmin.";";
 		$gpupowermax = $_GET['gpupowermax'];//echo $gpupowermax.";";
+		if($_GET['gpulaunchdatemin']) { $gpumindate = $_GET['gpulaunchdatemin']; }
+		if($_GET['gpulaunchdatemax']) { $gpumaxdate = $_GET['gpulaunchdatemax']; }
 		
 		if(isset($_GET['GPU_arch_id']))
 		{	foreach ($_GET['GPU_arch_id'] as $element)

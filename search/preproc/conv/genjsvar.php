@@ -15,6 +15,7 @@
 <?php if(isset($gpuarch)){ ?>$('#GPU_arch_id').append('<?php echo $gpuarch; ?>'); <?php } ?>
 <?php if(isset($gpumsc)){ ?>$('#GPU_msc_id').append('<?php echo $gpumsc; ?>'); <?php } ?>
 <?php echo "gpupowerminset=".$gpupowermin.";"; echo "gpupowermaxset=".$gpupowermax.";"; ?>
+<?php if(isset($gpumindate)){ echo "gpumindateset=".$gpumindate.";"; } if(isset($gpumaxdate)){  echo "gpumaxdateset=".$gpumaxdate.";"; } ?>
 <?php echo "displaysizeminset=".$displaysizemin.";"; echo "displaysizemaxset=".$displaysizemax.";"; ?>
 <?php if(isset($displayres)){ ?> $('#DISPLAY_resol_id').append('<?php echo $displayres; ?>'); <?php } ?>
 <?php echo "totalcapminset=".$totalcapmin.";"; echo "totalcapmaxset=".$totalcapmax.";"; ?>

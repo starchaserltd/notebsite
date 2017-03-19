@@ -254,7 +254,38 @@ document.getElementById('gpupower').noUiSlider.on('update', function( values, ha
 	document.getElementById('gpupowerval').innerHTML=left+" - "+right+" W";
 });				
 
-document.getElementById('gpupower').setAttribute('disabled', true);			
+document.getElementById('gpupower').setAttribute('disabled', true);	
+
+
+//CREATE GPU DATE SLIDER						
+noUiSlider.create(document.getElementById('gpulaunchdate'), {
+	start: [gpumindateset, gpumaxdateset],
+	connect: true,
+	step: 1,
+	direction: 'ltr',
+	format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
+	range: {
+		'min': [gpumindate],
+		'max': [gpumaxdate]		
+	}
+});
+
+//SET GPU DATE SLIDER TEXT UPDATE FUNCTIONS
+document.getElementById('gpulaunchdate').noUiSlider.on('update', function( values, handle ) 
+{
+	if (typeof values[0] === 'string' || values[0] instanceof String)
+	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+
+	if (typeof values[1] === 'string' || values[1] instanceof String)
+	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+
+	if(handle==0) {	document.getElementById('gpulaunchdatemin').value=left; filtersearch('gpulaunchdatemin',left,0); } 
+	if(handle==1) {	document.getElementById('gpulaunchdatemax').value=right; filtersearch('gpulaunchdatemax',right,0); }
+	document.getElementById('gpulaunchdateval').innerHTML=left+" - "+right;
+});		
+
+document.getElementById('gpulaunchdate').setAttribute('disabled', true);	
+
 
 //CREATE DISPLAY SLIDER						
 noUiSlider.create(document.getElementById('display'), {
@@ -674,6 +705,7 @@ $(document).ready(function()
 			document.getElementById('gpumem').setAttribute('disabled', true);
 			document.getElementById('gpubus').setAttribute('disabled', true);
 			document.getElementById('gpupower').setAttribute('disabled', true);
+			document.getElementById('gpulaunchdate').setAttribute('disabled', true);
 		}
 		else
 		{
@@ -685,6 +717,7 @@ $(document).ready(function()
 			document.getElementById('gpumem').removeAttribute('disabled', true);
 			document.getElementById('gpubus').removeAttribute('disabled', true);
 			document.getElementById('gpupower').removeAttribute('disabled', true);
+			document.getElementById('gpulaunchdate').removeAttribute('disabled', true);
 			if(jQuery.isEmptyObject($('#gputype2').val())) { $('#gputype2').val(["1","2","4"]); $('#gputype2').multiselect("refresh"); };
 		}
 	});

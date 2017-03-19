@@ -67,22 +67,25 @@ if($config_id)
 //introdus shdd in cod
 $currentconf=array("checked" =>0, "id" => $row["id"] ,"name" => $conf_model, "model"=> $conf_model , "cpu_info" => $conf_cpu_name, "gpu_info" => $conf_gpu_name, "disp_size" => $conf_display_size, "disp_res" => $conf_display_res, "mem_info" => $conf_mem_info, "hdd_info" => $conf_hdd_info );
 
-$i=0; $k=0; $nrcheck=-1; $already=1;
-while(isset($_SESSION['conf'.$i]) && $_SESSION['conf'.$i] && $i<=9)
+$ij=0; $k=0; $nrcheck=-1; $already=1;
+for($i=0;$i<=9;$i++)
 {
-	if($_SESSION['conf'.$i]["checked"])
-	{ $nrcheck++; }
-	
-	if($_SESSION['conf'.$i]["model"]==$currentconf["model"])
-	{ 
-		if($_SESSION['conf'.$i]["id"]!=$currentconf["id"]) 
-		{ $k++; } 
-		else
-		{ $already=0; }
+	if(isset($_SESSION['conf'.$i]) && $_SESSION['conf'.$i])
+	{ error_log($_SESSION['conf'.$i]);
+		if($_SESSION['conf'.$i]["checked"])
+		{ $nrcheck++; }
+		
+		if($_SESSION['conf'.$i]["model"]==$currentconf["model"])
+		{ 
+			if($_SESSION['conf'.$i]["id"]!=$currentconf["id"]) 
+			{ $k++; } 
+			else
+			{ $already=0; }
+		}
+	$ij++;
 	}
-	$i++;
 }
-
+$i=$ij;
 if($already)
 {
 	if($i>9)

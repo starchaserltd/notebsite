@@ -176,6 +176,15 @@ if($_GET['gpubusmin'])
 if($_GET['gpubusmax'])
 { $gpu_mbwmax = $_GET['gpubusmax']; }
 
+// GPU Launch date
+if($_GET['gpulaunchdatemin'])
+{ $gpu_ldmin = $_GET['gpulaunchdatemin']; }
+$gpu_ldmin=$gpu_ldmin."-01-01";
+
+if($_GET['gpulaunchdatemax'])
+{ $gpu_ldmax = $_GET['gpulaunchdatemax']; }
+$gpu_ldmax=$gpu_ldmax."-12-31";
+
 
 /* *** DISPLAY *** */
 if($_GET['displaymin'])

@@ -1,6 +1,6 @@
 <?php
 
-function search_gpu ($typegpumin, $typegpumax, $prod, $model, $arch, $techmin, $techmax, $shadermin, $cspeedmin, $cspeedmax, $sspeedmin, $sspeedmax, $mspeedmin, $mspeedmax, $mbwmin, $mbwmax, $mtype, $maxmemmin, $maxmemmax, $sharem, $powermin, $powermax, $misc, $ratemin, $ratemax, $pricemin, $pricemax, $seltdp)
+function search_gpu ($typegpumin, $typegpumax, $prod, $model, $arch, $techmin, $techmax, $shadermin, $cspeedmin, $cspeedmax, $sspeedmin, $sspeedmax, $mspeedmin, $mspeedmax, $mbwmin, $mbwmax, $mtype, $maxmemmin, $maxmemmax, $sharem, $powermin, $powermax, $ldmin, $ldmax, $misc, $ratemin, $ratemax, $pricemin, $pricemax, $seltdp)
 {
 
 	if($seltdp>0)
@@ -268,6 +268,36 @@ function search_gpu ($typegpumin, $typegpumax, $prod, $model, $arch, $techmin, $
 		$sel_gpu.="power<=";
 		$sel_gpu.=$powermax;
 	}
+	
+			// Add date to filter		
+	if($ldmin)
+	{
+		$sel_gpu.=" AND";
+		$sel_gpu.=" (";
+		$sel_gpu.="ldate BETWEEN '";
+		$sel_gpu.=$ldmin;
+	}
+	else
+	{
+		$sel_gpu.=" AND";
+		$sel_gpu.=" (";
+		$sel_gpu.="ldate BETWEEN ";
+		$sel_gpu.="'0000-00-00";
+	}
+
+ 	if($ldmax)
+	{
+		$sel_gpu.="' AND '";
+		$sel_gpu.=$ldmax;
+		$sel_gpu.="')";
+	}
+	else
+	{
+		$sel_gpu.="' AND '";
+		$sel_gpu.=date('Y-m-d', strtotime("-1 days"));
+		$sel_gpu.="')";
+	}
+		
 	
 	// Add MISC to filter
 	$i=0;

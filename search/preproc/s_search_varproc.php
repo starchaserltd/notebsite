@@ -11,7 +11,7 @@ $mdb_wwan = 1;
 if($_GET['bdgmin']) { $budgetmin = floatval($_GET['bdgmin'])/$exch; }
 if($_GET['bdgmax']) { $budgetmax = floatval($_GET['bdgmax'])/$exch; }
 
-$result = mysqli_query($GLOBALS['con'], "SELECT * FROM notebro_site.nomen WHERE type=15 OR type=16 OR type=21 OR type=31 OR type=34 OR type=35 OR type=63 OR type=66 OR type=68 ORDER BY type ASC"); 
+$result = mysqli_query($GLOBALS['con'], "SELECT * FROM notebro_site.nomen WHERE type=15 OR type=16 OR type=21 OR type=31 OR type=34 OR type=35 OR type=63 OR type=66 OR type=68 OR type=81 ORDER BY type ASC"); 
 
 while( $row=mysqli_fetch_array($result))
 {
@@ -107,6 +107,7 @@ switch ($_GET['type'])
 		$display_hresmin = 1600; 
 		$display_vresmin = 900;   
 		$hdd_type[] = "SSD";
+		$gpu_ldmin = (intval(substr($nomenvalues[9][2],0,4))-1)."-01-01";
 		break;
 		
 	case "5":// cad/3d design

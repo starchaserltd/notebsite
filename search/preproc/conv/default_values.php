@@ -56,7 +56,9 @@ $sel.=" (SELECT name FROM notebro_site.nomen WHERE type=75) AS list_displaysize,
 $sel.=" (SELECT name FROM notebro_site.nomen WHERE type=76) AS list_memcap,";
 $sel.=" (SELECT name FROM notebro_site.nomen WHERE type=77) AS list_memfreq,";
 $sel.=" (SELECT name FROM notebro_site.nomen WHERE type=78) AS list_chassisweb,";
-$sel.=" (SELECT name FROM notebro_site.nomen WHERE type=79) AS list_verres";
+$sel.=" (SELECT name FROM notebro_site.nomen WHERE type=79) AS list_verres,";
+$sel.=" (SELECT name FROM notebro_site.nomen WHERE type=80) AS gpu_lmin,";
+$sel.=" (SELECT name FROM notebro_site.nomen WHERE type=81) AS gpu_lmax";
 
 //echo $sel;
 mysqli_multi_query($con, $sel);
@@ -120,6 +122,10 @@ $list_memcap = $rand[0][50];
 $list_memfreq = $rand[0][51];
 $list_chassisweb = $rand[0][52];
 $list_verres = $rand[0][53];
+$time = strtotime($rand[0][54]); 
+$gpumindatei=date('Y', $time);if(!isset($gpumindate)) { $gpumindate=$gpumindatei;}
+$time = strtotime($rand[0][55]);
+$gpumaxdatei=date('Y', $time); if(!isset($gpumaxdate)) { $gpumaxdate=$gpumaxdatei;}
 
 mysqli_free_result($result);
 
@@ -139,6 +145,8 @@ echo "gpumemmin=parseInt('".$gpumemmini."'); ";
 echo "gpumemmax=parseInt('".$gpumemmaxi."'); ";
 echo "gpumembusmin=parseInt('".$gpumembusmini."'); ";
 echo "gpumembusmax=parseInt('".$gpumembusmaxi."'); ";
+echo "gpumindate=parseInt('".$gpumindatei."'); ";
+echo "gpumaxdate=parseInt('".$gpumaxdatei."'); ";
 echo "displaysizemin=parseFloat('".$displaysizemini."'); ";
 echo "displaysizemax=parseFloat('".$displaysizemaxi."'); ";
 echo "hddcapmin=parseInt('".$totalcapmini."'); ";

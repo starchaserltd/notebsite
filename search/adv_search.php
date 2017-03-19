@@ -19,7 +19,6 @@ var maxbudgetnomenadv=<?php echo $maxconfigprice; ?>;
 var minbudgetset=<?php if(!isset($bdgmin)){ $bdgmin=$minconfigprice*4; } echo $bdgmin; ?>;
 var maxbudgetset=<?php if(!isset($bdgmax)){ $bdgmax=$maxconfigprice*0.25; } echo $bdgmax; ?>;
 </script>
-
 <form  method="post" id="advform" name="advform">
 <input type="hidden" name="advsearch" value="1">
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -191,6 +190,14 @@ var maxbudgetset=<?php if(!isset($bdgmax)){ $bdgmax=$maxconfigprice*0.25; } echo
 					<div style="margin-top:3px;" id="gpupower"></div>
 					<input type="hidden" name="gpupowermin" id="gpupowermin" value="<?php echo $gpupowermin; ?>">
 					<input type="hidden" name="gpupowermax" id="gpupowermax" value="<?php echo $gpupowermax; ?>">
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div style="margin-top:10px;"><span style="margin-top:5px; font-size:13.5px; margin-bottom:2px;">
+						Launch date:</span>  <span id="gpulaunchdateval"><?php echo $gpumindate; ?> - <?php echo $gpumaxdate; ?></span>
+				 	</div>	  
+					<div style="margin-top:3px;" id="gpulaunchdate"></div>
+					<input type="hidden" name="gpulaunchdatemin" id="gpulaunchdatemin" value="<?php echo $gpumindate; ?>" data-lcom='GPU_model' data-lfield="gpu_ldmin" >
+					<input type="hidden" name="gpulaunchdatemax" id="gpulaunchdatemax" value="<?php echo $gpumaxdate; ?>" data-lcom='GPU_model' data-lfield="gpu_ldmax" >
 				</div>
 			</div>				
 		</div>

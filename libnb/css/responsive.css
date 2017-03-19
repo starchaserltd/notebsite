@@ -43,14 +43,14 @@ div.searchresultJPG a {cursor: pointer;}
 
 margin-top:-15px; }
 @media screen and (min-width: 1601px){.searchresultitlu{height:40px!important}}
-@media screen and (min-width: 1401px) and (max-width: 1600px){.searchresultitlu{height:42px!important}}
+@media screen and (min-width: 1401px) and (max-width: 1600px){.searchresultitlu{height:47px!important}}
 @media screen and (min-width: 1301px) and (max-width: 1400px){.searchresultitlu{height:45px!important}}
-@media screen and (min-width: 1220px) and (max-width: 1300px){.searchresultitlu{height:50px!important}}
-@media screen and (min-width: 1101px) and (max-width: 1219px){.searchresultitlu{height:60px!important}}
-@media screen and (min-width: 991px) and (max-width: 1100px){.searchresultitlu{height:50px!important;font-size:13px}}
-@media screen and (min-width: 501px) and (max-width: 990px){.searchresultitlu{height:35px!important;font-size:13px}}
-@media screen and (min-width: 405px) and (max-width: 500px){.searchresultitlu{height:35px!important;font-size:13px}}
-@media screen and (max-width: 404px){.searchresultitlu{height:45px!important;font-size:11.5px}}
+@media screen and (min-width: 1220px) and (max-width: 1300px){.searchresultitlu{height:57px!important}}
+@media screen and (min-width: 1101px) and (max-width: 1219px){.searchresultitlu{height:65px!important;font-size:13px}}
+@media screen and (min-width: 991px) and (max-width: 1100px){.searchresultitlu{height:50px!important;font-size:12px}}
+@media screen and (min-width: 501px) and (max-width: 990px){.searchresultitlu{height:47px!important;font-size:12px}}
+@media screen and (min-width: 405px) and (max-width: 500px){.searchresultitlu{height:38px!important;font-size:12px}}
+@media screen and (max-width: 404px){.searchresultitlu{height:50px!important;font-size:11.5px}}
 
 
 

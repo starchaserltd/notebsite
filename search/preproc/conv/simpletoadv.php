@@ -73,7 +73,8 @@
 			$wnetspeedmin = 867;     
 			$gputypegpumin = 1;
 			$displayhresmin = 1600;  
-			$displayvresmin = 900;    
+			$displayvresmin = 900;
+			$gpumindate=($gpumaxdatei-1);			
 			$hdd_type[] = "SSD";
 			break;
 		case "5":		// cad/3d design
@@ -179,6 +180,8 @@
 				$gpupowermax = 40;
 				$gpumemmax = 4096;
 				$gputypesel[2]="selected";
+				$gputypesel[1]="selected";
+				$gputypesel[0]="";
 			}
 			else if (($_GET['type'])==5) //PROFESIONAL
 			{
