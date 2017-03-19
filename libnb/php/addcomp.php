@@ -71,7 +71,7 @@ $ij=0; $k=0; $nrcheck=-1; $already=1;
 for($i=0;$i<=9;$i++)
 {
 	if(isset($_SESSION['conf'.$i]) && $_SESSION['conf'.$i])
-	{ error_log($_SESSION['conf'.$i]);
+	{ 	
 		if($_SESSION['conf'.$i]["checked"])
 		{ $nrcheck++; }
 		

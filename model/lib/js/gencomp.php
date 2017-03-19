@@ -332,7 +332,6 @@ for($x = 0; $x <= $nrconf; $x++)
 	addcolumn(array_var,"OS_table",""); 
 <?php
 }
-mysqli_close($cons);
 
 /* APPLYING BLUE/RED LABELS */
 echo "\r\n";
