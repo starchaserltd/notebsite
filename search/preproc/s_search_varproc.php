@@ -8,8 +8,8 @@ $batlife_max=1000;
 $mdb_wwan = 1;
 
 // BUDGET val min and max
-if($_GET['bdgmin']) { $budgetmin = floatval($_GET['bdgmin'])/$exch; }
-if($_GET['bdgmax']) { $budgetmax = floatval($_GET['bdgmax'])/$exch; }
+if($_GET['bdgmin']) { $budgetmin = (floatval($_GET['bdgmin'])/$exch)-1; }
+if($_GET['bdgmax']) { $budgetmax = (floatval($_GET['bdgmax'])/$exch)+1; }
 
 $result = mysqli_query($GLOBALS['con'], "SELECT * FROM notebro_site.nomen WHERE type=15 OR type=16 OR type=21 OR type=31 OR type=34 OR type=35 OR type=63 OR type=66 OR type=68 OR type=81 ORDER BY type ASC"); 
 
@@ -94,6 +94,7 @@ switch ($_GET['type'])
 		$chassis_webmin=0.9;
 		$hdd_type[]="SSD";
 		$mdb_wwan = 0;
+		$sist_sist[]="Windows+Pro"; $sist_sist[]="macOS";
 		break;
     	
 	case "4":// gaming
