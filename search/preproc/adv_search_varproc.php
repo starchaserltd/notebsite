@@ -353,27 +353,27 @@ if(isset($_GET['material']))
 
 //weight
 if($_GET['weightmin'])
-{ $chassis_weightmin = $_GET['weightmin']-0.01; }
+{ $chassis_weightmin = $_GET['weightmin']-0.1; }
 if($_GET['weightmax'])
-{ $chassis_weightmax = $_GET['weightmax']+0.01; }
+{ $chassis_weightmax = $_GET['weightmax']+0.1; }
 
 //thickness
 if($_GET['thicmin'])
-{ $chassis_thicmin = $_GET['thicmin']-0.01; }
+{ $chassis_thicmin = $_GET['thicmin']-0.1; }
 if($_GET['thicmax'])
-{ $chassis_thicmax = $_GET['thicmax']+0.01; }		
+{ $chassis_thicmax = $_GET['thicmax']+0.1; }		
 
 //depth
 if($_GET['depthmin'])
-{ $chassis_depthmin = $_GET['depthmin']-0.01; }
+{ $chassis_depthmin = $_GET['depthmin']-0.1; }
 if($_GET['depthmax'])
-{ $chassis_depthmax = $_GET['depthmax']+0.01; }		
+{ $chassis_depthmax = $_GET['depthmax']+0.1; }		
 		
 //width
 if($_GET['widthmin'])
-{ $chassis_widthmin = $_GET['widthmin']-0.01; }
+{ $chassis_widthmin = $_GET['widthmin']-0.1; }
 if($_GET['widthmax'])
-{ $chassis_widthmax = $_GET['widthmax']+0.01; }
+{ $chassis_widthmax = $_GET['widthmax']+0.1; }
 
 //webcam
 if($_GET['webmin'])
