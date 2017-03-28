@@ -1,5 +1,6 @@
 <?php
 require_once("../etc/conf.php");
+
 if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_name) ==FALSE) 
 {	$actual_link = "$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 	header("Location: http://".str_replace($site_name."/",$site_name."/?",$actual_link)."");
@@ -17,7 +18,7 @@ var basevalueoldadv=currency_val[<?php echo '"'.$basevalue.'"'; ?>];
 var minbudgetnomenadv=<?php echo $minconfigprice; ?>;
 var maxbudgetnomenadv=<?php echo $maxconfigprice; ?>;
 var minbudgetset=<?php if(!isset($bdgmin)){ $bdgmin=$minconfigprice*4; } echo $bdgmin; ?>;
-var maxbudgetset=<?php if(!isset($bdgmax)){ $bdgmax=$maxconfigprice*0.25; } echo $bdgmax; ?>;
+var maxbudgetset=<?php if(!isset($bdgmax)){ $bdgmax=$minconfigprice*6; } echo $bdgmax; ?>;
 </script>
 <form  method="post" id="advform" name="advform">
 <input type="hidden" name="advsearch" value="1">
@@ -38,8 +39,8 @@ var maxbudgetset=<?php if(!isset($bdgmax)){ $bdgmax=$maxconfigprice*0.25; } echo
 					<div style="font-size:15px;">
 					<span style="font-size:16px; font-weight:bold;">Budget:<br></span>
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">							
-								<span id="2"><input type="tel" name="bdgminadv" id="bdgminadv" value="<?php echo round(floatval($bdgmin)*floatval($basevalue)); ?>" size="1" maxlength="5" onchange="checkminadv()" style="padding-left: 4px; border:1px solid #456879; border-radius:5px; height: 22px; width: 45px; -webkit-box-sizing: border-box; box-sizing: border-box; font-color: #333;">  -
-								<input type="tel" name="bdgmaxadv" id="bdgmaxadv" value="<?php echo round(floatval($bdgmax)*floatval($basevalue)); ?>" size="1" maxlength="5" onchange="checkmaxadv()" style="padding-left: 4px; border:1px solid #456879; border-radius:5px; height: 22px; width: 45px; -webkit-box-sizing: border-box; box-sizing: border-box;"></span>						
+								<span id="2"><input type="tel" name="bdgminadv" id="bdgminadv" value="<?php echo round(floatval($bdgmin)*floatval($basevalue)); ?>" size="1" maxlength="5" onchange="checkminadv()" class="budget">  -
+								<input type="tel" name="bdgmaxadv" id="bdgmaxadv" value="<?php echo round(floatval($bdgmax)*floatval($basevalue)); ?>" size="1" maxlength="5" onchange="checkmaxadv()"class="budget" ></span>						
 								<select name ="exchadv" id="currencyadv" onchange="sliderrangeadv(this); this.oldvalue = this.value;">
 								<?php echo $var_currency; //this variable comes from lib/currency.php ?>
 								</select>
