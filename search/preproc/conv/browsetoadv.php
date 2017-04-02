@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 require_once("../etc/con_db.php");
 $sql = "SELECT name FROM notebro_site.nomen WHERE type=70 OR type=71"; 

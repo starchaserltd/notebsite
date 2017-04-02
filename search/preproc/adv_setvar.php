@@ -1,7 +1,9 @@
 <?php
 require_once("conv/init.php");
 $sel="SELECT name FROM notebro_site.nomen WHERE type=16 OR type=21 OR type=31 OR type=35 or type=81";
+
 //echo $sel;
+
 mysqli_multi_query($con, $sel);
 $result=mysqli_use_result($con);
 $rand = mysqli_fetch_all($result);
