@@ -6,6 +6,6 @@ if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_n
 	die();
 }
 ?>
-<div style="border-style:dashed; border-width:medium; border-color:#b5b8bd; height:250px; width:100%;">
+<div style="border-style:dashed; border-width:medium; border-color:#b5b8bd; height:210px; width:100%;">
 <img class="img-responsive" src="search/quiz/res/img/working.jpg" style="vertical-align: middle;height:200px;">
 </div>

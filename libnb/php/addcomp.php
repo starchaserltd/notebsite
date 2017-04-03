@@ -64,7 +64,6 @@ if($config_id)
 	$conf_hdd_info=$r['cap']."GB ".$r['type'];
 }
 
-//introdus shdd in cod
 $currentconf=array("checked" =>0, "id" => $row["id"] ,"name" => $conf_model, "model"=> $conf_model , "cpu_info" => $conf_cpu_name, "gpu_info" => $conf_gpu_name, "disp_size" => $conf_display_size, "disp_res" => $conf_display_res, "mem_info" => $conf_mem_info, "hdd_info" => $conf_hdd_info );
 
 $ij=0; $k=0; $nrcheck=-1; $already=1;

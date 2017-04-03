@@ -1,23 +1,28 @@
 var googlelink={};
-var binglink={};
+var compeulink={};
 var amazonlink={};
 googlelink["first"]="https://www.google.com/search?q=";
-binglink["first"]="https://www.bing.com/search?q=";
+compeulink["first"]="https://geizhals.eu/?cat=nb&asuch=";
+compeulink["second"]="&asd=on&bpmax=&v=e&hloc=at&hloc=de&hloc=pl&hloc=uk&hloc=eu&plz=&dist=&filter=update";
+mmodel=mmodel.replace(/non-touch/i,""); mmodel=mmodel.replace(/touch/i,""); mmodel=mmodel.replace(/t? \([0-9]+(st|nd|rd|th) gen\)/i,"");
 switch(exchsign)
 { 
 	case '$':
-	amazonlink["first"]="https://www.amazon.com/s/ref=nb_sb_noss?field-keywords=";
+	amazonlink["first"]="https://www.amazon.com/s/ref=sr_nr_p_n_condition-type_0?fst=as%3Aoff&rh=n%3A172282%2Cn%3A541966%2Cn%3A13896617011%2Cn%3A565108%2Ck%3A%2Cp_n_condition-type%3A2224371011&field-keywords=";
+	amazonlink["second"]="&rh=n%3A565108%2Ck%3A&_encoding=UTF8&tag=starchaser-20&linkCode=ur2&linkId=7b666b0d3bbe094faceac6d381ba9eb0&camp=1789&creative=9325";
 	break;
 	case '€':
-	amazonlink["first"]="https://www.amazon.de/s/ref=nb_sb_noss?field-keywords=";
+	amazonlink["first"]="https://www.amazon.de/s/?_encoding=UTF8&camp=1638&creative=6742&field-keywords=";
+	amazonlink["second"]="&linkCode=ur2&site-redirect=de&tag=noteb02-21&url=node%3D427957031";
 	break;
 	case '£':
-	amazonlink["first"]="https://www.amazon.co.uk/s/ref=nb_sb_noss?field-keywords=";
+	amazonlink["first"]="https://www.amazon.co.uk/s/?_encoding=UTF8&camp=1634&creative=6738&fst=as%3Aoff&keywords=";
+	amazonlink["second"]="&linkCode=ur2&qid=1490875668&rh=n%3A340831031%2Cn%3A429886031%2Ck%3A%2Cp_n_condition-type%3A12319067031&rnid=12319066031&tag=noteb0a-21";
 	break;
 }
 googlelink["cpu"]=""; googlelink["gpu"]=""; googlelink["mem"]=""; googlelink["resolution"]=""; googlelink["sist"]="";
 
-var cpu = {}; var cpu_price_old=0; var cpu_price_new=0; var cpu_err_new=0; var cpu_err_old=0; var cpu_rate_new=0; var cpu_rate_old=0; var cpu_gpu=0; var cpu_bat_new=0; var cpu_bat_old=0;
+var cpu = {}; var cpu_price_old=0; var cpu_price_new=0; var cpu_err_new=0; var cpu_err_old=0; var cpu_rate_new=0; var cpu_rate_old=0; var cpu_gpu=0; var cpu_bat_new=0; var cpu_bat_old=0; cpu["clocks"]="";
 function showCPU(str) 
 {
 	if (str === "") 
@@ -789,13 +794,24 @@ function hourminutes(str)
 
 function makelinks()
 {
-	hotlinkpart1=mfamily+"+"+mmodel+"+"+googlelink["cpu"]+"+"+googlelink["mem"]+"+"+googlelink["gpu"].replace(" ","+");
-	if(mprod.localeCompare("Apple")==0)	{ hotlinkpart1=mprod+"+"+mfamily+"+"+googlelink["cpu"]+"+"+googlelink["mem"]+"+"+googlelink["gpu"].replace(" ","+"); }
-	if(mprod.localeCompare("Clevo")==0) { hotlinkpart1=mprod+"+"+mmodel+"+"+googlelink["cpu"]+"+"+googlelink["mem"]+"+"+googlelink["gpu"].replace(" ","+"); }
+	hotlinkpart0=mprod+"+"+mmodel;
+	hotlinkpart1=hotlinkpart0+"+"+googlelink["cpu"]+"+"+googlelink["mem"];
+	if(mprod.localeCompare("Apple")==0)	{ hotlinkpart0=mprod+"+"+mfamily;  hotlinkpart1=hotlinkpart0+"+"+cpu["clocks"].slice(0, -1)+"GHz"+"+"+googlelink["mem"]; }
+	if(mprod.localeCompare("Clevo")==0) { hotlinkpart0=mmodel; hotlinkpart1=hotlinkpart0+"+"+googlelink["cpu"]+"+"+googlelink["mem"]; }
+	if(mprod.localeCompare("Razer")==0) { hotlinkpart0=mprod+"+"+mfamily;  hotlinkpart1=hotlinkpart0+"+"+googlelink["cpu"]+"+"+googlelink["mem"]; }
+	if(mprod.localeCompare("Dell")==0 || mprod.localeCompare("Lenovo")==0 || mprod.localeCompare("HP")==0) { hotlinkpart0=mprod+"+"+mfamily+"+"+mmodel;  hotlinkpart1=hotlinkpart0+"+"+googlelink["cpu"]+"+"+googlelink["mem"]; }
+	
+	document.getElementById('amazon_link').href=amazonlink["first"]+hotlinkpart1+amazonlink["second"];
+	
+	document.getElementById('compareeu_link').href=compeulink["first"]+hotlinkpart0+"+"+googlelink["mem"]+compeulink["second"];
+	if(mprod.localeCompare("Clevo")==0)
+	{
+		document.getElementById('compareeu_link').href=compeulink["first"]+"Schenker"+"+"+googlelink["mem"]+compeulink["second"];
+	}
+	
+	hotlinkpart1=hotlinkpart1+"+"+googlelink["gpu"].replace(" ","+");
 	hotlinkpart1=hotlinkpart1.replace("++","+");
 	hotlink=countrybuy+"+"+hotlinkpart1+'+'+googlelink["resolution"]+'+'+googlelink["sist"];
 	hotlink=hotlink.replace("++","+"); hotlink=hotlink.replace('+""+','+');
-	document.getElementById('google_link').href=googlelink["first"]+"+"+hotlink;
-	document.getElementById('bing_link').href=binglink["first"]+"+"+hotlink;
-	document.getElementById('amazon_link').href=amazonlink["first"]+hotlinkpart1;
+	document.getElementById('google_link').href=googlelink["first"]+hotlink;
 }

@@ -54,6 +54,23 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 			$sel_gpu.="power<=";
 			$sel_gpu.=$powermax;
 		}
+		
+// Add memory size to filter 	
+	if($maxmemmin)
+	{
+		$sel_gpu.=" AND ";
+		$sel_gpu.="maxmem>=";
+		$sel_gpu.=$maxmemmin;
+	}
+
+ 
+	if($maxmemmax)
+	{
+		$sel_gpu.=" AND ";
+		$sel_gpu.="maxmem<=";
+		$sel_gpu.=$maxmemmax;
+	}
+		
 		if($dend)
 		{ 	$sel_gpu.=" )) " ; }
 		else
@@ -234,21 +251,6 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 	if($i>0)
 	{ $sel_gpu.=" ) "; }
 
-	// Add memory size to filter 	
-	if($maxmemmin)
-	{
-		$sel_gpu.=" AND ";
-		$sel_gpu.="maxmem>=";
-		$sel_gpu.=$maxmemmin;
-	}
-
- 
-	if($maxmemmax)
-	{
-		$sel_gpu.=" AND ";
-		$sel_gpu.="maxmem<=";
-		$sel_gpu.=$maxmemmax;
-	}
 	
 	// ADD shared memory filter
 	if($sharem!=NULL)

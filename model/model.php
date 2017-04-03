@@ -116,12 +116,12 @@ else
 			<div class="col-md-9 col-sm-6 col-xs-6" style="margin-top:20px">     		
 				<ul class="list-inline" style="list-style:none;">
 					<li><p style="margin-bottom:0px"><b>Search to buy:</b></p></li>
-					<li><a id="google_link" href="" target="blank"><img src="res/img/logo/googlelogo.jpg" style="height:20px;" alt="Google link"/></a></li>
-					<li><a id="amazon_link" href="" target="blank"><img src="res/img/logo/amazonlogo.png" style="height:15px; padding-top:2px;" alt="Amazon link"/> </a> </li> 
-					<li><a id="bing_link" href="" target="blank"><img src="res/img/logo/binglogo.jpg" style="height:20px;" alt="Bing link"/> </a> </li>
 					<?php $imgprod=mysqli_fetch_array(mysqli_query($con,"SELECT pic,pic2 FROM notebro_site.brands WHERE brand='".$mprod."'")); show_vars('link,link2', 'MODEL',$idmodel );?>
 					<li><a href="<?php echo $show_vars["link"].'" target="blank"><img src=res/'.$imgprod["pic"].' style="height:20px;" alt="Product consumer page">'; ?></a>
 					<?php if(isset($show_vars["link2"]) && $show_vars["link2"]){ ?><li><a href="<?php echo $show_vars["link2"].'" target="blank"><img src=res/'.$imgprod["pic2"].' style="height:20px;" alt="Product business page">'; ?></a></li> <?php } ?>
+					<li><a id="amazon_link" href="" target="blank"><img src="res/img/logo/amazonlogo.png" style="height:15px; padding-top:2px;" alt="Amazon link"/> </a> </li> 
+					<li><a id="compareeu_link" href="" target="blank"><img src="res/img/logo/skinflintlogo.png" style="height:20px;" alt="Compare.eu link"/> </a> </li>
+					<li><a id="google_link" href="" target="blank"><img src="res/img/logo/googlelogo.jpg" style="height:20px;" alt="Google link"/></a></li>
 				</ul>						
 			</div>
 		</div>
@@ -704,17 +704,22 @@ else
 			</div>
 			<!-- END SECOND HALF OF MODEL -->
 		</div>
+		
 		<!-- end specs -->
 	</div>
 	<!-- REVIEWS -->
-<?php
+	<?php/*
+include("listmenu.php");*/
+?>	
+
+<?php /*
 include("lib/php/modelreviews.php");
 	if ($nrnreviews <> 0 || $show_vars <>0)
 	{ 
 	//var_dump($notereviews); //- Noteb reviews
 	// echo "<br>";
 	//var_dump($extreviews); //- External reviews
-	} ?>
+	}*/ ?>
 		
 	<!-- COMMENTS -->
 	<div id="disqus_thread"></div>
@@ -725,5 +730,9 @@ include("lib/php/modelreviews.php");
 <script><?php include("lib/php/genjsmodel.php"); ?></script>
 <?php  
 } ?>
+
+
+
+
 </div>
 <link rel="stylesheet" href="model/lib/css/model.css" type="text/css"/>

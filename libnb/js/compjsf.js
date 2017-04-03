@@ -38,7 +38,6 @@ function addcomplink(idstring)
  
 function removecomplink(idstring)
 {
-	idstring=parseInt(idstring);
 	complinkold=complink;
 	var Regexp = /([^?=&]+)\=([^&]+)(\&|$)/g;
 	match = Regexp.exec(complinkold);
@@ -48,7 +47,7 @@ function removecomplink(idstring)
 	{
 		if(match[1].indexOf("conf") !== -1)
 		{
-			if(parseInt(match[2])!=idstring)
+			if(match[2]!==idstring)
 			{ complink=complink+"&"+"conf"+i+"="+match[2]; i++; }
 		}
 		else
@@ -71,11 +70,10 @@ function removecomplink(idstring)
 		data: thedata,
 		success: function(data) {
 			var compinfo = data.split("++");
-			compinfo[3]=parseInt(compinfo[3]);
-			if(compinfo[3]!=0)
+			if(compinfo[3]!="0")
 			{
 				var generateHere = document.getElementById("comparelist");
-				elementtext='<tbody><tr id="comprow'+compinfo[3]+'"class="items" style="background:#fff;"><td class="comparecell1"><div class="checkbox" style="margin:0px; width:0px;"><input type="checkbox" onclick="cchecks('+compinfo[3]+')" class="css-checkbox sme" id="checkbox'+compinfo[3]+'" '+compinfo[1]+' /><label style="font-weight:normal;min-height:16px;" for="checkbox'+compinfo[3]+'" class="css-label sme depressed"></label></div></td><td class="text-center comparecell2" ><a  href="'+siteroot+'?model/model.php?conf='+compinfo[3]+'" class="comparename">'+compinfo[0]+'<div class="menuhidden">'+compinfo[6]+'", '+compinfo[7]+', '+compinfo[4]+', '+compinfo[5]+', '+compinfo[8]+', '+compinfo[9]+'</div></a></td><td class="text-center" style="width:16px;padding-bottom:2px; padding-top:2px;"><a  style="color:#49505a;font-size:16px;padding:0px;background-color:#fff;" onclick="removecomp('+compinfo[3]+',0)"><span class="glyphicon glyphicon-remove"></span></a></td></tr></tbody>';
+				elementtext='<tbody><tr id="comprow'+compinfo[3]+'"class="items" style="background:#fff;"><td class="comparecell1"><div class="checkbox" style="margin:0px; width:0px;"><input type="checkbox" onclick="cchecks('+"'"+compinfo[3]+"'"+')" class="css-checkbox sme" id="checkbox'+compinfo[3]+'" '+compinfo[1]+' /><label style="font-weight:normal;min-height:16px;" for="checkbox'+compinfo[3]+'" class="css-label sme depressed"></label></div></td><td class="text-center comparecell2" ><a  href="'+siteroot+'?model/model.php?conf='+compinfo[3]+'" class="comparename">'+compinfo[0]+'<div class="menuhidden">'+compinfo[6]+'", '+compinfo[7]+', '+compinfo[4]+', '+compinfo[5]+', '+compinfo[8]+', '+compinfo[9]+'</div></a></td><td class="text-center" style="width:16px;padding-bottom:2px; padding-top:2px;"><a  style="color:#49505a;font-size:16px;padding:0px;background-color:#fff;" onclick="removecomp('+"'"+compinfo[3]+"'"+',0)"><span class="glyphicon glyphicon-remove"></span></a></td></tr></tbody>';
 				generateHere.insertAdjacentHTML('beforeend',elementtext);
 				nrcheck=parseInt(compinfo[2]);
 				if(firstcompare!=1)

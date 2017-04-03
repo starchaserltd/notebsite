@@ -1,7 +1,7 @@
 <?php
 require_once("../../etc/session.php"); 
 
-$id=intval($_POST['conf']);
+$id=strval($_POST['conf']);
 
 	for($i=0;$i<=9;$i++)
 	{

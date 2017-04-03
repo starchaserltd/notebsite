@@ -50,137 +50,67 @@ $published_posts = $count_posts->publish;
 
 <link rel="stylesheet" href="content/lib/css/home.css" type="text/css"/>	
     <script>$.getScript("content/lib/js/home.js");</script>
-		<!-- featured area -->
-		<div class="col-md-8 col-sm-12 col-xs-12" style="position:relative; float: left; padding:0px;">
-			<!-- featured element 1 -->
-			<div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;">
-				<a onmousedown="OpenPage('<?php
-				$category = get_the_category( $recent_posts[0]["ID"] );
-				$categorie = $category[0]->cat_name; 				
-				if ($categorie == "Article"){echo $ad=str_replace($wpsite."/article.php/article/","content/article.php?/",str_replace("","",get_permalink($recent_posts[0]["ID"])));}
-				else 
-					if ($categorie == "Review") {echo $ad=str_replace($wpsite."/article.php/review/","content/review.php?/",get_permalink($recent_posts[0]["ID"]));}
-					else {echo "Not Article or Review";} 
-					?>',event);" style="cursor: pointer;">
-					<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[0]["ID"]) )); ?> 
-				<div class="imgcrop" style="float:left; position:relative; height:130px; width:100%;">
-					<img src="<?php echo $url;?>" class="portrait crop1" alt="Image">
-					<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style="bottom:2px; position:absolute;padding:0px">
-						<div class="col-md-12 col-sm-12 col-xs-12 widget1-title2"><?php echo $recent_posts[0]["post_title"]; ?></div>
-						<div class="col-md-12 col-sm-12 col-xs-12 widget1-title1">
-						<?php 
-						$review = nobrackets($recent_posts[0]["post_excerpt"]);
-						echo wp_trim_words($review, 5, '');
-					?></div>	
-					</div>
-				</div>
-				</a>			
+	
+		<!-- Noteb Quiz -->
+		<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style="padding:0px;">
+		<!--	<div id="quiz" class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style=" position:relative; padding:0px 5px 0px 5px !important; "></div>
+			<div class="col-md-12 co-sm-12 col-xs-12 col-lg-12" style="text-align:center;padding:5px 25px 5px 25px; border-radius:1px; background-color:#285f8f; color:#fff;margin-top:5px; width:100%;">
+				<span style="font-size:12px; color:#fff" class="glyphicon glyphicon glyphicon-menu-left"></span>
+				Advanced Search
+				<span style="font-size:12px; color:#fff" class="glyphicon glyphicon glyphicon-menu-right"></span>
 			</div>
-			<!-- featured element 2 -->
-			<div class="col-md-4 col-sm-12 col-xs-12" style="padding:5px 3px 0px 0px;">
-				<a onmousedown="OpenPage('<?php 
-				$category = get_the_category( $recent_posts[1]["ID"] );
-				$categorie = $category[0]->cat_name; 
-				if ($categorie == "Article"){echo $ad=str_replace($wpsite."/article.php/article/","content/article.php?/",get_permalink($recent_posts[1]["ID"]));}
-				else 
-					if ($categorie == "Review") {echo $ad=str_replace($wpsite."/article.php/review/","content/review.php?/",get_permalink($recent_posts[1]["ID"]));}
-					else {echo "Not Article or Review";}
-					?>',event);" style="cursor: pointer;">
-					<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[1]["ID"]) )); ?>
-				<div class="imgcrop" style="height:250px; float: left; width:100%;">
-					<img src="<?php echo $url;?>" class="portrait crop2" alt="Image">
-					<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" style="bottom:2px; position:absolute;padding:0px">
-						<div class="col-md-12 col-sm-12 col-xs-12 widget2-title2"><?php echo $recent_posts[1]["post_title"]; ?></div>
-						<div class="col-md-12 col-sm-12 col-xs-12 widget2-title1">
-						<?php 
-						$review = nobrackets($recent_posts[1]["post_excerpt"]);
-						echo wp_trim_words($review, 5, '');
-						?></div>
+		-->
+			<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style="padding:5px;">
+				<div class="col-md-4 col-lg-4 col-xs-12 col-sm-12" style="padding:1px;">
+					<a onmousedown="OpenPage('<?php	$category = get_the_category($recent_posts[0]["ID"]);	$categorie = $category[0]->cat_name; 				
+					if ($categorie == "Article"){echo $ad=str_replace($wpsite."/article.php/article/","content/article.php?/",str_replace("","",get_permalink($recent_posts[0]["ID"])));}
+					else 
+						if ($categorie == "Review") {echo $ad=str_replace($wpsite."/article.php/review/","content/review.php?/",get_permalink($recent_posts[0]["ID"]));}
+						else {echo "Not Article or Review";} 
+						?>',event);" style="cursor: pointer;">
+						<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[0]["ID"]) )); ?>
+					<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 imgcrop" style="height:180px;padding:0px;overflow-y:hidden;">
+						<img class="portrait crop3" src="<?php echo $url;?>">	
+						<div style="position:absolute; bottom:0; background-color:rgba(49, 49, 49, 0.81); color:#fff; font-weight:bold; width:100%; font-size:16px;padding:3px;"><?php echo $recent_posts[0]["post_title"]; ?></div>	
 					</div>
+					</a>
 				</div>
-				</a>			
-			</div>	
-			<!-- featured element 3 -->
-			<div class="col-md-8 col-sm-12 col-xs-12 " style="padding:5px 0px 3px 3px;">
-				<a onmousedown="OpenPage('<?php   
-				$category = get_the_category( $recent_posts[2]["ID"] );
-				$categorie = $category[0]->cat_name; 
-				if ($categorie == "Article"){echo $ad=str_replace($wpsite."/article.php/article/","content/article.php?/",get_permalink($recent_posts[2]["ID"]));}
-				else 
-					if ($categorie == "Review") {echo $ad=str_replace($wpsite."/article.php/review/","content/review.php?/",get_permalink($recent_posts[2]["ID"]));}
-					else {echo "Not Article or Review";}
-					?>',event);" style="cursor: pointer;">
-					<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[2]["ID"]) )); ?>
-				<div class="imgcrop" style="height:120px; position:relative; float: left; width:100%;">
-					<img src="<?php echo $url;?>" class="portrait crop3" alt="Image">
-					<div class="col-md-12" style="bottom:2px; position:absolute;padding:0px;">
-						<div class="col-md-12 col-sm-12 col-xs-12 widget3-title2"><?php echo $recent_posts[2]["post_title"]; ?></div>
-						<div class="col-md-12 col-sm-12 col-xs-12 widget3-title1">
-						<?php 
-						$review = nobrackets($recent_posts[2]["post_excerpt"]);
-						echo wp_trim_words($review, 5, '');
-						?></div>
+				
+				<div class="col-md-4 col-lg-4 col-xs-12 col-sm-12" style="padding:1px;">
+					<a onmousedown="OpenPage('<?php $category = get_the_category($recent_posts[1]["ID"]); $categorie = $category[0]->cat_name; 
+					if ($categorie == "Article"){echo $ad=str_replace($wpsite."/article.php/article/","content/article.php?/",get_permalink($recent_posts[1]["ID"]));}
+					else 
+						if ($categorie == "Review") {echo $ad=str_replace($wpsite."/article.php/review/","content/review.php?/",get_permalink($recent_posts[1]["ID"]));}
+						else {echo "Not Article or Review";}
+						?>',event);" style="cursor: pointer;">
+						<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[1]["ID"]) )); ?>
+					<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 imgcrop" style="padding:0px;height:180px;overflow-y:hidden;">	
+						<img class="portrait crop3" src="<?php echo $url;?>">
+						<div style="position:absolute; bottom:0; background-color:rgba(49, 49, 49, 0.81); color:#fff; font-weight:bold; width:100%; font-size:16px;padding:3px;"><?php echo $recent_posts[1]["post_title"]; ?></div>
 					</div>
+					</a>
 				</div>
-				</a>			
+				
+				<div class="col-md-4 col-lg-4 col-xs-12 col-sm-12" style="padding:1px;">
+					<a onmousedown="OpenPage('<?php  $category = get_the_category($recent_posts[2]["ID"]);	$categorie = $category[0]->cat_name; 
+					if ($categorie == "Article"){echo $ad=str_replace($wpsite."/article.php/article/","content/article.php?/",get_permalink($recent_posts[2]["ID"]));}
+					else 
+						if ($categorie == "Review") {echo $ad=str_replace($wpsite."/article.php/review/","content/review.php?/",get_permalink($recent_posts[2]["ID"]));}
+						else {echo "Not Article or Review";}
+						?>',event);" style="cursor: pointer;">
+						<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[2]["ID"]) )); ?>
+					<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 imgcrop" style="height:180px;padding:0px;overflow-y:hidden;">	
+						<img class="portrait crop3" src="<?php echo $url;?>">
+						<div style="position:absolute; bottom:0; background-color:rgba(49, 49, 49, 0.81); color:#fff; font-weight:bold; width:100%; font-size:16px;padding:3px;"><?php echo $recent_posts[2]["post_title"]; ?></div>
+					</div>
+					</a>
+				</div>
 			</div>
-			<!-- featured element 4 -->
-			<div class="col-md-4 col-sm-6 col-xs-6" style="padding:3px 3px 6px 3px;">
-				<a onmousedown="OpenPage('<?php    
-				$category = get_the_category( $recent_posts[3]["ID"] );
-				$categorie = $category[0]->cat_name; 
-				if ($categorie == "Article"){echo $ad=str_replace($wpsite."/article.php/article/","content/article.php?/",get_permalink($recent_posts[3]["ID"]));}
-				else 
-					if ($categorie == "Review") {echo $ad=str_replace($wpsite."/article.php/review/","content/review.php?/",get_permalink($recent_posts[3]["ID"]));}
-					else {echo "Not Article or Review";}
-					?>',event);" style="cursor: pointer;">
-					<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[3]["ID"]) )); ?>
-				<div class="imgcrop" style="height:126px; position:relative; float: left; width:100%;">
-					<img src="<?php echo $url;?>" class="portrait crop4" alt="Image">
-					<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style="bottom:2px; position:absolute;padding:0px;">
-						<div class="col-md-12 col-sm-12 col-xs-12 widget4-title1" ><?php echo $recent_posts[3]["post_title"]; ?></div>
-						<div class="col-md-12 col-sm-12 col-xs-12 widget6-title2">
-						<?php 
-						$review = nobrackets($recent_posts[3]["post_excerpt"]);
-						echo wp_trim_words($review, 5, '');
-						?></div>
-					</div>
-				</div>	
-				</a>
-			</div>
-			<!-- featured element 5 -->
-			<div class="col-md-4 col-sm-6 col-xs-6" style="padding:3px 0px 6px 3px">
-				<a onmousedown="OpenPage('<?php  
-				$category = get_the_category( $recent_posts[4]["ID"] );
-				$categorie = $category[0]->cat_name; 
-				if ($categorie == "Article"){echo $ad=str_replace($wpsite."/article.php/article/","content/article.php?/",get_permalink($recent_posts[4]["ID"]));}
-				else 
-					if ($categorie == "Review") {echo $ad=str_replace($wpsite."/article.php/review/","content/review.php?/",get_permalink($recent_posts[4]["ID"]));}
-					else {echo "Not Article or Review";}				
-					?>',event);" style="cursor: pointer;"> 
-					<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[4]["ID"]) )); ?>
-				<div class="imgcrop" style="height:126px; position:relative; float: left; width:100%;">
-					<img src="<?php echo $url; ?>" class="portrait crop5" alt="Image">
-					<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12" style="bottom:2px; position:absolute;padding:0px;">
-						<div class="col-md-12 col-sm-12 col-xs-12 widget5-title1"><?php echo $recent_posts[4]["post_title"]; ?></div>
-						<div class="col-md-12 col-sm-12 col-xs-12 widget7-title2">
-						<?php 
-						$review = nobrackets($recent_posts[4]["post_excerpt"]);
-						echo wp_trim_words($review, 5, ''); 
-						?></div>
-					</div>
-				</div>
-				</a>
-			</div>		
-		
 		</div>
 		
-		<!-- Noteb Quiz -->
-		<div id="quiz" class="col-md-4 col-sm-12 col-xs-12 col-sm-12" style="float:right; position:relative; padding:0px 0px 0px 5px !important; min-height:248px;"></div>
-		
 	<?php 	
-	$y = 5;
-	for ($y = 5; $y < 16; $y++) { 
+	$y = 3;
+	for ($y = 3; $y < 16; $y++) { 
 		if(isset($recent_posts[$y]["ID"]))
 		{
 			$category = get_the_category( $recent_posts[$y]["ID"] ); 

@@ -2,7 +2,7 @@
 require_once("../../etc/session.php"); 
 require_once("../../etc/con_db.php");
 
-$id=intval($_POST['conf']);
+$id=strval($_POST['conf']);
 
 	for($i=0;$i<=9;$i++)
 	{
@@ -18,7 +18,7 @@ $id=intval($_POST['conf']);
 	$j=0;
 	for($i=0;$i<=9;$i++)
 	{
-		if((!isset($_SESSION['conf'.$i])) || ($_SESSION['conf'.$i]["id"]==0))
+		if((!isset($_SESSION['conf'.$i])) || ($_SESSION['conf'.$i]["id"]=="0"))
 		{
 			if(!$j)
 			$j=$i;

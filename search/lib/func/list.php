@@ -52,7 +52,7 @@ switch ($q) {
 					foreach($list as &$list2)
 					{
 						if(stripos($list2["model"],$keys) === false)
-						{	//echo $list2["model"];
+						{	
 							unset($list[$t]); //echo " delete time ";
 							}
 					$t++;
@@ -211,6 +211,17 @@ switch ($q) {
 					if(isset($vresmin)){ $y.=" AND CAST(prop1 AS UNSIGNED)>=".$vresmin; }
 					if(isset($vresmax)){ $y.=" AND CAST(prop1 AS UNSIGNED)<=".$vresmax; }
 					$sel="SELECT id, name FROM notebro_site.nomen WHERE type=9 AND name LIKE $dis_res".$y." ORDER BY name ASC";
+					$result = mysqli_query($con, $sel);
+					$list = array();
+					while($rand = mysqli_fetch_row($result)) 
+					{ 
+						$list[]=["id"=>intval($rand[0]),"model"=>strval($rand[1])];
+					}
+					mysqli_free_result($result);
+					break;
+				case "msc":
+					$dis_msc='"%'.$keys.'%"';
+					$sel="SELECT id, name FROM notebro_site.nomen WHERE type=10 AND name LIKE $dis_msc ORDER BY name DESC";
 					$result = mysqli_query($con, $sel);
 					$list = array();
 					while($rand = mysqli_fetch_row($result)) 

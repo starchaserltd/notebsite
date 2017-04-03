@@ -99,6 +99,12 @@
 		{	$displayres.='<option selected="selected">'.$element.'</option>';	}
 	}
 	
+	if(isset($_GET['DISPLAY_msc_id']))
+	{
+		foreach ($_GET['DISPLAY_msc_id'] as $element)
+		{	$displaymsc.='<option selected="selected">'.$element.'</option>';	}
+	}
+	
 	if($_GET['verresmin']){ $displayvresmin = $_GET['verresmin']; }
 	if($_GET['verresmax']){ $displayvresmax = $_GET['verresmax']; }
 	

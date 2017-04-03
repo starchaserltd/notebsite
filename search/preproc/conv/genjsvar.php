@@ -18,6 +18,7 @@
 <?php if(isset($gpumindate)){ echo "gpumindateset=".$gpumindate.";"; } if(isset($gpumaxdate)){  echo "gpumaxdateset=".$gpumaxdate.";"; } ?>
 <?php echo "displaysizeminset=".$displaysizemin.";"; echo "displaysizemaxset=".$displaysizemax.";"; ?>
 <?php if(isset($displayres)){ ?> $('#DISPLAY_resol_id').append('<?php echo $displayres; ?>'); <?php } ?>
+<?php if(isset($displaymsc)){ ?> $('#DISPLAY_msc_id').append('<?php echo $displaymsc; ?>'); <?php } ?>
 <?php echo "totalcapminset=".$totalcapmin.";"; echo "totalcapmaxset=".$totalcapmax.";"; ?>
 <?php if(isset($mdbport)){ ?>$('#MDB_port_id').append('<?php echo $mdbport; ?>'); <?php } ?>
 <?php if(isset($mdbvport)){ ?>$('#MDB_vport_id').append('<?php echo $mdbvport; ?>'); <?php } ?>

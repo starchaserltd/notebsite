@@ -24,8 +24,8 @@ var maxbudgetset=<?php if(!isset($bdgmax)){ $bdgmax=$minconfigprice*6; } echo $b
 <input type="hidden" name="advsearch" value="1">
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="background-color:white; font-family:arial; padding:0px;">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><a  onclick="OpenPage('search/adv_search.php',event);" style="cursor:pointer; padding-top:20px; font-weight:bold; font-size:16px; float:right; color:#000" id="gototop">Reset</a></div>
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><a onclick="scrolltoid('submitformid');" style="cursor:pointer; padding-top:20px; font-weight:bold; font-size:16px; float:right; color:#000">Go to bottom<i class="glyphicon glyphicon-arrow-down" style="font-size:12px"></i></a></div>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><a onclick="OpenPage('search/adv_search.php',event);" style="cursor:pointer;  font-size:14px; float:right; margin-top:20px; padding:0px 25px 0px 25px; border-radius:2px; background-color:#49505a; color:#fff; text-decoration:none;" id="gototop">Reset</a></div>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><a onclick="scrolltoid('submitformid');" style="cursor:pointer; font-size:14px; float:right; margin-top:10px; padding:0px 25px 0px 25px; border-radius:2px; background-color:#49505a; color:#fff; text-decoration:none;">Go to bottom<i class="glyphicon glyphicon-arrow-down" style="font-size:12px"></i></a></div>
 			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 					<div style="font-size:16px; font-weight:bold;">Producer</div>			
@@ -84,7 +84,7 @@ var maxbudgetset=<?php if(!isset($bdgmax)){ $bdgmax=$minconfigprice*6; } echo $b
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">		
 					<div style="margin-top:10px;"><span style="margin-top:5px; font-size:13.5px; margin-bottom:2px;">
-						Nr of cores:</span>  <span id="nrcoresval"><?php echo $cpucoremin;?> - <?php echo $cpucoremax; ?></span>
+						Nr. of cores:</span>  <span id="nrcoresval"><?php echo $cpucoremin;?> - <?php echo $cpucoremax; ?></span>
 				 	</div>	  
 					<div style="margin-top:3px;" id="nrcores"></div>
 					<input type="hidden" name="nrcoresmin" id="nrcoresmin" value="<?php echo $cpucoremin; ?>" data-lcom='CPU_model' data-lfield="cpu_coremin">
@@ -94,7 +94,7 @@ var maxbudgetset=<?php if(!isset($bdgmax)){ $bdgmax=$minconfigprice*6; } echo $b
 			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 					<div><span style="margin-top:5px; font-size:13.5px; margin-bottom:2px;">
-						Power Consumption (TDP):</span>  <span id="cputdpval"><?php echo $cputdpmin; ?> - <?php echo $cputdpmax; ?></span><span> W</span>
+						Power consumption (TDP):</span>  <span id="cputdpval"><?php echo $cputdpmin; ?> - <?php echo $cputdpmax; ?></span><span> W</span>
 				 	</div>	  
 					<div style="margin-top:3px;" id="cputdp"></div>
 					<input type="hidden" name="cputdpmin" id="cputdpmin" value="<?php echo $cputdpmin; ?>" data-lcom='CPU_model' data-lfield="cpu_tdpmin" >	 
@@ -102,7 +102,7 @@ var maxbudgetset=<?php if(!isset($bdgmax)){ $bdgmax=$minconfigprice*6; } echo $b
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 					<div style="margin-top:10px;"><span style="margin-top:5px; font-size:13.5px; margin-bottom:2px;">
-						Base Frequency:</span>  <span id="cpufreqval"><?php echo $cpufreqmin; ?> - <?php echo $cpufreqmax; ?></span><span> GHz</span>
+						Base frequency:</span>  <span id="cpufreqval"><?php echo $cpufreqmin; ?> - <?php echo $cpufreqmax; ?></span><span> GHz</span>
 					</div>	  
 					<div style="margin-top:3px;" id="cpufreq"></div>
 					<input type="hidden" name="cpufreqmin" id="cpufreqmin" value="<?php echo $cpufreqmin; ?>" data-lcom='CPU_model' data-lfield="cpu_clockmin" >	 
@@ -117,7 +117,7 @@ var maxbudgetset=<?php if(!isset($bdgmax)){ $bdgmax=$minconfigprice*6; } echo $b
 					<input type="hidden" name="cputechmax" id="cputechmax" value="<?php echo $cputechmin; ?>" data-lcom='CPU_model' data-lfield="cpu_techmin" data-lcom2='CPU_socket' data-lfield2="socktechmin">			
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top:10px">
-					<div>Miscellaneous</div>
+					<div>Other features</div>
 					<select class="multisearch js-example-responsive" id="CPU_msc_id" name = "CPU_msc_id[]" data-lcom='CPU_model' data-lfield="cpu_misc" data-placeholder="Processor Miscellaneous" data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
 				</div>
 			</div>
@@ -126,7 +126,7 @@ var maxbudgetset=<?php if(!isset($bdgmax)){ $bdgmax=$minconfigprice*6; } echo $b
 		<!-- GPU -->
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:10px 0px 0px 0px;">
 			<hr style="height:5px; width=:50px;">
-			<div style="font-size:16px; font-weight:bold;padding-bottom:5px;">Video Card</div>
+			<div style="font-size:16px; font-weight:bold;padding-bottom:5px;">Video card</div>
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<input type="radio" name="gputype" value="0" id="r-yes" class="css-radiobox" <?php if($gputype==0){ echo 'checked="checked"';} ?>>
 				<label for="r-yes" class="css-labelr" style="font-weight:normal">Integrated</label>
@@ -155,12 +155,12 @@ var maxbudgetset=<?php if(!isset($bdgmax)){ $bdgmax=$minconfigprice*6; } echo $b
 					</select>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">	
-					<div>Graphics Card Model</div>
+					<div>Graphics card model</div>
 					<select class="multisearch js-example-responsive" id="GPU_model_id" name="GPU_model_id[]"  data-lcom='none' data-lfield="gpu_prod" data-placeholder="Graphics Card Model" data-initvalue="GPU Integrated" multiple="multiple" data-ajax--url="search/lib/func/list.php" style="width:100%;"></select>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 					<div style="margin-top:10px;"><span style="margin-top:5px; font-size:13.5px; margin-bottom:2px;">
-						Video Memory:</span>  <span id="gpumemval"><?php echo $gpumemmin; ?> - <?php echo $gpumemmax; ?> MB</span>
+						Video memory:</span>  <span id="gpumemval"><?php echo $gpumemmin; ?> - <?php echo $gpumemmax; ?> MB</span>
 				 	</div>	  
 					<div style="margin-top:3px;" id="gpumem"></div>
 					<input type="hidden" name="gpumemmin" id="gpumemmin" value="<?php echo $gpumemmin; ?>">
@@ -181,12 +181,12 @@ var maxbudgetset=<?php if(!isset($bdgmax)){ $bdgmax=$minconfigprice*6; } echo $b
 					<select class="multisearch js-example-responsive" name="GPU_arch_id[]" id="GPU_arch_id" data-lcom='GPU_model' data-lfield="gpu_arch" data-placeholder="Graphics Card Architecture" data-initvalue="GPU Integrated" multiple="multiple" data-ajax--url="search/lib/func/list.php" style="width:100%;"></select>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">		
-					<div>Miscellaneous</div>
+					<div>Other features</div>
 					<select class="multisearch js-example-responsive" id="GPU_msc_id" name="GPU_msc_id[]" data-lcom='none' data-lfield="gpu_misc" data-placeholder="Graphic Card Miscellaneous" data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 					<div style="margin-top:10px;"><span style="margin-top:5px; font-size:13.5px; margin-bottom:2px;">
-						Power Consumption (TDP):</span>  <span id="gpupowerval"><?php echo $gpupowermin; ?> - <?php echo $gpupowermax; ?> W</span>
+						Power consumption (TDP):</span>  <span id="gpupowerval"><?php echo $gpupowermin; ?> - <?php echo $gpupowermax; ?> W</span>
 				 	</div>	  
 					<div style="margin-top:3px;" id="gpupower"></div>
 					<input type="hidden" name="gpupowermin" id="gpupowermin" value="<?php echo $gpupowermin; ?>">
@@ -230,11 +230,23 @@ var maxbudgetset=<?php if(!isset($bdgmax)){ $bdgmax=$minconfigprice*6; } echo $b
 				</div>
 			</div>	
 			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div><span style="margin-top:5px; font-size:13.5px; margin-bottom:2px;">
+						Vertical resolution:</span>  <span id="verresval"><?php echo $displayvresmin; ?> - <?php echo $displayvresmax; ?> pixels</span>
+					</div>	  
+					<div style="margin-top:3px;" id="verres"></div>
+					<input type="hidden" name="verresmin" id="verresmin" value="<?php echo $displayvresmin; ?>" data-lcom='DISPLAY_resol' data-lfield="vresmin">	
+					<input type="hidden" name="verresmax" id="verresmax" value="<?php echo $displayvresmax; ?>" data-lcom='DISPLAY_resol' data-lfield="vresmax">				
+				</div>				
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top:10px">
 					<div>Resolution</div>
 					<select class="multisearch js-example-responsive" name="DISPLAY_resol_id[]" id="DISPLAY_resol_id" data-lcom="none" data-lfield="none" data-placeholder="Display Resolution" data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
-				</div>	
-				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-top:5px;">
+				</div>					
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+					<div>Other features</div>
+					<select class="multisearch js-example-responsive" name="DISPLAY_msc_id[]" id="DISPLAY_msc_id" data-lcom="none" data-lfield="none" data-placeholder="Display miscellaneous" data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 					<div class="checkbox" style="float:right;">
 						<input type="checkbox" name="touchscreen"  id="touchscreen" class="css-checkbox sme" style="margin-left:0px;" <?php echo $tcheck; ?>/>
 						<label for="touchscreen" class="css-label sme depressed" style="font-weight:normal;min-height:16px;">Touchscreen</label>
@@ -243,14 +255,7 @@ var maxbudgetset=<?php if(!isset($bdgmax)){ $bdgmax=$minconfigprice*6; } echo $b
 						<label for="nontouchscreen" class="css-label sme depressed" style="font-weight:normal;min-height:16px;">No Touchscreen</label>
 					</div>
 				</div>
-				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					<div><span style="margin-top:5px; font-size:13.5px; margin-bottom:2px;">
-						Vertical Resolution:</span>  <span id="verresval"><?php echo $displayvresmin; ?> - <?php echo $displayvresmax; ?> pixels</span>
-					</div>	  
-					<div style="margin-top:3px;" id="verres"></div>
-					<input type="hidden" name="verresmin" id="verresmin" value="<?php echo $displayvresmin; ?>" data-lcom='DISPLAY_resol' data-lfield="vresmin">	
-					<input type="hidden" name="verresmax" id="verresmax" value="<?php echo $displayvresmax; ?>" data-lcom='DISPLAY_resol' data-lfield="vresmax">				
-				</div>
+				
 			</div>
 		</div>	
 		
@@ -285,7 +290,7 @@ var maxbudgetset=<?php if(!isset($bdgmax)){ $bdgmax=$minconfigprice*6; } echo $b
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">		
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top:10px;">			
-					<div>Seconday Storage</div>
+					<div>Seconday storage</div>
 					<select id="nrhdd" name="nrhdd">
 						<option value="1">Optional</option>
 						<option value="2" <?php echo $nrhddselect;?> >Mandatory</option>
@@ -316,7 +321,7 @@ var maxbudgetset=<?php if(!isset($bdgmax)){ $bdgmax=$minconfigprice*6; } echo $b
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					<div>Video Ports</div>
+					<div>Video ports</div>
 					<select class="multisearch js-example-responsive" id="MDB_vport_id" name="MDB_vport_id[]" data-lcom='none' data-lfield="none" data-placeholder="Motherboard Video Ports" data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
 				</div>
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">			
@@ -456,7 +461,7 @@ var maxbudgetset=<?php if(!isset($bdgmax)){ $bdgmax=$minconfigprice*6; } echo $b
 					<input type="hidden" name="webmin" id="webmin" value="<?php echo $chassiswebmin; ?>">	
 					<input type="hidden" name="webmax" id="webmax" value="<?php echo $chassiswebmax; ?>">				
 					<div  style="margin-top:10px;">
-						<div>Other Features</div>
+						<div>Other features</div>
 						<select class="multisearch js-example-responsive" id="CHASSIS_stuff_id" name="CHASSIS_stuff_id[]" data-lcom='none' data-lfield="none" data-placeholder="Touchpad / Keyboard / Speakers" data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
 					</div>
 				</div>
@@ -499,7 +504,7 @@ var maxbudgetset=<?php if(!isset($bdgmax)){ $bdgmax=$minconfigprice*6; } echo $b
 		<!-- OS -->
 		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6"  style="padding:0px 0px 0px 0px;">
 			<hr style="height:5px; width=:50px;">
-			<div style="font-size:16px; font-weight:bold;padding-bottom:5px;">Operating System</div>
+			<div style="font-size:16px; font-weight:bold;padding-bottom:5px;">Operating system</div>
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 					<div>System</div>			
@@ -525,7 +530,7 @@ var maxbudgetset=<?php if(!isset($bdgmax)){ $bdgmax=$minconfigprice*6; } echo $b
 					<input type="checkbox" name="premiumadvadp" class="css-checkbox sme" id="checkboxadvadp" style="margin-left:0px;" <?php echo $nbdcheckadp; ?> />
 					<label for="checkboxadvadp" class="css-label sme depressed" style="font-weight:normal;min-height:16px;">Accidental Damage</label>			
 					<input type="checkbox" name="premiumadv" class="css-checkbox sme" id="checkboxadv" style="margin-left:0px;" <?php echo $nbdcheck; ?> />
-					<label for="checkboxadv" class="css-label sme depressed" style="font-weight:normal;min-height:16px;">On-Site</label>
+					<label for="checkboxadv" class="css-label sme depressed" style="font-weight:normal;min-height:16px;">On-site</label>
 				</div>	
 			</div>
 		</div>	

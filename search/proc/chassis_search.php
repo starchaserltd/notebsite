@@ -423,7 +423,7 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 	
 	
 	// DO THE SEARCH
-	 # echo "Query to select the CHASSIS:";
+	# echo "Query to select the CHASSIS:";
     # echo "<br>";
 	# echo "<pre>" . $sel_chassis. "</pre>";
 

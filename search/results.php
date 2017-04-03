@@ -2,7 +2,6 @@
 ini_set('max_execution_time', 5);
 require_once("lib/php/resultlib.php");
 $temp_table = "all_conf";
-
 /* GETTING EXCHANGE LIST */
 $result = mysqli_query($GLOBALS['con'], "SELECT code,sign, ROUND( convr, 5 ) convr FROM notebro_site.exchrate"); 
 $exchangelist = mysqli_fetch_all($result);
@@ -12,7 +11,7 @@ $exchangelist = mysqli_fetch_all($result);
 	<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style="background-color:white; font-family:arial;">
 		<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style="padding:3px 0px 5px 0px"> 
 			<div class="col-md-6 col-sm-6 col-xs-12 col-lg-6">
-				<button type="button" <?php $nosearch=0; $search_ref=str_replace("/advanced_search","/adv_search",$absolute_url[0],$nosearch); if(!($nosearch)){ $search_ref=str_replace("/search.php?","/adv_search.php?",$absolute_url[0]);} $text='onmousedown="OpenPage('."'".$search_ref; foreach($sortby as $sort) {} $text.="',event)".'"'; echo $text ?> class="btn btn-result" style="margin-right:24px;border-radius:2px !important; height:25px; padding:2px 15px;"> Refine results</button>
+				<button type="button" <?php $nosearch=0; $search_ref=str_replace("/advanced_search","/adv_search",$absolute_url[0],$nosearch); if(!($nosearch)){ $search_ref=str_replace("/search.php?","/adv_search.php?",$absolute_url[0]);} $text='onmousedown="OpenPage('."'".$search_ref; foreach($sortby as $sort) {} $text.="',event)".'"'; echo $text ?> class="btn btn-result" style="margin-right:24px;border-radius:1px !important; height:25px; padding:2px 15px;"> Refine results</button>
 			</div>
 <?php		
 			include_once("proc/confsearch.php"); /* WHERE THE REAL SEARCH IS DONE! */
@@ -21,9 +20,9 @@ $exchangelist = mysqli_fetch_all($result);
 			<div class="col-md-6 col-sm-6 col-xs-12 col-lg-6" style="padding:0px">
 				<div class="btn-group">		
 					<div class="btn-group" style="float:right;width:auto!important;margin-left:3px">
-						<button type="button" data-toggle="dropdown" class="btn btn-result dropdown-toggle" style="width:35px;border-radius:3px 3px 3px 3px;"><?php echo $exchsign; ?>
+						<button type="button" data-toggle="dropdown" class="btn btn-result dropdown-toggle" style="width:35px;border-radius:1px;"><?php echo $exchsign; ?>
 						<span class="caret"></span></button>
-						<ul class="dropdown-menu" style="margin-top:0px;margin-bottom:0px;padding:0px;border-radius: 3px 3px 3px 3px;min-width:35px!important;">
+						<ul class="dropdown-menu" style="margin-top:0px;margin-bottom:0px;padding:0px;border-radius: 3px;min-width:35px!important;">
 						<?php
 						foreach ($exchangelist as $exchc)
 						{
@@ -35,10 +34,10 @@ $exchangelist = mysqli_fetch_all($result);
 						?>
 						</ul>
 					</div>
-					<button type="button" class="btn btn-result<?php echo $name_button;?>" style="float:right;border-radius: 0px 3px 3px 0px;" onmousedown="OpenPage(sortresults('name'),event)">name</button>
+					<button type="button" class="btn btn-result<?php echo $name_button;?>" style="float:right;border-radius: 0px 1px 1px 0px;" onmousedown="OpenPage(sortresults('name'),event)">name</button>
 					<button type="button" style="float:right;" class="btn btn-result<?php echo $performance_button; ?>" onmousedown="OpenPage(sortresults('performance'),event)">perfomance</button>							
 					<button type="button" style="float:right;" class="btn btn-result<?php echo $price_button; ?>" onmousedown="OpenPage(sortresults('price'),event)">price</button>
-					<button type="button" class="btn btn-result<?php echo $value_button;?>" style="float:right;;margin-left:10px;border-radius: 3px 0px 0px 3px;"  onmousedown="OpenPage(sortresults('value'),event)">value</button>			
+					<button type="button" class="btn btn-result<?php echo $value_button;?>" style="float:right;;margin-left:10px;border-radius: 1px 0px 0px 1px;"  onmousedown="OpenPage(sortresults('value'),event)">value</button>			
 					<a class="btn" style="float:right;text-decoration:none;color:black;font-weight:bold;padding:2px 0px 0px 0px;">Order by:</a>
 				</div>		 
 			</div>	
@@ -88,7 +87,7 @@ $exchangelist = mysqli_fetch_all($result);
 					</a>
 				</div>
 				<div class="searchprice"><?php echo ""; echo $exchsign; echo " "; echo showprice(('notebro_temp.'.$temp_table."_".table($rand['id'])), $rand['id'], $exch );?></div>
-				<div class="btn col-md-12 col-sm-12 col-xs-12 addtocpmp" onclick="addcompare(<?php echo $rand['id'];?>)">Add to compare</div>
+				<div class="btn col-md-12 col-sm-12 col-xs-12 addtocpmp" onclick="addcompare('<?php echo $rand['id'];?>')">Add to compare</div>
 			</div>
 		</div>
 		<?php
@@ -157,7 +156,7 @@ $exchangelist = mysqli_fetch_all($result);
 		{ echo "</div></div></div>";
 ?>
 <div class="col-md-8 col-md-offset-2 " style="border:1px solid #ddd; background-color:#f6f6f6; border-radius:5px;margin-top:20px; text-align:center; font-weight:bold;padding:10px;">
-	<span style="margin-top:2px;"> No results found for your criteria.<br> Try different search options. </span>
+	<span style="margin-top:2px;"> No results found for your criteria and budget <?php echo "(".$exchsign.$bdgmin." - ".$exchsign.$bdgmax.")"; ?>.<br> Try different search options. </span>
 </div>
 <?php
 		} mysqli_close($cons);

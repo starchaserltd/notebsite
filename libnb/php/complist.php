@@ -15,8 +15,8 @@ $nrcheck=-1; $j=0; $t=0; $complink=''; $nrconf=0;
 				$checked="";
 			}
 			$nrconf++;
-			echo '<tbody><tr id="comprow'.$_SESSION['conf'.$i]['id'].'"class="items" style="background:#fff;"><td class="comparecell1"><div class="checkbox" style="margin:0px; width:0px;"><input type="checkbox" onclick="cchecks('.$_SESSION['conf'.$i]['id'].')" class="css-checkbox sme" id="checkbox'.$_SESSION['conf'.$i]['id'].'" '.$checked.' /><label style="font-weight:normal;min-height:16px;" for="checkbox'.$_SESSION['conf'.$i]['id'].'" class="css-label sme depressed"></label></div></td><td class="text-center comparecell2" ><a  href="'.$web_address.'?model/model.php?conf='.$_SESSION['conf'.$i]['id'].'" class="comparename">'.$_SESSION['conf'.$i]['name'];
-			echo '<div class="menuhidden">'.$_SESSION['conf'.$i]['disp_size'].'", '.$_SESSION['conf'.$i]['disp_res'].', '.$_SESSION['conf'.$i]['cpu_info'].', '.$_SESSION['conf'.$i]['gpu_info'].', '.$_SESSION['conf'.$i]['mem_info'].', '.$_SESSION['conf'.$i]['hdd_info'].'</div></a></td><td class="text-center" style="width:16px;padding-bottom:2px; padding-top:2px;"><a  style="color:#49505a;font-size:16px;padding:0px;background-color:#fff;" onclick="removecomp('.$_SESSION['conf'.$i]['id'].',0)"><span class="glyphicon glyphicon-remove"></span></a></td></tr></tbody>';		
+			echo '<tbody><tr id="comprow'.$_SESSION['conf'.$i]['id'].'"class="items" style="background:#fff;"><td class="comparecell1"><div class="checkbox" style="margin:0px; width:0px;"><input type="checkbox" onclick="cchecks('."'".$_SESSION['conf'.$i]['id']."'".')" class="css-checkbox sme" id="checkbox'.$_SESSION['conf'.$i]['id'].'" '.$checked.' /><label style="font-weight:normal;min-height:16px;" for="checkbox'.$_SESSION['conf'.$i]['id'].'" class="css-label sme depressed"></label></div></td><td class="text-center comparecell2" ><a  href="'.$web_address.'?model/model.php?conf='.$_SESSION['conf'.$i]['id'].'" class="comparename">'.$_SESSION['conf'.$i]['name'];
+			echo '<div class="menuhidden">'.$_SESSION['conf'.$i]['disp_size'].'", '.$_SESSION['conf'.$i]['disp_res'].', '.$_SESSION['conf'.$i]['cpu_info'].', '.$_SESSION['conf'.$i]['gpu_info'].', '.$_SESSION['conf'.$i]['mem_info'].', '.$_SESSION['conf'.$i]['hdd_info'].'</div></a></td><td class="text-center" style="width:16px;padding-bottom:2px; padding-top:2px;"><a  style="color:#49505a;font-size:16px;padding:0px;background-color:#fff;" onclick="removecomp('."'".$_SESSION['conf'.$i]['id']."'".',0)"><span class="glyphicon glyphicon-remove"></span></a></td></tr></tbody>';		
 		}
 		else
 		{
@@ -27,7 +27,7 @@ $nrcheck=-1; $j=0; $t=0; $complink=''; $nrconf=0;
 				$j=0;
 				for($i=0;$i<=9;$i++)
 				{
-					if(!(isset($_SESSION['conf'.$i])) || $_SESSION['conf'.$i]["id"]==0 || ($_SESSION['conf'.$i]==NULL))
+					if(!(isset($_SESSION['conf'.$i])) || $_SESSION['conf'.$i]["id"]=="0" || ($_SESSION['conf'.$i]==NULL))
 					{
 						if(!$j)
 						$j=$i;

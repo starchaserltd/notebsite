@@ -25,7 +25,7 @@ require_once("etc/session.php");
 	<div class="row" style="height:100%;">
 	<!-- upper buttons desktop -->
 		<div class="col-md-10 col-xs-12 col-sm-12" style="padding:0px; float:left; position:relative;">
-			<div class="btn-group-justified btn-group">
+			<div class="btn-group-justified btn-group siteMenu">
 				<a class="btn btn-sus logonb"  onmousedown="OpenPage('content/home.php',event);">HOME</a>
 				<a class="btn btn-sus advsearch" >SEARCH</a>
 				<a class="btn btn-sus" onmousedown="OpenPage('content/articles.php',event);">ARTICLES</a>
@@ -36,21 +36,12 @@ require_once("etc/session.php");
 		
 				
 			</div>
-		</div>
-		<!-- upper buttons mobile--> 
-	<!--	<div class="hidden-md col-xs-12 hidden-sm hidden-lg" style="padding:0px; float:left; position:relative;">
-			<div class="btn-group-justified btn-group">
-				<a class="btn btn-sus" style="padding:0px;" onmousedown="OpenPage('content/home.php',event);">NOTEB</a>
-				<a class="btn btn-sus advsearch">SEARCH</a>
-				<a class="btn btn-sus" onmousedown="OpenPage('content/articles.php',event);">ARTICLES</a>
-				<a class="btn btn-sus" onmousedown="OpenPage('content/reviews.php',event);">REVIEWS</a>
-			</div>
-		</div> -->
+		</div>		
 		<!-- right area -->
-		<div class="col-md-2 hidden-xs col-sm-6" style="float:right; position:relative; padding:0px;"><!-- min-height:134px;-->
+		<div class="col-md-2 col-sm-6 socialButton"><!-- min-height:134px;-->
 		<!-- social buttons -->
 		
-			<div class="hidden-sm hidden-xs col-md-12 col-lg-12" style="padding:0px;">
+			<div class="col-xs-3 col-md-12 col-md-12 col-lg-12" style="padding:0px;">
 			
 			<div class="btn-group" role="group">
 			<button type="button" class="btn btn-sus dropdown-toggle" style="width:inherit;margin-left:-1px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -58,7 +49,7 @@ require_once("etc/session.php");
 			  <span class="caret"></span>
 			</button>
 			<div class="dropdown-menu">
-				  <div style="margin:5px;">
+				  <div class="shareText" style="margin:5px;">
 				  Share page on...
 				  </div>
 				  <div style="margin:5px;">			
@@ -94,12 +85,8 @@ require_once("etc/session.php");
 		<!-- end div middle -->
 		<!-- end right area -->
 		<!-- left area -->	
-		<div class="col-md-2 col-xs-12 col-sm-12" style="padding:0px; float:left; position:relative;">
-		<!-- div logo-->
-		<!--	<div class="col-md-12 hidden-xs hidden-sm" style="padding: -30px -30px -30px -30px;text-align:center;">
-				<img onmousedown="OpenPage('content/home.php',event);" src="res/img/logo/logo.png" alt="Noteb" style="width:45%; height: 45%; cursor: pointer;">
-			</div> -->
-		<!-- div end logo-->
+		<div class="col-md-2 col-xs-12 col-sm-12 firstContainer" style="padding:0px; float:left; position:relative;">
+		
 		<!-- left area -->
 		<script type="text/javascript" src="libnb/js/compjsf.js" ></script><!-- compare list functions -->
 			<div class="col-md-12 col-xs-12 col-sm-12" id='cssmenu' style="padding:0px">
@@ -152,31 +139,19 @@ require_once("etc/session.php");
 			</div>
 			<div class="col-md-12 col-xs-12 cod-sm-12 col-lg-12" style="padding:5px">
 				<form action="javascript:void(0);" method="post" id="modelfind" style="text-align: -webkit-center;">		
-					<select class="modelsearch js-example-responsive" id="model_id" name ="model_id" data-placeholder="Find a laptop model" data-initvalue="search for a model"  style="width: 80%; margin:5px 0px 10px 0px;"> 
+					<select class="modelsearch js-example-responsive" id="model_id" name ="model_id" data-placeholder="Find a laptop model" data-initvalue="search for a model"  style="width: 100%; margin:5px 0px 10px 0px; border-radius:1px;"> 
 					</select>
-					<button type="submit" id="modelfind_btn" class="btn-result" style="border-radius:3px;font-size:inherit;height:29px; padding:2px 7px 2px 7px">
-						<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-					</button>
 				</form>
 			</div>
 			<!-- end left menu-->
 			<!-- simple search -->
-			<button class="visible-xs btn btn-search" data-toggle="collapse" data-target="#SearchParameters">Quick Search</button>
+			<button class="visible-xs btn btn-search" style="font-size:14px!important; font-weight:bold" data-toggle="collapse" data-target="#SearchParameters">Quick Search</button>
 			<div class="hidden-xs SearchParameters" id="SearchParameters">
 				<?php include ("search/s_search.php");?>
 			</div>
 			<!-- end simple search -->	
-			<!-- div for medium resolutions with logo and social buttons-->
-		
-		<!--	<div class="col-sm-6" style="text-align:center"><a style="text-decoration:none" onmousedown="OpenPage('content/home.php',event);"><span style="font-weight:bold;font-size:20px;color:#000;">NOTEB</span></a></div> -->
-			<div class="col-xs-12 col-sm-12 hidden-md hidden-lg" style="padding:10px 0px 10px 0px; text-align:center;"> 
-				<!--<div class="col-xs-12 col-sm-12 hidden-md hidden-lg" style="padding:10px 0px 5px 0px; text-align:center;">Share page on...</div>-->
-				<span>Share on</span>
-				<a class="btn btn-social-icon btn-sm btn-facebook" id="sharefbm" href=""><span class="socicon socicon-facebook sheight"></span></a>
-				<a class="btn btn-social-icon btn-sm btn-twitter" id="sharetwm" href=""><span class="socicon socicon-twitter sheight"></span></a>
-				<a class="btn btn-social-icon btn-sm btn-google" id="sharegpm" href=""><span class="socicon socicon-google-plus sheight"></span></a>
-				<a class="btn btn-social-icon btn-sm btn-reddit" id="sharerdm" href=""><span class="socicon socicon-reddit sheight"></span></a>
-			</div>
+			
+			
 		</div>
 		<!-- end left area-->
 		<!-- main content -->

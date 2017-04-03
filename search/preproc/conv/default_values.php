@@ -129,6 +129,12 @@ $gpumaxdatei=date('Y', $time); if(!isset($gpumaxdate)) { $gpumaxdate=$gpumaxdate
 
 mysqli_free_result($result);
 
+/* ROUND CHASSIS CHARACTERISTICS TO GET ALL RESULTS */
+$chassisthicmax=ceil($chassisthicmax*10)/10; $chassisthicmin=floor($chassisthicmin*10)/10; $chassisthicmaxi=ceil($chassisthicmaxi*10)/10; $chassisthicmini=floor($chassisthicmini*10)/10;
+$chassiswidthmax=ceil($chassiswidthmax*10)/10; $chassiswidthmin=floor($chassiswidthmin*10)/10; $chassiswidthmaxi=ceil($chassiswidthmaxi*10)/10; $chassiswidthmini=floor($chassiswidthmini*10)/10;
+$chassisdepthmax=ceil($chassisdepthmax*10)/10; $chassisdepthmin=floor($chassisdepthmin*10)/10; $chassisdepthmaxi=ceil($chassisdepthmaxi*10)/10; $chassisdepthmini=floor($chassisdepthmini*10)/10;
+$chassisweightmax=ceil($chassisweightmax*10)/10; $chassisweightmin=floor($chassisweightmin*10)/10; $chassisweightmaxi=ceil($chassisweightmaxi*10)/10; $chassisweightmini=floor($chassisweightmini*10)/10;
+
 /* SETTING THE VARIABLES IN JAVASCRIPT */
 echo '<script type="text/javascript">';
 echo "cpumindate=parseInt('".$cpumindatei."'); ";

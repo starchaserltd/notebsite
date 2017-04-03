@@ -1,10 +1,11 @@
 <?php
 require_once("../etc/conf.php");
-if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_name) ==FALSE) 
+if ((!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_name) ==FALSE)) 
 {	$actual_link = "$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 	header("Location: http://".str_replace($site_name."/",$site_name."/?",$actual_link)."");
 	die();
 }
+
 $rootpath = realpath($_SERVER["DOCUMENT_ROOT"]);
 require_once($rootpath.$admin_address.'/wp/wp-blog-header.php');
 require_once("../etc/con_db.php");
@@ -59,7 +60,7 @@ $published_posts = $category->category_count;
 
 			if ($categorie == "Article" && $recent_posts[$x]["ID"]){
 ?>
-		<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="min-height:260px ;display: flex;flex-wrap: wrap;">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="min-height:292px ;display: flex;flex-wrap: wrap;padding:0px">
 			<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" style="display: flex; align-self: center; justify-content: center;">	
 				<a onmousedown="OpenPage('<?php  echo $ad=str_replace($wpsite."/article.php/article/","content/article.php?/",get_permalink($recent_posts[$x]["ID"])); ?>',event);" style="cursor: pointer;" >
 					<img style="display:block; margin:0 auto; max-width:120px" src="<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[$x]["ID"]) )); echo $url;?>" class="img-responsive" alt="Article featured image">

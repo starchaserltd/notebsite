@@ -20,9 +20,11 @@ if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_n
 	 <p>Firstly, we do not sell laptops, we only help you find the right laptop. Best advice is to search for that exact configuration either directly on the producer's website or at on-line shops. We also provide on each notebook page a quick Google/Bing/Amazon search option for buying that exact configuration. We would love to provide direct purchase links from various suppliers but unfortunately this is not currently possible.
 	 Also, be advised that configurations vary from country to country and across different regions. Altough rare, the same laptop model may sell with different components across different countries or it may not be available at all.</p>
 
-	 	 <p><b>How do you estimate laptop prices?</b></p>
-Prices are calculated automatically by an algorithm which takes into consideration the components of the laptop, brand, chassis quality, installed software and warranty. As the name implies, this is just a price estimation, prices on the market may vary, especially when buying during discount seasons. However, the difference between the real and the estimated price should be relatively small.
-<br> <br>
+	 	 <p><b>How do you estimate prices?</b></p>
+Prices are sourced from producer websites, Amazon and other price comparison websites. However, due to the fact that some laptops can have millions of possible configurations, it is impossible to collect market prices for each of them. Conseqeuntly, for many models we extrapolate the prices based on the data we constantly collect and update.<br>We can confidently say that 95% of all our prices are within a 10% margin of error compared to what is available on the market, with a very few exception (under 4% of latops) prices can be off by almost 30%.
+Large price differences are almost always due to changes in producer price policies which we have yet to update or changes in technical specifications.
+<br>
+If you do notice a large price difference please <a href="https://<?php echo $site_name;?>?footer/contact.php">contact us</a> and we will make the necessary adjustments. <br> <br>
 		  	 <p><b>What is the Noteb Rating?</b></p>
 			Noteb rating evaluates the capabilities of a laptop against other laptops on the market and it is very useful when comparing different laptop models. Our rating evaluates the characteristic of every laptop component currently available on the market on scale from 1 to 100, where 100 is the best available on the market and 1 is the worse.
 			No laptop can achieve a rating of 100% simply because in a laptop everything is a trade-off. For instance, a high performance processors will necessarily sacrifice portability and battery life. Still there laptops with low performance and poor battery life, which get a low rating from Noteb and there are laptops which provide good performance and very good battery life which get a much higher rating. 

@@ -4,9 +4,9 @@ function search_gpu ($typegpumin, $typegpumax, $prod, $model, $arch, $techmin, $
 {
 
 	if($seltdp>0)
-	$sel_gpu="SELECT id,model FROM notebro_db.GPU WHERE valid=1 ";
+	$sel_gpu="SELECT id,model,rating FROM notebro_db.GPU WHERE valid=1 ";
 	else
-	$sel_gpu="SELECT id,model FROM notebro_db.GPU WHERE valid=1 ";
+	$sel_gpu="SELECT id,model,rating FROM notebro_db.GPU WHERE valid=1 ";
 	
 // Add Type filter (Integrated / Dedicated / Professional)
 	
@@ -369,9 +369,9 @@ function search_gpu ($typegpumin, $typegpumax, $prod, $model, $arch, $techmin, $
 	}
 	
 	
-	$sel_gpu.=" GROUP BY MODEL";
+	$sel_gpu.=" GROUP BY model";
 	
-	$sel_gpu.=" ORDER BY ldate DESC";
+	$sel_gpu.=" ORDER BY rating DESC";
 	
 // DO THE SEARCH
 	
@@ -385,9 +385,9 @@ function search_gpu ($typegpumin, $typegpumax, $prod, $model, $arch, $techmin, $
 	{ 
 
 		if($seltdp>0)
-		$gpu_return[]=["id"=>intval($rand[0]), "model"=>strval($rand[1])];		
+		$gpu_return[]=["id"=>intval($rand[0]), "model"=>(strval($rand[1])."  (".strval(round($rand[2])/10)."/10)")];		
 		else
-		$gpu_return[]=["id"=>intval($rand[0]), "model"=>strval($rand[1])];	
+		$gpu_return[]=["id"=>intval($rand[0]), "model"=>(strval($rand[1])."  (".strval(round($rand[2])/10)."/10)")];	
 
 	}
 		mysqli_free_result($result);

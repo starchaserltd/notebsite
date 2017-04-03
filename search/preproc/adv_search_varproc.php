@@ -48,6 +48,7 @@ if(isset($_GET['CPU_model_id']))
 	
 	foreach ($cpu_model as $x)
 	{
+		$x=preg_replace("/[ ]\([0-9\.]+\/10\)/", "", $x);
 		$newmodel=explode(" ",$x);
 		$j=0;
 		$cpu_model[$i]="";
@@ -154,7 +155,12 @@ if ($_GET['gpupowermax'])
 { $gpu_powermax = $_GET['gpupowermax']; }
 
 if (isset($_GET['GPU_model_id']))
-{ $gpu_model = $_GET['GPU_model_id']; }
+{ $gpu_model = $_GET['GPU_model_id']; 
+	foreach ($gpu_model as $key=>$x)
+	{
+		$gpu_model[$key]=preg_replace("/[ ]\([0-9\.]+\/10\)/", "", $x);
+	}
+}
 
 if (isset($_GET['GPU_arch_id']))
 { $gpu_arch = $_GET['GPU_arch_id']; }
@@ -194,12 +200,23 @@ if($_GET['displaymax'])
 
 if(isset($_GET['DISPLAY_resol_id']))
 {
-$display_resolutions = $_GET['DISPLAY_resol_id']; 
-$result_explode = explode('x', $display_resolutions[0]);
-$display_hresmax = $result_explode[0];
-$display_vresmax = $result_explode[1];
+	$display_resolutions = $_GET['DISPLAY_resol_id']; 
+	$result_explode = explode('x', $display_resolutions[0]);
+	$display_hresmax = $result_explode[0];
+	$display_vresmax = $result_explode[1];
 }
 
+// DISPLAY MSC
+$rows = array(); $result=mysqli_query($con,"SELECT name FROM notebro_site.nomen WHERE prop='backt'");
+while($row = mysqli_fetch_array($result))
+{  array_push($rows, $row[0]); }
+
+if(isset($_GET['DISPLAY_msc_id']))
+{
+$display_backt = $_GET['DISPLAY_msc_id'];
+$display_misc= array_diff($display_backt,$rows);
+$display_backt= array_diff($display_backt,$display_misc);
+}
 // DISPLAY touchscreen
 if (isset($_GET['touchscreen']) && $_GET['touchscreen'] == TRUE) 
 { $display_touch[] = "1"; } //with touch
@@ -353,27 +370,27 @@ if(isset($_GET['material']))
 
 //weight
 if($_GET['weightmin'])
-{ $chassis_weightmin = $_GET['weightmin']-0.1; }
+{ $chassis_weightmin = $_GET['weightmin']; }
 if($_GET['weightmax'])
-{ $chassis_weightmax = $_GET['weightmax']+0.1; }
+{ $chassis_weightmax = $_GET['weightmax']; }
 
 //thickness
 if($_GET['thicmin'])
-{ $chassis_thicmin = $_GET['thicmin']-0.1; }
+{ $chassis_thicmin = $_GET['thicmin']; }
 if($_GET['thicmax'])
-{ $chassis_thicmax = $_GET['thicmax']+0.1; }		
+{ $chassis_thicmax = $_GET['thicmax']; }		
 
 //depth
 if($_GET['depthmin'])
-{ $chassis_depthmin = $_GET['depthmin']-0.1; }
+{ $chassis_depthmin = $_GET['depthmin']; }
 if($_GET['depthmax'])
-{ $chassis_depthmax = $_GET['depthmax']+0.1; }		
+{ $chassis_depthmax = $_GET['depthmax']; }		
 		
 //width
 if($_GET['widthmin'])
-{ $chassis_widthmin = $_GET['widthmin']-0.1; }
+{ $chassis_widthmin = $_GET['widthmin']; }
 if($_GET['widthmax'])
-{ $chassis_widthmax = $_GET['widthmax']+0.1; }
+{ $chassis_widthmax = $_GET['widthmax']; }
 
 //webcam
 if($_GET['webmin'])

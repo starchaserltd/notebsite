@@ -96,12 +96,12 @@ function OpenPage(url,e,dontpush) {
 		document.getElementById("sharetw").href="https://twitter.com/home?status=Just%20found%20great%20notebook%20information%20on%20"+siteroot+"/?"+url;
 		document.getElementById("sharegp").href="https://plus.google.com/share?url="+siteroot+"/?"+url; 
 		document.getElementById("sharerd").href="https://www.reddit.com/submit?url="+siteroot+"/?"+url;
-		document.getElementById("sharefbm").href="https://www.facebook.com/sharer/sharer.php?u="+siteroot+"/?"+url;
-		document.getElementById("sharetwm").href="https://twitter.com/home?status=Just%20found%20great%20notebook%20information%20on%20"+siteroot+"/?"+url;
-		document.getElementById("sharegpm").href="https://plus.google.com/share?url="+siteroot+"/?"+url; 
-		document.getElementById("sharerdm").href="https://www.reddit.com/submit?url="+siteroot+"/?"+url; 
+		//document.getElementById("sharefbm").href="https://www.facebook.com/sharer/sharer.php?u="+siteroot+"/?"+url;
+		//document.getElementById("sharetwm").href="https://twitter.com/home?status=Just%20found%20great%20notebook%20information%20on%20"+siteroot+"/?"+url;
+		//document.getElementById("sharegpm").href="https://plus.google.com/share?url="+siteroot+"/?"+url; 
+		//document.getElementById("sharerdm").href="https://www.reddit.com/submit?url="+siteroot+"/?"+url; 
 	}
-	
+
 	if(go==1)
 	{
 		urlrequest(url,e,dontpush);
@@ -171,17 +171,13 @@ $(document).ready(function(){
     });
 	
     //Function for form model search left menu   
-    $("#modelfind_btn").click(function () {
+    $('#model_id').on("select2:select", function(e) { 
 			scrolltoid('content');
 			$('#loadingNB').show();
             trigger=0;
-            $.get('model/model.php', $("#modelfind").serialize(), function(data) {
-                url = "model/model.php" + "?" + $("#modelfind").serialize();
-                history.pushState({}, 'NoteBrother', "?" + url);
-                currentpage = url;
-                if($('#content').html(data)){ $('#loadingNB').hide();}
-            });
-        
+			console.log($(this).val());
+            url = "model/model.php" + "?model_id=" + $(this).val();
+			OpenPage(url,1,0);        
     });
 	
 	

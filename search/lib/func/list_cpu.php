@@ -3,9 +3,9 @@
 function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, $techmax, $cachemin, $cachemax, $clockmin, $clockmax, $turbomin, $turbomax, $tdpmax, $tdpmin, $coremin, $coremax, $intgpu, $misc, $ratemin, $ratemax, $pricemin, $pricemax, $seltdp)
 {
 	if($seltdp>0)
-	$sel_cpu="SELECT id,model,prod,gpu,tdp FROM CPU WHERE valid=1";
+	$sel_cpu="SELECT id,model,prod,gpu,tdp,rating FROM CPU WHERE valid=1";
 	else
-	$sel_cpu="SELECT id,model,prod,gpu FROM CPU WHERE valid=1";
+	$sel_cpu="SELECT id,model,prod,gpu,rating FROM CPU WHERE valid=1";
 	
 // Add producers to filter
 	$i=0;
@@ -287,7 +287,7 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 		$sel_cpu.=$pricemax;
 	}
 	
-	$sel_cpu.=" ORDER BY ldate DESC";
+	$sel_cpu.=" ORDER BY rating DESC";
 	
 // DO THE SEARCH
 	
@@ -300,9 +300,9 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 	{ 
 
 		if($seltdp>0)
-		$cpu_return[]=["id"=>intval($rand[0]), "model"=>(strval($rand[2])." ".strval($rand[1])),"gpu"=>intval($rand[3]),"tdp"=>intval($rand[4])];		
+		$cpu_return[]=["id"=>intval($rand[0]), "model"=>(strval($rand[2])." ".strval($rand[1])."  (".strval(round($rand[4])/10)."/10)"),"gpu"=>intval($rand[3]),"tdp"=>intval($rand[4])];		
 		else
-		$cpu_return[]=["id"=>intval($rand[0]),"model"=>(strval($rand[2])." ".strval($rand[1])),"gpu"=>intval($rand[3])];
+		$cpu_return[]=["id"=>intval($rand[0]),"model"=>(strval($rand[2])." ".strval($rand[1]). "   (".strval(round($rand[4])/10)."/10)"),"gpu"=>intval($rand[3])];
 
 	}
 		mysqli_free_result($result);

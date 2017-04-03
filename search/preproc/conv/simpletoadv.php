@@ -4,7 +4,7 @@
 	$waryearsmin = $_GET['warmin']; 					//echo $waryearsmin; 
 	$waryearsmax = $_GET['warmax'];						//echo $waryearsmax; 
 	if(isset($_GET['premium']) && $_GET['premium'] == "on") {$nbdcheck = "checked"; $war_typewar = "1";} else {$war_typewar = "2";}
-	$hdd_type = array();		
+	$hdd_type = array(); $displayhresmin = "1";	$displayhresmax = "99999"; 	$displayvresmin = "1"; 	$displayvresmax = "99999";	
 
 /***************************   LAPTOP TYPE********************************/
 
@@ -62,6 +62,7 @@
 			$hdd_type[]="SSD";
 			$mdbwwansel0 = "selected";
 			$mdbwwan = 0;
+			$valuetype[25][] = "Windows 10 Pro"; $valuetype[25][] = "macOS 10.12"; 
 			break;
 		case "4":		// gaming
 			$cputdpmin = 15; 
