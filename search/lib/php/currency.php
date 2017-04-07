@@ -1,5 +1,5 @@
 <?php
-$rootpath = realpath($_SERVER["DOCUMENT_ROOT"]);
+$rootpath = realpath($_SERVER["DOCUMENT_ROOT"]).$root_mod;
 require_once($rootpath.'/etc/con_db.php');
 mysqli_select_db($con,"notebro_site");
 //GET currency rates

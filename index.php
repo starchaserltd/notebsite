@@ -41,7 +41,7 @@ require_once("etc/session.php");
 		<div class="col-md-2 col-sm-6 socialButton"><!-- min-height:134px;-->
 		<!-- social buttons -->
 		
-			<div class="col-xs-3 col-md-12 col-md-12 col-lg-12" style="padding:0px;">
+			<div class="col-xs-12 col-md-12 col-lg-12" style="padding:0px;">
 			
 			<div class="btn-group" role="group">
 			<button type="button" class="btn btn-sus dropdown-toggle" style="width:inherit;margin-left:-1px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -52,22 +52,22 @@ require_once("etc/session.php");
 				  <div class="shareText" style="margin:5px;">
 				  Share page on...
 				  </div>
-				  <div style="margin:5px;">			
+				  <div class="socialButtons">			
 					  <a class="btn btn-block btn-social btn-facebook" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-facebook']); " id="sharefb" href="">
 					<span class="socicon socicon-facebook sheight"></span> Facebook
 					  </a>
 				  </div>
-				  <div style="margin:5px;">
+				  <div class="socialButtons">
 					 <a class="btn btn-block btn-social btn-twitter" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-twitter']);" id="sharetw" href="">
 					<span class="socicon socicon-twitter sheight"></span> Twitter
 					 </a>
 				  </div>
-				  <div style="margin:5px;">
+				  <div class="socialButtons">
 					 <a class="btn btn-block btn-social btn-google" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-google']);" id="sharegp" href="">
 					<span class="socicon socicon-google-plus sheight"></span> Google
 					 </a>
 				  </div>
-				   <div style="margin:5px;">
+				   <div  class="socialButtons">
 					<a class="btn btn-block btn-social btn-reddit" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-reddit']);" id="sharerd" href="">
 					<span class="socicon socicon-reddit sheight"></span> Reddit
 					</a>

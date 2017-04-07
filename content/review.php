@@ -5,7 +5,7 @@ if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_n
 	header("Location: http://".str_replace($site_name."/",$site_name."/?",$actual_link)."");
 	die();
 }
-$rootpath = realpath($_SERVER["DOCUMENT_ROOT"]);
+$rootpath = realpath($_SERVER["DOCUMENT_ROOT"]).$root_mod;
 require_once($rootpath.$admin_address.'/wp/wp-blog-header.php');
 require_once("../etc/con_db.php");
 require_once("lib/php/func_article.php");

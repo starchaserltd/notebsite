@@ -7,7 +7,7 @@ if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_n
 	header("Location: http://".str_replace(($site_name."/"),($site_name."/?"),$actual_link)."");
 	die();
 }
-$rootpath = realpath($_SERVER["DOCUMENT_ROOT"]);
+$rootpath = realpath($_SERVER["DOCUMENT_ROOT"]).$root_mod;
 require_once($rootpath.$admin_address.'/wp/wp-blog-header.php');
 require_once("../etc/con_db.php");
 require_once("lib/php/functions.php");
@@ -53,13 +53,13 @@ $published_posts = $count_posts->publish;
 	
 		<!-- Noteb Quiz -->
 		<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style="padding:0px;">
-		<!--	<div id="quiz" class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style=" position:relative; padding:0px 5px 0px 5px !important; "></div>
+			<!-- <div id="quiz" class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style=" position:relative; padding:0px 5px 0px 5px !important; "></div>
 			<div class="col-md-12 co-sm-12 col-xs-12 col-lg-12" style="text-align:center;padding:5px 25px 5px 25px; border-radius:1px; background-color:#285f8f; color:#fff;margin-top:5px; width:100%;">
 				<span style="font-size:12px; color:#fff" class="glyphicon glyphicon glyphicon-menu-left"></span>
 				Advanced Search
 				<span style="font-size:12px; color:#fff" class="glyphicon glyphicon glyphicon-menu-right"></span>
-			</div>
-		-->
+			</div> -->
+		
 			<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style="padding:5px;">
 				<div class="col-md-4 col-lg-4 col-xs-12 col-sm-12" style="padding:1px;">
 					<a onmousedown="OpenPage('<?php	$category = get_the_category($recent_posts[0]["ID"]);	$categorie = $category[0]->cat_name; 				
