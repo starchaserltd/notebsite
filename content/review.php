@@ -29,12 +29,12 @@ echo preg_replace_callback('/\[ntab (.*)\](.*)(?=\[ntab .*\]|\Z)/Us',function ($
 	var istime=0;
 </script>
 
-	<div class="col-md-12 col-sm-12" style="background-color:white; font-family:arial">
-		<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style="font-family:'robotomedium'; font-size:30px; text-align:center; margin-top:30px;" >
+	<div class="col-md-12 col-sm-12" style="background-color:white;">
+		<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style=" font-size:30px; text-align:center; margin-top:30px;" >
 			<a style="text-decoration:none;float:left;color:black;"><?php echo get_post_field('post_title', $echoid);?></a>
 		</div>
 		<div class="col-md-12 col-sm-12 col-xs-12">
-			<p style="font-family:robotolight,sans-serif; font-style:italic;">
+			<p style="font-style:italic;">
 			<?php $user_info = get_userdata(get_post_field('post_author', $echoid));
 				echo "by "; echo $user_info->display_name;; echo " - "; echo get_the_date(  'd M Y', $echoid ); ?>
 			</p>
@@ -42,7 +42,7 @@ echo preg_replace_callback('/\[ntab (.*)\](.*)(?=\[ntab .*\]|\Z)/Us',function ($
 		<div class="col-md-8 col-sm-8 col-xs-8">
 			<img src="<?php echo $url;?>" class="img-responsive">
 		</div>
-		<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style= "font-family:'robotolight'; font-size:18px; line-height:30px; text-align:justify;">
+		<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style= " font-size:16px; line-height:30px; text-align:justify;">
 			<div class="tabs" id="taburi">
 				<ul class="tab-links" style="padding-left:0px;">
 				<?php	$j=1;
@@ -102,7 +102,7 @@ echo preg_replace_callback('/\[ntab (.*)\](.*)(?=\[ntab .*\]|\Z)/Us',function ($
 		actbtn("REVIEWS");
 		
 		<?php 
-		$posttags = get_the_tags();
+		$posttags = wp_get_post_tags($echoid);
 		if ($posttags)
 		{ 
 			$i=0; $keywords="";

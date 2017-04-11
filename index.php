@@ -26,10 +26,10 @@ require_once("etc/session.php");
 	<!-- upper buttons desktop -->
 		<div class="col-md-10 col-xs-12 col-sm-12" style="padding:0px; float:left; position:relative;">
 			<div class="btn-group-justified btn-group siteMenu">
-				<a class="btn btn-sus logonb"  onmousedown="OpenPage('content/home.php',event);">HOME</a>
-				<a class="btn btn-sus advsearch" >SEARCH</a>
-				<a class="btn btn-sus" onmousedown="OpenPage('content/articles.php',event);">ARTICLES</a>
-				<a class="btn btn-sus" onmousedown="OpenPage('content/reviews.php',event);">REVIEWS</a>
+				<h1 class="btn btn-sus blue logonb"  onmousedown="OpenPage('content/home.php',event);">World largest notebook and laptop information hub.</h1>
+				<a class="btn btn-sus blue advsearch" >SEARCH</a>
+				<a class="btn btn-sus blue" onmousedown="OpenPage('content/articles.php',event);">ARTICLES</a>
+				<a class="btn btn-sus blue" onmousedown="OpenPage('content/reviews.php',event);">REVIEWS</a>
 				
 			
 		
@@ -44,7 +44,7 @@ require_once("etc/session.php");
 			<div class="col-xs-12 col-md-12 col-lg-12" style="padding:0px;">
 			
 			<div class="btn-group" role="group">
-			<button type="button" class="btn btn-sus dropdown-toggle" style="width:inherit;margin-left:-1px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<button type="button" class="btn btn-sus blue dropdown-toggle" style="width:inherit;margin-left:-1px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			  <span class="socicon-sharethis"></span>
 			  <span class="caret"></span>
 			</button>
@@ -89,7 +89,7 @@ require_once("etc/session.php");
 		
 		<!-- left area -->
 		<script type="text/javascript" src="libnb/js/compjsf.js" ></script><!-- compare list functions -->
-			<div class="col-md-12 col-xs-12 col-sm-12" id='cssmenu' style="padding:0px">
+			<div class="col-md-12 col-xs-12 col-sm-12 blue" id='cssmenu' style="padding:0px">
 				<ul>
 				   <li class='has-sub'><a >Browse models</a>
 						<ul>

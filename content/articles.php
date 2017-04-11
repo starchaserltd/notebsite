@@ -155,7 +155,7 @@ $published_posts = $category->category_count;
 	</div>
 <script type="text/javascript">
 	$(document).ready(function(){
-		actbtn("ARTICLES");
+		actbtn("ARTICLES"); metakeys("noteb,laptop,articles");
 	});
 	
 	// Only enable if the document has a long scroll bar

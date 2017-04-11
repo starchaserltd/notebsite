@@ -1,3 +1,6 @@
+.blue{background-color:#285f8f !important;}
+.yellow {background-color:#ffd466 !important;} 
+
 .budget{
 	border:1px solid #456879;
 	border-radius:1px;
@@ -92,7 +95,6 @@
   font-size: 16px;
   text-decoration: none;
   color: #fff;
-  background: #285f8f;
   -webkit-transition: color .2s ease;
   -o-transition: color .2s ease;
   transition: color .2s ease;
@@ -228,8 +230,8 @@ background: #B8B8B8!important;}
 .loadingdivsec{border-radius:20px}			
 			
 /* STYLING FOR LAPTOP MODEL SEARCH */
-.select2-container--default .select2-search--dropdown .select2-search__field{ border: 1px solid #285f8f;}
-.select2-container--default .select2-selection--single{border: 2px solid #285f8f}
+.select2-container--default .select2-search--dropdown .select2-search__field{border: 1px solid #122d44;}
+.select2-container--default .select2-selection--single{border: 2px solid #122d44;}
 
 /* CIRCLED TEXT */
 .labelred {border:2px solid #CE0C0C;
@@ -459,7 +461,8 @@ color:black !important;
 			  font-size:16px !important;
 			  font-weight:600 !important;
 			  padding:5px 60px !important;
-			  float:right !important;}
+			  float:right !important;
+			  border-radius:2px !important;}
 
 .items:hover .menuhidden {
      display: block;   	 
@@ -534,10 +537,10 @@ background-color:#fff!important;
             padding:0px 15px;
             display:inline-block;
             font-size:14px;
-            font-weight:600;
             color:#000;
             transition:all linear 0.15s;
 			background-color:#ededed;
+			text-shadow:2px 2px 4px #c7c7c7;
         }
  
         .tab-links a:hover {
@@ -700,8 +703,7 @@ background-color:#fff!important;
 
 	/* meniu sus*/
 	.btn-sus {
-  color: #fff;
-  background-color: #285f8f;  
+  color: #fff;  
   border-radius:0px !important;
   font-weight:bold !important;
   border:0px !important;
@@ -789,7 +791,6 @@ fieldset[disabled] .btn-sus.active {
 	.btn-search {  
 	  color:#000;
 		border-radius:1px !important;
-	   background-color:#FFD466;
 	  font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
 	  font-size:14px;
 	  border:0;

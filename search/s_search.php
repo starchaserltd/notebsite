@@ -103,11 +103,11 @@
 					<div id="budget"></div>
 				</div>
 			  
-			<input type="submit" id="s_search_btn" class="btn" style="margin-top:20px; padding:5px 25px 5px 25px; border-radius:1px; background-color:#285f8f; color:#fff; width:100%;" value="Submit">
+			<input type="submit" id="s_search_btn" class="btn blue" style="margin-top:20px; padding:5px 25px 5px 25px; border-radius:1px; color:#fff; width:100%;" value="Submit">
 	</form>
    
    <div style="text-align:center;">
-      <button  id="sadvsearch" onmousedown="OpenPage('search/adv_search.php',event);" style="padding:5px 25px 5px 25px; border-radius:1px; background-color:#285f8f; color:#fff;margin-top:5px; width:100%;" type="button" class="btn">Advanced search</button>
+      <button  id="sadvsearch" onmousedown="OpenPage('search/adv_search.php',event);" style="padding:5px 25px 5px 25px; border-radius:1px; color:#fff;margin-top:5px; width:100%;" type="button" class="btn blue">Advanced search</button>
    </div>	
 </div>
 	

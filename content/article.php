@@ -26,11 +26,11 @@ var istime=0;
 	if($echoid)
 	{
 ?>
-		<div class="col-md-12 col-sm-12" style="background-color:white; font-family:arial">
-			<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style="font-family:'robotomedium'; font-size:30px;margin-top:30px; padding-left:0px;" >
+		<div class="col-md-12 col-sm-12" style="background-color:white; ">
+			<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style="font-size:30px;margin-top:30px; padding-left:0px;" >
 				<a  style="text-decoration:none;color:black;"><?php echo get_post_field('post_title', $echoid);?></a>
 				<div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;">
-					<p style="font-family:robotolight,sans-serif; font-style:italic;font-size:14px;">
+					<p style="font-style:italic;font-size:14px;">
 					<?php echo "by "; $user_info = get_userdata(get_post_field('post_author', $echoid)); echo $user_info->display_name;;?>
 					<?php echo " - ";echo get_post_field('post_date', $echoid);?>
 					</p>
@@ -40,7 +40,7 @@ var istime=0;
 			<div class="col-md-8 col-sm-8 col-xs-8 col-lg-8" style="padding-left:0px">
 				<img src="<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($echoid) )); echo $url;?>" class="img-responsive">
 			</div>
-			<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style= "font-family:'verdana'; font-size:16px; line-height:30px; padding:0px; text-align:justify;">
+			<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style= " font-size:16px; line-height:30px; padding:0px; text-align:justify;">
 				<div>
 					<p><?php  echo preg_replace_callback('/\[tooltip (.*)\](.*)\[tooltip\]/U',function ($m) {return maketooltip(gettoolid($m[1]),$m[2]);},str_replace($wp_address.$wp_rmimg,$new_wp_address,apply_filters('the_content',get_post_field('post_content', $echoid, 'display')))); 
 					echo "<br>"; ?> </p>
@@ -61,7 +61,7 @@ $(document).ready(function()
 {
 	actbtn("ARTICLES");
 	 <?php 
-		$posttags = get_the_tags();
+		$posttags = wp_get_post_tags($echoid);
 		if ($posttags) 
 		{ 
 			$i=0; $keywords="";
