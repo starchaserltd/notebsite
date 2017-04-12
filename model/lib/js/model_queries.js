@@ -705,8 +705,8 @@ function getconf(str)
 function cpumisc(str) 
 {
 	var msc_el = str.split(","); var msc="";
-	var text1='<span class="toolinfo" toolid="';
-	var text2='" load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="top" data-original-title="Loading..."><span class="toolinfo1">';
+	var text1='<span class="toolinfo" data-toolid="';
+	var text2='" data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="top" data-original-title="Loading..."><span class="toolinfo1">';
 	var text3='</span></span>';
 
 	var i, value;
@@ -733,8 +733,8 @@ function gpumisc(str)
 	var msc_el = str.split(",");
 	var msc="";
 
-	var text1='<span class="toolinfo" toolid="';
-	var text2='" load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="top" data-original-title="Loading..."><span class="toolinfo1">';
+	var text1='<span class="toolinfo" data-toolid="';
+	var text2='" data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="top" data-original-title="Loading..."><span class="toolinfo1">';
 	var text3='</span></span>';
 
 	var i, value;
@@ -763,8 +763,8 @@ function wnetmisc(str)
 {
 	var msc_el = str.split(",");
 	var msc="";
-	var text1='<span class="toolinfo" toolid="';
-	var text2='" load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="top" data-original-title="Loading..."><span class="toolinfo1">';
+	var text1='<span class="toolinfo" data-toolid="';
+	var text2='" data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="top" data-original-title="Loading..."><span class="toolinfo1">';
 	var text3='</span></span>';
 	var i, value;
 

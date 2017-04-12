@@ -11,7 +11,7 @@ if(isset($_GET['model_id']) && $_GET['model_id']!="NaN")
 	require_once("../etc/con_sdb.php");
 	$cons=dbs_connect();
 	$idmodel=$_GET['model_id'];
-	$sql="SELECT id FROM notebro_temp.all_conf_".$idmodel." ORDER BY VALUE LIMIT 1";
+	$sql="SELECT id FROM notebro_temp.all_conf_".$idmodel." ORDER BY VALUE DESC LIMIT 1";
 	$result=mysqli_query($cons,$sql);
 	$id=mysqli_fetch_row($result);
 	mysqli_close($cons);

@@ -3,4 +3,4 @@
 .modal-header{padding:5px;border-bottom:none}
 @media screen and (min-width: 1800px){.modelwidht{width:100%!important;}}
 .pics{cursor:pointer}
-.rows form select {max-width:200px;}
+.rows.gpuhdd form select  {max-width:240px;margin-left:-10px}
