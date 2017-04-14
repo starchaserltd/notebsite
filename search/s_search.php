@@ -36,13 +36,13 @@
 						<br>
 					<input type="radio" name="display" value="2" id="disp_hq" class="css-radiobox" checked="checked">
 					<label for="disp_hq" class="css-labelr" style="font-weight:normal">High quality</label>
-				
-			
-			<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" >
-				<div class="checkbox" style="margin:0px; float:right;">
+					<div class="checkbox" style="margin:0px;">
 								<input type="checkbox" name="touchscreen_s" class="css-checkbox sme" id="touchscreen_s" style="margin-left:0px;" />
 					<label for="touchscreen_s" class="css-label sme depressed" style="font-weight:normal;min-height:16px;">Touchscreen only</label>
 				</div>
+			
+			<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" >
+				
 			</div>
 			
 												

@@ -5,6 +5,7 @@ $temp_table = "all_conf";
 /* GETTING EXCHANGE LIST */
 $result = mysqli_query($GLOBALS['con'], "SELECT code,sign, ROUND( convr, 5 ) convr FROM notebro_site.exchrate"); 
 $exchangelist = mysqli_fetch_all($result);
+
 ?>
 
 <div class="row container-fluid headerback" style="margin-right:0px;padding-right: 0px;">
@@ -154,9 +155,9 @@ $exchangelist = mysqli_fetch_all($result);
 		}
 		else
 		{ echo "</div></div></div>";
-?>
+	?>
 <div class="col-md-8 col-md-offset-2 " style="border:1px solid #ddd; background-color:#f6f6f6; border-radius:5px;margin-top:20px; text-align:center; font-weight:bold;padding:10px;">
-	<span style="margin-top:2px;"> No results found for your criteria and budget <?php echo "(".$exchsign.$bdgmin." - ".$exchsign.$bdgmax.")"; ?>.<br> Try different search options. </span>
+	<span style="margin-top:2px;"> No results found for your criteria and budget <?php echo "(".$exchsign.$budgetmin." - ".$exchsign.$budgetmax.")"; ?>.<br> Try different search options. </span>
 </div>
 <?php
 		} mysqli_close($cons);

@@ -207,7 +207,7 @@ else
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">	
 						<div class="row detaliicomp">					
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Model:</div>
-							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows"><?php show_gpu($modelgpu); ?></div>							
+							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows gpuhddd"><?php show_gpu($modelgpu); ?></div>							
 						</div>	
 						<div class="row hidegpu hideall detaliicomp" style="display:none">					
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows toolinfo" data-toolid="22" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1">Architecture:</span></div>
@@ -327,7 +327,7 @@ else
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="row detaliicomp">
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows toolinfo" data-toolid="50" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1">Model/Capacity:</span></div>
-							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows"><?php show_hdd($modelhdd); ?></div>
+							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows gpuhdd"><?php show_hdd($modelhdd); ?></div>
 						</div>
 						<div class="row detaliicomp">
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows toolinfo" data-toolid="49" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1">RPM:</span></div>
@@ -529,7 +529,6 @@ else
 						<div class="row hideacu hideall detaliicomp" style="display:none">
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Voltage:</div>
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows"><span id = "acum_volt"></span></div>
-						</div>
 						<div class="row hideacu hideall detaliicomp" style="display:none">
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Weight:</div>
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows"><span id = "acum_weight"></span><span id = "acum_weight_i"></span></div>
@@ -545,10 +544,11 @@ else
 						</div>
 					</div>				
 				</div>
+				</div>		
 				<br>
 				<!-- Chassis -->	
 				<div class="row titlucomp modelwidht" data-toolid="69" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
-					<div class="col-md-12"><strong><span class="toolinfo1">Chassis</span></strong></div>
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><strong><span class="toolinfo1">Chassis</span></strong></div>
 				</div>
 				<div class="row modelwidht">					
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -584,14 +584,14 @@ else
 						<div class="row hidecha hideall detaliicomp" style="display:none">
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Charger:</div>
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows"><span id = "chassis_charger"></span></div>
+						</div>				
+						<div class="row detaliicomp">
+							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows toolinfo" data-toolid="84" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-load="1" data-original-title="data-loading..."><span class="toolinfo1">Weight:</span></div>
+							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="84" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-load="1" data-original-title="data-loading..."><span class="toolinfo1"><span id = "chassis_weight"></span> Kg (<span id = "chassis_weight_i"></span> lb)</span></div>
 						</div>
 						<div class="row detaliicomp">
-							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Weight:</div>
-							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows"><span id = "chassis_weight"></span> Kg (<span id = "chassis_weight_i"></span> lb)</div>
-						</div>
-						<div class="row detaliicomp">
-							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Thickness:</div>
-							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows"><span id = "chassis_thic"></span> cm (<span id = "chassis_thic_i"></span>")</div>
+							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows toolinfo" data-toolid="85" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-load="1" data-original-title="data-loading..."><span class="toolinfo1">Thickness:</span></div>
+							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="85" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-load="1" data-original-title="data-loading..."><span class="toolinfo1"><span id = "chassis_thic"></span> cm (<span id = "chassis_thic_i"></span>")</span></div>
 						</div>
 						<div class="row detaliicomp">
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Depth:</div>

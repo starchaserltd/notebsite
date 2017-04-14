@@ -1,5 +1,5 @@
-.blue{background-color:#285f8f !important;}
-.yellow {background-color:#ffd466 !important;} 
+.blue{background-color:#285f8f}
+.yellow {background-color:#ffd466} 
 
 .budget{
 	border:1px solid #456879;
@@ -230,8 +230,8 @@ background: #B8B8B8!important;}
 .loadingdivsec{border-radius:20px}			
 			
 /* STYLING FOR LAPTOP MODEL SEARCH */
-.select2-container--default .select2-search--dropdown .select2-search__field{border: 1px solid #122d44;}
-.select2-container--default .select2-selection--single{border: 2px solid #122d44;}
+.select2-container--default .select2-search--dropdown .select2-search__field{border: 1px solid #285f8f;}
+.select2-container--default .select2-selection--single{border: 2px solid #285f8f;}
 
 /* CIRCLED TEXT */
 .labelred {border:2px solid #CE0C0C;
@@ -591,7 +591,7 @@ background-color:#fff!important;
 	width:auto;
 }
 
-.btn-group.siteMenu a:nth-child(1) {
+.btn-group.siteMenu h1:nth-child(1) {
 	width:20%;	
 }
 
@@ -603,7 +603,7 @@ background-color:#fff!important;
 
 
 
-@media(max-width:992px) {
+@media(max-width:991px) {
 	.socialButton {
 		padding: 0px;
 		position: fixed;
@@ -697,10 +697,14 @@ background-color:#fff!important;
 		margin-top:5px;		
 		padding-right: 0px!important;
 		font-weight: bold;}		
+		
 		.detaliicomp{
 		font-size:16px;		
 		text-align:center;}	
 
+		@media(max-width:1200px) {.detaliicomp {font-size:14px}} 
+		
+		
 	/* meniu sus*/
 	.btn-sus {
   color: #fff;  

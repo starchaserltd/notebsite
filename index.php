@@ -145,7 +145,7 @@ require_once("etc/session.php");
 			</div>
 			<!-- end left menu-->
 			<!-- simple search -->
-			<button class="visible-xs btn btn-search" style="font-size:14px!important; font-weight:bold" data-toggle="collapse" data-target="#SearchParameters">Quick Search</button>
+			<button class="visible-xs btn btn-search yellow" style="font-size:14px!important; font-weight:bold" data-toggle="collapse" data-target="#SearchParameters">Quick Search</button>
 			<div class="hidden-xs SearchParameters" id="SearchParameters">
 				<?php include ("search/s_search.php");?>
 			</div>
