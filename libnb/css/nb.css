@@ -704,6 +704,11 @@ background-color:#fff!important;
 
 		@media(max-width:1200px) {.detaliicomp {font-size:14px}} 
 		
+		.detaliicomp2{
+		font-size:16px;}	
+
+		@media(max-width:1200px) {.detaliicomp2 {font-size:14px !important;}}
+		
 		
 	/* meniu sus*/
 	.btn-sus {

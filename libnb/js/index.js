@@ -397,12 +397,12 @@ $(document).ready(function(){
 //SETTING THE CURRENTLY ACTIVE MENU BUTTON
 
 function actbtn(pagename,mobile)
-{
+{ 
 	if(!mobile)
 	{ $( ".btn-sus" ).removeClass( "active" ); }
 	
 	$( ".btn-sus" ).each(function(index) {
-	if(this.innerHTML==pagename){
+	if(this.innerHTML==pagename && (pagename!="Find the best laptop in the world largest notebook and laptop information hub." || pagename!="NOTEBROTHER")){
 		$(this).addClass("active");
 		}
 	});
