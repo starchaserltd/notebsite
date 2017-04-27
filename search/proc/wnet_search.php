@@ -127,7 +127,7 @@ function search_wnet ($prod, $model, $misc, $speedmin, $speedmax, $bt, $ratemin,
 	// DO THE SEARCH
 	# echo "Query to select the WNET:";
     # echo "<br>";
-	 echo "<pre>" . $sel_wnet . "</pre>";
+	# echo "<pre>" . $sel_wnet . "</pre>";
 	
 	$result = mysqli_query($GLOBALS['con'], "$sel_wnet");
 	$wnet_return = array();

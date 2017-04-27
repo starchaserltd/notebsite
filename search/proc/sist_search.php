@@ -116,7 +116,7 @@ function search_sist ($sist, $vers, $misc, $pricemin, $pricemax)
 	// DO THE SEARCH
 	# echo "Query to select the OSes:";
     # echo "<br>";
-	echo "<pre>" . $sel_sist . "</pre>";
+	#echo "<pre>" . $sel_sist . "</pre>";
 	
 	$result = mysqli_query($GLOBALS['con'], $sel_sist);
 	$sist_return = array();
