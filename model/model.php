@@ -36,8 +36,8 @@ else
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="font-size:16px; color:#841313;">
 		<strong>
 <?php
-		$_SESSION['model'] = $idmodel;  $mprod=show_vars('prod', 'MODEL',$idmodel); $mfam=show_vars('fam', 'MODEL',$idmodel); $mmodel=show_vars('model', 'MODEL',$idmodel);
-			echo $mprod." ".$mfam." ".$mmodel."<br>";
+		$_SESSION['model'] = $idmodel;  $mprod=show_vars('prod', 'MODEL',$idmodel); $mfam=show_vars('fam', 'MODEL',$idmodel); $mmodel=show_vars('model', 'MODEL',$idmodel); $msubmodel=show_vars('submodel', 'MODEL',$idmodel);
+			echo $mprod." ".$mfam." ".$mmodel." ".$msubmodel."<br>";
 ?>			
 			<span id="cpu_title"></span>,
 			<span id="gpu_title"></span>, 

@@ -115,9 +115,9 @@ require_once("etc/session.php");
 							</li>		
 							<li class='has-sub'><a >By screen size</a>
 								<ul>
-									<li><a  onmousedown="OpenPage('search/search.php?browse_by=smalldisplay',event); scrolltoid('content');">10"" - 13.9""</a></li>
-									<li><a  onmousedown="OpenPage('search/search.php?browse_by=mediumdisplay',event); scrolltoid('content');">14"" - 17"" </a></li>
-									<li><a  onmousedown="OpenPage('search/search.php?browse_by=largedisplay',event); scrolltoid('content');">17.1"" - 18.5"" </a></li>
+									<li><a  onmousedown="OpenPage('search/search.php?browse_by=smalldisplay',event); scrolltoid('content');">10" - 13.9"</a></li>
+									<li><a  onmousedown="OpenPage('search/search.php?browse_by=mediumdisplay',event); scrolltoid('content');">14" - 17" </a></li>
+									<li><a  onmousedown="OpenPage('search/search.php?browse_by=largedisplay',event); scrolltoid('content');">17.1" - 18.5" </a></li>
 								</ul>
 							</li>				
 						</ul>

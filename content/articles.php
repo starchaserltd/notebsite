@@ -45,7 +45,7 @@ $published_posts = $category->category_count;
 
 ?>
 	
-	<div class="row headerback" style="margin-top:5px;margin-right:0px; margin-left:0px;padding-right:0px; background-color:white; font-family:arial">
+	<div class="row headerback" style="margin-top:5px;margin-right:0px; margin-left:0px;padding-right:0px; background-color:white;">
 	
 <?php
 	
@@ -86,7 +86,7 @@ $published_posts = $category->category_count;
 	<!-- *********************************************************************** -->		
 	<!-- Back to Top Button -->
 		<span id="top-link-block" class="hidden">
-			<a href="#top" style="color:black !important;" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+			<a href="#top" style="color:black; text-decoration:none;" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
 				<i class="glyphicon glyphicon-chevron-up"></i> Back to Top
 			</a>
 		</span><!-- /top-link-block -->
@@ -165,4 +165,4 @@ $published_posts = $category->category_count;
         offset: {top:100}
 		}); }
 </script>
-<link rel="stylesheet" href="content/lib/css/article.css" type="text/css"/>
+<link rel="stylesheet" href="content/lib/css/article.css" type="text/css" />

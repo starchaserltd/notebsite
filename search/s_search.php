@@ -1,7 +1,7 @@
 <script>$.getScript("search/lib/js/ssearch.js");</script>
 
-	<div class="col-md-12 col-sm-12 col-xs-12" style="padding-right:0px; padding-left:5px; padding-top:20px">	
-		<div style="text-align:center; font-size:17px; font-weight:bold;">Quick laptop search</div>
+	<div class="col-md-12 col-sm-12 col-xs-12" style="padding-right:0px; padding-left:5px;">	
+		<h2 style="text-align:center; font-size:17px; font-weight:bold;">Quick laptop search</h2>
 		
 		<form action="javascript:void(0);" method="post" id="s_search">
 				<div style="margin-top:5px; font-size:14px;font-weight:bold; margin-bottom:2px;">Laptop type</div>			

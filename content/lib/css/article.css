@@ -5,6 +5,7 @@
 }
 #top-link-block.affix {
     position: fixed; /* keeps it on the bottom once in view */
-    bottom: 58px; /* height of link element */
+    bottom: 58px !important; /* height of link element */
     left:60%;   /* padding from the left side of the window */
+	
 }		

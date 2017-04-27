@@ -6,12 +6,12 @@
 			
 		</div>
 		<div class="footer-left">
-			<p class="footer-links">
-				<a  style="cursor:pointer" onmousedown="OpenPage('footer/about.php',event);">About</a>
+			<h3 class="footer-links" style="font-size:18px; color:#fff; font-weight:bold;">
+				<span  style="cursor:pointer" onmousedown="OpenPage('footer/about.php',event);">About</span>
 				·								
-				<a style="cursor:pointer" onmousedown="OpenPage('footer/contact.php',event);">Contact</a>
-			</p>
-			<p>2017 Copyright Starchaser s.r.l. </p>
+				<span style="cursor:pointer" onmousedown="OpenPage('footer/contact.php',event);">Contact</span>
+			</h3>
+			<p>2017 Copyright Starchaser S.R.L. </p>
 			</div>
 	</footer>
 <link rel="stylesheet" href="../lib/css/footer-distributed.css" type="text/css" />

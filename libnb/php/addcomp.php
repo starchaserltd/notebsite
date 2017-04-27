@@ -92,10 +92,10 @@ if($already)
 	else
 	{
 		mysqli_select_db($con,"notebro_db");
-		$sql="SELECT fam, model FROM MODEL WHERE id=".$conf_model;
+		$sql="SELECT fam, model, submodel FROM MODEL WHERE id=".$conf_model;
 		$result = mysqli_query($con,$sql);
-		
-		while ($row = mysqli_fetch_assoc($result)) { $name=$row["fam"]." ".$row["model"]; }
+
+		while ($row = mysqli_fetch_assoc($result)) { if(strlen($row["submodel"])>6 && !preg_match("/\(.*\)/",$row["submodel"])){ $row["submodel"]=substr($row["submodel"],0,6)."."; } $name=$row["fam"]." ".$row["model"]." ".$row["submodel"]; }
 		
 		mysqli_free_result($result);
 		$_SESSION['conf'.$i]=$currentconf;

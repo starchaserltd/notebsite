@@ -425,7 +425,7 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 	// DO THE SEARCH
 	# echo "Query to select the CHASSIS:";
     # echo "<br>";
-	# echo "<pre>" . $sel_chassis. "</pre>";
+	echo "<pre>" . $sel_chassis. "</pre>";
 
 	$result = mysqli_query($GLOBALS['con'], "$sel_chassis");
 	$chassis_return = array();

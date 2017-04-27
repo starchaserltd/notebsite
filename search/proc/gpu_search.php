@@ -362,7 +362,7 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 	// DO THE SEARCH
 	# echo "Query to select the GPUs:";
     # echo "<br>";
-	# echo "<pre>" . $sel_gpu . "</pre>";
+	echo "<pre>" . $sel_gpu . "</pre>";
 
 	
 	$result = mysqli_query($GLOBALS['con'], "$sel_gpu");

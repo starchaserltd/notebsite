@@ -144,7 +144,7 @@ if($keysparts)
 }
 	
 // CONSTRUCTING THE SEARCH QUERY
-$sel="SELECT id,prod,fam,model,mdb FROM `MODEL`";
+$sel="SELECT id,prod,fam,model,mdb,submodel FROM `MODEL`";
 $i=0;
 if(isset($prod) && $prod)
 {
@@ -179,9 +179,10 @@ while($rand = mysqli_fetch_row($result))
 	{
 		$mdb_submodel=mysqli_fetch_row($result2);
 		if($mdb_submodel){ $mdb_submodel=" ".$mdb_submodel[0];}
-	}		
+	}
+	if(strlen($rand[5])>6 && !preg_match("/\(.*\)/",$rand[5])){ $rand[5]=substr($rand[5],0,6)."."; } 
 	//SENDING THE RESULTS
-	$list[]=["id"=>intval($rand[0]),"model"=>strval($rand[1]." ".$rand[2]." ".$rand[3].$mdb_submodel)];
+	$list[]=["id"=>intval($rand[0]),"model"=>strval($rand[1]." ".$rand[2]." ".$rand[3]." ".$rand[5].$mdb_submodel)];
 }
 mysqli_free_result($result);
 				

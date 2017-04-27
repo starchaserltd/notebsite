@@ -234,7 +234,7 @@ function search_display ($model, $sizemin, $sizemax, $format, $hresmin, $hresmax
 	// DO THE SEARCH
 	# echo "Query to select the DISPLAYs:";
     # echo "<br>";
-	# echo "<pre>" . $sel_display . "</pre>";
+	echo "<pre>" . $sel_display . "</pre>";
 
 	$result = mysqli_query($GLOBALS['con'], "$sel_display");
 	$display_return = array();

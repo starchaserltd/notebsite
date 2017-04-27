@@ -19,12 +19,13 @@ $(document).on('mouseenter', '.toolinfo', function(e){
 					html: 'some server response',
 					data1: data1
 				}, function(data){
-				$this.attr('data-original-title', data)
-				.tooltip('fixTitle');
+				$this.attr('data-original-title', data).tooltip('fixTitle');
 				//$this.tooltip('{"show":1500, "hide":300}');
-				$this.tooltip({ trigger: 'hover' });
-		
-				$this.tooltip('show');  		
+				//$this.tooltip({ trigger: 'hover' });
+				if($this.filter(':hover').length==0)
+				{ $this.tooltip('hide'); }
+				else
+				{ $this.tooltip('show'); }
 				$this.attr('data-load',"2");
 				//alert($this.attr("load"));
 				});    

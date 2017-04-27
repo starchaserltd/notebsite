@@ -119,7 +119,7 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 
 	else if ( isset($_GET['quizsearch']) && $_GET['quizsearch'])
 	{
-		include ("preproc/quiz_search_varproc.php");
+		include ("preproc/q_search_varproc.php");
 	}
 	/********************************************************************/
 	/* CHECKING IF DOING BROWSE SEARCH */	

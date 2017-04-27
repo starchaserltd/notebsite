@@ -211,7 +211,8 @@ background: #B8B8B8!important;}
 .noUi-handle:hover{	border: 1px solid #ccc;
 					background: #285f8f;
 					font-weight: normal;
-					color: #454545;}
+					color: #454545;
+					cursor: pointer;}
 .noUi-active {
     box-shadow: 0 0 1px #285f8f, 0 1px 7px #285f8f inset, 0 3px 6px -3px #285f8f!important;
 	background:#285f8f!important;
@@ -577,10 +578,14 @@ background-color:#fff!important;
 	padding:3px 20px 3px 30px !important;}
 
 .open>.dropdown-menu {
+	padding-top: 0px;
+	margin-top: 0px;
+	padding-bottom: 0px;
 	width:inherit;
 	background-color:white;
 }
 
+.socialButtons a{border-radius:0px;}
 
 
 .btn-group, .btn-group .multiselect {

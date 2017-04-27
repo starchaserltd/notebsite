@@ -122,7 +122,7 @@ function search_odd ($type, $prod, $misc, $speedmin, $speedmax, $ratemin, $ratem
 	// DO THE SEARCH
 	# echo "Query to select the ODDs:";
     # echo "<br>";
-	# echo "<pre>" . $sel_odd . "</pre>";
+	 echo "<pre>" . $sel_odd . "</pre>";
 	
 	$result = mysqli_query($GLOBALS['con'], "$sel_odd");
 	$odd_return = array();

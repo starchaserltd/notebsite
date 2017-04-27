@@ -57,10 +57,10 @@ function showsist($col, $tab, $id)
 
 function getdetails($id)
 {
-	$result = mysqli_query($GLOBALS['con'], "SELECT img_1,prod,fam,model FROM notebro_db.MODEL WHERE id = '".$id."'"); 
+	$result = mysqli_query($GLOBALS['con'], "SELECT img_1,prod,fam,model,submodel FROM notebro_db.MODEL WHERE id = '".$id."'"); 
 	$item = mysqli_fetch_array($result);
 	
-	global $img; global $prod; global $fam; global $model; global $t_img;
+	global $img; global $prod; global $fam; global $submodel; global $model; global $t_img;
 	
 	$img=$item['img_1'];
 	$t_imgpart=explode(".",$img);
@@ -68,6 +68,7 @@ function getdetails($id)
 	$prod=$item['prod'];
 	$fam=$item['fam'];
 	$model=$item['model'];
+	if(isset($item['submodel'])){ $submodel=$item['submodel']; if(strlen($submodel)>6 && !preg_match("/\(.*\)/",$submodel)){ $submodel=substr($submodel,0,6)."."; } } 
 }
 
 

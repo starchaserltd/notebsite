@@ -187,7 +187,7 @@ function search_mem ($prod, $capmin, $capmax, $stan, $freqmin, $freqmax, $type, 
 	// DO THE SEARCH
 	# echo "Query to select the MEMs:";
     # echo "<br>";
-	# echo "<pre>" . $sel_mem . "</pre>";
+	echo "<pre>" . $sel_mem . "</pre>";
 	
 	$result = mysqli_query($GLOBALS['con'], "$sel_mem");
 	$mem_return = array();

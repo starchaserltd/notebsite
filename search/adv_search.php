@@ -24,8 +24,10 @@ var maxbudgetset=<?php if(!isset($bdgmax)){ $bdgmax=$minconfigprice*6; } echo $b
 <input type="hidden" name="advsearch" value="1">
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="background-color:white; font-family:arial; padding:0px;">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><a onclick="OpenPage('search/adv_search.php',event);" style="cursor:pointer;  font-size:14px; float:right; margin-top:20px; padding:0px 25px 0px 25px; border-radius:2px; background-color:#49505a; color:#fff; text-decoration:none;" id="gototop">Reset</a></div>
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><a onclick="scrolltoid('submitformid');" style="cursor:pointer; font-size:14px; float:right; margin-top:10px; padding:0px 25px 0px 25px; border-radius:2px; background-color:#49505a; color:#fff; text-decoration:none;">Go to bottom<i class="glyphicon glyphicon-arrow-down" style="font-size:12px"></i></a></div>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<a onclick="scrolltoid('submitformid');" style="cursor:pointer; font-size:14px; float:right; margin-top:20px; margin-left:10px; padding:0px 25px 0px 25px; border-radius:2px; background-color:#49505a; color:#fff; text-decoration:none;">Go to bottom<i class="glyphicon glyphicon-arrow-down" style="font-size:12px"></i></a>
+			<a onclick="OpenPage('search/adv_search.php',event);" style="cursor:pointer;  font-size:14px; float:right; margin-top:20px; padding:0px 25px 0px 25px; border-radius:2px; background-color:#49505a; color:#fff; text-decoration:none;" id="gototop">Reset</a></div>
+			
 			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 					<div style="font-size:16px; font-weight:bold;">Producer</div>			

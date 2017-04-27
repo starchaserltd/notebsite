@@ -111,7 +111,7 @@ function search_war ($prod, $yearsmin, $yearsmax, $typewar, $misc, $ratemin, $ra
 	// DO THE SEARCH
 	# echo "Query to select the WARRANTYs:";
     # echo "<br>";
-	# echo "<pre>" . $sel_war . "</pre>";
+	echo "<pre>" . $sel_war . "</pre>";
 	
 	$result = mysqli_query($GLOBALS['con'], "$sel_war");
 	$war_return = array();

@@ -93,5 +93,5 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 else
 {
 	echo "Heh! What are you trying to do?";
-}
+} 
 ?>

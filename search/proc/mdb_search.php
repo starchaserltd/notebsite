@@ -278,7 +278,7 @@ function search_mdb ($prod, $model, $ramcap, $gpu, $chip, $socket, $interface, $
 	// DO THE SEARCH
 	# echo "Query to select the MDBs:";
     # echo "<br>";
-	# echo "<pre>" . $sel_mdb . "</pre>";
+	echo "<pre>" . $sel_mdb . "</pre>";
 	
 	$result = mysqli_query($GLOBALS['con'], "$sel_mdb");
 	$mdb_return = array();

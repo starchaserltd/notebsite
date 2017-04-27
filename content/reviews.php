@@ -90,7 +90,7 @@ $published_posts = $category->category_count;
 	<!-- ***************************************************************************** -->		
 	<!-- Back to Top Button-->
 		<span id="top-link-block" class="hidden">
-			<a href="#top" style="color:black !important;" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},'slow');return false;"><i class="glyphicon glyphicon-chevron-up"></i> Back to Top</a>
+			<a href="#top" style="color:black; text-decoration:none;" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},'slow');return false;"><i class="glyphicon glyphicon-chevron-up"></i> Back to Top</a>
 		</span>			
 	<?php
 		//PAGINATION CODE START

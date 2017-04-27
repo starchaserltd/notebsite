@@ -75,7 +75,6 @@ function urlrequest(url,e,dontpush)
 //Function for main content area
 function OpenPage(url,e,dontpush) {
 	url=decodeURIComponent(decodeURIComponent(url));
-	
 	//DEPENDING ON WHAT BUTTON WAS PRESSED WE DO DIFFERENT THINGS
 	var e = e || window.event;
 	var btnCode;

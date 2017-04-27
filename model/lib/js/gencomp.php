@@ -54,7 +54,7 @@ for($x = 0; $x <= $nrconf; $x++)
 	$maxminvalues=bluered(floatval($rate_conf_rate),$maxminvalues,$x,"rating",0);
 	$maxminvalues=bluered(floatval($price_conf_price),$maxminvalues,$x,"price",1);
 	$maxminvalues=bluered(floatval($batlife_conf_batlife),$maxminvalues,$x,"batlife",0);
-	$model_title='<a href="?model/model.php'."?conf=".$confid.'"><span class="tbltitle">'.$resu['prod']." ".$resu['fam']." ".$resu['model'].$resu['mdbname'].'</span></a>';
+	$model_title='<a href="?model/model.php'."?conf=".$confid.'"><span class="tbltitle">'.$resu['prod']." ".$resu['fam']." ".$resu['model'].$resu['mdbname']." ".$resu['submodel'].'</span></a>';
 	$vars=array(
 		'<a style="align-items:center; margin:0 auto" href="?model/model.php'."?conf=".$confid.'">'.'<img src="res/img/models/thumb/t_'.$img.'.jpg" class="img-responsive comparejpg" alt="Image for '.$resu['model'].'"></a>',
 		$model_title,

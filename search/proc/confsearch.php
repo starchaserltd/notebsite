@@ -14,7 +14,7 @@ if($browse_by)
 	}
 	if ($nr_hdd > 1) { $conds["shdd"] = "shdd > 0"; }
 }
-elseif ($issimple || $isadvanced)
+elseif ($issimple || $isadvanced || $isquiz)
 {
 	//IF WE ARE SEARCHING, THINGS GET A TAD MORE COMPLICATED
 	$conds = array();
