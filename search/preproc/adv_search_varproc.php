@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 //some variable initialisation
 $cpu_tdpmin = 0.01; $gpu_powermin = 0; $gpu_maxmemmin = 1; $display_hresmin = 0.01; //$hdd_capmin = $totalcapmin;
