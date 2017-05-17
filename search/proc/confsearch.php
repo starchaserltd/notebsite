@@ -25,8 +25,10 @@ elseif ($issimple || $isadvanced || $isquiz)
 		$conds[$v] = $v . " IN (" . implode(",", array_keys($comp_lists[$v])) . ")";
 	}
 
-	$conds["batlife_min"] = "batlife >= ".$batlife_min;
-	$conds["batlife_max"] = "batlife <= ".$batlife_max;
+	$conds["batlife_min"] = "batlife >= ".$batlife_min; 
+	//var_dump("min ".$conds["batlife_min"]); 							 // verificare batlife
+	$conds["batlife_max"] = "batlife <= ".$batlife_max; 
+	//var_dump("max ".$conds["batlife_max"]);							 // verificare batlife
 	
 	if ($nr_hdd > 1) { $conds["shdd"]="shdd > 0"; }
 

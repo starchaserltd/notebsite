@@ -304,25 +304,25 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 			$sel_gpu.=" AND ( ";
 		}
 		
-		$sel_gpu.="FIND_IN_SET('";
-		
 		if(strpbrk($x,"/"))
-		{		
+		{	$sel_gpu.=" (";
 			$z=explode("/",$x);
+			$sel_gpu.="FIND_IN_SET('";
 			$sel_gpu.=$z[0];	
 			$sel_gpu.="',msc)>0";
 			unset($z[0]);
 			foreach($z as $t)
 			{	$sel_gpu.=" OR "; $sel_gpu.="FIND_IN_SET('"; $sel_gpu.=$t;	$sel_gpu.="',msc)>0";	}
+			$sel_gpu.=")";
 		}	
 		else
 		{
-			$sel_gpu.=$x;	
+			$sel_gpu.="FIND_IN_SET('";
+			$sel_gpu.=$x;
 			$sel_gpu.="',msc)>0";
 		}
 		
 		$i++;
-	
 	}
 	
 	if($i>0)
@@ -362,7 +362,7 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 	// DO THE SEARCH
 	# echo "Query to select the GPUs:";
     # echo "<br>";
-	#echo "<pre>" . $sel_gpu . "</pre>";
+	# echo "<pre>" . $sel_gpu . "</pre>";
 
 	
 	$result = mysqli_query($GLOBALS['con'], "$sel_gpu");

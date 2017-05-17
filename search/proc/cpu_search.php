@@ -220,22 +220,23 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 			$sel_cpu.=" AND ( ";
 		}
 				
-		$sel_cpu.="FIND_IN_SET('";
-		
 		if(strcmp($x,"AVX1.0")==0) { $x="AVX/AVX1.0/AVX2.0"; }
 		
 		if(strpbrk($x,"/"))
-		{		
+		{	$sel_cpu.=" (";
 			$z=explode("/",$x);
+			$sel_cpu.="FIND_IN_SET('";
 			$sel_cpu.=$z[0];	
 			$sel_cpu.="',msc)>0";
 			unset($z[0]);
-			foreach($z as $t) 
+			foreach($z as $t)
 			{	$sel_cpu.=" OR "; $sel_cpu.="FIND_IN_SET('"; $sel_cpu.=$t;	$sel_cpu.="',msc)>0";	}
+			$sel_cpu.=")";
 		}	
 		else
 		{
-			$sel_cpu.=$x;	
+			$sel_cpu.="FIND_IN_SET('";
+			$sel_cpu.=$x;
 			$sel_cpu.="',msc)>0";
 		}
 		$i++;
@@ -275,7 +276,7 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 	// DO THE SEARCH
 	# echo "Query to select the CPUs:";
     # echo "<br>";
-	#echo "<pre>" . $sel_cpu . "</pre>";
+	# echo "<pre>" . $sel_cpu . "</pre>";
 
 	$result = mysqli_query($GLOBALS['con'], "$sel_cpu");
 	$cpu_return = array();

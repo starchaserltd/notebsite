@@ -22,7 +22,25 @@ $to_search = array(
     "war"     => 1,
     "wnet"    => 1,
 );
-
+/*
+$to_search = array(
+	"model"   => 0,
+    "acum"    => 0,
+    "chassis" => 1,
+    "cpu"     => 0,
+    "display" => 0,
+    "gpu"     => 0,
+    "hdd"     => 0,
+    "mdb"     => 1,
+    "mem"     => 0,
+    "odd"     => 0,
+    "prod"    => 0,
+    "shdd"    => 0, 
+    "sist"    => 0,
+    "war"     => 0,
+    "wnet"    => 0,
+);
+*/
 // BUDGET min si max
 if($_GET['bdgminadv']){ $budgetmin = (floatval($_GET['bdgminadv'])/$exch)-1; }
 if($_GET['bdgmaxadv']){ $budgetmax = (floatval($_GET['bdgmaxadv'])/$exch)+1; }
@@ -160,7 +178,15 @@ if (isset($_GET['GPU_arch_id']))
 
 if (isset($_GET['GPU_msc_id']))
 { $gpu_misc = $_GET['GPU_msc_id']; }
+/*$gpu_misc = array_flip($gpu_misc);
+if (isset($gpu_misc['G-Sync/FreeSync'])) {$mdb_misc[]="G-Sync";$mdb_misc[] = "FreeSync";}
+unset($gpu_misc['G-Sync/FreeSync']);
+$gpu_misc = array_flip($gpu_misc); 
+ */
 
+// var_dump($gpu_misc);
+ 
+ 
 // GPU Maxmem
 if($_GET['gpumemmin'])
 { $gpu_maxmemmin = $_GET['gpumemmin']; }
@@ -207,9 +233,16 @@ while($row = mysqli_fetch_array($result))
 if(isset($_GET['DISPLAY_msc_id']))
 {
 $display_backt = $_GET['DISPLAY_msc_id'];
-$display_misc= array_diff($display_backt,$rows);
-$display_backt= array_diff($display_backt,$display_misc);
-}
+$display_misc= array_diff($display_backt,$rows); //var_dump($display_misc);
+$display_backt = array_diff($display_backt,$display_misc); 
+
+$display_misc = array_flip($display_misc);//new
+if (isset($display_misc['G-Sync/FreeSync'])) {$mdb_misc[]="G-Sync/FreeSync"; /*$mdb_misc[] = "FreeSync";*/}
+unset($display_misc['G-Sync/FreeSync']);//new
+$display_misc = array_flip($display_misc); //new
+
+
+} 
 // DISPLAY touchscreen
 if (isset($_GET['touchscreen']) && $_GET['touchscreen'] == TRUE) 
 { $display_touch[] = "1"; } //with touch
@@ -255,6 +288,13 @@ if($_GET['nrhdd'])
 
 
 /* *** Motherboard *** */
+/*
+if (isset($_GET['GPU_msc_id']))
+{ if  ($_GET['GPU_msc_id']== "G-Sync/FreeSync") {$addmsc[]="G-Sync/FreeSync";}
+else 
+}
+} */
+
 if ($_GET['mdbslots'])
 { $mdb_ramcap = $_GET['mdbslots']; }
 	
@@ -405,12 +445,18 @@ if (isset($_GET['twoinone-yes']) && $_GET['twoinone-yes'] == TRUE)
 //All sort of extra Chassis stuff
 if(isset($_GET['CHASSIS_stuff_id']))
 { $chassis_stuff = $_GET['CHASSIS_stuff_id']; }
-
+$chassis_speakers=array();
 foreach($chassis_stuff as $key => $x)
 {
-	if((stripos($x,"2 x speakers"))!==FALSE)
+	
+	if(((stripos($x,"speakers"))!==FALSE)&&!((stripos($x,"premium"))!==FALSE))
 	{
-		$chassis_stuff[$key]="2x%speakers";
+		unset($chassis_stuff[$key]); $chassis_speakers[]=$x;
+	}
+	
+	if((stripos($x,"subwoofer"))!==FALSE)
+	{
+		unset($chassis_stuff[$key]); $chassis_speakers[]=$x;
 	}
 	
 	if((stripos($x,"keyboard"))!==FALSE)
@@ -425,12 +471,32 @@ foreach($chassis_stuff as $key => $x)
 	
 	if((stripos($x,"premium speakers"))!==FALSE)
 	{
-		$chassis_stuff[$key]="olufsen";
+		unset($chassis_stuff[$key]);
+		$chassis_stuff[]="group";
+		$chassis_stuff[]="olufsen";
 		$chassis_stuff[]="jbl";
 		$chassis_stuff[]="klipsch";
 		$chassis_stuff[]="sonicmaster";
+		$chassis_stuff[]="ungroup";
 	}
 }
+$addgroup=1;
+foreach($chassis_speakers as $x)
+{
+	if($addgroup==1){ $chassis_stuff[]="group"; $addgroup=2; }
+	if((stripos($x,"2 x speakers"))!==FALSE)
+	{
+		$x="2x%speakers";
+	}
+		
+	if((stripos($x,"4 x speakers"))!==FALSE)
+	{
+		$x="4x%speakers";
+	}
+
+	$chassis_stuff[]=$x;
+}
+if($addgroup==2) { $chassis_stuff[]="ungroup"; $addgroup=1; }
 
 $addmsc=array_unique($addmsc);
 foreach($addmsc as $addtomsc)
@@ -477,7 +543,7 @@ if(isset($_GET['opsist']))
 			}
 		}
 	}
-}
+} 
 
 /* *** WARRANTY *** */
 if($_GET['yearsmin'])

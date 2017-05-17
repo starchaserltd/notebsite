@@ -63,7 +63,7 @@ switch ($_GET['type'])
 		$mem_capmax = 8;
 		$batlife_min = 5;
 		$chassis_weightmax=1.80; 
-		$to_search["chassis"]=1;
+		
 		$wnet_speedmin = 850;
 		$chassis_thicmax = 19;
 		$hdd_type[] = "SSD";

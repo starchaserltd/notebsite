@@ -312,21 +312,38 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 	{ $sel_chassis.=" ) "; }
 	
 	// Add stuff  to filter		
-	$i=0;
+	$i=0; $ii=0;
 	if(gettype($special_misc)!="array") { $special_misc=(array)$special_misc; }
 	if($special_misc)
 	{
+		$group=0;
 		foreach($special_misc as $x)
 		{
+			if(!strcmp($x,"group")){$group=1; $ii=0; continue;}
+			if(!strcmp($x,"ungroup")){$group=0; if($ii){ $sel_chassis.=" ) ";  } continue;}
 			if($i)
 			{  
-				$sel_chassis.=" OR ";
+				if(!$group)
+				{ $sel_chassis.=" AND ";}
+				else
+				{ 	if($ii)
+					{ $sel_chassis.=" OR "; }
+					else
+					{ $sel_chassis.=" AND ( "; $ii++; }
+				}
 			}
 			else
 			{
-				$sel_chassis.=" AND ( ";
+				if(!$group)
+				{
+					$sel_chassis.=" AND ( ";
+				}
+				else
+				{
+					$sel_chassis.=" AND ( ( "; $ii++;
+				}
 			}
-		
+			
 			$sel_chassis.="( keyboard LIKE ";
 			$sel_chassis.="'%".$x."%'";
 			$sel_chassis.=" OR ";

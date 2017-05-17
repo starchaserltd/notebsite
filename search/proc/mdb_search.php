@@ -4,6 +4,7 @@
 
 function search_mdb ($prod, $model, $ramcap, $gpu, $chip, $socket, $interface, $netw, $hdd, $misc, $ratemin, $ratemax, $pricemin, $pricemax, $nowwan)
 {
+//var_dump($misc);
 	$sel_mdb="SELECT id,price,rating,err FROM notebro_db.MDB WHERE 1=1";
 
 	// Add producers to filter
@@ -209,17 +210,32 @@ function search_mdb ($prod, $model, $ramcap, $gpu, $chip, $socket, $interface, $
 	foreach($misc as $x)
 	{
 		if($i)
-		{  
-			$sel_mdb.=" AND ";
+		{ /*if ($x = "G-sync" or $x = "Freesync") 
+			{$sel_mdb.=" OR ";} else {$sel_mdb.=" AND ";}*/
+		$sel_mdb.=" AND ";
 		}
 		else
 		{
 			$sel_mdb.=" AND ( ";
 		}
 		
-		$sel_mdb.="FIND_IN_SET('";
-		$sel_mdb.=$x;
-		$sel_mdb.="',msc)>0";
+		if(strpbrk($x,"/"))
+		{	$sel_mdb.=" (";
+			$z=explode("/",$x);
+			$sel_mdb.="FIND_IN_SET('";
+			$sel_mdb.=$z[0];	
+			$sel_mdb.="',msc)>0";
+			unset($z[0]);
+			foreach($z as $t)
+			{	$sel_mdb.=" OR "; $sel_mdb.="FIND_IN_SET('"; $sel_mdb.=$t;	$sel_mdb.="',msc)>0";	}
+			$sel_mdb.=")";
+		}	
+		else
+		{
+			$sel_mdb.="FIND_IN_SET('";
+			$sel_mdb.=$x;
+			$sel_mdb.="',msc)>0";
+		}
 		$i++;
 	}
 	if($i>0)

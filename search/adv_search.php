@@ -10,6 +10,7 @@ require_once("../etc/session.php");
 require_once("../etc/con_db.php");
 require_once("preproc/adv_setvar.php");
 include ("lib/php/currency.php");
+
 ?>
 <script>
 $.getScript("search/lib/js/tokenlist.js").done(function(){ $.getScript("search/lib/js/adv_search_post.js"); });
@@ -511,7 +512,7 @@ var maxbudgetset=<?php if(!isset($bdgmax)){ $bdgmax=$minconfigprice*6; } echo $b
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 					<div>System</div>			
 					<select id="opsist" name="opsist[]" multiple>
-						<?php if(isset($droplists[25])){ echo $droplists[25]; } ?>
+						<?php if(isset($droplists[25])){ echo $droplists[25];} ?>
 					</select>
 				</div>
 			</div>
