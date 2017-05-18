@@ -19,7 +19,7 @@ if($q>=0)
 		}
 		
 		$rows[] = $r;
-
+		if(stripos($rows[0]['msc'],"optimus")===false && stripos($rows[0]['msc'],"enduro")===false) { $rows[0]['optimus']=0; } else {$rows[0]['optimus']=1;}
 		$rows[0]['msc']=str_replace(",", ", ",$rows[0]['msc']);
 		$rows[0]['interface']=str_replace(",", ", ",$rows[0]['interface']);
 		$rows[0]['hdd']=str_replace(",", ", ",$rows[0]['hdd']);

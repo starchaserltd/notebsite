@@ -148,6 +148,7 @@ function showGPU(str)
 						
 				gpu_bat_old = gpu_bat_new;
 				gpu_bat_new = gpu["bat"];
+				if(mdb["optimus"]){	gpu_bat_new=3; }
 				config_batlife=config_batlife-gpu_bat_old+gpu_bat_new;
 				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.95);
 				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.02);
@@ -353,6 +354,12 @@ function showMDB(str)
 				document.getElementById('mdb_hdd').innerHTML = mdb["hdd"];
 				document.getElementById('mdb_misc').innerHTML = mdb["msc"];
 				
+				if(mdb["optimus"])
+				{
+					gpu_bat_old = gpu_bat_new;	gpu_bat_new = 3; config_batlife=config_batlife-gpu_bat_old+gpu_bat_new;
+					document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.95);
+					document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.02);	
+				}
 				mdb_rate_old = mdb_rate_new;
 				mdb_rate_new = mdb["confrate"];
 
