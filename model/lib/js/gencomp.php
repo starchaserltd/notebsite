@@ -59,7 +59,7 @@ for($x = 0; $x <= $nrconf; $x++)
 		'<a style="align-items:center; margin:0 auto" href="?model/model.php'."?conf=".$confid.'">'.'<img src="res/img/models/thumb/t_'.$img.'.jpg" class="img-responsive comparejpg" alt="Image for '.$resu['model'].'"></a>',
 		$model_title,
 		'<span class="col-sm-12 col-md-12 col-xs-12 col-lg-12 nopding"><span style="color:black; font-weight:bold;">Rating: </span><br class="brk"><span id="rating'.$x.'">'.round($rate_conf_rate/100,1)." / 100</span></span>",
-		'<span class="col-sm-12 col-md-12 col-xs-12 col-lg-12 nopding" style="color:black;"><span style="color:black; font-weight:bold;">Price: </span><br class="brk"><span id="price'.$x.'">'.$exchsign." ".round(($price_conf_price-$err_conf_err)*$exch,0)." - ".round(($price_conf_price+$err_conf_err)*$exch,0)."</span></span>",
+		'<span class="col-sm-12 col-md-12 col-xs-12 col-lg-12 nopding" style="color:black;"><span style="color:black; font-weight:bold;">Price: </span><br class="brk"><span id="price'.$x.'">'.$exchsign." ".round(($price_conf_price-$err_conf_err/2)*$exch,0)." - ".round(($price_conf_price+$err_conf_err/2)*$exch,0)."</span></span>",
 		'<span class="col-sm-12 col-md-12 col-xs-12 col-lg-12 nopding" style="color:black;"><span style="color:black; font-weight:bold;">Battery:  </span><br class="brk"><span id="batlife'.$x.'">'.round(($batlife_conf_batlife*0.95),1)." - ".round(($batlife_conf_batlife*1.02),1)." h</span></span>",
 		'<a style="color:black;"><span class="col-xs-8 col-md-6 col-sm-6 col-md-offset-3  col-sm-offset-3 col-xs-offset-2 addtocpmp" onclick="removecomp('."-+-".$cfg_id."-+-".',1)">Remove</span></a>'
 	);
