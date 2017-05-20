@@ -209,7 +209,7 @@ while($rand = mysqli_fetch_assoc($result))
 		//echo "<br>";
 		if(isset($valuetype[$rand["type"]][0]) && $valuetype[$rand["type"]][0])
 		{	if(!is_array($valuetype[$rand["type"]]) && !is_string($valuetype[$rand["type"]])){$valuetype[$rand["type"]]=str_split($valuetype[$rand["type"]]);}
-			if(in_array($rand["name"],$valuetype[$rand["type"]])) { $droplists[$rand["type"]].=" selected "; } 
+			if(is_array($valuetype[$rand["type"]]) && in_array($rand["name"],$valuetype[$rand["type"]])) { $droplists[$rand["type"]].=" selected "; }
 			else
 			if(($valuetype[$rand["type"]])==$rand["name"]) { $droplists[$rand["type"]].=" selected "; } 
 		}
