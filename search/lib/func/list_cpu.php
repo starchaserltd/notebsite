@@ -216,42 +216,46 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 	$i=0;
 	if(gettype($misc)!="array") { $misc=(array)$misc; }
 	foreach($misc as $x)
-	{	
+		{
 		if($i)
 		{  
-		$sel_cpu.=" AND ";
+			$sel_cpu.=" AND ";
 		}
 		else
 		{
+			$sel_cpu.=" AND ( ";
+		}
+
+		if(stripos($x,"Intel i")===FALSE)
+		{	
+			if(strcmp($x,"AVX1.0")==0) { $x="AVX/AVX1.0/AVX2.0"; }
 			
-		$sel_cpu.=" AND ( ";
+			if(strpbrk($x,"/"))
+			{	$sel_cpu.=" (";
+				$z=explode("/",$x);
+				$sel_cpu.="FIND_IN_SET('";
+				$sel_cpu.=$z[0];	
+				$sel_cpu.="',msc)>0";
+				unset($z[0]);
+				foreach($z as $t)
+				{	$sel_cpu.=" OR "; $sel_cpu.="FIND_IN_SET('"; $sel_cpu.=$t;	$sel_cpu.="',msc)>0";	}
+				$sel_cpu.=")";
+			}	
+			else
+			{
+				$sel_cpu.="FIND_IN_SET('";
+				$sel_cpu.=$x;
+				$sel_cpu.="',msc)>0";
+			}
 		}
-		
-		$sel_cpu.="FIND_IN_SET('";
-	
-	if(strcmp($x,"AVX1.0")==0)
-		$x="AVX/AVX1.0/AVX2.0";
-		
-		if(strpbrk($x,"/"))
-		{		
-			$z=explode("/",$x);
-			$sel_cpu.=$z[0];	
-			$sel_cpu.="',msc)>0";
-			unset($z[0]);
-			foreach($z as $t)
-			{	$sel_cpu.=" OR "; $sel_cpu.="FIND_IN_SET('"; $sel_cpu.=$t;	$sel_cpu.="',msc)>0";	}
-		}	
 		else
 		{
-			$sel_cpu.=$x;	
-			$sel_cpu.="',msc)>0";
+			$x=str_ireplace("Intel ","",$x);
+			$sel_cpu.="model LIKE '%".$x."%'";
 		}
-		
 		$i++;
-	
 	}
-	if($i>0)
-		$sel_cpu.=" ) ";	
+	if($i>0) { $sel_cpu.=" ) ";	}
 
 	// Add rating to filter	
 	if($ratemin)

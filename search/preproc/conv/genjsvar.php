@@ -8,7 +8,7 @@
 <?php if(isset($cputdpmin)){ echo "cputdpminset=".$cputdpmin.";"; } if(isset($cputdpmax)){ echo "cputdpmaxset=".$cputdpmax.";"; } ?>
 <?php echo "cpufreqminset=".$cpufreqmin.";"; echo "cpufreqmaxset=".$cpufreqmax.";"; ?>
 <?php echo "cputechminset=".$cputechmax.";"; echo "cputechmaxset=".$cputechmin.";"; ?>
-<?php if(isset($cpmsc)){ ?>$('#CPU_msc_id').append('<?php echo $cpumsc; ?>'); <?php } ?>
+<?php if(isset($cpumsc)){ ?>$('#CPU_msc_id').append('<?php echo $cpumsc; ?>'); <?php } ?>
 <?php if(isset($gpumodel)){ ?>$('#GPU_model_id').append('<?php echo $gpumodel; ?>'); <?php } ?>
 <?php echo "gpumemminset=".$gpumemmin.";"; echo "gpumemmaxset=".$gpumemmax.";";   ?>
 <?php echo "gpumembusminset=".$gpumembusmin.";"; echo "gpumembusmaxset=".$gpumembusmax.";"; ?> 
