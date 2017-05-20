@@ -297,6 +297,7 @@ var maxbudgetset=<?php if(!isset($bdgmax)){ $bdgmax=$minconfigprice*6; } echo $b
 					<select id="nrhdd" name="nrhdd">
 						<option value="1">Optional</option>
 						<option value="2" <?php echo $nrhddselect;?> >Mandatory</option>
+						<option value="3" <?php echo $nrhddselect2;?> >Ignore</option>
 					</select>
 				</div>
 			</div>
@@ -489,7 +490,7 @@ var maxbudgetset=<?php if(!isset($bdgmax)){ $bdgmax=$minconfigprice*6; } echo $b
 					</div>
 				</div>
 			</div>
-			
+
 			<!-- Optical Drive -->
 			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" style="padding:10px 0px 0px 0px;">		
 				<div style="font-size:16px; font-weight:bold;padding-bottom:5px;">Optical drive</div>

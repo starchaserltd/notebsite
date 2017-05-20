@@ -564,7 +564,10 @@ if (isset($_GET['premiumadvadp']))
 if($hdd_capmin)
 {
 	$totalcapmin=$hdd_capmin;
-	$hdd_capmin=0;
+	if($nr_hdd<3)
+	{	$hdd_capmin=0; }
+	else
+	{ $nr_hdd=2; }
 }
 else
 { $totalcapmin=0; }
