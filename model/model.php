@@ -529,6 +529,7 @@ else
 						<div class="row hideacu hideall detaliicomp" style="display:none">
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Voltage:</div>
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows"><span id = "acum_volt"></span></div>
+						</div>	
 						<div class="row hideacu hideall detaliicomp" style="display:none">
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Weight:</div>
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows"><span id = "acum_weight"></span><span id = "acum_weight_i"></span></div>
@@ -537,12 +538,13 @@ else
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Miscellaneous:</div>
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows" id = "acum_misc"></div>
 						</div>
+						
 						<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
 							<div style="background-color:#FFD466;  text-align:center; border-radius:3px;">
 								<a class="toggler" data-hide="acu" style="text-decoration:none; color:black;">Show more details</a>
 							</div>
 						</div>
-					</div>				
+									
 				</div>
 				</div>		
 				<br>
@@ -709,11 +711,11 @@ else
 	</div>
 	<!-- REVIEWS -->
 	<?php
-//include("listmenu.php");
+include("listmenu.php");
 ?>	
 
 <?php
-include("lib/php/modelreviews.php");
+//include("lib/php/modelreviews.php");
 	if ($nrnreviews <> 0 || $show_vars <>0)
 	{ 
 	//var_dump($notereviews); //- Noteb reviews
