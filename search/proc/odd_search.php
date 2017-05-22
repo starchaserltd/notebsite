@@ -11,6 +11,7 @@ function search_odd ($type, $prod, $misc, $speedmin, $speedmax, $ratemin, $ratem
 	if(gettype($type)!="array") { $type=(array)$type; }
 	foreach($type as $x)
 	{
+
 		if($i)
 		{  
 			$sel_odd.=" OR ";
@@ -19,10 +20,23 @@ function search_odd ($type, $prod, $misc, $speedmin, $speedmax, $ratemin, $ratem
 		{
 			$sel_odd.=" AND ( ";
 		}
+	
+	if(strcasecmp($x,"Any optical drives")!=0)
+		{
 		
-		$sel_odd.="type='";
-		$sel_odd.=$x;
-		$sel_odd.="'";
+			$sel_odd.="type='";
+			$sel_odd.=$x;
+			$sel_odd.="'";
+		}
+		else
+		{
+			$sel_odd.="type!='";
+			$sel_odd.="NONE";
+			//$sel_odd.="' AND ";
+			//$sel_odd.="type!='";
+			//$sel_odd.="Modular bay";
+			$sel_odd.="'";
+		}
 		$i++;
 	}
 	if($i>0)

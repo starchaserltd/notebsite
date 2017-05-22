@@ -380,7 +380,7 @@ if(isset($_GET['memtype']))
 
 
 /* *** Optical Drive *** */
-if($_GET['oddtype']!="Any")
+if($_GET['oddtype']!="Any/None")
 { $odd_type = $_GET['oddtype']; }
 
 
@@ -565,7 +565,7 @@ if($hdd_capmin)
 {
 	$totalcapmin=$hdd_capmin;
 	if($nr_hdd<3)
-	{	$hdd_capmin=0; }
+	{ $hdd_capmin=0; }
 	else
 	{ $nr_hdd=2; }
 }
