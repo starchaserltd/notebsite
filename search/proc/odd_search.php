@@ -21,7 +21,7 @@ function search_odd ($type, $prod, $misc, $speedmin, $speedmax, $ratemin, $ratem
 			$sel_odd.=" AND ( ";
 		}
 	
-	if(strcasecmp($x,"Any optical drives")!=0)
+	if(strcasecmp($x,"Any optical drive")!=0)
 		{
 		
 			$sel_odd.="type='";
