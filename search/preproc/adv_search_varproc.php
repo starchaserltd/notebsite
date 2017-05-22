@@ -380,7 +380,7 @@ if(isset($_GET['memtype']))
 
 
 /* *** Optical Drive *** */
-if($_GET['oddtype']!="Any/None")
+if($_GET['oddtype']!="Any/None" || $_GET['oddtype']!="Any")
 { $odd_type = $_GET['oddtype']; }
 
 
