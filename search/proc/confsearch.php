@@ -11,8 +11,8 @@ if($browse_by)
 	{
 		if (!$to_search[$v]) { continue; }
 		$conds[$v] = $v . " IN (" . implode(",", array_keys($comp_lists[$v])) . ")";
-	}
-	if ($nr_hdd > 1) { $conds["shdd"] = "shdd > 0"; }
+	} 
+	if ($nr_hdd == 2) { $conds["shdd"] = "shdd > 0"; }
 }
 elseif ($issimple || $isadvanced || $isquiz)
 {
@@ -29,8 +29,8 @@ elseif ($issimple || $isadvanced || $isquiz)
 	//var_dump("min ".$conds["batlife_min"]); 							 // verificare batlife
 	$conds["batlife_max"] = "batlife <= ".$batlife_max; 
 	//var_dump("max ".$conds["batlife_max"]);							 // verificare batlife
-	
-	if ($nr_hdd > 1) { $conds["shdd"]="shdd > 0"; }
+
+	if ($nr_hdd ==2) { $conds["shdd"]="shdd > 0"; }
 
 	$conds["price"] = "(price BETWEEN " . $budgetmin . " AND " . $budgetmax . ")";
 	$conds["capacity"] = "(capacity BETWEEN " . $totalcapmin . " AND " . $hdd_capmax . " )";

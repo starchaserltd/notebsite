@@ -113,7 +113,7 @@
 	$totalcapmax = $_GET['capacitymax'];//echo $totalcapmax.";";
 	$hddcapmin=$totalcapmin;
 	$hddcapmax=$totalcapmax;
-	$nrhdd = $_GET['nrhdd']; //echo $nrhdd."; ";
+	$nrhdd = intval($_GET['nrhdd']); //echo $nrhdd."; ";
 	if ($nrhdd == 2) {$nrhddselect = "selected";}
 	if ($nrhdd == 3) {$nrhddselect2 = "selected";}
 	

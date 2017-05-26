@@ -9,7 +9,7 @@ switch(exchsign)
 { 
 	case '$':
 	amazonlink["first"]="https://www.amazon.com/s/ref=sr_nr_p_n_condition-type_0?fst=as%3Aoff&rh=n%3A172282%2Cn%3A541966%2Cn%3A13896617011%2Cn%3A565108%2Ck%3A%2Cp_n_condition-type%3A2224371011&field-keywords=";
-	amazonlink["second"]="&rh=n%3A565108%2Ck%3A&_encoding=UTF8&tag=starchaser-20&linkCode=ur2&linkId=7b666b0d3bbe094faceac6d381ba9eb0&camp=1789&creative=9325";
+	amazonlink["second"]="&rh=n%3A565108%2Ck%3A&_encoding=UTF8&tag=starchaser00-20&linkCode=ur2&linkId=7b666b0d3bbe094faceac6d381ba9eb0&camp=1789&creative=9325";
 	break;
 	case '€':
 	amazonlink["first"]="https://www.amazon.de/s/?_encoding=UTF8&camp=1638&creative=6742&field-keywords=";
@@ -148,7 +148,7 @@ function showGPU(str)
 						
 				gpu_bat_old = gpu_bat_new;
 				gpu_bat_new = gpu["bat"];
-				if(mdb["optimus"]){	gpu_bat_new=3; }
+				if(mdb["optimus"]){ gpu_bat_new=3; }
 				config_batlife=config_batlife-gpu_bat_old+gpu_bat_new;
 				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.95);
 				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.02);

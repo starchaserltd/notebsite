@@ -281,11 +281,10 @@ if(isset($_GET['typehdd']))
 // STOR rpm
 if(isset($_GET['rpm']))
 { $hdd_rpmmax = $_GET['rpm']; }
-
+var_dump($_GET['nrhdd']);
 //STOR nr of hdd		
 if($_GET['nrhdd'])
-{ $nr_hdd = $_GET['nrhdd'];	}
-
+{ $nr_hdd = intval($_GET['nrhdd']);	}
 
 /* *** Motherboard *** */
 /*
@@ -567,7 +566,7 @@ if($hdd_capmin)
 	if($nr_hdd<3)
 	{ $hdd_capmin=0; }
 	else
-	{ $nr_hdd=2; }
+	{ $nr_hdd=1; }
 }
 else
 { $totalcapmin=0; }
