@@ -40,8 +40,14 @@ $(function() {
 	{
 		$('.enlargeImageModalSource').attr('src', $(this).attr('src'));
 		$('#enlargeImageModal').modal('show');
-	});
+		});		
 });
+       
+ $(window).on('popstate', function() {
+        $('.modal').modal('hide');
+        $( ".modal-backdrop" ).remove();
+        $( ".in" ).remove();
+    });	   
 
 /*DISQUE CODE*/
 /**
