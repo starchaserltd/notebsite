@@ -68,7 +68,7 @@ function getdetails($id)
 	$prod=$item['prod'];
 	$fam=$item['fam'];
 	$model=$item['model'];
-	if(isset($item['submodel'])){ $submodel=$item['submodel']; if(strlen($submodel)>6 && !preg_match("/\(.*\)/",$submodel)){ $submodel=substr($submodel,0,6)."."; } } 
+	if(isset($item['submodel'])){ $submodel=$item['submodel']; if(strlen($submodel)>6 && !preg_match("/\(.*\)/",$submodel) && stripos($prod,"apple")===FALSE){ $submodel=substr($submodel,0,6)."."; } } 
 }
 
 
