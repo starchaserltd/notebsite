@@ -711,7 +711,7 @@ else
 	</div>
 	<!-- REVIEWS -->
 	<?php
-include("listmenu.php");
+//include("listmenu.php");
 ?>	
 
 <?php

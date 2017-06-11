@@ -64,10 +64,10 @@ function urlrequest(url,e,dontpush)
 	$('#loadingNB').show();
     $.get(url, function(response) {
 	var urltitle=/([^\/]*).php/g.exec(url); urltitle=urltitle[1];
-	if(!dontpush)
-	{ dontpush=0;  if(first){ history.replaceState({}, 'NoteBrother'+' '+urltitle, "?" + url); first=0;} else {  history.pushState({}, 'NoteBrother'+' '+urltitle, "?" + url); } }
 	currentpage=url;
 	if($('#content').html(response)){ $('#loadingNB').hide(); }
+	if(!dontpush)
+	{ dontpush=0;  if(first){ history.replaceState({}, 'NoteBrother'+' '+urltitle, "?" + url); first=0;} else {  history.pushState({}, 'NoteBrother'+' '+urltitle, "?" + url); } }
 	});		
 }
 
@@ -163,9 +163,9 @@ $(document).ready(function(){
             trigger=0;
             $.get('search/search.php', $("#s_search").serialize(), function(data) {
                 url = "search/search.php" + "?" + $("#s_search").serialize();
-                history.pushState({}, 'NoteBrother', "?" + url);
                 currentpage = url;
                 if($('#content').html(data)){ $('#loadingNB').hide();}
+				history.pushState({}, 'NoteBrother', "?" + url);
             });
     });
 	
