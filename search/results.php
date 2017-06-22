@@ -156,10 +156,10 @@ $exchangelist = mysqli_fetch_all($result);
 		}
 		else
 		{ echo "</div></div></div>";
-	
+	//<br><span style="font-size: 20px"> Website under maintenance, we will be back!</span>
 	?>
 <div class="col-md-8 col-md-offset-2 " style="border:1px solid #ddd; background-color:#f6f6f6; border-radius:5px;margin-top:20px; text-align:center; font-weight:bold;padding:10px;">
-	<span style="margin-top:2px;"> No results found for your criteria and budget <?php echo "(".$exchsign."".round($budgetmin*$exch)." - ".$exchsign."".round($budgetmax*$exch).")"; ?>.<br> Try different search options. </span>
+	<span style="margin-top:2px;"> No results found for your criteria and budget <?php echo "(".$exchsign."".round($budgetmin*$exch)." - ".$exchsign."".round($budgetmax*$exch).")"; ?>.<br> Try different search options. <br></span>
 </div>
 <?php
 		} mysqli_close($cons);
