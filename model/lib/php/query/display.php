@@ -39,7 +39,7 @@ if($q>=0)
 		else
 		{ $rows[0]['bat']=((floatval($rows[0]["size"])*0.10)+(pow((intval($rows[0]["hres"])*intval($rows[0]["vres"])),0.6)*0.0002))*0.7; }
 		
-		if($rows[0]['touch']==1){ $rows[0]['bat']+=(floatval($rows[0]["size"])*floatval($rows[0]["size"]))/400; }
+		if($rows[0]['touch']=="Yes"){ $rows[0]['bat']+=(floatval($rows[0]["size"])*floatval($rows[0]["size"]))/400; }
 				
 		//$rows[0]['price']=round($rows[0]['price'],2);
 		$rows[0]['price']=0;
