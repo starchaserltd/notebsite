@@ -9,15 +9,15 @@ switch(exchsign)
 { 
 	case '$':
 	amazonlink["first"]="https://www.amazon.com/s/ref=sr_nr_p_n_condition-type_0?fst=as%3Aoff&rh=n%3A172282%2Cn%3A541966%2Cn%3A13896617011%2Cn%3A565108%2Ck%3A%2Cp_n_condition-type%3A2224371011&field-keywords=";
-	amazonlink["second"]="&rh=n%3A565108%2Ck%3A&_encoding=UTF8&tag=starchaser00-20&linkCode=ur2&linkId=7b666b0d3bbe094faceac6d381ba9eb0&camp=1789&creative=9325";
+	amazonlink["second"]="&rh=n%3A565108%2Ck%3A&_encoding=UTF8&linkCode=ur2&linkId=7b666b0d3bbe094faceac6d381ba9eb0&camp=1789&creative=9325";
 	break;
 	case '€':
 	amazonlink["first"]="https://www.amazon.de/s/?_encoding=UTF8&camp=1638&creative=6742&field-keywords=";
-	amazonlink["second"]="&linkCode=ur2&site-redirect=de&tag=noteb02-21&url=node%3D427957031";
+	amazonlink["second"]="&linkCode=ur2&site-redirect=de&url=node%3D427957031";
 	break;
 	case '£':
 	amazonlink["first"]="https://www.amazon.co.uk/s/?_encoding=UTF8&camp=1634&creative=6738&fst=as%3Aoff&keywords=";
-	amazonlink["second"]="&linkCode=ur2&qid=1490875668&rh=n%3A340831031%2Cn%3A429886031%2Ck%3A%2Cp_n_condition-type%3A12319067031&rnid=12319066031&tag=noteb0a-21";
+	amazonlink["second"]="&linkCode=ur2&qid=1490875668&rh=n%3A340831031%2Cn%3A429886031%2Ck%3A%2Cp_n_condition-type%3A12319067031&rnid=12319066031";
 	break;
 }
 googlelink["cpu"]=""; googlelink["gpu"]=""; googlelink["mem"]=""; googlelink["resolution"]=""; googlelink["sist"]="";
