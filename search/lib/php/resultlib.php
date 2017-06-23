@@ -85,7 +85,7 @@ function showbat($tab, $id, $exc)
 	$sel="SELECT batlife FROM ".$tab." WHERE id = '".$id."'";
 	$result = mysqli_query($GLOBALS['cons'], $sel); 
 	$item = mysqli_fetch_array($result);
-	// gmdate('H:i', floor(floatval($item['batlife']*0.95) * 3600));
-	echo "Estimated battery:";?><br class="sres">  <?php echo round($item['batlife']*0.95,1); echo " - "; echo round($item['batlife']*1.02,1); echo " h";
+	// gmdate('H:i', floor(floatval($item['batlife']*0.96) * 3600));
+	echo "Estimated battery:";?><br class="sres">  <?php echo round($item['batlife']*0.96,1); echo " - "; echo round($item['batlife']*1.03,1); echo " h";
 }
 ?>

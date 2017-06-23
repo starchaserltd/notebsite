@@ -65,8 +65,8 @@ function showCPU(str)
 				cpu_bat_old = cpu_bat_new;
 				cpu_bat_new = cpu["bat"];
 				config_batlife=config_batlife-cpu_bat_old+cpu_bat_new;
-				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.95);
-				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.02);
+				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
+				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
 				cpu_gpu=parseInt(cpu["gpu"]);
 				getconf();				
 				if($("#GPU").val()==-1)
@@ -149,9 +149,10 @@ function showGPU(str)
 				gpu_bat_old = gpu_bat_new;
 				gpu_bat_new = gpu["bat"];
 				if(mdb["optimus"]){ gpu_bat_new=3; }
+				console.log(config_batlife);
 				config_batlife=config_batlife-gpu_bat_old+gpu_bat_new;
-				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.95);
-				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.02);
+				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
+				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
 			
 				if(gpu["typegpu"]>0)
 				{ googlelink["gpu"]=gpu["model"]; }
@@ -209,8 +210,8 @@ function showDISPLAY(str)
 				display_bat_old = display_bat_new;
 				display_bat_new = display["bat"];
 				config_batlife=config_batlife-display_bat_old+display_bat_new;
-				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.95);
-				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.02);
+				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
+				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
 				googlelink["resolution"]=display["hres"]+"x"+display["vres"];
 				makelinks();
 			}
@@ -258,8 +259,8 @@ function showHDD(str)
 				hdd_bat_old = hdd_bat_new;
 				hdd_bat_new = hdd["bat"];
 				config_batlife=config_batlife-hdd_bat_old+hdd_bat_new;
-				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.95);
-				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.02);				
+				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
+				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);			
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/hdd.php?q="+str,true);
@@ -314,8 +315,8 @@ function showSHDD(str)
 						shdd_bat_old = shdd_bat_new;
 						shdd_bat_new = shdd["bat"];
 						config_batlife=config_batlife-shdd_bat_old+shdd_bat_new;
-						document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.95);
-						document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.02);						
+						document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
+						document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);						
 					}
 				}
 			}
@@ -357,8 +358,8 @@ function showMDB(str)
 				if(mdb["optimus"])
 				{
 					gpu_bat_old = gpu_bat_new;	gpu_bat_new = 3; config_batlife=config_batlife-gpu_bat_old+gpu_bat_new;
-					document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.95);
-					document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.02);	
+					document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
+					document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
 				}
 				mdb_rate_old = mdb_rate_new;
 				mdb_rate_new = mdb["confrate"];
@@ -493,8 +494,8 @@ function showACUM(str)
 				config_rate = config_rate-acum_rate_old+acum_rate_new;
 				document.getElementById('notebro_rate').innerHTML=(Math.round(config_rate * 10) / 10).toFixed(1);
 				
-				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.95);
-				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.02);	
+				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
+				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/acum.php?q="+str,true);
