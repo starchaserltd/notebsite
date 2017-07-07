@@ -147,7 +147,7 @@ var maxbudgetset=<?php if(!isset($bdgmax)){ $bdgmax=$minconfigprice*6; } echo $b
 					<option value="0" <?php echo $gputypesel[0] ?>>Integrated + Basic</option>
 					<option value="1" <?php echo $gputypesel[1] ?>>Basic</option>
 					<option value="2" <?php echo $gputypesel[2] ?>>Gaming</option>
-					<option value="3" <?php echo $gputypesel[3] ?>>Professional</option>
+					<option value="3" <?php echo $gputypesel[3] ?>>CAD/3D Modeling</option>
 					<option value="4" <?php echo $gputypesel[4] ?>>High-end</option>
 					</select>	
 				</div>

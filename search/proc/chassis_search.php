@@ -2,10 +2,10 @@
 
 /* ********* SELECT CHASSIS BASED ON FILTERS ***** */
 
-function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax, $widthmin, $widthmax, $color, $weightmin, $weightmax, $made, $ports, $vports, $webmin, $webmax, $touch, $misc, $special_misc, $ratemin, $ratemax, $pricemin, $pricemax, $extra, $twoinone)
+function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax, $widthmin, $widthmax, $color, $weightmin, $weightmax, $made, $ports, $vports, $webmin, $webmax, $touch, $misc, $special_misc, $ratemin, $ratemax, $pricemin, $pricemax, $addmsc, $twoinone,$addpi)
 {
 	
-//var_dump($twoinone);
+//var_dump($addmsc);
 	$sel_chassis="SELECT id,price,rating,err FROM notebro_db.CHASSIS WHERE 1=1";
 	
 	// Add producers to filter
@@ -185,8 +185,15 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 		if(!($GLOBALS['diffpisearch']))
 		{
 			$x2=explode(" X ",$x);
+				
+			if(isset($addpi[$x])||isset($addmsc[$x]))
+			{
+				$sel_chassis.="(";
+			}
+			
 			if(strcasecmp($x2[0],$x)==0)
 			{
+				$sel_chassis.="(";
 				$sel_chassis.="FIND_IN_SET('";
 				$sel_chassis.=$x;
 				$sel_chassis.="',pi)>0";
@@ -208,6 +215,35 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 				}
 				$sel_chassis.=")";
 			}
+		
+			//some ports include other ports as well
+			if(isset($addpi[$x]))
+			{
+				foreach($addpi[$x] as $x3)
+				{
+					$sel_chassis.=" OR ";
+					$sel_chassis.="FIND_IN_SET('";
+					$sel_chassis.=$x3;
+					$sel_chassis.="',pi)>0";
+				}
+			}
+
+			if(isset($addmsc[$x]))
+			{ 
+				foreach($addmsc[$x] as $x4)
+				{	
+					$sel_chassis.=" OR ";
+					$sel_chassis.=" msc LIKE ";
+					$sel_chassis.="'%".$x4."%' ";
+				}
+			}
+			
+			if(isset($addpi[$x])||isset($addmsc[$x]))
+			{
+				$sel_chassis.=")"; unset($addmsc[$x]);
+			}
+			
+			$sel_chassis.=")";
 		}
 		else
 		{
@@ -388,12 +424,12 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 		$sel_chassis.=$pricemax;
 	}
 
-	//EXTRA SEARCH ELEMENTS	
+	//EXTRA MSC SEARCH ELEMENTS	
 	$i=0;
-	if(gettype($extra)!="array") { $extra=(array)$extra; } 
-	if($extra)
+	if(gettype($addmsc)!="array") { $addmsc=(array)$addmsc; } 
+	if($addmsc[0])
 	{
-		foreach($extra as $x)
+		foreach($addmsc[0] as $x)
 		{
 			if($i)
 			{  
@@ -442,7 +478,7 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 	// DO THE SEARCH
 	# echo "Query to select the CHASSIS:";
     # echo "<br>";
-	#echo "<pre>" . $sel_chassis. "</pre>";
+	# echo "<pre>" . $sel_chassis. "</pre>";
 
 	$result = mysqli_query($GLOBALS['con'], "$sel_chassis");
 	$chassis_return = array();

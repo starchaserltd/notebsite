@@ -5,6 +5,8 @@ $war_yearsmin = 0.01; $acum_capmin = 0.01; $wnet_ratemin = 0.01; $sist_pricemax 
 $odd_speedmin = 0; $mem_capmin = 1; $mdb_ratemin = 0; $chassis_weightmin = 0.01; $addmsc=array();
 $isadvanced = 1;
 
+$chassis_addpi=array();
+
 $to_search = array(
 	"model"   => 1,
     "acum"    => 1,
@@ -298,29 +300,42 @@ if ($_GET['mdbslots'])
 { $mdb_ramcap = $_GET['mdbslots']; }
 	
 if(isset($_GET['MDB_port_id']))
-{ $chassis_ports = $_GET['MDB_port_id']; }
+{ $chassis_ports = $_GET['MDB_port_id']; } //var_dump($chassis_ports);
 
 foreach($chassis_ports as $key => $x)
 {
 	if((stripos($x,"RS-232"))!==FALSE)
 	{
-		$addmsc[]="RS-232";
+		$addmsc["RS-232"][]="RS-232";
 	}
 	
 	if((stripos($x,"ExpressCard"))!==FALSE)
 	{
-		$addmsc[]="ExpressCard";
+		$addmsc["ExpressCard"][]="ExpressCard";
 	}
 	
 	if((stripos($x,"SIM card"))!==FALSE)
 	{
-		$addmsc[]="SIM card";
+		$addmsc["SIM card"][]="SIM card";
 	}
 	
 	if((stripos($x,"SmartCard"))!==FALSE)
 	{
-		$addmsc[]="SmartCard";
+		$addmsc["SmartCard"][]="SmartCard";
 	}
+	if((stripos($x,"SD card reader"))!==FALSE)
+	{
+		
+		//$addpi[] = ["4in1","6in1","3in1"];
+		//$addpi[]="SD card reader";
+		$chassis_addpi["SD card reader"][]="2-in-1 card reader";
+		$chassis_addpi["SD card reader"][]="3-in-1 card reader";
+		$chassis_addpi["SD card reader"][]="4-in-1 card reader";
+		$chassis_addpi["SD card reader"][]="5-in-1 card reader";
+		$chassis_addpi["SD card reader"][]="6-in-1 card reader";
+		$chassis_addpi["SD card reader"][]="MicroSD card reader";
+	}//var_dump($chassis_addpi["SD card reader"]);
+	//var_dump($addpi);
 }
 
 if(isset($_GET['MDB_vport_id']))
@@ -498,9 +513,9 @@ foreach($chassis_speakers as $x)
 if($addgroup==2) { $chassis_stuff[]="ungroup"; $addgroup=1; }
 
 $addmsc=array_unique($addmsc);
-foreach($addmsc as $addtomsc)
+foreach($addmsc as $key=>$addtomsc)
 {
-	$chassis_extra_stuff[]=$addtomsc;
+	$chassis_extra_stuff[$key]=$addtomsc;
 }
 
 

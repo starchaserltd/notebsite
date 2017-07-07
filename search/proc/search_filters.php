@@ -87,7 +87,7 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 	if($to_search["chassis"])
 	{
 		require_once("proc/chassis_search.php");
-		$comp_lists["chassis"] = search_chassis ($chassis_prod, $chassis_model, $chassis_thicmin, $chassis_thicmax, $chassis_depthmin, $chassis_depthmax, $chassis_widthmin, $chassis_widthmax, $chassis_color, $chassis_weightmin, $chassis_weightmax, $chassis_made, $chassis_ports, $chassis_vports, $chassis_webmin, $chassis_webmax, $chassis_touch, $chassis_misc, $chassis_stuff, $chassis_ratemin, $chassis_ratemax, $pricemin,$budgetmax,$chassis_extra_stuff,$chassis_twoinone);
+		$comp_lists["chassis"] = search_chassis ($chassis_prod, $chassis_model, $chassis_thicmin, $chassis_thicmax, $chassis_depthmin, $chassis_depthmax, $chassis_widthmin, $chassis_widthmax, $chassis_color, $chassis_weightmin, $chassis_weightmax, $chassis_made, $chassis_ports, $chassis_vports, $chassis_webmin, $chassis_webmax, $chassis_touch, $chassis_misc, $chassis_stuff, $chassis_ratemin, $chassis_ratemax, $pricemin,$budgetmax,$chassis_extra_stuff,$chassis_twoinone,$chassis_addpi);
 	}
 }	
 else
