@@ -64,7 +64,7 @@ function urlrequest(url,e,dontpush)
 	$('#loadingNB').show();
     $.get(url, function(response) {
 	var urltitle=/([^\/]*).php/g.exec(url); urltitle=urltitle[1];
-	currentpage=url;
+	currentpage=url; document.title = 'Noteb'; 
 	if($('#content').html(response)){ $('#loadingNB').hide(); }
 	if(!dontpush)
 	{ dontpush=0;  if(first){ history.replaceState({}, 'NoteBrother'+' '+urltitle, "?" + url); first=0;} else {  history.pushState({}, 'NoteBrother'+' '+urltitle, "?" + url); } }

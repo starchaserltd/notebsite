@@ -16,6 +16,7 @@ $delshdd=1; $delodd=1;
 $nrconf= $_SESSION['java_nrconf']; $nrgetconfs=$_SESSION['java_nrgetconfs']; $getconfs=$_SESSION['java_getconfs']; $idconf=$_SESSION['java_idconf'];
 if($nrgetconfs>0) { $nrconf=$nrgetconfs-1; }
 $maxminvalues=(object) [];
+echo 'document.title="Noteb - ";' ;
 for($x = 0; $x <= $nrconf; $x++) 
 {
 	if($nrgetconfs>0) { $confid=$getconfs[$x]; }
@@ -68,6 +69,7 @@ for($x = 0; $x <= $nrconf; $x++)
 	$danvar="'".$danvar."'";
 ?>
 	var array_var=[<?php echo $danvar; ?>];
+	document.title = document.title + <?php if($x>0) { echo "' vs '";} else { echo "' '"; } ?> + '<?php echo $resu['prod']." ".$resu['fam']." ".$resu['model']; ?> '; 
 	addcolumn(array_var,"HEADER_table",""); 
 	<!-- CPU -->
 <?php 
