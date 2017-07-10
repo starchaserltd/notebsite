@@ -149,7 +149,6 @@ function showGPU(str)
 				gpu_bat_old = gpu_bat_new;
 				gpu_bat_new = gpu["bat"];
 				if(mdb["optimus"]){ gpu_bat_new=3; }
-				console.log(config_batlife);
 				config_batlife=config_batlife-gpu_bat_old+gpu_bat_new;
 				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
 				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
@@ -198,6 +197,7 @@ function showDISPLAY(str)
 				document.getElementById('display_backt').innerHTML = display["backt"];
 				document.getElementById('display_touch').innerHTML = display["touch"];
 				document.getElementById('display_misc').innerHTML = display["msc"];
+				if( parseInt(display["sRGB"]) > 0) { document.getElementById('display_misc').innerHTML = document.getElementById('display_misc').innerHTML + ', <span class="toolinfo" data-toolid=86 data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="top" data-original-title="Loading..."><span class="toolinfo1">'+ display["sRGB"] + "% sRGB </span></span>";  } 
 				document.getElementById('display_rating').innerHTML = display["rating"];
 			
 				getconf();

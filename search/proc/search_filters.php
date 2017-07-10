@@ -21,7 +21,7 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 	if($to_search["display"])
 	{
 		require_once("proc/display_search.php");
-		$comp_lists["display"] = search_display ($display_model, $display_sizemin, $display_sizemax, $display_format, $display_hresmin, $display_hresmax, $display_vresmin, $display_vresmax, $display_surft, $display_backt, $display_touch,  $display_misc, $display_resolutions, $display_ratingmin, $display_ratingmax, $pricemin, $budgetmax, $battery_life);
+		$comp_lists["display"] = search_display ($display_model, $display_sizemin, $display_sizemax, $display_format, $display_hresmin, $display_hresmax, $display_vresmin, $display_vresmax, $display_surft, $display_backt, $display_touch,  $display_misc, $display_resolutions, $display_ratingmin, $display_ratingmax, $pricemin, $budgetmax, $battery_life,$display_srgb);
 	}
 
 	if($to_search["gpu"])

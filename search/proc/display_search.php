@@ -2,9 +2,9 @@
 
 /* ********* SELECT DISPLAYS BASED ON FILTERS ***** */
 
-function search_display ($model, $sizemin, $sizemax, $format, $hresmin, $hresmax, $vresmin, $vresmax, $surft, $backt, $touch,  $misc, $resolutions, $ratingmin, $ratingmax, $pricemin, $pricemax, $selsize)
+function search_display ($model, $sizemin, $sizemax, $format, $hresmin, $hresmax, $vresmin, $vresmax, $surft, $backt, $touch,  $misc, $resolutions, $ratingmin, $ratingmax, $pricemin, $pricemax, $selsize, $srgb)
 {
-	//var_dump($touch);
+	//var_dump($srgb);
 	if($selsize>0)
 	{ $sel_display="SELECT id,price,rating,err,size FROM notebro_db.DISPLAY WHERE 1=1"; }
 	else
@@ -197,9 +197,18 @@ function search_display ($model, $sizemin, $sizemax, $format, $hresmin, $hresmax
 		$sel_display.=$x;
 		$sel_display.="',msc)>0";
 		$i++;
+		
 	}
 	if($i>0)
-	{ $sel_display.=" ) "; }
+	{ $sel_display.=" ) "; } 
+	
+	//Add sRGB to filter
+	if ($srgb) 
+	{
+		$sel_display.=" AND ";
+		$sel_display.="sRGB>=";
+		$sel_display.=$srgb;	
+	}
 
 	// Add rating to filter	
 	if($ratingmin)
@@ -234,7 +243,7 @@ function search_display ($model, $sizemin, $sizemax, $format, $hresmin, $hresmax
 	// DO THE SEARCH
 	# echo "Query to select the DISPLAYs:";
     # echo "<br>";
-	#echo "<pre>" . $sel_display . "</pre>";
+	# echo "<pre>" . $sel_display . "</pre>";
 
 	$result = mysqli_query($GLOBALS['con'], "$sel_display");
 	$display_return = array();
