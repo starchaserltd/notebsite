@@ -185,22 +185,22 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 		if(!($GLOBALS['diffpisearch']))
 		{
 			$x2=explode(" X ",$x);
-				
+			$closeme=0;	
 			if(isset($addpi[$x])||isset($addmsc[$x]))
 			{
 				$sel_chassis.="(";
 			}
 			
+			$sel_chassis.="(";
+			
 			if(strcasecmp($x2[0],$x)==0)
 			{
-				$sel_chassis.="(";
 				$sel_chassis.="FIND_IN_SET('";
 				$sel_chassis.=$x;
 				$sel_chassis.="',pi)>0";
 			}
 			else
 			{ 
-				$sel_chassis.="(";
 				$sel_chassis.="FIND_IN_SET('";
 				$sel_chassis.=$x;
 				$sel_chassis.="',pi)>0";
@@ -213,7 +213,6 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 					$sel_chassis.="',pi)>0";
 					
 				}
-				$sel_chassis.=")";
 			}
 		
 			//some ports include other ports as well
