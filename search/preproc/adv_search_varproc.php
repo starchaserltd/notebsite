@@ -2,10 +2,8 @@
 //some variable initialisation
 $cpu_tdpmin = 0.01; $gpu_powermin = 0; $gpu_maxmemmin = 1; $display_hresmin = 0.01; //$hdd_capmin = $totalcapmin;
 $war_yearsmin = 0.01; $acum_capmin = 0.01; $wnet_ratemin = 0.01; $sist_pricemax = 1;
-$odd_speedmin = 0; $mem_capmin = 1; $mdb_ratemin = 0; $chassis_weightmin = 0.01; $addmsc=array();
-$isadvanced = 1;
-$display_srgb = 0;
-$chassis_addpi=array();
+$odd_speedmin = 0; $mem_capmin = 1; $mdb_ratemin = 0; $chassis_weightmin = 0.01; $addmsc=array(); $regions_name = array(); $display_srgb = 0; $chassis_addpi=array(); $regions=array();
+$isadvanced = 1; 
 
 $to_search = array(
 	"model"   => 1,
@@ -23,26 +21,10 @@ $to_search = array(
     "sist"    => 1,
     "war"     => 1,
     "wnet"    => 1,
+	"regions" => 1,
 );
-/*
-$to_search = array(
-	"model"   => 0,
-    "acum"    => 0,
-    "chassis" => 1,
-    "cpu"     => 0,
-    "display" => 0,
-    "gpu"     => 0,
-    "hdd"     => 0,
-    "mdb"     => 1,
-    "mem"     => 0,
-    "odd"     => 0,
-    "prod"    => 0,
-    "shdd"    => 0, 
-    "sist"    => 0,
-    "war"     => 0,
-    "wnet"    => 0,
-);
-*/
+
+
 // BUDGET min si max
 if($_GET['bdgminadv']){ $budgetmin = (floatval($_GET['bdgminadv'])/$exch)-1; }
 if($_GET['bdgmaxadv']){ $budgetmax = (floatval($_GET['bdgmaxadv'])/$exch)+1; }
@@ -336,8 +318,20 @@ foreach($chassis_ports as $key => $x)
 		$chassis_addpi["SD card reader"][]="5-in-1 card reader";
 		$chassis_addpi["SD card reader"][]="6-in-1 card reader";
 		$chassis_addpi["SD card reader"][]="MicroSD card reader";
-	}//var_dump($chassis_addpi["SD card reader"]);
-	//var_dump($addpi);
+	}
+	
+	if(stripos($x,"USB 3.0")!==FALSE)
+	{
+		$y=str_ireplace("3.0","3.1",$x);
+		$y2=explode(" X ",$y);
+		$y2i=intval($y2[0]);
+		if($y2i>0 && $y2i<6)
+		{
+			for($i=$y2i;$i<=6;$i++)
+			{ $chassis_addpi[$x][]=$i." X ".$y2[1]; }
+		}
+	}
+	
 }
 
 if(isset($_GET['MDB_vport_id']))
@@ -490,6 +484,7 @@ foreach($chassis_stuff as $key => $x)
 		unset($chassis_stuff[$key]);
 		$chassis_stuff[]="group";
 		$chassis_stuff[]="olufsen";
+		$chassis_stuff[]="harman";
 		$chassis_stuff[]="jbl";
 		$chassis_stuff[]="klipsch";
 		$chassis_stuff[]="sonicmaster";
@@ -560,11 +555,14 @@ if(isset($_GET['opsist']))
 		}
 	}
 } 
+/* *** REGIONS *** */
+
+if(isset($_GET['Regions']) && $_GET['Regions']) { $regions_name =$_GET['Regions']; } else {$to_search["regions"]=0;} 
 
 /* *** WARRANTY *** */
-if($_GET['yearsmin'])
+if(isset($_GET['yearsmin']) && ($_GET['yearsmin'])) 
 { $war_yearsmin = $_GET['yearsmin']; }
-if($_GET['yearsmax'])
+if(isset($_GET['yearsmax']) && ($_GET['yearsmax'])) 
 { $war_yearsmax = $_GET['yearsmax']; }
 
 $war_typewar = "1";
