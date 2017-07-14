@@ -4,11 +4,17 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 {
     $comp_lists = array();
 
-	/* FILTER BY MODEL , FMAILY, PRODUCER */
-    if($to_search["model"])
+	/* FILTER BY REGION, MODEL , FMAILY, PRODUCER */
+	if($to_search["regions"])
+	{
+		require_once("proc/regions_search.php");
+		$regions_id = search_regions ($regions_name);
+	}	else {	$dispregion=1;	}
+	
+	if($to_search["model"])
     {
 		require_once("proc/model_search.php");
-		$comp_lists["model"] = search_model ($model_model, $prod_model, $fam_model,$msc_model);
+		$comp_lists["model"] = search_model ($model_model, $prod_model, $fam_model,$msc_model, $regions_id);
 	}
 
     /* FIRST LETS GET THE COMPONENT FILTER LIST */
@@ -89,6 +95,8 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 		require_once("proc/chassis_search.php");
 		$comp_lists["chassis"] = search_chassis ($chassis_prod, $chassis_model, $chassis_thicmin, $chassis_thicmax, $chassis_depthmin, $chassis_depthmax, $chassis_widthmin, $chassis_widthmax, $chassis_color, $chassis_weightmin, $chassis_weightmax, $chassis_made, $chassis_ports, $chassis_vports, $chassis_webmin, $chassis_webmax, $chassis_touch, $chassis_misc, $chassis_stuff, $chassis_ratemin, $chassis_ratemax, $pricemin,$budgetmax,$chassis_extra_stuff,$chassis_twoinone,$chassis_addpi);
 	}
+	
+	
 }	
 else
 {

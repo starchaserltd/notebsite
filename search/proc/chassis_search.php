@@ -204,12 +204,12 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 				$sel_chassis.="FIND_IN_SET('";
 				$sel_chassis.=$x;
 				$sel_chassis.="',pi)>0";
-			
-				for($z=(intval($x2[0])+1);$z<7;$z++)
+							
+				for($z=(intval($x2[0])+1);$z<7;$z++) 
 				{
 					$sel_chassis.=" OR ";
 					$sel_chassis.="FIND_IN_SET('";
-					$sel_chassis=$sel_chassis.$z." X ".$x2[1];
+					$sel_chassis=$sel_chassis.$z." X ".$x2[1]; 
 					$sel_chassis.="',pi)>0";
 					
 				}
@@ -426,7 +426,7 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 	//EXTRA MSC SEARCH ELEMENTS	
 	$i=0;
 	if(gettype($addmsc)!="array") { $addmsc=(array)$addmsc; } 
-	if($addmsc[0])
+	if(isset($addmsc[0]))
 	{
 		foreach($addmsc[0] as $x)
 		{
