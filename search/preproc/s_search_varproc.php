@@ -8,8 +8,8 @@ $batlife_max=1000;
 $mdb_wwan = 1;
 
 // BUDGET val min and max
-if($_GET['bdgmin']) { $budgetmin = (floatval($_GET['bdgmin'])/$exch)-1; }
-if($_GET['bdgmax']) { $budgetmax = (floatval($_GET['bdgmax'])/$exch)+1; }
+if(isset($_GET['bdgmin'])) { $budgetmin = (floatval($_GET['bdgmin'])/$exch)-1; }
+if(isset($_GET['bdgmax'])) { $budgetmax = (floatval($_GET['bdgmax'])/$exch)+1; }
 
 $result = mysqli_query($GLOBALS['con'], "SELECT * FROM notebro_site.nomen WHERE type=15 OR type=16 OR type=21 OR type=31 OR type=34 OR type=35 OR type=63 OR type=66 OR type=68 OR type=81 ORDER BY type ASC"); 
 

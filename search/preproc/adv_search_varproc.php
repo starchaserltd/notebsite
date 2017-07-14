@@ -26,8 +26,8 @@ $to_search = array(
 
 
 // BUDGET min si max
-if($_GET['bdgminadv']){ $budgetmin = (floatval($_GET['bdgminadv'])/$exch)-1; }
-if($_GET['bdgmaxadv']){ $budgetmax = (floatval($_GET['bdgmaxadv'])/$exch)+1; }
+if(isset($_GET['bdgminadv'])){ $budgetmin = (floatval($_GET['bdgminadv'])/$exch)-1; }
+if(isset($_GET['bdgmaxadv'])){ $budgetmax = (floatval($_GET['bdgmaxadv'])/$exch)+1; }
 
 if(isset($_GET['Producer_prod'])) { $prod_model = $_GET['Producer_prod']; }
 if(isset($_GET['Family_fam'])) { $fam_model = $_GET['Family_fam']; }
