@@ -2,7 +2,7 @@
 //some variable initialisation
 $cpu_tdpmin = 0.01; $gpu_powermin = 0; $gpu_maxmemmin = 1; $display_hresmin = 0.01; //$hdd_capmin = $totalcapmin;
 $war_yearsmin = 0.01; $acum_capmin = 0.01; $wnet_ratemin = 0.01; $sist_pricemax = 1;
-$odd_speedmin = 0; $mem_capmin = 1; $mdb_ratemin = 0; $chassis_weightmin = 0.01; $addmsc=array(); $regions_name = array(); $display_srgb = 0; $chassis_addpi=array(); $regions=array();
+$odd_speedmin = 0; $mem_capmin = 1; $mdb_ratemin = 0; $chassis_weightmin = 0.01; $addmsc=array(); $regions_name = array(); $display_srgb = 0; $chassis_addpi=array(); $regions=array(); $war_typewar=array();
 $isadvanced = 1; 
 
 $to_search = array(
@@ -565,14 +565,14 @@ if(isset($_GET['yearsmin']) && ($_GET['yearsmin']))
 if(isset($_GET['yearsmax']) && ($_GET['yearsmax'])) 
 { $war_yearsmax = $_GET['yearsmax']; }
 
-$war_typewar = "1";
+$war_typewar[1] = "1"; $war_typewar[2] = "2";
 
 if (isset($_GET['premiumadv']))
-{$war_typewar = "2";}
+{ $war_typewar[2] = "2"; $war_typewar[1]=-1; }
 if (isset($_GET['premiumadvadp']))
 { 
-	if($war_typewar=="2"){ $war_typewar = "4"; } 
-	else { $war_typewar="3";}
+	if($war_typewar[2]=="2"){ $war_typewar[4] = "4"; $war_typewar[1]=-1; $war_typewar[2]=-1; } 
+	else { $war_typewar[3]="3"; $war_typewar[4] = "4"; $war_typewar[1]=-1; $war_typewar[2]=-1;  }
 }
 
 if($hdd_capmin)

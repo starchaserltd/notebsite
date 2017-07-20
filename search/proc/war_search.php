@@ -50,10 +50,22 @@ function search_war ($prod, $yearsmin, $yearsmax, $typewar, $misc, $ratemin, $ra
 	{
 		foreach($typewar as $x)
 		{
-			$sel_war.=" AND ";
-			$sel_war.="typewar=";
-			$sel_war.=$x;
+		if($i)
+		{  
+			$sel_war.=" OR ";
 		}
+		else
+		{
+			$sel_war.=" AND ( ";
+		}
+		
+		$sel_war.="typewar='";
+		$sel_war.=$x;
+		$sel_war.="'";
+		$i++;
+	}
+	if($i>0)
+	{ $sel_war.=" ) "; }
 	}
 
 	// Add MISC to filter
