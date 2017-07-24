@@ -22,7 +22,7 @@ switch(exchsign)
 }
 googlelink["cpu"]=""; googlelink["gpu"]=""; googlelink["mem"]=""; googlelink["resolution"]=""; googlelink["sist"]="";
 
-var cpu = {}; var cpu_price_old=0; var cpu_price_new=0; var cpu_err_new=0; var cpu_err_old=0; var cpu_rate_new=0; var cpu_rate_old=0; var cpu_gpu=0; var cpu_bat_new=0; var cpu_bat_old=0; cpu["clocks"]="";
+var cpu = {}; var cpu_price_old=0; var cpu_price_new=0; var cpu_err_new=0; var cpu_err_old=0; var cpu_rate_new=0; var cpu_rate_old=0; var cpu_gpu=0; var cpu_bat_new=0; var cpu_bat_old=0; cpu["clocks"]=""; var success=false;
 function showCPU(str) 
 {
 	if (str === "") 
@@ -68,11 +68,11 @@ function showCPU(str)
 				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
 				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
 				cpu_gpu=parseInt(cpu["gpu"]);
-				getconf();				
+
 				if($("#GPU").val()==-1)
 				{
 					if(cpu_gpu)
-					{ showGPU(cpu_gpu); }
+					{ showGPU(cpu_gpu);}
 					else
 					{	document.querySelector('#GPU [value="' + gpudet + '"]').selected = true; showGPU(gpudet); }
 				}		
@@ -139,8 +139,6 @@ function showGPU(str)
 				document.getElementById('gpu_class').innerHTML = gpu["class"];
 				//document.getElementById('gpu_boost').innerHTML = gpu["bspeed"];
 				
-				getconf();	
-
 				gpu_rate_old = gpu_rate_new;
 				gpu_rate_new = gpu["confrate"];				
 				config_rate = config_rate-gpu_rate_old+gpu_rate_new;
@@ -200,8 +198,6 @@ function showDISPLAY(str)
 				if( parseInt(display["sRGB"]) > 0) { document.getElementById('display_misc').innerHTML = document.getElementById('display_misc').innerHTML + ', <span class="toolinfo" data-toolid=86 data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="top" data-original-title="Loading..."><span class="toolinfo1">'+ display["sRGB"] + "% sRGB </span></span>";  } 
 				document.getElementById('display_rating').innerHTML = display["rating"];
 			
-				getconf();
-			
 				display_rate_old = display_rate_new;
 				display_rate_new = display["confrate"];		
 				config_rate = config_rate-display_rate_old+display_rate_new;
@@ -249,8 +245,6 @@ function showHDD(str)
 				document.getElementById('hdd_misc').innerHTML = hdd["msc"];
 				document.getElementById('hdd_title').innerHTML = hdd["cap"]+"GB "+hdd["type"];
 
-				getconf();
-				
 				hdd_rate_old = hdd_rate_new;
 				hdd_rate_new = hdd["confrate"];				
 				config_rate = config_rate-hdd_rate_old+hdd_rate_new;
@@ -260,7 +254,9 @@ function showHDD(str)
 				hdd_bat_new = hdd["bat"];
 				config_batlife=config_batlife-hdd_bat_old+hdd_bat_new;
 				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
-				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);			
+				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
+				
+				if(shdd["id"]!=0) { if(hdd["model"].indexOf("M.2")<0) { showSHDD(0); setselectedcomp("SHDD", 0) } }
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/hdd.php?q="+str,true);
@@ -269,6 +265,7 @@ function showHDD(str)
 }
 	
 var shdd = {}; var shdd_price_old=0; var shdd_price_new=0; var shdd_err_new=0; var shdd_err_old=0; var shdd_rate_new=0; var shdd_rate_old=0; var shdd_bat_new=0; var shdd_bat_old=0;
+
 function showSHDD(str) 
 {
 	if (str === "") 
@@ -287,8 +284,9 @@ function showSHDD(str)
 		{
 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
 			{
+				var prev_el=shdd;
 				shdd = JSON.parse(xmlhttp.responseText);
-				if(shdd===null){ shdd={}; }
+				if(shdd===null){ shdd={}; }				
 				if(document.getElementById('shdd_type'))
 				{
 					if (str == 0 )
@@ -304,8 +302,6 @@ function showSHDD(str)
 						document.getElementById('shdd_readspeed').innerHTML = shdd["readspeed"];
 						document.getElementById('shdd_writes').innerHTML = shdd["writes"];
 						document.getElementById('shdd_rpm').innerHTML = shdd["rpm"];
-
-						getconf();
 						
 						shdd_rate_old = shdd_rate_new;
 						shdd_rate_new = shdd["confrate"];					
@@ -346,7 +342,6 @@ function showMDB(str)
 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
 			{
 				mdb = JSON.parse(xmlhttp.responseText);
-				
 				document.getElementById('mdb_ram').innerHTML = mdb["ram"];
 				document.getElementById('mdb_gpu').innerHTML = mdb["gpu"];
 				document.getElementById('mdb_chipset').innerHTML = mdb["chipset"];
@@ -363,8 +358,6 @@ function showMDB(str)
 				}
 				mdb_rate_old = mdb_rate_new;
 				mdb_rate_new = mdb["confrate"];
-
-				getconf();
 				
 				config_rate = config_rate-mdb_rate_old+mdb_rate_new;
 				document.getElementById('notebro_rate').innerHTML=(Math.round(config_rate * 10) / 10).toFixed(1);
@@ -404,9 +397,7 @@ function showMEM(str)
 
 				mem_rate_old = mem_rate_new;
 				mem_rate_new = mem["confrate"];
-
-				getconf();
-				
+	
 				config_rate = config_rate-mem_rate_old+mem_rate_new;
 				document.getElementById('notebro_rate').innerHTML=(Math.round(config_rate * 10) / 10).toFixed(1);
 				
@@ -445,8 +436,6 @@ function showODD(str)
 					odd_rate_old = odd_rate_new;
 					odd_rate_new = odd["confrate"];
 
-					getconf();
-					
 					config_rate = config_rate-odd_rate_old+odd_rate_new;
 					document.getElementById('notebro_rate').innerHTML=(Math.round(config_rate * 10) / 10).toFixed(1);
 				}
@@ -487,8 +476,6 @@ function showACUM(str)
 				
 				document.getElementById('acum_misc').innerHTML = acum["msc"];
 
-				getconf();
-				
 				acum_rate_old = acum_rate_new;
 				acum_rate_new = acum["confrate"];
 				config_rate = config_rate-acum_rate_old+acum_rate_new;
@@ -552,8 +539,6 @@ function showCHASSIS(str)
 				chassis_rate_old = chassis_rate_new;
 				chassis_rate_new = chassis["confrate"];
 				
-				getconf();
-				
 				config_rate = config_rate-chassis_rate_old+chassis_rate_new;
 				document.getElementById('notebro_rate').innerHTML=(Math.round(config_rate * 10) / 10).toFixed(1);
 			}
@@ -588,8 +573,6 @@ function showWNET(str)
 				document.getElementById('wnet_slot').innerHTML = wnet["slot"];
 				document.getElementById('wnet_misc').innerHTML = wnetmisc(wnet["msc"]);
 
-				getconf();
-				
 				wnet_rate_old = wnet_rate_new;
 				wnet_rate_new = wnet["confrate"];
 			
@@ -627,7 +610,6 @@ function showWAR(str)
 				war_rate_old = war_rate_new;
 				war_rate_new = war["confrate"];
 
-				getconf();
 				config_rate = config_rate-war_rate_old+war_rate_new;
 				document.getElementById('notebro_rate').innerHTML=(Math.round(config_rate * 10) / 10).toFixed(1);
 			}
@@ -666,8 +648,6 @@ function showSIST(str)
 				sist_rate_old = sist_rate_new;
 				sist_rate_new = sist["confrate"];
 
-				getconf();
-				
 				config_rate = config_rate-sist_rate_old+sist_rate_new;
 				document.getElementById('notebro_rate').innerHTML=(Math.round(config_rate * 10) / 10).toFixed(1);
 				makelinks();
@@ -678,15 +658,50 @@ function showSIST(str)
 	}
 }
 
-function getconf(str) 
+function getconf(comp,id,exactconf) 
 {
-	if (mid===undefined || cpu["id"]===undefined || display["id"]===undefined || mem["id"]===undefined || hdd["id"]===undefined || shdd["id"]===undefined || gpu["id"]===undefined || wnet["id"]===undefined || odd["id"]===undefined || mdb["id"]===undefined || chassis["id"]===undefined || acum["id"]===undefined || war["id"]===undefined || sist["id"]===undefined)
+
+	var cpu_id=cpu["id"]; var display_id=display["id"]; var mem_id=mem["id"]; var hdd_id=hdd["id"];  var shdd_id=shdd["id"]; var gpu_id=gpu["id"]; var wnet_id=wnet["id"]; var odd_id=odd["id"]; var mdb_id=mdb["id"]; var chassis_id=chassis["id"]; var acum_id=acum["id"]; var war_id=war["id"]; var sist_id=sist["id"];  var 
+	confdata = {}; var success=false; var go=false;
+	switch(comp)
+	{
+		case "CPU":
+		{ prev_id=cpu_id; cpu_id=id; if(cpu["id"]===undefined) { go=true; } if(gpu["typegpu"]<1){ cpu_el=document.getElementsByName("CPU")[0]; for ( var i = 0; i < cpu_el.options.length; i++ ) { if ( cpu_el.options[i].value == cpu_id) { gpu_id=cpu_el.options[i].getAttribute("data-gpu"); } } }  break; }
+		case "DISPLAY":
+		{ prev_id=display_id; display_id=id; if(display["id"]===undefined) { go=true; } break; }
+		case "MEM":
+		{ prev_id=mem_id; mem_id=id; if(mem["id"]===undefined) { go=true; }  break; }
+		case "HDD":
+		{ prev_id=hdd_id; hdd_id=id; if(hdd["id"]===undefined) { go=true; } hdd_el=document.getElementsByName("HDD")[0]; for ( var i = 0; i < hdd_el.options.length; i++ ) { if ( hdd_el.options[i].value == hdd_id && hdd_el.options[i].text.toLowerCase().indexOf("M.2") < 0) { shdd_id=0; } } break; } 
+		case "SHDD":
+		{ prev_id=shdd_id; shdd_id=id; if(shdd["id"]===undefined) { go=true; }  break; }
+		case "GPU":
+		{ prev_id=gpu_id; gpu_id=id; if(gpu["id"]===undefined) { go=true; }  break; }
+		case "WNET":
+		{ prev_id=wnet_id; wnet_id=id; if(wnet["id"]===undefined) { go=true; }  break; }
+		case "ODD":
+		{ prev_id=odd_id; odd_id=id; if(odd["id"]===undefined) { go=true; }  break; }
+		case "MDB":
+		{ prev_id=mdb_id; mdb_id=id; if(mdb["id"]===undefined) { go=true; }  break; }
+		case "CHASSIS":
+		{ prev_id=chassis_id; chassis_id=id; if(chassis["id"]===undefined) { go=true; }  break; }
+		case "ACUM":
+		{ prev_id=acum_id; acum_id=id; if(acum["id"]===undefined) { go=true; }  break; }
+		case "WAR":
+		{ prev_id=war_id; war_id=id; if(war["id"]===undefined) { go=true; }  break; }
+		case "SIST":
+		{ prev_id=sist_id; sist_id=id; if(sist["id"]===undefined) { go=true; }  break; }
+	}
+	
+	if(exactconf!==undefined) { cpu_id=exactconf[0]; display_id=exactconf[1]; mem_id=exactconf[2]; hdd_id=exactconf[3]; shdd_id=exactconf[4]; gpu_id=exactconf[5]; wnet_id=exactconf[6]; odd_id=exactconf[7]; mdb_id=exactconf[8]; chassis_id=exactconf[9]; acum_id=exactconf[10]; war_id=exactconf[11]; sist_id=exactconf[12]; go=true; }
+	
+	if (!go && (mid===undefined || cpu["id"]===undefined || display["id"]===undefined || mem["id"]===undefined || hdd["id"]===undefined || shdd["id"]===undefined || gpu["id"]===undefined || wnet["id"]===undefined || odd["id"]===undefined || mdb["id"]===undefined || chassis["id"]===undefined || acum["id"]===undefined || war["id"]===undefined || sist["id"]===undefined ))
 	{
 		confdata = {};
 		return;
 	}
 	else 
-	{
+	{ 
 		if (window.XMLHttpRequest) 
 		{
 			var	xmlhttp = new XMLHttpRequest();
@@ -696,18 +711,84 @@ function getconf(str)
 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
 			{
 				confdata = JSON.parse(xmlhttp.responseText);
-				confdata["cprice"]=parseInt(confdata["cprice"]);
-				confdata["cerr"]=parseInt(confdata["cerr"]);
-				document.getElementById('config_price1').innerHTML=parseInt((confdata["cprice"]-confdata["cerr"]/2)*exch);
-				document.getElementById('config_price2').innerHTML=parseInt((confdata["cprice"]+confdata["cerr"]/2)*exch);
-				var stateObj = { no: "empty" };
-				history.replaceState(stateObj, confdata["cid"], "?model/model.php?conf="+confdata["cid"]);
-				currentPage = window.location.href;
-			}		
+				confdata["cprice"]=parseInt(confdata["cprice"]); if(confdata["cprice"]>0){ success=true; }
+				if(success || go)
+				{
+					confdata["cerr"]=parseInt(confdata["cerr"]);
+					document.getElementById('config_price1').innerHTML=parseInt((confdata["cprice"]-confdata["cerr"]/2)*exch);
+					document.getElementById('config_price2').innerHTML=parseInt((confdata["cprice"]+confdata["cerr"]/2)*exch);
+					var stateObj = { no: "empty" };
+					history.replaceState(stateObj, confdata["cid"], "?model/model.php?conf="+confdata["cid"]);
+					currentPage = window.location.href;
+					
+					switch(comp)
+					{
+						case "CPU":
+						{ showCPU(id); break; } 
+						case "DISPLAY":
+						{ showDISPLAY(id); break; } 
+						case "MEM":
+						{ showMEM(id); break; } 
+						case "HDD":
+						{ showHDD(id); break; } 
+						case "SHDD":
+						{ showSHDD(id); break; } 
+						case "GPU":
+						{ showGPU(id); break; } 
+						case "WNET":
+						{ showWNET(id); break; } 
+						case "ODD":
+						{ showODD(id); break; } 
+						case "MDB":
+						{ showMDB(id); break; } 
+						case "CHASSIS":
+						{ showCHASSIS(id); break; } 
+						case "ACUM":
+						{ showACUM(id); break; } 
+						case "WAR":
+						{ showWAR(id); break; } 
+						case "SIST":
+						{ showSIST(id); break; } 
+					}
+				}
+				else
+				{
+					switch(comp)
+					{
+						case "CPU":
+						{ setselectedcomp("CPU",prev_id); break; }  
+						case "DISPLAY":
+						{ setselectedcomp("DISPLAY",prev_id); break; } 
+						case "MEM":
+						{ setselectedcomp("MEM",prev_id); break; } 
+						case "HDD":
+						{ setselectedcomp("HDD",prev_id); break; } 
+						case "SHDD":
+						{ setselectedcomp("SHDD",prev_id); break; } 
+						case "GPU":
+						{ setselectedcomp("GPU",prev_id); break; } 
+						case "WNET":
+						{ setselectedcomp("WNET",prev_id); break; } 
+						case "ODD":
+						{ setselectedcomp("ODD",prev_id); break; } 
+						case "MDB":
+						{ setselectedcomp("MDB",prev_id); break; } 
+						case "CHASSIS":
+						{ setselectedcomp("CHASSIS",prev_id); break; } 
+						case "ACUM":
+						{ setselectedcomp("ACUM",prev_id); break; } 
+						case "WAR":
+						{ setselectedcomp("WAR",prev_id); break; }  
+						case "SIST":
+						{ setselectedcomp("SIST",prev_id); break; } 
+					}
+					alert("We are sorry, but this configuration is not available on the market.");
+				}
+			}			
 		}
 	}
-		xmlhttp.open("GET","model/lib/php/query/getconf.php?c="+mid+"-"+cpu["id"]+"-"+display["id"]+"-"+mem["id"]+"-"+hdd["id"]+"-"+shdd["id"]+"-"+gpu["id"]+"-"+wnet["id"]+"-"+odd["id"]+"-"+mdb["id"]+"-"+chassis["id"]+"-"+acum["id"]+"-"+war["id"]+"-"+sist["id"],true);
-		xmlhttp.send();
+	xmlhttp.open("GET","model/lib/php/query/getconf.php?c="+mid+"-"+cpu_id+"-"+display_id+"-"+mem_id+"-"+hdd_id+"-"+shdd_id+"-"+gpu_id+"-"+wnet_id+"-"+odd_id+"-"+mdb_id+"-"+chassis_id+"-"+acum_id+"-"+war_id+"-"+sist_id,true);
+	xmlhttp.send();
 }
 
 function cpumisc(str) 
@@ -822,4 +903,11 @@ function makelinks()
 	hotlink=countrybuy+"+"+hotlinkpart1+'+'+googlelink["resolution"]+'+'+googlelink["sist"];
 	hotlink=hotlink.replace("++","+"); hotlink=hotlink.replace('+""+','+');
 	document.getElementById('google_link').href=googlelink["first"]+hotlink;
+}
+
+function setselectedcomp(comp, value)
+{
+	comp=document.getElementsByName(comp)[0];
+	for ( var i = 0; i < comp.options.length; i++ )
+	{ if ( comp.options[i].value == value ) { comp.options[i].selected = true; return; } }
 }

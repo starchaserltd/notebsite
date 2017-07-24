@@ -95,18 +95,18 @@ function show_cpu ($model)
 	
 	if (count($list) > 1)
 	{
-		echo '<form><SELECT name="CPU" onchange="showCPU(this.value)">';
+		echo '<form><SELECT name="CPU" onchange="getconf('."'".'CPU'."'".',this.value)">';
 		foreach($list as $key=>$id)
 		{
-			$sel="SELECT prod,model FROM notebro_db.CPU WHERE id=$id";
+			$sel="SELECT prod,model,gpu FROM notebro_db.CPU WHERE id=$id";
 			$result = mysqli_query($GLOBALS['con'], $sel);
 			$row = mysqli_fetch_array($result);
 	
 			if(strcasecmp($row['prod'],"INTEL")==0){$row['prod']=ucfirst(strtolower($row['prod'])); }
 			if($id!=$GLOBALS['idcpu'])
-			{ echo "<option value=".$id.">".$row["prod"]." ".$row["model"]."</option>"; }
+			{ echo "<option value=".$id." data-gpu='".$row["gpu"]."' >".$row["prod"]." ".$row["model"]."</option>"; }
 			else
-			{ echo "<option value=".$id." SELECTED >".$row["prod"]." ".$row["model"]."</option>"; }
+			{ echo "<option value=".$id." SELECTED data-gpu='".$row["gpu"]."' >".$row["prod"]." ".$row["model"]."</option>"; }
 		}
 		echo "</SELECT></form>";
 	}
@@ -130,7 +130,7 @@ function show_gpu ($model)
 	$b=1;
 	$list=explode(',',$model);
 	$havecpuint=0;
-	echo '<form><SELECT name="GPU" id="GPU" onchange="showGPU(this.value)">';
+	echo '<form><SELECT id="GPU" name="GPU" onchange="getconf('."'".'GPU'."'".',this.value)">';
 
 	foreach($list as $key=>$id)
 	{
@@ -173,7 +173,7 @@ function show_display ($model)
 	$list=explode(',',$model);
 	if (count($list) > 1) 
 	{
-		echo '<form><SELECT name="DISPLAY" onchange="showDISPLAY(this.value)">';
+		echo '<form><SELECT name="DISPLAY" onchange="getconf('."'".'DISPLAY'."'".',this.value)">';
 		foreach($list as $key=>$id)
 		{
 			$sel="SELECT model,touch FROM notebro_db.DISPLAY WHERE id=$id"; //echo $sel;
@@ -209,7 +209,7 @@ function show_hdd ($model)
 {
 	$list=explode(',',$model);
 
-	echo '<form><SELECT name="HDD" onchange="showHDD(this.value)">';
+	echo '<form><SELECT name="HDD" onchange="getconf('."'".'HDD'."'".',this.value)">';
 	foreach($list as $key=>$id)
 	{
 		$sel="SELECT model,cap,rpm FROM notebro_db.HDD WHERE id=$id"; 
@@ -238,7 +238,7 @@ function show_shdd ($model)
 	if(!(in_array("0",$list,true)))
 	{ array_unshift($list,"0"); }
 	
-	$text='<form><SELECT name="SHDD" onchange="showSHDD(this.value)">';
+	$text='<form><SELECT name="SHDD" onchange="getconf('."'".'SHDD'."'".',this.value)">';
 	foreach($list as $key=>$id)
 	{
 		$sel="SELECT id,model,cap,rpm,type FROM notebro_db.HDD WHERE id=$id"; 
@@ -279,7 +279,7 @@ function show_mdb ($model)
 	$list=explode(',',$model);
 	if (count($list) > 1)
 	{
-		echo '<form><SELECT name="MDB" onchange="showMDB(this.value)">';
+		echo '<form><SELECT name="MDB" onchange="getconf('."'".'MDB'."'".',this.value)">';
 		foreach($list as $key=>$id)
 		{
 			$sel="SELECT prod,submodel FROM notebro_db.MDB WHERE id=$id"; 
@@ -311,7 +311,7 @@ function show_mem ($model)
 	$list=explode(',',$model);
 	if (count($list) > 1) 
 	{
-		echo '<form><SELECT name="MEM" onchange="showMEM(this.value)">';
+		echo '<form><SELECT name="MEM" onchange="getconf('."'".'MEM'."'".',this.value)">';
 		foreach($list as $key=>$id)
 		{
 			$sel="SELECT prod,cap FROM notebro_db.MEM WHERE id=$id"; 
@@ -346,7 +346,7 @@ function show_odd ($model)
 	
 	if (count($list) > 1) 
 	{
-		echo '<form><SELECT name="ODD" onchange="showODD(this.value)">';
+		echo '<form><SELECT name="ODD" onchange="getconf('."'".'ODD'."'".',this.value)">';
 		foreach($list as $key=>$id)
 		{
 			$sel="SELECT type FROM notebro_db.ODD WHERE id=$id"; 
@@ -385,7 +385,7 @@ function show_acum ($model)
 	
 	if (count($list) > 1)
 	{
-		echo '<form><SELECT name="ACUM" onchange="showACUM(this.value)">';
+		echo '<form><SELECT name="ACUM" onchange="getconf('."'".'ACUM'."'".',this.value)">';
 		foreach($list as $key=>$id)
 		{
 			$sel="SELECT model,nrc,cap FROM notebro_db.ACUM WHERE id=$id";
@@ -419,7 +419,7 @@ function show_chassis ($model)
 	
 	if (count($list) > 1)
 	{
-		$chassistext.='<form><SELECT name="CHASSIS" onchange="showCHASSIS(this.value)">';
+		$chassistext.='<form><SELECT name="CHASSIS" onchange="getconf('."'".'CHASSIS'."'".',this.value)">';
 		foreach($list as $key=>$id)
 		{
 			$sel="SELECT submodel FROM notebro_db.CHASSIS WHERE id=$id"; 
@@ -453,7 +453,7 @@ function show_wnet ($model)
 	
 	if (count($list) > 1)
 	{
-		echo '<form><SELECT name="WNET" onchange="showWNET(this.value)">';
+		echo '<form><SELECT name="WNET" onchange="getconf('."'".'WNET'."'".',this.value)">';
 		
 		foreach($list as $key=>$id)
 		{
@@ -486,7 +486,7 @@ function show_war ($model)
 	$list=explode(',',$model);
 	if (count($list) > 1)
 	{
-		echo '<form><SELECT name="WAR" onchange="showWAR(this.value)">';
+		echo '<form><SELECT name="WAR" onchange="getconf('."'".'WAR'."'".',this.value)">';
 		foreach($list as $key=>$id)
 		{
 			$sel="SELECT years,prod,price,err FROM notebro_db.WAR WHERE id=$id"; 
@@ -518,7 +518,7 @@ function show_sist ($model)
 	$list=explode(',',$model);
 	if (count($list) > 1)
 	{
-		echo '<form><SELECT name="SIST" onchange="showSIST(this.value)">';
+		echo '<form><SELECT name="SIST" onchange="getconf('."'".'SIST'."'".',this.value)">';
 		foreach($list as $key=>$id)
 		{
 			$sel="SELECT sist,vers,type,price,err FROM notebro_db.SIST WHERE id=$id"; 
@@ -559,6 +559,10 @@ function show_vars($col, $tab, $id)
 	
 	global $show_vars;
 	$show_vars=$resu;
-	return $resu[$col];
+	$col=explode(",",$col); $nrcol=count($col);
+	if($nrcol>1)
+	{ return $resu; }
+	else
+	{ return $resu[$col[0]]; }
 }
 ?>
