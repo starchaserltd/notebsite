@@ -93,9 +93,9 @@ if($_GET['cputdpmax'])
 
 // CPU Frequency
 if($_GET['cpufreqmin'])
-{ $cpu_clockmin = $_GET['cpufreqmin']; }
+{ $cpu_turbomin = $_GET['cpufreqmin']; }
 if($_GET['cpufreqmax'])
-{ $cpu_clockmax = $_GET['cpufreqmax']; }
+{ $cpu_turbomax = $_GET['cpufreqmax']; }
 
 // CPU Lithography
 if($_GET['cputechmin'])
