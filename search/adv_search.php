@@ -115,7 +115,7 @@
 					</div>
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						<div class="advspace1">
-							<span style="font-size:13.5px;">Minimum boost speed:</span>
+							<span style="font-size:13.5px;">Boost speed:</span>
 							<span id="cpufreqval"><?php echo $cpufreqmin; ?> - <?php echo $cpufreqmax; ?></span><span> GHz</span>
 						</div>	  
 						<div class="advspace" id="cpufreq"></div>
