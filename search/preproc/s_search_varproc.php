@@ -35,6 +35,7 @@ $to_search = array(
     "sist"    => 1,
     "war"     => 1,
     "wnet"    => 1,
+	"regions" => 0
 );
 
 $hdd_type = array();

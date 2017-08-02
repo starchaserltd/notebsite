@@ -19,6 +19,7 @@ $to_search = array(
     "sist"    => 0,
     "war"     => 0,
     "wnet"    => 0,
+	"regions" => 0
 );
 switch($browse_by)
 {
