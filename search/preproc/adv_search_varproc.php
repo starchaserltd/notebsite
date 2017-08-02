@@ -466,7 +466,7 @@ foreach($chassis_stuff as $key => $x)
 	
 	if((stripos($x,"subwoofer"))!==FALSE)
 	{
-		unset($chassis_stuff[$key]); $chassis_speakers[]=$x;
+		unset($chassis_stuff[$key]); $chassis_subwoofer[]=$x;
 	}
 	
 	if((stripos($x,"keyboard"))!==FALSE)
@@ -484,6 +484,7 @@ foreach($chassis_stuff as $key => $x)
 		unset($chassis_stuff[$key]);
 		$chassis_stuff[]="group";
 		$chassis_stuff[]="olufsen";
+		$chassis_stuff[]="altec";
 		$chassis_stuff[]="harman";
 		$chassis_stuff[]="jbl";
 		$chassis_stuff[]="klipsch";
@@ -496,14 +497,26 @@ foreach($chassis_speakers as $x)
 {
 	if($addgroup==1){ $chassis_stuff[]="group"; $addgroup=2; }
 	if((stripos($x,"2 x speakers"))!==FALSE)
-	{
-		$x="2x%speakers";
-	}
+	{ $chassis_stuff[]=$x; $chassis_stuff[]="2x__W speaker"; $chassis_stuff[]="2x___W speaker"; $x="2x_W speaker"; }
 		
 	if((stripos($x,"4 x speakers"))!==FALSE)
-	{
-		$x="4x%speakers";
-	}
+	{ $chassis_stuff[]=$x; $chassis_stuff[]="4x__W speaker"; $chassis_stuff[]="4x___W speaker"; $x="4x_W speaker"; }
+	
+	if((stripos($x,"1 x speaker"))!==FALSE)
+	{ $chassis_stuff[]=$x; $chassis_stuff[]="1x__W speaker"; $chassis_stuff[]="1x___W speaker"; $x="1x_W speaker"; }
+	$chassis_stuff[]=$x;
+}
+if($addgroup==2) { $chassis_stuff[]="ungroup"; $addgroup=1; }
+
+$addgroup=1;
+foreach($chassis_subwoofer as $x)
+{	
+	if($addgroup==1){ $chassis_stuff[]="group"; $addgroup=2; }
+	if((stripos($x,"1 x subwoofer"))!==FALSE)
+	{ $chassis_stuff[]=$x; $chassis_stuff[]="1x__W subwoofer"; $chassis_stuff[]="1x___W subwoofer"; $x="1x_W subwoofer"; }
+	
+	if((stripos($x,"2 x subwoofer"))!==FALSE)
+	{ $chassis_stuff[]=$x; $chassis_stuff[]="2x__W subwoofer"; $chassis_stuff[]="2x___W subwoofer"; $x="2x_W subwoofer"; }
 
 	$chassis_stuff[]=$x;
 }
@@ -514,7 +527,6 @@ foreach($addmsc as $key=>$addtomsc)
 {
 	$chassis_extra_stuff[$key]=$addtomsc;
 }
-
 
 /* *** WNET *** */
 //speed

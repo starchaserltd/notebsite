@@ -1,3 +1,5 @@
+.advspace{margin-top:5px;}
+.advspace1{margin-top:12px;}
 .blue{background-color:#285f8f}
 .yellow {background-color:#ffd466} 
 
@@ -229,6 +231,15 @@ background: #B8B8B8!important;}
 			z-index: 2!important;}
 			
 .loadingdivsec{border-radius:20px}			
+
+
+.loadingdivquiz{
+				background: rgba(122, 130, 136, 0.2)!important;
+				height:90%;
+				vertical-align: middle;
+				display:flex;
+				z-index: 2!important;
+}
 			
 /* STYLING FOR LAPTOP MODEL SEARCH */
 .select2-container--default .select2-search--dropdown .select2-search__field{border: 1px solid #285f8f;}

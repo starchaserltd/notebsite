@@ -42,20 +42,7 @@ function locationHashChanged() {
    	trigger=1;
  }
 
-
-
-setInterval(function()
-{
-    if (currentPage !== window.location.href)
-    {
-		// page has changed, set new page as 'current'
-        currentPage = window.location.href;
-        //console.log("");
-		locationHashChanged();
-    }
-}, 50);
-
-
+setInterval(function(){ if (currentPage !== window.location.href) { currentPage = window.location.href; locationHashChanged(); } }, 50);
 
 function urlrequest(url,e,dontpush)
 {
@@ -174,8 +161,8 @@ $(document).ready(function(){
 			scrolltoid('content');
 			$('#loadingNB').show();
             trigger=0;
-			console.log($(this).val());
-            url = "model/model.php" + "?model_id=" + $(this).val();
+			url = "model/model.php" + "?model_id=" + $(this).val();
+			$("#model_id").val(null).trigger("change");
 			OpenPage(url,1,0);        
     });
 	
@@ -336,7 +323,7 @@ $(document).ready(function(){
 		
 		var urlParts = window.location.href.split('?');		
         var first = 0;
-        var currentpage = "";
+        var currentpage = ""; excode=exchange;
 		
         if (urlParts[1] == "undefined") {
             var currentpage='content/home.php';
@@ -380,14 +367,9 @@ $(document).ready(function(){
 		else
 		{
 			if(urlexchange!=null)
-			{ 
-			newpage=currentpage.replace((urlexchange[1]),(exadv+exchange));
-				
-			}
+			{ newpage=currentpage.replace((urlexchange[1]),(exadv+exchange)); }
 			else
-			{
-				newpage=currentpage+"&"+exadv+exchange;	
-			}
+			{ newpage=currentpage+"&"+exadv+exchange; }
 		}
 		return newpage;
 	}
@@ -444,4 +426,21 @@ $('html,body').animate({scrollTop: $("#"+id).offset().top},'slow');
 $(".btn-group > .btn-sus").click(function(){
     $(".btn-group > .btn-sus").removeClass("active");
     $(this).addClass("active");
-	});	
+	});
+
+//FIELD SEARCH FOR SELECT2	
+function triggerchange(el,seltext,match_type)
+{
+	var i=0; var found=0;
+	while( el.select2("val")[i]!==undefined)
+	{
+		switch(el.select2("val")[i])
+		{
+			case seltext:
+			{	found=1; break; }
+		}
+		i++;
+	}
+	if(found && match_type==0 && i>1) { found =0; }
+	return found;
+}

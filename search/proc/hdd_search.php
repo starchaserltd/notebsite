@@ -165,7 +165,7 @@ function search_hdd ($model, $capmin, $capmax, $type, $readspeedmin, $readspeedm
 	// DO THE SEARCH
 	# echo "Query to select the HDDs:";
     # echo "<br>";
-	#echo "<pre>" . $sel_hdd . "</pre>";
+	# echo "<pre>" . $sel_hdd . "</pre>";
 	
 	$result = mysqli_query($GLOBALS['con'], "$sel_hdd");
 	$hdd_return = array();

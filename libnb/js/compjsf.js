@@ -1,4 +1,5 @@
 nrcheckchange=-1;
+excode="USD";
 
 function addcomplink(idstring)
 {
@@ -17,7 +18,7 @@ function addcomplink(idstring)
 				complink=complink+"&"+"conf"+i+"="+match[2];
 				i++;
 			}
-			else
+			else if (match[1] !== "ex")
 			{
 				if(k)
 				{ complink=complink+"&conf"+i+"="+idstring; k=0; i++;}
@@ -31,8 +32,8 @@ function addcomplink(idstring)
 		if(k) { complink=complink+"&conf"+i+"="+idstring; k=0; }
 	}
 
-	if(k)
-	{ complink=complink+"&conf"+i+"="+idstring; k=0; }
+	if(k){ complink=complink+"&conf"+i+"="+idstring; k=0; }
+	if(complink[0]==="&") { complink=complink.substr(1);}
 }
  
  
@@ -50,13 +51,13 @@ function removecomplink(idstring)
 			if(match[2]!==idstring)
 			{ complink=complink+"&"+"conf"+i+"="+match[2]; i++; }
 		}
-		else
+		else if (match[1] !== "ex")
 		{
 			complink=complink+"&"+match[1]+"="+match[2];
 		}
 		match = Regexp.exec(complinkold);
 	}
-	
+	if(complink[0]==="&") { complink=complink.substr(1);}	
 }
 
 // ADD TO COMPARE FUNCTION 
@@ -103,7 +104,7 @@ function removecomplink(idstring)
 	
 setInterval(function()
 {
-	if(nrcheckchange!=nrcheck || nrcheckchange<0)
+	if((nrcheckchange!=nrcheck || nrcheckchange<0)||(excodechange!=excode))
 	{
 		if(nrcheck < 1)		
 		{
@@ -112,10 +113,11 @@ setInterval(function()
 		}
 		else
 		{
-			elementtext='<tr id="toptrcomp"><td  colspan="3" style="border:0px;background-color:#fff; text-align:center; margin-top:-5px;"><button onmousedown="firstcompare=0; OpenPage('+"'model/comp.php?"+complink+"',event); scrolltoid('content');"+'" style="padding:2% 25%;border-radius:0px; background-color:#285f8f; color:#fff;margin-top:5px;" type="button" class="btn">Compare now</button></td></tr>';
+			elementtext='<tr id="toptrcomp"><td  colspan="3" style="border:0px;background-color:#fff; text-align:center; margin-top:-5px;"><button onmousedown="firstcompare=0; OpenPage('+"'model/comp.php?"+complink+"&ex="+excode+"',event); scrolltoid('content');"+'" style="padding:2% 25%;border-radius:0px; background-color:#285f8f; color:#fff;margin-top:5px;" type="button" class="btn">Compare now</button></td></tr>';
 			$('table#comparelist tr#toptrcomp').replaceWith(elementtext);
 		}
 		nrcheckchange=nrcheck;
+		excodechange=excode;
 	}
 }, 100);
 	

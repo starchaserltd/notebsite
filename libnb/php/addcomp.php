@@ -92,7 +92,7 @@ if($already)
 	else
 	{
 		mysqli_select_db($con,"notebro_db");
-		$sql="SELECT fam, model, submodel FROM MODEL WHERE id=".$conf_model;
+		$sql="SELECT families.fam, model.model, model.submodel FROM notebro_db.MODEL model JOIN notebro_db.FAMILIES families on model.idfam=families.id WHERE model.id=".$conf_model;
 		$result = mysqli_query($con,$sql);
 
 		while ($row = mysqli_fetch_assoc($result)) { if(strlen($row["submodel"])>6 && !preg_match("/\(.*\)/",$row["submodel"])){ $row["submodel"]=substr($row["submodel"],0,6)."."; } $name=$row["fam"]." ".$row["model"]." ".$row["submodel"]; }

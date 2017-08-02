@@ -6,6 +6,15 @@
 	margin:auto;
 }
 
+#loadingNoteBquiz{
+	position:relative;
+	width:390px;
+	height:47px;
+	margin:auto;
+	overflow: hidden;
+}
+
+
 .loadingNoteB{
 	position:absolute;
 	top:0;

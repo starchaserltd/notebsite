@@ -208,7 +208,7 @@ function search_mdb ($prod, $model, $ramcap, $gpu, $chip, $socket, $interface, $
 	$i=0;
 	if(gettype($misc)!="array") { $misc=(array)$misc; }
 	foreach($misc as $x)
-	{
+	{ 
 		if($i)
 		{ /*if ($x = "G-sync" or $x = "Freesync") 
 			{$sel_mdb.=" OR ";} else {$sel_mdb.=" AND ";}*/
@@ -294,7 +294,7 @@ function search_mdb ($prod, $model, $ramcap, $gpu, $chip, $socket, $interface, $
 	// DO THE SEARCH
 	# echo "Query to select the MDBs:";
     # echo "<br>";
-	#echo "<pre>" . $sel_mdb . "</pre>";
+	# echo "<pre>" . $sel_mdb . "</pre>";
 	
 	$result = mysqli_query($GLOBALS['con'], "$sel_mdb");
 	$mdb_return = array();

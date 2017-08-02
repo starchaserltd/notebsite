@@ -5,7 +5,8 @@ $temp_table = "all_conf";
 /* GETTING EXCHANGE LIST */
 $result = mysqli_query($GLOBALS['con'], "SELECT code,sign, ROUND( convr, 5 ) convr FROM notebro_site.exchrate"); 
 $exchangelist = mysqli_fetch_all($result);
-
+$result = mysqli_query($GLOBALS['con'], "SELECT id,disp FROM notebro_db.REGIONS"); 
+while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 ?>
 
 <div class="row container-fluid headerback" style="margin-right:0px;padding-right: 0px;">
@@ -68,9 +69,10 @@ $exchangelist = mysqli_fetch_all($result);
 							<?php
 								echo $prod; echo " ";
 								echo $fam; echo " ";
-								echo $model; echo " ";
+								echo $model; echo " ";			
 								show('submodel','MDB',$rand['mdb'] );
-								if(isset($submodel) && strlen($submodel)>0){ echo " ".$submodel; }
+								$sspace=1; if(isset($submodel) && strlen($submodel)>0){ echo " ".$submodel; $sspace=0; }
+								if(($region_m_id==0 || $dispregion==1)&&($region_m_id!=1)) {  if($sspace){ echo " "; } echo "(".$regions[$region_m_id].")"; }
 							?>
 						</p>
 					</a>
@@ -164,6 +166,6 @@ $exchangelist = mysqli_fetch_all($result);
 <?php
 		} mysqli_close($cons);
 ?>
-<script type="text/javascript">
+<script type="text/javascript"> excode='<?php echo $_SESSION['exchcode']; ?>';
 $.getScript("../lib/js/jquery.matchHeight-min.js").done(function(){ $.getScript("search/lib/js/results.js"); });
 </script>

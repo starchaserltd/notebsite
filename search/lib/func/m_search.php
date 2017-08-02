@@ -58,18 +58,18 @@ if($keysparts)
 }
 
 	if(isset($prod2[0]) && $prod2[0])
-	{ $prodsel=" AND prod LIKE '".implode("' prod LIKE '",$prod2)."'";} else { $prodsel=""; }
+	{ $prodsel=" AND model.prod LIKE '".implode("' model.prod LIKE '",$prod2)."'";} else { $prodsel=""; }
 
 if($keysparts)
 {
 	if(!isset($keysparts[current(array_keys($keysparts))])){ $keysparts[current(array_keys($keysparts))]="";}
 	if(isset($keysparts[current(array_keys($keysparts))+1]))
 	{
-		$sel="SELECT DISTINCT fam FROM notebro_db.MODEL WHERE fam LIKE '%".$keysparts[current(array_keys($keysparts))]." ".$keysparts[current(array_keys($keysparts))+1]."%'";
+		$sel="SELECT DISTINCT families.fam FROM notebro_db.MODEL model JOIN notebro_db.FAMILIES families  ON model.idfam=families.id WHERE families.fam LIKE '%".$keysparts[current(array_keys($keysparts))]." ".$keysparts[current(array_keys($keysparts))+1]."%'";
 	}
 	else
 	{
-		$sel="SELECT DISTINCT fam FROM notebro_db.MODEL WHERE fam LIKE '%".$keysparts[current(array_keys($keysparts))]." %'";
+		$sel="SELECT DISTINCT families.fam FROM notebro_db.MODEL model JOIN notebro_db.FAMILIES families ON model.idfam=families.id WHERE families.fam LIKE '%".$keysparts[current(array_keys($keysparts))]." %'";
 	}
 	
 	$sel.=$prodsel;
@@ -78,7 +78,7 @@ if($keysparts)
 	
 	if($result!==FALSE && mysqli_num_rows($result)==0)
 	{
-		$sel="SELECT DISTINCT fam FROM notebro_db.MODEL WHERE fam LIKE '".implode("%' OR fam LIKE '",$keysparts)."%'";
+		$sel="SELECT DISTINCT families.fam FROM notebro_db.MODEL model JOIN notebro_db.FAMILIES families ON model.idfam=families.id WHERE families.fam LIKE  '".implode("%' OR families.fam LIKE '",$keysparts)."%'";
 		$sel.=$prodsel;
 		$result = mysqli_query($con, $sel);
 	}
@@ -102,24 +102,24 @@ if($keysparts)
 }
 
 if(isset($fam2[0]) && $fam2[0])
-{ $famsel=" AND prod LIKE '".implode("' prod LIKE '",$prod2)."'";} else { $famsel=""; }
+{ $famsel=" AND model.prod LIKE '".implode("' model.prod LIKE '",$prod2)."'";} else { $famsel=""; }
 
 if($keysparts)
 {
 	if(!isset($keysparts[current(array_keys($keysparts))])){ $keysparts[current(array_keys($keysparts))]="";}
 	if(isset($keysparts[current(array_keys($keysparts))+1]))
 	{
-		$sel="SELECT model FROM notebro_db.MODEL WHERE fam LIKE '%".$keysparts[current(array_keys($keysparts))]." ".$keysparts[current(array_keys($keysparts))+1]."%'";
+		$sel="SELECT model.model FROM notebro_db.MODEL model JOIN notebro_db.FAMILIES families ON model.idfam=families.id WHERE families.fam LIKE '%".$keysparts[current(array_keys($keysparts))]." ".$keysparts[current(array_keys($keysparts))+1]."%'";
 	}
 	else
 	{
-		$sel="SELECT DISTINCT fam FROM notebro_db.MODEL WHERE fam LIKE '%".$keysparts[current(array_keys($keysparts))]." %'";
+		$sel="SELECT DISTINCT families.fam FROM notebro_db.MODEL model JOIN notebro_db.FAMILIES families ON model.idfam=families.id WHERE families.fam LIKE '%".$keysparts[current(array_keys($keysparts))]." %'";
 	}
 	$sel.=$prodsel;
 	$result = mysqli_query($con, $sel);
 	if($result!==FALSE && mysqli_num_rows($result)==0)
 	{
-		$sel="SELECT model FROM notebro_db.MODEL WHERE model LIKE '%".implode("%' OR model LIKE '%",$keysparts)."%'";
+		$sel="SELECT DISTINCT model.model FROM notebro_db.MODEL model JOIN notebro_db.FAMILIES families ON model.idfam=families.id WHERE model.model LIKE '%".implode("%' OR model.model LIKE '%",$keysparts)."%'";
 		$sel.=$famsel;
 		$sel.=$prodsel;
 		$result = mysqli_query($con, $sel);
@@ -144,25 +144,25 @@ if($keysparts)
 }
 	
 // CONSTRUCTING THE SEARCH QUERY
-$sel="SELECT id,prod,fam,model,mdb,submodel FROM `MODEL`";
+$sel="SELECT model.id, model.prod,families.fam,model.model,model.mdb,model.submodel,model.regions,families.subfam,families.showsubfam FROM notebro_db.MODEL model JOIN notebro_db.FAMILIES families ON model.idfam=families.id";
 $i=0;
 if(isset($prod) && $prod)
 {
 	if($i) { $sel.=" AND"; } else { $sel.=" WHERE"; };
-	$sel=$sel." prod IN ('".implode("','",$prod2)."')";
+	$sel=$sel." model.prod IN ('".implode("','",$prod2)."')";
 	$i=1;
 }
 if(isset($fam) && $fam)
 {
 	if($i) { $sel.=" AND"; } else { $sel.=" WHERE"; };
-	$sel=$sel." fam IN ('".implode("','",$fam2)."')";
+	$sel=$sel." families.fam IN ('".implode("','",$fam2)."')";
 	$i=1;
 }
 
 if(isset($model) && $model)
 {
 	if($i) { $sel.=" AND"; } else { $sel.=" WHERE"; };
-	$sel=$sel." model IN ('".implode("','",$model2)."')";
+	$sel=$sel." model.model IN ('".implode("','",$model2)."')";
 	$i=1;
 }
 		
@@ -171,6 +171,7 @@ $result = mysqli_query($con, $sel);
 $list = array();
 while($rand = mysqli_fetch_row($result)) 
 { 
+	$region="";
 	//GETTING MDB SUBMODEL
 	preg_match("/[^,]*/",$rand[4],$id);
 	$sel="SELECT submodel FROM notebro_db.MDB WHERE id=".$id[0]." AND ( submodel NOT LIKE '%submodel%' AND submodel NOT LIKE '%tandard%') LIMIT 1";
@@ -180,9 +181,14 @@ while($rand = mysqli_fetch_row($result))
 		$mdb_submodel=mysqli_fetch_row($result2);
 		if($mdb_submodel){ $mdb_submodel=" ".$mdb_submodel[0];}
 	}
+	
+	if(intval($rand[8])==1) { $rand[2]=$rand[2]." ".$rand[7]; }
 	if(strlen($rand[5])>6 && !preg_match("/\(.*\)/",$rand[5])){ $rand[5]=substr($rand[5],0,6)."."; } 
+	$regions=array(); $regions=explode(",",$rand[6]); $show_reg=1;
+	foreach($regions as $el) { if(intval($el)===1 || intval($el)===0 ) { $show_reg=0; } }
+	if($show_reg) { $sel_r="SELECT disp FROM notebro_db.REGIONS WHERE id=".$regions[0]." LIMIT 1"; $result_r = mysqli_query($con, $sel_r); $region=mysqli_fetch_array($result_r); $region["disp"]="(".$region["disp"].")"; }
 	//SENDING THE RESULTS
-	$list[]=["id"=>intval($rand[0]),"model"=>strval($rand[1]." ".$rand[2]." ".$rand[3]." ".$rand[5].$mdb_submodel)];
+	$list[]=["id"=>intval($rand[0]),"model"=>strval($rand[1]." ".$rand[2]." ".$rand[3]." ".$rand[5].$mdb_submodel.$region["disp"])];
 }
 mysqli_free_result($result);
 				

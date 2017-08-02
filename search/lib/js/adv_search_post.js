@@ -11,7 +11,6 @@ function sliderrangeadv(old)
 	var x = Math.round($('#bdgminadv').val());
 	var y = Math.round($('#bdgmaxadv').val());
 	y=Math.round(y/old*t);
-	y=Math.round(y/old*t);
 	x=Math.round(x/old*t);
 
 	minbadv=Math.round(minbudgetnomenadv*t); maxbadv=Math.round(maxbudgetnomenadv*t);
@@ -596,7 +595,7 @@ document.getElementById('web').noUiSlider.on('update', function( values, handle 
 							
 	if(handle==0) {	document.getElementById('webmin').value=left;  }
 	if(handle==1) {	document.getElementById('webmax').value=right; }
-	document.getElementById('webval').innerHTML=left+" - "+right+" Mb";
+	document.getElementById('webval').innerHTML=left+" - "+right+" MP";
 });	
 				
 //CREATE WARRANTY SLIDER						
@@ -719,7 +718,11 @@ $(document).ready(function()
 			document.getElementById('gpupower').removeAttribute('disabled', true);
 			document.getElementById('gpulaunchdate').removeAttribute('disabled', true);
 			if(jQuery.isEmptyObject($('#gputype2').val())) { $('#gputype2').val(["1","2","4"]); $('#gputype2').multiselect("refresh"); };
-		}
+			
+			var gpusel = $('#gputype2 option:selected'); var selected = [];
+			$(gpusel).each(function(index, gpusel){ selected.push([$(this).val()].toString()); });
+			filtersearch("gputype2",selected,2);
+		}	
 	});
 	
 	$('#GPU_prod_id').multiselect(btnsearch);
@@ -730,7 +733,25 @@ $(document).ready(function()
 		var selected = [];
 		$(gpusel).each(function(index, gpusel){ selected.push([$(this).val()].toString()); });
 		filtersearch(gpup,selected,2);
-		});
+	});
+	
+	$('#gputype2').change(function(){
+		var idgpu=$(this).attr('id');
+		var gpusel = $('#gputype2 option:selected');
+		var selected = [];
+		$(gpusel).each(function(index, gpusel){ selected.push(parseInt([$(this).val()].toString())); });
+		filtersearch(idgpu,selected,2);
+		
+		gpu_model_selected=$('#GPU_model_id').select2('data');
+		for (var key in gpu_model_selected)
+		{
+			var obj=gpu_model_selected[key];
+			if(selected.indexOf(obj["prop"])<0)
+			{
+				$('#GPU_model_id [value='+'"'+obj["text"]+'"'+']')[0].remove();
+			}
+		}
+	});
 	
 	$("input[name=gputype]:radio").change();
 	$('#DISPLAY_ratio_id').multiselect(btnsearch);
@@ -741,7 +762,7 @@ $(document).ready(function()
 		var selected = [];
 		$(dispsel).each(function(index, dispsel){ selected.push([$(this).val()].toString()); });
 		filtersearch(iddisp,selected,2);
-		});
+	});
 		
 	$('#surface').multiselect(btnsearch);
 	$('#rpm').multiselect(btnsearch);
@@ -780,4 +801,45 @@ $(document).ready(function()
 	$('#opsist').multiselect(btnsearch);
 	
 	actbtn("SEARCH");
+});
+
+function setrecommended()
+{
+	var t = parseFloat(currency_val[$('#currencyadv').val()]);
+	var x = Math.round(550*t);	var y = Math.round(1100*t);
+	document.getElementById('budgetadv').noUiSlider.set([x,y]); $('#bdgminadv').val(roundlimitadv(x)); $('#bdgmaxadv').val(roundlimitadv(y));	
+	document.getElementById('display').noUiSlider.set([13.1,15.6]);  document.getElementById('verres').noUiSlider.set([1080,99999]);
+	var i=0; el=$('#DISPLAY_msc_id'); texttoapp='<option selected="selected">LED IPS</option><option selected="selected">LED IPS PenTile</option><option selected="selected">LED TN WVA</option><option selected="selected">OLED</option>';
+	while( el.select2("val")[i]!==undefined)
+	{
+		switch(el.select2("val")[i])
+		{
+			case "LED IPS":
+			{	texttoapp = texttoapp.replace('<option selected="selected">LED IPS</option>', ""); break; }
+			case "LED IPS PenTile":
+			{	texttoapp = texttoapp.replace('<option selected="selected">LED IPS PenTile</option>', ""); break; }
+			case "LED TN WVA":
+			{	texttoapp = texttoapp.replace('<option selected="selected">LED TN WVA</option>', ""); break; }
+			case "OLED":
+			{	texttoapp = texttoapp.replace('<option selected="selected">OLED</option>', ""); break; }
+		}
+		i++;
+	}
+	$('#DISPLAY_msc_id').append(texttoapp);
+	document.getElementById('capacity').noUiSlider.set([31,99999]); $('#typehdd').multiselect('select',"SSD"); $('#nrhdd').val(3); $("#nrhdd").multiselect("refresh");
+	document.getElementById('ram').noUiSlider.set([8,99999]);
+	 $('#opsist').multiselect('select',"Windows 10 Home"); $('#opsist').multiselect('select',"Windows 10 Pro"); $('#opsist').multiselect('select',"Windows 10 S"); $('#opsist').multiselect('select',"macOS 10.12"); $('#opsist').multiselect('select',"Chrome OS 1");
+	return;
+}
+
+$('#Regions_name_id').on("select2:select", function(e){ 
+   if(triggerchange($('#Regions_name_id'),"Europe",0))
+   { if(document.getElementById('years').noUiSlider.get()[0]<2) { document.getElementById('years').noUiSlider.set([2,]); } }
+});
+
+$('#Regions_name_id').on("select2:unselect", function(e){ 
+   if(triggerchange($('#Regions_name_id'),"Europe",0))
+   { if(document.getElementById('years').noUiSlider.get()[0]<2) { document.getElementById('years').noUiSlider.set([2,]); } }
+   else
+   { if(document.getElementById('years').noUiSlider.get()[0]==2) { document.getElementById('years').noUiSlider.set([1,]); } }
 });

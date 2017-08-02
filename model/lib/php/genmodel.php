@@ -553,7 +553,11 @@ function show_sist ($model)
 /* SELECT AND SHOW VARIOUS ELEMENTS */
 function show_vars($col, $tab, $id)
 {
-	$sel2 = "SELECT $col FROM $tab WHERE id = $id LIMIT 1"; 
+	if(stripos($tab,"JOIN")!==FALSE)
+	{ $sel2 = "SELECT $col FROM $tab WHERE model.id = $id LIMIT 1"; }
+	else
+	{ $sel2 = "SELECT $col FROM $tab WHERE id = $id LIMIT 1"; }
+
 	$rea = mysqli_query($GLOBALS['con'], $sel2);
 	$resu = mysqli_fetch_array($rea);
 	

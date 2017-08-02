@@ -35,6 +35,7 @@ $(".multisearch").each(function()
 					return {
 						id: properid(item, $idtype),
                         text: item.model ,
+						prop: extrainfo(item,names[0]+"_"+names[1]),
 						disabled: more(item.id)
                     }
 				})
@@ -54,6 +55,22 @@ function properid(item, idmodel)
 	{ return item.model;}
 }
 
+function extrainfo(data, item)
+{
+	switch(item)
+	{
+		case "GPU_model":
+		{
+			return data.typegpu;
+			break;
+		}
+		default:
+		{
+			return false;
+		}	
+	}
+}
+
 function more(id)
 {
 	if(id<0)
@@ -65,6 +82,7 @@ function more(id)
 function filtersearch(id,filter,type)
 {
 	$element=$('#'+id);
+	//console.log(id);
 	el_id=$element.attr('data-lcom');
 	field=$element.attr('data-lfield');
 	

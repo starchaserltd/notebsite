@@ -8,9 +8,29 @@ require_once("../../../etc/con_db.php");
 require_once("../../../etc/con_sdb.php");
 require_once("../php/gencompfunc.php");
 
-if(isset($_SESSION['exchcode'])){ $exchcode=$_SESSION['exchcode']; } else {$exchcode="USD";} 
-if(isset($_SESSION['exchsign'])){ $exchsign=$_SESSION['exchsign']; } else {$exchsign="$";} 
-if(isset($_SESSION['exch'])){ $exch=$_SESSION['exch']; } else { $exch=1; }
+if(isset($_SESSION['excomp']))
+{
+	$exchcode=$_SESSION['excomp']; $_SESSION['exchcode']=$exchcode;
+	$query=mysqli_query($con,"SELECT * FROM notebro_site.exchrate");
+	while( $row=mysqli_fetch_assoc($query))
+	{
+		if($row["code"]==$exchcode)
+		{
+			$lang=$row["id"]; $_SESSION['lang']=$lang;
+			$exch=floatval($row["convr"]); $_SESSION['exch']=$exch;
+			$exchsign=$row["sign"]; $_SESSION['exchsign']=$exchsign;
+			break;
+		}
+	}
+}
+else 
+{ 
+	if(isset($_SESSION['lang'])) { $lang=$_SESSION['lang']; } else { $lang=0; }
+	if(isset($_SESSION['exchcode'])){ $exchcode=$_SESSION['exchcode']; } else {$exchcode="USD";} 
+	if(isset($_SESSION['exchsign'])){ $exchsign=$_SESSION['exchsign']; } else {$exchsign="$";} 
+	if(isset($_SESSION['exch'])){ $exch=$_SESSION['exch']; } else { $exch=1; }
+} 
+
 $delshdd=1; $delodd=1;
 
 $nrconf= $_SESSION['java_nrconf']; $nrgetconfs=$_SESSION['java_nrgetconfs']; $getconfs=$_SESSION['java_getconfs']; $idconf=$_SESSION['java_idconf'];
@@ -47,7 +67,7 @@ for($x = 0; $x <= $nrconf; $x++)
 ?>
 	<!-- HEADER CSS -->
 <?php 
-	show('MODEL',$conf_model ); 
+	show('notebro_db.MODEL model JOIN notebro_db.FAMILIES families on model.idfam=families.id',$conf_model ); 
 	if(isset($getconfs[$x])){ $cfg_id=$getconfs[$x];  } else { $cfg_id=$_SESSION['conf'.$idconf[$x]]["id"]; }
 
 	preg_match('/(.*)\.(jpg|png)/', $resu["img_1"],$img);
@@ -55,7 +75,7 @@ for($x = 0; $x <= $nrconf; $x++)
 	$maxminvalues=bluered(floatval($rate_conf_rate),$maxminvalues,$x,"rating",0);
 	$maxminvalues=bluered(floatval($price_conf_price),$maxminvalues,$x,"price",1);
 	$maxminvalues=bluered(floatval($batlife_conf_batlife),$maxminvalues,$x,"batlife",0);
-	$model_title='<a href="?model/model.php'."?conf=".$confid.'"><span class="tbltitle">'.$resu['prod']." ".$resu['fam']." ".$resu['model'].$resu['mdbname']." ".$resu['submodel'].'</span></a>';
+	$model_title='<a href="?model/model.php'."?conf=".$confid.'"><span class="tbltitle">'.$resu['prod']." ".$resu['fam']." ".$resu['model'].$resu['mdbname']." ".$resu['submodel'].$resu['region'].'</span></a>';
 	$vars=array(
 		'<a style="align-items:center; margin:0 auto" href="?model/model.php'."?conf=".$confid.'">'.'<img src="res/img/models/thumb/t_'.$img.'.jpg" class="img-responsive comparejpg" alt="Image for '.$resu['model'].'"></a>',
 		$model_title,
@@ -69,7 +89,7 @@ for($x = 0; $x <= $nrconf; $x++)
 	$danvar="'".$danvar."'";
 ?>
 	var array_var=[<?php echo $danvar; ?>];
-	document.title = document.title + <?php if($x>0) { echo "' vs '";} else { echo "' '"; } ?> + '<?php echo $resu['prod']." ".$resu['fam']." ".$resu['model']; ?> '; 
+	document.title = document.title + <?php if($x>0) { echo "' vs '";} else { echo "' '"; } ?> + '<?php echo $resu['prod']." ".$resu['fam']." ".$resu['model']; ?> '; excode='<?php echo  $exchcode ?>';
 	addcolumn(array_var,"HEADER_table",""); 
 	<!-- CPU -->
 <?php 

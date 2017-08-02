@@ -256,7 +256,9 @@ function showHDD(str)
 				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
 				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
 				
-				if(shdd["id"]!=0) { if(hdd["model"].indexOf("M.2")<0) { showSHDD(0); setselectedcomp("SHDD", 0) } }
+				var mdb_hdd=0
+				if( document.getElementById("mdb_hdd").innerText.toLowerCase().indexOf("2 x sata") >= 0) { mdb_hdd=1; } 
+				if(shdd["id"]!=0) { if  ((( mdb_hdd==0 && hdd["model"].indexOf("M.2")<0)||( mdb_hdd==1 && hdd["model"].indexOf("SSD")<0))&& document.getElementsByName("SHDD")[0]!==undefined ) { showSHDD(0); setselectedcomp("SHDD", 0) } }
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/hdd.php?q="+str,true);
@@ -662,7 +664,7 @@ function getconf(comp,id,exactconf)
 {
 
 	var cpu_id=cpu["id"]; var display_id=display["id"]; var mem_id=mem["id"]; var hdd_id=hdd["id"];  var shdd_id=shdd["id"]; var gpu_id=gpu["id"]; var wnet_id=wnet["id"]; var odd_id=odd["id"]; var mdb_id=mdb["id"]; var chassis_id=chassis["id"]; var acum_id=acum["id"]; var war_id=war["id"]; var sist_id=sist["id"];  var 
-	confdata = {}; var success=false; var go=false;
+	confdata = {}; var success=false; var go=false; var mdb_hdd=0;
 	switch(comp)
 	{
 		case "CPU":
@@ -672,7 +674,7 @@ function getconf(comp,id,exactconf)
 		case "MEM":
 		{ prev_id=mem_id; mem_id=id; if(mem["id"]===undefined) { go=true; }  break; }
 		case "HDD":
-		{ prev_id=hdd_id; hdd_id=id; if(hdd["id"]===undefined) { go=true; } hdd_el=document.getElementsByName("HDD")[0]; for ( var i = 0; i < hdd_el.options.length; i++ ) { if ( hdd_el.options[i].value == hdd_id && hdd_el.options[i].text.toLowerCase().indexOf("M.2") < 0) { shdd_id=0; } } break; } 
+		{ prev_id=hdd_id; hdd_id=id; if(hdd["id"]===undefined) { go=true; } hdd_el=document.getElementsByName("HDD")[0]; if( document.getElementById("mdb_hdd").innerText.toLowerCase().indexOf("2 x sata") >= 0) { mdb_hdd=1; } for ( var i = 0; i < hdd_el.options.length; i++ ) { if ( hdd_el.options[i].value == hdd_id && ((mdb_hdd==0 && hdd_el.options[i].text.toLowerCase().indexOf("M.2") < 0) || (mdb_hdd && hdd_el.options[i].text.toLowerCase().indexOf("SSD") < 0 ) ) ) { shdd_id=0; } } break; } 
 		case "SHDD":
 		{ prev_id=shdd_id; shdd_id=id; if(shdd["id"]===undefined) { go=true; }  break; }
 		case "GPU":
@@ -718,7 +720,15 @@ function getconf(comp,id,exactconf)
 					document.getElementById('config_price1').innerHTML=parseInt((confdata["cprice"]-confdata["cerr"]/2)*exch);
 					document.getElementById('config_price2').innerHTML=parseInt((confdata["cprice"]+confdata["cerr"]/2)*exch);
 					var stateObj = { no: "empty" };
-					history.replaceState(stateObj, confdata["cid"], "?model/model.php?conf="+confdata["cid"]);
+					//conf=(\d*)(\&|$)
+					if(currentPage.match(/(conf=)(\d+)(.*)/i)!==null)
+					{ 
+						history.replaceState(stateObj, confdata["cid"], currentPage.replace(/(conf=)(\d+)(.*)/i,"$1"+confdata["cid"]+"$3"));
+						if(currentPage.match(/(ex=)(.*)/i)===null)
+						{ history.replaceState(stateObj, confdata["cid"]+" "+excode, currentPage+"&ex="+excode); }
+					}
+					else
+					{ history.replaceState(stateObj, confdata["cid"], "?model/model.php?conf="+confdata["cid"]+"&ex="+excode); }	
 					currentPage = window.location.href;
 					
 					switch(comp)
@@ -753,42 +763,52 @@ function getconf(comp,id,exactconf)
 				}
 				else
 				{
-					switch(comp)
+					if(document.getElementsByName(comp)[0]!==undefined)
 					{
-						case "CPU":
-						{ setselectedcomp("CPU",prev_id); break; }  
-						case "DISPLAY":
-						{ setselectedcomp("DISPLAY",prev_id); break; } 
-						case "MEM":
-						{ setselectedcomp("MEM",prev_id); break; } 
-						case "HDD":
-						{ setselectedcomp("HDD",prev_id); break; } 
-						case "SHDD":
-						{ setselectedcomp("SHDD",prev_id); break; } 
-						case "GPU":
-						{ setselectedcomp("GPU",prev_id); break; } 
-						case "WNET":
-						{ setselectedcomp("WNET",prev_id); break; } 
-						case "ODD":
-						{ setselectedcomp("ODD",prev_id); break; } 
-						case "MDB":
-						{ setselectedcomp("MDB",prev_id); break; } 
-						case "CHASSIS":
-						{ setselectedcomp("CHASSIS",prev_id); break; } 
-						case "ACUM":
-						{ setselectedcomp("ACUM",prev_id); break; } 
-						case "WAR":
-						{ setselectedcomp("WAR",prev_id); break; }  
-						case "SIST":
-						{ setselectedcomp("SIST",prev_id); break; } 
+						switch(comp)
+						{
+							case "CPU":
+							{ setselectedcomp("CPU",prev_id); break; }  
+							case "DISPLAY":
+							{ setselectedcomp("DISPLAY",prev_id); break; } 
+							case "MEM":
+							{ setselectedcomp("MEM",prev_id); break; } 
+							case "HDD":
+							{ setselectedcomp("HDD",prev_id); break; } 
+							case "SHDD":
+							{ setselectedcomp("SHDD",prev_id); break; } 
+							case "GPU":
+							{ setselectedcomp("GPU",prev_id); break; } 
+							case "WNET":
+							{ setselectedcomp("WNET",prev_id); break; } 
+							case "ODD":
+							{ setselectedcomp("ODD",prev_id); break; } 
+							case "MDB":
+							{ setselectedcomp("MDB",prev_id); break; } 
+							case "CHASSIS":
+							{ setselectedcomp("CHASSIS",prev_id); break; } 
+							case "ACUM":
+							{ setselectedcomp("ACUM",prev_id); break; } 
+							case "WAR":
+							{ setselectedcomp("WAR",prev_id); break; }  
+							case "SIST":
+							{ setselectedcomp("SIST",prev_id); break; } 
+						}
+						alert("We are sorry, but this configuration is not available on the market.");
 					}
-					alert("We are sorry, but this configuration is not available on the market.");
 				}
 			}			
 		}
 	}
 	xmlhttp.open("GET","model/lib/php/query/getconf.php?c="+mid+"-"+cpu_id+"-"+display_id+"-"+mem_id+"-"+hdd_id+"-"+shdd_id+"-"+gpu_id+"-"+wnet_id+"-"+odd_id+"-"+mdb_id+"-"+chassis_id+"-"+acum_id+"-"+war_id+"-"+sist_id,true);
 	xmlhttp.send();
+}
+
+function setselectedcomp(comp, value)
+{
+	comp=document.getElementsByName(comp)[0];
+	for ( var i = 0; i < comp.options.length; i++ )
+	{ if ( comp.options[i].value == value ) { comp.options[i].selected = true; return; } }
 }
 
 function cpumisc(str) 
@@ -883,31 +903,19 @@ function hourminutes(str)
 
 function makelinks()
 {
-	hotlinkpart0=mprod+"+"+mmodel;
-	hotlinkpart1=hotlinkpart0+"+"+googlelink["cpu"]+"+"+googlelink["mem"];
-	if(mprod.localeCompare("Apple")==0)	{ hotlinkpart0=mprod+"+"+mfamily;  hotlinkpart1=hotlinkpart0+"+"+cpu["clocks"].slice(0, -1)+"GHz"+"+"+googlelink["mem"]; }
-	if(mprod.localeCompare("Clevo")==0) { hotlinkpart0=mmodel; hotlinkpart1=hotlinkpart0+"+"+googlelink["cpu"]+"+"+googlelink["mem"]; }
-	if(mprod.localeCompare("Razer")==0) { hotlinkpart0=mprod+"+"+mfamily;  hotlinkpart1=hotlinkpart0+"+"+googlelink["cpu"]+"+"+googlelink["mem"]; }
-	if(mprod.localeCompare("Dell")==0 || mprod.localeCompare("Lenovo")==0 || mprod.localeCompare("HP")==0) { hotlinkpart0=mprod+"+"+mfamily+"+"+mmodel;  hotlinkpart1=hotlinkpart0+"+"+googlelink["cpu"]+"+"+googlelink["mem"]; }
-	
+
+	hotlinkpart1=keywords+"+"+googlelink["cpu"]+"+"+googlelink["mem"];
+	if(mprod.localeCompare("Apple")==0)	{ hotlinkpart1=keywords+"+"+cpu["clocks"].slice(0, -1)+"GHz"+"+"+googlelink["mem"]; }
 	document.getElementById('amazon_link').href=amazonlink["first"]+hotlinkpart1+amazonlink["second"];
-	
-	document.getElementById('compareeu_link').href=compeulink["first"]+hotlinkpart0+"+"+googlelink["mem"]+compeulink["second"];
-	if(mprod.localeCompare("Clevo")==0)
-	{
-		document.getElementById('compareeu_link').href=compeulink["first"]+"Schenker"+"+"+googlelink["mem"]+compeulink["second"];
-	}
+	document.getElementById('compareeu_link').href=compeulink["first"]+keywords+"+"+googlelink["mem"]+compeulink["second"];
+
+	if(mprod.localeCompare("Apple")==0)	{ document.getElementById('compareeu_link').href=compeulink["first"]+keywords+"+"+googlelink["cpu"]+"+"+googlelink["mem"]+compeulink["second"]; }
+	if(mprod.localeCompare("Razer")==0)	{ document.getElementById('compareeu_link').href=compeulink["first"]+keywords+"+"+compeulink["second"]; }
+	if(mprod.localeCompare("Clevo")==0)	{ document.getElementById('compareeu_link').href=compeulink["first"]+"Schenker"+"+"+googlelink["mem"]+compeulink["second"]; }
 	
 	hotlinkpart1=hotlinkpart1+"+"+googlelink["gpu"].replace(" ","+");
 	hotlinkpart1=hotlinkpart1.replace("++","+");
 	hotlink=countrybuy+"+"+hotlinkpart1+'+'+googlelink["resolution"]+'+'+googlelink["sist"];
 	hotlink=hotlink.replace("++","+"); hotlink=hotlink.replace('+""+','+');
 	document.getElementById('google_link').href=googlelink["first"]+hotlink;
-}
-
-function setselectedcomp(comp, value)
-{
-	comp=document.getElementsByName(comp)[0];
-	for ( var i = 0; i < comp.options.length; i++ )
-	{ if ( comp.options[i].value == value ) { comp.options[i].selected = true; return; } }
 }

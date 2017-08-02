@@ -1,63 +1,38 @@
 <?php
 
-function search_gpu ($typegpumin, $typegpumax, $prod, $model, $arch, $techmin, $techmax, $shadermin, $cspeedmin, $cspeedmax, $sspeedmin, $sspeedmax, $mspeedmin, $mspeedmax, $mbwmin, $mbwmax, $mtype, $maxmemmin, $maxmemmax, $sharem, $powermin, $powermax, $ldmin, $ldmax, $misc, $ratemin, $ratemax, $pricemin, $pricemax, $seltdp)
+function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shadermin, $cspeedmin, $cspeedmax, $sspeedmin, $sspeedmax, $mspeedmin, $mspeedmax, $mbwmin, $mbwmax, $mtype, $maxmemmin, $maxmemmax, $sharem, $powermin, $powermax, $ldmin, $ldmax, $misc, $ratemin, $ratemax, $pricemin, $pricemax, $seltdp)
 {
 
 	if($seltdp>0)
-	$sel_gpu="SELECT id,model,rating FROM notebro_db.GPU WHERE valid=1 ";
+	$sel_gpu="SELECT id,model,rating,typegpu FROM notebro_db.GPU WHERE valid=1 ";
 	else
-	$sel_gpu="SELECT id,model,rating FROM notebro_db.GPU WHERE valid=1 ";
+	$sel_gpu="SELECT id,model,rating,typegpu FROM notebro_db.GPU WHERE valid=1 ";
 	
 // Add Type filter (Integrated / Dedicated / Professional)
 	
-	if ($typegpumin )
+	$i=0; $k=0; $dend=0;
+	if(gettype($typelist)!="array") { $typelist=(array)$typelist; }
+	foreach($typelist as $x)
 	{
-			
-		$b=1;
-		$sel_gpu.=" AND typegpu>=";
-		$sel_gpu.=$typegpumin;
-	
-	}
-	
-		if ($typegpumax )
-	{
-			
-		$b=1;
-		$sel_gpu.=" AND typegpu<";
-		$sel_gpu.=$typegpumax;
-	
-	}
-/*$i=0;
-	if(gettype($gputype)!="array") { $gputype=(array)$gputype; }
-	foreach($gputype as $x)
-	{
-			
+		if($x==0)
+		{
+			$x=1;
+		}
 		if($i)
 		{  
-		$sel_gpu.=" OR ";
+			$sel_gpu.=" OR ";
 		}
 		else
 		{
-			
-		if($b>0)
-		$sel_gpu.=" AND ( ";
-		else
-		$sel_gpu.=" ( ";
+			{ $sel_gpu.=" AND ( "; }
 		}
 
-		$sel_gpu.="gputype='";
+		$sel_gpu.="typegpu='";
 		$sel_gpu.=$x;
 		$sel_gpu.="'";
 		$i++;
-		$b=1;
 	}
-
-	if($i>0)
-		$sel_gpu.=" ) ";
-*/	
-	
-	
-
+	if($i>0) { $sel_gpu.=" ) "; }
 // Add prod to filter	
 	$i=0;
 	if(gettype($prod)!="array") { $prod=(array)$prod; }
@@ -385,9 +360,9 @@ function search_gpu ($typegpumin, $typegpumax, $prod, $model, $arch, $techmin, $
 	{ 
 
 		if($seltdp>0)
-		$gpu_return[]=["id"=>intval($rand[0]), "model"=>(strval($rand[1])."  (".strval(round($rand[2])/10)."/10)")];		
+		$gpu_return[]=["id"=>intval($rand[0]), "model"=>(strval($rand[1])."  (".strval(round($rand[2])/10)."/10)"), "typegpu"=>(intval($rand[3]))];		
 		else
-		$gpu_return[]=["id"=>intval($rand[0]), "model"=>(strval($rand[1])."  (".strval(round($rand[2])/10)."/10)")];	
+		$gpu_return[]=["id"=>intval($rand[0]), "model"=>(strval($rand[1])."  (".strval(round($rand[2])/10)."/10)"), "typegpu"=>(intval($rand[3]))];	
 
 	}
 		mysqli_free_result($result);

@@ -52,7 +52,7 @@ $nrcheck=-1; $j=0; $t=0; $complink=''; $nrconf=0;
 	
 	if($nrcheck==3 && $nrconf>4) { $nrcheck=4; }
 
-	$complink=substr($complink, 0, -1);
+	$complink=substr($complink, 0, -1); if(isset($_SESSION['exchcode'])){ $exchcode=$_SESSION['exchcode']; } else {$exchcode="USD";} 
 	echo "<script> var nrcheck=".$nrcheck."; var complink='".$complink."';"; if($nrcheck>0){ echo "var firstcompare=0;";} 
 	if($nrcheck>-1)
 	{

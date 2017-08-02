@@ -30,54 +30,42 @@ require_once("etc/session.php");
 				<a class="btn btn-sus blue advsearch" >SEARCH</a>
 				<a class="btn btn-sus blue" onmousedown="OpenPage('content/articles.php',event);">ARTICLES</a>
 				<a class="btn btn-sus blue" onmousedown="OpenPage('content/reviews.php',event);">REVIEWS</a>
-				
-			
-		
-		
-				
 			</div>
 		</div>		
 		<!-- right area -->
 		<div class="col-md-2 col-sm-6 socialButton"><!-- min-height:134px;-->
 		<!-- social buttons -->
-		
 			<div class="col-xs-12 col-md-12 col-lg-12" style="padding:0px;">
-			
-			<div class="btn-group" role="group">
-			<button type="button" class="btn btn-sus blue dropdown-toggle" style="width:inherit;margin-left:-1px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			  <span class="socicon-sharethis"></span>
-			  <span class="caret"></span>
-			</button>
-			<div class="dropdown-menu">
-				  <div class="shareText" style="margin:5px;">
-				  Share page on...
-				  </div>
-				  <div class="socialButtons">			
-					  <a class="btn btn-block btn-social btn-facebook" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-facebook']); " id="sharefb" href="">
-					<span class="socicon socicon-facebook sheight"></span> Facebook
-					  </a>
-				  </div>
-				  <div class="socialButtons">
-					 <a class="btn btn-block btn-social btn-twitter" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-twitter']);" id="sharetw" href="">
-					<span class="socicon socicon-twitter sheight"></span> Twitter
-					 </a>
-				  </div>
-				  <div class="socialButtons">
-					 <a class="btn btn-block btn-social btn-google" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-google']);" id="sharegp" href="">
-					<span class="socicon socicon-google-plus sheight"></span> Google
-					 </a>
-				  </div>
-				   <div  class="socialButtons">
-					<a class="btn btn-block btn-social btn-reddit" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-reddit']);" id="sharerd" href="">
-					<span class="socicon socicon-reddit sheight"></span> Reddit
-					</a>
-				  </div>
+				<div class="btn-group" role="group">
+					<button type="button" class="btn btn-sus blue dropdown-toggle" style="width:inherit;margin-left:-1px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<span class="socicon-sharethis"></span>
+						<span class="caret"></span>
+					</button>
+					<div class="dropdown-menu">
+						<div class="shareText" style="margin:5px;"> Share page on... </div>
+						<div class="socialButtons">			
+							<a class="btn btn-block btn-social btn-facebook" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-facebook']); " id="sharefb" href="">
+								<span class="socicon socicon-facebook sheight"></span> Facebook
+							</a>
+						</div>
+						<div class="socialButtons">
+							<a class="btn btn-block btn-social btn-twitter" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-twitter']);" id="sharetw" href="">
+								<span class="socicon socicon-twitter sheight"></span> Twitter
+							</a>
+						</div>
+						<div class="socialButtons">
+							<a class="btn btn-block btn-social btn-google" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-google']);" id="sharegp" href="">
+								<span class="socicon socicon-google-plus sheight"></span> Google
+							</a>
+						</div>
+						<div  class="socialButtons">
+							<a class="btn btn-block btn-social btn-reddit" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-reddit']);" id="sharerd" href="">
+								<span class="socicon socicon-reddit sheight"></span> Reddit
+							</a>
+						</div>
+					</div>
+				</div>
 			</div>
-			</div>
-			
-			</div>
-			
-			
 		<!-- end social buttons -->
 		</div>
 		
@@ -151,7 +139,6 @@ require_once("etc/session.php");
 			</div>
 			<!-- end simple search -->	
 			
-			
 		</div>
 		<!-- end left area-->
 		<!-- main content -->
@@ -196,6 +183,7 @@ require_once("etc/session.php");
 	<link rel="stylesheet" href="lib/css/bootstrap-social.css" type="text/css" />
 	<!-- socicon, bootstrap social - css for social media-->
 	<link rel="stylesheet" href="lib/css/nouislider.min.css" type="text/css"/>
+	<link rel="stylesheet" href="http://86.123.134.36/notebro/lib/css/nouislider.min.css" type="text/css" />
 	<link rel="stylesheet" href="libnb/css/nb.css" type="text/css" />
 	<!--custom OK	-->
 	<link rel="stylesheet" href="libnb/css/responsive.css" type="text/css" />
@@ -205,5 +193,7 @@ require_once("etc/session.php");
 	<script><?php echo 'var siteroot = "'.$web_address.'";'; ?></script>
 	<script type="text/javascript" src="libnb/js/tooltip.js" async></script>
 	<script type="text/javascript" src="libnb/js/index.js"></script>
+	<script type="text/javascript" src="http://86.123.134.36/notebro/lib/js/nouislider.min.js"></script>
+	
 </body>
 </html>

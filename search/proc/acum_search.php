@@ -128,5 +128,6 @@ function search_acum ($tipc, $nrcmin, $nrcmax, $volt, $capmin, $capmax, $pricemi
 	
 	mysqli_free_result($result);
 	return($acum_return);
+	
 }
 ?>

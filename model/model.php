@@ -36,8 +36,10 @@ else
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="font-size:16px; color:#841313;">
 		<strong>
 <?php
-		$_SESSION['model'] = $idmodel;  $mprod=show_vars('prod', 'MODEL',$idmodel); $mfam=show_vars('fam', 'MODEL',$idmodel); $mmodel=show_vars('model', 'MODEL',$idmodel); $msubmodel=show_vars('submodel', 'MODEL',$idmodel);
-			echo $mprod." ".$mfam." ".$mmodel." ".$msubmodel."<br>";
+		$_SESSION['model'] = $idmodel; $model_data=show_vars('model.prod, families.fam, families.subfam, families.showsubfam, model.model,model.submodel,model.regions,model.keywords', 'notebro_db.MODEL model JOIN notebro_db.FAMILIES families ON model.idfam=families.id',$idmodel); $mprod=$model_data["prod"]; if(isset($model_data["subfam"])&&$model_data["showsubfam"]!=0){ $model_data["subfam"]=" ".$model_data["subfam"]; } else { $model_data["subfam"]=""; } $mfam=$model_data["fam"].$model_data["subfam"];  $mmodel=$model_data["model"];  $msubmodel=$model_data["submodel"]; 
+		$mregion_id=intval(explode(",",$model_data['regions'])[0]); if($mregion_id!=1){ $mregion=" (".show_vars("disp","REGIONS",$mregion_id).")"; } else { $mregion=""; } if(isset($model_data["keywords"])&&$model_data["keywords"]!=""&&$model_data["keywords"]!=NULL&&$model_data["keywords"]!=" ") { $keywords=str_replace(",","+",$model_data["keywords"]); } else { switch($mprod) { case "Dell": {$keywords=$mprod."+".$mfam."+".$mmodel; break; } case "Lenovo": {$keywords=$mprod."+".$mfam."+".$mmodel; break; } case "HP": {$keywords=$mprod."+".$mfam."+".$mmodel; break; } default: {$keywords=$mprod."+".$mmodel; } } }
+		
+			echo $mprod." ".$mfam." ".$mmodel." ".$msubmodel.$mregion."<br>";
 ?>			
 			<span id="cpu_title"></span>,
 			<span id="gpu_title"></span>, 
@@ -47,7 +49,7 @@ else
 		</strong>
 	</div>
 <?php 
-	echo "<script> var mprod='".$mprod."'; var mfamily='".$mfam."';  var mmodel='".$mmodel."'; var mid='".$idmodel."';
+	echo "<script> var mprod='".$mprod."'; var mfamily='".$mfam."';  var mmodel='".$mmodel."'; var mid='".$idmodel."'; var keywords='".$keywords."';
 	mmodel=(mmodel.replace(' dGPU','')); mmodel=(mmodel.replace(' FHD','')); mmodel=(mmodel.replace(' HD','')); mmodel=(mmodel.replace(' QHD','')); mmodel=(mmodel.replace(' WWAN','')); mmodel=(mmodel.replace(' vPro',''));
 	metakeys(mprod.replace(' ',',')+','+mfamily.replace(' ',',')+','+mmodel.replace(' ',',')+',notebook,laptop'); exchsign='".showcurrency($exch)."'; document.title = 'Noteb - '+ mprod + ' ' + mfamily + ' ' + mmodel; </script>";
 ?>
@@ -56,14 +58,6 @@ else
 <?php
 		show_vars('img_1,img_2,img_3,img_4','MODEL',$idmodel);
 		$imglist=$show_vars;
-		$imgtext="";
-		foreach($imglist as $img)
-		{
-			if(isset($img))
-			{
-				$imgtext.='<div><img src="res/img/models/thumb'.$img.'" class="img-responsive"/></div>';
-			}
-		} 
 ?> 
 		<div class="modal fade" id="enlargeImageModal" tabindex="-1" role="dialog" aria-labelledby="enlargeImageModal" aria-hidden="true">
 			<div class="modal-dialog modal-lg" role="document">
@@ -107,21 +101,31 @@ else
 			</div>	
 			<div class="col-md-12 col-sm-12 col-xs-12 btn" style="padding:0px;margin-top:2px;">
 				<span class="compmod" id="addcompare" >Add to compare</span>
+				
 			</div>
 		</div>
-		<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" style="padding-left:0px">
-			<div class="col-md-3 col-sm-6 col-xs-6" style="margin-top:20px; padding-left:0px">
+		<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" style="padding:0px" >
+			<div class="col-md-5 col-sm-6 col-xs-12 col-lg-5" style="margin-top:15px; padding:0px;">
 				<a style="font-weight:bold; color:black;text-decoration:none; cursor:pointer;" onclick="scrolltoid('leave_comment');">Leave a comment !</a>
+				<br>
+				<div style="display:flex; margin-top:5px">	
+				<div style="padding:0px; display:flex; align-items:center"><a style="color:black;text-decoration:none; font-weight:bold">Official Site:</a></div>
+				<div class="col-md-7 col-lg-8" style="padding:0 0 0 5px;"><?php $imgprod=mysqli_fetch_array(mysqli_query($con,"SELECT pic,pic2 FROM notebro_site.brands WHERE brand='".$mprod."'")); show_vars('link,link2', 'MODEL',$idmodel );?>
+					<a href="<?php echo $show_vars["link"].'" target="blank"><img src=res/'.$imgprod["pic"].' class="logoheightof" alt="Product consumer page">'; ?></a>
+					<?php if(isset($show_vars["link2"]) && $show_vars["link2"]){ ?><a href="<?php echo $show_vars["link2"].'" target="blank"><img src=res/'.$imgprod["pic2"].' class="logoheightof" style="margin-left:2px" alt="Product business page">'; ?></a> <?php } ?></div>
+				</div>	
 			</div>
-			<div class="col-md-9 col-sm-6 col-xs-6" style="margin-top:20px">     		
+			<div class="col-md-7 col-sm-6 col-xs-12 col-lg-7" style="margin-top:10px; padding:0px;">     		
+			<!-- seller list -->
+				<!--<ul class="list-inline" style="list-style:none;">
+					<li><span class="sellerlist">Seller list <span class="caret" style="font-size:12px; margin-left:5px"></span> </span></li>
+				
+				</ul> -->
 				<ul class="list-inline" style="list-style:none;">
-					<li><p style="margin-bottom:0px"><b>Search to buy:</b></p></li>
-					<?php $imgprod=mysqli_fetch_array(mysqli_query($con,"SELECT pic,pic2 FROM notebro_site.brands WHERE brand='".$mprod."'")); show_vars('link,link2', 'MODEL',$idmodel );?>
-					<li><a href="<?php echo $show_vars["link"].'" target="blank"><img src=res/'.$imgprod["pic"].' style="height:20px;" alt="Product consumer page">'; ?></a>
-					<?php if(isset($show_vars["link2"]) && $show_vars["link2"]){ ?><li><a href="<?php echo $show_vars["link2"].'" target="blank"><img src=res/'.$imgprod["pic2"].' style="height:20px;" alt="Product business page">'; ?></a></li> <?php } ?>
-					<li><a id="amazon_link" href="" target="blank"><img src="res/img/logo/amazonlogo.png" style="height:15px; padding-top:2px;" alt="Amazon link"/> </a> </li> 
-					<li><a id="compareeu_link" href="" target="blank"><img src="res/img/logo/skinflintlogo.png" style="height:20px;" alt="Compare.eu link"/> </a> </li>
-					<li><a id="google_link" href="" target="blank"><img src="res/img/logo/googlelogo.jpg" style="height:20px;" alt="Google link"/></a></li>
+					<li><p style="margin-bottom:0px"><b>Search to buy:</b></p></li>					
+					<li><a id="amazon_link" href="" target="blank"><img src="res/img/logo/amazonlogo.png" class="logoheight" style="padding-top:2px;" alt="Amazon link"/> </a> </li> 
+					<li><a id="compareeu_link" href="" target="blank"><img src="res/img/logo/skinflintlogo.png" class="logoheight" alt="Compare.eu link"/> </a> </li>
+					<li><a id="google_link" href="" target="blank"><img src="res/img/logo/googlelogo.jpg" class="logoheight" alt="Google link"/></a></li>
 				</ul>						
 			</div>
 		</div>
@@ -710,19 +714,44 @@ else
 		<!-- end specs -->
 	</div>
 	<!-- REVIEWS -->
-	<?php
-#include("listmenu.php");
-?>	
-
 <?php
-include("lib/php/modelreviews.php");
-	if ($nrnreviews <> 0 || $show_vars <>0)
-	{ 
-	//var_dump($notereviews); //- Noteb reviews
-	// echo "<br>";
-	//var_dump($extreviews); //- External reviews
-	} ?>
-		
+	//include("lib/php/modelreviews.php");
+	include("lib/php/db_reviews.php");
+	
+	if($nr_nb_reviews>0)
+	{
+?>
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+		<div> <!-- internal reviews div-->
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ListTitle">Noteb Reviews</div>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0px;">
+				<?php foreach($nb_reviews as $el) { ?>	
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ListElem">
+					<a onmousedown="OpenPage('<?php echo $el["link"]; ?>',event);"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="font-weight:bold;text-align:center;font-size:medium;"><?php echo $el["title"]; ?></div></a>
+				</div>
+			<?php } ?>
+			</div>
+		</div>
+<?php 
+	}
+	
+	if($nr_int_reviews>0)
+	{
+?>
+		<div> <!-- external reviews div-->			
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ListTitle">External reviews</div>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ListBox" style="padding:0px;">
+				<?php foreach($int_reviews as $el) { ?>	
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ListElem">
+					<a href="<?php echo $el["link"]; ?>" target="blank" >
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="font-weight:bold;text-align:center;font-size:medium;"><?php echo $el["site"]; ?></div					
+					</a>
+				</div>
+				<?php } ?>
+			</div>		
+		</div>
+	</div>
+<?php } ?>
 	<!-- COMMENTS -->
 	<div id="disqus_thread"></div>
 

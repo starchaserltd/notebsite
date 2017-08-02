@@ -2,7 +2,7 @@
 
 /* ********* SELECT MODEL BASED ON FILTERS ***** */
 
-function search_model ($mmodel,$prodmodel,$fammodel,$msc)
+function search_model ($mmodel,$prodmodel,$fammodel,$msc,$regions)
 {
 	$sel_model="SELECT id FROM notebro_db.MODEL WHERE 1=1";
 
@@ -53,15 +53,17 @@ function search_model ($mmodel,$prodmodel,$fammodel,$msc)
 	// Add fam to filter	
 	$i=0;
 	if(gettype($fammodel)!="array") { $fammodel=(array)$fammodel; }
+	
 	foreach($fammodel as $x)
 	{
+		$fam_parts=explode(" ",$x); unset($fam_parts[0]); $x=implode(" ",$fam_parts);
 		if($i)
 		{  
 			$sel_model.=" OR ";
 		}
 		else
 		{
-			$sel_model.=" AND ( ";
+			$sel_model.=" AND idfam IN ( SELECT id FROM `FAMILIES` WHERE ";
 		}
 		
 		$sel_model.="fam='";
@@ -94,6 +96,39 @@ function search_model ($mmodel,$prodmodel,$fammodel,$msc)
 	if($i>0)
 	{ $sel_model.=" ) "; }
 	
+	//REGIONS search	
+	$i=0;
+	if(gettype($regions)!="array") { $regions=(array)$regions; }
+	foreach($regions as $x)
+	{
+		if($GLOBALS['dispregion']==1)
+		{
+			$sel_model.=" AND ( ";
+			$sel_model.="FIND_IN_SET('";
+			$sel_model.="0";
+			$sel_model.="',regions)=0";
+			$i++;
+		}
+		else
+		{
+			if($i)
+			{  
+				$sel_model.=" OR ";
+			}
+			else
+			{
+				$sel_model.=" AND ( ";
+			}
+			
+			$sel_model.="FIND_IN_SET('";
+			$sel_model.=$x;
+			$sel_model.="',regions)>0";
+			$i++;
+		}
+	}
+	if($i>0)
+	{ $sel_model.=" ) "; }
+		
 	$sel_model.=" ORDER BY idabc ASC";
 	
 	// DO THE SEARCH

@@ -210,17 +210,17 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 	if(gettype($misc)!="array") { $misc=(array)$misc; }
 	foreach($misc as $x)
 	{
-		if($i)
-		{  
-			$sel_cpu.=" AND ";
-		}
-		else
-		{
-			$sel_cpu.=" AND ( ";
-		}
-
 		if(stripos($x,"Intel i")===FALSE)
-		{	
+		{
+			if($i)
+			{  
+				$sel_cpu.=" AND ";
+			}
+			else
+			{
+				$sel_cpu.=" AND ( ";
+			}	
+			
 			if(strcmp($x,"AVX1.0")==0) { $x="AVX/AVX1.0/AVX2.0"; }
 			
 			if(strpbrk($x,"/"))
@@ -240,16 +240,33 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 				$sel_cpu.=$x;
 				$sel_cpu.="',msc)>0";
 			}
+			$i++;
 		}
-		else
-		{
-			$x=str_ireplace("Intel ","",$x);
-			$sel_cpu.="model LIKE '%".$x."%'";
-		}
-		$i++;
 	}
 	if($i>0){ $sel_cpu.=" ) "; }
 
+	$i=0;
+	if(gettype($misc)!="array") { $misc=(array)$misc; }
+	foreach($misc as $x)
+	{
+		if(stripos($x,"Intel i")!==FALSE)
+		{
+			if($i)
+			{  
+				$sel_cpu.=" OR ";
+			}
+			else
+			{
+				$sel_cpu.=" AND (";
+			}
+			
+			$x=str_ireplace("Intel ","",$x);
+			$sel_cpu.="model LIKE '%".$x."%'";	
+			$i++;
+		}
+	}
+	if($i>0){ $sel_cpu.=" ) "; }
+	
 	// Add rating to filter	
 	if($ratemin)
 	{

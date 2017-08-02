@@ -2,6 +2,7 @@
 require_once("../etc/session.php");
 //HERE WE PROCESS THE CONFIGURATIONS FROM GET AND SESSION
 $getconfs=array();	$nrgetconfs=0;
+if(isset($_GET['ex'])){ $_SESSION['excomp']=$_GET['ex']; }
 $addtojava="<script> $(document).ready(function() { if(firstcompare) {";
 for($i=0;$i<10;$i++)
 {
