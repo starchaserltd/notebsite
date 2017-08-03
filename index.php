@@ -176,7 +176,6 @@ require_once("etc/session.php");
 	<link rel="stylesheet" href="lib/css/bootstrap-theme.min.css" type="text/css" />
 	<link rel="stylesheet" href="lib/css/select2.min.css" type="text/css" /> 
 	<link rel="stylesheet" href="lib/css/bootstrap-multiselect.css" type="text/css" />
-	 <link rel="stylesheet" href="search/quiz/quiz.css" type="text/css" />
 	<!-- for multiselect forms -->  
 	<link rel="stylesheet" href="lib/css/extra-fonts.css" type="text/css" />
 	<!-- menu fonts -->
@@ -193,7 +192,6 @@ require_once("etc/session.php");
 	<!-- Custom Theme JavaScript -->
 	<script><?php echo 'var siteroot = "'.$web_address.'";'; ?></script>
 	<script type="text/javascript" src="libnb/js/tooltip.js" async></script>
-	<script type="text/javascript" src="search/quiz/classList.min.js"></script>
 	<script type="text/javascript" src="libnb/js/index.js"></script>
 	<script type="text/javascript" src="lib/js/nouislider.min.js"></script>
 	
