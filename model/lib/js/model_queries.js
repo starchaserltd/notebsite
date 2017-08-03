@@ -297,6 +297,8 @@ function showSHDD(str)
 						document.getElementById('shdd_readspeed').innerHTML = "N/A";
 						document.getElementById('shdd_writes').innerHTML = "N/A";
 						document.getElementById('shdd_rpm').innerHTML = "N/A";
+						shdd["bat"]=0;
+						shdd["confrate"]=0;
 					}
 					else
 					{
@@ -304,18 +306,18 @@ function showSHDD(str)
 						document.getElementById('shdd_readspeed').innerHTML = shdd["readspeed"];
 						document.getElementById('shdd_writes').innerHTML = shdd["writes"];
 						document.getElementById('shdd_rpm').innerHTML = shdd["rpm"];
-						
-						shdd_rate_old = shdd_rate_new;
-						shdd_rate_new = shdd["confrate"];					
-						config_rate = config_rate-shdd_rate_old+shdd_rate_new;
-						document.getElementById('notebro_rate').innerHTML=(Math.round(config_rate * 10) / 10).toFixed(1);
-						
-						shdd_bat_old = shdd_bat_new;
-						shdd_bat_new = shdd["bat"];
-						config_batlife=config_batlife-shdd_bat_old+shdd_bat_new;
-						document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
-						document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);						
 					}
+					
+					shdd_rate_old = shdd_rate_new;
+					shdd_rate_new = shdd["confrate"];					
+					config_rate = config_rate-shdd_rate_old+shdd_rate_new;
+					document.getElementById('notebro_rate').innerHTML=(Math.round(config_rate * 10) / 10).toFixed(1);
+					
+					shdd_bat_old = shdd_bat_new;
+					shdd_bat_new = shdd["bat"];
+					config_batlife=config_batlife-shdd_bat_old+shdd_bat_new;
+					document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
+					document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);						
 				}
 			}
 		}
