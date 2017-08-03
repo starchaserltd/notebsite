@@ -662,7 +662,6 @@ function showSIST(str)
 
 function getconf(comp,id,exactconf) 
 {
-
 	var cpu_id=cpu["id"]; var display_id=display["id"]; var mem_id=mem["id"]; var hdd_id=hdd["id"];  var shdd_id=shdd["id"]; var gpu_id=gpu["id"]; var wnet_id=wnet["id"]; var odd_id=odd["id"]; var mdb_id=mdb["id"]; var chassis_id=chassis["id"]; var acum_id=acum["id"]; var war_id=war["id"]; var sist_id=sist["id"];  var 
 	confdata = {}; var success=false; var go=false; var mdb_hdd=0;
 	switch(comp)
@@ -678,7 +677,7 @@ function getconf(comp,id,exactconf)
 		case "SHDD":
 		{ prev_id=shdd_id; shdd_id=id; if(shdd["id"]===undefined) { go=true; }  break; }
 		case "GPU":
-		{ prev_id=gpu_id; gpu_id=id; if(gpu["id"]===undefined) { go=true; }  break; }
+		{ prev_id=gpu_id; if(id == -1){ id=cpu_gpu; } gpu_id=id; if(gpu["id"]===undefined) { go=true; } break; }
 		case "WNET":
 		{ prev_id=wnet_id; wnet_id=id; if(wnet["id"]===undefined) { go=true; }  break; }
 		case "ODD":
