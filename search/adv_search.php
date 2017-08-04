@@ -320,7 +320,7 @@
 				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">									
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						<div>Ports</div>
-						<select class="multisearch js-example-responsive" id="MDB_port_id" name ="MDB_port_id[]" data-lcom='none' data-lfield="none" data-placeholder="Ex. 2 X USB 3.0, 1 X USB 3.1 (Type-C)" data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
+						<select class="multisearch js-example-responsive" id="MDB_port_id" name ="MDB_port_id[]" data-lcom='none' data-lfield="none" data-placeholder="Ex. 2 X USB 3.0, Thunderbolt" data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
 					</div>
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						<div>Video ports</div>

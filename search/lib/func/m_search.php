@@ -184,7 +184,7 @@ while($rand = mysqli_fetch_row($result))
 	
 	if(intval($rand[8])==1) { $rand[2]=$rand[2]." ".$rand[7]; }
 	if(strlen($rand[5])>6 && !preg_match("/\(.*\)/",$rand[5])){ $rand[5]=substr($rand[5],0,6)."."; } 
-	$regions=array(); $regions=explode(",",$rand[6]); $show_reg=1;
+	$regions=array(); $regions=explode(",",$rand[6]); $show_reg=1;  $region=array(); $region["disp"]="";
 	foreach($regions as $el) { if(intval($el)===1 || intval($el)===0 ) { $show_reg=0; } }
 	if($show_reg) { $sel_r="SELECT disp FROM notebro_db.REGIONS WHERE id=".$regions[0]." LIMIT 1"; $result_r = mysqli_query($con, $sel_r); $region=mysqli_fetch_array($result_r); $region["disp"]="(".$region["disp"].")"; }
 	//SENDING THE RESULTS
