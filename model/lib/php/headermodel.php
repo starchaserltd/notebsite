@@ -19,7 +19,7 @@ if(isset($_GET['ex']))
 else 
 { 
 	if(isset($_SESSION['lang'])) { $lang=$_SESSION['lang']; } else { $lang=0; }
-	$country=mysqli_fetch_array(mysqli_query($con,"SELECT buy FROM notebro_site.exchrate WHERE id=$lang"));
+	$country=mysqli_fetch_array(mysqli_query($con,"SELECT buy FROM notebro_site.exchrate WHERE id=$lang")); $country=$country["buy"];
 	if(isset($_SESSION['exchcode'])){ $exchcode=$_SESSION['exchcode']; } else { $exchcode="USD"; }
 	if(isset($_SESSION['exch'])){ $exch=$_SESSION['exch']; } else { $exch=1; }
 	if(isset($_SESSION['exchsign'])){ $exchsign=$_SESSION['exchsign']; } else { $exchsign="$"; }
