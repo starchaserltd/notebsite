@@ -2,11 +2,18 @@ var cleantips = 1;
 var allshow = 0;
 
 $('#addcompare').click(function(e)
- {
-  e.preventDefault();
-  e.stopPropagation();
-  addcompare();
- });
+{
+	if(gocomp)
+	{		
+		e.preventDefault();
+		e.stopPropagation();
+		addcompare();
+	}
+	else
+	{
+		window.setTimeout($('#addcompare').click(), 100);
+	}
+});
  
 $(".toggler").click(function(e){
 	e.preventDefault();

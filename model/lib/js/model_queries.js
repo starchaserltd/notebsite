@@ -21,7 +21,7 @@ switch(exchsign)
 	break;
 }
 googlelink["cpu"]=""; googlelink["gpu"]=""; googlelink["mem"]=""; googlelink["resolution"]=""; googlelink["sist"]="";
-
+var gocomp=1;
 var cpu = {}; var cpu_price_old=0; var cpu_price_new=0; var cpu_err_new=0; var cpu_err_old=0; var cpu_rate_new=0; var cpu_rate_old=0; var cpu_gpu=0; var cpu_bat_new=0; var cpu_bat_old=0; cpu["clocks"]=""; var success=false;
 function showCPU(str) 
 {
@@ -622,7 +622,7 @@ function showWAR(str)
 		xmlhttp.send();
 	}
 }
-	
+
 var sist = {}; var sist_price_old=0; var sist_price_new=0; var sist_err_new=0; var sist_err_old=0; var sist_rate_new=0; var sist_rate_old=0; var sist_gpu=0;
 function showSIST(str) 
 {
@@ -664,6 +664,7 @@ function showSIST(str)
 
 function getconf(comp,id,exactconf) 
 {
+	gocomp=0;
 	var cpu_id=cpu["id"]; var display_id=display["id"]; var mem_id=mem["id"]; var hdd_id=hdd["id"];  var shdd_id=shdd["id"]; var gpu_id=gpu["id"]; var wnet_id=wnet["id"]; var odd_id=odd["id"]; var mdb_id=mdb["id"]; var chassis_id=chassis["id"]; var acum_id=acum["id"]; var war_id=war["id"]; var sist_id=sist["id"];  var 
 	confdata = {}; var success=false; var go=false; var mdb_hdd=0;
 	switch(comp)
@@ -720,7 +721,7 @@ function getconf(comp,id,exactconf)
 					confdata["cerr"]=parseInt(confdata["cerr"]);
 					document.getElementById('config_price1').innerHTML=parseInt((confdata["cprice"]-confdata["cerr"]/2)*exch);
 					document.getElementById('config_price2').innerHTML=parseInt((confdata["cprice"]+confdata["cerr"]/2)*exch);
-					var stateObj = { no: "empty" };
+					var stateObj = { no: "empty" }; setTimeout(function(){ gocomp=1;}, 10);
 					//conf=(\d*)(\&|$)
 					if(currentPage.match(/(conf=)(\d+)(.*)/i)!==null)
 					{ 
