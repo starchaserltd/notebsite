@@ -84,7 +84,7 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 							<li class="resulspace"><?php show('prod', 'CPU',$rand['cpu'] ); echo " "; show('model', 'CPU',$rand['cpu'] ); echo " ("; show('clocks', 'CPU',$rand['cpu'] ); echo " MHz)"?></li>
 							<li class="resulspace"><?php show('prod', 'GPU',$rand['gpu'] ); echo " "; show('model', 'GPU',$rand['gpu'] );?></li>
 							<li class="resulspace"><?php showmem('cap, type, freq', 'MEM',$rand['mem'] );echo " ";?></li>
-							<li class="resulspace"><?php show('cap,type,rpm', 'HDD',$rand['hdd'] );echo "";?></li>
+							<li class="resulspace"><?php showhdd('cap,type,rpm','HDD',$rand['hdd'],$rand['shdd']);echo "";?></li>
 							<li class="resulspace"><?php showsist('sist,vers,type', 'SIST',$rand['sist']);echo " ";?></li>
 							<li class="resulspace"><?php showbat('notebro_temp.all_conf_'.table($rand['id']),$rand['id'],0);echo " ";?></li>
 						</ul>

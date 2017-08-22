@@ -7,7 +7,6 @@ function show($col, $tab, $id)
 
 	$result = mysqli_query($GLOBALS['con'], "SELECT $col FROM $tab WHERE id = '".$id."'"); 
 	$item = mysqli_fetch_array($result);
-	$item['cap,type,rpm']="";
 
 	if(strcasecmp($item[$col],"Standard")==0)
 	{
@@ -18,10 +17,33 @@ function show($col, $tab, $id)
 	{ $item[$col]=sprintf('%0.2f',floatval($item[$col])); }
 
 	echo $item[$col];
-	if(!($tab<=>"HDD"))
+}
+
+function showhdd($col, $tab, $id, $shdd)
+{
+
+	if(intval($shdd)==0)
 	{
+		$result = mysqli_query($GLOBALS['con'], "SELECT $col FROM $tab WHERE id = '".$id."'"); 
+		$item = mysqli_fetch_array($result);
+		$item['cap,type,rpm']="";
+
+		echo $item[$col];
 		echo $item['cap']." GB ("; if($item['rpm']>0) echo $item['rpm']."rpm ";
 		echo ""; echo $item['type'].")";
+	}
+	else
+	{
+		$result = mysqli_query($GLOBALS['con'], "SELECT $col FROM HDD WHERE id = '".$id."'"); 
+		$item = mysqli_fetch_array($result);
+		$item['cap,type,rpm']="";
+		echo $item[$col];
+		mysqli_free_result($result);
+		$result = mysqli_query($GLOBALS['con'], "SELECT $col FROM HDD WHERE id = '".$shdd."'"); 
+		$item2 = mysqli_fetch_array($result);
+		$item2['cap,type,rpm']="";
+		
+		echo (intval($item['cap'])+intval($item2['cap']))." GB (".$item['type']." + ".$item2['type'].")";
 	}
 }
 
