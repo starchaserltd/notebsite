@@ -8,8 +8,9 @@ var nocomperrormess=0;
 var previousurl="";
 var disqusloaded=1;
 var urlold="";
-var hh=1;
+var hh=1; var ismobile=0
 var currentPage = window.location.href;
+
 function locationHashChanged() {
    if (trigger) {
         var urlParts = window.location.href.split('?');		
@@ -42,7 +43,11 @@ function locationHashChanged() {
    	trigger=1;
  }
 
-setInterval(function(){ if (currentPage !== window.location.href) { currentPage = window.location.href; locationHashChanged(); } }, 50);
+setInterval(function()
+{ 
+	if (currentPage !== window.location.href) { currentPage = window.location.href; locationHashChanged(); }
+	if($(window).width()<992) { if(ismobile!=1){ ismobile=1; state_ssearch(1); } } else { if(ismobile!=0){ ismobile=0; state_ssearch(0); } }   
+}, 50);
 
 function urlrequest(url,e,dontpush)
 {
@@ -61,7 +66,7 @@ function urlrequest(url,e,dontpush)
 
 //Function for main content area
 function OpenPage(url,e,dontpush) {
-	url=decodeURIComponent(decodeURIComponent(url));
+	url=decodeURIComponent(decodeURIComponent(url.replace("% ","%25%20").replace("%%20","%25%20")).replace("% ","%25%20").replace("%%20","%25%20"));
 	//DEPENDING ON WHAT BUTTON WAS PRESSED WE DO DIFFERENT THINGS
 	var e = e || window.event;
 	var btnCode;
@@ -78,14 +83,7 @@ function OpenPage(url,e,dontpush) {
 	
 	if(go==1 || go==2)
 	{
-		document.getElementById("sharefb").href="https://www.facebook.com/sharer/sharer.php?u="+siteroot+"/?"+url;
-		document.getElementById("sharetw").href="https://twitter.com/home?status=Just%20found%20great%20notebook%20information%20on%20"+siteroot+"/?"+url;
-		document.getElementById("sharegp").href="https://plus.google.com/share?url="+siteroot+"/?"+url; 
-		document.getElementById("sharerd").href="https://www.reddit.com/submit?url="+siteroot+"/?"+url;
-		//document.getElementById("sharefbm").href="https://www.facebook.com/sharer/sharer.php?u="+siteroot+"/?"+url;
-		//document.getElementById("sharetwm").href="https://twitter.com/home?status=Just%20found%20great%20notebook%20information%20on%20"+siteroot+"/?"+url;
-		//document.getElementById("sharegpm").href="https://plus.google.com/share?url="+siteroot+"/?"+url; 
-		//document.getElementById("sharerdm").href="https://www.reddit.com/submit?url="+siteroot+"/?"+url; 
+	//	document.getElementById("sharefb").href="https://www.facebook.com/sharer/sharer.php?u="+siteroot+"/?"+url;
 	}
 
 	if(go==1)
@@ -380,6 +378,7 @@ $(document).ready(function(){
 function actbtn(pagename,mobile)
 { 
 	if(!mobile)
+	
 	{ $( ".btn-sus" ).removeClass( "active" ); }
 	
 	$( ".btn-sus" ).each(function(index) {
