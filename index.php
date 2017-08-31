@@ -8,7 +8,7 @@ require_once("etc/session.php");
 	<meta charset="utf-8">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="World largest notebook and laptop information hub.">
+	<meta name="description" content="Find the best laptop with Noteb notebook search engine.">
 	<meta name="keywords" content="find,cheap,best,laptop,notebook,gaming,ultraportable,business">
 	<meta name="author" content="Starchaser">
 
@@ -26,7 +26,7 @@ require_once("etc/session.php");
 	<!-- upper buttons desktop -->
 		<div class="col-md-10 col-xs-12 col-sm-12" style="padding:0px; float:left; position:relative;">
 			<div class="btn-group-justified btn-group siteMenu">
-				<h1 class="btn btn-sus blue logonb"  onmousedown="OpenPage('content/home.php',event);">World largest notebook and laptop information hub.</h1>
+				<h1 class="btn btn-sus blue logonb"  onmousedown="OpenPage('content/home.php',event);">Find the best laptop with Noteb notebook search engine.</h1>
 				<a class="btn btn-sus blue advsearch" >SEARCH</a>
 				<a class="btn btn-sus blue" onmousedown="OpenPage('content/articles.php',event);">ARTICLES</a>
 				<a class="btn btn-sus blue" onmousedown="OpenPage('content/reviews.php',event);">REVIEWS</a>

@@ -432,7 +432,6 @@
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						<div>Made of</div>			
 						<select id="material" name="material[]" multiple>
-							<option value="0">Any</option>
 							<?php if(isset($droplists[26])) { echo $droplists[26]; } ?>
 						</select>
 					</div>

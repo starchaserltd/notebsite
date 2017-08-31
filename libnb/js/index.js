@@ -72,7 +72,6 @@ function OpenPage(url,e,dontpush) {
 	var btnCode;
 	var go=0;
 	if ('object' === typeof e) { btnCode = e.button; }
-
 	switch (btnCode)
 	   {
 		   case 0: go=1; break;
@@ -382,7 +381,7 @@ function actbtn(pagename,mobile)
 	{ $( ".btn-sus" ).removeClass( "active" ); }
 	
 	$( ".btn-sus" ).each(function(index) {
-	if(this.innerHTML==pagename && (pagename!="Find the best laptop in the world largest notebook and laptop information hub." || pagename!="NOTEBROTHER")){
+	if(this.innerHTML==pagename && (pagename!="Find the best laptop with Noteb notebook search engine." || pagename!="NOTEBROTHER")){
 		$(this).addClass("active");
 		}
 	});
