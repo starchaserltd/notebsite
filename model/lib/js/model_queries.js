@@ -25,17 +25,12 @@ var gocomp=1;
 var cpu = {}; var cpu_price_old=0; var cpu_price_new=0; var cpu_err_new=0; var cpu_err_old=0; var cpu_rate_new=0; var cpu_rate_old=0; var cpu_gpu=0; var cpu_bat_new=0; var cpu_bat_old=0; cpu["clocks"]=""; var success=false;
 function showCPU(str) 
 {
-	if (str === "") 
-	{
-		cpu = {};
-		return;
-	}
+	if (str === "") { cpu = {}; return; }
 	else 
 	{
 		if (window.XMLHttpRequest) 
-		{
-			var	xmlhttp = new XMLHttpRequest();
-		}
+		{ var	xmlhttp = new XMLHttpRequest(); }
+	
 		xmlhttp.onreadystatechange = function() 
 		{
 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
@@ -95,22 +90,14 @@ function showGPU(str)
 			str=gpu_previous;
 			document.querySelector('#GPU [value="' + str + '"]').selected = true;
 		}
-		else			
-		str=cpu_gpu;
-
+		else { str=cpu_gpu; }
 	}
 
-	if (str === "") 
-	{
-		gpu = {};
-		return;
-	}
+	if (str === "") { gpu = {}; return; }
 	else 
 	{
 		if (window.XMLHttpRequest) 
-		{
-			var xmlhttp = new XMLHttpRequest();
-		}
+		{ var xmlhttp = new XMLHttpRequest(); }
 		
 		xmlhttp.onreadystatechange = function() 
 		{
@@ -168,17 +155,10 @@ function showGPU(str)
 var display = {}; var display_price_old=0;	var display_price_new=0; var display_err_new=0;	var display_err_old=0; var display_rate_new=0; var display_rate_old=0; var display_bat_old=0; var display_bat_new=0;
 function showDISPLAY(str) 
 {
-	if (str === "") 
-	{
-		display = {};
-		return;
-	}
+	if (str === "")	{ display = {}; return; }
 	else 
 	{
-		if (window.XMLHttpRequest) 
-		{
-		var	xmlhttp = new XMLHttpRequest();
-		}
+		if (window.XMLHttpRequest) { var	xmlhttp = new XMLHttpRequest(); }
 
 		xmlhttp.onreadystatechange = function() 
 		{
@@ -220,17 +200,11 @@ function showDISPLAY(str)
 var hdd = {}; var hdd_price_old=0; var hdd_price_new=0; var hdd_err_new=0; var hdd_err_old=0; var hdd_rate_new=0; var hdd_rate_old=0; var hdd_bat_new=0; var hdd_bat_old=0;
 function showHDD(str) 
 {
-	if (str === "") 
-	{
-		hdd = {};
-		return;
-	}
+	if (str === "")	{ hdd = {}; return; }
 	else 
 	{
-		if (window.XMLHttpRequest) 
-		{
-			var	xmlhttp = new XMLHttpRequest();
-		}
+		if (window.XMLHttpRequest) 	{ var	xmlhttp = new XMLHttpRequest(); }
+
 
 		xmlhttp.onreadystatechange = function() 
 		{
@@ -258,7 +232,7 @@ function showHDD(str)
 				
 				var mdb_hdd=0
 				if( document.getElementById("mdb_hdd").innerText.toLowerCase().indexOf("2 x sata") >= 0) { mdb_hdd=1; } 
-				if(shdd["id"]!=0) { if  ((( mdb_hdd==0 && hdd["model"].indexOf("M.2")<0)||( mdb_hdd==1 && hdd["model"].indexOf("SSD")<0))&& document.getElementsByName("SHDD")[0]!==undefined ) { showSHDD(0); setselectedcomp("SHDD", 0) } }
+				if(shdd["id"]!=0) { if  ((( mdb_hdd==0 && hdd["model"].toLowerCase().indexOf("m.2")<0)||( mdb_hdd==1 && hdd["model"].toLowerCase().indexOf("ssd")<0))&& document.getElementsByName("SHDD")[0]!==undefined ) { showSHDD(0); setselectedcomp("SHDD", 0) } }
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/hdd.php?q="+str,true);
@@ -270,17 +244,10 @@ var shdd = {}; var shdd_price_old=0; var shdd_price_new=0; var shdd_err_new=0; v
 
 function showSHDD(str) 
 {
-	if (str === "") 
-	{	
-		shdd = {};
-		return;
-	}
+	if (str === "")	{ shdd = {}; return; }
 	else 
 	{
-		if (window.XMLHttpRequest) 
-		{
-			var	xmlhttp = new XMLHttpRequest();
-		}
+		if (window.XMLHttpRequest) { var	xmlhttp = new XMLHttpRequest(); }
 
 		xmlhttp.onreadystatechange = function() 
 		{
@@ -329,17 +296,10 @@ function showSHDD(str)
 var mdb = {}; var mdb_price_old=0; var mdb_price_new=0; var mdb_err_new=0; var mdb_err_old=0; var mdb_rate_new=0; var mdb_rate_old=0;
 function showMDB(str) 
 {
-	if (str === "") 
-	{
-		mdb = {};
-		return;
-	}
+	if (str === "")	{ mdb = {}; return; }
 	else 
 	{
-		if (window.XMLHttpRequest) 
-		{
-			var	xmlhttp = new XMLHttpRequest();
-		}
+		if (window.XMLHttpRequest) 	{ var	xmlhttp = new XMLHttpRequest(); }
 		
 		xmlhttp.onreadystatechange = function() 
 		{
@@ -375,17 +335,10 @@ function showMDB(str)
 var mem = {}; var mem_price_old=0; var mem_price_new=0; var mem_err_new=0; var mem_err_old=0; var mem_rate_new=0; var mem_rate_old=0;
 function showMEM(str) 
 {
-	if (str === "") 
-	{
-		mem = {};
-		return;
-	}
+	if (str === "")	{ mem = {}; return; }
 	else 
 	{
-		if (window.XMLHttpRequest) 
-		{
-			var	xmlhttp = new XMLHttpRequest();
-		}
+		if (window.XMLHttpRequest) { var	xmlhttp = new XMLHttpRequest(); }
 
 		xmlhttp.onreadystatechange = function() 
 		{
@@ -417,54 +370,40 @@ function showMEM(str)
 var odd = {}; var odd_price_old=0; var odd_price_new=0; var odd_err_new=0; var odd_err_old=0; var odd_rate_new=0; var odd_rate_old=0; var odd_gpu=0;
 function showODD(str) 
 {
-	if (str === "") 
-	{
-		odd = {};
-		return;
-	}
+	if (str === "")	{ odd = {}; return; }
 	else 
 	{
-		if (window.XMLHttpRequest) 
+		if (window.XMLHttpRequest) { var	xmlhttp = new XMLHttpRequest(); }
+
+		xmlhttp.onreadystatechange = function() 
 		{
-			var	xmlhttp = new XMLHttpRequest();
-
-			xmlhttp.onreadystatechange = function() 
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
 			{
-				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
-				{
-					odd = JSON.parse(xmlhttp.responseText);
-					if((odd["type"]).toUpperCase()!="NONE") { document.getElementById('odd_title').innerHTML = ", "+odd["type"]; } else { document.getElementById('odd_title').innerHTML = ""; }
-					if(odd["speed"] && odd["speed"]!=0){document.getElementById('odd_speed').innerHTML = odd["speed"]};
-					if(odd["msc"] && odd["msc"]!="-"){document.getElementById('odd_misc').innerHTML = odd["msc"];}
+				odd = JSON.parse(xmlhttp.responseText);
+				if((odd["type"]).toUpperCase()!="NONE") { document.getElementById('odd_title').innerHTML = ", "+odd["type"]; } else { document.getElementById('odd_title').innerHTML = ""; }
+				if(odd["speed"] && odd["speed"]!=0){document.getElementById('odd_speed').innerHTML = odd["speed"]};
+				if(odd["msc"] && odd["msc"]!="-"){document.getElementById('odd_misc').innerHTML = odd["msc"];}
 
-					odd_rate_old = odd_rate_new;
-					odd_rate_new = odd["confrate"];
+				odd_rate_old = odd_rate_new;
+				odd_rate_new = odd["confrate"];
 
-					config_rate = config_rate-odd_rate_old+odd_rate_new;
-					document.getElementById('notebro_rate').innerHTML=(Math.round(config_rate * 10) / 10).toFixed(1);
-				}
+				config_rate = config_rate-odd_rate_old+odd_rate_new;
+				document.getElementById('notebro_rate').innerHTML=(Math.round(config_rate * 10) / 10).toFixed(1);
 			}
-			xmlhttp.open("GET","model/lib/php/query/odd.php?q="+str,true);
-			xmlhttp.send();
 		}
+		xmlhttp.open("GET","model/lib/php/query/odd.php?q="+str,true);
+		xmlhttp.send();
 	}
 }
 
 var acum = {}; var acum_price_old=0; var acum_price_new=0; var acum_err_new=0; var acum_err_old=0; var acum_rate_new=0; var acum_rate_old=0; var acum_gpu=0;
 function showACUM(str) 
 {
-	if (str === "") 
-	{
-		acum = {};
-		return;
-	}
+	if (str === "")	{ acum = {}; return; }
 	else 
 	{
-		if (window.XMLHttpRequest) 
-		{
-		var	xmlhttp = new XMLHttpRequest();
-		}
-		
+		if (window.XMLHttpRequest)	{ var	xmlhttp = new XMLHttpRequest(); }
+
 		xmlhttp.onreadystatechange = function() 
 		{
 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
@@ -497,17 +436,10 @@ function showACUM(str)
 var chassis = {}; var chassis_price_old=0; var chassis_price_new=0; var chassis_err_new=0; var chassis_err_old=0; var chassis_rate_new=0; var chassis_rate_old=0; var chassis_gpu=0;
 function showCHASSIS(str) 
 {
-	if (str === "") 
-	{
-		chassis = {};
-		return;
-	}
+	if (str === "")	{ chassis= {}; return; }
 	else 
 	{
-		if (window.XMLHttpRequest) 
-		{
-			var	xmlhttp = new XMLHttpRequest();
-		}
+		if (window.XMLHttpRequest)	{ var	xmlhttp = new XMLHttpRequest(); }
 
 		xmlhttp.onreadystatechange = function() 
 		{
@@ -555,17 +487,10 @@ function showCHASSIS(str)
 var wnet = {}; var wnet_price_old=0; var wnet_price_new=0; var wnet_err_new=0; var wnet_err_old=0; var wnet_rate_new=0; var wnet_rate_old=0; var wnet_gpu=0;
 function showWNET(str) 
 {
-	if (str === "") 
-	{
-		wnet = {};
-		return;
-	}
+	if (str === "")	{ wnet = {}; return; }
 	else 
 	{
-		if (window.XMLHttpRequest) 
-		{
-			var	xmlhttp = new XMLHttpRequest();
-		}
+		if (window.XMLHttpRequest)	{ var	xmlhttp = new XMLHttpRequest(); }
 		
 		xmlhttp.onreadystatechange = function() 
 		{
@@ -592,17 +517,10 @@ function showWNET(str)
 var war = {}; var war_price_old=0; var war_price_new=0; var war_err_new=0; var war_err_old=0; var war_rate_new=0; var war_rate_old=0; var war_gpu=0;
 function showWAR(str) 
 {
-	if (str === "") 
-	{
-		war = {};
-		return;
-	}
+	if (str === "")	{ war = {}; return; }
 	else 
 	{
-		if (window.XMLHttpRequest) 
-		{
-			var	xmlhttp = new XMLHttpRequest();
-		}
+		if (window.XMLHttpRequest)	{ var	xmlhttp = new XMLHttpRequest(); }
 		
 		xmlhttp.onreadystatechange = function() 
 		{
@@ -626,17 +544,10 @@ function showWAR(str)
 var sist = {}; var sist_price_old=0; var sist_price_new=0; var sist_err_new=0; var sist_err_old=0; var sist_rate_new=0; var sist_rate_old=0; var sist_gpu=0;
 function showSIST(str) 
 {
-	if (str === "") 
-	{
-		sist = {};
-		return;
-	}
+	if (str === "")	{ sist= {}; return; }
 	else 
 	{
-		if (window.XMLHttpRequest) 
-		{
-			var	xmlhttp = new XMLHttpRequest();
-		}
+		if (window.XMLHttpRequest)	{ var	xmlhttp = new XMLHttpRequest(); }
 		
 		xmlhttp.onreadystatechange = function() 
 		{
@@ -676,7 +587,7 @@ function getconf(comp,id,exactconf)
 		case "MEM":
 		{ prev_id=mem_id; mem_id=id; if(mem["id"]===undefined) { go=true; }  break; }
 		case "HDD":
-		{ prev_id=hdd_id; hdd_id=id; if(hdd["id"]===undefined) { go=true; } hdd_el=document.getElementsByName("HDD")[0]; if( document.getElementById("mdb_hdd").innerText.toLowerCase().indexOf("2 x sata") >= 0) { mdb_hdd=1; } for ( var i = 0; i < hdd_el.options.length; i++ ) { if ( hdd_el.options[i].value == hdd_id && ((mdb_hdd==0 && hdd_el.options[i].text.toLowerCase().indexOf("M.2") < 0) || (mdb_hdd && hdd_el.options[i].text.toLowerCase().indexOf("SSD") < 0 ) ) ) { shdd_id=0; } } break; } 
+		{ prev_id=hdd_id; hdd_id=id; if(hdd["id"]===undefined) { go=true; } hdd_el=document.getElementsByName("HDD")[0]; if( document.getElementById("mdb_hdd").innerText.toLowerCase().indexOf("2 x sata") >= 0) { mdb_hdd=1; } for ( var i = 0; i < hdd_el.options.length; i++ ) { if ( hdd_el.options[i].value == hdd_id && ((mdb_hdd==0 && hdd_el.options[i].text.toLowerCase().indexOf("m.2") < 0) || (mdb_hdd && hdd_el.options[i].text.toLowerCase().indexOf("SSD") < 0 ) ) ) { shdd_id=0; } } break; } 
 		case "SHDD":
 		{ prev_id=shdd_id; shdd_id=id; if(shdd["id"]===undefined) { go=true; }  break; }
 		case "GPU":
