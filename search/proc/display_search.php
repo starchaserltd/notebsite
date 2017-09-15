@@ -177,6 +177,19 @@ function search_display ($model, $sizemin, $sizemax, $format, $hresmin, $hresmax
 			$sel_display.="vres<=";
 			$sel_display.=$vresmax;
 		}
+		if($hresmin)
+		{
+			$sel_display.=" AND ";
+			$sel_display.="hres>=";
+			$sel_display.=$hresmin;
+		}
+
+		if($hresmax)
+		{
+			$sel_display.=" AND ";
+			$sel_display.="hres<=";
+			$sel_display.=$hresmax;
+		}
 	}
 
 	// Add MISC to filter

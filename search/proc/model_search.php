@@ -2,7 +2,7 @@
 
 /* ********* SELECT MODEL BASED ON FILTERS ***** */
 
-function search_model ($mmodel,$prodmodel,$fammodel,$msc,$regions)
+function search_model ($mmodel,$prodmodel,$fammodel,$msc,$regions,$class)
 {
 	$sel_model="SELECT id FROM notebro_db.MODEL WHERE 1=1";
 
@@ -74,6 +74,9 @@ function search_model ($mmodel,$prodmodel,$fammodel,$msc,$regions)
 	if($i>0)
 	{ $sel_model.=" ) "; }
 
+	// Add class to filter	
+	if($class!==-1)	{ $sel_model.=" AND idfam IN ( SELECT id FROM `FAMILIES` WHERE business=".$class.")"; }
+
 	// MSC search	
 	$i=0;
 	if(gettype($msc)!="array") { $msc=(array)$msc; }
@@ -96,17 +99,20 @@ function search_model ($mmodel,$prodmodel,$fammodel,$msc,$regions)
 	if($i>0)
 	{ $sel_model.=" ) "; }
 	
-	//REGIONS search	
+	//REGIONS search
 	$i=0;
 	if(gettype($regions)!="array") { $regions=(array)$regions; }
 	foreach($regions as $x)
 	{
 		if($GLOBALS['dispregion']==1)
 		{
-			$sel_model.=" AND ( ";
-			$sel_model.="FIND_IN_SET('";
-			$sel_model.="0";
-			$sel_model.="',regions)=0";
+			if(!$i)
+			{
+				$sel_model.=" AND ( ";
+				$sel_model.="FIND_IN_SET('";
+				$sel_model.="0";
+				$sel_model.="',regions)=0";
+			}
 			$i++;
 		}
 		else

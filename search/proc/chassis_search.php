@@ -13,15 +13,9 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 	if(gettype($prod)!="array") { $prod=(array)$prod; }
 	foreach($prod as $x)
 	{
-		if($i) 	
-		{  
-			$sel_chassis.=" OR ";
-		}
-		else
-		{
-			$sel_chassis.=" AND ( ";
-		}
-		
+		if($i) { $sel_chassis.=" OR "; }
+		else { $sel_chassis.="AND ( "; }
+			
 		$sel_chassis.="prod='";
 		$sel_chassis.=$x;
 		$sel_chassis.="'";
@@ -35,15 +29,8 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 	if(gettype($model)!="array") { $model=(array)$model; }
 	foreach($model as $x)
 	{
-		if($i)
-		{  
-			$sel_chassis.=" OR ";
-		}
-		else
-		{
-			$sel_chassis.="AND ( ";
-
-		}
+		if($i) { $sel_chassis.=" OR "; }
+		else { $sel_chassis.="AND ( "; }
 
 		$sel_chassis.="model='";
 		$sel_chassis.=$x;
@@ -104,14 +91,8 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 	if(gettype($color)!="array") { $color=(array)$color; }
 	foreach($color as $x)
 	{
-		if($i)
-		{  
-			$sel_chassis.=" OR ";
-		}
-		else
-		{
-			$sel_chassis.=" AND ( ";
-		}
+		if($i) { $sel_chassis.=" OR "; }
+		else { $sel_chassis.="AND ( "; }
 
 		$sel_chassis.="color='";
 		$sel_chassis.=$x;
@@ -144,14 +125,8 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 		if(gettype($made)!="array") { $made=(array)$made; }
 		foreach($made as $x)
 		{
-			if($i)
-			{  
-				$sel_chassis.=" OR ";
-			}
-			else
-			{
-				$sel_chassis.=" AND ( ";
-			}
+			if($i) { $sel_chassis.=" OR "; }
+			else { $sel_chassis.="AND ( "; }
 
 			/* This is for a more stricter search
 			$sel_chassis.="FIND_IN_SET('";
@@ -173,14 +148,8 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 	if(gettype($ports)!="array") { $ports=(array)$ports; }
 	foreach($ports as $x)
 	{	
-		if($i)
-		{  
-			$sel_chassis.=" AND ";
-		}
-		else
-		{
-			$sel_chassis.=" AND ( ";
-		}
+		if($i){ $sel_chassis.=" AND "; }
+		else { $sel_chassis.=" AND ( "; }
 
 		if(!($GLOBALS['diffpisearch']))
 		{
@@ -261,14 +230,8 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 	if(gettype($vports)!="array") { $vports=(array)$vports; }
 	foreach($vports as $x)
 	{
-		if($i)
-		{  
-			$sel_chassis.=" AND ";
-		}
-		else
-		{
-			$sel_chassis.=" AND ( ";
-		}
+		if($i){ $sel_chassis.=" AND "; }
+		else { $sel_chassis.=" AND ( "; }
 
 		if(!($GLOBALS['diffvisearch']))
 		{
@@ -310,14 +273,8 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 	if(gettype($touch)!="array") { $touch=(array)$touch; }
 	foreach($touch as $x)
 	{
-		if($i)
-		{  
-			$sel_chassis.=" AND ";
-		}
-		else
-		{
-			$sel_chassis.=" AND ( "; 
-		}
+		if($i){ $sel_chassis.=" AND "; }
+		else { $sel_chassis.=" AND ( "; }
 
 		$sel_chassis.="FIND_IN_SET('";
 		$sel_chassis.=$x;
@@ -332,14 +289,8 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 	if(gettype($misc)!="array") { $misc=(array)$misc; }
 	foreach($misc as $x)
 	{	
-		if($i)
-		{  
-			$sel_chassis.=" AND ";
-		}
-		else
-		{
-			$sel_chassis.=" AND ( ";
-		}
+		if($i){ $sel_chassis.=" AND "; }
+		else { $sel_chassis.=" AND ( "; }
 
 		$sel_chassis.="FIND_IN_SET('";
 		$sel_chassis.=$x;
@@ -433,14 +384,8 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 	{
 		foreach($addmsc[0] as $x)
 		{
-			if($i)
-			{  
-				$sel_chassis.=" AND ";
-			}
-			else
-			{
-				$sel_chassis.=" OR ( ";
-			}
+			if($i) { $sel_chassis.=" AND "; }
+			else { $sel_chassis.=" OR ( "; }
 
 			$sel_chassis.="msc LIKE ";
 			$sel_chassis.="'%".$x."%'";
@@ -459,14 +404,8 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 	if(gettype($twoinone)!="array") { $twoinone=(array)$twoinone; }
 	foreach($twoinone as $x)
 	{
-		if($i) 	
-		{  
-			$sel_chassis.=" OR ";
-		}
-		else
-		{
-			$sel_chassis.=" AND ( ";
-		}
+		if($i) { $sel_chassis.=" OR "; }
+		else { $sel_chassis.=" AND ( "; }
 		
 		$sel_chassis.="twoinone='";
 		$sel_chassis.=$x;
