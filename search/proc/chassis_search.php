@@ -120,7 +120,7 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 	
 	// Add material made of  to filter		
 	$i=0;
-	if($made[0]!="0")
+	if(isset($made[0]))
 	{
 		if(gettype($made)!="array") { $made=(array)$made; }
 		foreach($made as $x)
