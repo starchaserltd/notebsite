@@ -1,6 +1,7 @@
 <?php
 require_once("confsearchfunc.php");
 require_once("../etc/con_sdb.php");
+
 $cons=dbs_connect();
 if($browse_by)
 {

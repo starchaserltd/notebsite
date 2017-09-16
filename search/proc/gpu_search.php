@@ -5,9 +5,9 @@
 function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shadermin, $cspeedmin, $cspeedmax, $sspeedmin, $sspeedmax, $mspeedmin, $mspeedmax, $mbwmin, $mbwmax, $mtype, $maxmemmin, $maxmemmax, $sharem, $powermin, $powermax, $ldmin, $ldmax, $misc, $ratemin, $ratemax, $pricemin, $pricemax, $seltdp)
 {
 	if($seltdp>0)
-	{ $sel_gpu="SELECT id,typegpu,price,rating,err,power FROM notebro_db.GPU WHERE 1=1"; }
+	{ $sel_gpu="SELECT id,typegpu,price,rating,err,power FROM notebro_db.GPU WHERE 1=1 AND valid=1"; }
 	else
-	{ $sel_gpu="SELECT id,typegpu,price,rating,err FROM notebro_db.GPU WHERE 1=1"; }
+	{ $sel_gpu="SELECT id,typegpu,price,rating,err FROM notebro_db.GPU WHERE 1=1 AND valid=1"; }
 	
 	// Add Type filter (Integrated / Dedicated / Professional)
 	$i=0; $k=0; $dend=0;

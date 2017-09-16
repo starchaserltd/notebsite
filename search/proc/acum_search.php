@@ -6,9 +6,9 @@ function search_acum ($tipc, $nrcmin, $nrcmax, $volt, $capmin, $capmax, $pricemi
 {
 
 	if($selcap>0)
-	{ $sel_acum="SELECT id,price,rating,err,cap FROM notebro_db.ACUM WHERE 1=1"; }
+	{ $sel_acum="SELECT id,price,rating,err,cap FROM notebro_db.ACUM WHERE 1=1 AND valid=1"; }
 	else
-	{ $sel_acum="SELECT id,price,rating,err FROM notebro_db.ACUM WHERE 1=1"; }
+	{ $sel_acum="SELECT id,price,rating,err FROM notebro_db.ACUM WHERE 1=1 AND valid=1"; }
 	
 	// Add cells type to filter
 	$i=0;

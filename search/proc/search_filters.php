@@ -29,23 +29,11 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 		require_once("proc/display_search.php");
 		$comp_lists["display"] = search_display ($display_model, $display_sizemin, $display_sizemax, $display_format, $display_hresmin, $display_hresmax, $display_vresmin, $display_vresmax, $display_surft, $display_backt, $display_touch,  $display_misc, $display_resolutions, $display_ratingmin, $display_ratingmax, $pricemin, $budgetmax, $battery_life,$display_srgb);
 	}
-
-	if($to_search["gpu"])
-	{ 
-		require_once("proc/gpu_search.php");
-		$comp_lists["gpu"] = search_gpu ($gpu_typelist, $gpu_prod, $gpu_model, $gpu_arch, $gpu_techmin, $gpu_techmax, $gpu_shadermin, $gpu_cspeedmin, $gpu_cspeedmax, $gpu_sspeedmin, $gpu_sspeedmax, $gpu_mspeedmin, $gpu_mspeedmax, $gpu_mbwmin, $gpu_mbwmax, $gpu_mtype, $gpu_maxmemmin, $gpu_maxmemmax, $gpu_sharem, $gpu_powermin, $gpu_powermax, $gpu_ldmin, $gpu_ldmax, $gpu_misc, $gpu_ratemin, $gpu_ratemax, $pricemin ,$budgetmax, $battery_life);
-	}
-
-	if($to_search["acum"])
+	
+	if($to_search["mem"])
 	{
-		require_once("proc/acum_search.php");
-		$comp_lists["acum"] = search_acum ($acum_tipc, $acum_nrcmin, $acum_nrcmax, $acum_volt, $acum_capmin, $acum_capmax, $pricemin, $budgetmax, $acum_misc, $battery_life);
-	}
-
-	if($to_search["war"])
-	{
-		require_once("proc/war_search.php");
-		$comp_lists["war"] = search_war ($war_prod, $war_yearsmin, $war_yearsmax, $war_typewar, $war_misc, $war_ratemin, $war_ratemax, $pricemin,$budgetmax);
+		require_once("proc/mem_search.php");
+		$comp_lists["mem"]=search_mem ($mem_prod, $mem_capmin, $mem_capmax, $mem_stan, $mem_freqmin, $mem_freqmax, $mem_type, $mem_latmin, $mem_latmax, $mem_voltmin, $mem_voltmax, $mem_misc, $mem_ratemin, $mem_ratemax, $pricemin,$budgetmax);
 	}
 
 	if($to_search["hdd"])
@@ -60,30 +48,24 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 		$comp_lists["shdd"] = search_shdd ($nr_hdd);
 	}
 
+	if($to_search["gpu"])
+	{ 
+		require_once("proc/gpu_search.php");
+		$comp_lists["gpu"] = search_gpu ($gpu_typelist, $gpu_prod, $gpu_model, $gpu_arch, $gpu_techmin, $gpu_techmax, $gpu_shadermin, $gpu_cspeedmin, $gpu_cspeedmax, $gpu_sspeedmin, $gpu_sspeedmax, $gpu_mspeedmin, $gpu_mspeedmax, $gpu_mbwmin, $gpu_mbwmax, $gpu_mtype, $gpu_maxmemmin, $gpu_maxmemmax, $gpu_sharem, $gpu_powermin, $gpu_powermax, $gpu_ldmin, $gpu_ldmax, $gpu_misc, $gpu_ratemin, $gpu_ratemax, $pricemin ,$budgetmax, $battery_life);
+	}
+
 	if($to_search["wnet"])
 	{
 		require_once("proc/wnet_search.php");
 		$comp_lists["wnet"] = search_wnet ($wnet_prod, $wnet_model, $wnet_misc, $wnet_speedmin, $wnet_speedmax, $wnet_bluetooth, $wnet_ratemin, $wnet_ratemax, $pricemin, $budgetmax);
 	}
-
-	if($to_search["sist"])
-	{
-		require_once("proc/sist_search.php");
-		$comp_lists["sist"] = search_sist ($sist_sist, $sist_vers, $sist_misc, $pricemin, $budgetmax);
-	}
-
+	
 	if($to_search["odd"])
 	{
 		require_once("proc/odd_search.php");
 		$comp_lists["odd"] = search_odd ($odd_type, $odd_prod, $odd_misc, $odd_speedmin, $odd_speedmax, $odd_ratemin, $odd_ratemax, $pricemin, $budgetmax);
 	}
-		
-	if($to_search["mem"])
-	{
-		require_once("proc/mem_search.php");
-		$comp_lists["mem"]=search_mem ($mem_prod, $mem_capmin, $mem_capmax, $mem_stan, $mem_freqmin, $mem_freqmax, $mem_type, $mem_latmin, $mem_latmax, $mem_voltmin, $mem_voltmax, $mem_misc, $mem_ratemin, $mem_ratemax, $pricemin,$budgetmax);
-	}
-
+	
 	if($to_search["mdb"])
 	{
 		require_once("proc/mdb_search.php");
@@ -96,7 +78,24 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 		$comp_lists["chassis"] = search_chassis ($chassis_prod, $chassis_model, $chassis_thicmin, $chassis_thicmax, $chassis_depthmin, $chassis_depthmax, $chassis_widthmin, $chassis_widthmax, $chassis_color, $chassis_weightmin, $chassis_weightmax, $chassis_made, $chassis_ports, $chassis_vports, $chassis_webmin, $chassis_webmax, $chassis_touch, $chassis_misc, $chassis_stuff, $chassis_ratemin, $chassis_ratemax, $pricemin,$budgetmax,$chassis_extra_stuff,$chassis_twoinone,$chassis_addpi);
 	}
 	
-	
+	if($to_search["acum"])
+	{
+		require_once("proc/acum_search.php");
+		$comp_lists["acum"] = search_acum ($acum_tipc, $acum_nrcmin, $acum_nrcmax, $acum_volt, $acum_capmin, $acum_capmax, $pricemin, $budgetmax, $acum_misc, $battery_life);
+	}
+
+	if($to_search["war"])
+	{
+		require_once("proc/war_search.php");
+		$comp_lists["war"] = search_war ($war_prod, $war_yearsmin, $war_yearsmax, $war_typewar, $war_misc, $war_ratemin, $war_ratemax, $pricemin,$budgetmax);
+	}
+
+
+	if($to_search["sist"])
+	{
+		require_once("proc/sist_search.php");
+		$comp_lists["sist"] = search_sist ($sist_sist, $sist_vers, $sist_misc, $pricemin, $budgetmax);
+	}
 }	
 else
 {

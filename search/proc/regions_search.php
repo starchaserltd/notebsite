@@ -41,7 +41,7 @@ function search_regions ($name)
 	
 	if($alltest) { $regions_return[]="1"; }
 
-		mysqli_free_result($result);
-		return($regions_return);
+	mysqli_free_result($result);
+	return($regions_return);
 }
 ?>

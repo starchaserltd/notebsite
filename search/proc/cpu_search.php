@@ -5,9 +5,9 @@
 function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, $techmax, $cachemin, $cachemax, $clockmin, $clockmax, $turbomin, $turbomax, $tdpmax, $tdpmin, $coremin, $coremax, $intgpu, $misc, $ratemin, $ratemax, $pricemin, $pricemax, $seltdp)
 {
 	if($seltdp>0)
-	{ $sel_cpu="SELECT id,price,rating,err,gpu,tdp FROM notebro_db.CPU WHERE 1=1"; }
+	{ $sel_cpu="SELECT id,price,rating,err,gpu,tdp FROM notebro_db.CPU WHERE 1=1 AND valid=1"; }
 	else
-	{ $sel_cpu="SELECT id,price,rating,err,gpu FROM notebro_db.CPU WHERE 1=1"; }
+	{ $sel_cpu="SELECT id,price,rating,err,gpu FROM notebro_db.CPU WHERE 1=1 AND valid=1"; }
 	
 	// Add producers to filter
 	$i=0;

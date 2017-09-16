@@ -1,11 +1,898 @@
 <?php
-include("../../etc/conf.php");
+/*include("../../etc/conf.php");
 if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_name) ==FALSE) 
 {	$actual_link = "$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 	header("Location: http://noteb.com/?content/home.php");
 	die();
+}*/
+
+/*
+		//OLD CODE FOR PRICE SLIDER
+		if(quizp==(maxpage)){ var tosearch="p"; }
+		if(quizp==(maxpage-1)){ var tosearch="b"; }
+		
+		quiz_submit=[]; i=0;
+		
+		for (var key1 in quiz)
+		{
+			var opt=quiz[key1]['options'];
+			for (var key2 in opt)
+			{
+				var selected=opt[key2];
+				if ((typeof selected['chk']) != 'undefined' && selected['chk']['on']==1)
+				{ quiz_submit[i]=key2+"=1"; i++; }
+			}
+		}
+		
+		prequery(quiz_submit.join("&"), tosearch);
+		
+		document.getElementById("question").innerHTML=quiz[quizp]['question'];
+		
+		if(quizp==(maxpage))
+		{
+			document.getElementById("mainquiz").style.display="none";
+			document.getElementById("budget_quiz_container").style.display="block";
+		}
+		
+		//FIRST, DEPENDING ON THE RANGE WE DECIDE THE NUMER SIZE
+function divider()
+{
+	rangemaxb=maxb;
+	i=1;
+	while(rangemaxb>1)
+	{
+		rangemaxb=rangemaxb/10;
+		i++;
+	}
+	
+	divide=Math.pow(10,i-4);
+	if(i<=0) {divide=1;}
+	return divide;
 }
+
+//SECONDLY WE ROUND THE BOUNDRIES SO THAT THE NUMBERS LOOK NICE AND ROUND
+function roundlimit(val)
+{
+
+	divide=divider();
+	val=parseInt(val/divide)*divide;
+	if(val<=0){val=1;}
+	return val;
+}
+
+//THIRDLY WE ROUND THE STEPS SO THAT THE STEPPING IS NICE AND ROUND
+function roundstep(val)
+{
+	divide=divider();
+	val=parseInt(val/divide)*divide;
+	if(val<=0){val=10;}
+	return val;
+}
+
+function quiz_init() { 
+makePage(0);
+
+	//HERE WE CALCULATE THE VARIABLES
+	//var t = parseFloat(currency_val[$('#currency').val()]);
+	//var x = minbudgetnomen*2; var y = maxbudgetnomen*0.65; y=parseInt(y*t); x=parseInt(x*t); minb=parseInt(minbudgetnomen*t); maxb=parseInt(maxbudgetnomen*t);
+	minb=200;
+	x=500;
+	y=2000;
+	maxb=4000;
+		
+	noUiSlider.create(document.getElementById('budget_quiz'), {
+	start: [roundlimit(x), roundlimit(y)],
+	connect: true,
+	direction: 'ltr',
+	format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
+	range: {
+		'min': [ roundlimit(minb),roundstep((maxb-minb)*0.0015)],
+		'25%': [ roundlimit(minb+(maxb-minb)*0.145),  roundstep((maxb-minb)*0.0071)],
+		'50%': [ roundlimit(minb+(maxb-minb)*0.285),  roundstep((maxb-minb)*0.01425) ],
+		'70%': [ roundlimit(minb+(maxb-minb)*0.571),  roundstep((maxb-minb)*0.0285) ],
+		'80%': [ roundlimit(minb+(maxb-minb)*0.8),  roundstep((maxb-minb)*0.04) ],
+		'90%': [ roundlimit(minb+(maxb-minb)*0.9), roundstep((maxb-minb)*0.045) ],		
+		'max': [ roundlimit(maxb),roundstep((maxb-minb)*0.055)]
+		}
+	});
+
+
+	// HERE WE SET VALUES FOR INPUT BOX WHENT SLIDER IS MOVED
+	document.getElementById('budget_quiz').noUiSlider.on('update', function( values, handle ) {
+	
+	if (typeof values[0] === 'string' || values[0] instanceof String)
+	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+
+	if (typeof values[1] === 'string' || values[1] instanceof String)
+	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+	
+	if(handle==0) {	document.getElementById('bdgmin').value=left; document.getElementById('bdgmintext').innerHTML=left;  }
+	if(handle==1) {	document.getElementById('bdgmax').value=right; document.getElementById('bdgmaxtext').innerHTML=right; }
+
+	});
+
+}
+
+	<div id="budget_quiz_container" style="text-align:center; position: relative; top: 40%;  transform: translateY(-50%); display: none;">
+		<div style="margin-top:10px;" id="budget_quiz"></div>
+		<div class="icontext" style="margin-top:20px; font-size:14px;">$<span id="bdgmintext" ></span> - $<span id="bdgmaxtext"></span></div>
+		<input type="hidden" name="bdgmin" id="bdgmin">
+		<input type="hidden" name="bdgmax" id="bdgmax">
+		<br><br>
+		<input type="button" name="submit" id="submit" value="That's it! Find my laptop." onclick="submit();">
+	</div>
+	
+				document.getElementById("budget_quiz_container").style.display="none"; in makepage
+*/
+
 ?>
-<div style="border-style:dashed; border-width:medium; border-color:#b5b8bd; height:210px; width:100%;">
-<img class="img-responsive" src="search/quiz/res/img/working.jpg" style="vertical-align: middle;height:200px;">
+
+<script>
+var quiz = {
+        0:{
+            'question': 'You will use your laptop mainly ...',
+            'options': {
+                'athome' : { 'txt':['at home','single'], 'img':['athome.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
+                'atwork' : { 'txt':['at work','single'], 'img':['atwork.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
+                'atroad' : { 'txt':['<span style="font-size:13px;">both</span>','single'], 'img':['backpack.svg',''], 'chk':{'on':[0],'style':['display:none;']} }
+            },
+			'selected': 0,
+			'done': 1
+        },
+		1:{
+            'question': 'You will keep it mainly ...',
+            'options': {
+                'desk' : { 'txt':['<span style="font-size:13px;">on a desk</span>','single'], 'img':['desk.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+                'bed' : { 'txt':['<span style="font-size:13px;">in bed</span>','single'], 'img':['bed.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+				'lap' : { 'txt':['<span style="font-size:13px;">on your lap</span>','single'], 'img':['onlap.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+				'house' : { 'txt':['<span style="font-size:13px;">around<br>the house</span>','single'], 'img':['aroundhouse.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+				'everywhere' : { 'txt':['<span style="font-size:12px;">everywhere!</span>','single'], 'img':['inhand.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+				'display_size' : { 'txt':['<span style="font-size:13px;">advanced<br>size select</span><span style="color: #ffffff"><br>-</span>','multiple'], 'img':['display.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['display_size'] }
+            },
+			'selected': 0,
+			'done': 1
+        },
+		2:{
+            'question': 'You will user it daily for (multiple choices): ',
+            'options': {
+                'internet' : { 'txt':['<span style="font-size:13px;">internet<br>browsing</span>','multiple'], 'img':['internet.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
+                'comm' : { 'txt':['<span style="font-size:13px;">chatting and<br>video calls</span>','multiple'], 'img':['communication.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
+                'writing' : { 'txt':['<span style="font-size:13px;">document<br>writing</span>','multiple'], 'img':['docs.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
+				'calc' : { 'txt':['<span style="font-size:12px;">struggling<br>with<br>spreadsheets</span>','multiple'], 'img':['sheet.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
+				'coding' : { 'txt':['<span style="font-size:12px;">computer<br>coding</span><span style="color: #ffffff"><br>-</span>','multiple'], 'img':['coding.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
+				'media' : { 'txt':['<span style="font-size:12px;">enjoying<br>movies<br>and music</span>','multiple'], 'img':['movies.svg',''], 'chk':{'on':[0],'style':['display:none;']} }
+            },
+			'selected': 0,
+			'done': 1
+        },
+		3:{
+			'question': 'You will also use it for (multiple choices): ',
+            'options': {
+                'games' : { 'txt':['<span style="font-size:13px;">playing<br>games</span><span style="color: #ffffff"><br>-</span>','multiple'], 'img':['games.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['games'] },
+                'pedit' : { 'txt':['<span style="font-size:13px;">photo<br>editing,<br>illustrations</span>','multiple'], 'img':['photoedit.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['pedit'] },
+                'vedit' : { 'txt':['<span style="font-size:13px;">video<br>editing</span><span style="color: #ffffff"><br>-</span>','multiple'], 'img':['videoedit.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['vedit'] },
+				'3dmodel' : { 'txt':['<span style="font-size:12px;">CAD / 3D modeling</span><span style="color: #ffffff"><br>-</span>','multiple'], 'img':['3dmodel.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['3dmodel'] },
+				'sysadmin' : { 'txt':['<span style="font-size:12px;">IT management</span>','multiple'], 'img':['sysadmin.svg',''], 'chk':{'on':[0]} },
+				'otherfeatures' : { 'txt':['<span style="font-size:12px;">other<br>features</span>','multiple'], 'img':['other.svg',''], 'chk':{'on':[0]},'extra':['otherfeatures'] }
+            },
+			'selected': 0,
+			'done': 0
+        },
+		4: {
+            'question': 'Minimum desired battery life ...',
+            'options': {
+                '2hour' : { 'txt':['1 hour','single'], 'img':['clock02.svg',''], 'chk':{'on':[0],'style':['display:none;']}, 'no':[1] },
+                '6hour' : { 'txt':['3 hours','single'], 'img':['clock26.svg',''], 'chk':{'on':[0],'style':['display:none;']}, 'no':[1] },
+                '10hour' : { 'txt':['6 hours','single'], 'img':['clock610.svg',''], 'chk':{'on':[0],'style':['display:none; margin-left: 4px;']}, 'no':[1] },
+				'12hour' : { 'txt':['more than<br>9 hours','single'], 'img':['clock10.svg',''], 'chk':{'on':[0],'style':['display:none; margin-left: 5px;']}, 'no':[1] }
+            },
+			'selected': 0,
+			'done': 1
+        },
+		5:{
+            'question': 'Available budget for your options: ',
+            'options': {
+                'b500' : { 'txt':['under $500','multiple'], 'img':['budget1.svg',''], 'chk':{'on':[0],'style':['display:none;']}, 'no':[1] },
+                'b750' : { 'txt':['$500 - $750','multiple'], 'img':['budget2.svg',''], 'chk':{'on':[0],'style':['display:none;']}, 'no':[1] },
+                'b1000' : { 'txt':['$750 - $1000','multiple'], 'img':['budget3.svg',''], 'chk':{'on':[0],'style':['display:none;']}, 'no':[1] },
+				'b1500' : { 'txt':['$1000 - $1500','multiple'], 'img':['budget4.svg',''], 'chk':{'on':[0],'style':['display:none;']}, 'no':[1] },
+				'b2000' : { 'txt':['$1500 - $2000','multiple'], 'img':['budget5.svg',''], 'chk':{'on':[0],'style':['display:none;']}, 'no':[1] },
+				'b3000' : { 'txt':['over $2000','multiple'], 'img':['budget6.svg',''], 'chk':{'on':[0],'style':['display:none;']}, 'no':[1] },
+            },
+			'selected': 0,
+			'done': 1
+        },
+		'games':{
+			'question': 'Type of games you will play: ',
+            'options': {
+                '2dgames' : { 'txt':['<span style="font-size:13px;">non-3D games</span><span style="color: #ffffff"><br>-</span>','multiple'], 'img':['2dgames.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
+                'oldgames' : { 'txt':['<span style="font-size:13px;">older games</span><span style="color: #ffffff"><br>-</span>','multiple'], 'img':['oldgames.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['oldgames'] },
+                'mmo' : { 'txt':['<span style="font-size:13px;">multiplayer<br>games</span>','multiple'], 'img':['mmo.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['mmo'] },
+				'3dgames' : { 'txt':['<span style="font-size:12px;">latest<br>releases</span>','multiple'], 'img':['performance.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['3dgames'] }
+            },
+			'selected': 0,
+			'done': 1
+        },
+		'3dmodel':{
+            'question': 'CAD / 3D modeling programs used: ',
+            'options': {
+                'autocad' : { 'txt':['<span style="font-size:13px;">AutoCAD</span>','multiple'], 'img':['autocad.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['autocad'] },
+                'solidworks' : { 'txt':['<span style="font-size:13px;">SolidWorks</span>','multiple'], 'img':['solidworks.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['solidworks'] },
+				'3dsmaxmaya' : { 'txt':['<span style="font-size:13px;">3Ds Max<br>or Maya</span>','multiple'], 'img':['3dsmax.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['3dsmaxmaya'] },
+				'catia' : { 'txt':['<span style="font-size:13px;">CATIA</span>','multiple'], 'img':['catia.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['catia'] },
+				'rhinoceros' : { 'txt':['<span style="font-size:13px;">Rhinoceros</span>','multiple'], 'img':['rhinoceros.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['rhinoceros'] },
+				'cadother' : { 'txt':['<span style="font-size:13px;">Other</span>','multiple'], 'img':['cadother.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['cadother'] }
+            },
+			'selected': 0,
+			'done': 1
+        },
+		'2dgames':{
+			'question': 'Minimal graphics quality: ',
+            'options': {
+                '2dgameslow' : { 'txt':['<span style="font-size:13px;">low<br>quality</span>','single'], 'img':['lowq.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
+                '2dgamesmedium' : { 'txt':['<span style="font-size:13px;">normal<br>quality</span>','multiple'], 'img':['medq.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
+                '2gameshigh' : { 'txt':['<span style="font-size:13px;">high<br>quality</span>','multiple'], 'img':['highq.svg',''], 'chk':{'on':[0],'style':['display:none;']} }
+            },
+			'selected': 0,
+			'done': 1
+        },
+		'oldgames':{
+			'question': 'Minimal graphics quality: ',
+            'options': {
+                'oldgameslow' : { 'txt':['<span style="font-size:13px;">low<br>quality</span>','single'], 'img':['lowq.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
+                'oldgamesmedium' : { 'txt':['<span style="font-size:13px;">normal<br>quality</span>','single'], 'img':['medq.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
+                'oldgameshigh' : { 'txt':['<span style="font-size:13px;">high<br>quality</span>','single'], 'img':['highq.svg',''], 'chk':{'on':[0],'style':['display:none;']} }
+            },
+			'selected': 0,
+			'done': 1
+		},
+		'mmo':{
+			'question': 'Minimal graphics quality: ',
+            'options': {
+                'mmolow' : { 'txt':['<span style="font-size:13px;">low<br>quality</span>','single'], 'img':['lowq.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
+                'mmomedium' : { 'txt':['<span style="font-size:13px;">normal<br>quality</span>','single'], 'img':['medq.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
+                'mmohigh' : { 'txt':['<span style="font-size:13px;">high<br>quality</span>','single'], 'img':['highq.svg',''], 'chk':{'on':[0],'style':['display:none;']} }
+            },
+			'selected': 0,
+			'done': 1
+        },
+		'3dgames':{
+			'question': 'Minimal graphic quality: ',
+            'options': {
+                '3dgameslow' : { 'txt':['<span style="font-size:13px;">low<br>quality</span>','single'], 'img':['lowq.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
+                '3dgamesmedium' : { 'txt':['<span style="font-size:13px;">normal<br>quality</span>','single'], 'img':['medq.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
+                '3dgameshigh' : { 'txt':['<span style="font-size:13px;">high<br>quality</span>','single'], 'img':['highq.svg',''], 'chk':{'on':[0],'style':['display:none;']} }
+            },
+			'selected': 0,
+			'done': 1
+        },
+		'autocad':{
+            'question': 'AutoCAD model complexity: ',
+            'options': {
+                'autocadlight' : { 'txt':['<span style="font-size:13px;">simple<br>models</span>','single'], 'img':['cadlight.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
+                'autocadmedium' : { 'txt':['<span style="font-size:13px;">average<br>models</span>','single'], 'img':['cadmedium.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
+                'autocadheavy' : { 'txt':['<span style="font-size:13px;">complex<br>models</span>','single'], 'img':['cadheavy.svg',''], 'chk':{'on':[0],'style':['display:none;']} }
+            },
+			'selected': 0,
+			'done': 1
+        },
+			'solidworks':{
+            'question': 'SolidWorks model complexity: ',
+            'options': {
+                'swlight' : { 'txt':['<span style="font-size:13px;">simple<br>models</span>','single'], 'img':['cadlight.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
+                'swmedium' : { 'txt':['<span style="font-size:13px;">average<br>models</span>','single'], 'img':['cadmedium.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
+                'swheavy' : { 'txt':['<span style="font-size:13px;">complex<br>models</span>','single'], 'img':['cadheavy.svg',''], 'chk':{'on':[0],'style':['display:none;']} }
+            },
+			'selected': 0,
+			'done': 1
+        },
+			'catia':{
+            'question': 'CATIA model complexity: ',
+            'options': {
+                'catialight' : { 'txt':['<span style="font-size:13px;">simple<br>models</span>','single'], 'img':['cadlight.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
+                'catiamedium' : { 'txt':['<span style="font-size:13px;">average<br>models</span>','single'], 'img':['cadmedium.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
+                'catiaheavy' : { 'txt':['<span style="font-size:13px;">complex<br>models</span>','single'], 'img':['cadheavy.svg',''], 'chk':{'on':[0],'style':['display:none;']} }
+            },
+			'selected': 0,
+			'done': 1
+        },
+			'3dsmaxmaya':{
+            'question': '3Ds Max / Maya model complexity: ',
+            'options': {
+                '3dsmaxlight' : { 'txt':['<span style="font-size:13px;">simple<br>models</span>','single'], 'img':['cadlight.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
+                '3dsmaxmedium' : { 'txt':['<span style="font-size:13px;">average<br>models</span>','single'], 'img':['cadmedium.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
+                '3dsmaxheavy' : { 'txt':['<span style="font-size:13px;">complex<br>models</span>','single'], 'img':['cadheavy.svg',''], 'chk':{'on':[0],'style':['display:none;']} }
+            },
+			'selected': 0,
+			'done': 1
+        },
+			'rhinoceros':{
+            'question': 'Rhinoceros model complexity: ',
+            'options': {
+                'rhinolight' : { 'txt':['<span style="font-size:13px;">simple<br>models</span>','single'], 'img':['cadlight.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
+                'rhinomedium' : { 'txt':['<span style="font-size:13px;">average<br>models</span>','single'], 'img':['cadmedium.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
+                'rhinoheavy' : { 'txt':['<span style="font-size:13px;">complex<br>models</span>','single'], 'img':['cadheavy.svg',''], 'chk':{'on':[0],'style':['display:none;']} }
+            },
+			'selected': 0,
+			'done': 1
+        },
+			'cadother':{
+            'question': 'General CAD/3D model complexity: ',
+            'options': {
+                'cadolight' : { 'txt':['<span style="font-size:13px;">simple<br>models</span>','single'], 'img':['cadlight.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
+                'cadomedium' : { 'txt':['<span style="font-size:13px;">average<br>models</span>','single'], 'img':['cadmedium.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
+                'cadoheavy' : { 'txt':['<span style="font-size:13px;">complex<br>models</span>','single'], 'img':['cadheavy.svg',''], 'chk':{'on':[0],'style':['display:none;']} }
+            },
+			'selected': 0,
+			'done': 1
+        },
+		'otherfeatures':{
+            'question': 'Other special features (multiple choices): ',
+            'options': {
+                'FHDplus' : { 'txt':['<span style="font-size:13px;">high quality<br>display</span>','multiple'], 'img':['fhdplus.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
+                'convertible' : { 'txt':['<span style="font-size:13px;">tablet<br>mode</span>','multiple'], 'img':['2in1.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
+				'stylus' : { 'txt':['<span style="font-size:12px;">stylus<br>support</span>','multiple'], 'img':['stylus.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
+				'metal' : { 'txt':['<span style="font-size:13px;">durable<br>build materials</span>','multiple'], 'img':['metal.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
+				'shdd' : { 'txt':['<span style="font-size:12px;">secondary<br>HDD</span><span style="color: #ffffff"><br>-</span>','multiple'], 'img':['shdd.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
+				'odd' : { 'txt':['<span style="font-size:12px;">optical<br>drive</span>','multiple'], 'img':['odd.svg',''], 'chk':{'on':[0],'style':['display:none;']} }
+            },
+			'selected': 0,
+			'done': 1
+        },
+		'pedit':{
+			'question': 'For your photo editing you need: ',
+            'options': {
+                '60srgb' : { 'txt':['<span style="font-size:13px;">normal<br>colour gamut</span>','single'], 'img':['ngamut.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
+                '90srgb' : { 'txt':['<span style="font-size:13px;">high<br>colour gamut</span>','single'], 'img':['hgamut.svg',''], 'chk':{'on':[0],'style':['display:none;']} }
+            },
+			'selected': 0,
+			'done': 1
+        },
+		'vedit':{
+			'question': 'Your video editing activities will be: ',
+            'options': {
+                'lvedit' : { 'txt':['<span style="font-size:13px;">casual<br>editing<span>','single'], 'img':['lvideoedit.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
+				'hvedit' : { 'txt':['<span style="font-size:13px;">heavy<br>editing</span>','single'], 'img':['hvideoedit.svg',''], 'chk':{'on':[0],'style':['display:none;']} }
+            },
+			'selected': 0,
+			'done': 1
+        },
+		'display_size':{
+            'question': 'Select display size (multiple choices): ',
+            'options': {
+                'disxsmall' : { 'txt':['<span style="font-size:13px;">10 - 13 inch</span>','multiple'], 'img':['xsmall.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1]  },
+                'dispsmall' : { 'txt':['<span style="font-size:13px;">13 - 14 inch</span>','multiple'], 'img':['small.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+                'dispmedium' : { 'txt':['<span style="font-size:13px;">15 - 16 inch</span>','multiple'], 'img':['normal.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+				'displarge' : { 'txt':['<span style="font-size:13px;">17+ inch</span>','multiple'], 'img':['large.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] }
+            },
+			'selected': 0,
+			'done': 1
+        }
+	};
+
+var imgadd="search/quiz/res/img/icons/"; var currentp=0; var maxpage=5; var inextra=0; var activequery=0;
+
+function makePage(quizp)
+{
+	if(quizp<0){quizp=0;}
+	currentp=quizp; quiz[quizp]['selected']=0;
+	switch(quizp)
+	{
+		case (maxpage-1):
+		{
+			if(activequery==0)
+			{
+				var tosearch="b"; 
+				quiz_submit=[]; i=0;
+				
+				for (var key1 in quiz)
+				{
+					var opt=quiz[key1]['options'];
+					for (var key2 in opt)
+					{ var selected=opt[key2]; if ((typeof selected['chk']) != 'undefined' && selected['chk']['on']==1 && selected['no']!=0 && key1!=4 && key1!=5){ quiz_submit[i]=key2+"=1"; i++; } }
+				}
+				prequery(quiz_submit.join("&"), tosearch);
+				break;
+			}
+		}
+		case (maxpage):
+		{
+			if(activequery==0)
+			{
+				var tosearch="p";
+				quiz_submit=[]; i=0;
+				
+				for (var key1 in quiz)
+				{
+					var opt=quiz[key1]['options'];
+					for (var key2 in opt)
+					{ var selected=opt[key2]; if ((typeof selected['chk']) != 'undefined' && selected['chk']['on']==1 && selected['no']!=0 && key1!=5){ quiz_submit[i]=key2+"=1"; i++; } }
+				}
+				prequery(quiz_submit.join("&"), tosearch);
+				break;
+			}
+		}
+		default:
+		{
+			activequery=0;	var elms = document.getElementsByClassName('iconel');
+			document.getElementById("mainquiz").style.display="block";
+			document.getElementById("quiz_noresults").style.display="none";
+			document.getElementById("question").innerHTML=quiz[quizp]['question'];
+			for (var i = 0; i < elms.length; i++) { elms[i].style.display="none"; }
+			var options=quiz[quizp]['options']; var i=1;
+			for (var key in options)
+			{
+				var obj=options[key];
+				if(obj['no']!=0)
+				{
+					document.getElementById("opt"+i).style.display="block";
+					document.getElementById("opt"+i+"txt").innerHTML="<br>"+obj['txt'][0];
+					if (typeof obj['extra'] != 'undefined')
+					{ document.getElementById("opt"+i).setAttribute( "onClick", "makeextraPage('"+obj['extra']+"',"+i+",'"+obj["txt"][1]+"'"+");" ); }
+					else
+					{ document.getElementById("opt"+i).setAttribute( "onClick", "press('"+key+"','"+i+"','"+obj['txt'][1]+"',0);" ); }
+					
+					document.getElementById('opt'+i+'img').getElementsByTagName('img')[0].src=imgadd+obj['img'][0];
+					document.getElementById('opt'+i+'img').classList.add('hoverblue');
+					document.getElementById('opt'+i+'chk').setAttribute('style', obj['chk']['style']);
+					if(obj['chk']['on']==1)	{ addcheck("opt"+i,quizp); }
+					i++;
+				}
+			}
+			if(i==1) {document.getElementById("quiz_noresults").style.display="block"; }
+			if(i-1>3) { document.getElementById("quizr2").style.display="block"; }
+			else { document.getElementById("quizr2").style.display="none"; }
+			
+			break;
+		}
+	}
+	navigation();
+}
+
+function makeextraPage(quizp,el)
+{
+	var closeextratextnav=1;
+	if(!inextra) { inextra=quizp; closeextratext="closeextra"; if(document.getElementsByClassName('glyphicon-arrow-left')[0].getAttribute( "onClick").indexOf("closeextra(")>=0) { closeextratextnav=0;  } } else { closeextratext="closeextraextra"; }
+	
+	//FADEIN CODE
+	document.getElementById("extraopt").classList.add("showel");
+	document.getElementById("extraopt").style.display="block";
+	document.getElementById("question").innerHTML=quiz[quizp]['question'];
+	setTimeout(function() { document.getElementById("extraopt").classList.remove("hidel");},10);
+	
+	var elms = document.getElementsByClassName('extraiconel'); quiz[quizp]['selected']=0;
+	for (var i = 0; i < elms.length; i++) { elms[i].style.display="none"; }
+	document.getElementById("doneextra").setAttribute( "onClick", closeextratext+"('"+quizp+"','"+el+"');" );
+	document.getElementById("doneextra").style.display="block";
+	options=quiz[quizp]['options']; var i=1;
+	for (var key in options)
+	{
+		var obj=options[key];
+		if(obj['no']!=0)
+		{
+			document.getElementById("extraopt"+i).style.display="block";
+			document.getElementById("extraopt"+i+"txt").innerHTML="<br>"+obj['txt'][0];
+			if (typeof obj['extra'] != 'undefined')
+			{ document.getElementById("extraopt"+i).setAttribute( "onClick", "makeextraPage('"+obj['extra']+"','"+el+"+"+i+"','"+obj["txt"][1]+"'"+");" ); }
+			else
+			{ document.getElementById("extraopt"+i).setAttribute( "onClick", "press('"+key+"','"+i+"','"+obj['txt'][1]+"','"+quizp+"');" ); }
+			document.getElementById('extraopt'+i+'img').getElementsByTagName('img')[0].src=imgadd+obj['img'][0];
+			document.getElementById('extraopt'+i+'img').classList.add('hoverblue');
+			document.getElementById('extraopt'+i+'chk').setAttribute('style', obj['chk']['style']);
+			if(obj['chk']['on']==1)	{ addcheck("extraopt"+i,quizp); }
+			i++;
+		}
+	}
+	if(i<6) { document.getElementById("doneextra").style.marginLeft="110px"; }
+	
+	//ADJUST NAVIGATION FUNCTIONS
+	var navnr=document.getElementsByClassName('nrcircle');
+	for (var key=0;key<=maxpage;key++)
+	{
+		if(navnr[key].getAttribute("onClick")!="")
+		{
+			var split=el.toString().split("+"); var el2=parseInt(split[split.length-1]); var el3=parseInt(split[split.length-2]);
+			if(isNaN(el3)){ navnr[key].setAttribute( "onClick", closeextratext+"('"+quizp+"','"+el2+"'); "+"makePage("+key+");" );	} else { navnr[key].setAttribute( "onClick", closeextratext+"('"+quizp+"','"+el+"'); "+"closeextra('"+inextra+"','"+el3+"'); "+"makePage("+key+");" ); } 
+		}
+	}
+	
+	if(closeextratextnav)
+	{
+		document.getElementsByClassName('glyphicon-arrow-left')[0].setAttribute( "onClick", closeextratext+"('"+quizp+"',"+"'"+el+"'"+"); "+document.getElementsByClassName('glyphicon-arrow-left')[0].getAttribute( "onClick") );
+		document.getElementsByClassName('glyphicon-arrow-right')[0].setAttribute( "onClick", closeextratext+"('"+quizp+"',"+"'"+el+"'"+"); "+document.getElementsByClassName('glyphicon-arrow-right')[0].getAttribute( "onClick") );
+	}
+}
+
+function closeextra(extra,el)
+{
+	inextra=0; el=parseInt(el); var singlesel=0;
+	document.getElementById("extraopt").classList.remove("showel");
+	document.getElementById("extraopt").classList.add("hidel");
+	var subel=quiz[currentp]['options'];
+	setTimeout(function() { document.getElementById("extraopt").style.display="none"; }, 300);
+	if(quiz[extra]['selected']>=quiz[extra]['done'])
+	{ addcheck("opt"+el,currentp); if(quiz[currentp]['options'][extra]['chk']['on']==1){ quiz[currentp]['selected']--; }  quiz[currentp]['options'][extra]['chk']['on']=1; }
+	else
+	{ removecheck("opt"+el,el);
+
+	document.getElementById("question").innerHTML=quiz[currentp]['question'];
+
+	for (var key in subel) { if(quiz[currentp]["options"][key]["chk"]["on"]==1 && quiz[currentp]["options"][key]["txt"][1]=="single"){ singlesel=1;} } if(singlesel){  quiz[currentp]['selected']=1;  } else { if(quiz[currentp]['options'][extra]['chk']['on']==1){ quiz[currentp]['selected']--; } }  quiz[currentp]['options'][extra]['chk']['on']=0; }
+
+	var navnr=document.getElementsByClassName('nrcircle');
+	for (var key=0;key<=maxpage;key++)
+	{
+		if(navnr[key].getAttribute("onClick")!="")
+		{navnr[key].setAttribute( "onClick", "makePage("+key+");" );}
+	}
+
+	document.getElementsByClassName('glyphicon-arrow-left')[0].setAttribute( "onClick", document.getElementsByClassName('glyphicon-arrow-left')[0].getAttribute( "onClick").replace("closeextra('"+extra+"','"+el+"'); ","") );
+	document.getElementsByClassName('glyphicon-arrow-right')[0].setAttribute( "onClick", document.getElementsByClassName('glyphicon-arrow-right')[0].getAttribute( "onClick").replace("closeextra('"+extra+"','"+el+"'); ","") );
+	navigation();
+}
+
+
+function closeextraextra(extra,el)
+{
+	var singlesel=0; var subel=quiz[inextra]['options'];
+	var split=el.split("+"); var el2=parseInt(split[split.length-1]); var el3=parseInt(split[split.length-2]);
+	if(quiz[extra]['selected']>=quiz[extra]['done'])
+	{ quiz[inextra]['selected']++; if(("opt"+el2).indexOf("extra")==-1) { navigation(); } changeoptions("opt"+el2, inextra, 0); if(quiz[inextra]['options'][extra]['chk']['on']==1){ quiz[inextra]['selected']--; }  quiz[inextra]['options'][extra]['chk']['on']=1; }
+	else
+	{ 	setTimeout(function() {	document.getElementById("opt"+el2+"chk").style.display="none"; }, 300);	if(("opt"+el2).indexOf("extra")==-1) { navigation(); } changeoptions("opt"+el2, inextra, 1);
+	for (var key in subel) { if(quiz[inextra]["options"][key]["chk"]["on"]==1 && quiz[inextra]["options"][key]["txt"][1]=="single"){ singlesel=1;} } if(singlesel){  quiz[inextra]['selected']=1;  } else { if(quiz[inextra]['options'][extra]['chk']['on']==1){ quiz[inextra]['selected']--; } }  quiz[inextra]['options'][extra]['chk']['on']=0; }
+	var prevpage=inextra; inextra=0; makeextraPage(prevpage,el3);
+	navnr=document.getElementsByClassName('nrcircle');
+	
+	for (var key=0;key<=maxpage;key++)
+	{
+		if(navnr[key].getAttribute("onClick")!="")
+		{navnr[key].setAttribute( "onClick", "closeextra('"+inextra+"','"+el3+"'); makePage("+key+");" );}
+	}
+	document.getElementsByClassName('glyphicon-arrow-left')[0].setAttribute( "onClick", document.getElementsByClassName('glyphicon-arrow-left')[0].getAttribute( "onClick").replace("closeextraextra('"+extra+"','"+el+"'); ","") );
+	document.getElementsByClassName('glyphicon-arrow-right')[0].setAttribute( "onClick", document.getElementsByClassName('glyphicon-arrow-right')[0].getAttribute( "onClick").replace("closeextraextra('"+extra+"','"+el+"'); ","") );
+}
+
+function press(option,el,type,extra)
+{
+	if(extra){ var opt="extraopt"; var page=extra;} else { var opt="opt"; var page=currentp;}
+	el=parseInt(el);
+	var elvis=document.getElementById(opt+el+"chk").style.display;
+	
+	if(elvis=="none" || document.getElementById(opt+el+"chk").classList.contains('hidel'))
+	{
+		if(type.localeCompare("single")==0)
+		{
+			for(var i=1;i<=Object.keys(quiz[page]["options"]).length;i++)
+			{
+				if(i!=el)
+				{ 
+					if(document.getElementById(opt+i+"chk").style.display=="block" || !(document.getElementById(opt+i+"chk").classList.contains('hidel')))
+					{
+						var subel=quiz[page]['options'];
+						for (var key in subel)
+						{
+							if(key!=option && quiz[page]['options'][key]['txt'][1]!="multiple")
+							{ quiz[page]['options'][key]['chk']['on']=0; }
+						}
+						if(window[opt+i].getAttribute("onclick").indexOf("multiple")==-1)
+						{ removecheck(opt+i,page); quiz[page]['selected']=0; var changeselect=0; }
+						else
+						{ if(window[opt+i].innerHTML.indexOf("checkmark__check")!=-1) { var changeselect=1;  } }
+					}
+				}
+			}
+			if(changeselect) { quiz[page]['selected']=1; } 
+		}
+		addcheck(opt+el,page);
+		quiz[page]['options'][option]['chk']['on']=1;
+	}
+	else
+	{ 
+		if((elvis=="block" || !(document.getElementById(opt+el+"chk").classList.contains('hidel')))&&(type.localeCompare("single")!=0))
+		{
+			quiz[page]['options'][option]['chk']['on']=0;
+			quiz[page]['selected']--;
+			removecheck(opt+el,page);
+		}
+		else
+		{
+			if(inextra && type.localeCompare("single")==0)
+			{
+				quiz[page]['options'][option]['chk']['on']=0;
+				quiz[page]['selected']--;
+				removecheck(opt+el,page);
+			}
+		}
+	}
+}
+
+function addcheck(el,page)
+{
+	document.getElementById(el+"chk").style.display="block";
+	document.getElementById(el+"chk").classList.remove("hidel");
+	document.getElementById(el+"img").classList.remove("hoverblue");
+	quiz[page]['selected']++;
+	if(el.indexOf("extra")==-1)
+	{ navigation(); }
+	changeoptions(el, page, 0);
+}
+
+
+function removecheck(el,page)
+{
+	document.getElementById(el+"chk").classList.add("hidel");
+    document.getElementById(el+"img").classList.add("hoverblue");
+	setTimeout(function() {
+		document.getElementById(el+"chk").style.display="none";
+	}, 300);
+	if(el.indexOf("extra")==-1)
+	{ navigation(); }
+	changeoptions(el, page, 1);
+}
+
+
+function changeoptions(el,page,add)
+{
+	switch(page)
+	{ 
+		case 0:
+		{
+			switch(el)
+			{
+				case "opt1": { quiz[1]['options']['everywhere']['no']=add; quiz[1]['options']['lap']['no']=add; break; }
+				case "opt2": { quiz[1]['options']['bed']['no']=add; quiz[1]['options']['house']['no']=add; break; }
+				case "opt3": { quiz[1]['options']['house']['no']=add; break; }
+			}
+			break;
+		}
+		case 1:
+		{ 
+			if(!(window[el].getAttribute("onclick").indexOf("desk")>-1 || window[el].getAttribute("onclick").indexOf("house")>-1 || window[el].getAttribute("onclick").indexOf("display_size")>-1)) { quiz["display_size"]['options']['displarge']['no']=add; } 
+			break;
+		}
+	}
+	
+}
+
+function prequery(str,type) 
+{
+	$('#loadingNBquiz').show();
+	if (str === "") { result = {}; return; }
+	else 
+	{
+		if (window.XMLHttpRequest)  { var	xmlhttp = new XMLHttpRequest(); }
+	
+		xmlhttp.onreadystatechange = function() 
+		{
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+			{
+				result = JSON.parse(xmlhttp.responseText);
+				console.log(result);
+				$('#loadingNBquiz').hide();
+				activequery=1;
+				if(type=="b")
+				{
+					if(result["batlifemax"]<=10){ quiz[4]['options']['12hour']['no']=0; } else { quiz[4]['options']['12hour']['no']=1; }
+					if(result["batlifemax"]<=6){ quiz[4]['options']['10hour']['no']=0; } else { quiz[4]['options']['10hour']['no']=1; }
+					if(result["batlifemax"]<=3){ quiz[4]['options']['6hour']['no']=0; } else { quiz[4]['options']['6hour']['no']=1; }
+					if(result["batlifemax"]<=1){ quiz[4]['options']['2hour']['no']=0; } else { quiz[4]['options']['2hour']['no']=1; }
+				}
+				
+				if(type=="p")
+				{
+					if(result["budgetmin"]<=500 && result["budgetmax"]>=1){ quiz[5]['options']['b500']['no']=1; } else { quiz[5]['options']['b500']['no']=0; }
+					if(result["budgetmin"]<=750 && result["budgetmax"]>=500){ quiz[5]['options']['b750']['no']=1; } else { quiz[5]['options']['b750']['no']=0; }
+					if(result["budgetmin"]<=1000 && result["budgetmax"]>=750){ quiz[5]['options']['b1000']['no']=1; } else { quiz[5]['options']['b1000']['no']=0; }
+					if(result["budgetmin"]<=1500 && result["budgetmax"]>=1000){ quiz[5]['options']['b1500']['no']=1; } else { quiz[5]['options']['b1500']['no']=0; }
+					if(result["budgetmin"]<=2000 && result["budgetmax"]>=1500){ quiz[5]['options']['b2000']['no']=1; } else { quiz[5]['options']['b2000']['no']=0; }
+					if(result["budgetmin"]<=3000 && result["budgetmax"]>=2000){ quiz[5]['options']['b3000']['no']=1; } else { quiz[5]['options']['b3000']['no']=0; }
+				}
+							
+				makePage(currentp);
+				return;
+			}
+		}
+		console.log("/notebro/search/qsearch.php?"+str+"&qtype="+type);
+		xmlhttp.open("GET","/notebro/search/qsearch.php?"+str+"&qtype="+type,true);
+		xmlhttp.send();
+	}
+}
+
+
+function navigation()
+{
+	if(quiz[currentp]['selected']>=quiz[currentp]['done'])
+	{	 if(currentp<maxpage)
+		{ document.getElementsByClassName('glyphicon-arrow-right')[0].style.display="inline"; document.getElementById("quiz_submit_btn").style.display="none"; }
+		else
+		{ if(currentp==maxpage){ document.getElementById("quiz_submit_btn").style.display="block"; } document.getElementsByClassName('glyphicon-arrow-right')[0].style.display="none";	} 
+	}
+	else
+	{ document.getElementsByClassName('glyphicon-arrow-right')[0].style.display="none";	document.getElementById("quiz_submit_btn").style.display="none"; }
+	
+	if(currentp<=0)
+	{ document.getElementsByClassName('glyphicon-arrow-left')[0].style.display="none";}
+	else
+	{ document.getElementsByClassName('glyphicon-arrow-left')[0].style.display="inline"; }
+
+	
+	var navnr=document.getElementsByClassName('nrcircle'); var lastactive=-1;
+	for (var key=0;key<=maxpage;key++)
+	{
+		if(quiz[key]['selected']>=quiz[key]['done'])
+		{	
+			if(lastactive==(key-1))
+			{
+				navnr[key].setAttribute( "onClick", "makePage("+key+");" );
+				navnr[key].classList.add("nrcircleactive");
+				lastactive=key;
+			}
+		}
+		else
+		{ //navnr[key].classList.remove("nrcircleactive");
+		}
+	}
+	if(lastactive>=maxpage)	{ lastactive--;}
+	navnr[lastactive+1].classList.add("nrcircleactive");
+	navnr[lastactive+1].setAttribute( "onClick", "makePage("+(lastactive+1)+");" );
+}
+
+
+function submit_the_quiz()
+{
+	var quiz_submit=[]; var i=0;
+	for (var key1 in quiz)
+	{
+		var opt=quiz[key1]['options'];
+		for (var key2 in opt)
+		{
+			var selected=opt[key2];
+			if ((typeof selected['chk']) != 'undefined' && selected['chk']['on']==1 && selected['no']!=0)
+			{ quiz_submit[i]=key2+"=1"; i++; }
+		}
+	}
+	location.href="http://86.123.134.36/notebro/?search/search.php?quizsearch=1&"+quiz_submit.join("&");
+	return "Quiz submission!";
+}
+
+function quiz_init() { makePage(0); } quiz_init();
+
+</script>
+
+
+<div style="border-style:solid; border-width:1px; border-color:#000000; margin: 5px; height:350px;position:relative;padding:0px">
+	<div style="background-color:#285F8F; width:100%; height:35px; text-align:center; display: inline-block; padding-top:5px">
+		<span id="question" style="color:#ffffff; font-family: 'arial'; font-size:20px;"></span>
+	</div>	
+	<div class="col-md-12 loadingdivquiz" id="loadingNBquiz" style="display:none" >
+		<div class="loadingdivsec" >
+			<div id="loadingNoteB_1" class="loadingNoteB"></div>
+			<div id="loadingNoteB_2" class="loadingNoteB"></div>
+			<div id="loadingNoteB_3" class="loadingNoteB"></div>
+			<div id="loadingNoteB_4" class="loadingNoteB"></div>
+			<div id="loadingNoteB_5" class="loadingNoteB"></div>
+			<div id="loadingNoteB_6" class="loadingNoteB"></div>
+			<div id="loadingNoteB_7" class="loadingNoteB"></div>
+			<div id="loadingNoteB_8" class="loadingNoteB"></div>
+		</div>
+	</div>
+	<div id="mainquiz" style="text-align:center; position: relative; top: 40%;  transform: translateY(-50%);">
+		<div class="row qtable" align="center" id="icontable">
+			<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" id="quizr1" style="display: block;">
+				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
+					<div class="iconel" id="opt1"  onclick="">
+						<div id="opt1img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="option1">
+						<svg id="opt1chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg></div>
+						<span class="icontext" id="opt1txt"><br></span>
+					</div>
+				</div>
+				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
+					<div class="iconel" id="opt2"  onclick="">
+						<div id="opt2img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="option2">
+						<svg id="opt2chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg></div>
+						<span class="icontext"  id="opt2txt"><br></span>						
+					</div>
+				</div>
+				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
+					<div class="iconel" id="opt3" style="" onclick="">
+						<div id="opt3img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="option3">
+						<svg id="opt3chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg></div>
+						<span class="icontext" id="opt3txt"><br></span>						
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" id="quizr2" style="display: none;">
+				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
+					<div class="iconel" id="opt4"  onclick="">
+						<div id="opt4img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="option4">
+						<svg id="opt4chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg></div>
+						<span class="icontext"  id="opt4txt"><br></span>						
+					</div>
+				</div>
+				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
+					<div class="iconel" id="opt5" onclick="">
+						<div id="opt5img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="option5">
+						<svg id="opt5chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg></div>
+						<span class="icontext" id="opt5txt"><br></span>						
+					</div>
+				</div>
+				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
+					<div class="iconel" id="opt6" style="" onclick="">
+						<div id="opt6img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="option6">
+						<svg id="opt6chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg></div>
+						<span class="icontext" id="opt6txt"><br></span>						
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="quiz_noresults" style="display: block;"><span>Sorry, but there are no laptops with your selected features!</span></div>
+		<div id="extraopt" class="shadow hidel">
+		<div class="row" align="center" id="icontable">
+			<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" style="display: block; border-top:8px solid; border-color: transparent;">
+				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
+					<div class="extraiconel" id="extraopt1"  onclick="">
+						<div id="extraopt1img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="extraoption1">
+						<svg id="extraopt1chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg></div>
+						<span class="icontext" id="extraopt1txt"><br></span>						
+					</div>
+				</div>
+				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
+					<div class="extraiconel" id="extraopt2"  onclick="">
+						<div id="extraopt2img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="extraoption2"><svg id="extraopt2chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg></div>						
+						<span class="icontext"  id="extraopt2txt"><br></span>						
+					</div>
+				</div>
+				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
+					<div class="extraiconel" id="extraopt3" style="" onclick="">
+						<div id="extraopt3img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="extraoption3"><svg id="extraopt3chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg></div>
+						<span class="icontext" id="extraopt3txt"><br></span>						
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" style="display: block;">
+				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
+					<div class="extraiconel" id="extraopt4"  onclick="">
+						<div id="extraopt4img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="extraoption4"><svg id="extraopt4chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg></div>
+						<span class="icontext"  id="extraopt4txt"><br></span>						
+					</div>
+				</div>
+				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
+					<div class="extraiconel" id="extraopt5"  onclick="">
+						<div id="extraopt5img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="extraoption5"><svg id="extraopt5chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg></div>
+						<span class="icontext" id="extraopt5txt"><br></span>						
+					</div>
+				</div>
+				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
+					<div class="extraiconel" id="extraopt6"  onclick="">
+						<div id="extraopt6img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="extraoption6"><svg id="extraopt6chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg></div>
+						<span class="icontext" id="extraopt6txt"><br></span>						
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="column">
+			<div class="extraiconel" id="doneextra" style="display: block; margin-bottom:21px;" onclick="">
+				<div id="doneextraimg" class=" hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="search/quiz/res/img/icons/back.svg" alt="DoneExtra"></div><span class="icontext" id="doneextratxt">DONE</span>
+			</div>
+		</div>
+	</div>
+	<div style="background-color:#285F8F; width:100%; height:27px; text-align:center; display: inline-block; position:relative; bottom: 0px; left:0px">
+		<span class="glyphicon glyphicon-arrow-left arrows1" onclick="makePage(currentp-1);"></span>
+		<span class="nrcircle nrcircleactive">-</span><span class="nrcircle">-</span><span class="nrcircle">-</span><span class="nrcircle">-</span><span class="nrcircle">-</span></span><span class="nrcircle">-</span><span class="nrcircle">-</span>
+		<span class="glyphicon glyphicon-arrow-right arrows #quiza" style="display:none;" onclick="makePage(currentp+1);">			
+			<span class="next-text">
+				<p>Next
+				Question
+				</p>			
+			</span>
+		</span>
+		<span class="" style="display:none; background-color:#999999; width: 100px; height: 50px;" id="quiz_submit_btn" onclick="submit_the_quiz();">			
+			<span class="next-text">
+				<p>Find your
+				laptop!
+				</p>			
+			</span>
+		</span>
+	</div>
 </div>

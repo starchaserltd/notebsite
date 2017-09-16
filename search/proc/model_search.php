@@ -74,7 +74,8 @@ function search_model ($mmodel,$prodmodel,$fammodel,$msc,$regions,$class)
 	if($i>0)
 	{ $sel_model.=" ) "; }
 
-	// Add class to filter	
+	// Add class to filter
+
 	if($class!==-1)	{ $sel_model.=" AND idfam IN ( SELECT id FROM `FAMILIES` WHERE business=".$class.")"; }
 
 	// MSC search	
