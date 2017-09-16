@@ -126,7 +126,7 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 		foreach($made as $x)
 		{
 			if($i) { $sel_chassis.=" OR "; }
-			else { $sel_chassis.="AND ( "; }
+			else { $sel_chassis.=" AND ( "; }
 
 			/* This is for a more stricter search
 			$sel_chassis.="FIND_IN_SET('";
