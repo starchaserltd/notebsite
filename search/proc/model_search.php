@@ -2,7 +2,7 @@
 
 /* ********* SELECT MODEL BASED ON FILTERS ***** */
 
-function search_model ($mmodel,$prodmodel,$fammodel,$msc,$regions,$class)
+function search_model ($mmodel,$prodmodel,$fammodel,$msc,$regions,$minclass,$maxclass)
 {
 	$sel_model="SELECT id FROM notebro_db.MODEL WHERE 1=1";
 
@@ -76,7 +76,7 @@ function search_model ($mmodel,$prodmodel,$fammodel,$msc,$regions,$class)
 
 	// Add class to filter
 
-	if($class!==-1)	{ $sel_model.=" AND idfam IN ( SELECT id FROM `FAMILIES` WHERE business=".$class.")"; }
+	if($class!==-1)	{ $sel_model.=" AND idfam IN ( SELECT id FROM `FAMILIES` WHERE business BETWEEN ".$minclass." AND ".$maxclass.")"; }
 
 	// MSC search	
 	$i=0;

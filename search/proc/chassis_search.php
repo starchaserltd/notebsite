@@ -233,7 +233,7 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 		if($i){ $sel_chassis.=" AND "; }
 		else { $sel_chassis.=" AND ( "; }
 
-		if(!($GLOBALS['diffvisearch']))
+		if(($GLOBALS['diffvisearch'])<=0)
 		{
 			$sel_chassis.="FIND_IN_SET('";
 			$sel_chassis.=$x;
@@ -244,7 +244,8 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 			$sel_chassis.="(";
 			$sel_chassis.="vi LIKE ";
 			$sel_chassis.="'%".$x."%'";
-			if(stripos($x,"DP")!==FALSE && stripos($sel_chassis,"Thunderbolt")===FALSE) { $sel_chassis.=" OR pi LIKE "; $sel_chassis.="'%Thunderbolt%' ";  }
+			if(($GLOBALS['diffvisearch'])==2 && stripos($x,"HDMI")!==FALSE && stripos($sel_chassis,"Thunderbolt")===FALSE) { $sel_chassis.=" OR pi LIKE "; $sel_chassis.="'%Thunderbolt%' "; }
+			if(stripos($x,"DP")!==FALSE && stripos($sel_chassis,"Thunderbolt")===FALSE) { $sel_chassis.=" OR pi LIKE "; $sel_chassis.="'%Thunderbolt%' "; }
 			$sel_chassis.=")";
 			$i++;
 		}
