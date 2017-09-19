@@ -134,19 +134,19 @@ var quiz = {
             'options': {
                 'athome' : { 'txt':['at home','single'], 'img':['athome.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
                 'atwork' : { 'txt':['at work','single'], 'img':['atwork.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
-                'atroad' : { 'txt':['<span style="font-size:13px;">both</span>','single'], 'img':['backpack.svg',''], 'chk':{'on':[0],'style':['display:none;']} }
+                'atroad' : { 'txt':['<span style="font-size:13px;">both</span>','single'], 'img':['atboth.svg',''], 'chk':{'on':[0],'style':['display:none;']} }
             },
 			'selected': 0,
 			'done': 1
         },
 		1:{
-            'question': 'You will keep it mainly ...',
+            'question': 'You will keep it mainly (multiple choices):',
             'options': {
-                'desk' : { 'txt':['<span style="font-size:13px;">on a desk</span>','single'], 'img':['desk.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
-                'bed' : { 'txt':['<span style="font-size:13px;">in bed</span>','single'], 'img':['bed.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
-				'lap' : { 'txt':['<span style="font-size:13px;">on your lap</span>','single'], 'img':['onlap.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
-				'house' : { 'txt':['<span style="font-size:13px;">around<br>the house</span>','single'], 'img':['aroundhouse.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
-				'everywhere' : { 'txt':['<span style="font-size:12px;">everywhere!</span>','single'], 'img':['inhand.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+                'desk' : { 'txt':['<span style="font-size:13px;">on a desk</span>','multiple'], 'img':['desk.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+                'bed' : { 'txt':['<span style="font-size:13px;">in bed</span>','multiple'], 'img':['bed.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+				'lap' : { 'txt':['<span style="font-size:13px;">on your lap</span>','multiple'], 'img':['onlap.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+				'house' : { 'txt':['<span style="font-size:13px;">around<br>the house</span>','multiple'], 'img':['aroundhouse.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+				'bag' : { 'txt':['<span style="font-size:12px;">bag or<br>backpack</span>','multiple'], 'img':['backpack.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
 				'display_size' : { 'txt':['<span style="font-size:13px;">advanced<br>size select</span><span style="color: #ffffff"><br>-</span>','multiple'], 'img':['display.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['display_size'] }
             },
 			'selected': 0,
@@ -172,7 +172,7 @@ var quiz = {
                 'pedit' : { 'txt':['<span style="font-size:13px;">photo<br>editing,<br>illustrations</span>','multiple'], 'img':['photoedit.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['pedit'] },
                 'vedit' : { 'txt':['<span style="font-size:13px;">video<br>editing</span><span style="color: #ffffff"><br>-</span>','multiple'], 'img':['videoedit.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['vedit'] },
 				'3dmodel' : { 'txt':['<span style="font-size:12px;">CAD / 3D modeling</span><span style="color: #ffffff"><br>-</span>','multiple'], 'img':['3dmodel.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['3dmodel'] },
-				'sysadmin' : { 'txt':['<span style="font-size:12px;">IT management</span>','multiple'], 'img':['sysadmin.svg',''], 'chk':{'on':[0]} },
+				'sysadmin' : { 'txt':['<span style="font-size:12px;">IT management</span>','multiple'], 'img':['sysadmin.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
 				'otherfeatures' : { 'txt':['<span style="font-size:12px;">other<br>features</span>','multiple'], 'img':['other.svg',''], 'chk':{'on':[0]},'extra':['otherfeatures'] }
             },
 			'selected': 0,
@@ -329,7 +329,7 @@ var quiz = {
 		'otherfeatures':{
             'question': 'Other special features (multiple choices): ',
             'options': {
-                'FHDplus' : { 'txt':['<span style="font-size:13px;">high quality<br>display</span>','multiple'], 'img':['fhdplus.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
+                'FHDplus' : { 'txt':['<span style="font-size:13px;">FHD+<br>resolution</span>','multiple'], 'img':['fhdplus.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
                 'convertible' : { 'txt':['<span style="font-size:13px;">tablet<br>mode</span>','multiple'], 'img':['2in1.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
 				'stylus' : { 'txt':['<span style="font-size:12px;">stylus<br>support</span>','multiple'], 'img':['stylus.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
 				'metal' : { 'txt':['<span style="font-size:13px;">durable<br>build materials</span>','multiple'], 'img':['metal.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
@@ -640,15 +640,25 @@ function changeoptions(el,page,add)
 		{
 			switch(el)
 			{
-				case "opt1": { quiz[1]['options']['everywhere']['no']=add; quiz[1]['options']['lap']['no']=add; break; }
+				case "opt1": { quiz[1]['options']['bag']['no']=add; quiz[1]['options']['lap']['no']=add; break; }
 				case "opt2": { quiz[1]['options']['bed']['no']=add; quiz[1]['options']['house']['no']=add; break; }
-				case "opt3": { quiz[1]['options']['house']['no']=add; break; }
+				case "opt3": { break; }
 			}
 			break;
 		}
 		case 1:
 		{ 
-			if(!(window[el].getAttribute("onclick").indexOf("desk")>-1 || window[el].getAttribute("onclick").indexOf("house")>-1 || window[el].getAttribute("onclick").indexOf("display_size")>-1)) { quiz["display_size"]['options']['displarge']['no']=add; } 
+			if((window[el].getAttribute("onclick").indexOf("lap")>-1 || window[el].getAttribute("onclick").indexOf("house")>-1 || window[el].getAttribute("onclick").indexOf("bed")>-1)) { quiz["display_size"]['options']['displarge']['no']=add; }
+			if((window[el].getAttribute("onclick").indexOf("lap")>-1)) { quiz['otherfeatures']['options']['shdd']['no']=add; }
+			break;
+		}
+		case "display_size":
+		{
+			switch(el)
+			{
+				case "extraopt1": { quiz[3]['options']['sysadmin']['no']=add; quiz['otherfeatures']['options']['shdd']['no']=add; }
+				case "extraopt2": { quiz[3]['options']['sysadmin']['no']=add; quiz['otherfeatures']['options']['shdd']['no']=add; }
+			}
 			break;
 		}
 	}
@@ -673,10 +683,10 @@ function prequery(str,type)
 				activequery=1;
 				if(type=="b")
 				{
-					if(result["batlifemax"]<=10){ quiz[4]['options']['12hour']['no']=0; } else { quiz[4]['options']['12hour']['no']=1; }
-					if(result["batlifemax"]<=6){ quiz[4]['options']['10hour']['no']=0; } else { quiz[4]['options']['10hour']['no']=1; }
-					if(result["batlifemax"]<=3){ quiz[4]['options']['6hour']['no']=0; } else { quiz[4]['options']['6hour']['no']=1; }
-					if(result["batlifemax"]<=1){ quiz[4]['options']['2hour']['no']=0; } else { quiz[4]['options']['2hour']['no']=1; }
+					if(result["batlifemax"]<=7.5){ quiz[4]['options']['12hour']['no']=0; } else { quiz[4]['options']['12hour']['no']=1; }
+					if(result["batlifemax"]<=5){ quiz[4]['options']['10hour']['no']=0; } else { quiz[4]['options']['10hour']['no']=1; }
+					if(result["batlifemax"]<=2.7){ quiz[4]['options']['6hour']['no']=0; } else { quiz[4]['options']['6hour']['no']=1; }
+					if(result["batlifemax"]<=0.9){ quiz[4]['options']['2hour']['no']=0; } else { quiz[4]['options']['2hour']['no']=1; }
 				}
 				
 				if(type=="p")

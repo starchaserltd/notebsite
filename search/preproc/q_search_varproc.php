@@ -77,73 +77,76 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			{ $model_minclass=1; $model_maxclass=3; }
 
 			if (isset($_GET['athome']) && $_GET['athome']==1)
-			{ $model_minclass=0; $model_maxclass=1; }
+			{ $model_minclass=0; $model_maxclass=1;	if ((isset($_GET['sysadmin']) && $_GET['sysadmin']==1) || (isset($_GET['coding']) && $_GET['coding']==1)){ $model_maxclass=3; } }
 							
 			break;
 		}
 		
 		case 'cpu':
 		{
+			$cores=2;
 			if (isset($_GET['calc']) && $_GET['calc']==1)
-			{ $cpu_turbomin = 3.5; $cpu_misc[]="HT"; }
+			{ $cpu_turbomin = 3.4; $cpu_misc[]="HT"; $cores=2.5; }
 				
 			if (isset($_GET['coding']) && $_GET['coding']==1)
-			{ $cpu_coremin = 4; }
+			{ $cpu_coremin = 4;  if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} if((isset($_GET['lap']) && $_GET['lap']==1)||(isset($_GET['dispxsmall']) && $_GET['dispxsmall']==1)||(isset($_GET['dispsmall']) && $_GET['dispsmall']==1)) {  $cpu_coremin = 2; $cpu_turbomin = 3.4; $cpu_misc[]="HT"; $cores=2.5; } }
 		
 			if (isset($_GET['sysadmin']) && $_GET['sysadmin']==1)
 			{ $cpu_coremin = 4; }
 		
 			if (isset($_GET['lvedit']) && $_GET['lvedit']==1 && $cpu_coremin < 2)
-			{ $cpu_coremin = 2;  $cpu_misc[]="HT"; }
+			{ $cpu_coremin = 2;  $cpu_misc[]="HT"; $cores=2.5; }
 
 			if (isset($_GET['hvedit']) && $_GET['hvedit']==1 )
 			{ $cpu_coremin = 4;  $cpu_misc[]="HT"; }			
 								
 			if (isset($_GET['swlight']) && $_GET['swlight']==1  && $cpu_coremin < 2)
-			{$cpu_coremin = 2;  $cpu_misc[]="HT"; if($cpu_turbomin<3){ $cpu_turbomin=3; } }
+			{$cpu_coremin = 2;  $cpu_misc[]="HT"; $cores=2.5; if($cpu_turbomin<3){ $cpu_turbomin=3; } }
 
 			if (isset($_GET['swmedium']) && $_GET['swmedium']==1 ) 
-			{ $cpu_coremin = 4;}
+			{ $cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
 	
 			if (isset($_GET['swheavy']) && $_GET['swheavy']==1 )
-			{ $cpu_coremin = 4;}
+			{ $cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
 	
 			if (isset($_GET['3dsmaxlight']) && $_GET['3dsmaxlight']==1  && $cpu_coremin < 2)
 			{$cpu_coremin = 2;  $cpu_misc[]="HT"; if($cpu_turbomin<3){ $cpu_turbomin=3; } }
 
 			if (isset($_GET['3dsmaxmedium']) && $_GET['3dsmaxmedium']==1) 
-			{ $cpu_coremin = 4;}
+			{ $cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
 	
 			if (isset($_GET['3dsmaxheavy']) && $_GET['3dsmaxheavy']==1 ) 
-			{$cpu_coremin = 4; }
+			{$cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
 	
 			if (isset($_GET['catialight']) && $_GET['catialight']==1 && $cpu_coremin < 2)
-			{$cpu_coremin = 2;  $cpu_misc[]="HT"; if($cpu_turbomin<3.5){ $cpu_turbomin=3.5; } }
+			{$cpu_coremin = 2;  $cpu_misc[]="HT"; if($cpu_turbomin<3.4){ $cpu_turbomin=3.4; } $cores=2.5; }
 
 			if (isset($_GET['catiamedium']) && $_GET['catiamedium']==1 ) 
-			{ $cpu_coremin = 4; }
+			{ $cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
 	
 			if (isset($_GET['catiaheavy']) && $_GET['catiaheavy']==1) 
-			{ $cpu_coremin = 4;}
+			{ $cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
 	
 			if (isset($_GET['rhinolight']) && $_GET['rhinolight']==1  && $cpu_coremin < 2) 
-			{ $cpu_coremin = 2;  $cpu_misc[]="HT"; if($cpu_turbomin<3){ $cpu_turbomin=3; }}
+			{ $cpu_coremin = 2;  $cpu_misc[]="HT"; if($cpu_turbomin<3){ $cpu_turbomin=3; } $cores=2.5; }
 
 			if (isset($_GET['rhinomedium']) && $_GET['rhinomedium']==1) 
-			{ $cpu_coremin = 4;}
+			{ $cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
 	
 			if (isset($_GET['rhinoheavy']) && $_GET['rhinoheavy']==1 ) 
-			{ $cpu_coremin = 4;}
+			{ $cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
 	
 			if (isset($_GET['cadolight']) && $_GET['cadolight']==1  && $cpu_coremin < 2) 
-			{ $cpu_coremin = 2;  $cpu_misc[]="HT"; if($cpu_turbomin<3.5){ $cpu_turbomin=3.5; } }
+			{ $cpu_coremin = 2;  $cpu_misc[]="HT"; if($cpu_turbomin<3.4){ $cpu_turbomin=3.4; } $cores=2.5; }
 
 			if (isset($_GET['cadomedium']) && $_GET['cadomedium']==1 ) 
-			{  $cpu_coremin = 4;}
+			{  $cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
 	
 			if (isset($_GET['cadoheavy']) && $_GET['cadoheavy']==1 ) 
-			{  $cpu_coremin = 4;}
-	
+			{  $cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
+			
+			$cpu_misc=array_unique($cpu_misc);
+			
 			break ;
 		}
 		case 'display' :
@@ -153,7 +156,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			{ if($display_sizemin>14) { $display_sizemin =14; }	if($display_sizemax>24) { $display_sizemax =24; } }
 		
 			if (isset($_GET['bed']) && $_GET['bed']==1) 
-			{ if($display_sizemin<13) { $display_sizemin =13; }	if($display_sizemax>15) { $display_sizemax =15; } }
+			{ if($display_sizemin<13) { $display_sizemin =13; }	if($display_sizemax>16) { $display_sizemax =16; } }
 								
 			if (isset($_GET['house']) && $_GET['house']==1) 
 			{ if($display_sizemin<13) { $display_sizemin =13; }	if($display_sizemax>16) { $display_sizemax =16; } }
@@ -168,9 +171,9 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			{ $display_backt = ["LED IPS","LED IPS PenTile","OLED"]; }
 																	
 			if (isset($_GET['90srgb']) && $_GET['90srgb']==1) 
-			{ $display_backt = ["LED IPS","LED IPS PenTile","OLED"]; $display_sRGB = 80; }
+			{ $display_backt = ["LED IPS","LED IPS PenTile","OLED"]; $display_srgb = 80; }
 									
-			if (isset($_GET['media'])&& $_GET['media']==1 ) 
+			if (isset($_GET['media'])&& $_GET['media']==1 && !((isset($_GET['60srgb']) && $_GET['60srgb'] ==1) || (isset($_GET['90srgb']) && $_GET['90srgb']==1)) ) 
 			{ $display_backt = ["LED IPS","LED IPS PenTile","LED TN WVA","OLED"]; }
 		
 			if (isset($_GET['FHDplus'])&& $_GET['FHDplus']==1 ) 
@@ -444,6 +447,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			{ if($cadratemin<60) { $cadratemin=60; } if ($gameratemin<1000) { $gameratemin=1000; }  if($quiz_mingputype<3) { $quiz_mingputype=3; } array_push($gpu_typelist,"3"); $to_search["gpu"]=1; }
 
 			if($to_search["gpu"]) {  $gpu_typelist=array_unique($gpu_typelist); for($i=0;$i<=$quiz_mingputype;$i++) { array_diff($gpu_typelist,strval($i)); } }
+			
 		//variabile de test
 			//$cadratemin = 15;$cadratemax = 30;
 			if($cadratemin!=="0")
@@ -454,7 +458,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 				while($row=mysqli_fetch_row($result)){$gpu_model[]=$row[0];}
 			}
 			
-			if(!$to_search["gpu"]) { if($quiz_mingputype<1) { $quiz_mingputype=0; } array_push($gpu_typelist,"0","1"); $to_search["gpu"]=1; } 
+			if(!$to_search["gpu"]) { if($quiz_mingputype<1) { $quiz_mingputype=0; } array_push($gpu_typelist,"0","1"); if($model_maxclass>=2) {  array_push($gpu_typelist,"3"); $gpu_powermax=35; }; $to_search["gpu"]=1; } 
 			//var_dump($gpu_model);
 			break ;
 		}
@@ -494,13 +498,13 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			{ if($chassis_weightmax>10) { $chassis_weightmax = 10; } if($chassis_thicmax>100){ $chassis_thicmax = 100;} }
 			
 			if (isset($_GET['bed']) && $_GET['bed']==1) 
-			{ if($chassis_weightmax>2.3) { $chassis_weightmax = 2.3; } if($chassis_thicmax>26){ $chassis_thicmax = 26;} /*$chassis_made[] = "Metal"; $chassis_made[] = "Aluminium"; $chassis_made[] = "Lithium"; $chassis_made[] = "Magnesium";*/ }
+			{ if($chassis_weightmax>2.3) { $chassis_weightmax = 2.3; } if($chassis_thicmax>27){ $chassis_thicmax = 27;} /*$chassis_made[] = "Metal"; $chassis_made[] = "Aluminium"; $chassis_made[] = "Lithium"; $chassis_made[] = "Magnesium";*/ }
  									
 			if (isset($_GET['house']) && $_GET['house']==1) 
 			{ if($chassis_weightmax>2.7) { $chassis_weightmax = 2.7; } if($chassis_thicmax>30){ $chassis_thicmax = 30;} }
 											
 		    if (isset($_GET['lap']) && $_GET['lap']==1) 
-			{ if($chassis_weightmax>2.1) { $chassis_weightmax = 2.1; } if($chassis_thicmax>20.5){ $chassis_thicmax = 20.5;} }
+			{ if($chassis_weightmax>2.1) { $chassis_weightmax = 2.1; } if($chassis_thicmax>24){ $chassis_thicmax = 24;} }
 									
 			if (isset($_GET['bag']) && $_GET['bag']==1) 
 			{ 
@@ -550,7 +554,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			{ $sist_sist=["Windows+Home","Windows+Pro"];  }
 
 			if (isset($_GET['athome']) && $_GET['athome']==1)
-			{ $sist_sist=["Windows+Home","Windows+S"]; }
+			{ $sist_sist=["Windows+Home","Windows+S"]; if($model_maxclass>=2) {  $sist_sist[]="Windows+Pro"; } }
 		
 			if (isset($_GET['atroad']) && $_GET['atroad']==1)
 			{ $sist_sist=["Windows+Home","Windows+Pro","Windows+S"]; } 
