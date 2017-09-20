@@ -744,7 +744,7 @@ function cpumisc(str)
 		if(value.match("VT-x") || value.match("AMD-V")) { msc=msc+text1+"16"+text2+value+", "+text3; }
 		if(value.match("VT-d") || value.match("AMD-Vi")) { msc=msc+text1+"17"+text2+value+", "+text3; }
 		if(value.match("VT-c")) { msc=msc+text1+"18"+text2+value+", "+text3; }
-		if(value.match("TBT") || value.match("Turbo Boost") || value.match("TC") || value.match("BPT")) { msc=msc+text1+"19"+text2+value+", "+text3; }
+		if(value.match("TBT") || value.match("AMD XFR") || value.match("Turbo Boost") || value.match("TC") || value.match("BPT")) { msc=msc+text1+"19"+text2+value+", "+text3; }
 	}
 	msc  = msc.substr(0, (msc.length - 9)) + msc.substr((msc.length - 8) + 1);	
 	return msc;
