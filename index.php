@@ -187,7 +187,7 @@ require_once("etc/session.php");
 	<link rel="stylesheet" href="libnb/css/nb.css" type="text/css" />
 	<!--custom OK	-->
 	<link rel="stylesheet" href="libnb/css/responsive.css" type="text/css" />
-	<link rel="stylesheet" href="libnb/css/loading.css" type="text/css" />	
+	<link rel="stylesheet" href="libnb/css/loading.css" type="text/css" />
 
 	<!-- Custom Theme JavaScript -->
 	<script><?php echo 'var siteroot = "'.$web_address.'";'; ?></script>

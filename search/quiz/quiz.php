@@ -134,7 +134,7 @@ var quiz = {
             'options': {
                 'athome' : { 'txt':['at home','single'], 'img':['athome.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
                 'atwork' : { 'txt':['at work','single'], 'img':['atwork.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
-                'atroad' : { 'txt':['<span style="font-size:13px;">both</span>','single'], 'img':['atboth.svg',''], 'chk':{'on':[0],'style':['display:none;']} }
+                'atroad' : { 'txt':['<span style="font-size:13px;">between<br>places</span>','single'], 'img':['atboth.svg',''], 'chk':{'on':[0],'style':['display:none;']} }
             },
 			'selected': 0,
 			'done': 1
@@ -205,10 +205,10 @@ var quiz = {
 		'games':{
 			'question': 'Type of games you will play: ',
             'options': {
-                '2dgames' : { 'txt':['<span style="font-size:13px;">non-3D games</span><span style="color: #ffffff"><br>-</span>','multiple'], 'img':['2dgames.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
-                'oldgames' : { 'txt':['<span style="font-size:13px;">older games</span><span style="color: #ffffff"><br>-</span>','multiple'], 'img':['oldgames.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['oldgames'] },
-                'mmo' : { 'txt':['<span style="font-size:13px;">multiplayer<br>games</span>','multiple'], 'img':['mmo.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['mmo'] },
-				'3dgames' : { 'txt':['<span style="font-size:12px;">latest<br>releases</span>','multiple'], 'img':['performance.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['3dgames'] }
+                '2dgames' : { 'txt':['<span style="font-size:13px;">non-3D games</span><span style="color: #ffffff"><br>-</span>','multiple'], 'img':['2dgames.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+                'oldgames' : { 'txt':['<span style="font-size:13px;">older games</span><span style="color: #ffffff"><br>-</span>','multiple'], 'img':['oldgames.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['oldgames'],'no':[1] },
+                'mmo' : { 'txt':['<span style="font-size:13px;">multiplayer<br>games</span>','multiple'], 'img':['mmo.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['mmo'],'no':[1] },
+				'3dgames' : { 'txt':['<span style="font-size:12px;">latest<br>releases</span>','multiple'], 'img':['performance.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['3dgames'],'no':[1] }
             },
 			'selected': 0,
 			'done': 1
@@ -216,12 +216,12 @@ var quiz = {
 		'3dmodel':{
             'question': 'CAD / 3D modeling programs used: ',
             'options': {
-                'autocad' : { 'txt':['<span style="font-size:13px;">AutoCAD</span>','multiple'], 'img':['autocad.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['autocad'] },
-                'solidworks' : { 'txt':['<span style="font-size:13px;">SolidWorks</span>','multiple'], 'img':['solidworks.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['solidworks'] },
-				'3dsmaxmaya' : { 'txt':['<span style="font-size:13px;">3Ds Max<br>or Maya</span>','multiple'], 'img':['3dsmax.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['3dsmaxmaya'] },
-				'catia' : { 'txt':['<span style="font-size:13px;">CATIA</span>','multiple'], 'img':['catia.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['catia'] },
-				'rhinoceros' : { 'txt':['<span style="font-size:13px;">Rhinoceros</span>','multiple'], 'img':['rhinoceros.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['rhinoceros'] },
-				'cadother' : { 'txt':['<span style="font-size:13px;">Other</span>','multiple'], 'img':['cadother.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['cadother'] }
+                'autocad' : { 'txt':['<span style="font-size:13px;">AutoCAD</span>','multiple'], 'img':['autocad.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['autocad'],'no':[1] },
+                'solidworks' : { 'txt':['<span style="font-size:13px;">SolidWorks</span>','multiple'], 'img':['solidworks.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['solidworks'],'no':[1] },
+				'3dsmaxmaya' : { 'txt':['<span style="font-size:13px;">3Ds Max<br>or Maya</span>','multiple'], 'img':['3dsmax.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['3dsmaxmaya'],'no':[1] },
+				'catia' : { 'txt':['<span style="font-size:13px;">CATIA</span>','multiple'], 'img':['catia.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['catia'],'no':[1] },
+				'rhinoceros' : { 'txt':['<span style="font-size:13px;">Rhinoceros</span>','multiple'], 'img':['rhinoceros.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['rhinoceros'],'no':[1] },
+				'cadother' : { 'txt':['<span style="font-size:13px;">Other</span>','multiple'], 'img':['cadother.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['cadother'],'no':[1] }
             },
 			'selected': 0,
 			'done': 1
@@ -229,9 +229,9 @@ var quiz = {
 		'2dgames':{
 			'question': 'Minimal graphics quality: ',
             'options': {
-                '2dgameslow' : { 'txt':['<span style="font-size:13px;">low<br>quality</span>','single'], 'img':['lowq.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
-                '2dgamesmedium' : { 'txt':['<span style="font-size:13px;">normal<br>quality</span>','multiple'], 'img':['medq.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
-                '2gameshigh' : { 'txt':['<span style="font-size:13px;">high<br>quality</span>','multiple'], 'img':['highq.svg',''], 'chk':{'on':[0],'style':['display:none;']} }
+                '2dgameslow' : { 'txt':['<span style="font-size:13px;">low<br>quality</span>','single'], 'img':['lowq.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+                '2dgamesmedium' : { 'txt':['<span style="font-size:13px;">normal<br>quality</span>','multiple'], 'img':['medq.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+                '2gameshigh' : { 'txt':['<span style="font-size:13px;">high<br>quality</span>','multiple'], 'img':['highq.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] }
             },
 			'selected': 0,
 			'done': 1
@@ -239,9 +239,9 @@ var quiz = {
 		'oldgames':{
 			'question': 'Minimal graphics quality: ',
             'options': {
-                'oldgameslow' : { 'txt':['<span style="font-size:13px;">low<br>quality</span>','single'], 'img':['lowq.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
-                'oldgamesmedium' : { 'txt':['<span style="font-size:13px;">normal<br>quality</span>','single'], 'img':['medq.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
-                'oldgameshigh' : { 'txt':['<span style="font-size:13px;">high<br>quality</span>','single'], 'img':['highq.svg',''], 'chk':{'on':[0],'style':['display:none;']} }
+                'oldgameslow' : { 'txt':['<span style="font-size:13px;">low<br>quality</span>','single'], 'img':['lowq.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+                'oldgamesmedium' : { 'txt':['<span style="font-size:13px;">normal<br>quality</span>','single'], 'img':['medq.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+                'oldgameshigh' : { 'txt':['<span style="font-size:13px;">high<br>quality</span>','single'], 'img':['highq.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] }
             },
 			'selected': 0,
 			'done': 1
@@ -249,9 +249,9 @@ var quiz = {
 		'mmo':{
 			'question': 'Minimal graphics quality: ',
             'options': {
-                'mmolow' : { 'txt':['<span style="font-size:13px;">low<br>quality</span>','single'], 'img':['lowq.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
-                'mmomedium' : { 'txt':['<span style="font-size:13px;">normal<br>quality</span>','single'], 'img':['medq.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
-                'mmohigh' : { 'txt':['<span style="font-size:13px;">high<br>quality</span>','single'], 'img':['highq.svg',''], 'chk':{'on':[0],'style':['display:none;']} }
+                'mmolow' : { 'txt':['<span style="font-size:13px;">low<br>quality</span>','single'], 'img':['lowq.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+                'mmomedium' : { 'txt':['<span style="font-size:13px;">normal<br>quality</span>','single'], 'img':['medq.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+                'mmohigh' : { 'txt':['<span style="font-size:13px;">high<br>quality</span>','single'], 'img':['highq.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] }
             },
 			'selected': 0,
 			'done': 1
@@ -259,9 +259,9 @@ var quiz = {
 		'3dgames':{
 			'question': 'Minimal graphic quality: ',
             'options': {
-                '3dgameslow' : { 'txt':['<span style="font-size:13px;">low<br>quality</span>','single'], 'img':['lowq.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
-                '3dgamesmedium' : { 'txt':['<span style="font-size:13px;">normal<br>quality</span>','single'], 'img':['medq.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
-                '3dgameshigh' : { 'txt':['<span style="font-size:13px;">high<br>quality</span>','single'], 'img':['highq.svg',''], 'chk':{'on':[0],'style':['display:none;']} }
+                '3dgameslow' : { 'txt':['<span style="font-size:13px;">low<br>quality</span>','single'], 'img':['lowq.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+                '3dgamesmedium' : { 'txt':['<span style="font-size:13px;">normal<br>quality</span>','single'], 'img':['medq.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+                '3dgameshigh' : { 'txt':['<span style="font-size:13px;">high<br>quality</span>','single'], 'img':['highq.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] }
             },
 			'selected': 0,
 			'done': 1
@@ -269,9 +269,9 @@ var quiz = {
 		'autocad':{
             'question': 'AutoCAD model complexity: ',
             'options': {
-                'autocadlight' : { 'txt':['<span style="font-size:13px;">simple<br>models</span>','single'], 'img':['cadlight.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
-                'autocadmedium' : { 'txt':['<span style="font-size:13px;">average<br>models</span>','single'], 'img':['cadmedium.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
-                'autocadheavy' : { 'txt':['<span style="font-size:13px;">complex<br>models</span>','single'], 'img':['cadheavy.svg',''], 'chk':{'on':[0],'style':['display:none;']} }
+                'autocadlight' : { 'txt':['<span style="font-size:13px;">simple<br>models</span>','single'], 'img':['cadlight.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+                'autocadmedium' : { 'txt':['<span style="font-size:13px;">average<br>models</span>','single'], 'img':['cadmedium.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+                'autocadheavy' : { 'txt':['<span style="font-size:13px;">complex<br>models</span>','single'], 'img':['cadheavy.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] }
             },
 			'selected': 0,
 			'done': 1
@@ -279,9 +279,9 @@ var quiz = {
 			'solidworks':{
             'question': 'SolidWorks model complexity: ',
             'options': {
-                'swlight' : { 'txt':['<span style="font-size:13px;">simple<br>models</span>','single'], 'img':['cadlight.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
-                'swmedium' : { 'txt':['<span style="font-size:13px;">average<br>models</span>','single'], 'img':['cadmedium.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
-                'swheavy' : { 'txt':['<span style="font-size:13px;">complex<br>models</span>','single'], 'img':['cadheavy.svg',''], 'chk':{'on':[0],'style':['display:none;']} }
+                'swlight' : { 'txt':['<span style="font-size:13px;">simple<br>models</span>','single'], 'img':['cadlight.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+                'swmedium' : { 'txt':['<span style="font-size:13px;">average<br>models</span>','single'], 'img':['cadmedium.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+                'swheavy' : { 'txt':['<span style="font-size:13px;">complex<br>models</span>','single'], 'img':['cadheavy.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] }
             },
 			'selected': 0,
 			'done': 1
@@ -289,9 +289,9 @@ var quiz = {
 			'catia':{
             'question': 'CATIA model complexity: ',
             'options': {
-                'catialight' : { 'txt':['<span style="font-size:13px;">simple<br>models</span>','single'], 'img':['cadlight.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
-                'catiamedium' : { 'txt':['<span style="font-size:13px;">average<br>models</span>','single'], 'img':['cadmedium.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
-                'catiaheavy' : { 'txt':['<span style="font-size:13px;">complex<br>models</span>','single'], 'img':['cadheavy.svg',''], 'chk':{'on':[0],'style':['display:none;']} }
+                'catialight' : { 'txt':['<span style="font-size:13px;">simple<br>models</span>','single'], 'img':['cadlight.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+                'catiamedium' : { 'txt':['<span style="font-size:13px;">average<br>models</span>','single'], 'img':['cadmedium.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+                'catiaheavy' : { 'txt':['<span style="font-size:13px;">complex<br>models</span>','single'], 'img':['cadheavy.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] }
             },
 			'selected': 0,
 			'done': 1
@@ -299,9 +299,9 @@ var quiz = {
 			'3dsmaxmaya':{
             'question': '3Ds Max / Maya model complexity: ',
             'options': {
-                '3dsmaxlight' : { 'txt':['<span style="font-size:13px;">simple<br>models</span>','single'], 'img':['cadlight.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
-                '3dsmaxmedium' : { 'txt':['<span style="font-size:13px;">average<br>models</span>','single'], 'img':['cadmedium.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
-                '3dsmaxheavy' : { 'txt':['<span style="font-size:13px;">complex<br>models</span>','single'], 'img':['cadheavy.svg',''], 'chk':{'on':[0],'style':['display:none;']} }
+                '3dsmaxlight' : { 'txt':['<span style="font-size:13px;">simple<br>models</span>','single'], 'img':['cadlight.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+                '3dsmaxmedium' : { 'txt':['<span style="font-size:13px;">average<br>models</span>','single'], 'img':['cadmedium.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+                '3dsmaxheavy' : { 'txt':['<span style="font-size:13px;">complex<br>models</span>','single'], 'img':['cadheavy.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] }
             },
 			'selected': 0,
 			'done': 1
@@ -309,9 +309,9 @@ var quiz = {
 			'rhinoceros':{
             'question': 'Rhinoceros model complexity: ',
             'options': {
-                'rhinolight' : { 'txt':['<span style="font-size:13px;">simple<br>models</span>','single'], 'img':['cadlight.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
-                'rhinomedium' : { 'txt':['<span style="font-size:13px;">average<br>models</span>','single'], 'img':['cadmedium.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
-                'rhinoheavy' : { 'txt':['<span style="font-size:13px;">complex<br>models</span>','single'], 'img':['cadheavy.svg',''], 'chk':{'on':[0],'style':['display:none;']} }
+                'rhinolight' : { 'txt':['<span style="font-size:13px;">simple<br>models</span>','single'], 'img':['cadlight.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+                'rhinomedium' : { 'txt':['<span style="font-size:13px;">average<br>models</span>','single'], 'img':['cadmedium.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+                'rhinoheavy' : { 'txt':['<span style="font-size:13px;">complex<br>models</span>','single'], 'img':['cadheavy.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] }
             },
 			'selected': 0,
 			'done': 1
@@ -319,9 +319,9 @@ var quiz = {
 			'cadother':{
             'question': 'General CAD/3D model complexity: ',
             'options': {
-                'cadolight' : { 'txt':['<span style="font-size:13px;">simple<br>models</span>','single'], 'img':['cadlight.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
-                'cadomedium' : { 'txt':['<span style="font-size:13px;">average<br>models</span>','single'], 'img':['cadmedium.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
-                'cadoheavy' : { 'txt':['<span style="font-size:13px;">complex<br>models</span>','single'], 'img':['cadheavy.svg',''], 'chk':{'on':[0],'style':['display:none;']} }
+                'cadolight' : { 'txt':['<span style="font-size:13px;">simple<br>models</span>','single'], 'img':['cadlight.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+                'cadomedium' : { 'txt':['<span style="font-size:13px;">average<br>models</span>','single'], 'img':['cadmedium.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+                'cadoheavy' : { 'txt':['<span style="font-size:13px;">complex<br>models</span>','single'], 'img':['cadheavy.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] }
             },
 			'selected': 0,
 			'done': 1
@@ -329,12 +329,12 @@ var quiz = {
 		'otherfeatures':{
             'question': 'Other special features (multiple choices): ',
             'options': {
-                'FHDplus' : { 'txt':['<span style="font-size:13px;">FHD+<br>resolution</span>','multiple'], 'img':['fhdplus.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
-                'convertible' : { 'txt':['<span style="font-size:13px;">tablet<br>mode</span>','multiple'], 'img':['2in1.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
-				'stylus' : { 'txt':['<span style="font-size:12px;">stylus<br>support</span>','multiple'], 'img':['stylus.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
-				'metal' : { 'txt':['<span style="font-size:13px;">durable<br>build materials</span>','multiple'], 'img':['metal.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
-				'shdd' : { 'txt':['<span style="font-size:12px;">secondary<br>HDD</span><span style="color: #ffffff"><br>-</span>','multiple'], 'img':['shdd.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
-				'odd' : { 'txt':['<span style="font-size:12px;">optical<br>drive</span>','multiple'], 'img':['odd.svg',''], 'chk':{'on':[0],'style':['display:none;']} }
+                'FHDplus' : { 'txt':['<span style="font-size:13px;">FHD+<br>resolution</span>','multiple'], 'img':['fhdplus.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+                'convertible' : { 'txt':['<span style="font-size:13px;">tablet<br>mode</span>','multiple'], 'img':['2in1.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+				'stylus' : { 'txt':['<span style="font-size:12px;">stylus<br>support</span>','multiple'], 'img':['stylus.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+				'metal' : { 'txt':['<span style="font-size:13px;">durable<br>build materials</span>','multiple'], 'img':['metal.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+				'shdd' : { 'txt':['<span style="font-size:12px;">secondary<br>HDD</span><span style="color: #ffffff"><br>-</span>','multiple'], 'img':['shdd.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+				'odd' : { 'txt':['<span style="font-size:12px;">optical<br>drive</span>','multiple'], 'img':['odd.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] }
             },
 			'selected': 0,
 			'done': 1
@@ -342,8 +342,8 @@ var quiz = {
 		'pedit':{
 			'question': 'For your photo editing you need: ',
             'options': {
-                '60srgb' : { 'txt':['<span style="font-size:13px;">normal<br>colour gamut</span>','single'], 'img':['ngamut.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
-                '90srgb' : { 'txt':['<span style="font-size:13px;">high<br>colour gamut</span>','single'], 'img':['hgamut.svg',''], 'chk':{'on':[0],'style':['display:none;']} }
+                '60srgb' : { 'txt':['<span style="font-size:13px;">normal<br>colour gamut</span>','single'], 'img':['ngamut.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+                '90srgb' : { 'txt':['<span style="font-size:13px;">high<br>colour gamut</span>','single'], 'img':['hgamut.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] }
             },
 			'selected': 0,
 			'done': 1
@@ -351,8 +351,8 @@ var quiz = {
 		'vedit':{
 			'question': 'Your video editing activities will be: ',
             'options': {
-                'lvedit' : { 'txt':['<span style="font-size:13px;">casual<br>editing<span>','single'], 'img':['lvideoedit.svg',''], 'chk':{'on':[0],'style':['display:none;']} },
-				'hvedit' : { 'txt':['<span style="font-size:13px;">heavy<br>editing</span>','single'], 'img':['hvideoedit.svg',''], 'chk':{'on':[0],'style':['display:none;']} }
+                'lvedit' : { 'txt':['<span style="font-size:13px;">casual<br>editing<span>','single'], 'img':['lvideoedit.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] },
+				'hvedit' : { 'txt':['<span style="font-size:13px;">heavy<br>editing</span>','single'], 'img':['hvideoedit.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':[1] }
             },
 			'selected': 0,
 			'done': 1
@@ -450,7 +450,7 @@ function makePage(quizp)
 }
 
 function makeextraPage(quizp,el)
-{
+{ console.log("aaa");
 	var closeextratextnav=1;
 	if(!inextra) { inextra=quizp; closeextratext="closeextra"; if(document.getElementsByClassName('glyphicon-arrow-left')[0].getAttribute( "onClick").indexOf("closeextra(")>=0) { closeextratextnav=0;  } } else { closeextratext="closeextraextra"; }
 	
@@ -641,7 +641,7 @@ function changeoptions(el,page,add)
 			switch(el)
 			{
 				case "opt1": { quiz[1]['options']['bag']['no']=add; quiz[1]['options']['lap']['no']=add; break; }
-				case "opt2": { quiz[1]['options']['bed']['no']=add; quiz[1]['options']['house']['no']=add; break; }
+				case "opt2": { quiz[1]['options']['bed']['no']=add; quiz[1]['options']['house']['no']=add; quiz['3dgames']['options']['3dgameshigh']['no']=add; quiz['3dgames']['options']['3dgamesmedium']['no']=add; quiz['mmo']['options']['mmohigh']['no']=add; break; }
 				case "opt3": { break; }
 			}
 			break;
@@ -649,20 +649,154 @@ function changeoptions(el,page,add)
 		case 1:
 		{ 
 			if((window[el].getAttribute("onclick").indexOf("lap")>-1 || window[el].getAttribute("onclick").indexOf("house")>-1 || window[el].getAttribute("onclick").indexOf("bed")>-1)) { quiz["display_size"]['options']['displarge']['no']=add; }
-			if((window[el].getAttribute("onclick").indexOf("lap")>-1)) { quiz['otherfeatures']['options']['shdd']['no']=add; }
+			if((window[el].getAttribute("onclick").indexOf("lap")>-1))
+			{
+				quiz['otherfeatures']['options']['shdd']['no']=add; quiz['otherfeatures']['options']['odd']['no']=add;
+				quiz['3dgames']['options']['3dgameshigh']['no']=add;
+				quiz['3dsmaxmaya']['options']['3dsmaxmedium']['no']=add; quiz['3dsmaxmaya']['options']['3dsmaxheavy']['no']=add; quiz['solidworks']['options']['swmedium']['no']=add; quiz['solidworks']['options']['swheavy']['no']=add;
+				quiz['3dmodel']['options']['catia']['no']=add; quiz['catia']['options']['catialight']['no']=add;  quiz['catia']['options']['catiamedium']['no']=add; quiz['catia']['options']['catiaheavy']['no']=add;
+				quiz['rhinoceros']['options']['rhinomedium']['no']=add; quiz['rhinoceros']['options']['rhinoheavy']['no']=add;
+				quiz['3dmodel']['options']['cadother']['no']=add; quiz['cadother']['options']['cadolight']['no']=add; quiz['cadother']['options']['cadomedium']['no']=add;  quiz['cadother']['options']['cadoheavy']['no']=add; 
+				//quiz['oldgames']['options']['oldgameshigh']['no']=add;
+			}
+			if((window[el].getAttribute("onclick").indexOf("bed")>-1))
+			{
+				quiz['3dgames']['options']['3dgameshigh']['no']=add; quiz['cadother']['options']['cadomedium']['no']=add;  quiz['cadother']['options']['cadoheavy']['no']=add;
+				quiz['rhinoceros']['options']['rhinomedium']['no']=add; quiz['rhinoceros']['options']['rhinoheavy']['no']=add; quiz['catia']['options']['catiamedium']['no']=add; quiz['catia']['options']['catiaheavy']['no']=add;
+				quiz['3dsmaxmaya']['options']['3dsmaxmedium']['no']=add; quiz['3dsmaxmaya']['options']['3dsmaxheavy']['no']=add; quiz['solidworks']['options']['swmedium']['no']=add; quiz['solidworks']['options']['swheavy']['no']=add;
+			}
 			break;
 		}
 		case "display_size":
 		{
 			switch(el)
 			{
-				case "extraopt1": { quiz[3]['options']['sysadmin']['no']=add; quiz['otherfeatures']['options']['shdd']['no']=add; }
-				case "extraopt2": { quiz[3]['options']['sysadmin']['no']=add; quiz['otherfeatures']['options']['shdd']['no']=add; }
+				case "extraopt1": 
+				{
+					quiz[3]['options']['sysadmin']['no']=add; quiz['otherfeatures']['options']['shdd']['no']=add; quiz['vedit']['options']['hvedit']['no']=add; quiz['otherfeatures']['options']['odd']['no']=add;
+					//quiz[3]['options']['games']['no']=add; quiz[3]['options']['3dmodel']['no']=add; 
+					quiz['oldgames']['options']['oldgamesmedium']['no']=add; quiz['oldgames']['options']['oldgameshigh']['no']=add;
+					quiz['mmo']['options']['mmomedium']['no']=add;quiz['mmo']['options']['mmohigh']['no']=add;
+					quiz['games']['options']['3dgames']['no']=add; quiz['3dgames']['options']['3dgameslow']['no']=add; quiz['3dgames']['options']['3dgamesmedium']['no']=add; quiz['3dgames']['options']['3dgameshigh']['no']=add;
+					quiz['autocad']['options']['autocadmedium']['no']=add; quiz['autocad']['options']['autocadheavy']['no']=add;
+					quiz['3dmodel']['options']['solidworks']['no']=add; quiz['solidworks']['options']['swlight']['no']=add; quiz['solidworks']['options']['swmedium']['no']=add; quiz['solidworks']['options']['swheavy']['no']=add;
+					quiz['3dmodel']['options']['3dsmaxmaya']['no']=add; quiz['3dsmaxmaya']['options']['3dsmaxlight']['no']=add; quiz['3dsmaxmaya']['options']['3dsmaxmedium']['no']=add; quiz['3dsmaxmaya']['options']['3dsmaxheavy']['no']=add; 
+					quiz['3dmodel']['options']['catia']['no']=add; quiz['catia']['options']['catialight']['no']=add; quiz['catia']['options']['catiamedium']['no']=add; quiz['catia']['options']['catiaheavy']['no']=add; 
+					quiz['3dmodel']['options']['rhinoceros']['no']=add; quiz['rhinoceros']['options']['rhinolight']['no']=add; quiz['rhinoceros']['options']['rhinomedium']['no']=add; quiz['rhinoceros']['options']['rhinoheavy']['no']=add;
+					quiz['3dmodel']['options']['cadother']['no']=add; quiz['cadother']['options']['cadolight']['no']=add; quiz['cadother']['options']['cadomedium']['no']=add;  quiz['cadother']['options']['cadoheavy']['no']=add;
+				}
+				case "extraopt2":
+				{
+					quiz['otherfeatures']['options']['shdd']['no']=add;
+					quiz['3dgames']['options']['3dgameshigh']['no']=add;
+					quiz['solidworks']['options']['swheavy']['no']=add;
+					quiz['3dsmaxmaya']['options']['3dsmaxmedium']['no']=add; quiz['3dsmaxmaya']['options']['3dsmaxheavy']['no']=add; 
+					quiz['catia']['options']['catiamedium']['no']=add;  quiz['catia']['options']['catiaheavy']['no']=add; 
+					quiz['rhinoceros']['options']['rhinoheavy']['no']=add;
+					quiz['cadother']['options']['cadomedium']['no']=add;  quiz['cadother']['options']['cadoheavy']['no']=add
+					if(quiz[0]['options']['athome']['chk']['on']==1 ){ quiz['vedit']['options']['hvedit']['no']=add; }
+				}
 			}
+			break;
+		}
+		case "otherfeatures":
+		{
+			if(window[el].getAttribute("onclick").indexOf("stylus")>-1 || window[el].getAttribute("onclick").indexOf("convertible")>-1)
+			{ 
+				if(quiz['otherfeatures']['options']['convertible']['chk']['on']==1 || quiz['otherfeatures']['options']['stylus']['chk']['on']==1) { add=0;}
+				quiz['otherfeatures']['options']['shdd']['no']=add; quiz['otherfeatures']['options']['odd']['no']=add;
+				for(i=1;i<=6;i++) { if(window['extraopt'+i].getAttribute("onclick").indexOf("odd")>-1) { if(add!=1) { window['extraopt'+i].style.display="none"; } else { window['extraopt'+i].style.display="block";  } } }
+				for(i=1;i<=6;i++) { if(window['extraopt'+i].getAttribute("onclick").indexOf("shdd")>-1) { if(add!=1) { window['extraopt'+i].style.display="none"; } else { window['extraopt'+i].style.display="block";  } } }
+			}
+			
+			if(window[el].getAttribute("onclick").indexOf("odd")>-1 || window[el].getAttribute("onclick").indexOf("shdd")>-1)
+			{ 
+				if(quiz['otherfeatures']['options']['odd']['chk']['on']==1 || quiz['otherfeatures']['options']['shdd']['chk']['on']==1) { add=0;}
+				quiz['otherfeatures']['options']['convertible']['no']=add; quiz['otherfeatures']['options']['stylus']['no']=add;
+				 for(i=1;i<=6;i++) { if(window['extraopt'+i].getAttribute("onclick").indexOf("convertible")>-1) { if(add!=1) { window['extraopt'+i].style.display="none"; } else { window['extraopt'+i].style.display="block";  } } }
+				 for(i=1;i<=6;i++) { if(window['extraopt'+i].getAttribute("onclick").indexOf("stylus")>-1) { if(add!=1) { window['extraopt'+i].style.display="none"; } else { window['extraopt'+i].style.display="block";  } } }
+			}
+			
+			if(window[el].getAttribute("onclick").indexOf("odd")>-1 && (quiz[1]['options']['lap']['chk']['on']==1 || quiz['display_size']['options']['dispsmall']['chk']['on']==1 ))
+			{ quiz['otherfeatures']['options']['FHDplus']['no']=add;  for(i=1;i<=6;i++) { if(window['extraopt'+i].getAttribute("onclick").indexOf("FHDplus")>-1) { if(add!=1) { window['extraopt'+i].style.display="none"; } else { window['extraopt'+i].style.display="block";  } } } }
+			
+			if(window[el].getAttribute("onclick").indexOf("FHDplus")>-1 && (quiz[1]['options']['lap']['chk']['on']==1 || quiz['display_size']['options']['dispsmall']['chk']['on']==1 ))
+			{ quiz['otherfeatures']['options']['convertible']['no']=add; for(i=1;i<=6;i++) { if(window['extraopt'+i].getAttribute("onclick").indexOf("odd")>-1) { if(add!=1) { window['extraopt'+i].style.display="none"; } else { window['extraopt'+i].style.display="block";  } } } }
+			break;
+		}
+		case "3dgames":
+		{
+			if(quiz[1]['options']['lap']['chk']['on']==1 || quiz['display_size']['options']['dispsmall']['chk']['on']==1 )
+			{ quiz['otherfeatures']['options']['odd']['no']=add; quiz['otherfeatures']['options']['convertible']['no']=add; quiz['otherfeatures']['options']['stylus']['no']=add; }
+			break;
+		}
+		case "mmo":
+		{
+			if((el=="extraopt2" || el=="extraopt3" )&&(quiz[1]['options']['lap']['chk']['on']==1 || quiz['display_size']['options']['dispsmall']['chk']['on']==1 ))
+			{ quiz['otherfeatures']['options']['odd']['no']=add;quiz['otherfeatures']['options']['convertible']['no']=add; quiz['otherfeatures']['options']['stylus']['no']=add;  }
+			break;
+		}
+		case "oldgames":
+		{
+			if((el=="extraopt2" || el=="extraopt3" ) && (quiz[1]['options']['lap']['chk']['on']==1 || quiz['display_size']['options']['dispsmall']['chk']['on']==1 ))
+			{ quiz['otherfeatures']['options']['odd']['no']=add; quiz['otherfeatures']['options']['convertible']['no']=add; quiz['otherfeatures']['options']['stylus']['no']=add; }
+			break;
+		}
+		case "oldgames":
+		{
+			if((el=="extraopt2" || el=="extraopt3" )&& (quiz[1]['options']['lap']['chk']['on']==1 || quiz['display_size']['options']['dispsmall']['chk']['on']==1 ))
+			{ quiz['otherfeatures']['options']['odd']['no']=add; quiz['otherfeatures']['options']['convertible']['no']=add; quiz['otherfeatures']['options']['stylus']['no']=add; }
+			break;
+		}
+		case "autocad":
+		{
+			if((el=="extraopt2" || el=="extraopt3" ) && (quiz[1]['options']['lap']['chk']['on']==1 || quiz['display_size']['options']['dispsmall']['chk']['on']==1 ))
+			{ quiz['otherfeatures']['options']['odd']['no']=add; quiz['otherfeatures']['options']['convertible']['no']=add; quiz['otherfeatures']['options']['stylus']['no']=add; }
+			break;	
+		}
+		case "solidworks":
+		{
+			if((el=="extraopt1" || el=="extraopt2" || el=="extraopt3" ) && (quiz[1]['options']['lap']['chk']['on']==1 || quiz['display_size']['options']['dispsmall']['chk']['on']==1 ))
+			{ quiz['otherfeatures']['options']['odd']['no']=add; quiz['otherfeatures']['options']['convertible']['no']=add; quiz['otherfeatures']['options']['stylus']['no']=add; }
+			break;	
+		}
+		case "3dsmaxmaya":
+		{
+			if((el=="extraopt1" || el=="extraopt2" || el=="extraopt3" ) && (quiz[1]['options']['lap']['chk']['on']==1 || quiz['display_size']['options']['dispsmall']['chk']['on']==1 ))
+			{ quiz['otherfeatures']['options']['odd']['no']=add; quiz['otherfeatures']['options']['convertible']['no']=add; quiz['otherfeatures']['options']['stylus']['no']=add; }
+			break;	
+		}
+		case "catia":
+		{
+			if((el=="extraopt1" || el=="extraopt2" || el=="extraopt3" ) && (quiz[1]['options']['lap']['chk']['on']==1 || quiz['display_size']['options']['dispsmall']['chk']['on']==1 ))
+			{ quiz['otherfeatures']['options']['odd']['no']=add; quiz['otherfeatures']['options']['convertible']['no']=add; quiz['otherfeatures']['options']['stylus']['no']=add; }
+			break;	
+		}
+		case "rhinoceros":
+		{
+			if((el=="extraopt1" || el=="extraopt2" || el=="extraopt3" ) && (quiz[1]['options']['lap']['chk']['on']==1 || quiz['display_size']['options']['dispsmall']['chk']['on']==1 ))
+			{ quiz['otherfeatures']['options']['odd']['no']=add; quiz['otherfeatures']['options']['convertible']['no']=add; quiz['otherfeatures']['options']['stylus']['no']=add; }
+			break;	
+		}
+		case "cadother":
+		{
+			if((el=="extraopt1" || el=="extraopt2" || el=="extraopt3" ) && (quiz[1]['options']['lap']['chk']['on']==1 || quiz['display_size']['options']['dispsmall']['chk']['on']==1 ))
+			{ quiz['otherfeatures']['options']['odd']['no']=add; quiz['otherfeatures']['options']['convertible']['no']=add; quiz['otherfeatures']['options']['stylus']['no']=add; }
+			break;	
+		}
+		case "videoedit":
+		{
+			if(el=="hvedit" && (quiz[1]['options']['lap']['chk']['on']==1 || quiz['display_size']['options']['dispsmall']['chk']['on']==1 ))
+			{ quiz['otherfeatures']['options']['odd']['no']=add; quiz['otherfeatures']['options']['convertible']['no']=add; quiz['otherfeatures']['options']['stylus']['no']=add; }
 			break;
 		}
 	}
 	
+	if(quiz[1]['options']['lap']['chk']['on']==1 && (quiz['display_size']['options']['dispmedium']['chk']['on']!=1 && quiz['display_size']['options']['displarge']['chk']['on']!=1 && quiz[0]['options']['atwork']['chk']['on']!=1))
+	{	
+		quiz['games']['options']['3dgames']['no']=add; quiz['3dgames']['options']['3dgameslow']['no']=add; quiz['3dgames']['options']['3dgamesmedium']['no']=add; quiz['3dgames']['options']['3dgameshigh']['no']=add;
+		quiz['mmo']['options']['mmomedium']['no']=add; quiz['oldgames']['options']['oldgameshigh']['no']=add;
+	}
 }
 
 function prequery(str,type) 
@@ -703,8 +837,8 @@ function prequery(str,type)
 				return;
 			}
 		}
-		console.log("/notebro/search/qsearch.php?"+str+"&qtype="+type);
-		xmlhttp.open("GET","/notebro/search/qsearch.php?"+str+"&qtype="+type,true);
+		console.log(siteroot+"search/qsearch.php?"+str+"&qtype="+type);
+		xmlhttp.open("GET",siteroot+"search/qsearch.php?"+str+"&qtype="+type,true);
 		xmlhttp.send();
 	}
 }
@@ -762,7 +896,7 @@ function submit_the_quiz()
 			{ quiz_submit[i]=key2+"=1"; i++; }
 		}
 	}
-	location.href="http://86.123.134.36/notebro/?search/search.php?quizsearch=1&"+quiz_submit.join("&");
+	location.href=siteroot+"?search/search.php?quizsearch=1&"+quiz_submit.join("&");
 	return "Quiz submission!";
 }
 
