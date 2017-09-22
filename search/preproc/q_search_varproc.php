@@ -153,7 +153,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 		{
 			$display_sizemin=0; $display_sizemax=30;
 			if (isset($_GET['desk']) && $_GET['desk']==1) 
-			{ if($display_sizemin>14) { $display_sizemin =14; }	if($display_sizemax>24) { $display_sizemax =24; } }
+			{ if($display_sizemin<14) { $display_sizemin =14; }	if($display_sizemax>24) { $display_sizemax =24; } }
 		
 			if (isset($_GET['bed']) && $_GET['bed']==1) 
 			{ if($display_sizemin<13) { $display_sizemin =13; }	if($display_sizemax>16) { $display_sizemax =16; } }
@@ -376,13 +376,13 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			{ if($quiz_mingputype<0) { $quiz_mingputype=0; } array_push($gpu_typelist,"0","1"); $to_search["gpu"]=1; }
 											
 			if (isset($_GET['mmomedium']) && $_GET['mmomedium']==1) 
-			{ if($gpu_powermin<35) { $gpu_powermin = 35; } if($gpu_powermax<69) { $gpu_powermax = 69; } if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2"); $to_search["gpu"]=1; }
+			{ if($gpu_powermin<35) { $gpu_powermin = 35; } if($gpu_powermax<69) { $gpu_powermax = 69; } if((isset($_GET['atwork']) && $_GET['atwork']==1) && $gpu_powermax<500) { $gpu_powermax=500; } if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2"); $to_search["gpu"]=1; }
 											
 			if (isset($_GET['mmohigh']) && $_GET['mmohigh']==1 ) 
 			{ if($gpu_powermin<56) { $gpu_powermin = 56; } $to_search["gpu"]=1; if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","4"); $gpu_ldmin=gmdate("Y-01-01",time()-31536000*1.5 ); }
 										
 			if (isset($_GET['3dgameslow']) && $_GET['3dgameslow']==1) 
-			{ if($gpu_powermin<30) { $gpu_powermin = 30; } if($gpu_powermax<69) { $gpu_powermax = 69; } $to_search["gpu"]=1; if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2"); }
+			{ if($gpu_powermin<30) { $gpu_powermin = 30; } if($gpu_powermax<69) { $gpu_powermax = 69; } $to_search["gpu"]=1; if($quiz_mingputype<2) { $quiz_mingputype=1; } array_push($gpu_typelist,"1","2"); $gpu_ldmin=gmdate("Y-01-01",time()-31536000*2 ); $gpu_arch=["Maxwell","Pascal","GCN 1.2","GCN 1.3"];  }
 																	
 			if (isset($_GET['3dgamesmedium']) && $_GET['3dgamesmedium']==1) 
 			{ if($gpu_powermin<56) { $gpu_powermin = 56; } $to_search["gpu"]=1; if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","4");  $gpu_ldmin=gmdate("Y-01-01",time()-31536000*1.5 ); }
@@ -441,7 +441,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			{ if($cadratemin<25) { $cadratemin=25; } if($cadratemax<35) { $cadratemax=35; } if ($gameratemin<50) { $gameratemin=50; } if($gameratemax<70) { $gameratemax=70; }  if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","3","4"); $to_search["gpu"]=1; }
 			
 			if (isset($_GET['cadomedium']) && $_GET['cadomedium']==1) 
-			{ if($cadratemin<35) { $cadratemin=35; } if($cadratemax<60) { $cadratemax=60; } if ($gameratemin<70) { $gameratemin=70; } if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","3","4"); $to_search["gpu"]=1; }
+			{ if($cadratemin<30) { $cadratemin=30; } if($cadratemax<60) { $cadratemax=60; } if ($gameratemin<70) { $gameratemin=70; } if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","3","4"); $to_search["gpu"]=1; }
 		
 			if (isset($_GET['cadoheavy']) && $_GET['cadoheavy']==1) 
 			{ if($cadratemin<60) { $cadratemin=60; } if ($gameratemin<1000) { $gameratemin=1000; }  if($quiz_mingputype<3) { $quiz_mingputype=3; } array_push($gpu_typelist,"3"); $to_search["gpu"]=1; }
@@ -500,20 +500,20 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			{ if($chassis_weightmax>10) { $chassis_weightmax = 10; } if($chassis_thicmax>100){ $chassis_thicmax = 100;} }
 			
 			if (isset($_GET['bed']) && $_GET['bed']==1) 
-			{ if($chassis_weightmax>2.3) { $chassis_weightmax = 2.3; } if($chassis_thicmax>27){ $chassis_thicmax = 27;} /*$chassis_made[] = "Metal"; $chassis_made[] = "Aluminium"; $chassis_made[] = "Lithium"; $chassis_made[] = "Magnesium";*/ }
+			{ if($chassis_weightmax>2.35) { $chassis_weightmax = 2.35; } if($chassis_thicmax>27){ $chassis_thicmax = 27;} /*$chassis_made[] = "Metal"; $chassis_made[] = "Aluminium"; $chassis_made[] = "Lithium"; $chassis_made[] = "Magnesium";*/ }
  									
 			if (isset($_GET['house']) && $_GET['house']==1) 
-			{ if($chassis_weightmax>2.7) { $chassis_weightmax = 2.7; } if($chassis_thicmax>30){ $chassis_thicmax = 30;} }
+			{ if($chassis_weightmax>2.8) { $chassis_weightmax = 2.8; } if($chassis_thicmax>31){ $chassis_thicmax = 31;} }
 											
 		    if (isset($_GET['lap']) && $_GET['lap']==1) 
 			{ if($chassis_weightmax>2.1) { $chassis_weightmax = 2.1; } if($chassis_thicmax>24){ $chassis_thicmax = 24;} }
 									
 			if (isset($_GET['bag']) && $_GET['bag']==1) 
 			{ 
-				if(isset($_GET['displarge'])	&& $_GET['displarge']==1)
-				{ if($chassis_weightmax>3.6) { $chassis_weightmax = 3.6; } if($chassis_thicmax>35){ $chassis_thicmax = 35;} }
+				if(isset($_GET['displarge']) && $_GET['displarge']==1)
+				{ if($chassis_weightmax>3.6) { $chassis_weightmax = 3.6; } if($chassis_thicmax>37){ $chassis_thicmax = 37;} }
 				else
-				{ if($chassis_weightmax>2.7) { $chassis_weightmax = 2.5; } if($chassis_thicmax>35){ $chassis_thicmax = 35;} }
+				{ if($chassis_weightmax>2.8) { $chassis_weightmax = 2.8; } if($chassis_thicmax>35){ $chassis_thicmax = 35;} }
 			}
 		
 			if (isset($_GET['metal']) && $_GET['metal']==1 ) 

@@ -640,7 +640,7 @@ function changeoptions(el,page,add)
 		{
 			switch(el)
 			{
-				case "opt1": { quiz[1]['options']['bag']['no']=add; quiz[1]['options']['lap']['no']=add; break; }
+				case "opt1": { quiz[1]['options']['lap']['no']=add; break; }
 				case "opt2": { quiz[1]['options']['bed']['no']=add; quiz[1]['options']['house']['no']=add; quiz['3dgames']['options']['3dgameshigh']['no']=add; quiz['3dgames']['options']['3dgamesmedium']['no']=add; quiz['mmo']['options']['mmohigh']['no']=add; break; }
 				case "opt3": { break; }
 			}
@@ -904,7 +904,7 @@ function quiz_init() { makePage(0); } quiz_init();
 
 </script>
 
-
+<link rel="stylesheet" href="search/quiz/quiz.css" type="text/css"/>
 <div style="border-style:solid; border-width:1px; border-color:#000000; margin: 5px; height:350px;position:relative;padding:0px">
 	<div style="background-color:#285F8F; width:100%; height:35px; text-align:center; display: inline-block; padding-top:5px">
 		<span id="question" style="color:#ffffff; font-family: 'arial'; font-size:20px;"></span>
