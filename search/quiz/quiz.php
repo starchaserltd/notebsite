@@ -450,7 +450,7 @@ function makePage(quizp)
 }
 
 function makeextraPage(quizp,el)
-{ console.log("aaa");
+{
 	var closeextratextnav=1;
 	if(!inextra) { inextra=quizp; closeextratext="closeextra"; if(document.getElementsByClassName('glyphicon-arrow-left')[0].getAttribute( "onClick").indexOf("closeextra(")>=0) { closeextratextnav=0;  } } else { closeextratext="closeextraextra"; }
 	
