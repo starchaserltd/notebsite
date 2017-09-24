@@ -152,7 +152,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 		case 'display' :
 		{
 			$display_sizemin=0; $display_sizemax=30;
-			if (isset($_GET['desk']) && $_GET['desk']==1) 
+			if ((isset($_GET['desk']) && $_GET['desk']==1)&&(!isset($_GET['bed'])&&!isset($_GET['house'])&&!isset($_GET['lap'])&&!isset($_GET['bage'])))
 			{ if($display_sizemin<14) { $display_sizemin =14; }	if($display_sizemax>24) { $display_sizemax =24; } }
 		
 			if (isset($_GET['bed']) && $_GET['bed']==1) 
