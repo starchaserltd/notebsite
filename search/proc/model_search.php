@@ -76,7 +76,7 @@ function search_model ($mmodel,$prodmodel,$fammodel,$msc,$regions,$minclass,$max
 
 	// Add class to filter
 
-	if($class!==-1)	{ $sel_model.=" AND idfam IN ( SELECT id FROM `FAMILIES` WHERE business BETWEEN ".$minclass." AND ".$maxclass.")"; }
+	if($minclass>=0 && $maxclass<=10) { $sel_model.=" AND idfam IN ( SELECT id FROM `FAMILIES` WHERE business BETWEEN ".$minclass." AND ".$maxclass.")"; }
 
 	// MSC search	
 	$i=0;
