@@ -712,6 +712,9 @@ else
 		</div>
 		
 		<!-- end specs -->
+		<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+			<p class="disclaimernb"><strong> Disclaimer.</strong> We can not guarantee that the information on this page is 100% correct. <a href="http://86.123.134.36/notebro/?footer/contact.php">Submit correction.</a></p>
+		</div>
 	</div>
 	<!-- REVIEWS -->
 <?php

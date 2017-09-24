@@ -2,7 +2,7 @@
 /*include("../../etc/conf.php");
 if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_name) ==FALSE) 
 {	$actual_link = "$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-	header("Location: http://noteb.com/?content/home.php");
+	header("Location: ".$port_type."://noteb.com/?content/home.php");
 	die();
 }*/
 
