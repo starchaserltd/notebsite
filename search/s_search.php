@@ -1,10 +1,8 @@
 <script>$.getScript("search/lib/js/ssearch.js");</script>
 
 	<div class="col-md-12 col-sm-12 col-xs-12" style="padding-right:0px; padding-left:5px;">	
-		<h2 style="text-align:center; font-size:17px; font-weight:bold;">Quick laptop search</h2>
-		
-		<form action="javascript:void(0);" method="post" id="s_search">
-				<div style="margin-top:5px; font-size:14px;font-weight:bold; margin-bottom:2px;">Laptop type</div>			
+		<form style="overflow:hidden" action="javascript:void(0);" method="post" id="s_search">
+				<div style="margin-top:10px; font-size:14px;font-weight:bold; margin-bottom:2px;">Laptop type</div>			
 				<select name ="type" id="type">
 					<option value="1">Normal</option>
 					<option value="2">Ultraportable</option>
@@ -30,7 +28,6 @@
 				
 				
 				<div style="font-size:14px;font-weight:bold; margin-bottom:2px; margin-top:5px">Display</div>			
-				
 					<input type="radio" name="display" value="1" id="disp_normal" class="css-radiobox">
 					<label for="disp_normal" class="css-labelr" style="font-weight:normal">Normal</label>
 						<br>
@@ -43,9 +40,7 @@
 			
 			<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" >
 				
-			</div>
-			
-												
+			</div>							
 				<div style="margin-top:10px; font-size:14px;font-weight:bold; margin-bottom:2px;">Storage</div>	
 				<select id="storage" name="storage[]" multiple>
 					<option value="1" selected="selected">Normal</option>
@@ -103,11 +98,11 @@
 					<div id="budget"></div>
 				</div>
 			  
-			<input type="submit" id="s_search_btn" class="btn blue" style="margin-top:20px; padding:5px 25px 5px 25px; border-radius:1px; color:#fff; width:100%;" value="Submit">
+			<input type="submit" id="s_search_btn" class="btn blue bsub" style="margin-top:20px; padding:5px 25px 5px 25px; border-radius:1px; color:#fff; width:100%;" value="Submit">
 	</form>
    
    <div style="text-align:center;">
-      <button  id="sadvsearch" onmousedown="OpenPage('search/adv_search.php',event);" style="padding:5px 25px 5px 25px; border-radius:1px; color:#fff;margin-top:5px; width:100%;" type="button" class="btn blue">Advanced search</button>
+      <button  id="sadvsearch" onmousedown="OpenPage('search/adv_search.php',event);" style="padding:5px 25px 5px 25px; border-radius:1px; color:#fff;margin-top:5px; width:100%;" type="button" class="btn blue"><a style="text-decoration:none;color:white;">Advanced search</a></button>
    </div>	
 </div>
 	

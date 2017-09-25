@@ -13,7 +13,7 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 	<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style="background-color:white; font-family:arial;">
 		<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style="padding:3px 0px 5px 0px"> 
 			<div class="col-md-6 col-sm-6 col-xs-12 col-lg-6">
-				<button type="button" <?php $nosearch=0; $search_ref=str_replace("/advanced_search","/adv_search",$absolute_url[0],$nosearch); if(!($nosearch)){ $search_ref=str_replace("/search.php?","/adv_search.php?",$absolute_url[0]);} $text='onmousedown="OpenPage('."'".$search_ref; foreach($sortby as $sort) {} $text.="',event)".'"'; echo $text ?> class="btn btn-result" style="margin-right:24px;border-radius:1px !important; height:25px; padding:2px 15px;"> Refine results</button>
+				<button type="button" <?php $nosearch=0; $search_ref=str_replace("/advanced_search","/adv_search",$absolute_url[0],$nosearch); if(!($nosearch)){ $search_ref=str_replace("/search.php?","/adv_search.php?",$absolute_url[0]);} $text='onmousedown="OpenPage('."'".$search_ref; foreach($sortby as $sort) {} $text.="',event)".'"'; echo $text ?> class="btn btn-result" style="margin-right:24px;border-radius:1px !important; height:25px; padding:2px 15px;"> <a style="text-decoration:none;color:white">Refine results</a></button>
 			</div>
 <?php		
 			include_once("proc/confsearch.php"); /* WHERE THE REAL SEARCH IS DONE! */
@@ -22,24 +22,24 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 			<div class="col-md-6 col-sm-6 col-xs-12 col-lg-6" style="padding:0px">
 				<div class="btn-group">		
 					<div class="btn-group" style="float:right;width:auto!important;margin-left:3px">
-						<button type="button" data-toggle="dropdown" class="btn btn-result dropdown-toggle" style="width:35px;border-radius:1px;"><?php echo $exchsign; ?>
+						<button type="button" data-toggle="dropdown" class="btn btn-result dropdown-toggle" style="width:35px;border-radius:1px;"><?php echo '<a style="text-decoration:none; color:white">'.$exchsign.'</a>'; ?>
 						<span class="caret"></span></button>
-						<ul class="dropdown-menu" style="margin-top:0px;margin-bottom:0px;padding:0px;border-radius: 3px;min-width:35px!important;">
+						<ul class="dropdown-menu" style="margin-top:0px;margin-bottom:0px;padding:0px;border-radius: 3px;min-width:35px!important;border-top-width: 0px;">
 						<?php
 						foreach ($exchangelist as $exchc)
 						{
 							if($exchc[0]!=$exchcode)
 							{ 
-								echo '							<li style="width:35px;text-align:center"><a class="ddowncustom" onmousedown="OpenPage(exchangeresults('."'".$exchc[0]."'".'),event)">'.$exchc[1].'</a></li>';
+								echo '							<li class="exchangeres" style="width:35px;text-align:center"><a onmousedown="OpenPage(exchangeresults('."'".$exchc[0]."'".'),event)">'.$exchc[1].'</a></li>';
 							}
 						}
 						?>
 						</ul>
 					</div>
-					<button type="button" class="btn btn-result<?php echo $name_button;?>" style="float:right;border-radius: 0px 1px 1px 0px;" onmousedown="OpenPage(sortresults('name'),event)">name</button>
-					<button type="button" style="float:right;" class="btn btn-result<?php echo $performance_button; ?>" onmousedown="OpenPage(sortresults('performance'),event)">perfomance</button>							
-					<button type="button" style="float:right;" class="btn btn-result<?php echo $price_button; ?>" onmousedown="OpenPage(sortresults('price'),event)">price</button>
-					<button type="button" class="btn btn-result<?php echo $value_button;?>" style="float:right;;margin-left:10px;border-radius: 1px 0px 0px 1px;"  onmousedown="OpenPage(sortresults('value'),event)">value</button>			
+					<button type="button" class="btn btn-result<?php echo $name_button;?>" style="float:right;border-radius: 0px 1px 1px 0px;" onmousedown="OpenPage(sortresults('name'),event)"><a style="color:white;text-decoration:none">name</a></button>
+					<button type="button" style="float:right;" class="btn btn-result<?php echo $performance_button; ?>" onmousedown="OpenPage(sortresults('performance'),event)"><a style="color:white;text-decoration:none">perfomance</a></button>							
+					<button type="button" style="float:right;" class="btn btn-result<?php echo $price_button; ?>" onmousedown="OpenPage(sortresults('price'),event)"><a style="color:white;text-decoration:none">price</a></button>
+					<button type="button" class="btn btn-result<?php echo $value_button;?>" style="float:right;;margin-left:10px;border-radius: 1px 0px 0px 1px;"  onmousedown="OpenPage(sortresults('value'),event)"><a style="color:white;text-decoration:none">value</a></button>			
 					<a class="btn" style="float:right;text-decoration:none;color:black;font-weight:bold;padding:2px 0px 0px 0px;">Order by:</a>
 				</div>		 
 			</div>	
@@ -150,7 +150,7 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 			<li><a <?php  $newpage=$page+1; if($newpage>$count) {$newpage=$count; } echo 'onmousedown="OpenPage('."'".$absolute_url[0]."&page=".$newpage.$sortext."',event);".'scrolltoid('."'".'content'."'".');"';; ?>  style="color:#000; cursor:pointer;">></a></li>
 			<li><a <?php echo 'onmousedown="OpenPage('."'".$absolute_url[0]."&page=".$count.$sortext."',event);".'scrolltoid('."'".'content'."'".');"'; ?> style="color:#000; cursor:pointer;" >>></a></li>
 		</ul>
-		<button type="button" id="refinesearch" <?php $nosearch=0; $search_ref=str_replace("/advanced_search","/adv_search",$absolute_url[0],$nosearch); if(!($nosearch)){ $search_ref=str_replace("/search.php?","/adv_search.php?",$absolute_url[0]);} $text='onmousedown="OpenPage('."'".$search_ref; foreach($sortby as $sort) {} $text.="',event);".'scrolltoid('."'".'content'."'".');"'; echo $text ?> class="btn-result" style="float:right;margin-right:25px;border-radius:2px !important; height:30px; padding:2px 40px;margin-top:10px"> Refine results</button>
+		<button type="button" id="refinesearch" <?php $nosearch=0; $search_ref=str_replace("/advanced_search","/adv_search",$absolute_url[0],$nosearch); if(!($nosearch)){ $search_ref=str_replace("/search.php?","/adv_search.php?",$absolute_url[0]);} $text='onmousedown="OpenPage('."'".$search_ref; foreach($sortby as $sort) {} $text.="',event);".'scrolltoid('."'".'content'."'".');"'; echo $text ?> class="btn-result" style="float:right;margin-right:25px;border-radius:2px !important; height:30px; padding:2px 40px;margin-top:10px"><a style="color:white;text-decoration:none"> Refine results</a></button>
 	</div>	
 </div>
 	

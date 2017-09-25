@@ -21,54 +21,31 @@ require_once("etc/session.php");
 	<script type="text/javascript" src="lib/js/nouislider.min.js"></script>
 </head>
 <body>
+<style>
+.btn.active.focus,.btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {outline: none!important;outline-offset:initial!important}
+</style>
 <div class="container-fluid headerback" style="height:100%;">
 	<div class="row" style="height:100%;">
 	<!-- upper buttons desktop -->
+		<!--<div style="background-color:#285f8f;display:flex"> -->
 		<div class="col-md-10 col-xs-12 col-sm-12" style="padding:0px; float:left; position:relative;">
 			<div class="btn-group-justified btn-group siteMenu">
-				<h1 class="btn btn-sus blue logonb"  onmousedown="OpenPage('content/home.php',event);">Find the best laptop with Noteb notebook search engine.</h1>
+				<h1 class="btn blue logonb lognb"  onmousedown="OpenPage('content/home.php',event);">Find the best laptop with Noteb notebook search engine.</h1>
 				<a class="btn btn-sus blue advsearch" >SEARCH</a>
 				<a class="btn btn-sus blue" onmousedown="OpenPage('content/articles.php',event);">ARTICLES</a>
 				<a class="btn btn-sus blue" onmousedown="OpenPage('content/reviews.php',event);">REVIEWS</a>
 			</div>
 		</div>		
 		<!-- right area -->
-		<div class="col-md-2 col-sm-6 socialButton"><!-- min-height:134px;-->
-		<!-- social buttons -->
-			<div class="col-xs-12 col-md-12 col-lg-12" style="padding:0px;">
-				<div class="btn-group" role="group">
-					<button type="button" class="btn btn-sus blue dropdown-toggle" style="width:inherit;margin-left:-1px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<span class="socicon-sharethis"></span>
-						<span class="caret"></span>
-					</button>
-					<div class="dropdown-menu">
-						<div class="shareText" style="margin:5px;"> Share page on... </div>
-						<div class="socialButtons">			
-							<a class="btn btn-block btn-social btn-facebook" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-facebook']); " id="sharefb" href="">
-								<span class="socicon socicon-facebook sheight"></span> Facebook
-							</a>
-						</div>
-						<div class="socialButtons">
-							<a class="btn btn-block btn-social btn-twitter" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-twitter']);" id="sharetw" href="">
-								<span class="socicon socicon-twitter sheight"></span> Twitter
-							</a>
-						</div>
-						<div class="socialButtons">
-							<a class="btn btn-block btn-social btn-google" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-google']);" id="sharegp" href="">
-								<span class="socicon socicon-google-plus sheight"></span> Google
-							</a>
-						</div>
-						<div  class="socialButtons">
-							<a class="btn btn-block btn-social btn-reddit" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-reddit']);" id="sharerd" href="">
-								<span class="socicon socicon-reddit sheight"></span> Reddit
-							</a>
-						</div>
-					</div>
+		<div class="col-md-2 col-lg-2" style="padding:0px"><!-- min-height:134px;-->
+			<div class="hidden-sm hidden-xs col-md-12 col-lg-12" style="padding:0px;">			
+				<div id="usermenu" class="btn-group dropdown">
+					<button disabled class="blue dropbtn helpus"><a class="helpimg"> </a></button>
+					<div class="dropdown-content"><a class="addrev" onmousedown="OpenPage('public/ireviews.php',event);">Add laptop review</a></div>
 				</div>
 			</div>
-		<!-- end social buttons -->
 		</div>
-		
+	<!--	</div> -->
 				
 		<!-- end div middle -->
 		<!-- end right area -->
@@ -79,7 +56,7 @@ require_once("etc/session.php");
 		<script type="text/javascript" src="libnb/js/compjsf.js" ></script><!-- compare list functions -->
 			<div class="col-md-12 col-xs-12 col-sm-12 blue" id='cssmenu' style="padding:0px">
 				<ul>
-				   <li class='has-sub'><a >Browse models</a>
+				   <li class='has-sub'><a >Browse laptops</a>
 						<ul>
 							<li class='has-sub'><a >By brand</a>
 								<ul>
@@ -127,16 +104,19 @@ require_once("etc/session.php");
 			</div>
 			<div class="col-md-12 col-xs-12 cod-sm-12 col-lg-12" style="padding:5px">
 				<form action="javascript:void(0);" method="post" id="modelfind" style="text-align: -webkit-center;">		
-					<select class="modelsearch js-example-responsive" id="model_id" name ="model_id" data-placeholder="Find a laptop model" data-initvalue="search for a model"  style="width: 100%; margin:5px 0px 10px 0px; border-radius:1px;"> 
+					<select class="modelsearch js-example-responsive" id="model_id" name ="model_id" data-placeholder="Search a laptop model" data-initvalue="search for a model"  style="width: 100%; margin:5px 0px 10px 0px; border-radius:1px;"> 
 					</select>
 				</form>
 			</div>
 			<!-- end left menu-->
 			<!-- simple search -->
-			<button class="visible-xs btn btn-search yellow" style="font-size:14px!important; font-weight:bold" data-toggle="collapse" data-target="#SearchParameters">Quick Search</button>
-			<div class="hidden-xs SearchParameters" id="SearchParameters">
-				<?php include ("search/s_search.php");?>
-			</div>
+			<button class="btn btn-title" style="font-size:16px!important; text-align:justify;position:relative" data-toggle="collapse" data-target="#SearchParameters" aria-expanded="true" onclick=""><a style="color:white;">Quick laptop search</a><a></a></button>
+			<div class="SearchParameters collapse in"  id="SearchParameters">			
+			<?php include ("search/s_search.php");?>
+			</div>			
+			
+			
+				
 			<!-- end simple search -->	
 			
 		</div>
@@ -187,11 +167,14 @@ require_once("etc/session.php");
 	<link rel="stylesheet" href="libnb/css/nb.css" type="text/css" />
 	<!--custom OK	-->
 	<link rel="stylesheet" href="libnb/css/responsive.css" type="text/css" />
-	<link rel="stylesheet" href="libnb/css/loading.css" type="text/css" />
+	<link rel="stylesheet" href="libnb/css/loading.css" type="text/css" />	
+	<!--Quiz css	-->
+	<link rel="stylesheet" href="search/quiz/quiz.css" type="text/css" />	
 
 	<!-- Custom Theme JavaScript -->
 	<script><?php echo 'var siteroot = "'.$web_address.'";'; ?></script>
 	<script type="text/javascript" src="libnb/js/tooltip.js" async></script>
+	<script type="text/javascript" src="search/quiz/classList.min.js"></script>
 	<script type="text/javascript" src="libnb/js/index.js"></script>
 	<script type="text/javascript" src="lib/js/nouislider.min.js"></script>
 	

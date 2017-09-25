@@ -1,0 +1,99 @@
+$(document).ready(function(){ 
+    $(".modelsearch").each(function(){
+	var query_address=siteroot+"/search/lib/func/m_search.php";
+	var $this = $(this);
+	$this.select2({
+			tags: false,
+			multiple: false,
+			maximumSelectionLength: 15,
+			minimumInputLength: 2,
+			language: {
+             noResults: function(term) {
+                 return "Type something...";
+            }
+        },
+		ajax: {
+			cache: false,
+			quietMillis: 100,
+			dataType: "json",
+			url: query_address,
+			type: "POST",
+			data: function (params) {
+			//	console.log($idtype);
+				var queryParameters = {
+					list: $this.attr('field'),
+					q: "model",
+					keys: params.term,
+				}
+				return queryParameters;
+			},
+			processResults: function(data) {
+				return {
+					results: $.map(data, function (item) {
+						return {
+								id: item.id,
+								text: item.model
+							};
+						})
+					};
+				}
+			}
+		})
+	});
+});
+
+
+$(".predbvalues").each(function()
+{
+	var $this = $(this);
+	$this.select2({
+    tags: true,
+    multiple: false,
+    tokenSeparators: [',', ' '],
+    minimumInputLength: 1,
+	//maximumResultsForSearch: 20,
+	searchType: "contains",
+	language: {
+	noResults: function(term) {
+		return "Type website name...";
+		}
+	},
+    ajax: { 
+		quietMillis: 100,
+		cache: false,
+		dataType: "json",
+        type: "POST",
+		url:  siteroot+$($this[0]).attr('data-url'),
+        data: function (params) {
+			type=$($this[0]).attr('data-type');
+            var queryParameters = {
+				list: type,
+				keys: params.term
+			}
+			return queryParameters;
+        },
+        processResults: function (data) {
+            return {
+                results: $.map(data, function (item) { console.log(data); item.id=item.name;
+					return {
+						id: item.name,
+                        text: item.name
+                    }
+				})
+            };
+        }
+    }
+})
+});
+
+//Function for form submissions left menu   
+$("#ireviews_form_btn").click(function () {
+	scrolltoid('content');
+	$('#loadingNB').show();
+	trigger=0;
+	$.post('public/ireviews.php', $("#ireviews_form").serialize(), function(data) {
+		url = "public/ireviews.php";
+		if($('#content').html(data)){ $('#loadingNB').hide();}
+		history.pushState({}, 'NoteBrother', "?" + url);
+	});
+});

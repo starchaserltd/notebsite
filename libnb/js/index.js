@@ -72,6 +72,7 @@ function OpenPage(url,e,dontpush) {
 	var btnCode;
 	var go=0;
 	if ('object' === typeof e) { btnCode = e.button; }
+	adjust_ssearch(url);	
 	switch (btnCode)
 	   {
 		   case 0: go=1; break;
@@ -376,15 +377,25 @@ $(document).ready(function(){
 
 function actbtn(pagename,mobile)
 { 
-	if(!mobile)
-	
-	{ $( ".btn-sus" ).removeClass( "active" ); }
-	
-	$( ".btn-sus" ).each(function(index) {
-	if(this.innerHTML==pagename && (pagename!="Find the best laptop with Noteb notebook search engine." || pagename!="NOTEBROTHER")){
-		$(this).addClass("active");
+	switch(pagename)
+	{
+		case "USER":
+		{
+			if(!mobile){ $( ".btn-sus" ).removeClass( "active" ); }
+			$('#usermenu').addClass("acthelp");
+			break;
 		}
-	});
+		default:
+		{
+			if(!mobile){ $( ".btn-sus" ).removeClass( "active" ); $('#usermenu').removeClass("acthelp"); }
+			
+			$( ".btn-sus" ).each(function(index) {
+			if(this.innerHTML==pagename && (pagename!="Find the best laptop with Noteb notebook search engine." || pagename!="NOTEBROTHER")){
+				$(this).addClass("active");
+				}
+			});
+		}
+	}
 }
 
 function occur(string, subString, allowOverlapping)
@@ -441,4 +452,26 @@ function triggerchange(el,seltext,match_type)
 	}
 	if(found && match_type==0 && i>1) { found =0; }
 	return found;
+}
+
+function state_ssearch(type)
+{
+	if(type==0)
+	{
+		document.getElementsByClassName("btn-title")[0].classList.remove("collapsed");
+		document.getElementsByClassName("btn-title")[0].setAttribute("aria-expanded","true");
+		document.getElementById("SearchParameters").classList.add("in");
+	}
+	
+	if(type==1)
+	{
+		document.getElementsByClassName("btn-title")[0].classList.add("collapsed");
+		document.getElementsByClassName("btn-title")[0].setAttribute("aria-expanded","false");
+		document.getElementById("SearchParameters").classList.remove("in");
+	}
+}
+
+function adjust_ssearch(page)
+{
+	if (page.indexOf("adv_search.php")>-1 || page.indexOf("advsearch=1")>-1) { if(document.getElementsByClassName("btn-title")[0].getAttribute("aria-expanded")=="true") { if(first) { document.getElementsByClassName("btn-title")[0].classList.add("collapsed");	document.getElementsByClassName("btn-title")[0].setAttribute("aria-expanded","false"); document.getElementById("SearchParameters").classList.remove("in"); } else { document.getElementsByClassName('btn-title')[0].click(); } } }
 }

@@ -100,7 +100,7 @@ else
 				<p style="padding-top:4px;text-align:center"><span style=""><b>Battery life: </b></span><span  class="labelblue"><span id="bat_life1" style="font-size:16px; color:#285F8F; margin-left:4px;"></span> - <span id="bat_life2" style="font-size:16px; color:#285F8F;"></span><span style="color:#285F8F;"> <?php echo " h"; ?></span></span></p>
 			</div>	
 			<div class="col-md-12 col-sm-12 col-xs-12 btn" style="padding:0px;margin-top:2px;">
-				<span class="compmod" id="addcompare" >Add to compare</span>
+				<span class="compmod" id="addcompare" ><a style="text-decoration:none;">Add to compare</a></span>
 				
 			</div>
 		</div>

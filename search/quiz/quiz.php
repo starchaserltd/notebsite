@@ -871,20 +871,28 @@ function navigation()
 	{ document.getElementsByClassName('glyphicon-arrow-left')[0].style.display="inline"; }
 
 	
-	var navnr=document.getElementsByClassName('nrcircle'); var lastactive=-1;
+	var navnr=document.getElementsByClassName('nrcircle'); var lastactive=-1; var quizfinal=1;
 	for (var key=0;key<=maxpage;key++)
 	{
 		if(quiz[key]['selected']>=quiz[key]['done'])
 		{	
-			if(lastactive==(key-1))
+			if(lastactive==(key-1) && quizfinal)
 			{
 				navnr[key].setAttribute( "onClick", "makePage("+key+");" );
 				navnr[key].classList.add("nrcircleactive");
 				lastactive=key;
 			}
+			if(quizfinal) {lastactive=key;}
 		}
 		else
 		{ //navnr[key].classList.remove("nrcircleactive");
+			quizfinal=0;
+		}
+		
+		if(key>lastactive && !quizfinal)
+		{
+			navnr[key].removeAttribute( "onClick", "makePage("+key+");" );
+			navnr[key].classList.remove("nrcircleactive");
 		}
 	}
 	if(lastactive>=maxpage)	{ lastactive--;}
@@ -915,7 +923,7 @@ function quiz_init() { makePage(0); } quiz_init();
 </script>
 
 <link rel="stylesheet" href="search/quiz/quiz.css" type="text/css"/>
-<div style="border-style:solid; border-width:1px; border-color:#000000; margin: 5px; height:350px;position:relative;padding:0px">
+<div class="quiz_container">
 	<div style="background-color:#285F8F; width:100%; height:35px; text-align:center; display: inline-block; padding-top:5px">
 		<span id="question" style="color:#ffffff; font-family: 'arial'; font-size:20px;"></span>
 	</div>	
@@ -931,7 +939,7 @@ function quiz_init() { makePage(0); } quiz_init();
 			<div id="loadingNoteB_8" class="loadingNoteB"></div>
 		</div>
 	</div>
-	<div id="mainquiz" style="text-align:center; position: relative; top: 40%;  transform: translateY(-50%);">
+	<div class="mainquiz" id="mainquiz">
 		<div class="row qtable" align="center" id="icontable">
 			<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" id="quizr1" style="display: block;">
 				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
@@ -1027,13 +1035,13 @@ function quiz_init() { makePage(0); } quiz_init();
 		</div>
 		<div class="column">
 			<div class="extraiconel" id="doneextra" style="display: block; margin-bottom:21px;" onclick="">
-				<div id="doneextraimg" class=" hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="search/quiz/res/img/icons/back.svg" alt="DoneExtra"></div><span class="icontext" id="doneextratxt">DONE</span>
+				<span id="doneextraimg" class="arow_back"><!-- <img class="img-responsive iconimg" src="search/quiz/res/img/icons/back.svg" alt="DoneExtra"> -->X</span><span class="icontext arow_done" id="doneextratxt">DONE</span>
 			</div>
 		</div>
 	</div>
-	<div style="background-color:#285F8F; width:100%; height:27px; text-align:center; display: inline-block; position:relative; bottom: 0px; left:0px">
+	<div class="footer_quiz">
 		<span class="glyphicon glyphicon-arrow-left arrows1" onclick="makePage(currentp-1);"></span>
-		<span class="nrcircle nrcircleactive">-</span><span class="nrcircle">-</span><span class="nrcircle">-</span><span class="nrcircle">-</span><span class="nrcircle">-</span></span><span class="nrcircle">-</span><span class="nrcircle">-</span>
+		<span class="nrcircle nrcircleactive"></span><span class="nrcircle"></span><span class="nrcircle"></span><span class="nrcircle"></span><span class="nrcircle"></span></span><span class="nrcircle"></span>
 		<span class="glyphicon glyphicon-arrow-right arrows #quiza" style="display:none;" onclick="makePage(currentp+1);">			
 			<span class="next-text">
 				<p>Next
@@ -1041,8 +1049,8 @@ function quiz_init() { makePage(0); } quiz_init();
 				</p>			
 			</span>
 		</span>
-		<span class="" style="display:none; background-color:#999999; width: 100px; height: 50px;" id="quiz_submit_btn" onclick="submit_the_quiz();">			
-			<span class="next-text">
+		<span class="submit_quiz" style="display:none; background-color:#999999; width: 100px; height: 50px;" id="quiz_submit_btn" onclick="submit_the_quiz();">			
+			<span>
 				<p>Find your
 				laptop!
 				</p>			

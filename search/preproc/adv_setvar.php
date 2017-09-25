@@ -35,6 +35,7 @@ else if (isset($_GET['advsearch']))
 else if (isset($_GET['quizsearch']) && $_GET['quizsearch'])
 {
 	include ("conv/quiztoadv.php");
+	
 }
 /*******************************************************************/	
 /* CONVERTING VARIABLES FROM BROWSE BY TO ADVANCED SEARCH */	

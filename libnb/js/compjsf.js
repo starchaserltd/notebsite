@@ -113,7 +113,7 @@ setInterval(function()
 		}
 		else
 		{
-			elementtext='<tr id="toptrcomp"><td  colspan="3" style="border:0px;background-color:#fff; text-align:center; margin-top:-5px;"><button onmousedown="firstcompare=0; OpenPage('+"'model/comp.php?"+complink+"&ex="+excode+"',event); scrolltoid('content');"+'" style="padding:2% 25%;border-radius:0px; background-color:#285f8f; color:#fff;margin-top:5px;" type="button" class="btn">Compare now</button></td></tr>';
+			elementtext='<tr id="toptrcomp"><td  colspan="3" style="border:0px;background-color:#fff; text-align:center; margin-top:-5px;"><button onmousedown="firstcompare=0; OpenPage('+"'model/comp.php?"+complink+"&ex="+excode+"',event); scrolltoid('content');"+'" style="padding:2% 25%;border-radius:0px; background-color:#285f8f; color:#fff;margin-top:5px;" type="button" class="btn btnc">Compare now</button></td></tr>';
 			$('table#comparelist tr#toptrcomp').replaceWith(elementtext);
 		}
 		nrcheckchange=nrcheck;
