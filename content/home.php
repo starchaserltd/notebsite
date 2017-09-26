@@ -54,13 +54,14 @@ $published_posts = $count_posts->publish;
 	
 		<!-- Noteb Quiz -->
 		<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style="padding:0px;">
+			<?php if(isset($_GET["beta"])&&$_GET["beta"]==1) { ?>
 			<div id="quiz" class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style="position:relative;"></div>
 			<div class="col-md-12 co-sm-12 col-xs-12 col-lg-12 advancedSearchButton" onmousedown="OpenPage('search/adv_search.php',event);">
 				<span style="font-size:12px; color:#fff" class="glyphicon glyphicon glyphicon-menu-left"></span>
 				<span>ADVANCED SEARCH</span>
 				<span style="font-size:12px; color:#fff" class="glyphicon glyphicon glyphicon-menu-right"></span>
 			</div>
-		
+			<?php } ?>
 			<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style="padding:5px 0px;">
 				<div class="col-md-4 col-lg-4 col-xs-12 col-sm-12" style="padding:1px;">
 					<a onmousedown="OpenPage('<?php	$category = get_the_category($recent_posts[0]["ID"]);	$categorie = $category[0]->cat_name; 				
