@@ -1,4 +1,4 @@
-
+.advsearch{left:1px;}
 .btn.btnc:hover{color:#6a90b1!important;transition: all 0.3s ease-in}
 .btn.blue.bsub:hover{color:#6a90b1!important;transition: all 0.3s ease-in}
 
@@ -669,6 +669,7 @@ color:black !important;
 
 
 
+
 .table-xtra-condensed > thead > tr > th,
 .table-xtra-condensed > tbody > tr > th,
 .table-xtra-condensed > tfoot > tr > th,
@@ -998,8 +999,7 @@ background-color:#fff!important;
   background-color: #fff !important;
   border-color: #122b40;
 }
-.btn-sus:hover {
-  padding:6px 40px;
+.btn-sus:hover {  
   color: #fff;  
   border-color: #204d74;  
   -moz-transition: all 0.3s ease-in;
@@ -1259,3 +1259,27 @@ input[type=radio].css-radiobox {
     border: none !important;
 }
 		
+
+/* Advanced search button home page */
+
+.advancedSearchButton {
+  cursor: pointer;  
+  text-align: center;
+  padding: 5px 25px;
+  border-radius: 1px;
+  background-color: #285f8f;
+  color: #fff;
+  margin-top: 5px;
+  width: 100%;   
+  text-transform: capitalize;
+  font-size:14px;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: bold;
+}
+
+.advancedSearchButton:hover > span {
+  opacity:0.6;
+  	transition: all 0.3s ease-in;
+
+}
+

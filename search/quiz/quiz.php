@@ -924,11 +924,11 @@ function quiz_init() { makePage(0); } quiz_init();
 
 <link rel="stylesheet" href="search/quiz/quiz.css" type="text/css"/>
 <div class="quiz_container">
-	<div style="background-color:#285F8F; width:100%; height:35px; text-align:center; display: inline-block; padding-top:5px">
-		<span id="question" style="color:#ffffff; font-family: 'arial'; font-size:20px;"></span>
+	<div style="width:100%; height:35px; text-align:center; display: inline-block; padding-top:5px">
+		<span id="question" style="font-family: 'arial'; font-size:20px;font-weight: bold;"></span>
 	</div>	
 	<div class="col-md-12 loadingdivquiz" id="loadingNBquiz" style="display:none" >
-		<div class="loadingdivsec" >
+		<div class="loadingdivsec loadingQuiz" >
 			<div id="loadingNoteB_1" class="loadingNoteB"></div>
 			<div id="loadingNoteB_2" class="loadingNoteB"></div>
 			<div id="loadingNoteB_3" class="loadingNoteB"></div>
@@ -1049,7 +1049,7 @@ function quiz_init() { makePage(0); } quiz_init();
 				</p>			
 			</span>
 		</span>
-		<span class="submit_quiz" style="display:none; background-color:#999999; width: 100px; height: 50px;" id="quiz_submit_btn" onclick="submit_the_quiz();">			
+		<span class="submit_quiz" style="display:none;" id="quiz_submit_btn" onclick="submit_the_quiz();">			
 			<span>
 				<p>Find your
 				laptop!
