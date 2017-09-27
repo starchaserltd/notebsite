@@ -5,7 +5,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 	{
 		case 'model' :
 		{
-			$regions_name[]="US and Canada";
+			$regions_name[]="USA and Canada";
 			if (isset($_GET['atwork']) && $_GET['atwork']==1)
 			{ $model_minclass=1; $model_maxclass=3; if(((isset($_GET['lap']) && $_GET['lap']==1)||(isset($_GET['dispsmall']) && $_GET['dispsmall']==1 ))&& (isset($_GET['3dmodel']) && $_GET['3dmodel']==1 )) { $model_minclass=0; } }
 
@@ -19,64 +19,64 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 		{
 			$cores=2;
 			if (isset($_GET['calc']) && $_GET['calc']==1)
-			{ $cputurbomin = 3.1; $cpu_misc[]="HT"; $cores=2.5; }
+			{ $cpufreqmin = 3.1; $cpu_misc[]="HT"; $cpucoremin=3; }
 				
 			if (isset($_GET['coding']) && $_GET['coding']==1)
-			{ $cpucoremin = 4;  if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} if((isset($_GET['lap']) && $_GET['lap']==1)||(isset($_GET['dispxsmall']) && $_GET['dispxsmall']==1)||(isset($_GET['dispsmall']) && $_GET['dispsmall']==1)) {  $cpu_coremin = 2; $cpu_turbomin = 3.1; $cpu_misc[]="HT"; $cores=2.5; } }
+			{ $cpucoremin = 4;  if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} if((isset($_GET['lap']) && $_GET['lap']==1)||(isset($_GET['dispxsmall']) && $_GET['dispxsmall']==1)||(isset($_GET['dispsmall']) && $_GET['dispsmall']==1)) {  $cpucoremin = 2; $cpufreqmin = 3.1; $cpu_misc[]="HT"; $cores=2.5; } }
 		
 			if (isset($_GET['sysadmin']) && $_GET['sysadmin']==1)
 			{ $cpucoremin = 4; }   
 		
-			if (isset($_GET['lvedit']) && $_GET['lvedit']==1 && $cpu_coremin < 2)
-			{ $cpu_coremin = 2;  $cpu_misc[]="HT"; $cores=2.5; }
+			if (isset($_GET['lvedit']) && $_GET['lvedit']==1 && $cpucoremin < 2)
+			{ $cpucoremin = 2;  $cpu_misc[]="HT"; $cores=2.5; }
 
 			if (isset($_GET['hvedit']) && $_GET['hvedit']==1 )
-			{ $cpu_coremin = 4;  $cpu_misc[]="HT"; }			
+			{ $cpucoremin = 4;  $cpu_misc[]="HT"; }			
 								
-			if (isset($_GET['swlight']) && $_GET['swlight']==1  && $cpu_coremin < 2)
-			{$cpu_coremin = 2;  $cpu_misc[]="HT"; $cores=2.5; if($cpu_turbomin<3){ $cpu_turbomin=3; } }
+			if (isset($_GET['swlight']) && $_GET['swlight']==1  && $cpucoremin < 2)
+			{$cpucoremin = 2;  $cpu_misc[]="HT"; $cores=2.5; if($cpufreqmin<3){ $cpufreqmin=3; } }
 
 			if (isset($_GET['swmedium']) && $_GET['swmedium']==1 ) 
-			{ $cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
+			{ $cpucoremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
 	
 			if (isset($_GET['swheavy']) && $_GET['swheavy']==1 )
-			{ $cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
+			{ $cpucoremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
 	
-			if (isset($_GET['3dsmaxlight']) && $_GET['3dsmaxlight']==1  && $cpu_coremin < 2)
-			{$cpu_coremin = 2;  $cpu_misc[]="HT"; if($cpu_turbomin<3){ $cpu_turbomin=3; } }
+			if (isset($_GET['3dsmaxlight']) && $_GET['3dsmaxlight']==1  && $cpucoremin < 2)
+			{$cpucoremin = 2;  $cpu_misc[]="HT"; if($cpufreqmin<3){ $cpufreqmin=3; } }
 
 			if (isset($_GET['3dsmaxmedium']) && $_GET['3dsmaxmedium']==1) 
-			{ $cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
+			{ $cpucoremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
 	
 			if (isset($_GET['3dsmaxheavy']) && $_GET['3dsmaxheavy']==1 ) 
-			{$cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
+			{$cpucoremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
 	
-			if (isset($_GET['catialight']) && $_GET['catialight']==1 && $cpu_coremin < 2)
-			{$cpu_coremin = 2;  $cpu_misc[]="HT"; if($cpu_turbomin<3.1){ $cpu_turbomin=3.1; } $cores=2.5; }
+			if (isset($_GET['catialight']) && $_GET['catialight']==1 && $cpucoremin < 2)
+			{$cpucoremin = 2;  $cpu_misc[]="HT"; if($cpufreqmin<3.1){ $cpufreqmin=3.1; } $cores=2.5; }
 
 			if (isset($_GET['catiamedium']) && $_GET['catiamedium']==1 ) 
-			{ $cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
+			{ $cpucoremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
 	
 			if (isset($_GET['catiaheavy']) && $_GET['catiaheavy']==1) 
-			{ $cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
+			{ $cpucoremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
 	
-			if (isset($_GET['rhinolight']) && $_GET['rhinolight']==1  && $cpu_coremin < 2) 
-			{ $cpu_coremin = 2;  $cpu_misc[]="HT"; if($cpu_turbomin<3){ $cpu_turbomin=3; } $cores=2.5; }
+			if (isset($_GET['rhinolight']) && $_GET['rhinolight']==1  && $cpucoremin < 2) 
+			{ $cpucoremin = 2;  $cpu_misc[]="HT"; if($cpufreqmin<3){ $cpufreqmin=3; } $cores=2.5; }
 
 			if (isset($_GET['rhinomedium']) && $_GET['rhinomedium']==1) 
-			{ $cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
+			{ $cpucoremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
 	
 			if (isset($_GET['rhinoheavy']) && $_GET['rhinoheavy']==1 ) 
-			{ $cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
+			{ $cpucoremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
 	
-			if (isset($_GET['cadolight']) && $_GET['cadolight']==1  && $cpu_coremin < 2) 
-			{ $cpu_coremin = 2;  $cpu_misc[]="HT"; if($cpu_turbomin<3.1){ $cpu_turbomin=3.1; } $cores=2.5; }
+			if (isset($_GET['cadolight']) && $_GET['cadolight']==1  && $cpucoremin < 2) 
+			{ $cpucoremin = 2;  $cpu_misc[]="HT"; if($cpufreqmin<3.1){ $cpufreqmin=3.1; } $cores=2.5; }
 
 			if (isset($_GET['cadomedium']) && $_GET['cadomedium']==1 ) 
-			{  $cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
+			{  $cpucoremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
 	
 			if (isset($_GET['cadoheavy']) && $_GET['cadoheavy']==1 ) 
-			{  $cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
+			{  $cpucoremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
 			
 			$cpu_misc=array_unique($cpu_misc);
 			
@@ -84,21 +84,21 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 		}
 		case 'display' :
 		{
-			$display_sizemin=0; $display_sizemax=30;
+			$displaysizemin=0; $displaysizemax=30;
 			if ((isset($_GET['desk']) && $_GET['desk']==1)&&(!isset($_GET['bed'])&&!isset($_GET['house'])&&!isset($_GET['lap'])&&!isset($_GET['bage'])))
-			{ if($display_sizemin<14) { $display_sizemin =14; }	if($display_sizemax>24) { $display_sizemax =24; } }
+			{ if($displaysizemin<14) { $displaysizemin =14; }	if($displaysizemax>24) { $displaysizemax =24; } }
 		
 			if (isset($_GET['bed']) && $_GET['bed']==1) 
-			{ if($display_sizemin<13) { $display_sizemin =13; }	if($display_sizemax>16) { $display_sizemax =16; } }
+			{ if($displaysizemin<13) { $displaysizemin =13; }	if($displaysizemax>16) { $displaysizemax =16; } }
 								
 			if (isset($_GET['house']) && $_GET['house']==1) 
-			{ if($display_sizemin<13) { $display_sizemin =13; }	if($display_sizemax>16) { $display_sizemax =16; } }
+			{ if($displaysizemin<13) { $displaysizemin =13; }	if($displaysizemax>16) { $displaysizemax =16; } }
 													
 			if (isset($_GET['lap'])	&& $_GET['lap']==1 ) 
-			{ if($display_sizemin<10) { $display_sizemin =10; }	if($display_sizemax>14) { $display_sizemax =14; } } //MATTE?
+			{ if($displaysizemin<10) { $displaysizemin =10; }	if($displaysizemax>14) { $displaysizemax =14; } } //MATTE?
 								
 			if (isset($_GET['bag']) && $_GET['bag']==1) 
-			{ if($display_sizemin<13) { $display_sizemin =13; }	if($display_sizemax>16) { $display_sizemax =16; } }
+			{ if($displaysizemin<13) { $displaysizemin =13; }	if($displaysizemax>16) { $displaysizemax =16; } }
 								
 			if (isset($_GET['60srgb']) && $_GET['60srgb'] ==1) 
 			{ $display_backt = ["LED IPS","LED IPS PenTile","OLED"]; }
@@ -113,19 +113,19 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			{ $display_vresmin = 1081; }
 							
 			if ((isset($_GET['disxsmall']) && $_GET['disxsmall']==1 ) || (isset($_GET['dispsmall'])	&& $_GET['dispsmall']==1 ) || (isset($_GET['dispmedium']) && $_GET['dispmedium']==1 ) || (isset($_GET['displarge'])	&& $_GET['displarge']==1 ) )
-			{ $display_sizemin=30; $display_sizemax=0; }
+			{ $displaysizemin=30; $displaysizemax=0; }
 	 
 			if (isset($_GET['disxsmall'])	&& $_GET['disxsmall']==1 ) 
-			{ if($display_sizemin>10) { $display_sizemin =10; }	if($display_sizemax<13) { $display_sizemax =13; } }
+			{ if($displaysizemin>10) { $displaysizemin =10; }	if($displaysizemax<13) { $displaysizemax =13; } }
 		
 			if (isset($_GET['dispsmall'])	&& $_GET['dispsmall']==1 ) 
-			{ if($display_sizemin>13) { $display_sizemin =13; }	if($display_sizemax<14) { $display_sizemax =14; } }
+			{ if($displaysizemin>13) { $displaysizemin =13; }	if($displaysizemax<14) { $displaysizemax =14; } }
 		
 			if (isset($_GET['dispmedium'])	&& $_GET['dispmedium']==1 ) 
-			{ if($display_sizemin>14) { $display_sizemin =14; }	if($display_sizemax<16) { $display_sizemax =16; } }
+			{ if($displaysizemin>14) { $displaysizemin =14; }	if($displaysizemax<16) { $displaysizemax =16; } }
 		
 			if (isset($_GET['displarge'])	&& $_GET['displarge']==1 ) 
-			{ if($display_sizemin>16) { $display_sizemin =16; }	if($display_sizemax<24) { $display_sizemax =24; } }
+			{ if($displaysizemin>16) { $displaysizemin =16; }	if($displaysizemax<24) { $displaysizemax =24; } }
 
 			$display_backt=array_unique($display_backt);
 		
@@ -133,83 +133,83 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 		}
 		case 'mem' :
 		{   
-			if (isset($_GET['oldgameslow']) && $_GET['oldgameslow']==1 && $mem_capmin < 4) 
-			{ $mem_capmin = 4;}
+			if (isset($_GET['oldgameslow']) && $_GET['oldgameslow']==1 && $memcapmin < 4) 
+			{ $memcapmin = 4;}
 																	
-			if (isset($_GET['oldgamesmedium']) && $_GET['oldgamesmedium']==1 && $mem_capmin < 8) 
-			{$mem_capmin = 8;}
+			if (isset($_GET['oldgamesmedium']) && $_GET['oldgamesmedium']==1 && $memcapmin < 8) 
+			{$memcapmin = 8;}
 																						
-			if (isset($_GET['oldgameshigh']) && $_GET['oldgameshigh']==1 && $mem_capmin < 8) 
-			{$mem_capmin = 8;}
+			if (isset($_GET['oldgameshigh']) && $_GET['oldgameshigh']==1 && $memcapmin < 8) 
+			{$memcapmin = 8;}
 																
-			if (isset($_GET['mmolow']) && $_GET['mmolow']==1 && $mem_capmin < 8) 
-			{$mem_capmin = 8;}
+			if (isset($_GET['mmolow']) && $_GET['mmolow']==1 && $memcapmin < 8) 
+			{$memcapmin = 8;}
 																
-			if (isset($_GET['mmomedium']) && $_GET['mmomedium']==1 && $mem_capmin < 8) 
-			{ $mem_capmin = 8;}
+			if (isset($_GET['mmomedium']) && $_GET['mmomedium']==1 && $memcapmin < 8) 
+			{ $memcapmin = 8;}
 																						
-			if (isset($_GET['mmohigh']) && $_GET['mmohigh']==1 && $mem_capmin < 8) 
-			{ $mem_capmin = 8;}
+			if (isset($_GET['mmohigh']) && $_GET['mmohigh']==1 && $memcapmin < 8) 
+			{ $memcapmin = 8;}
 													
-			if (isset($_GET['3dgameslow']) && $_GET['3dgameslow']==1 && $mem_capmin < 16) 
-			{ $mem_capmin = 16;}
+			if (isset($_GET['3dgameslow']) && $_GET['3dgameslow']==1 && $memcapmin < 16) 
+			{ $memcapmin = 16;}
 														
-			if (isset($_GET['3dgamesmedium']) && $_GET['3dgamesmedium']==1 && $mem_capmin < 16) 
-			{	$mem_capmin = 16;}
+			if (isset($_GET['3dgamesmedium']) && $_GET['3dgamesmedium']==1 && $memcapmin < 16) 
+			{	$memcapmin = 16;}
 																						
-			if (isset($_GET['3dgameshigh']) && $_GET['3dgameshigh']==1 && $mem_capmin < 16) 
-			{  $mem_capmin = 16;}
+			if (isset($_GET['3dgameshigh']) && $_GET['3dgameshigh']==1 && $memcapmin < 16) 
+			{  $memcapmin = 16;}
 										
-			if (isset($_GET['internet']) && $_GET['internet']==1 && $mem_capmin < 4) 
-			{$mem_capmin = 4;}
+			if (isset($_GET['internet']) && $_GET['internet']==1 && $memcapmin < 4) 
+			{$memcapmin = 4;}
 									
-			if (isset($_GET['calc']) && $_GET['calc']==1 && $mem_capmin < 4) 
-			{ $mem_capmin = 4;	}
+			if (isset($_GET['calc']) && $_GET['calc']==1 && $memcapmin < 4) 
+			{ $memcapmin = 4;	}
 
-			if (isset($_GET['coding']) && $_GET['coding']==1 && $mem_capmin < 16) 
-			{ $mem_capmin = 16;	}
+			if (isset($_GET['coding']) && $_GET['coding']==1 && $memcapmin < 16) 
+			{ $memcapmin = 16;	}
 									
-			if (isset($_GET['sysadmin']) && $_GET['sysadmin'] && $mem_capmin < 16) 
-			{	$mem_capmin = 16;}
+			if (isset($_GET['sysadmin']) && $_GET['sysadmin'] && $memcapmin < 16) 
+			{	$memcapmin = 16;}
 			
-			if (isset($_GET['autocadmedium']) && $_GET['autocadmedium']==1 && $mem_capmin < 8) 
-			{  $mem_capmin = 8; }
+			if (isset($_GET['autocadmedium']) && $_GET['autocadmedium']==1 && $memcapmin < 8) 
+			{  $memcapmin = 8; }
 		
-			if (isset($_GET['autocadheavy']) && $_GET['autocadheavy']==1 && $mem_capmin < 16) 
-			{  $mem_capmin = 16; }
+			if (isset($_GET['autocadheavy']) && $_GET['autocadheavy']==1 && $memcapmin < 16) 
+			{  $memcapmin = 16; }
 		
-			if (isset($_GET['swlight']) && $_GET['swlight']==1 && $mem_capmin < 8) 
-			{	$mem_capmin = 8;}
+			if (isset($_GET['swlight']) && $_GET['swlight']==1 && $memcapmin < 8) 
+			{	$memcapmin = 8;}
 
-			if (isset($_GET['swmedium']) && $_GET['swmedium']==1 && $mem_capmin < 16) 
-			{	$mem_capmin = 16;}
+			if (isset($_GET['swmedium']) && $_GET['swmedium']==1 && $memcapmin < 16) 
+			{	$memcapmin = 16;}
 		
-			if (isset($_GET['swheavy']) && $_GET['swheavy']==1 && $mem_capmin < 16) 
-			{	$mem_capmin = 16;}
+			if (isset($_GET['swheavy']) && $_GET['swheavy']==1 && $memcapmin < 16) 
+			{	$memcapmin = 16;}
 		
-			if (isset($_GET['3dsmaxlight']) && $_GET['3dsmaxlight']==1 && $mem_capmin < 8) 
-			{	$mem_capmin = 8;}
+			if (isset($_GET['3dsmaxlight']) && $_GET['3dsmaxlight']==1 && $memcapmin < 8) 
+			{	$memcapmin = 8;}
 
-			if (isset($_GET['3dsmaxmedium']) && $_GET['3dsmaxmedium']==1 && $mem_capmin < 16) 
-			{	$mem_capmin = 16;}
+			if (isset($_GET['3dsmaxmedium']) && $_GET['3dsmaxmedium']==1 && $memcapmin < 16) 
+			{	$memcapmin = 16;}
 		
-			if (isset($_GET['3dsmaxheavy']) && $_GET['3dsmaxheavy']==1 && $mem_capmin < 16) 
-			{	$mem_capmin = 16;}
+			if (isset($_GET['3dsmaxheavy']) && $_GET['3dsmaxheavy']==1 && $memcapmin < 16) 
+			{	$memcapmin = 16;}
 		
-			if (isset($_GET['catialight']) && $_GET['catialight']==1 && $mem_capmin < 8) 
-			{	$mem_capmin = 8;}
+			if (isset($_GET['catialight']) && $_GET['catialight']==1 && $memcapmin < 8) 
+			{	$memcapmin = 8;}
 
-			if (isset($_GET['rhinolight']) && $_GET['rhinolight']==1 && $mem_capmin < 8) 
-			{	$mem_capmin = 8;}
+			if (isset($_GET['rhinolight']) && $_GET['rhinolight']==1 && $memcapmin < 8) 
+			{	$memcapmin = 8;}
 
-			if (isset($_GET['rhinomedium']) && $_GET['rhinomedium']==1 && $mem_capmin < 16) 
-			{	$mem_capmin = 16;}
+			if (isset($_GET['rhinomedium']) && $_GET['rhinomedium']==1 && $memcapmin < 16) 
+			{	$memcapmin = 16;}
 		
-			if (isset($_GET['rhinoheavy']) && $_GET['rhinoheavy']==1 && $mem_capmin < 16) 
-			{	$mem_capmin = 16;}
+			if (isset($_GET['rhinoheavy']) && $_GET['rhinoheavy']==1 && $memcapmin < 16) 
+			{	$memcapmin = 16;}
 		
-			if (isset($_GET['cadolight']) && $_GET['cadolight']==1 && $mem_capmin < 8) 
-			{	$mem_capmin = 8;}       
+			if (isset($_GET['cadolight']) && $_GET['cadolight']==1 && $memcapmin < 8) 
+			{	$memcapmin = 8;}       
 		
 			break ;
 		}				
@@ -300,25 +300,25 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			{ array_push($gpu_typelist,"0","1"); if($quiz_mingputype<0) { $quiz_mingputype=0; } $to_search["gpu"]=1; }
 																	
 			if (isset($_GET['oldgamesmedium']) && $_GET['oldgamesmedium']==1) 
-			{ if($quiz_mingputype<1) { $quiz_mingputype=1; } if($gpu_powermin<15) { $gpu_powermin = 15; } array_push($gpu_typelist,"1"); $to_search["gpu"]=1; }
+			{ if($quiz_mingputype<1) { $quiz_mingputype=1; } if($gpupowermin<15) { $gpupowermin = 15; } array_push($gpu_typelist,"1"); $to_search["gpu"]=1; }
 																							
 			if (isset($_GET['oldgameshigh']) && $_GET['oldgameshigh']==1) 
-			{ if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2"); if($gpu_powermin<40) { $gpu_powermin = 40; } $to_search["gpu"]=1; }
+			{ if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2");  if($gpupowermin<40) { $gpupowermin = 40; } $to_search["gpu"]=1; }
 											
 			if (isset($_GET['mmolow']) && $_GET['mmolow']==1) 
 			{ if($quiz_mingputype<0) { $quiz_mingputype=0; } array_push($gpu_typelist,"0","1"); $to_search["gpu"]=1; }
 											
 			if (isset($_GET['mmomedium']) && $_GET['mmomedium']==1) 
-			{ if($gpu_powermin<35) { $gpu_powermin = 35; } if($gpu_powermax<69) { $gpu_powermax = 69; } if((isset($_GET['atwork']) && $_GET['atwork']==1) && $gpu_powermax<500) { $gpu_powermax=500; } if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2"); $to_search["gpu"]=1; }
+			{ if($gpupowermin<35) { $gpupowermin = 35; } if($gpupowermax<69) { $gpupowermax = 69; } if((isset($_GET['atwork']) && $_GET['atwork']==1) && $gpupowermax<500) { $gpupowermax=500; } if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2"); $to_search["gpu"]=1; }
 											
 			if (isset($_GET['mmohigh']) && $_GET['mmohigh']==1 ) 
-			{ if($gpu_powermin<56) { $gpu_powermin = 56; } $to_search["gpu"]=1; if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","4"); $gpu_ldmin=gmdate("Y-01-01",time()-31536000*1.5 ); }
+			{ if($gpupowermin<56) { $gpupowermin = 56; } $to_search["gpu"]=1; if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","4"); $gpu_ldmin=gmdate("Y-01-01",time()-31536000*1.5 ); }
 										
 			if (isset($_GET['3dgameslow']) && $_GET['3dgameslow']==1) 
-			{ if($gpu_powermin<30) { $gpu_powermin = 30; } if($gpu_powermax<69) { $gpu_powermax = 69; } $to_search["gpu"]=1; if($quiz_mingputype<2) { $quiz_mingputype=1; } array_push($gpu_typelist,"1","2"); $gpu_ldmin=gmdate("Y-01-01",time()-31536000*2 ); $gpu_arch=["Maxwell","Pascal","GCN 1.2","GCN 1.3"];  }
+			{ if($gpupowermin<30) { $gpupowermin = 30; } if($gpupowermax<69) { $gpupowermax = 69; } $to_search["gpu"]=1; if($quiz_mingputype<2) { $quiz_mingputype=1; } array_push($gpu_typelist,"1","2"); $gpu_ldmin=gmdate("Y-01-01",time()-31536000*2 ); $gpu_arch=["Maxwell","Pascal","GCN 1.2","GCN 1.3"];  }
 																	
 			if (isset($_GET['3dgamesmedium']) && $_GET['3dgamesmedium']==1) 
-			{ if($gpu_powermin<56) { $gpu_powermin = 56; } $to_search["gpu"]=1; if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","4");  $gpu_ldmin=gmdate("Y-01-01",time()-31536000*1.5 ); }
+			{ if($gpupowermin<56) { $gpupowermin = 56; } $to_search["gpu"]=1; if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","4");  $gpu_ldmin=gmdate("Y-01-01",time()-31536000*1.5 ); }
 															
 			if (isset($_GET['3dgameshigh']) && $_GET['3dgameshigh']==1) 
 			{ $gpu_typelist[] = 4; $to_search["gpu"]=1; if($quiz_mingputype<4) { $quiz_mingputype=4; } array_push($gpu_typelist,"4");  $gpu_ldmin=gmdate("Y-m-d",time()-31536000*1.5 ); }
@@ -326,7 +326,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			$cadratemin=0; $cadratemax=0; $gameratemin=0; $gameratemax=0;
 			
 			if (isset($_GET['autocadlight']) && $_GET['autocadlight']==1) 
-			{	$gpu_typelist[] = 0; $gpu_typelist[] = 1; $gpu_typelist[] = 3; $gpu_powermax = 35; $to_search["gpu"]=1; }
+			{	$gpu_typelist[] = 0; $gpu_typelist[] = 1; $gpu_typelist[] = 3; $gpupowermax = 35; $to_search["gpu"]=1; }
 
 			if (isset($_GET['autocadmedium']) && $_GET['autocadmedium']==1) 
 			{	if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","3"); if($cadratemin<15) { $cadratemin=15; } if($cadratemax<25) { $cadratemax=25; } if ($gameratemin<30) { $gameratemin=30; } if($gameratemax<50) { $gameratemax=50; }	$to_search["gpu"]=1; }
@@ -391,7 +391,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 				while($row=mysqli_fetch_row($result)){$gpu_model[]=$row[0];} if(count($gpu_model)<1){ $gpu_typelist=["10"]; }
 			}
 			
-			if(!$to_search["gpu"]) { if($quiz_mingputype<1) { $quiz_mingputype=0; } array_push($gpu_typelist,"0","1"); if($model_maxclass>=2) { $gpu_powermax=35; }; $to_search["gpu"]=1; } 
+			if(!$to_search["gpu"]) { if($quiz_mingputype<1) { $quiz_mingputype=0; } array_push($gpu_typelist,"0","1"); if($model_maxclass>=2) { $gpupowermax=35; }; $to_search["gpu"]=1; } 
 			if($model_maxclass>=2) {  array_push($gpu_typelist,"3"); }
 			$gpu_typelist=array_unique($gpu_typelist);
 			//var_dump($gpu_model);
@@ -462,7 +462,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			{	$chassis_twoinone = 1;	}
 		
 			if (isset($_GET['comm']) && $_GET['comm']==1 ) 
-			{	$chassis_webmin = 0.92;	$chassis_misc[]="Microphone array"; }
+			{	$chassiswebmin = 0.92;	$chassis_misc[]="Microphone array"; }
 
 			if(isset($chassis_made) && count($chassis_made)>0) { $chassis_made=array_unique($chassis_made); }
 			
@@ -500,16 +500,16 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 		case 'battery' :
 		{
 			if (isset($_GET['2hour']) && $_GET['2hour']==1) 
-			{ $batlife_min = 0.9; }
+			{ $batlifemin = 0.9; }
 			
 			if (isset($_GET['6hour']) && $_GET['6hour']==1) 
-			{ $batlife_min = 2.7; }
+			{ $batlifemin = 2.7; }
 		
 			if (isset($_GET['10hour']) && $_GET['10hour']==1) 
-			{ $batlife_min = 4.9; }
+			{ $batlifemin = 4.9; }
 		
 			if (isset($_GET['12hour']) && $_GET['12hour']==1) 
-			{ $batlife_min = 7.5; }
+			{ $batlifemin = 7.5; }
 			break ;	
 		}
 		case 'budget' :
@@ -536,178 +536,23 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 		}
 	}
 }
-/*
+
 foreach ($cpu_misc as $element)
-		{	$cpumisc.='<option selected="selected">'.$element.'</option>';	}
-*/
+		{	$cpumsc.='<option selected="selected">'.$element.'</option>';	}
 
-
-
-
-
-
-/*
-if($_GET['cpu_ldatemax']) { $cpumaxdate = $_GET['cpu_ldatemax']; }echo $_GET['cpu_ldatemax'];
-
-if($_GET['cpu_tdpmin']) { $cputdpmin = $_GET['cpu_tdpmin']; }   echo $_GET['cpu_tdpmin'];
-
-if($_GET['cpu_tdpmax']) { $cputdpmax = $_GET['cpu_tdpmax']; } echo $_GET['cpu_tdpmax'];
-
-if($_GET['totalcapmin']) { $totalcapmin = $_GET['totalcapmin']; } echo $_GET['totalcapmin'];
-
-if($_GET['hdd_capmax']) { $hddcapmax = $_GET['hdd_capmax']; } 
-
-if($_GET['mem_capmin']) { $memcapmin = $_GET['mem_capmin']; }
-
-if($_GET['mem_capmax']) { $memcapmax = $_GET['mem_capmax']; } 
-
-if($_GET['gpu_powermin']) { $gpupowermin = $_GET['gpu_powermin']; } 
- 
-if($_GET['gpu_powermax']) { $gpupowermax = $_GET['gpu_powermax']; } 
-
-if($_GET['display_vresmin']) { $displayvresmin = $_GET['display_vresmin']; }  
-
-if($_GET['display_vresmax']) { $displayvresmax = $_GET['display_vresmax']; } 
- 
-//if($_GET['price_min']) { $price_min = $_GET['price_min']; }  
-
-//if($_GET['price_max']) { $price_max = $_GET['price_max']; }  
-
-if($_GET['gpu_ldatemax']) { $gpumaxdate = $_GET['gpu_ldatemax']; } 
-
-
-
-//$datecpu[0] = $datecpu[0]-2;
-
-if($_GET['chassis_weightmin']) { $chassisweightmin = $_GET['chassis_weightmin']; } 
- 
-if($_GET['size']) { $size = $_GET['size']; }
-  
-if($_GET['batlife']) { $batlifemin = $_GET['batlife']; } 
-//$cadratemin="15"; $cadratemax=""; $gameratemin="30"; $gameratemax="";
-
-
-if($_GET['regions_name']) { $regions_name = $_GET['regions_name']; }  
-
-if($_GET['model_minclass']) { $model_minclass = $_GET['model_minclass']; }  
-
-if($_GET['model_maxclass']) { $model_maxclass = $_GET['model_maxclass']; }  	
-
-//vedem daca trebuie			
-if($_GET['cores']) { $cores = $_GET['cores']; } 
-
-$cpucoremin = $cores; 
-			
-if($_GET['cpu_turbomin']) { $cputurbomin = $_GET['cpu_turbomin']; }  
-
-
-if(isset($_GET['cpu_misc']))
-	{
-		foreach ($_GET['cpu_misc'] as $element)
-		{	$cpumisc.='<option selected="selected">'.$element.'</option>';	}
-	}
-//if($_GET['cpu_misc']) { $cpumisc = $_GET['cpu_misc']; }  
-			
-if($_GET['cpu_coremin']) { $cpucoremin = $_GET['cpu_coremin']; }  
-
-if($_GET['display_sizemin']) { $displaysizemin = $_GET['display_sizemin']; }  
-
-if($_GET['display_sizemax']) { $displaysizemax = $_GET['display_sizemax']; }  
-			
-//if($_GET['display_backt']) { $displaybackt = $_GET['display_backt']; } 
-
-
-if(isset($_GET['display_backt']))
-	{
-		foreach ($_GET['display_backt'] as $element)
-		{	$displaybackt.='<option selected="selected">'.$element.'</option>';	}
-	} 
-			
-if($_GET['display_srgb']) { $displaysrgb = $_GET['display_srgb']; }  
-
-if($_GET['hdd_type']) { $hddtype = $_GET['hdd_type']; } 
-
-$nrhdd = intval($_GET['nr_hdd']);
-	if ($nrhdd == 2) {$nrhddselect = "selected";}
-	if ($nrhdd == 3) {$nrhddselect2 = "selected";} 
-			
-//if($_GET['nr_hdd']) { $nrhdd = $_GET['nr_hdd']; }  
-
-if($_GET['quiz_mingputype']) { $quiz_mingputype = $_GET['quiz_mingputype']; }  
-
-if($_GET['gpu_typelist']) { $gputypelist = $_GET['gpu_typelist']; }  
-
-if($_GET['gpu_model']) { $gpumodel = $_GET['gpu_model']; }  
-		
-//if($_GET['odd_type']) { $oddtype = $_GET['odd_type']; } 
- 
-if(isset($_GET['odd_type']))
-	{
-		foreach ($_GET['odd_type'] as $element)
-		{	$oddtype.='<option selected="selected">'.$element.'</option>';	}
-	}  
-
-if($_GET['mdb_wwan']) { $mdbwwan = $_GET['mdb_wwan']; }  
-		
-if($_GET['chassis_weightmax']) { $chassisweightmax = $_GET['chassis_weightmax']; }  
-
-if($_GET['chassis_thicmax']) { $chassisthicmax = $_GET['chassis_thicmax']; }  
-		
-//if($_GET['chassis_made']) { $chassismade = $_GET['chassis_made']; }
- 
-if(isset($_GET['chassis_made']))
-	{
-		foreach ($_GET['chassis_made'] as $element)
-		{	$chassismade.='<option selected="selected">'.$element.'</option>';	}
-	}  
-
-//if($_GET['chassis_vports']) { $chassisvports = $_GET['chassis_vports']; }
-   
-if(isset($_GET['chassis_vports']))
-	{
-		foreach ($_GET['chassis_vports'] as $element)
-		{	$chassisvports.='<option selected="selected">'.$element.'</option>';	}
-	}  
-
-if($_GET['diffvisearch']) { $diffvisearch = $_GET['diffvisearch']; }  
-			
-//if($_GET['chassis_misc']) { $chassismisc = $_GET['chassis_misc']; }  
-
-if(isset($_GET['chassis_misc']))
-	{
-		foreach ($_GET['chassis_misc'] as $element)
-		{	$chassismisc.='<option selected="selected">'.$element.'</option>';	}
-	}  
-
-if($_GET['chassis_twoinone']) { $chassistwoinone = $_GET['chassis_twoinone']; }  
-
-if($_GET['chassis_webmin']) { $chassiswebmin = $_GET['chassis_webmin']; }  
-
-if($_GET['war_typewar']) { $wartypewar = $_GET['war_typewar']; }  
-		
-//if($_GET['sist_sist']) { $sistsist = $_GET['sist_sist']; }  
-if(isset($_GET['sist_sist']))
-	{
-		foreach ($_GET['sist_sist'] as $element)
-		{	$sistsist.='<option selected="selected">'.$element.'</option>';	}
-	}
-
-
-if($_GET['batlife_min']) { $batlifemin = $_GET['batlife_min']; }  
-			
-//if($_GET['budgetmin']) { $budgetmin = $_GET['budgetmin']; }  
-
-//if($_GET['budgetmax']) { $budgetmax = $_GET['budgetmax']; }  
-*/
+foreach ($display_backt as $element)
+		{	$displaymsc.='<option selected="selected">'.$element.'</option>';	}
 	
-		
-		
-			
-
-	
-
-
-
-
-
+if ($nr_hdd == 2) {$nrhddselect = "selected";}
+if ($nr_hdd == 3) {$nrhddselect2 = "selected";}
+if(isset($hdd_type)) { $valuetype[54] = $hdd_type; }
+// de verificat de ce nu
+if(isset($sist_sist)) { $valuetype[25] = $sist_sist; }
+foreach ($regions_name as $element)
+		{	$regions.='<option selected="selected">'.$element.'</option>';	}
+foreach ($gpu_typelist as $element)
+			{ if ($element>=1)  {$gputype =2;}
+			$gputypesel[$element]="selected"; }		
+$bdgmin=$budgetmin;
+$bdgmax=$budgetmax;
 ?>

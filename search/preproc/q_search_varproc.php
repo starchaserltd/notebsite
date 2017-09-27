@@ -72,7 +72,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 	{
 		case 'model' :
 		{
-			$regions_name[]="US and Canada";
+			$regions_name[]="USA and Canada";
 			if (isset($_GET['atwork']) && $_GET['atwork']==1)
 			{ $model_minclass=1; $model_maxclass=3; if(((isset($_GET['lap']) && $_GET['lap']==1)||(isset($_GET['dispsmall']) && $_GET['dispsmall']==1 ))&& (isset($_GET['3dmodel']) && $_GET['3dmodel']==1 )) { $model_minclass=0; } }
 
@@ -162,7 +162,10 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			{ if($display_sizemin<13) { $display_sizemin =13; }	if($display_sizemax>16) { $display_sizemax =16; } }
 													
 			if (isset($_GET['lap'])	&& $_GET['lap']==1 ) 
-			{ if($display_sizemin<10) { $display_sizemin =10; }	if($display_sizemax>14) { $display_sizemax =14; } } //MATTE?
+			{ if($display_sizemin<10) { $display_sizemin =10; }	if($display_sizemax>14) { $display_sizemax =14; } 
+			
+			if((isset($_GET['oldgamesmedium']) && $_GET['oldgamesmedium']==1) || (isset($_GET['oldgameshigh']) && $_GET['oldgameshigh']==1) || (isset($_GET['mmomedium']) && $_GET['mmomedium']==1) || (isset($_GET['mmohigh']) && $_GET['mmohigh']==1 ) || (isset($_GET['3dgameslow']) && $_GET['3dgameslow']==1) || (isset($_GET['3dgamesmedium']) && $_GET['3dgamesmedium']==1) || (isset($_GET['3dgameshigh']) && $_GET['3dgameshigh']==1) || (isset($_GET['autocadmedium']) && $_GET['autocadmedium']==1) || (isset($_GET['autocadheavy']) && $_GET['autocadheavy']==1) || (isset($_GET['swlight']) && $_GET['swlight']==1) || (isset($_GET['swmedium']) && $_GET['swmedium']==1) ||  (isset($_GET['swheavy']) && $_GET['swheavy']==1) || (isset($_GET['3dsmaxlight']) && $_GET['3dsmaxlight']==1) || (isset($_GET['3dsmaxmedium']) && $_GET['3dsmaxmedium']==1) || (isset($_GET['3dsmaxheavy']) && $_GET['3dsmaxheavy']==1) || (isset($_GET['catialight']) && $_GET['catialight']==1) || (isset($_GET['catiamedium']) && $_GET['catiamedium']==1) || (isset($_GET['catiaheavy']) && $_GET['catiaheavy']==1) || (isset($_GET['rhinolight']) && $_GET['rhinolight']==1) || (isset($_GET['rhinomedium']) && $_GET['rhinomedium']==1) || (isset($_GET['rhinoheavy']) && $_GET['rhinoheavy']==1) || (isset($_GET['cadolight']) && $_GET['cadolight']==1) || (isset($_GET['cadomedium']) && $_GET['cadomedium']==1) || (isset($_GET['cadoheavy']) && $_GET['cadoheavy']==1)) { if($display_sizemax<16) { $display_sizemax =16; } }
+				} //MATTE?
 								
 			if (isset($_GET['bag']) && $_GET['bag']==1) 
 			{ if($display_sizemin<13) { $display_sizemin =13; }	if($display_sizemax>16) { $display_sizemax =16; } }
@@ -408,7 +411,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			{ if($cadratemin<30) { $cadratemin=30; } if($cadratemax<50) { $cadratemax=50; } if ($gameratemin<45) { $gameratemin=45; } if($gameratemax<65) { $gameratemax=65; }	if($quiz_mingputype<2) { $quiz_mingputype=2; } if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","3","4"); $to_search["gpu"]=1; }
 		
 			if (isset($_GET['swheavy']) && $_GET['swheavy']==1) 
-			{ if($cadratemin<50) { $cadratemin=50; } if ($gameratemin<1000) { $gameratemin=1000; }  if($quiz_mingputype<3) { $quiz_mingputype=3; } array_push($gpu_typelist,"3","4"); $to_search["gpu"]=1; }
+			{ if($cadratemin<50) { $cadratemin=50; } if ($gameratemin<90) { $gameratemin=1000; } if($gameratemax<200) { $gameratemax=200; } if($quiz_mingputype<3) { $quiz_mingputype=3; } array_push($gpu_typelist,"3","4"); $to_search["gpu"]=1; }
 		
 			if (isset($_GET['3dsmaxlight']) && $_GET['3dsmaxlight']==1) 
 			{ if($cadratemin<20) { $cadratemin=20; } if($cadratemax<35) { $cadratemax=35; } if ($gameratemin<30) { $gameratemin=30; } if($gameratemax<60) { $gameratemax=60; } if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","3","4"); $to_search["gpu"]=1; }
@@ -417,16 +420,16 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			{ if($cadratemin<35) { $cadratemin=35; } if($cadratemax<60) { $cadratemax=60; } if ($gameratemin<60) { $gameratemin=60; } if($gameratemax<80) { $gameratemax=80; } if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","3","4"); $to_search["gpu"]=1; }
 		
 			if (isset($_GET['3dsmaxheavy']) && $_GET['3dsmaxheavy']==1) 
-			{ if($cadratemin<60) { $cadratemin=60; } if ($gameratemin<1000) { $gameratemin=1000; } if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","3","4"); $to_search["gpu"]=1; }
+			{ if($cadratemin<60) { $cadratemin=60; } if($cadratemax<200) { $cadratemax=200; } if ($gameratemin<90) { $gameratemin=90; } if($gameratemax<200) { $gameratemax=200; } if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"3","4"); $to_search["gpu"]=1; }
 		
 			if (isset($_GET['catialight']) && $_GET['catialight']==1) 
 			{ if($cadratemin<25) { $cadratemin=25; } if($cadratemax<35) { $cadratemax=35; } if ($gameratemin<50) { $gameratemin=50; } if($gameratemax<70) { $gameratemax=70; } if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","3","4"); $to_search["gpu"]=1; }
 
 			if (isset($_GET['catiamedium']) && $_GET['catiamedium']==1) 
-			{ if($cadratemin<35) { $cadratemin=35; } if($cadratemax<60) { $cadratemax=60; } if ($gameratemin<70) { $gameratemin=70; } if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","3","4"); $to_search["gpu"]=1; }
+			{ if($cadratemin<35) { $cadratemin=35; } if($cadratemax<60) { $cadratemax=60; } if ($gameratemin<70) { $gameratemin=70; } if($gameratemax<200) { $gameratemax=200; } if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","3","4"); $to_search["gpu"]=1; }
 		
 			if (isset($_GET['catiaheavy']) && $_GET['catiaheavy']==1) 
-			{ if($cadratemin<60) { $cadratemin=60; } if ($gameratemin<1000) { $gameratemin=1000; } if($quiz_mingputype<3) { $quiz_mingputype=3; } array_push($gpu_typelist,"3"); $to_search["gpu"]=1; }
+			{ if($cadratemin<60) { $cadratemin=60; }  if($cadratemax<200) { $cadratemax=200; }  if ($gameratemin<1000) { $gameratemin=1000; } if($gameratemax<200) { $gameratemax=200; } if($quiz_mingputype<3) { $quiz_mingputype=3; } array_push($gpu_typelist,"3"); $to_search["gpu"]=1; }
 		
 			if (isset($_GET['rhinolight']) && $_GET['rhinolight']==1) 
 			{ if($cadratemin<20) { $cadratemin=20; } if($cadratemax<35) { $cadratemax=35; } if ($gameratemin<30) { $gameratemin=30; } if($gameratemax<60) { $gameratemax=60; } if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","3","4"); $to_search["gpu"]=1; }
@@ -435,16 +438,16 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			{ if($cadratemin<35) { $cadratemin=35; } if($cadratemax<60) { $cadratemax=60; } if ($gameratemin<50) { $gameratemin=50; } if($gameratemax<80) { $gameratemax=80; } if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","3","4"); $to_search["gpu"]=1; }
 		
 			if (isset($_GET['rhinoheavy']) && $_GET['rhinoheavy']==1) 
-			{ if($cadratemin<60) { $cadratemin=60; } if ($gameratemin<1000) { $gameratemin=1000; } if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","3","4"); $to_search["gpu"]=1; }
+			{ if($cadratemin<60) { $cadratemin=60; } if($cadratemax<200) { $cadratemax=200; }  if ($gameratemin<1000) { $gameratemin=90; } if($gameratemax<200) { $gameratemax=200; } if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"3","4"); $to_search["gpu"]=1; }
 		
 			if (isset($_GET['cadolight']) && $_GET['cadolight']==1) 
 			{ if($cadratemin<25) { $cadratemin=25; } if($cadratemax<35) { $cadratemax=35; } if ($gameratemin<50) { $gameratemin=50; } if($gameratemax<70) { $gameratemax=70; }  if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","3","4"); $to_search["gpu"]=1; }
 			
 			if (isset($_GET['cadomedium']) && $_GET['cadomedium']==1) 
-			{ if($cadratemin<30) { $cadratemin=30; } if($cadratemax<60) { $cadratemax=60; } if ($gameratemin<70) { $gameratemin=70; } if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","3","4"); $to_search["gpu"]=1; }
+			{ if($cadratemin<30) { $cadratemin=30; } if($cadratemax<60) { $cadratemax=60; } if ($gameratemin<70) { $gameratemin=70; }if($gameratemax<200) { $gameratemax=200; }  if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","3","4"); $to_search["gpu"]=1; }
 		
 			if (isset($_GET['cadoheavy']) && $_GET['cadoheavy']==1) 
-			{ if($cadratemin<60) { $cadratemin=60; } if ($gameratemin<1000) { $gameratemin=1000; }  if($quiz_mingputype<3) { $quiz_mingputype=3; } array_push($gpu_typelist,"3"); $to_search["gpu"]=1; }
+			{ if($cadratemin<60) { $cadratemin=60; } if($cadratemax<200) { $cadratemax=200; }  if ($gameratemin<1000) { $gameratemin=1000; } if($gameratemax<200) { $gameratemax=200; }   if($quiz_mingputype<3) { $quiz_mingputype=3; } array_push($gpu_typelist,"3"); $to_search["gpu"]=1; }
 
 			if($to_search["gpu"]) {  $gpu_typelist=array_unique($gpu_typelist); for($i=0;$i<=$quiz_mingputype;$i++) { array_diff($gpu_typelist,strval($i)); } }
 			
@@ -453,7 +456,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			if($cadratemin!==0)
 			{
 				$query = "SELECT DISTINCT model FROM notebro_db.GPU WHERE (rating>=".$cadratemin." AND rating<=".$cadratemax." AND typegpu=3) OR (rating>=".$gameratemin." AND rating<=".$gameratemax." AND typegpu IN (".implode(",",$gpu_typelist)."))";
-				//echo $query;
+				echo $query;
 				$result = mysqli_query($GLOBALS['con'],$query); 
 				while($row=mysqli_fetch_row($result)){$gpu_model[]=$row[0];} if(count($gpu_model)<1){ $gpu_typelist=["10"]; }
 			}

@@ -247,12 +247,12 @@ var quiz = {
         }
 	};
 
-var imgadd="search/quiz/res/img/icons/"; var currentp=0; var maxpage=5; var inextra=0; var activequery=0;
+var imgadd="search/quiz/res/img/icons/"; var currentp=0; var maxpage=5; var inextra=0; var activequery=0; var inmaking=0;
 
 function makePage(quizp)
 {
 	if(quizp<0){quizp=0;}
-	currentp=quizp; quiz[quizp]['selected']=0;
+	currentp=quizp; quiz[quizp]['selected']=0; inmaking=1;
 	switch(quizp)
 	{
 		case (maxpage-1):
@@ -324,13 +324,14 @@ function makePage(quizp)
 		}
 	}
 	navigation();
+	inmaking=0;
 }
 
 function makeextraPage(quizp,el)
 {
 	if(!inextra || (inextra && !(Number.isInteger(el))))
 	{
-		var closeextratextnav=1;
+		var closeextratextnav=1; inmaking=1;
 		if(!inextra) { inextra=quizp; closeextratext="closeextra"; if(document.getElementsByClassName('glyphicon-arrow-left')[0].getAttribute( "onClick").indexOf("closeextra(")>=0) { closeextratextnav=0;  } } else { closeextratext="closeextraextra"; }
 		//FADEIN CODE
 		document.getElementById("extraopt").classList.add("showel");
@@ -379,12 +380,13 @@ function makeextraPage(quizp,el)
 			document.getElementsByClassName('glyphicon-arrow-left')[0].setAttribute( "onClick", closeextratext+"('"+quizp+"',"+"'"+el+"'"+"); "+document.getElementsByClassName('glyphicon-arrow-left')[0].getAttribute( "onClick") );
 			document.getElementsByClassName('glyphicon-arrow-right')[0].setAttribute( "onClick", closeextratext+"('"+quizp+"',"+"'"+el+"'"+"); "+document.getElementsByClassName('glyphicon-arrow-right')[0].getAttribute( "onClick") );
 		}
+		inmaking=0;
 	}
 }
 
 function closeextra(extra,el)
 {
-	inextra=0; el=parseInt(el); var singlesel=0;
+	inextra=0; el=parseInt(el); var singlesel=0; inmaking=1;
 	document.getElementById("extraopt").classList.remove("showel");
 	document.getElementById("extraopt").classList.add("hidel");
 	var subel=quiz[currentp]['options'];
@@ -408,6 +410,7 @@ function closeextra(extra,el)
 	document.getElementsByClassName('glyphicon-arrow-left')[0].setAttribute( "onClick", document.getElementsByClassName('glyphicon-arrow-left')[0].getAttribute( "onClick").replace("closeextra('"+extra+"','"+el+"'); ","") );
 	document.getElementsByClassName('glyphicon-arrow-right')[0].setAttribute( "onClick", document.getElementsByClassName('glyphicon-arrow-right')[0].getAttribute( "onClick").replace("closeextra('"+extra+"','"+el+"'); ","") );
 	navigation();
+	inmaking=0;
 }
 
 
@@ -498,7 +501,7 @@ function addcheck(el,page)
 	quiz[page]['selected']++;
 	if(el.indexOf("extra")==-1)
 	{ navigation(); }
-	changeoptions(el, page, -1);
+	if(!inmaking){ changeoptions(el, page, -1); }
 }
 
 
@@ -511,7 +514,7 @@ function removecheck(el,page)
 	}, 300);
 	if(el.indexOf("extra")==-1)
 	{ navigation(); }
-	changeoptions(el, page, 1);
+	if(!inmaking){ changeoptions(el, page, 1); }
 }
 
 function changeoptshow(page,el,add){ if(quiz[page]['options'][el]['no']<1 || add<1){ quiz[page]['options'][el]['no']+=add; }  }
@@ -524,7 +527,16 @@ function changeoptions(el,page,add)
 		{
 			switch(el)
 			{
-				case "opt1": { changeoptshow(1,"lap",add); break; }
+				case "opt1":
+				{	changeoptshow(1,"lap",add); changeoptshow(3,"3dmodel",add);
+					changeoptshow("autocad","autocadlight",add); changeoptshow("autocad","autocadmedium",add); changeoptshow("autocad","autocadheavy",add);
+					changeoptshow("3dmodel","solidworks",add); changeoptshow("solidworks","swlight",add); changeoptshow("solidworks","swmedium",add); changeoptshow("solidworks","swheavy",add);
+					changeoptshow("3dmodel","3dsmaxmaya",add); changeoptshow("3dsmaxmaya","3dsmaxlight",add); changeoptshow("3dsmaxmaya","3dsmaxmedium",add); changeoptshow("3dsmaxmaya","3dsmaxheavy",add);  
+					changeoptshow("3dmodel","catia",add); changeoptshow("catia","catialight",add); changeoptshow("catia","catiamedium",add); changeoptshow("catia","catiaheavy",add);
+					changeoptshow("3dmodel","rhinoceros",add); changeoptshow("rhinoceros","rhinolight",add); changeoptshow("rhinoceros","rhinomedium",add); changeoptshow("rhinoceros","rhinoheavy",add);
+					changeoptshow("3dmodel","cadother",add); changeoptshow("cadother","cadolight",add); changeoptshow("cadother","cadomedium",add); changeoptshow("cadother","cadoheavy",add);
+					break;
+				}
 				case "opt2": { changeoptshow(1,"bed",add); changeoptshow(1,"house",add); changeoptshow("3dgames","3dgamesmedium",add); changeoptshow("3dgames","3dgameshigh",add); changeoptshow("mmo","mmohigh",add); break; }
 				case "opt3": { break; }
 			}
@@ -558,30 +570,51 @@ function changeoptions(el,page,add)
 		{
 			switch(el)
 			{
-				case "extraopt1": 
-				{
-					changeoptshow(3,"sysadmin",add); changeoptshow("otherfeatures","shdd",add); changeoptshow("otherfeatures","odd",add); changeoptshow("vedit","hvedit",add);
-					//changeoptshow(3,"games",add); changeoptshow(3,"3dmodel",add);  
-					changeoptshow("oldgames","oldgamesmedium",add); changeoptshow("oldgames","oldgameshigh",add);
-					changeoptshow("mmo","mmomedium",add); changeoptshow("mmo","mmohigh",add);
-					changeoptshow("games","3dgames",add); changeoptshow("3dgames","3dgameslow",add); changeoptshow("3dgames","3dgamesmedium",add); changeoptshow("3dgames","3dgameshigh",add);
-					changeoptshow("autocad","autocadmedium",add); changeoptshow("autocad","autocadheavy",add);
-					changeoptshow("3dmodel","solidworks",add); changeoptshow("solidworks","swlight",add); changeoptshow("solidworks","swmedium",add); changeoptshow("solidworks","swheavy",add);
-					changeoptshow("3dmodel","3dsmaxmaya",add); changeoptshow("3dsmaxmaya","3dsmaxlight",add); changeoptshow("3dsmaxmaya","3dsmaxmedium",add); changeoptshow("3dsmaxmaya","3dsmaxheavy",add);  
-					changeoptshow("3dmodel","catia",add); changeoptshow("catia","catialight",add); changeoptshow("catia","catiamedium",add); changeoptshow("catia","catiaheavy",add);
-					changeoptshow("3dmodel","rhinoceros",add); changeoptshow("rhinoceros","rhinolight",add); changeoptshow("rhinoceros","rhinomedium",add); changeoptshow("rhinoceros","rhinoheavy",add);
-					changeoptshow("3dmodel","cadother",add); changeoptshow("cadother","cadolight",add); changeoptshow("cadother","cadomedium",add); changeoptshow("cadother","cadoheavy",add);
-				}
 				case "extraopt2":
 				{
-					changeoptshow("otherfeatures","shdd",add);
-					changeoptshow("3dgames","3dgameshigh",add);
-					changeoptshow("solidworks","swheavy",add);
-					changeoptshow("3dsmaxmaya","3dsmaxmedium",add); changeoptshow("3dsmaxmaya","3dsmaxheavy",add);
-					changeoptshow("catia","catiamedium",add); changeoptshow("catia","catiaheavy",add);
-					changeoptshow("rhinoceros","rhinoheavy",add);
-					changeoptshow("cadother","cadomedium",add); changeoptshow("cadother","cadoheavy",add);
-					if(quiz[0]['options']['athome']['chk']['on']==1 ){ changeoptshow("vedit","hvedit",add); }
+					if(quiz["display_size"]['options']['dispmedium']['chk']['on']!=1&&quiz["display_size"]['options']['displarge']['chk']['on']!=1)
+					{
+						changeoptshow("otherfeatures","shdd",add);
+						changeoptshow("3dgames","3dgameshigh",add);
+						changeoptshow("solidworks","swheavy",add);
+						changeoptshow("3dsmaxmaya","3dsmaxheavy",add);
+						changeoptshow("catia","catiamedium",add); changeoptshow("catia","catiaheavy",add);
+						changeoptshow("rhinoceros","rhinoheavy",add);
+						changeoptshow("cadother","cadomedium",add); changeoptshow("cadother","cadoheavy",add);
+						if(quiz[0]['options']['athome']['chk']['on']==1 ){ changeoptshow("vedit","hvedit",add); }
+						if(quiz[0]['options']['atwork']['chk']['on']==1 )
+						{ 
+							changeoptshow("games","3dgames",add); changeoptshow("3dgames","3dgameslow",add); changeoptshow("3dgames","3dgamesmedium",add);
+							changeoptshow("mmo","mmomedium",add); changeoptshow("mmo","mmohigh",add);
+							changeoptshow("oldgames","oldgameshigh",add);
+							changeoptshow("games","3dgames",add); changeoptshow("3dgames","3dgameslow",add); changeoptshow("3dgames","3dgamesmedium",add); changeoptshow("3dgames","3dgameshigh",add);
+							changeoptshow("autocad","autocadmedium",add); changeoptshow("autocad","autocadheavy",add);
+							changeoptshow("3dmodel","solidworks",add); changeoptshow("solidworks","swlight",add); changeoptshow("solidworks","swmedium",add); changeoptshow("solidworks","swheavy",add);
+							changeoptshow("3dmodel","3dsmaxmaya",add); changeoptshow("3dsmaxmaya","3dsmaxlight",add); changeoptshow("3dsmaxmaya","3dsmaxmedium",add); changeoptshow("3dsmaxmaya","3dsmaxheavy",add);  
+							changeoptshow("3dmodel","catia",add); changeoptshow("catia","catialight",add); changeoptshow("catia","catiamedium",add); changeoptshow("catia","catiaheavy",add);
+							changeoptshow("3dmodel","rhinoceros",add); changeoptshow("rhinoceros","rhinolight",add); changeoptshow("rhinoceros","rhinomedium",add); changeoptshow("rhinoceros","rhinoheavy",add);
+							changeoptshow("3dmodel","cadother",add); changeoptshow("cadother","cadolight",add); changeoptshow("cadother","cadomedium",add); changeoptshow("cadother","cadoheavy",add);
+						}
+					}
+					break;
+				}
+				case "extraopt1": 
+				{
+					if(quiz["display_size"]['options']['dispsmall']['chk']['on']!=1&&quiz["display_size"]['options']['dispmedium']['chk']['on']!=1&&quiz["display_size"]['options']['displarge']['chk']['on']!=1)
+					{
+						changeoptshow(3,"sysadmin",add); changeoptshow("otherfeatures","shdd",add); changeoptshow("otherfeatures","odd",add); changeoptshow("vedit","hvedit",add);
+						//changeoptshow(3,"games",add); changeoptshow(3,"3dmodel",add);  
+						changeoptshow("oldgames","oldgamesmedium",add); changeoptshow("oldgames","oldgameshigh",add);
+						changeoptshow("mmo","mmomedium",add); changeoptshow("mmo","mmohigh",add);
+						changeoptshow("games","3dgames",add); changeoptshow("3dgames","3dgameslow",add); changeoptshow("3dgames","3dgamesmedium",add); changeoptshow("3dgames","3dgameshigh",add);
+						changeoptshow("autocad","autocadmedium",add); changeoptshow("autocad","autocadheavy",add);
+						changeoptshow("3dmodel","solidworks",add); changeoptshow("solidworks","swlight",add); changeoptshow("solidworks","swmedium",add); changeoptshow("solidworks","swheavy",add);
+						changeoptshow("3dmodel","3dsmaxmaya",add); changeoptshow("3dsmaxmaya","3dsmaxlight",add); changeoptshow("3dsmaxmaya","3dsmaxmedium",add); changeoptshow("3dsmaxmaya","3dsmaxheavy",add);  
+						changeoptshow("3dmodel","catia",add); changeoptshow("catia","catialight",add); changeoptshow("catia","catiamedium",add); changeoptshow("catia","catiaheavy",add);
+						changeoptshow("3dmodel","rhinoceros",add); changeoptshow("rhinoceros","rhinolight",add); changeoptshow("rhinoceros","rhinomedium",add); changeoptshow("rhinoceros","rhinoheavy",add);
+						changeoptshow("3dmodel","cadother",add); changeoptshow("cadother","cadolight",add); changeoptshow("cadother","cadomedium",add); changeoptshow("cadother","cadoheavy",add);
+					}
+					break;
 				}
 			}
 			break;
@@ -877,7 +910,7 @@ function quiz_init() { makePage(0); } quiz_init();
 				</div>
 			</div>
 		</div>
-		<div id="quiz_noresults" style="display: block;"><span>Sorry, but there are no laptops with your selected features!</span></div>
+		<div id="quiz_noresults" style="display: block;"><span>Sorry, but there are no laptops currently on the market <br> with your selected features!<br><br><br>Try to change or remove some of your selected options before returning to this step.</span></div>
 		<div id="extraopt" class="shadow hidel">
 		<div class="row" align="center" id="icontable">
 			<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" style="display: block; border-top:8px solid; border-color: transparent;">
