@@ -1,133 +1,10 @@
-<?php
-/*include("../../etc/conf.php");
-if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_name) ==FALSE) 
-{	$actual_link = "$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-	header("Location: ".$port_type."://noteb.com/?content/home.php");
-	die();
-}*/
-
-/*
-		//OLD CODE FOR PRICE SLIDER
-		if(quizp==(maxpage)){ var tosearch="p"; }
-		if(quizp==(maxpage-1)){ var tosearch="b"; }
-		
-		quiz_submit=[]; i=0;
-		
-		for (var key1 in quiz)
-		{
-			var opt=quiz[key1]['options'];
-			for (var key2 in opt)
-			{
-				var selected=opt[key2];
-				if ((typeof selected['chk']) != 'undefined' && selected['chk']['on']==1)
-				{ quiz_submit[i]=key2+"=1"; i++; }
-			}
-		}
-		
-		prequery(quiz_submit.join("&"), tosearch);
-		
-		document.getElementById("question").innerHTML=quiz[quizp]['question'];
-		
-		if(quizp==(maxpage))
-		{
-			document.getElementById("mainquiz").style.display="none";
-			document.getElementById("budget_quiz_container").style.display="block";
-		}
-		
-		//FIRST, DEPENDING ON THE RANGE WE DECIDE THE NUMER SIZE
-function divider()
-{
-	rangemaxb=maxb;
-	i=1;
-	while(rangemaxb>1)
-	{
-		rangemaxb=rangemaxb/10;
-		i++;
-	}
-	
-	divide=Math.pow(10,i-4);
-	if(i<=0) {divide=1;}
-	return divide;
-}
-
-//SECONDLY WE ROUND THE BOUNDRIES SO THAT THE NUMBERS LOOK NICE AND ROUND
-function roundlimit(val)
-{
-
-	divide=divider();
-	val=parseInt(val/divide)*divide;
-	if(val<=0){val=1;}
-	return val;
-}
-
-//THIRDLY WE ROUND THE STEPS SO THAT THE STEPPING IS NICE AND ROUND
-function roundstep(val)
-{
-	divide=divider();
-	val=parseInt(val/divide)*divide;
-	if(val<=0){val=10;}
-	return val;
-}
-
-function quiz_init() { 
-makePage(0);
-
-	//HERE WE CALCULATE THE VARIABLES
-	//var t = parseFloat(currency_val[$('#currency').val()]);
-	//var x = minbudgetnomen*2; var y = maxbudgetnomen*0.65; y=parseInt(y*t); x=parseInt(x*t); minb=parseInt(minbudgetnomen*t); maxb=parseInt(maxbudgetnomen*t);
-	minb=200;
-	x=500;
-	y=2000;
-	maxb=4000;
-		
-	noUiSlider.create(document.getElementById('budget_quiz'), {
-	start: [roundlimit(x), roundlimit(y)],
-	connect: true,
-	direction: 'ltr',
-	format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
-	range: {
-		'min': [ roundlimit(minb),roundstep((maxb-minb)*0.0015)],
-		'25%': [ roundlimit(minb+(maxb-minb)*0.145),  roundstep((maxb-minb)*0.0071)],
-		'50%': [ roundlimit(minb+(maxb-minb)*0.285),  roundstep((maxb-minb)*0.01425) ],
-		'70%': [ roundlimit(minb+(maxb-minb)*0.571),  roundstep((maxb-minb)*0.0285) ],
-		'80%': [ roundlimit(minb+(maxb-minb)*0.8),  roundstep((maxb-minb)*0.04) ],
-		'90%': [ roundlimit(minb+(maxb-minb)*0.9), roundstep((maxb-minb)*0.045) ],		
-		'max': [ roundlimit(maxb),roundstep((maxb-minb)*0.055)]
-		}
-	});
-
-
-	// HERE WE SET VALUES FOR INPUT BOX WHENT SLIDER IS MOVED
-	document.getElementById('budget_quiz').noUiSlider.on('update', function( values, handle ) {
-	
-	if (typeof values[0] === 'string' || values[0] instanceof String)
-	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
-
-	if (typeof values[1] === 'string' || values[1] instanceof String)
-	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
-	
-	if(handle==0) {	document.getElementById('bdgmin').value=left; document.getElementById('bdgmintext').innerHTML=left;  }
-	if(handle==1) {	document.getElementById('bdgmax').value=right; document.getElementById('bdgmaxtext').innerHTML=right; }
-
-	});
-
-}
-
-	<div id="budget_quiz_container" style="text-align:center; position: relative; top: 40%;  transform: translateY(-50%); display: none;">
-		<div style="margin-top:10px;" id="budget_quiz"></div>
-		<div class="icontext" style="margin-top:20px; font-size:14px;">$<span id="bdgmintext" ></span> - $<span id="bdgmaxtext"></span></div>
-		<input type="hidden" name="bdgmin" id="bdgmin">
-		<input type="hidden" name="bdgmax" id="bdgmax">
-		<br><br>
-		<input type="button" name="submit" id="submit" value="That's it! Find my laptop." onclick="submit();">
-	</div>
-	
-				document.getElementById("budget_quiz_container").style.display="none"; in makepage
-*/
-
-?>
-
 <script>
+Number.isInteger = Number.isInteger || function(value) {
+    return typeof value === "number" && 
+           isFinite(value) && 
+           Math.floor(value) === value;
+};
+
 var quiz = {
         0:{
             'question': 'You will use your laptop mainly ...',
@@ -153,10 +30,10 @@ var quiz = {
 			'done': 1
         },
 		2:{
-            'question': 'You will use it daily for (multiple choices): ',
+            'question': 'Basic uses for it (multiple choices):',
             'options': {
                 'internet' : { 'txt':['<span style="font-size:13px;">internet<br>browsing</span>','multiple'], 'img':['internet.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':1 },
-                'comm' : { 'txt':['<span style="font-size:13px;">chatting and<br>video calls</span>','multiple'], 'img':['communication.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':1 },
+                'comm' : { 'txt':['<span style="font-size:13px;">video calls<br>or streaming</span>','multiple'], 'img':['communication.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':1 },
                 'writing' : { 'txt':['<span style="font-size:13px;">document<br>writing</span>','multiple'], 'img':['docs.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':1 },
 				'calc' : { 'txt':['<span style="font-size:12px;">struggling<br>with<br>spreadsheets</span>','multiple'], 'img':['sheet.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':1 },
 				'coding' : { 'txt':['<span style="font-size:12px;">computer<br>coding</span><span style="color: #ffffff"><br>-</span>','multiple'], 'img':['coding.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':1 },
@@ -166,7 +43,7 @@ var quiz = {
 			'done': 1
         },
 		3:{
-			'question': 'You will also use it for (multiple choices): ',
+			'question': 'Advanced uses for it (multiple choices): ',
             'options': {
                 'games' : { 'txt':['<span style="font-size:13px;">playing<br>games</span><span style="color: #ffffff"><br>-</span>','multiple'], 'img':['games.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['games'],'no':1 },
                 'pedit' : { 'txt':['<span style="font-size:13px;">photo<br>editing,<br>illustrations</span>','multiple'], 'img':['photoedit.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['pedit'],'no':1 },
@@ -945,21 +822,27 @@ function quiz_init() { makePage(0); } quiz_init();
 				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
 					<div class="iconel" id="opt1"  onclick="">
 						<div id="opt1img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="option1">
-						<svg id="opt1chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg></div>
+						<svg id="opt1chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+						<img class="img-responsive ieCheckmark" src="search/quiz/res/img/icons/checkmark.svg" alt="checkmark"/>
+					</div>											
 						<span class="icontext" id="opt1txt"><br></span>
 					</div>
 				</div>
 				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
 					<div class="iconel" id="opt2"  onclick="">
 						<div id="opt2img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="option2">
-						<svg id="opt2chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg></div>
+						<svg id="opt2chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+						<img class="img-responsive ieCheckmark" src="search/quiz/res/img/icons/checkmark.svg" alt="checkmark"/>
+					</div>
 						<span class="icontext"  id="opt2txt"><br></span>						
 					</div>
 				</div>
 				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
 					<div class="iconel" id="opt3" style="" onclick="">
 						<div id="opt3img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="option3">
-						<svg id="opt3chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg></div>
+						<svg id="opt3chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+						<img class="img-responsive ieCheckmark" src="search/quiz/res/img/icons/checkmark.svg" alt="checkmark"/>
+					</div>
 						<span class="icontext" id="opt3txt"><br></span>						
 					</div>
 				</div>
@@ -968,21 +851,27 @@ function quiz_init() { makePage(0); } quiz_init();
 				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
 					<div class="iconel" id="opt4"  onclick="">
 						<div id="opt4img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="option4">
-						<svg id="opt4chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg></div>
+						<svg id="opt4chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+						<img class="img-responsive ieCheckmark" src="search/quiz/res/img/icons/checkmark.svg" alt="checkmark"/>
+					</div>
 						<span class="icontext"  id="opt4txt"><br></span>						
 					</div>
 				</div>
 				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
 					<div class="iconel" id="opt5" onclick="">
 						<div id="opt5img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="option5">
-						<svg id="opt5chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg></div>
+						<svg id="opt5chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+						<img class="img-responsive ieCheckmark" src="search/quiz/res/img/icons/checkmark.svg" alt="checkmark"/>
+					</div>
 						<span class="icontext" id="opt5txt"><br></span>						
 					</div>
 				</div>
 				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
 					<div class="iconel" id="opt6" style="" onclick="">
 						<div id="opt6img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="option6">
-						<svg id="opt6chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg></div>
+						<svg id="opt6chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+						<img class="img-responsive ieCheckmark" src="search/quiz/res/img/icons/checkmark.svg" alt="checkmark"/>
+					</div>
 						<span class="icontext" id="opt6txt"><br></span>						
 					</div>
 				</div>
@@ -995,19 +884,25 @@ function quiz_init() { makePage(0); } quiz_init();
 				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
 					<div class="extraiconel" id="extraopt1"  onclick="">
 						<div id="extraopt1img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="extraoption1">
-						<svg id="extraopt1chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg></div>
+						<svg id="extraopt1chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+						<img class="img-responsive ieCheckmark" src="search/quiz/res/img/icons/checkmark.svg" alt="checkmark"/>
+					</div>
 						<span class="icontext" id="extraopt1txt"><br></span>						
 					</div>
 				</div>
 				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
 					<div class="extraiconel" id="extraopt2"  onclick="">
-						<div id="extraopt2img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="extraoption2"><svg id="extraopt2chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg></div>						
+						<div id="extraopt2img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="extraoption2"><svg id="extraopt2chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+						<img class="img-responsive ieCheckmark" src="search/quiz/res/img/icons/checkmark.svg" alt="checkmark"/>
+						</div>						
 						<span class="icontext"  id="extraopt2txt"><br></span>						
 					</div>
 				</div>
 				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
 					<div class="extraiconel" id="extraopt3" style="" onclick="">
-						<div id="extraopt3img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="extraoption3"><svg id="extraopt3chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg></div>
+						<div id="extraopt3img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="extraoption3"><svg id="extraopt3chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+						<img class="img-responsive ieCheckmark" src="search/quiz/res/img/icons/checkmark.svg" alt="checkmark"/>
+						</div>
 						<span class="icontext" id="extraopt3txt"><br></span>						
 					</div>
 				</div>
@@ -1015,19 +910,25 @@ function quiz_init() { makePage(0); } quiz_init();
 			<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" style="display: block;">
 				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
 					<div class="extraiconel" id="extraopt4"  onclick="">
-						<div id="extraopt4img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="extraoption4"><svg id="extraopt4chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg></div>
+						<div id="extraopt4img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="extraoption4"><svg id="extraopt4chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+						<img class="img-responsive ieCheckmark" src="search/quiz/res/img/icons/checkmark.svg" alt="checkmark"/>
+						</div>
 						<span class="icontext"  id="extraopt4txt"><br></span>						
 					</div>
 				</div>
 				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
 					<div class="extraiconel" id="extraopt5"  onclick="">
-						<div id="extraopt5img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="extraoption5"><svg id="extraopt5chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg></div>
+						<div id="extraopt5img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="extraoption5"><svg id="extraopt5chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+						<img class="img-responsive ieCheckmark" src="search/quiz/res/img/icons/checkmark.svg" alt="checkmark"/>
+						</div>
 						<span class="icontext" id="extraopt5txt"><br></span>						
 					</div>
 				</div>
 				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
 					<div class="extraiconel" id="extraopt6"  onclick="">
-						<div id="extraopt6img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="extraoption6"><svg id="extraopt6chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg></div>
+						<div id="extraopt6img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="extraoption6"><svg id="extraopt6chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+						<img class="img-responsive ieCheckmark" src="search/quiz/res/img/icons/checkmark.svg" alt="checkmark"/>
+						</div>
 						<span class="icontext" id="extraopt6txt"><br></span>						
 					</div>
 				</div>
@@ -1044,9 +945,10 @@ function quiz_init() { makePage(0); } quiz_init();
 		<span class="nrcircle nrcircleactive"></span><span class="nrcircle"></span><span class="nrcircle"></span><span class="nrcircle"></span><span class="nrcircle"></span></span><span class="nrcircle"></span>
 		<span class="glyphicon glyphicon-arrow-right arrows #quiza" style="display:none;" onclick="makePage(currentp+1);">			
 			<span class="next-text">
-				<p>Next
-				Question
-				</p>			
+				<p><span>Next</span>
+				<span class="hidden-xs visible-sm visible-md visible-lg">Question</span>
+				</p>	
+				<span class="nextTextTail"></span>		
 			</span>
 		</span>
 		<span class="submit_quiz" style="display:none;" id="quiz_submit_btn" onclick="submit_the_quiz();">			
