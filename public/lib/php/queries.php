@@ -1,6 +1,6 @@
 <?php
 require_once("../../../etc/session.php");
-require_once("../../../etc/con_rdb.php");
+require_once("../../../etc/con_db.php");
 
 //WE GET THE INPUTS
 $q = filter_input(INPUT_POST,'q',FILTER_SANITIZE_ENCODED);
@@ -57,5 +57,5 @@ switch($select)
 
 
 print preg_replace('/,\s*"[^"]+":null|"[^"]+":null,?/', '', json_encode($list));
-mysqli_close($rcon);
+mysqli_close($con);
 ?>

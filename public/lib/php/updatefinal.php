@@ -1,6 +1,7 @@
 
 <?php
 require_once("../etc/con_rdb.php");
+require_once("../etc/con_db.php");
 $table = $_POST['table'];
 
 if ($table == 'REVIEWS'){   
@@ -10,7 +11,7 @@ if ($table == 'REVIEWS'){
 	if(isset($_POST['link'])) { $link = $_POST['link']; }
 	
 	$sql="SELECT idfam,prod,model,fam.fam,fam.subfam,fam.showsubfam FROM MODEL model JOIN ( SELECT id,fam,subfam,showsubfam FROM notebro_db.FAMILIES ) fam ON fam.id=model.idfam WHERE model.id=$model_id LIMIT 1";
-	$query=mysqli_query($rcon,$sql);
+	$query=mysqli_query($con,$sql);
 	$row=mysqli_fetch_assoc($query);
 	if(intval($row['showsubfam'])==1){ $subfam=" ".$row['subfam']." "; } else { $subfam=" "; }
 	$model_name = $row['prod']." ".$row['fam'].$subfam.$row['model'];
