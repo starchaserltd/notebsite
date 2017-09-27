@@ -40,7 +40,7 @@ require_once("etc/session.php");
 		<div class="col-md-2 col-lg-2" style="padding:0px"><!-- min-height:134px;-->
 			<div class="hidden-sm hidden-xs col-md-12 col-lg-12" style="padding:0px;">			
 				<div id="usermenu" class="btn-group dropdown">
-					<button disabled class="blue dropbtn helpus"><a class="helpimg"> </a></button>
+					<button disabled class="blue dropbtn helpus"><a class="helpimg">Review</a></button>
 					<div class="dropdown-content"><a class="addrev" onmousedown="OpenPage('public/ireviews.php',event);">Add laptop review</a></div>
 				</div>
 			</div>
