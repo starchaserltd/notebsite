@@ -1,6 +1,6 @@
 <?php
 require_once("../../../etc/session.php");
-require_once("../../../etc/con_db.php");
+require_once("../../../etc/con_rdb.php");
 
 //WE GET THE INPUTS
 $q = filter_input(INPUT_POST,'q',FILTER_SANITIZE_ENCODED);
@@ -39,7 +39,7 @@ switch($select)
 	case "review_websites":
 	{
 		$query="SELECT DISTINCT site FROM `notebro_db`.`REVIEWS` WHERE site LIKE '%".$keys."%' ORDER BY site ASC";
-		$result=mysqli_query($con,$query);
+		$result=mysqli_query($rcon,$query);
 		$i=1;
 		while($rand = mysqli_fetch_row($result)) 
 		{ 
@@ -57,5 +57,5 @@ switch($select)
 
 
 print preg_replace('/,\s*"[^"]+":null|"[^"]+":null,?/', '', json_encode($list));
-mysqli_close($con);
+mysqli_close($rcon);
 ?>

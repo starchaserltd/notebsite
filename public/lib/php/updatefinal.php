@@ -1,6 +1,6 @@
 
 <?php
-require_once("../etc/con_db.php");
+require_once("../etc/con_rdb.php");
 $table = $_POST['table'];
 
 if ($table == 'REVIEWS'){   
@@ -10,7 +10,7 @@ if ($table == 'REVIEWS'){
 	if(isset($_POST['link'])) { $link = $_POST['link']; }
 	
 	$sql="SELECT idfam,prod,model,fam.fam,fam.subfam,fam.showsubfam FROM MODEL model JOIN ( SELECT id,fam,subfam,showsubfam FROM notebro_db.FAMILIES ) fam ON fam.id=model.idfam WHERE model.id=$model_id LIMIT 1";
-	$query=mysqli_query($con,$sql);
+	$query=mysqli_query($rcon,$sql);
 	$row=mysqli_fetch_assoc($query);
 	if(intval($row['showsubfam'])==1){ $subfam=" ".$row['subfam']." "; } else { $subfam=" "; }
 	$model_name = $row['prod']." ".$row['fam'].$subfam.$row['model'];
@@ -55,11 +55,11 @@ if ($table == 'REVIEWS'){
 	if ($scor == 3) 
 	{
 		$sql = "insert into REVIEWS (id, model, model_id, site, title, link, notebreview) values ('".$idireviews[0]."','".$model_name."','".$model_id."','".$site."','','".$link."','0')";
-		if(mysqli_query($con, $sql))
+		if(mysqli_query($rcon, $sql))
 		{
 			echo "<meta http-equiv=\"refresh\" content=\"0;URL=?public/ireviews.php\">";
 			$sql = "UPDATE notebro_db.last_key SET lastid = '".($idireviews[0]+1)."' WHERE info = 'lastid_ireviews'" ;
-			if(mysqli_query($con, $sql))
+			if(mysqli_query($rcon, $sql))
 			{ /*echo "Succesfully submitted $site review on $model_name. Thank you!. <br><br>";*/	echo "<script type='text/javascript'>alert('$site review on $model_name submitted successfully. Thank you!')</script>";		}
 		}
 	}
@@ -69,5 +69,5 @@ if ($table == 'REVIEWS'){
 else
 { echo "Something went terribly wrong" . mysqli_error($con); }
 
-mysqli_close($con);
+mysqli_close($rcon);
 ?>
