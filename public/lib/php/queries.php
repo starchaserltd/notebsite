@@ -39,7 +39,7 @@ switch($select)
 	case "review_websites":
 	{
 		$query="SELECT DISTINCT site FROM `notebro_db`.`REVIEWS` WHERE site LIKE '%".$keys."%' ORDER BY site ASC";
-		$result=mysqli_query($rcon,$query);
+		$result=mysqli_query($con,$query);
 		$i=1;
 		while($rand = mysqli_fetch_row($result)) 
 		{ 

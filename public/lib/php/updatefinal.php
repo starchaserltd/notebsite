@@ -66,9 +66,9 @@ if ($table == 'REVIEWS'){
 	}
 	else
 	{ echo "<script type='text/javascript'>alert('Please insert mandatory fields or link is invalid')</script>"; }
+	mysqli_close($rcon); mysqli_close($con);
 }
 else
 { echo "Something went terribly wrong" . mysqli_error($con); }
 
-mysqli_close($rcon);
 ?>
