@@ -81,33 +81,6 @@
     color: transparent!important;
     font-size: 19px;
 }
-/*Firefox fixes*/
-@-moz-document url-prefix() {
-   .helpimg {
-        font-size: 18px;
-    }
-}
-
-/* Microsoft Edge fixes */
-
-  _:-ms-lang(x), .helpimg  {font-size: 17.8px;} 
-  _:-ms-lang(x), .helpus:hover .helpimg  {font-size: 17.8px;}
-  _:-ms-lang(x), .dropdown-content a {margin-left: 0;}
-  _:-ms-lang(x), [disabled].dropbtn.helpus{margin-left: 0;}
-
-/************/
-
-/* IE 11 fixes */
-
-  @media all and (-ms-high-contrast:none)   {
-    
-     .helpimg { font-size: 17px;background-size: contain; } /* IE11 */
-     .helpimg:hover {background-size: contain!important;font-size: 17px; }
-     .helpus:hover .helpimg {background-size: contain!important;font-size: 17px;}
-    
-     }
-
-/************/
 
 .dropbtn.helpus[disabled]:hover,.dropbtn.helpus[disabled]:focus{	
 	display: inline-block;    
@@ -137,7 +110,7 @@
     height: 19px;
     display: -webkit-inline-box;
 	transition: all 0.3s ease-in;
-	opacity:0.6;
+	opacity:1;
 	}		
 
 .btn-group.dropdown.acthelp>.dropbtn[disabled]:hover >a {
@@ -153,6 +126,8 @@
 	opacity:1;
   color: transparent!important;
 }
+
+
 
 
 	
@@ -174,17 +149,7 @@
 	display: inline-block;    
 		}
 
-.btn-group.dropdown>.dropbtn.helpus[disabled]:active >a{
-	background-image: url(/../res/img/helpus.svg);
-	background-position: center center;
-    background-repeat: no-repeat;    
-	box-sizing: border-box;
-	background-size: 100%;	
-	cursor:pointer;	
-    width: 19px;
-    height: 19px;
-    display: -webkit-inline-box;	
-}	
+
 
 .lognb:active {background-color:#285f8f!important;}
 .lognb.active{background-color:white!important;}
@@ -1314,3 +1279,52 @@ input[type=radio].css-radiobox {
 
 }
 
+
+/* Home search model styles */
+
+#modelfind span.select2-container {
+  position: relative;
+}
+
+#modelfind span.select2-container:after {
+  content: "\e003";
+  position: absolute;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  font-size: 14px;
+  right: 8px;
+  bottom: 8px;
+}
+
+/*Firefox fixes*/
+@-moz-document url-prefix() {
+   .helpimg {
+        font-size: 18px;
+    }
+	.dropdown-content a {
+	margin-left:0px;}
+}
+
+/* Microsoft Edge fixes */
+
+  _:-ms-lang(x), .helpimg  {font-size: 17.8px;} 
+  _:-ms-lang(x), .helpus:hover .helpimg  {font-size: 17.8px;}
+  _:-ms-lang(x), .dropdown-content a {margin-left: 0;}
+  _:-ms-lang(x), [disabled].dropbtn.helpus{margin-left: 0;}
+  
+
+/************/
+
+/* IE 11 fixes */
+
+  @media all and (-ms-high-contrast:none)   {
+    
+     .helpimg { font-size: 17px;background-size: contain; } /* IE11 */
+     .helpimg:hover {background-size: contain!important;font-size: 17px; }
+     .helpus:hover .helpimg, .helpus:active .helpimg{background-size: contain!important;font-size: 17px;}
+      .acthelp > [disabled].helpus.dropbtn > a {background-size: contain;}
+     }
+
+/************/

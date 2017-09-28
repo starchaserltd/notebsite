@@ -110,7 +110,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			{ $display_backt = ["LED IPS","LED IPS PenTile","LED TN WVA","OLED"]; }
 		
 			if (isset($_GET['FHDplus'])&& $_GET['FHDplus']==1 ) 
-			{ $display_vresmin = 1081; }
+			{ $displayvresmin = 1081; }
 							
 			if ((isset($_GET['disxsmall']) && $_GET['disxsmall']==1 ) || (isset($_GET['dispsmall'])	&& $_GET['dispsmall']==1 ) || (isset($_GET['dispmedium']) && $_GET['dispmedium']==1 ) || (isset($_GET['displarge'])	&& $_GET['displarge']==1 ) )
 			{ $displaysizemin=30; $displaysizemax=0; }
@@ -427,26 +427,26 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 		}	
 		case 'chassis' :
 		{
-			$chassis_weightmax=999999; $chassis_thicmax=999999;
+			$chassisweightmax=999999; $chassisthicmax=999999;
 			
 			if (isset($_GET['desk']) && $_GET['desk']==1) 
-			{ if($chassis_weightmax>10) { $chassis_weightmax = 10; } if($chassis_thicmax>100){ $chassis_thicmax = 100;} }
+			{ if($chassisweightmax>10) { $chassisweightmax = 10; } if($chassisthicmax>100){ $chassisthicmax = 100;} }
 			
 			if (isset($_GET['bed']) && $_GET['bed']==1) 
-			{ if($chassis_weightmax>2.35) { $chassis_weightmax = 2.35; } if($chassis_thicmax>27){ $chassis_thicmax = 27;} /*$chassis_made[] = "Metal"; $chassis_made[] = "Aluminium"; $chassis_made[] = "Lithium"; $chassis_made[] = "Magnesium";*/ }
+			{ if($chassisweightmax>2.35) { $chassisweightmax = 2.35; } if($chassisthicmax>27){ $chassisthicmax = 27;} /*$chassis_made[] = "Metal"; $chassis_made[] = "Aluminium"; $chassis_made[] = "Lithium"; $chassis_made[] = "Magnesium";*/ }
  									
 			if (isset($_GET['house']) && $_GET['house']==1) 
-			{ if($chassis_weightmax>2.8) { $chassis_weightmax = 2.8; } if($chassis_thicmax>31){ $chassis_thicmax = 31;} }
+			{ if($chassisweightmax>2.8) { $chassisweightmax = 2.8; } if($chassisthicmax>31){ $chassisthicmax = 31;} }
 											
 		    if (isset($_GET['lap']) && $_GET['lap']==1) 
-			{ if($chassis_weightmax>2.1) { $chassis_weightmax = 2.1; } if($chassis_thicmax>24){ $chassis_thicmax = 24;} }
+			{ if($chassisweightmax>2.1) { $chassisweightmax = 2.1; } if($chassisthicmax>24){ $chassisthicmax = 24;} }
 									
 			if (isset($_GET['bag']) && $_GET['bag']==1) 
 			{ 
 				if(isset($_GET['displarge']) && $_GET['displarge']==1)
-				{ if($chassis_weightmax>3.6) { $chassis_weightmax = 3.6; } if($chassis_thicmax>37){ $chassis_thicmax = 37;} }
+				{ if($chassisweightmax>3.6) { $chassisweightmax = 3.6; } if($chassisthicmax>37){ $chassisthicmax = 37;} }
 				else
-				{ if($chassis_weightmax>2.8) { $chassis_weightmax = 2.8; } if($chassis_thicmax>35){ $chassis_thicmax = 35;} }
+				{ if($chassisweightmax>2.8) { $chassisweightmax = 2.8; } if($chassisthicmax>35){ $chassisthicmax = 35;} }
 			}
 		
 			if (isset($_GET['metal']) && $_GET['metal']==1 ) 
@@ -542,17 +542,24 @@ foreach ($cpu_misc as $element)
 
 foreach ($display_backt as $element)
 		{	$displaymsc.='<option selected="selected">'.$element.'</option>';	}
-	
+		
+foreach ($chassis_misc as $element)
+		{	$chassisstuff.='<option selected="selected">'.$element.'</option>';	}	
 if ($nr_hdd == 2) {$nrhddselect = "selected";}
 if ($nr_hdd == 3) {$nrhddselect2 = "selected";}
 if(isset($hdd_type)) { $valuetype[54] = $hdd_type; }
 // de verificat de ce nu
-if(isset($sist_sist)) { $valuetype[25] = $sist_sist; }
+foreach ($sist_sist as $element) 
+		{ $valuetype[25][] = $element; }
+
 foreach ($regions_name as $element)
 		{	$regions.='<option selected="selected">'.$element.'</option>';	}
 foreach ($gpu_typelist as $element)
 			{ if ($element>=1)  {$gputype =2;}
 			$gputypesel[$element]="selected"; }		
+foreach ($chassis_made as $element)
+		{	$valuetype[26][] = $element;	}	
+if(isset($chassis_twoinone) && $chassis_twoinone == 1) {$twoinone_check = "checked";}
 $bdgmin=$budgetmin;
 $bdgmax=$budgetmax;
 ?>

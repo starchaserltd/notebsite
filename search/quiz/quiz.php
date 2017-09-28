@@ -237,7 +237,7 @@ var quiz = {
 		'display_size':{
             'question': 'Select display size (multiple choices): ',
             'options': {
-                'disxsmall' : { 'txt':['<span style="font-size:13px;">10 - 13 inch</span>','multiple'], 'img':['xsmall.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':1  },
+                'dispxsmall' : { 'txt':['<span style="font-size:13px;">10 - 13 inch</span>','multiple'], 'img':['xsmall.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':1  },
                 'dispsmall' : { 'txt':['<span style="font-size:13px;">13 - 14 inch</span>','multiple'], 'img':['small.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':1 },
                 'dispmedium' : { 'txt':['<span style="font-size:13px;">15 - 16 inch</span>','multiple'], 'img':['normal.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':1 },
 				'displarge' : { 'txt':['<span style="font-size:13px;">17+ inch</span>','multiple'], 'img':['large.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':1 }
@@ -616,6 +616,14 @@ function changeoptions(el,page,add)
 					}
 					break;
 				}
+				case "extraopt4":
+				{
+					if(quiz["display_size"]['options']['dispmedium']['chk']['on']!=1&&quiz["display_size"]['options']['dispsmall']['chk']['on']!=1&&quiz["display_size"]['options']['dispxsmall']['chk']['on']!=1)
+					{
+						changeoptshow("otherfeatures","convertible",add); changeoptshow("otherfeatures","stylus",add);
+					}
+					break;
+				}
 			}
 			break;
 		}
@@ -834,6 +842,20 @@ function quiz_init() { makePage(0); } quiz_init();
 
 <link rel="stylesheet" href="search/quiz/quiz.css" type="text/css"/>
 <div class="quiz_container">
+	<input id="tab1" type="checkbox">
+	<label for="tab1" class="label_intro1">
+		<span>Take the Quiz!<i class="glyphicon glyphicon-forward" aria-hidden="true"></i></span>
+	</label>		
+	<input id="tab2" type="checkbox">
+	<label for="tab2" class="label_intro2">
+		<span>Start Quiz!<i class="glyphicon glyphicon-forward" aria-hidden="true"></i></span>
+	</label>		
+	<section class="tab1_intro">
+		<p class="h2 text-center quizParagraf1">Find your laptop match</p>
+	</section>
+	<section class="tab2_intro">
+		<p class="h2 text-center quizParagraf2">How to use our Quiz</p>
+	</section>
 	<div style="width:100%; height:35px; text-align:center; display: inline-block; padding-top:5px">
 		<span id="question" style="font-family: 'arial'; font-size:20px;font-weight: bold;"></span>
 	</div>	

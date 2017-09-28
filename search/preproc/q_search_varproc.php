@@ -182,10 +182,10 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			if (isset($_GET['FHDplus'])&& $_GET['FHDplus']==1 ) 
 			{ $display_vresmin = 1081; }
 							
-			if ((isset($_GET['disxsmall']) && $_GET['disxsmall']==1 ) || (isset($_GET['dispsmall'])	&& $_GET['dispsmall']==1 ) || (isset($_GET['dispmedium']) && $_GET['dispmedium']==1 ) || (isset($_GET['displarge'])	&& $_GET['displarge']==1 ) )
+			if ((isset($_GET['dispxsmall']) && $_GET['dispxsmall']==1 ) || (isset($_GET['dispsmall'])	&& $_GET['dispsmall']==1 ) || (isset($_GET['dispmedium']) && $_GET['dispmedium']==1 ) || (isset($_GET['displarge'])	&& $_GET['displarge']==1 ) )
 			{ $display_sizemin=30; $display_sizemax=0; }
 	 
-			if (isset($_GET['disxsmall'])	&& $_GET['disxsmall']==1 ) 
+			if (isset($_GET['dispxsmall'])	&& $_GET['dispxsmall']==1 ) 
 			{ if($display_sizemin>10) { $display_sizemin =10; }	if($display_sizemax<13) { $display_sizemax =13; } }
 		
 			if (isset($_GET['dispsmall'])	&& $_GET['dispsmall']==1 ) 
