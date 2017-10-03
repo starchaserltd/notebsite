@@ -1,11 +1,13 @@
 <?php
 /* Quiz SEARCH */
 //Initialising some generic values
-//$cpu_tdpmin=0.01; 
-$war_yearsmin=1;  $totalcapmin = 0; $totalcapmax = 8192;  $chassis_weightmin=0.01; $diffsearch=0;
-//$batlife_min=0;
-//$batlife_max=1000;
-//$acum_capmin=0.01;
+
+$cpu_tdpmin = 0.01; $gpu_powermin = 0; $gpu_maxmemmin = 1; //$hdd_capmin = $totalcapmin;
+$war_yearsmin = 0.01; $acum_capmin = 0.01; $wnet_ratemin = 0.01; $sist_pricemax = 1;
+$odd_speedmin = 0; $mem_capmin = 1; $mdb_ratemin = 0; $chassis_weightmin = 0.01; $addmsc=array(); $regions_name = array(); $display_srgb = 0; $chassis_addpi=array(); $regions=array(); $war_typewar=array();
+$totalcapmin = 0; $totalcapmax = 8192; 
+$mdbslots = 0;
+
 $isquiz = 1;
 $hdd_type = array();$chassis_made= array(); $chassis_msc=array();
 $chassis_ports=array();$gpu_model = array();$cpu_misc = array();
@@ -565,7 +567,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			{ $sist_sist=["Windows+Home","Windows+Pro","Windows+S"]; } 
 					
 			break ;	
-		}	
+		}	//var_dump($sist_sist);
 		
 		case 'battery' :
 		{
@@ -586,7 +588,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 		{
 			if($qsearchtype!="p" && $qsearchtype!="b"){ $budgetmin=99999999; $budgetmax=0; }
 			if (isset($_GET['b500']) && $_GET['b500']==1)
-			{ if(isset($budgetmin) && $budgetmin>150) { $budgetmin=150; } if(isset($budgetmax) && $budgetmax<550) { $budgetmax=550; } }
+			{ if(isset($budgetmin) && $budgetmin>150) { $budgetmin=150; } if(isset($budgetmax) && $budgetmax<500) { $budgetmax=500; } }
 			
 			if (isset($_GET['b750']) && $_GET['b750']==1) 
 			{ if(isset($budgetmin) && $budgetmin>485) { $budgetmin=485; } if(isset($budgetmax) && $budgetmax<790) { $budgetmax=790; } }
@@ -610,6 +612,9 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 /* some adjustments based on budget*/
 if($qsearchtype!=="p" && $qsearchtype!=="b")
 {
+	if($budgetmax<1005)
+	{ $totalcapmin/=2; }
+	
 	if($budgetmax>800)
 	{
 		$sist_sist[]="macOS";
@@ -639,10 +644,13 @@ if($qsearchtype!=="p" && $qsearchtype!=="b")
 			$hdd_type=[];
 		}
 	}
+	
+
 }
 else
 {
 	$sist_sist[]="macOS"; $sist_sist[]="Chrome OS"; 
 }
-
+$budgetmin= $budgetmin-1;
+$budgetmax= $budgetmax+1;
 ?>

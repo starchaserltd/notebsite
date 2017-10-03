@@ -67,7 +67,7 @@ var quiz = {
 			'done': 1
         },
 		5:{
-            'question': 'Available budget for your options: ',
+            'question': 'Available budget for your options (multiple choices): ',
             'options': {
                 'b500' : { 'txt':['under $500','multiple'], 'img':['budget1.svg',''], 'chk':{'on':[0],'style':['display:none;']}, 'no':1 },
                 'b750' : { 'txt':['$500 - $750','multiple'], 'img':['budget2.svg',''], 'chk':{'on':[0],'style':['display:none;']}, 'no':1 },
@@ -80,7 +80,7 @@ var quiz = {
 			'done': 1
         },
 		'games':{
-			'question': 'Type of games you will play: ',
+			'question': 'Type of games you will play (multiple choices): ',
             'options': {
                 '2dgames' : { 'txt':['<span style="font-size:13px;">non-3D games</span><span style="color: #ffffff"><br>-</span>','multiple'], 'img':['2dgames.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':1 },
                 'oldgames' : { 'txt':['<span style="font-size:13px;">older games</span><span style="color: #ffffff"><br>-</span>','multiple'], 'img':['oldgames.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['oldgames'],'no':1 },
@@ -91,7 +91,7 @@ var quiz = {
 			'done': 1
         },
 		'3dmodel':{
-            'question': 'CAD / 3D modeling programs used: ',
+            'question': 'CAD / 3D modeling programs used (multiple choices): ',
             'options': {
                 'autocad' : { 'txt':['<span style="font-size:13px;">AutoCAD</span>','multiple'], 'img':['autocad.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['autocad'],'no':1 },
                 'solidworks' : { 'txt':['<span style="font-size:13px;">SolidWorks</span>','multiple'], 'img':['solidworks.svg',''], 'chk':{'on':[0],'style':['display:none;']},'extra':['solidworks'],'no':1 },
@@ -107,8 +107,8 @@ var quiz = {
 			'question': 'Minimal graphics quality: ',
             'options': {
                 '2dgameslow' : { 'txt':['<span style="font-size:13px;">low<br>quality</span>','single'], 'img':['lowq.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':1 },
-                '2dgamesmedium' : { 'txt':['<span style="font-size:13px;">normal<br>quality</span>','multiple'], 'img':['medq.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':1 },
-                '2gameshigh' : { 'txt':['<span style="font-size:13px;">high<br>quality</span>','multiple'], 'img':['highq.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':1 }
+                '2dgamesmedium' : { 'txt':['<span style="font-size:13px;">normal<br>quality</span>','single'], 'img':['medq.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':1 },
+                '2gameshigh' : { 'txt':['<span style="font-size:13px;">high<br>quality</span>','single'], 'img':['highq.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':1 }
             },
 			'selected': 0,
 			'done': 1
@@ -844,17 +844,21 @@ function quiz_init() { makePage(0); } quiz_init();
 <div class="quiz_container">
 	<input id="tab1" type="checkbox">
 	<label for="tab1" class="label_intro1">
-		<span>Take the Quiz!<i class="glyphicon glyphicon-forward" aria-hidden="true"></i></span>
+		<span class="startQuiz">Take the Quiz!</span>
 	</label>		
 	<input id="tab2" type="checkbox">
 	<label for="tab2" class="label_intro2">
-		<span>Start Quiz!<i class="glyphicon glyphicon-forward" aria-hidden="true"></i></span>
+		<span class="startQuiz">Start Quiz!</span>
 	</label>		
 	<section class="tab1_intro">
 		<p class="h2 text-center quizParagraf1">Find your laptop match</p>
 	</section>
 	<section class="tab2_intro">
-		<p class="h2 text-center quizParagraf2">How to use our Quiz</p>
+		<!-- <p class="h2 text-center quizParagraf2">How to use our Quiz</p> -->
+        <p>Before you being:</p>
+        <p>The quiz has five main questions.<br/>Questions with "(multiple choices)" specified in their description accept multiple answers.<br/>Some questions can be skipped by going to the next question.<br/>Some answers will open a sub-question for clarification.<br/>
+        The battery life and budget options depend on previously selected options.</p>
+        <p>The quiz primarily focuses on laptops available on the US market.</p>
 	</section>
 	<div style="width:100%; height:35px; text-align:center; display: inline-block; padding-top:5px">
 		<span id="question" style="font-family: 'arial'; font-size:20px;font-weight: bold;"></span>
