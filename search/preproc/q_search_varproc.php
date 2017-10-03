@@ -612,8 +612,10 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 /* some adjustments based on budget*/
 if($qsearchtype!=="p" && $qsearchtype!=="b")
 {
-	if($budgetmax<1005)
-	{ $totalcapmin/=2; }
+	if($budgetmax<1100)
+	{ 
+		if($totalcapmin>200) { $totalcapmin/=2; }
+	}
 	
 	if($budgetmax>800)
 	{
@@ -644,8 +646,6 @@ if($qsearchtype!=="p" && $qsearchtype!=="b")
 			$hdd_type=[];
 		}
 	}
-	
-
 }
 else
 {
