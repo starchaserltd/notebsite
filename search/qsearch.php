@@ -7,8 +7,8 @@ require_once("../search/proc/init.php");
 if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 {
 	//$_SESSION['auth']=0;
-	$budgetmax=0; $budgetmin=9999999999;
-	$batlifemax=0; $batlifemin=9999999999;
+	$presearch_budgetmax=0; $presearch_budgetmin=9999999999;
+	$presearch_batlifemax=0; $presearch_batlifemin=9999999999;
 
 	$orderby = "ORDER BY price ASC";
 	$orderby_index = "USE INDEX FOR ORDER BY (price)";
@@ -54,7 +54,7 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 		if($conds_model)
 		{ 
 			if($qsearchtype=="p")
-			{ $query_search = "SELECT MAX(price) AS maxprice, MIN(price) AS minprice FROM notebro_temp.all_conf_".$model." WHERE " . implode(" AND ", $conds_model) . " AND (price < ".$budgetmin ." OR price > ". $budgetmax .")" . " LIMIT 1"; }
+			{ $query_search = "SELECT MAX(price) AS maxprice, MIN(price) AS minprice FROM notebro_temp.all_conf_".$model." WHERE " . implode(" AND ", $conds_model) . " AND (price < ".$presearch_budgetmin ." OR price > ". $presearch_budgetmax .")" . " LIMIT 1"; }
 			
 			if($qsearchtype=="b")
 			{ $query_search = "SELECT MAX(batlife) AS maxbatlife, MIN(batlife) AS minbatlife FROM notebro_temp.all_conf_".$model." WHERE " . implode(" AND ", $conds_model) . " LIMIT 1"; }
@@ -75,14 +75,14 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 			#	"query" => $query_search,
 			#	"time" => $time_end_query - $time_start_query));
 			if($qsearchtype=="p")
-			{ if (!is_null($result)) { if(($result["minprice"]!=NULL) && ($budgetmin>$result["minprice"])){$budgetmin=$result["minprice"];} if($budgetmax<$result["maxprice"]){$budgetmax=$result["maxprice"];} } }
+			{ if (!is_null($result)) { if(($result["minprice"]!=NULL) && ($presearch_budgetmin>$result["minprice"])){$presearch_budgetmin=$result["minprice"];} if($presearch_budgetmax<$result["maxprice"]){$presearch_budgetmax=$result["maxprice"];} } }
 			
 			if($qsearchtype=="b")
-			{ if (!is_null($result)) { if(($result["minbatlife"]!=NULL) && ($batlifemin>$result["minbatlife"])){$batlifemin=$result["minbatlife"];} if($batlifemax<$result["maxbatlife"]){$batlifemax=$result["maxbatlife"];} } }
+			{ if (!is_null($result)) { if(($result["minbatlife"]!=NULL) && ($presearch_batlifemin>$result["minbatlife"])){$presearch_batlifemin=$result["minbatlife"];} if($presearch_batlifemax<$result["maxbatlife"]){$presearch_batlifemax=$result["maxbatlife"];} } }
 		}
 	}
-	if($qsearchtype=="p") { $result=array("budgetmin"=>$budgetmin,"budgetmax"=>$budgetmax); }
-	if($qsearchtype=="b") { $result=array("batlifemin"=>$batlifemin,"batlifemax"=>$batlifemax); }
+	if($qsearchtype=="p") { $result=array("budgetmin"=>$presearch_budgetmin,"budgetmax"=>$presearch_budgetmax); }
+	if($qsearchtype=="b") { $result=array("batlifemin"=>$presearch_batlifemin,"batlifemax"=>$presearch_batlifemax); }
 	echo json_encode($result);
 	
 	exit();
