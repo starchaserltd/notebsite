@@ -5,14 +5,8 @@
 	 width="55px" height="55px" viewBox="0 0 55 55" enable-background="new 0 0 55 55" xml:space="preserve">
 <rect x="22.126" y="41.193" fill="#CCCCCC" stroke="#CCCCCC" stroke-miterlimit="10" width="10.75" height="5.5"/>
 <g id="Layer_3">
-	
-		<image overflow="visible" enable-background="new    " width="27" height="3" xlink:href="F0A709CC.png"  transform="matrix(-1 0 0 1 41.207 45.1943)">
-	</image>
 	<rect x="5.276" y="12.847" fill="none" width="44.451" height="26.115"/>
-	
-		<rect x="4.407" y="11.806" fill="#FFFFFF" stroke="#767676" stroke-width="2" stroke-miterlimit="10" width="46.188" height="27.783"/>
+	<rect x="4.407" y="11.806" fill="#FFFFFF" stroke="#767676" stroke-width="2" stroke-miterlimit="10" width="46.188" height="27.783"/>
 </g>
-<image overflow="visible" enable-background="new    " width="27" height="3" xlink:href="F0A709CD.png"  transform="matrix(1 0 0 1 13.6538 45.1943)">
-</image>
 <text transform="matrix(1 0 0 1 7.585 29.2773)" fill="#767676" font-family="'Arial-BoldMT'" font-size="11">4K UHD</text>
 </svg>
