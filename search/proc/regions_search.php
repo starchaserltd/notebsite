@@ -28,7 +28,7 @@ function search_regions ($name)
 	// DO THE SEARCH
 	# echo "Query to select the WARRANTYs:";
     # echo "<br>";
-	echo "<pre>" . $sel_regions . "</pre>";
+	# echo "<pre>" . $sel_regions . "</pre>";
 	
 	$result = mysqli_query($GLOBALS['con'], "$sel_regions");
 	$regions_return = array();
