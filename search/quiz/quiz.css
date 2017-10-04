@@ -343,9 +343,9 @@ _:-ms-lang(x),.iconcircle.hoverblue .ieCheckmark {
 }
 
 .shadow {
-  -moz-box-shadow: 5px 4px 4px 2px #aaa;
-  -webkit-box-shadow: 5px 4px 4px 2px #aaa;
-  box-shadow: 5px 4px 4px 2px #aaa;
+  -moz-box-shadow: 0px 4px 4px 2px #aaa;
+  -webkit-box-shadow: 0px 4px 4px 2px #aaa;
+  box-shadow: 0px 4px 4px 2px #aaa;
   text-align: center;
   height: 80%;
   width: 80%;
@@ -553,6 +553,19 @@ _:-ms-lang(x),.iconcircle.hoverblue .ieCheckmark {
   background-color: white;
 }
 
+.quiz_container > #tab1 ~ .tab2_intro ul {  
+  list-style: disc inside none;
+  max-width: 500px;
+  margin:0 auto;
+}
+
+.quiz_container > #tab1 ~ .tab2_intro ul li:last-child {
+  margin-top: 15px;
+  list-style-type:none;
+  font-weight: bold;
+}
+
+
 .quiz_container > #tab1:checked ~ .tab2_intro {
   transform: translateY(0);
 }
@@ -562,7 +575,7 @@ _:-ms-lang(x),.iconcircle.hoverblue .ieCheckmark {
 }
 
 .quiz_container  > #tab1:checked ~ label.label_intro2 {
-  top: 70%;
+  top: 75%;
 }
 
 .quiz_container  > #tab2:checked ~ label.label_intro2 {
@@ -601,6 +614,8 @@ _:-ms-lang(x),.iconcircle.hoverblue .ieCheckmark {
 
 .quiz_container .tab2_intro p:nth-of-type(1) {
   margin-top: 40px;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 /* Media Css for quiz */
@@ -638,6 +653,10 @@ _:-ms-lang(x),.iconcircle.hoverblue .ieCheckmark {
     font-size: 26px;
     margin-top: 110px;
   }
+
+  .quiz_container .tab2_intro p:not(.h2) { 
+   font-size: 14px;
+}
 
 }
 

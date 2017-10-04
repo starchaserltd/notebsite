@@ -373,7 +373,10 @@ function makeextraPage(quizp,el)
 				var split=el.toString().split("+"); var el2=parseInt(split[split.length-1]); var el3=parseInt(split[split.length-2]);
 				if(isNaN(el3)){ navnr[key].setAttribute( "onClick", closeextratext+"('"+quizp+"','"+el2+"'); "+"makePage("+key+");" );	} else { navnr[key].setAttribute( "onClick", closeextratext+"('"+quizp+"','"+el+"'); "+"closeextra('"+inextra+"','"+el3+"'); "+"makePage("+key+");" ); } 
 			}
+			navnr[key].style.display="none";
 		}
+		document.getElementsByClassName('glyphicon-arrow-left')[0].style.display="none";
+		document.getElementsByClassName('glyphicon-arrow-right')[0].style.display="none";
 		
 		if(closeextratextnav)
 		{
@@ -403,8 +406,8 @@ function closeextra(extra,el)
 	var navnr=document.getElementsByClassName('nrcircle');
 	for (var key=0;key<=maxpage;key++)
 	{
-		if(navnr[key].getAttribute("onClick")!="")
-		{navnr[key].setAttribute( "onClick", "makePage("+key+");" );}
+		if(navnr[key].getAttribute("onClick")!=""){ navnr[key].setAttribute( "onClick", "makePage("+key+");" ); }
+		navnr[key].style.display="";
 	}
 
 	document.getElementsByClassName('glyphicon-arrow-left')[0].setAttribute( "onClick", document.getElementsByClassName('glyphicon-arrow-left')[0].getAttribute( "onClick").replace("closeextra('"+extra+"','"+el+"'); ","") );
@@ -774,7 +777,7 @@ function prequery(str,type)
 
 function navigation()
 {
-	if(quiz[currentp]['selected']>=quiz[currentp]['done'])
+	if(quiz[currentp]['selected']>=quiz[currentp]['done'] && inextra==0)
 	{	 if(currentp<maxpage)
 		{ document.getElementsByClassName('glyphicon-arrow-right')[0].style.display="inline"; document.getElementById("quiz_submit_btn").style.display="none"; }
 		else
@@ -855,10 +858,15 @@ function quiz_init() { makePage(0); } quiz_init();
 	</section>
 	<section class="tab2_intro">
 		<!-- <p class="h2 text-center quizParagraf2">How to use our Quiz</p> -->
-        <p>Before you being:</p>
-        <p>The quiz has five main questions.<br/>Questions with "(multiple choices)" specified in their description accept multiple answers.<br/>Some questions can be skipped by going to the next question.<br/>Some answers will open a sub-question for clarification.<br/>
-        The battery life and budget options depend on previously selected options.</p>
-        <p>The quiz primarily focuses on laptops available on the US market.</p>
+        <p>Before you begin:</p>       
+        <ul>
+            <li>The quiz has five main questions.</li>
+            <li>Questions with "(multiple choices)" specified in their description accept multiple answers.</li>
+            <li>Some questions can be skipped by going to the next question.</li>
+            <li>Some answers will open a sub-question for clarification.</li>
+            <li>The battery life and budget options depend on previously selected options.</li>
+            <li>The quiz primarily focuses on laptops available on the US market.</li>
+        </ul>
 	</section>
 	<div style="width:100%; height:35px; text-align:center; display: inline-block; padding-top:5px">
 		<span id="question" style="font-family: 'arial'; font-size:20px;font-weight: bold;"></span>
