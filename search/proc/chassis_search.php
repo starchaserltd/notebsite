@@ -195,7 +195,7 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 					$sel_chassis.="',pi)>0";
 				}
 			}
-
+			
 			if(isset($addmsc[$x]))
 			{ 
 				foreach($addmsc[$x] as $x4)

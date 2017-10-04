@@ -344,7 +344,7 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 	}		
 			
 	// Add price to filter		
-	if ($pricemin)
+	if($pricemin)
 	{
 		$sel_gpu.=" AND ";
 		$sel_gpu.="(price+price*err)>=";

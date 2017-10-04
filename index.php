@@ -54,9 +54,15 @@ require_once("etc/session.php");
 		
 		<!-- left area -->
 		<script type="text/javascript" src="libnb/js/compjsf.js" ></script><!-- compare list functions -->
+		<div class="col-md-12 col-xs-12 cod-sm-12 col-lg-12" style="padding:5px">
+				<form action="javascript:void(0);" method="post" id="modelfind" style="text-align: -webkit-center;">		
+					<select class="modelsearch js-example-responsive" id="model_id" name ="model_id" data-placeholder="Search a laptop model" data-initvalue="search for a model"  style="width: 100%; margin:5px 0px 10px 0px; border-radius:1px;"> 
+					</select>
+				</form>
+			</div>
 			<div class="col-md-12 col-xs-12 col-sm-12 blue" id='cssmenu' style="padding:0px">
-				<ul>
-				   <li class='has-sub'><a >Browse laptops</a>
+				<ul >
+				   <li  class='has-sub'><a >Browse laptops</a>
 						<ul>
 							<li class='has-sub'><a >By brand</a>
 								<ul>
@@ -88,7 +94,7 @@ require_once("etc/session.php");
 						</ul>
 					</li>					
 					<li class='has-sub'><a >Compare</a>
-						<ul>
+						<ul style="background-color: white;">
 							<li>
 								<table class="table" id="comparelist" style="margin-bottom:0px;">
 									<tbody>
@@ -101,13 +107,7 @@ require_once("etc/session.php");
 						</ul>								
 					</li>
 				</ul>
-			</div>
-			<div class="col-md-12 col-xs-12 cod-sm-12 col-lg-12" style="padding:5px">
-				<form action="javascript:void(0);" method="post" id="modelfind" style="text-align: -webkit-center;">		
-					<select class="modelsearch js-example-responsive" id="model_id" name ="model_id" data-placeholder="Search a laptop model" data-initvalue="search for a model"  style="width: 100%; margin:5px 0px 10px 0px; border-radius:1px;"> 
-					</select>
-				</form>
-			</div>
+			</div>			
 			<!-- end left menu-->
 			<!-- simple search -->
 			<button class="btn btn-title" style="font-size:16px!important; text-align:justify;position:relative" data-toggle="collapse" data-target="#SearchParameters" aria-expanded="true" onclick=""><a style="color:white;">Quick laptop search</a><a></a></button>

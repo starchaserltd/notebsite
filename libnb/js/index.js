@@ -226,7 +226,7 @@ $(document).ready(function(){
 	var $this = $(this);
 	$this.select2({
 			tags: false,
-			multiple: false,
+			multiple: true,
 			maximumSelectionLength: 15,
 			minimumInputLength: 2,
 			language: {

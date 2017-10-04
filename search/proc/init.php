@@ -1,7 +1,7 @@
 <?php
 /* TO HELP PHP DEAL WITH EMPTY VARIABLES*/ //adaugat chassis_twoinone
 $isadvanced=0; $issimple=0;
-$model_model=array(); $prod_model=array(); $fam_model=array(); $msc_model=array(); $model_minclass=-1; $model_maxclass=999;
+$model_model=array(); $prod_model=array(); $fam_model=array(); $msc_model=array(); $model_minclass=-1; $model_maxclass=999; $model_advclass=0;
 $cpu_prod=array(); $cpu_model=array(); $cpu_ldmin=0; $cpu_ldmax=0; $cpu_status=0; $cpu_socket=array(); $cpu_techmin=0; $cpu_techmax=0; $cpu_cachemin=0; $cpu_cachemax=0; $cpu_clockmin=0; $cpu_clockmax=0; $cpu_turbomin=0; $cpu_turbomax=0; $cpu_tdpmax=0;$cpu_tdpmin=0; $cpu_coremin=0; $cpu_coremax=0; $cpu_intgpu=0; $cpu_misc=array(); $cpu_ratemin=0; $cpu_ratemax=0;
 $display_model=array(); $display_sizemin=0; $display_sizemax=0; $display_format=array(); $display_hresmin=0; $display_hresmax=0; $display_vresmin=0; $display_vresmax=0; $display_surft=array(); $display_backt=array(); $display_touch=array();   $display_misc=array(); $display_resolutions=0; $display_ratingmin=0; $display_ratingmax=0; $display_srgb=0; 
 $gpu_typelist=array(); $gpu_typegpumin=0; $gpu_typegpumax=0; $gpu_prod=array(); $gpu_model=array(); $gpu_arch=array(); $gpu_techmin=0; $gpu_techmax=0; $gpu_shadermin=0; $gpu_cspeedmin=0; $gpu_cspeedmax=0; $gpu_sspeedmin=0; $gpu_sspeedmax=0; $gpu_mspeedmin=0; $gpu_mspeedmax=0; $gpu_mbwmin=0; $gpu_mbwmax=0; $gpu_mtype=array(); $gpu_maxmemmin=0; $gpu_maxmemmax=0; $gpu_sharem=0; $gpu_powermin=0; $gpu_powermax=0; $gpu_misc=array(); $gpu_ratemin=0; $gpu_ratemax=0;$gpu_ldmin=0; $gpu_ldmax=0;

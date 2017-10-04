@@ -8,7 +8,8 @@ padding-left:7px;
 padding-right:7px;
 }
 .searchresult:hover{
-background-color:#f6f6f6;}
+background-color:#f6f6f6;
+transition: all 0.3s ease-in}
 
 
 @media screen and (min-width: 2001px){.searchresult{height:500px!important}}
@@ -43,15 +44,15 @@ div.searchresultJPG a {cursor: pointer;}
 
 .searchresultitlu{
 
-margin-top:-15px; }
+margin-top:-5px; }
 @media screen and (min-width: 1601px){.searchresultitlu{height:40px!important}}
-@media screen and (min-width: 1401px) and (max-width: 1600px){.searchresultitlu{height:47px!important}}
-@media screen and (min-width: 1301px) and (max-width: 1400px){.searchresultitlu{height:45px!important}}
-@media screen and (min-width: 1220px) and (max-width: 1300px){.searchresultitlu{height:57px!important}}
-@media screen and (min-width: 1101px) and (max-width: 1219px){.searchresultitlu{height:65px!important;font-size:13px}}
-@media screen and (min-width: 991px) and (max-width: 1100px){.searchresultitlu{height:50px!important;font-size:12px}}
-@media screen and (min-width: 501px) and (max-width: 990px){.searchresultitlu{height:47px!important;font-size:12px}}
-@media screen and (min-width: 405px) and (max-width: 500px){.searchresultitlu{height:38px!important;font-size:12px}}
+@media screen and (min-width: 1401px) and (max-width: 1600px){.searchresultitlu{height:40px!important}}
+@media screen and (min-width: 1301px) and (max-width: 1400px){.searchresultitlu{height:38px!important}}
+@media screen and (min-width: 1220px) and (max-width: 1300px){.searchresultitlu{height:50px!important}}
+@media screen and (min-width: 1101px) and (max-width: 1219px){.searchresultitlu{height:58px!important;font-size:13px}}
+@media screen and (min-width: 991px) and (max-width: 1100px){.searchresultitlu{height:43px!important;font-size:12px}}
+@media screen and (min-width: 501px) and (max-width: 990px){.searchresultitlu{height:40px!important;font-size:12px}}
+@media screen and (min-width: 405px) and (max-width: 500px){.searchresultitlu{height:31px!important;font-size:12px}}
 @media screen and (max-width: 404px){.searchresultitlu{height:50px!important;font-size:11.5px}}
 
 
@@ -63,17 +64,16 @@ div.searchresultitlu  p {text-align:center;font-weight:bold;}
 /* specifications div */
 
 .searchresultdesc{
-border-top:2px solid #404040;
 padding-left:15%;
 }
 
 @media screen and (min-width: 2560px) {.searchresultdesc{height:190px!important;font-size:13.6px;padding-left:20%!important}}
 @media screen and (min-width: 2001px) and (max-width: 2559px) {.searchresultdesc{height:195px!important;font-size:13.6px;padding-left:20%!important}}
 @media screen and (min-width: 1701px) and (max-width: 2000px){.searchresultdesc{height:205px!important;font-size:13.6px;padding-left:15%!important}}
-@media screen and (min-width: 1631px) and (max-width: 1700px){.searchresultdesc{height:190px!important;font-size:13.6px;padding-left:15%!important}}
-@media screen and (min-width: 1601px) and (max-width: 1630px){.searchresultdesc{height:190px!important;font-size:13.6px;padding-left:10%!important}}
-@media screen and (min-width: 1501px) and (max-width: 1600px){.searchresultdesc{height:195px!important;font-size:13.2px;padding-left:15%!important}}
-@media screen and (min-width: 1400px) and (max-width: 1500px){.searchresultdesc{height:190px!important;font-size:12.2px;padding-left:15%!important}}
+@media screen and (min-width: 1631px) and (max-width: 1700px){.searchresultdesc{height:195px!important;font-size:13.6px;padding-left:15%!important}}
+@media screen and (min-width: 1601px) and (max-width: 1630px){.searchresultdesc{height:195px!important;font-size:13.6px;padding-left:10%!important}}
+@media screen and (min-width: 1501px) and (max-width: 1600px){.searchresultdesc{height:200px!important;font-size:13.2px;padding-left:15%!important}}
+@media screen and (min-width: 1400px) and (max-width: 1500px){.searchresultdesc{height:200px!important;font-size:12.2px;padding-left:15%!important}}
 @media screen and (min-width: 1301px) and (max-width: 1399px){.searchresultdesc{height:155px!important;font-size:10.5px;padding-left:13%!important}}
 @media screen and (min-width: 1220px) and (max-width: 1300px){.searchresultdesc{height:180px!important;font-size:10.5px;padding-left:10%!important}}
 @media screen and (min-width: 1101px) and (max-width: 1220px){.searchresultdesc{height:190px!important;font-size:10.5px;padding-left:10%!important}}

@@ -1,11 +1,33 @@
-#top-link-block.affix-top {
-    position: absolute; /* allows it to "slide" up into view */
-    bottom: -82px; /* negative of the offset - height of link element */
-    left: 10px; /* padding from the left side of the window */
+
+.displayFlex {
+	min-height: 292px!important;
+	display: flex;
+	flex-wrap: wrap;
+	padding: 0px
 }
+
+#top-link-block.affix-top {
+	position: absolute; /* allows it to "slide" up into view */
+	bottom: -82px; /* negative of the offset - height of link element */
+	left: 10px; /* padding from the left side of the window */
+}
+
 #top-link-block.affix {
-    position: fixed; /* keeps it on the bottom once in view */
-    bottom: 58px !important; /* height of link element */
-    left:60%;   /* padding from the left side of the window */
-	
-}		
+	position: fixed; /* keeps it on the bottom once in view */
+	bottom: 58px !important; /* height of link element */
+	left: 60%;   /* padding from the left side of the window */
+}
+
+@media (max-width: 1200px) {
+	.displayFlex {
+		display: block;
+		min-height: auto!important;
+		margin-bottom: 15px;
+	}
+	.displayFlex:first-of-type {
+		margin-top: 30px;
+	}
+	.displayFlex img {
+		max-width: 180px;
+	}
+}

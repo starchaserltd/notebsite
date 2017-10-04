@@ -60,13 +60,13 @@ $published_posts = $category->category_count;
 
 			if ($categorie == "Article" && $recent_posts[$x]["ID"]){
 ?>
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="min-height:292px ;display: flex;flex-wrap: wrap;padding:0px">
-			<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" style="display: flex; align-self: center; justify-content: center;">	
+		<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 displayFlex">
+			<div class="col-lg-5 col-md-4 col-sm-4 col-xs-4" style="display: flex; align-self: center; justify-content: center;">	
 				<a onmousedown="OpenPage('<?php  echo $ad=str_replace($wpsite."/article.php/article/","content/article.php?/",get_permalink($recent_posts[$x]["ID"])); ?>',event);" style="cursor: pointer;" >
-					<img style="display:block; margin:0 auto; max-width:120px" src="<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[$x]["ID"]) )); echo $url;?>" class="img-responsive" alt="Article featured image">
+					<img style="display:block; margin:15px auto;" src="<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[$x]["ID"]) )); echo $url;?>" class="img-responsive" alt="Article featured image">
 				</a>
 			</div>
-			<div class="col-md-6 col-sm-7 col-xs-7 col-lg-6" style="font-size:20px; min-width: 170px;">
+			<div class="col-md-8 col-sm-8 col-xs-8 col-lg-6" style="font-size:20px; min-width: 170px;">
 				<a onmousedown="OpenPage('<?php  echo $ad=str_replace($wpsite."/article.php/article/","content/article.php?/",get_permalink($recent_posts[$x]["ID"])); ?>',event);" style=" font-weight:bold;color:#000; text-decoration:none; cursor: pointer;">
 				<?php echo $recent_posts[$x]["post_title"];?>
 				</a>
@@ -165,4 +165,4 @@ $published_posts = $category->category_count;
         offset: {top:100}
 		}); }
 </script>
-<link rel="stylesheet" href="content/lib/css/article.css" type="text/css" />
+<link rel="stylesheet" href="content/lib/css/article.css?v=0.1" type="text/css" />

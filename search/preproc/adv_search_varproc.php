@@ -30,7 +30,14 @@ if(isset($_GET['bdgminadv'])){ $budgetmin = (floatval($_GET['bdgminadv'])/$exch)
 if(isset($_GET['bdgmaxadv'])){ $budgetmax = (floatval($_GET['bdgmaxadv'])/$exch)+1; }
 
 if(isset($_GET['Producer_prod'])) { $prod_model = $_GET['Producer_prod']; }
-if(isset($_GET['Family_fam'])) { $fam_model = $_GET['Family_fam']; }
+//if(isset($_GET['Family_fam'])) { $fam_modelo = $_GET['Family_fam']; }print_r($fam_modelo);
+
+foreach ($_GET['Family_fam'] as $element)
+		{ if ($element =="All business families")	
+			{$model_minclass=1;$model_maxclass =3;$model_advclass=1;} else 
+				if ($element =="All consumer families")	
+						{$model_minclass=0;$model_maxclass =1;$model_advclass=1;} else 
+				{$fam_model[]=$element;}}//echo $minclass; echo $maxclass;
 
 /* *** CPU *** */
 if(isset($_GET['CPU_prod_id'])) { $cpu_prod = $_GET['CPU_prod_id']; }

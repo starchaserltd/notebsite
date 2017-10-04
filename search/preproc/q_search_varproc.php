@@ -384,13 +384,13 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			{ if($gpu_powermin<35) { $gpu_powermin = 35; } if($gpu_powermax<69) { $gpu_powermax = 69; } if((isset($_GET['atwork']) && $_GET['atwork']==1) && $gpu_powermax<500) { $gpu_powermax=500; } if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2"); $to_search["gpu"]=1; }
 											
 			if (isset($_GET['mmohigh']) && $_GET['mmohigh']==1 ) 
-			{ if($gpu_powermin<56) { $gpu_powermin = 56; } $to_search["gpu"]=1; if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","4"); $gpu_ldmin=gmdate("Y-01-01",time()-31536000*1.5 ); }
+			{ if($gpu_powermin<59) { $gpu_powermin = 59; } $to_search["gpu"]=1; if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","4"); $gpu_ldmin=gmdate("Y-01-01",time()-31536000*1.5 ); }
 										
 			if (isset($_GET['3dgameslow']) && $_GET['3dgameslow']==1) 
 			{ if($gpu_powermin<30) { $gpu_powermin = 30; } if($gpu_powermax<69) { $gpu_powermax = 69; } $to_search["gpu"]=1; if($quiz_mingputype<2) { $quiz_mingputype=1; } array_push($gpu_typelist,"1","2"); $gpu_ldmin=gmdate("Y-01-01",time()-31536000*2 ); $gpu_arch=["Maxwell","Pascal","GCN 1.2","GCN 1.3"];  }
 																	
 			if (isset($_GET['3dgamesmedium']) && $_GET['3dgamesmedium']==1) 
-			{ if($gpu_powermin<56) { $gpu_powermin = 56; } $to_search["gpu"]=1; if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","4");  $gpu_ldmin=gmdate("Y-01-01",time()-31536000*1.5 ); }
+			{ if($gpu_powermin<59) { $gpu_powermin = 59; } $to_search["gpu"]=1; if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","4");  $gpu_ldmin=gmdate("Y-01-01",time()-31536000*1.5 ); }
 															
 			if (isset($_GET['3dgameshigh']) && $_GET['3dgameshigh']==1) 
 			{ $gpu_typelist[] = 4; $to_search["gpu"]=1; if($quiz_mingputype<4) { $quiz_mingputype=4; } array_push($gpu_typelist,"4");  $gpu_ldmin=gmdate("Y-m-d",time()-31536000*1.5 ); }
@@ -534,7 +534,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			{	$chassis_twoinone = 1;	}
 		
 			if (isset($_GET['comm']) && $_GET['comm']==1 ) 
-			{	$chassis_webmin = 0.92;	$chassis_misc[]="Microphone array"; }
+			{	$chassis_webmin = 0.92;	$chassis_stuff[]="Microphone array";}
 
 			if(isset($chassis_made) && count($chassis_made)>0) { $chassis_made=array_unique($chassis_made); }
 			

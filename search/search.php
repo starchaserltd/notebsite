@@ -90,58 +90,67 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 	$_SESSION['exch']=$exch;
 	$_SESSION['exchsign']=$value["sign"];
 	
-	if(isset($_GET['page'])){$page=$_GET['page'];} 
-	else {$page=1;}
-	
-	if(isset($_GET['detailed'])) { $isdetailed=(is_numeric($_GET['detailed'])) ? intval($_GET['detailed']) : NULL; }
-	
-	/********************************************************************/
-	/* CHECKING IF DOING SIMPLE SEARCH */	
-	/********************************************************************/
-
-	if ($issimple) 
-	{	
-	include ("preproc/s_search_varproc.php");
-	}
-
-	/********************************************************************/
-	/* CHECKING IF DOING ADVANCED SEARCH */	
-	/********************************************************************/
-
-	else if ( isset($_GET['advsearch']) && $_GET['advsearch'])
+	if($underwork==0)
 	{
-		include ("preproc/adv_search_varproc.php");
-	}
-	
-	/********************************************************************/
-	/* CHECKING IF DOING QUIZ SEARCH */	
-	/********************************************************************/
+		if(isset($_GET['page'])){$page=$_GET['page'];} 
+		else {$page=1;}
+		
+		if(isset($_GET['detailed'])) { $isdetailed=(is_numeric($_GET['detailed'])) ? intval($_GET['detailed']) : NULL; }
+		
+		/********************************************************************/
+		/* CHECKING IF DOING SIMPLE SEARCH */	
+		/********************************************************************/
 
-	else if ( isset($_GET['quizsearch']) && $_GET['quizsearch'])
-	{
-		include ("preproc/q_search_varproc.php"); 
-	}
-	/********************************************************************/
-	/* CHECKING IF DOING BROWSE SEARCH */	
-	/********************************************************************/
+		if ($issimple) 
+		{	
+		include ("preproc/s_search_varproc.php");
+		}
 
-	else if ($_GET['browse_by'])
-	{
-		include ("preproc/b_search_varproc.php");
-	}
-	
+		/********************************************************************/
+		/* CHECKING IF DOING ADVANCED SEARCH */	
+		/********************************************************************/
 
-	require("proc/search_filters.php");
-/*
-	$result = mysqli_query($GLOBALS['con'], "SELECT code,sign, ROUND( convr, 5 ) rounded FROM notebro_site.exchrate HAVING rounded = $exch"); 
-	$item = mysqli_fetch_array($result);
-	$exchsign=$item["sign"];
-	$exchcode=$item["code"];
-	$_SESSION['exchcode']=$exchcode;
-	$_SESSION['exch']=$exch;
-*/
-	include("results.php");
-	exit();
+		else if ( isset($_GET['advsearch']) && $_GET['advsearch'])
+		{
+			include ("preproc/adv_search_varproc.php");
+		}
+		
+		/********************************************************************/
+		/* CHECKING IF DOING QUIZ SEARCH */	
+		/********************************************************************/
+
+		else if ( isset($_GET['quizsearch']) && $_GET['quizsearch'])
+		{
+			include ("preproc/q_search_varproc.php"); 
+		}
+		/********************************************************************/
+		/* CHECKING IF DOING BROWSE SEARCH */	
+		/********************************************************************/
+
+		else if ($_GET['browse_by'])
+		{
+			include ("preproc/b_search_varproc.php");
+		}
+		
+
+		require("proc/search_filters.php");
+	/*
+		$result = mysqli_query($GLOBALS['con'], "SELECT code,sign, ROUND( convr, 5 ) rounded FROM notebro_site.exchrate HAVING rounded = $exch"); 
+		$item = mysqli_fetch_array($result);
+		$exchsign=$item["sign"];
+		$exchcode=$item["code"];
+		$_SESSION['exchcode']=$exchcode;
+		$_SESSION['exch']=$exch;
+	*/
+		include("results.php");
+		exit();
+	}
+	else
+	{	$hourtext="hour"; if($underwork>1){$hourtext="hours";}
+		echo "<div class='serverMaintenance'><div class='animationContainer'><span class='glyphicon glyphicon-cog' aria-hidden='true'></span>
+		<span class='glyphicon glyphicon-cog' aria-hidden='true'></span>
+		<span class='glyphicon glyphicon-cog' aria-hidden='true'></span></div><p>We apologies, but we are currently undergoing server maintenance.<br><br>The search functionality has been temporarily disabled.<br>We will be back in approximately ".$underwork." ".$hourtext."!</p></div>";
+	}
 }
 else
 {

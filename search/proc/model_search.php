@@ -2,7 +2,7 @@
 
 /* ********* SELECT MODEL BASED ON FILTERS ***** */
 
-function search_model ($mmodel,$prodmodel,$fammodel,$msc,$regions,$minclass,$maxclass)
+function search_model ($mmodel,$prodmodel,$fammodel,$msc,$regions,$minclass,$maxclass,$advclass)
 {
 	$sel_model="SELECT id FROM notebro_db.MODEL WHERE 1=1";
 
@@ -53,7 +53,6 @@ function search_model ($mmodel,$prodmodel,$fammodel,$msc,$regions,$minclass,$max
 	// Add fam to filter	
 	$i=0;
 	if(gettype($fammodel)!="array") { $fammodel=(array)$fammodel; }
-	
 	foreach($fammodel as $x)
 	{
 		$fam_parts=explode(" ",$x); unset($fam_parts[0]); $x=implode(" ",$fam_parts);
@@ -75,8 +74,7 @@ function search_model ($mmodel,$prodmodel,$fammodel,$msc,$regions,$minclass,$max
 	{ $sel_model.=" ) "; }
 
 	// Add class to filter
-
-	if($minclass>=0 && $maxclass<=10) { $sel_model.=" AND idfam IN ( SELECT id FROM `FAMILIES` WHERE business BETWEEN ".$minclass." AND ".$maxclass.")"; }
+	if($minclass>=0 && $maxclass<=10) { if($advclass && $i>0){ $prep="OR";}else{$prep="AND";} $sel_model.=" ".$prep." idfam IN ( SELECT id FROM `FAMILIES` WHERE business BETWEEN ".$minclass." AND ".$maxclass.")"; }
 
 	// MSC search	
 	$i=0;

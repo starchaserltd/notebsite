@@ -58,7 +58,7 @@ else
 <?php
 		show_vars('img_1,img_2,img_3,img_4','MODEL',$idmodel);
 		$imglist=$show_vars;
-?> 
+?> <!-- 
 		<div class="modal fade" id="enlargeImageModal" tabindex="-1" role="dialog" aria-labelledby="enlargeImageModal" aria-hidden="true">
 			<div class="modal-dialog modal-lg" role="document">
 				<div class="modal-content">
@@ -70,23 +70,23 @@ else
 					</div>
 				</div>
 			</div>
-		</div> 
+		</div>  -->
 		<div class="col-md-8 col-sm-12 col-xs-12 col-lg-7 " style="margin-top:25px;display:flex;flex-wrap:wrap;">
 <?php	if(isset($imglist["img_1"]))
 		{ ?>
-			<div class="col-lg-5 col-md-4 col-sm-4 col-xs-3" style="align-self:center"><img class="pics" style="width:100%; height:auto;" src="res/img/models/<?php echo $imglist["img_1"];?>" alt="<?php $mmodel ?>"></div>
+			<div class="col-lg-5 col-md-4 col-sm-4 col-xs-3" style="align-self:center"><a href="res/img/models/<?php echo $imglist["img_1"];?>" data-lightbox="slider"><img class="pics" style="width:100%; height:auto;" src="res/img/models/<?php echo $imglist["img_1"];?>" alt="<?php $mmodel ?>"></a></div>
 <?php 	}
 		if($imglist["img_2"])
 		{ ?>
-			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="align-self:center"><img class="pics" style="width:100%; height:auto;" src="res/img/models/<?php echo $imglist["img_2"];?>" alt="<?php $mmodel ?>"></div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="align-self:center"><a href="res/img/models/<?php echo $imglist["img_2"];?>" data-lightbox="slider" data-lightbox="slider"><img class="pics" style="width:100%; height:auto;" src="res/img/models/<?php echo $imglist["img_2"];?>" alt="<?php $mmodel ?>"></a></div>
 <?php 	}
 		if($imglist["img_3"])
 		{ ?>
-			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="align-self:center"><img class="pics" style="width:100%; height:auto;" src="res/img/models/<?php echo $imglist["img_3"];?>" alt="<?php $mmodel ?>"></div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="align-self:center"><a href="res/img/models/<?php echo $imglist["img_3"];?>" data-lightbox="slider" data-lightbox="slider"><img class="pics" style="width:100%; height:auto;" src="res/img/models/<?php echo $imglist["img_3"];?>" alt="<?php $mmodel ?>"></a></div>
 <?php 	} 
 		if($imglist["img_4"])
 		{ ?>	
-			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="align-self:center"><img class="pics" style="width:100%; height:auto;" src="res/img/models/<?php echo $imglist["img_4"];?>" alt="<?php $mmodel ?>"></div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="align-self:center"><a href="res/img/models/<?php echo $imglist["img_4"];?>" data-lightbox="slider" data-lightbox="slider"><img class="pics" style="width:100%; height:auto;" src="res/img/models/<?php echo $imglist["img_4"];?>" alt="<?php $mmodel ?>" data-lightbox="slider"></a></div>
 <?php 	} ?>
 		</div> 
 		<div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ptop" style="margin-top:25px; line-height:10px; padding:0px;">
@@ -761,7 +761,16 @@ else
 <!-- <script type="text/javascript" src="model/lib/js/model_queries.js"></script> -->
 <script>$.getScript("model/lib/js/model.js");</script>
 <script><?php include("lib/php/genjsmodel.php"); ?></script>
+ <script src="lib/js/lightbox.min.js"></script> 
+ <script>
+  lightbox.option({
+      'resizeDuration': 200,
+      'fadeDuration' : 200,
+      'imageFadeDuration':200     
+    })
+</script>
 <?php  
 } ?>
 </div>
 <link rel="stylesheet" href="model/lib/css/model.css" type="text/css"/>
+<link rel="stylesheet" href="lib/css/lightbox.min.css" type="text/css"/>

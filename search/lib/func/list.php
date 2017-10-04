@@ -335,11 +335,13 @@ switch ($q) {
 			$result = mysqli_query($con, $sel);
 			$list = array();
 			$r=1;
+			$list[] = ["id"=>intval(11999),"model"=>strval("All business families")]; $list[] = ["id"=>intval(12000),"model"=>strval("All consumer families")];
 			while($rand = mysqli_fetch_row($result)) 
 			{ 
 				$list[]=["id"=>intval($r),"model"=>strval($rand[2])];
 				$r++;
 			}
+			
 			mysqli_free_result($result);
 			break;
 						

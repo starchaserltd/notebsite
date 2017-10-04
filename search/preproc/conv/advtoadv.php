@@ -4,8 +4,12 @@
 		{	$regions.='<option selected="selected">'.$element.'</option>'; }
 	}
 	if(isset($_GET['Family_fam']))
-	{	foreach ($_GET['Family_fam'] as $element)
-		{	$family.='<option selected="selected">'.$element.'</option>'; }
+	
+	{
+		foreach ($_GET['Family_fam'] as $element)
+		{	if ($element =="All business families")	{$model_minclass=1;$model_maxclass =3;$model_advclass=1;} 
+			if ($element =="All consumer families")	{$model_minclass=0;$model_maxclass =1;$model_advclass=1;} 
+			$family.='<option selected="selected">'.$element.'</option>';}//echo $minclass; echo $maxclass;
 	}
 	
 	if(isset($_GET['Producer_prod']))
@@ -175,7 +179,7 @@
 	//$oddtype = $_GET['oddtype']; echo $oddtype;
 	if(isset($_GET['oddtype'])) { $valuetype[52] = $_GET['oddtype']; }
 	if(isset($_GET['memtype'])) { $valuetype[53] = $_GET['memtype']; }
-	if(isset($_GET['opsist'])) { $valuetype[25] = $_GET['opsist']; }
+	if(isset($_GET['opsist'])) { $valuetype[25] = $_GET['opsist']; } //var_dump($valuetype[25]);
 	if(isset($_GET['GPU_prod_id'])) { $valuetype[12] = $_GET['GPU_prod_id']; }
 	if(isset($_GET['material'])) { $valuetype[26] = $_GET['material']; }
 	$chassisstuff="";
