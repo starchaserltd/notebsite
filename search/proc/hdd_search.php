@@ -151,15 +151,17 @@ function search_hdd ($model, $capmin, $capmax, $type, $readspeedmin, $readspeedm
 	if ($pricemin)
 	{
 		$sel_hdd.=" AND ";
-		$sel_hdd.="(price+price*err)>=";
+		$sel_hdd.="IF(err>0,(price-price*err)>=";
 		$sel_hdd.=$pricemin;
+		$sel_hdd.=",1)";
 	}
- 
+
 	if($pricemax)
 	{
 		$sel_hdd.=" AND ";
-		$sel_hdd.="(price-price*err)<=";
+		$sel_hdd.="IF(err>0,(price-price*err)<=";
 		$sel_hdd.=$pricemax;
+		$sel_hdd.=",1)";
 	}
 
 	// DO THE SEARCH

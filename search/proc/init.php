@@ -19,5 +19,4 @@ $pricemin=0; $budgetmax=0; $battery_life=0;
 $browse_by=0;
 $sortby=array(); $diffpisearch=0; $diffvisearch=0; $dispregion=0;
 $mdb_list=array(); $mem_list=array(); $shdd_list=array(); $wnet_list=array(); $odd_list=array(); $chassis_list=array(); $regions_id=array();
-//$regions_name = array(); $regions_name[] =1;
 ?>

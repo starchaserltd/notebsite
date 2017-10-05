@@ -237,20 +237,22 @@ function search_display ($model, $sizemin, $sizemax, $format, $hresmin, $hresmax
 		$sel_display.="rating<=";
 		$sel_display.=$ratingmax;
 	}		
-		
+
 	// Add price to filter		
 	if ($pricemin)
 	{
 		$sel_display.=" AND ";
-		$sel_display.="(price+price*err)>=";
+		$sel_display.="IF(err>0,(price-price*err)>=";
 		$sel_display.=$pricemin;
+		$sel_display.=",1)";
 	}
 
 	if($pricemax)
 	{
 		$sel_display.=" AND ";
-		$sel_display.="(price-price*err)<=";
+		$sel_display.="IF(err>0,(price-price*err)<=";
 		$sel_display.=$pricemax;
+		$sel_display.=",1)";
 	}
 
 	// DO THE SEARCH

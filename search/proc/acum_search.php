@@ -95,19 +95,21 @@ function search_acum ($tipc, $nrcmin, $nrcmax, $volt, $capmin, $capmax, $pricemi
 	if($i>0)
 	{ $sel_acum.=" ) "; }
 
-	// Price
+	// Add price to filter		
 	if ($pricemin)
 	{
 		$sel_acum.=" AND ";
-		$sel_acum.="(price+price*err)>=";
+		$sel_acum.="IF(err>0,(price-price*err)>=";
 		$sel_acum.=$pricemin;
+		$sel_acum.=",1)";
 	}
 
- 	if($pricemax)
+	if($pricemax)
 	{
 		$sel_acum.=" AND ";
-		$sel_acum.="(price-price*err)<=";
+		$sel_acum.="IF(err>0,(price-price*err)<=";
 		$sel_acum.=$pricemax;
+		$sel_acum.=",1)";
 	}
 	
 	// DO THE SEARCH

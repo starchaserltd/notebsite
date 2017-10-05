@@ -286,15 +286,17 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 	if ($pricemin)
 	{
 		$sel_cpu.=" AND ";
-		$sel_cpu.="(price+price*err)>=";
+		$sel_cpu.="IF(err>0,(price-price*err)>=";
 		$sel_cpu.=$pricemin;
+		$sel_cpu.=",1)";
 	}
 
 	if($pricemax)
 	{
 		$sel_cpu.=" AND ";
-		$sel_cpu.="(price-price*err)<=";
+		$sel_cpu.="IF(err>0,(price-price*err)<=";
 		$sel_cpu.=$pricemax;
+		$sel_cpu.=",1)";
 	}
 	
 	// DO THE SEARCH

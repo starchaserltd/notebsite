@@ -344,27 +344,27 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 	}		
 			
 	// Add price to filter		
-	if($pricemin)
+	if ($pricemin)
 	{
 		$sel_gpu.=" AND ";
-		$sel_gpu.="(price+price*err)>=";
+		$sel_gpu.="IF(err>0,(price-price*err)>=";
 		$sel_gpu.=$pricemin;
+		$sel_gpu.=",1)";
 	}
 
- 	if($pricemax)
+	if($pricemax)
 	{
 		$sel_gpu.=" AND ";
-		$sel_gpu.="(price-price*err)<=";
+		$sel_gpu.="IF(err>0,(price-price*err)<=";
 		$sel_gpu.=$pricemax;
+		$sel_gpu.=",1)";
 	}
-		
-	
+			
 	// DO THE SEARCH
 	# echo "Query to select the GPUs:";
     # echo "<br>";
 	# echo "<pre>" . $sel_gpu . "</pre>";
 
-	
 	$result = mysqli_query($GLOBALS['con'], "$sel_gpu");
 	$gpu_return = array();
 	

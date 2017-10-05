@@ -367,15 +367,17 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 	if ($pricemin)
 	{
 		$sel_chassis.=" AND ";
-		$sel_chassis.="(price+price*err)>=";
+		$sel_chassis.="IF(err>0,(price-price*err)>=";
 		$sel_chassis.=$pricemin;
+		$sel_chassis.=",1)";
 	}
 
 	if($pricemax)
 	{
 		$sel_chassis.=" AND ";
-		$sel_chassis.="(price-price*err)<=";
+		$sel_chassis.="IF(err>0,(price-price*err)<=";
 		$sel_chassis.=$pricemax;
+		$sel_chassis.=",1)";
 	}
 
 	//EXTRA MSC SEARCH ELEMENTS	

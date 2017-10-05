@@ -109,17 +109,19 @@ function search_war ($prod, $yearsmin, $yearsmax, $typewar, $misc, $ratemin, $ra
 	if ($pricemin)
 	{
 		$sel_war.=" AND ";
-		$sel_war.="(price+price*err)>=";
+		$sel_war.="IF(err>0,(price-price*err)>=";
 		$sel_war.=$pricemin;
+		$sel_war.=",1)";
 	}
 
 	if($pricemax)
 	{
 		$sel_war.=" AND ";
-		$sel_war.="(price-price*err)<=";
+		$sel_war.="IF(err>0,(price-price*err)<=";
 		$sel_war.=$pricemax;
+		$sel_war.=",1)";
 	}
-
+	
 	// DO THE SEARCH
 	# echo "Query to select the WARRANTYs:";
     # echo "<br>";

@@ -113,15 +113,17 @@ function search_wnet ($prod, $model, $misc, $speedmin, $speedmax, $bt, $ratemin,
 	if ($pricemin)
 	{
 		$sel_wnet.=" AND ";
-		$sel_wnet.="(price+price*err)>=";
+		$sel_wnet.="IF(err>0,(price-price*err)>=";
 		$sel_wnet.=$pricemin;
+		$sel_wnet.=",1)";
 	}
- 
+
 	if($pricemax)
 	{
 		$sel_wnet.=" AND ";
-		$sel_wnet.="(price-price*err)<=";
+		$sel_wnet.="IF(err>0,(price-price*err)<=";
 		$sel_wnet.=$pricemax;
+		$sel_wnet.=",1)";
 	}
 
 	// DO THE SEARCH

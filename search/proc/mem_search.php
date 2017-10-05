@@ -173,15 +173,17 @@ function search_mem ($prod, $capmin, $capmax, $stan, $freqmin, $freqmax, $type, 
 	if ($pricemin)
 	{
 		$sel_mem.=" AND ";
-		$sel_mem.="(price+price*err)>=";
+		$sel_mem.="IF(err>0,(price-price*err)>=";
 		$sel_mem.=$pricemin;
+		$sel_mem.=",1)";
 	}
 
 	if($pricemax)
 	{
 		$sel_mem.=" AND ";
-		$sel_mem.="(price-price*err)<=";
+		$sel_mem.="IF(err>0,(price-price*err)<=";
 		$sel_mem.=$pricemax;
+		$sel_mem.=",1)";
 	}
 	
 	// DO THE SEARCH

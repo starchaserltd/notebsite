@@ -98,19 +98,21 @@ function search_sist ($sist, $vers, $misc, $pricemin, $pricemax)
 	if($i>0)
 	{ $sel_sist.=" ) ";	}
 
-	// Add price to filter
-	if($pricemin)
+	// Add price to filter		
+	if ($pricemin)
 	{
 		$sel_sist.=" AND ";
-		$sel_sist.="price>=";
+		$sel_sist.="IF(err>0,(price-price*err)>=";
 		$sel_sist.=$pricemin;
+		$sel_sist.=",1)";
 	}
- 
+
 	if($pricemax)
 	{
 		$sel_sist.=" AND ";
-		$sel_sist.="price<=";
+		$sel_sist.="IF(err>0,(price-price*err)<=";
 		$sel_sist.=$pricemax;
+		$sel_sist.=",1)";
 	}
 	
 	// DO THE SEARCH

@@ -280,15 +280,17 @@ function search_mdb ($prod, $model, $ramcap, $gpu, $chip, $socket, $interface, $
 	if ($pricemin)
 	{
 		$sel_mdb.=" AND ";
-		$sel_mdb.="(price+price*err)>=";
+		$sel_mdb.="IF(err>0,(price-price*err)>=";
 		$sel_mdb.=$pricemin;
+		$sel_mdb.=",1)";
 	}
 
- 	if($pricemax)
+	if($pricemax)
 	{
 		$sel_mdb.=" AND ";
-		$sel_mdb.="(price-price*err)<=";
+		$sel_mdb.="IF(err>0,(price-price*err)<=";
 		$sel_mdb.=$pricemax;
+		$sel_mdb.=",1)";
 	}
 
 	// DO THE SEARCH

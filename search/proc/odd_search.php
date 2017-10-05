@@ -121,16 +121,17 @@ function search_odd ($type, $prod, $misc, $speedmin, $speedmax, $ratemin, $ratem
 	if ($pricemin)
 	{
 		$sel_odd.=" AND ";
-		$sel_odd.="(price+price*err)>=";
+		$sel_odd.="IF(err>0,(price-price*err)>=";
 		$sel_odd.=$pricemin;
+		$sel_odd.=",1)";
 	}
 
- 
 	if($pricemax)
 	{
 		$sel_odd.=" AND ";
-		$sel_odd.="(price-price*err)<=";
+		$sel_odd.="IF(err>0,(price-price*err)<=";
 		$sel_odd.=$pricemax;
+		$sel_odd.=",1)";
 	}
 	
 	// DO THE SEARCH
