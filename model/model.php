@@ -759,9 +759,10 @@ else
 
 	<div id="leave_comment"></div>
 <!-- <script type="text/javascript" src="model/lib/js/model_queries.js"></script> -->
-<script>$.getScript("model/lib/js/model.js");</script>
-<script><?php include("lib/php/genjsmodel.php"); ?></script>
+
+ <script><?php include("lib/php/genjsmodel.php"); ?></script>
  <script src="lib/js/lightbox.min.js"></script> 
+ <script>$.getScript("model/lib/js/model.js");</script>
  <script>
   lightbox.option({
       'resizeDuration': 200,
@@ -772,5 +773,5 @@ else
 <?php  
 } ?>
 </div>
-<link rel="stylesheet" href="model/lib/css/model.css" type="text/css"/>
 <link rel="stylesheet" href="lib/css/lightbox.min.css" type="text/css"/>
+<link rel="stylesheet" href="model/lib/css/model.css?v=0.4" type="text/css"/>

@@ -111,7 +111,7 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 		/********************************************************************/
 
 		else if ( isset($_GET['advsearch']) && $_GET['advsearch'])
-		{
+		{ 
 			include ("preproc/adv_search_varproc.php");
 		}
 		

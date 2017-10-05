@@ -61,7 +61,7 @@ $published_posts = $category->category_count;
 			if ($categorie == "Article" && $recent_posts[$x]["ID"]){
 ?>
 		<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 displayFlex">
-			<div class="col-lg-5 col-md-4 col-sm-4 col-xs-4" style="display: flex; align-self: center; justify-content: center;">	
+			<div class="col-lg-5 col-md-4 col-sm-4 col-xs-4 centerImgFlex">	
 				<a onmousedown="OpenPage('<?php  echo $ad=str_replace($wpsite."/article.php/article/","content/article.php?/",get_permalink($recent_posts[$x]["ID"])); ?>',event);" style="cursor: pointer;" >
 					<img style="display:block; margin:15px auto;" src="<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[$x]["ID"]) )); echo $url;?>" class="img-responsive" alt="Article featured image">
 				</a>

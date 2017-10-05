@@ -1,6 +1,7 @@
 <?php
+require_once("../search/proc/init.php");
 		if(isset($_GET['qtype'])) { $qsearchtype = strval($_GET['qtype']); } else { $qsearchtype=""; }
-		
+	
 
 			$regions_name[]="USA and Canada";
 			if (isset($_GET['atwork']) && $_GET['atwork']==1)
@@ -301,7 +302,7 @@
 			$cadratemin=0; $cadratemax=0; $gameratemin=0; $gameratemax=0;
 			
 			if (isset($_GET['autocadlight']) && $_GET['autocadlight']==1) 
-			{	$gpu_typelist[] = 0; $gpu_typelist[] = 1; $gpu_typelist[] = 3; $gpupowermax = 35; $to_search["gpu"]=1; }
+			{	array_push($gpu_typelist,"1","2","3"); $gpupowermax = 35; $to_search["gpu"]=1; }
 
 			if (isset($_GET['autocadmedium']) && $_GET['autocadmedium']==1) 
 			{	if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","3"); if($cadratemin<15) { $cadratemin=15; } if($cadratemax<25) { $cadratemax=25; } if ($gameratemin<30) { $gameratemin=30; } if($gameratemax<50) { $gameratemax=50; }	$to_search["gpu"]=1; }
@@ -369,7 +370,7 @@
 			if(!$to_search["gpu"]) { if($quiz_mingputype<1) { $quiz_mingputype=0; } array_push($gpu_typelist,"0","1"); if($model_maxclass>=2) { $gpupowermax=35; }; $to_search["gpu"]=1; } 
 			if($model_maxclass>=2) {  array_push($gpu_typelist,"3"); }
 			$gpu_typelist=array_unique($gpu_typelist);
-			//var_dump($gpu_model);
+			//var_dump($model_maxclass);
 			 
 			if (isset($_GET['odd']) && $_GET['odd']==1) 
 			{ $oddtype=["Any optical drive"];
@@ -386,7 +387,10 @@
 			
 			if (isset($_GET['atroad']) && $_GET['atroad']==1)
 			{ $mdb_wwan=0; }
-            
+           $mdbwwan = $mdb_wwan;
+		if ($mdbwwan ==1) {$mdbwwansel1 = "selected";}
+			else if ($mdbwwan == 2) {$mdbwwansel2 = "selected";}
+				else {$mdbwwansel0 = "selected";} 
 			 
 			$chassisweightmax=999999; $chassisthicmax=999999;
 			
@@ -461,13 +465,13 @@
 			{ if(isset($budgetmin) && $budgetmin>485) { $budgetmin=485; } if(isset($budgetmax) && $budgetmax<790) { $budgetmax=790; } }
 		
 			if (isset($_GET['b1000']) && $_GET['b1000']==1)
-			{ if(isset($budgetmin) && $budgetmin>740) { $budgetmin=740; } if(isset($budgetmax) && $budgetmax<1095) { $budgetmax=1095; } }
+			{ if(isset($budgetmin) && $budgetmin>740) { $budgetmin=740; } if(isset($budgetmax) && $budgetmax<1090) { $budgetmax=1090; } }
 		
 			if (isset($_GET['b1500']) && $_GET['b1500']==1)
-			{ if(isset($budgetmin) && $budgetmin>950) { $budgetmin=950; } if(isset($budgetmax) && $budgetmax<1600) { $budgetmax=1600; } }
+			{ if(isset($budgetmin) && $budgetmin>950) { $budgetmin=950; } if(isset($budgetmax) && $budgetmax<1630) { $budgetmax=1630; } }
 		
 			if (isset($_GET['b2000']) && $_GET['b2000']==1)
-			{ if(isset($budgetmin) && $budgetmin>1425) { $budgetmin=1425; } if(isset($budgetmax) && $budgetmax<2150) { $budgetmax=2150; } }
+			{ if(isset($budgetmin) && $budgetmin>1425) { $budgetmin=1425; } if(isset($budgetmax) && $budgetmax<2170) { $budgetmax=2170; } }
 		
 			if (isset($_GET['b3000']) && $_GET['b3000']==1)
 			{ if(isset($budgetmin) && $budgetmin>1850) { $budgetmin=1850; } if(isset($budgetmax) && $budgetmax<8000) { $budgetmax=99999; } }
@@ -521,7 +525,10 @@ else
 		{$family.='<option selected="selected">All business families</option>';}
 	if ($model_minclass>=0 && $model_maxclass<=1) 
 		{$family.='<option selected="selected">All consumer families</option>';}
-
+	if ($model_minclass>=0 && $model_maxclass>=3) 
+		{
+			$family.='<option selected="selected">All business families</option>';
+			$family.='<option selected="selected">All consumer families</option>';}
 
 foreach ($cpu_misc as $element)
 		{	$cpumsc.='<option selected="selected">'.$element.'</option>';	}
@@ -554,7 +561,7 @@ foreach ($regions_name as $element)
 		{	$regions.='<option selected="selected">'.$element.'</option>';	}
 foreach ($gpu_typelist as $element)
 			{ if ($element>=1)  {$gputype =1;}
-			$gputypesel[$element]="selected"; }		
+			$gputypesel[$element]="selected"; }		//var_dump($gpu_typelist);
 foreach ($chassis_made as $element)
 		{	$valuetype[26][] = $element;	}	
 if(isset($chassis_twoinone) && $chassis_twoinone == 1) {$twoinone_check = "checked";}

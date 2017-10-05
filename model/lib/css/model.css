@@ -27,5 +27,17 @@ div.ListElem:hover {background-color:#e4e4e4 !important;}
 .ListBox {overflow-y: auto; height: 100px; border-bottom: 1px solid rgba(201, 201, 201, 0.47);}
 .ListTitle {color:#7f91a4; padding:2px; font-size:17px;font-weight:bold; /*box-shadow:inset 0px 0px 15px 5px rgba(226, 226, 226, 0.47) */ border-style: solid;
     border-left-color: transparent; border-right-color: transparent; border-width:2px; border-top-color:#dbdfe4; border-bottom-color:#dbdfe4; font-weight:400;}
-
+.lb-outerContainer {	
+	min-height: 400px;
+	min-width: 60vw;
+	-webkit-box-pack:center;
+	-ms-flex-pack:center;
+    justify-content:center;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	 align-items: center;
+}
 /*.ListElem {border-bottom: 1px solid rgba(201, 201, 201, 0.47);padding:3px 0px 3px 0px;}*/

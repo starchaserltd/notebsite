@@ -31,3 +31,17 @@
 		max-width: 180px;
 	}
 }
+
+.centerImgFlex {
+	display: flex; 
+	align-self: center; 
+	justify-content: center;
+}
+
+@media all and (-ms-high-contrast:none) {
+.centerImgFlex {
+	display: block;
+	align-self: center;
+	justify-content: center;
+	}
+}

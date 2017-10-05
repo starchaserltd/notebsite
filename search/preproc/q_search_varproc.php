@@ -25,7 +25,7 @@ $cpu_ldatemax = $nomenvalues[0][2];//echo $cpu_ldatemin ;
 $cpu_tdpmin = $nomenvalues[1][2];
 $cpu_tdpmax = $nomenvalues[2][2];
 $totalcapmin = round($nomenvalues[3][2]); //echo $totalcapmin;
-$hdd_capmax = round($nomenvalues[4][2]); 
+$hdd_capmax = round($nomenvalues[4][2]);
 $mem_capmin=round($nomenvalues[5][2]); //echo $mem_capmin;
 $mem_capmax=round($nomenvalues[6][2]); //echo $mem_capmax;
 $batlife_min=$nomenvalues[7][2];  // from nomen
@@ -197,7 +197,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			{ if($display_sizemin>14) { $display_sizemin =14; }	if($display_sizemax<16) { $display_sizemax =16; } }
 		
 			if (isset($_GET['displarge'])	&& $_GET['displarge']==1 ) 
-			{ if($display_sizemin>16) { $display_sizemin =16; }	if($display_sizemax<24) { $display_sizemax =24; } }
+			{ if($display_sizemin>17) { $display_sizemin =17; }	if($display_sizemax<24) { $display_sizemax =24; } }
 
 			$display_backt=array_unique($display_backt);
 		
@@ -466,7 +466,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			if(!$to_search["gpu"]) { if($quiz_mingputype<1) { $quiz_mingputype=0; } array_push($gpu_typelist,"0","1"); if($model_maxclass>=2) { $gpu_powermax=35; }; $to_search["gpu"]=1; } 
 			if($model_maxclass>=2) {  array_push($gpu_typelist,"3"); }
 			$gpu_typelist=array_unique($gpu_typelist);
-			//var_dump($gpu_model);
+//var_dump($gpu_typelist);
 			break ;
 		}
 		
@@ -493,7 +493,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			{ $mdb_wwan=1; }
 			
 			if (isset($_GET['atroad']) && $_GET['atroad']==1)
-			{ $mdb_wwan=0; }
+			{ $mdb_wwan=0;}
             
 			break ;	
 		}	
@@ -594,13 +594,13 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			{ if(isset($budgetmin) && $budgetmin>485) { $budgetmin=485; } if(isset($budgetmax) && $budgetmax<790) { $budgetmax=790; } }
 		
 			if (isset($_GET['b1000']) && $_GET['b1000']==1)
-			{ if(isset($budgetmin) && $budgetmin>740) { $budgetmin=740; } if(isset($budgetmax) && $budgetmax<1095) { $budgetmax=1095; } }
+			{ if(isset($budgetmin) && $budgetmin>740) { $budgetmin=740; } if(isset($budgetmax) && $budgetmax<1090) { $budgetmax=1090; } }
 		
 			if (isset($_GET['b1500']) && $_GET['b1500']==1)
-			{ if(isset($budgetmin) && $budgetmin>950) { $budgetmin=950; } if(isset($budgetmax) && $budgetmax<1600) { $budgetmax=1600; } }
+			{ if(isset($budgetmin) && $budgetmin>950) { $budgetmin=950; } if(isset($budgetmax) && $budgetmax<1630) { $budgetmax=1630; } }
 		
 			if (isset($_GET['b2000']) && $_GET['b2000']==1)
-			{ if(isset($budgetmin) && $budgetmin>1425) { $budgetmin=1425; } if(isset($budgetmax) && $budgetmax<2150) { $budgetmax=2150; } }
+			{ if(isset($budgetmin) && $budgetmin>1425) { $budgetmin=1425; } if(isset($budgetmax) && $budgetmax<2170) { $budgetmax=2170; } }
 		
 			if (isset($_GET['b3000']) && $_GET['b3000']==1)
 			{ if(isset($budgetmin) && $budgetmin>1850) { $budgetmin=1850; } if(isset($budgetmax) && $budgetmax<8000) { $budgetmax=99999; } }

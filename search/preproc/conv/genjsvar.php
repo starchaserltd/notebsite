@@ -18,6 +18,7 @@
 <?php echo "gpupowerminset=".$gpupowermin.";"; echo "gpupowermaxset=".$gpupowermax.";"; ?>
 <?php if(isset($gpumindate)){ echo "gpumindateset=".$gpumindate.";"; } if(isset($gpumaxdate)){  echo "gpumaxdateset=".$gpumaxdate.";"; } ?>
 <?php echo "displaysizeminset=".$displaysizemin.";"; echo "displaysizemaxset=".$displaysizemax.";"; ?>
+displaysizeminset=setminuplimit(displaysizeminset,list_displaysize);
 <?php if(isset($displayres)){ ?> $('#DISPLAY_resol_id').append('<?php echo $displayres; ?>'); <?php } ?>
 <?php if(isset($displaymsc)){ ?> $('#DISPLAY_msc_id').append('<?php echo $displaymsc; ?>'); <?php } ?>
 <?php echo "totalcapminset=".$totalcapmin.";"; echo "totalcapmaxset=".$totalcapmax.";"; ?>
@@ -35,4 +36,5 @@
 <?php if(isset($chassisstuff)){ ?>$('#CHASSIS_stuff_id').append('<?php echo $chassisstuff; ?>'); <?php } ?>
 <?php echo "waryearsminset=".$waryearsmin.";"; echo "waryearsmaxset=".$waryearsmax.";"; ?>
 <?php echo "displayvresminset=".$displayvresmin.";"; echo "displayvresmaxset=".$displayvresmax.";"; ?>
+function setminuplimit(minval,val_list){for (var val in val_list){ var val2=parseFloat(val_list[val]); if(val2>=minval){ return val2; break;} } }
 </script>
