@@ -239,7 +239,7 @@ var quiz = {
             'options': {
                 'dispxsmall' : { 'txt':['<span style="font-size:13px;">10 - 13 inch</span>','multiple'], 'img':['xsmall.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':1  },
                 'dispsmall' : { 'txt':['<span style="font-size:13px;">13 - 14 inch</span>','multiple'], 'img':['small.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':1 },
-                'dispmedium' : { 'txt':['<span style="font-size:13px;">15 - 16 inch</span>','multiple'], 'img':['normal.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':1 },
+                'dispmedium' : { 'txt':['<span style="font-size:13px;">14 - 16 inch</span>','multiple'], 'img':['normal.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':1 },
 				'displarge' : { 'txt':['<span style="font-size:13px;">17+ inch</span>','multiple'], 'img':['large.svg',''], 'chk':{'on':[0],'style':['display:none;']},'no':1 }
             },
 			'selected': 0,
