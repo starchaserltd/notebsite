@@ -458,7 +458,6 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			if($cadratemin!==0)
 			{
 				$query = "SELECT DISTINCT model FROM notebro_db.GPU WHERE (rating>=".$cadratemin." AND rating<=".$cadratemax." AND typegpu=3) OR (rating>=".$gameratemin." AND rating<=".$gameratemax." AND typegpu IN (".implode(",",$gpu_typelist)."))";
-				echo $query;
 				$result = mysqli_query($GLOBALS['con'],$query); 
 				while($row=mysqli_fetch_row($result)){$gpu_model[]=$row[0];} if(count($gpu_model)<1){ $gpu_typelist=["10"]; }
 			}
