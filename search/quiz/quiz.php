@@ -523,7 +523,20 @@ function removecheck(el,page)
 function changeoptshow(page,el,add){ if(quiz[page]['options'][el]['no']<1 || add<1){ quiz[page]['options'][el]['no']+=add; }  }
 
 function changeoptions(el,page,add)
-{ //console.log(el); console.log(page); console.log(add);
+{
+	
+	var maxdispsize=99; 
+	if((quiz[1]['options']['lap']['chk']['on']==1 && quiz['display_size']['options']['displarge']['chk']['on']!=1 && quiz['display_size']['options']['dispmedium']['chk']['on']!=1)||(quiz['display_size']['options']['displarge']['chk']['on']!=1 && quiz['display_size']['options']['dispmedium']['chk']['on']!=1 && (quiz['display_size']['options']['dispsmall']['chk']['on']==1 || quiz['display_size']['options']['dispxsmall']['chk']['on']==1)))
+	{ maxdispsize=14; }
+	else
+	{
+		if((quiz[1]['options']['desk']['chk']['on']==1 && quiz[1]['options']['lap']['chk']['on']!=1 && quiz[1]['options']['bed']['chk']['on']!=1 && quiz[1]['options']['house']['chk']['on']!=1 && quiz[1]['options']['bag']['chk']['on']!=1) || quiz['display_size']['options']['displarge']['chk']['on']==1 )
+		{ maxdispsize=25; }
+		else
+		{ if(maxdispsize>16){ maxdispsize=16; } }
+	}
+
+
 	switch(page)
 	{ 
 		case 0:
@@ -648,82 +661,102 @@ function changeoptions(el,page,add)
 				for(i=1;i<=6;i++) { if(window['extraopt'+i].getAttribute("onclick").indexOf("stylus")>-1) { if(add!=1) { window['extraopt'+i].style.display="none"; } else { window['extraopt'+i].style.display="block";  } } }
 			}
 			
-			if(window[el].getAttribute("onclick").indexOf("odd")>-1 && (quiz[1]['options']['lap']['chk']['on']==1 || quiz['display_size']['options']['dispsmall']['chk']['on']==1 ))
-			{ changeoptshow("otherfeatures","FHDplus",add); for(i=1;i<=6;i++) { if(window['extraopt'+i].getAttribute("onclick").indexOf("FHDplus")>-1) { if(add!=1) { window['extraopt'+i].style.display="none"; } else { window['extraopt'+i].style.display="block";  } } } }
+			if(window[el].getAttribute("onclick").indexOf("odd")>-1 && maxdispsize<17)
+			{ 
+				changeoptshow("otherfeatures","FHDplus",add); for(i=1;i<=6;i++) { if(window['extraopt'+i].getAttribute("onclick").indexOf("FHDplus")>-1) { if(add!=1) { window['extraopt'+i].style.display="none"; } else { window['extraopt'+i].style.display="block";  } } } 
+				changeoptshow("otherfeatures","shdd",add); for(i=1;i<=6;i++) { if(window['extraopt'+i].getAttribute("onclick").indexOf("shdd")>-1) { if(add!=1) { window['extraopt'+i].style.display="none"; } else { window['extraopt'+i].style.display="block";  } } } 
+			}
 			
-			if(window[el].getAttribute("onclick").indexOf("FHDplus")>-1 && (quiz[1]['options']['lap']['chk']['on']==1 || quiz['display_size']['options']['dispsmall']['chk']['on']==1 ))
+			if(window[el].getAttribute("onclick").indexOf("FHDplus")>-1 && maxdispsize<17)
 			{ changeoptshow("otherfeatures","convertible",add); for(i=1;i<=6;i++) { if(window['extraopt'+i].getAttribute("onclick").indexOf("odd")>-1) { if(add!=1) { window['extraopt'+i].style.display="none"; } else { window['extraopt'+i].style.display="block";  } } } }
+			
+			if(window[el].getAttribute("onclick").indexOf("shdd")>-1 && maxdispsize<17)
+			{ 
+				changeoptshow("otherfeatures","odd",add); for(i=1;i<=6;i++) { if(window['extraopt'+i].getAttribute("onclick").indexOf("odd")>-1) { if(add!=1) { window['extraopt'+i].style.display="none"; } else { window['extraopt'+i].style.display="block";  } } } 
+			}
+			
 			break;
 		}
 		case "3dgames":
 		{
-			if(quiz[1]['options']['lap']['chk']['on']==1 || quiz['display_size']['options']['dispsmall']['chk']['on']==1 )
+			if(maxdispsize<15)
 			{ changeoptshow("otherfeatures","odd",add); changeoptshow("otherfeatures","convertible",add); changeoptshow("otherfeatures","stylus",add); }
+			else
+			{
+				if(el=="extraopt2" || el=="extraopt3" )
+				{ changeoptshow("otherfeatures","convertible",add); changeoptshow("otherfeatures","stylus",add); }
+			}
 			break;
 		}
 		case "mmo":
 		{
-			if((el=="extraopt2" || el=="extraopt3" )&&(quiz[1]['options']['lap']['chk']['on']==1 || quiz['display_size']['options']['dispsmall']['chk']['on']==1 ))
+			if((el=="extraopt2" || el=="extraopt3" )&&(maxdispsize<15))
 			{ changeoptshow("otherfeatures","odd",add); changeoptshow("otherfeatures","convertible",add); changeoptshow("otherfeatures","stylus",add); }
 			break;
 		}
 		case "oldgames":
 		{
-			if((el=="extraopt2" || el=="extraopt3" ) && (quiz[1]['options']['lap']['chk']['on']==1 || quiz['display_size']['options']['dispsmall']['chk']['on']==1 ))
-			{ changeoptshow("otherfeatures","odd",add); changeoptshow("otherfeatures","convertible",add); changeoptshow("otherfeatures","stylus",add); }
-			break;
-		}
-		case "oldgames":
-		{
-			if((el=="extraopt2" || el=="extraopt3" )&& (quiz[1]['options']['lap']['chk']['on']==1 || quiz['display_size']['options']['dispsmall']['chk']['on']==1 ))
+			if((el=="extraopt2" || el=="extraopt3" ) && (maxdispsize<15))
 			{ changeoptshow("otherfeatures","odd",add); changeoptshow("otherfeatures","convertible",add); changeoptshow("otherfeatures","stylus",add); }
 			break;
 		}
 		case "autocad":
 		{
-			if((el=="extraopt2" || el=="extraopt3" ) && (quiz[1]['options']['lap']['chk']['on']==1 || quiz['display_size']['options']['dispsmall']['chk']['on']==1 ))
-			{ changeoptshow("otherfeatures","odd",add); changeoptshow("otherfeatures","convertible",add); changeoptshow("otherfeatures","stylus",add); }
+			if((el=="extraopt1" || el=="extraopt2" || el=="extraopt3" )&& (maxdispsize<15))
+			{ changeoptshow("otherfeatures","odd",add); }
+			if(el=="extraopt3" )
+			{ changeoptshow("otherfeatures","convertible",add); changeoptshow("otherfeatures","stylus",add); }
 			break;	
 		}
 		case "solidworks":
 		{
-			if((el=="extraopt1" || el=="extraopt2" || el=="extraopt3" ) && (quiz[1]['options']['lap']['chk']['on']==1 || quiz['display_size']['options']['dispsmall']['chk']['on']==1 ))
-			{ changeoptshow("otherfeatures","odd",add); changeoptshow("otherfeatures","convertible",add); changeoptshow("otherfeatures","stylus",add); }
+			if((el=="extraopt1" || el=="extraopt2" || el=="extraopt3" ) && (maxdispsize<15))
+			{ changeoptshow("otherfeatures","odd",add); }
+			if(el=="extraopt2" || el=="extraopt3" )
+			{ changeoptshow("otherfeatures","convertible",add); changeoptshow("otherfeatures","stylus",add); }
 			break;	
 		}
 		case "3dsmaxmaya":
 		{
-			if((el=="extraopt1" || el=="extraopt2" || el=="extraopt3" ) && (quiz[1]['options']['lap']['chk']['on']==1 || quiz['display_size']['options']['dispsmall']['chk']['on']==1 ))
-			{ changeoptshow("otherfeatures","odd",add); changeoptshow("otherfeatures","convertible",add); changeoptshow("otherfeatures","stylus",add); }
+			if((el=="extraopt1" || el=="extraopt2" || el=="extraopt3" ) && (maxdispsize<15))
+			{ changeoptshow("otherfeatures","odd",add);  }
+			if(el=="extraopt1" || el=="extraopt2" || el=="extraopt3" )
+			{ changeoptshow("otherfeatures","convertible",add); changeoptshow("otherfeatures","stylus",add); }
 			break;	
 		}
 		case "catia":
 		{
-			if((el=="extraopt1" || el=="extraopt2" || el=="extraopt3" ) && (quiz[1]['options']['lap']['chk']['on']==1 || quiz['display_size']['options']['dispsmall']['chk']['on']==1 ))
-			{ changeoptshow("otherfeatures","odd",add); changeoptshow("otherfeatures","convertible",add); changeoptshow("otherfeatures","stylus",add); }
+			if((el=="extraopt1" || el=="extraopt2" || el=="extraopt3" ) && (maxdispsize<15))
+			{ changeoptshow("otherfeatures","odd",add); }
+			if(el=="extraopt1" || el=="extraopt2" || el=="extraopt3" )
+			{ changeoptshow("otherfeatures","convertible",add); changeoptshow("otherfeatures","stylus",add); }
 			break;	
 		}
 		case "rhinoceros":
 		{
-			if((el=="extraopt1" || el=="extraopt2" || el=="extraopt3" ) && (quiz[1]['options']['lap']['chk']['on']==1 || quiz['display_size']['options']['dispsmall']['chk']['on']==1 ))
-			{ changeoptshow("otherfeatures","odd",add); changeoptshow("otherfeatures","convertible",add); changeoptshow("otherfeatures","stylus",add); }
+			if((el=="extraopt1" || el=="extraopt2" || el=="extraopt3" ) && (maxdispsize<15))
+			{ changeoptshow("otherfeatures","odd",add);  }
+			if(el=="extraopt1" || el=="extraopt2" || el=="extraopt3" )
+			{ changeoptshow("otherfeatures","convertible",add); changeoptshow("otherfeatures","stylus",add); }
 			break;	
 		}
 		case "cadother":
 		{
-			if((el=="extraopt1" || el=="extraopt2" || el=="extraopt3" ) && (quiz[1]['options']['lap']['chk']['on']==1 || quiz['display_size']['options']['dispsmall']['chk']['on']==1 ))
-			{ changeoptshow("otherfeatures","odd",add); changeoptshow("otherfeatures","convertible",add); changeoptshow("otherfeatures","stylus",add); }
+			if((el=="extraopt1" || el=="extraopt2" || el=="extraopt3" ) && (maxdispsize<15))
+			{ changeoptshow("otherfeatures","odd",add); }
+			if(el=="extraopt1" || el=="extraopt2" || el=="extraopt3" )
+			{ changeoptshow("otherfeatures","convertible",add); changeoptshow("otherfeatures","stylus",add); }
 			break;	
 		}
 		case "videoedit":
 		{
-			if(el=="hvedit" && (quiz[1]['options']['lap']['chk']['on']==1 || quiz['display_size']['options']['dispsmall']['chk']['on']==1 ))
+			if(el=="hvedit" && (maxdispsize<15))
 			{ changeoptshow("otherfeatures","odd",add); changeoptshow("otherfeatures","convertible",add); changeoptshow("otherfeatures","stylus",add); }
 			break;
 		}
 	}
 	
-	if(quiz[1]['options']['lap']['chk']['on']==1 && (quiz['display_size']['options']['dispmedium']['chk']['on']!=1 && quiz['display_size']['options']['displarge']['chk']['on']!=1 && quiz[0]['options']['atwork']['chk']['on']!=1))
+	if(maxdispsize<15 && quiz[0]['options']['atwork']['chk']['on']!=1)
 	{	
 		changeoptshow("mmo","mmomedium",add); changeoptshow("mmo","mmohigh",add);
 		changeoptshow("games","3dgames",add); changeoptshow("3dgames","3dgameslow",add); changeoptshow("3dgames","3dgamesmedium",add); changeoptshow("3dgames","3dgameshigh",add);
