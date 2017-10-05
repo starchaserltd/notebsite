@@ -48,8 +48,8 @@ $(".predbvalues").each(function()
 	var $this = $(this);
 	$this.select2({
     tags: true,
-    multiple: true,
-    tokenSeparators: [',', ' '],
+    multiple: false,
+    tokenSeparators: [','],
     minimumInputLength: 1,
 	//maximumResultsForSearch: 20,
 	searchType: "contains",

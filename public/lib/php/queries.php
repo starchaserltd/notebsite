@@ -33,7 +33,7 @@ foreach ( array_slice($_POST,2) as $param_name => $param_val)
 if(strlen($keys)>2 && $keys[-3]=="%")
 { $keys=substr($keys, 0, -3); }
 $keys=str_ireplace("%20"," ",$keys);
-
+$list=array();
 switch($select)
 {
 	case "review_websites":
