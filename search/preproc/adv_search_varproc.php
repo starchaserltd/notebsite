@@ -33,15 +33,29 @@ if(isset($_GET['Family_fam'] ))
 {
 	foreach ($_GET['Family_fam'] as $element)
 	{
+		var_dump($element);
+
 		switch($element)
 		{
 			case "All business families":
 			{
-				$model_minclass=1; $model_maxclass=3; $model_advclass=1;
+				if($model_minclass>1 && $model_minclass!=-1){ $model_minclass=1; }
+				elseif ($model_minclass==-1) { $model_minclass=1; }
+				
+				if($model_maxclass<3 && $model_maxclass>100){ $model_maxclass=3; }
+				elseif ($model_maxclass>100) { $model_maxclass=3; } 
+				$model_advclass=1;
+				break;
 			}
 			case "All consumer families":
 			{
-				if($model_minclass<1 && $model_minclass!=-1){ $model_minclass=0; } if($model_maxclass<1 && $model_maxclass!=99){ $model_maxclass=1; } $model_advclass=1;
+				if($model_minclass>0 && $model_minclass!=-1){ $model_minclass=0; }
+				elseif ($model_minclass==-1) { $model_minclass=0; }
+				
+				if($model_maxclass<1 && $model_maxclass>100){ $model_maxclass=1; }
+				elseif ($model_maxclass>100) { $model_maxclass=1; } 
+				$model_advclass=1;
+				break;
 			}
 			default : {	$fam_model[]=$element; }
 		}
