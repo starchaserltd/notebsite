@@ -67,12 +67,12 @@ $published_posts = $category->category_count;
 		<div class="row" style="padding-bottom:5px;">	
 			<!--Review Picture -->
 			<a onmousedown="OpenPage('<?php  echo $ad=str_replace($wpsite."/article.php/review/","content/review.php?/",get_permalink($recent_posts[$x]["ID"])); ?>',event);" style="cursor: pointer;">
-				<div class="col-lg-2 col-md-3 col-sm-3 col-xs-4" style="padding:5px">
+				<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12" style="padding:5px">
 					<img src="<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[$x]["ID"]) )); echo $url;?>" class="img-responsive" alt="Review featured image">
 				</div>
 			</a>
 			<!--Review Description -->
-			<div class="col-lg-10 col-md-9 col-sm-9 col-xs-8 review">
+			<div class="col-lg-10 col-md-9 col-sm-9 col-xs-12 review">
 				<p style="font-style:italic;"><?php echo "by "; echo get_userdata($recent_posts[$x]["post_author"])->display_name; echo " - "; echo date( 'd M Y', strtotime( $recent_posts[$x]["post_date"]));?></p>
 				<p>	<?php 	
 				$test_review = nobrackets($recent_posts[$x]["post_content"]);

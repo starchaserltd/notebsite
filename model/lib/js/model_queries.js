@@ -415,7 +415,7 @@ function showACUM(str)
 				voltage=parseFloat(acum["volt"]); weight=parseFloat(acum["weight"]);
 				if(!isNaN(voltage) && voltage>0) { document.getElementById('acum_volt').innerHTML=voltage+" V"; } else { document.getElementById('acum_volt').innerHTML="-"; }
 				if(!isNaN(weight)&& weight>0) { document.getElementById('acum_weight').innerHTML = weight+"Kg ("; document.getElementById('acum_weight_i').innerHTML = (weight*2.20462262).toFixed(2)+" lb)"; }
-				else{ document.getElementById('acum_weight').innerHTML = "-";}
+				else{ document.getElementById('acum_weight').innerHTML = "-"; document.getElementById('acum_weight_i').innerHTML=""; }
 				
 				document.getElementById('acum_misc').innerHTML = acum["msc"];
 

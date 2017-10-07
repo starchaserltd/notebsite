@@ -326,9 +326,10 @@
 }
 
 .tbltitle {
-  color: #841313;
+  color: #575757;
   font-weight: bold;
 }
+
 
 .nopding {
   padding: 0px !important;
@@ -668,14 +669,16 @@
   padding: 3px 3px;
   margin-top: 5px;  
   color: #575757;
-  cursor: pointer;
-  border-color: #575757;
-  border-width: 2px;
+  cursor: pointer;  
+  border: 2px solid #575757;
   font-size:14px;
   font-weight: bold;
   transition: all 0.3s ease-in;
+  background-color: #fff;
 
 }
+.addtocpmp >a{color:#575757;padding:0px 35px;text-decoration: none}
+.addtocpmp:hover>a{color:#fff;transition: all 0.3s ease-in;}
 
 .compare1 {
   vertical-align: middle !important;
@@ -832,7 +835,7 @@ fieldset[disabled] .btn-result.active {
   padding: 2px;
 }
 
-.crop1 {
+/*.crop1 {
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
@@ -874,13 +877,13 @@ fieldset[disabled] .btn-result.active {
   height: 100%;
   width: auto;  /*-webkit-transform: translate(-50%,-50%);
         -ms-transform: translate(-50%,-50%);
-            transform: translate(-50%,-50%);*/
-}
+            transform: translate(-50%,-50%);
+}*/
 
 .imgcrop img.portrait {
-
-  /*width: 100%;*/
-  height: auto;
+  height: 100%;
+  width: auto;
+  overflow: hidden;
 }
 
 .comparename {
@@ -1166,6 +1169,7 @@ li.active a:hover {
 
 .review {
   font-size: 14px;
+  text-align: justify;
 }
 
 .titlucomp {

@@ -1,38 +1,68 @@
 <?php
 require_once("../etc/session.php");
+require_once("../etc/con_sdb.php");
+require_once("../etc/con_db.php");
 //HERE WE PROCESS THE CONFIGURATIONS FROM GET AND SESSION
 $getconfs=array();	$nrgetconfs=0;
 if(isset($_GET['ex'])){ $_SESSION['excomp']=$_GET['ex']; }
 $addtojava="<script> $(document).ready(function() { if(firstcompare) {";
+$_SESSION['compare_list']=array(); $_SESSION['toalert']=array();
+$cons=dbs_connect();
 for($i=0;$i<10;$i++)
 {
 	if(isset($_GET["conf$i"]))
 	{
-		$getconfs[$i]=$_GET["conf$i"];
-		$addtojava.=" addcompare('".$getconfs[$i]."'); ";
-		$nrgetconfs++;
+		$getconfs[$nrgetconfs]=$_GET["conf$i"];
+		$sql="SELECT * FROM notebro_temp.all_conf_".table($getconfs[$nrgetconfs])." WHERE id = $getconfs[$nrgetconfs]";
+		if($result = mysqli_query($cons,$sql))
+		{
+			$_SESSION['compare_list'][$getconfs[$nrgetconfs]] = mysqli_fetch_assoc($result);
+			$addtojava.=" addcompare('".$getconfs[$nrgetconfs]."'); ";
+			$nrgetconfs++;
+		}
+		else
+		{ $_SESSION['toalert'][]=$getconfs[$nrgetconfs]; unset($getconfs[$nrgetconfs]); }
 	}
 }
-$addtojava.="} }); </script>";
+$addtojava.="} });"; 
+if(count($_SESSION['toalert'])>0){ $addtojava.=' alert("We are sorry, but the following laptop configurations no longer exist: \n'.implode("\\n",$_SESSION['toalert']).'");'; }
+$addtojava.=" </script>";
 echo $addtojava;
 
+if($nrgetconfs==1) { $_SESSION['toalert'][]=$getconfs[0]; unset($getconfs[0]); }
+
 /* GETTING INFORMATION FROM SESSION */
-$idconf = array(); $k = 0; $nrconf = 0;
-while ($k<10)
-{
-	// var_dump($_SESSION['conf'.$k]); echo "<br><br>";
-	if (isset($_SESSION['conf'.$k]) && $_SESSION['conf'.$k]['id'])
+$nrconf = 0; $session_idconf = array();
+if($nrgetconfs<2)
+{	
+	$k = 0; $nrgetconfs=0;
+	while ($k<10)
 	{
-		if ($_SESSION['conf'.$k]["checked"]==1)
+		// var_dump($_SESSION['conf'.$k]); echo "<br><br>";
+		if (isset($_SESSION['conf'.$k]) && $_SESSION['conf'.$k]['id'])
 		{
-			$idconf[$nrconf] = $k;
-			$nrconf++;
-			if ($nrconf >= 4) {$k = 100;}
+			if ($_SESSION['conf'.$k]["checked"]==1)
+			{
+				$session_idconf[$nrconf] = $k;
+				$sql="SELECT * FROM notebro_temp.all_conf_".table($_SESSION['conf'.$k]['id'])." WHERE id = ".$_SESSION['conf'.$k]['id']."";
+				if($result = mysqli_query($cons,$sql))
+				{
+					$_SESSION['compare_list'][$_SESSION['conf'.$k]['id']] = mysqli_fetch_assoc($result);
+					$addtojava.=" addcompare('".$_SESSION['conf'.$k]['id']."'); ";
+					$nrconf++;
+				}
+				else
+				{ $_SESSION['toalert'][]=$_SESSION['conf'.$k]['id']; unset($_SESSION['conf'.$k]['id']); }
+			
+				if ($nrconf >= 4) {$k = 100;}
+			}
 		}
+		$k++;
 	}
-	$k++;
 }
 $nrconf--;
-$_SESSION['java_nrconf']=$nrconf; $_SESSION['java_nrgetconfs']=$nrgetconfs; $_SESSION['java_getconfs']=$getconfs; $_SESSION['java_idconf']=$idconf;
+mysqli_close($cons); mysqli_close($con);
+
+$_SESSION['java_nrconf']=$nrconf; $_SESSION['java_nrgetconfs']=$nrgetconfs; $_SESSION['java_getconfs']=$getconfs; $_SESSION['java_session_idconf']=$session_idconf;
 //DONE PROCESSING
 ?>

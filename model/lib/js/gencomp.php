@@ -12,6 +12,7 @@ if(isset($_SESSION['excomp']))
 {
 	$exchcode=$_SESSION['excomp']; $_SESSION['exchcode']=$exchcode;
 	$query=mysqli_query($con,"SELECT * FROM notebro_site.exchrate");
+
 	while( $row=mysqli_fetch_assoc($query))
 	{
 		if($row["code"]==$exchcode)
@@ -22,6 +23,12 @@ if(isset($_SESSION['excomp']))
 			break;
 		}
 	}
+	
+	if(!isset($exch))
+	{
+		$lang=0; $exchcode="USD"; $exchsign="$"; $exch=1;
+		$_SESSION['lang']=$lang;  $_SESSION['exch']=$exch; $_SESSION['exchsign']=$exchsign; $_SESSION['exchcode']=$exchcode;
+	}
 }
 else 
 { 
@@ -31,21 +38,14 @@ else
 	if(isset($_SESSION['exch'])){ $exch=$_SESSION['exch']; } else { $exch=1; }
 } 
 
-$delshdd=1; $delodd=1;
-
-$nrconf= $_SESSION['java_nrconf']; $nrgetconfs=$_SESSION['java_nrgetconfs']; $getconfs=$_SESSION['java_getconfs']; $idconf=$_SESSION['java_idconf'];
+$delshdd=1; $delodd=1; $maxminvalues=(object)[];
+$nrconf= $_SESSION['java_nrconf']; $nrgetconfs=$_SESSION['java_nrgetconfs']; $getconfs=$_SESSION['java_getconfs']; $session_idconf=$_SESSION['java_session_idconf'];
 if($nrgetconfs>0) { $nrconf=$nrgetconfs-1; }
-$maxminvalues=(object) [];
-echo 'document.title="Noteb - ";' ;
 for($x = 0; $x <= $nrconf; $x++) 
 {
 	if($nrgetconfs>0) { $confid=$getconfs[$x]; }
-	else { $confid = $_SESSION['conf'.$idconf[$x]]['id']; }
-	$cons=dbs_connect();
-	$sql="SELECT * FROM notebro_temp.all_conf_".table($confid)." WHERE id = $confid";
-	$result = mysqli_query($cons,$sql);
-	$row = mysqli_fetch_assoc($result);
-	mysqli_close($cons);
+	else { $confid = $_SESSION['conf'.$session_idconf[$x]]['id']; }
+	$row = $_SESSION['compare_list'][$confid];
 	$conf_model = $row['model'];
 	$cpu_conf_cpu= $row['cpu'];
 	$disp_conf_display = $row['display'];
@@ -68,8 +68,7 @@ for($x = 0; $x <= $nrconf; $x++)
 	<!-- HEADER CSS -->
 <?php 
 	show('notebro_db.MODEL model JOIN notebro_db.FAMILIES families on model.idfam=families.id',$conf_model ); 
-	if(isset($getconfs[$x])){ $cfg_id=$getconfs[$x];  } else { $cfg_id=$_SESSION['conf'.$idconf[$x]]["id"]; }
-
+	
 	preg_match('/(.*)\.(jpg|png)/', $resu["img_1"],$img);
 	$img=$img[1];
 	$maxminvalues=bluered(floatval($rate_conf_rate),$maxminvalues,$x,"rating",0);
@@ -82,11 +81,11 @@ for($x = 0; $x <= $nrconf; $x++)
 		'<span class="col-sm-12 col-md-12 col-xs-12 col-lg-12 nopding"><span style="color:black; font-weight:bold;">Rating: </span><br class="brk"><span id="rating'.$x.'">'.round($rate_conf_rate/100,1)." / 100</span></span>",
 		'<span class="col-sm-12 col-md-12 col-xs-12 col-lg-12 nopding" style="color:black;"><span style="color:black; font-weight:bold;">Price: </span><br class="brk"><span id="price'.$x.'">'.$exchsign." ".round(($price_conf_price-$err_conf_err/2)*$exch,0)." - ".round(($price_conf_price+$err_conf_err/2)*$exch,0)."</span></span>",
 		'<span class="col-sm-12 col-md-12 col-xs-12 col-lg-12 nopding" style="color:black;"><span style="color:black; font-weight:bold;">Battery:  </span><br class="brk"><span id="batlife'.$x.'">'.round(($batlife_conf_batlife*0.95),1)." - ".round(($batlife_conf_batlife*1.02),1)." h</span></span>",
-		'<a style="color:black;"><span class="col-xs-8 col-md-6 col-sm-6 col-md-offset-3  col-sm-offset-3 col-xs-offset-2 addtocpmp" onclick="removecomp('."-+-".$cfg_id."-+-".',1)">Remove</span></a>'
+		'<button style="padding:2px 0px" class="addtocpmp" onclick="removecomp('."-+-".$confid ."-+-".',1)"><a>Remove</a></button>'
 	);
 
 	$danvar=implode("','",$vars);
-	$danvar="'".$danvar."'";
+	$danvar="'".$danvar."'"; echo 'document.title="Noteb - ";' ;
 ?>
 	var array_var=[<?php echo $danvar; ?>];
 	document.title = document.title + <?php if($x>0) { echo "' vs '";} else { echo "' '"; } ?> + '<?php echo $resu['prod']." ".$resu['fam']." ".$resu['model']; ?> '; excode='<?php echo  $exchcode ?>';
@@ -412,3 +411,19 @@ stripeme("CHASSIS_table");
 stripeme("WNET_table");
 stripeme("WARA_table");
 stripeme("OS_table");
+
+var confstoremove=["<?php echo implode('","',$_SESSION['toalert']);?>"];
+
+if(confstoremove[0]!=="")
+{	
+	for(var key in confstoremove)
+	{
+		var notreplaced=1;
+		if(notreplaced){ currentPage=currentPage.replace(new RegExp("&conf[\\d+]="+confstoremove[key],'i'),function replacing(){ notreplaced=0; return "";}) }
+		if(notreplaced){ currentPage=currentPage.replace(new RegExp("conf[\\d+]="+confstoremove[key]+"&",'i'),function replacing(){ notreplaced=0; return "";}) }
+		if(notreplaced){ currentPage=currentPage.replace(new RegExp("conf[\\d+]="+confstoremove[key],'i'),function replacing(){ notreplaced=0; return "";}) }	
+	}
+}
+
+var stateObj = { no: "empty" }; setTimeout(function(){ gocomp=1;}, 10);
+history.replaceState(stateObj,document.title,currentPage);

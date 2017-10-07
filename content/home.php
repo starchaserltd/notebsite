@@ -71,7 +71,7 @@ $published_posts = $count_posts->publish;
 						else {echo "Not Article or Review";} 
 						?>',event);" style="cursor: pointer;">
 						<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[0]["ID"]) )); ?>
-					<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 imgcrop" style="height:180px;padding:0px;overflow-y:hidden;">
+					<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 imgcrop" style="height:180px;padding:0px;overflow:hidden;">
 						<img class="portrait crop3" src="<?php echo $url;?>">	
 						<div style="position:absolute; bottom:0; background-color:rgb(40, 95, 143); color:#fff; font-weight:normal; text-align:center;width:100%; font-size:16px;padding:3px;"><?php echo $recent_posts[0]["post_title"]; ?></div>	
 					</div>
@@ -86,7 +86,7 @@ $published_posts = $count_posts->publish;
 						else {echo "Not Article or Review";}
 						?>',event);" style="cursor: pointer;">
 						<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[1]["ID"]) )); ?>
-					<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 imgcrop" style="padding:0px;height:180px;overflow-y:hidden;">	
+					<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 imgcrop" style="padding:0px;height:180px;overflow:hidden;">	
 						<img class="portrait crop3" src="<?php echo $url;?>">
 						<div style="position:absolute; bottom:0; background-color:rgb(40, 95, 143);color:#fff; font-weight:normal; text-align:center; width:100%; font-size:16px;padding:3px;"><?php echo $recent_posts[1]["post_title"]; ?></div>
 					</div>
@@ -101,7 +101,7 @@ $published_posts = $count_posts->publish;
 						else {echo "Not Article or Review";}
 						?>',event);" style="cursor: pointer;">
 						<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[2]["ID"]) )); ?>
-					<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 imgcrop" style="height:180px;padding:0px;overflow-y:hidden;">	
+					<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 imgcrop" style="height:180px;padding:0px;overflow:hidden;">	
 						<img class="portrait crop3" src="<?php echo $url;?>">
 						<div style="position:absolute; bottom:0; background-color:rgb(40, 95, 143); color:#fff; font-weight:normal; text-align:center;width:100%; font-size:16px;padding:3px;"><?php echo $recent_posts[2]["post_title"]; ?></div>
 					</div>

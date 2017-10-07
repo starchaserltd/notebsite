@@ -13,7 +13,7 @@ if($nrconf < 1 && $nrgetconfs <1) //nrconf is from headercomp.php
 <div class="col-md-8 col-md-offset-2" style="border:1px solid #ddd; background-color:#f6f6f6; border-radius:15px; margin-top:20px;">
 <?php
 	echo "	<br><b>Here you can compare two or more laptop configurations.</b><br><br> In order to do this, search for the desired model/configuration using this website's search functionalities and then add it to the compare list. <br> You can view your current list of saved configurations in the left menu, under «My toolbox».";
-	echo '	<br><br><span style="color:#BF1A1A;text-align:center; font-weight:bold;">Currently you have '.($nrconf+1).' configuration'; if(($nrconf+1)!=1) echo "s"; echo ' in your list.</span><br><br>';
+	echo '	<br><br><span style="color:#BF1A1A;text-align:center; font-weight:bold;">Currently you have '.($nrconf+1).' configuration'; if(($nrconf+1)!=1) echo "s"; echo ' in your list.<br>Or maybe the laptop configurations you are trying to compare no longer exist.</span><br><br>';
 ?>
 </div>
 <?php

@@ -33,7 +33,7 @@ if(isset($_GET['Family_fam'] ))
 {
 	foreach ($_GET['Family_fam'] as $element)
 	{
-		var_dump($element);
+		//var_dump($element);
 
 		switch($element)
 		{

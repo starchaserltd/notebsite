@@ -5,7 +5,7 @@
 function search_mdb ($prod, $model, $ramcap, $gpu, $chip, $socket, $interface, $netw, $hdd, $misc, $ratemin, $ratemax, $pricemin, $pricemax, $nowwan)
 {
 //var_dump($misc);
-	$sel_mdb="SELECT id,price,rating,err FROM notebro_db.MDB WHERE 1=1";
+	$sel_mdb="SELECT id,price,rating,err FROM notebro_db.MDB WHERE 1=1 AND valid=1";
 
 	// Add producers to filter
 	$i=0;

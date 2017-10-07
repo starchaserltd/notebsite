@@ -4,7 +4,7 @@
 
 function search_hdd ($model, $capmin, $capmax, $type, $readspeedmin, $readspeedmax, $writesmin, $writesmax, $rpmmin, $rpmmax, $misc, $ratemin, $ratemax, $pricemin, $pricemax)
 {
-	$sel_hdd="SELECT id,price,rating,err FROM notebro_db.HDD WHERE 1=1";
+	$sel_hdd="SELECT id,price,rating,err FROM notebro_db.HDD WHERE 1=1 AND valid=1";
 	
 	// Add models to filter
 	$i=0;

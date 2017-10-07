@@ -4,7 +4,7 @@
 
 function search_mem ($prod, $capmin, $capmax, $stan, $freqmin, $freqmax, $type, $latmin, $latmax, $voltmin, $voltmax, $misc, $ratemin, $ratemax, $pricemin, $pricemax)
 {
-	$sel_mem="SELECT id,price,rating,err FROM notebro_db.MEM WHERE 1=1";
+	$sel_mem="SELECT id,price,rating,err FROM notebro_db.MEM WHERE 1=1 AND valid=1";
 	
 	// Add producers to filter
 	$i=0;

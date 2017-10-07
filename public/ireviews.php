@@ -30,7 +30,7 @@ else { $errMsg = 'Please enter the captcha code:'; }
 	
 	<div class="col-md-12 col-lg-12 irevtop">
 		<div class="Irevm col-md-1">Site :</div>
-		<div class="col-md-6">
+		<div class="col-md-6" id="modelfind">
 		<select class="predbvalues Irevmod" name="site" data-placeholder="Ex. Tom's Hardware, Notebookcheck" data-initvalue="Type website name" data-url="public/lib/php/queries.php" data-type="review_websites"></select>
 		<!-- <div class="col-md-6"><textarea class="input" style="margin:0" name="site" autocomplete="off" spellcheck="false" name="site" placeholder="Ex. Tom's Hardware, Notebookcheck" value=""></textarea></div> -->
 		</div>

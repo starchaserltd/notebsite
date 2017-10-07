@@ -1,7 +1,38 @@
 <?php
 require_once("../search/proc/init.php");
 		if(isset($_GET['qtype'])) { $qsearchtype = strval($_GET['qtype']); } else { $qsearchtype=""; }
-	
+$result = mysqli_query($GLOBALS['con'], "SELECT * FROM notebro_site.nomen WHERE type = 18 OR type=21 OR type=22 OR type=33 OR type=34 OR type = 35 OR type = 36 OR type=59 OR type=60  OR type = 61 OR type = 62 OR type=67 OR type=68  OR type =70 OR type=71  OR type =81 ORDER BY type ASC");
+while( $row=mysqli_fetch_array($result)){ $nomenvalues[]=$row; }
+
+//$cpu_ldatemax = $nomenvalues[0][2];//echo $cpu_ldatemin ;
+//$cpu_tdpmin = $nomenvalues[1][2];
+//$cpu_tdpmax = $nomenvalues[2][2];
+$totalcapmin = round($nomenvalues[3][2]); //echo $totalcapmin;
+$totalcapmax = round($nomenvalues[4][2]);
+/*$memcapmin=round($nomenvalues[5][2]); //echo $mem_capmin;
+$memcapmax=round($nomenvalues[6][2]); //echo $mem_capmax;
+$batlifemin=$nomenvalues[7][2];  // from nomen
+$batlifemax=$nomenvalues[8][2];// from nomen 
+$gpupowermin = round($nomenvalues[9][2]);
+$gpupowermax = 0;
+$displayvresmin=$nomenvalues[11][2];
+$displayvresmax=$nomenvalues[12][2];*/
+//$price_min=$nomenvalues[13][2];
+//$price_max=$nomenvalues[14][2];
+
+/*
+
+$gpu_ldmax = $nomenvalues[15][2]; //echo $gpu_ldatemin;
+
+//pt selectia anului si scaderea cu 2 pt procesoare
+$datecpu = array();
+$datecpu = explode("-",$cpu_ldmax);//echo $date[0];
+$datecpu[0] = $datecpu[0]-2;
+
+*/
+
+
+		
 
 			$regions_name[]="USA and Canada";
 			if (isset($_GET['atwork']) && $_GET['atwork']==1)
@@ -270,7 +301,7 @@ require_once("../search/proc/init.php");
 			if (isset($_GET['shdd']) && $_GET['shdd']==1) 
 			{  $to_search['shdd'] = 1; $nr_hdd=2;}
 		
-			 
+/*			 
 			$quiz_mingputype=0; $gpu_typelist=[];
 			if (isset($_GET['oldgameslow']) && $_GET['oldgameslow']==1) 
 			{ array_push($gpu_typelist,"0","1"); if($quiz_mingputype<0) { $quiz_mingputype=0; } $to_search["gpu"]=1; }
@@ -371,7 +402,119 @@ require_once("../search/proc/init.php");
 			if($model_maxclass>=2) {  array_push($gpu_typelist,"3"); }
 			$gpu_typelist=array_unique($gpu_typelist);
 			//var_dump($model_maxclass);
-			 
+			
+*/
+
+$quiz_mingputype=0; $gpu_typelist=[];
+			if (isset($_GET['oldgameslow']) && $_GET['oldgameslow']==1) 
+			{ array_push($gpu_typelist,"0","1"); if($quiz_mingputype<0) { $quiz_mingputype=0; } $to_search["gpu"]=1; }
+																	
+			if (isset($_GET['oldgamesmedium']) && $_GET['oldgamesmedium']==1) 
+			{ if($quiz_mingputype<1) { $quiz_mingputype=1; } if($gpupowermin<15) { $gpupowermin = 15; } array_push($gpu_typelist,"1"); $to_search["gpu"]=1; }
+																							
+			if (isset($_GET['oldgameshigh']) && $_GET['oldgameshigh']==1) 
+			{ if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2"); if($gpupowermin<40) { $gpupowermin = 40; } $to_search["gpu"]=1; }
+											
+			if (isset($_GET['mmolow']) && $_GET['mmolow']==1) 
+			{ if($quiz_mingputype<0) { $quiz_mingputype=0; } array_push($gpu_typelist,"0","1"); $to_search["gpu"]=1; }
+											
+			if (isset($_GET['mmomedium']) && $_GET['mmomedium']==1) 
+			{ if($gpupowermin<35) { $gpupowermin = 35; } if($gpupowermax<69) { $gpupowermax = 69; } if((isset($_GET['atwork']) && $_GET['atwork']==1) && $gpupowermax<500) { $gpupowermax=500; } if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2"); $to_search["gpu"]=1; }
+											
+			if (isset($_GET['mmohigh']) && $_GET['mmohigh']==1 ) 
+			{ if($gpupowermin<59) { $gpupowermin = 59; } $to_search["gpu"]=1; if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","4"); $gpu_ldmin=gmdate("Y-01-01",time()-31536000*1.5 ); }
+										
+			if (isset($_GET['3dgameslow']) && $_GET['3dgameslow']==1) 
+			{ if($gpupowermin<30) { $gpupowermin = 30; } if($gpupowermax<69) { $gpupowermax = 69; } $to_search["gpu"]=1; if($quiz_mingputype<2) { $quiz_mingputype=1; } array_push($gpu_typelist,"1","2"); $gpu_ldmin=gmdate("Y-01-01",time()-31536000*2 ); $gpu_arch=["Maxwell","Pascal","GCN 1.2","GCN 1.3"];  }
+																	
+			if (isset($_GET['3dgamesmedium']) && $_GET['3dgamesmedium']==1) 
+			{ if($gpupowermin<59) { $gpupowermin = 59; } $to_search["gpu"]=1; if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","4");  $gpu_ldmin=gmdate("Y-01-01",time()-31536000*1.5 ); }
+															
+			if (isset($_GET['3dgameshigh']) && $_GET['3dgameshigh']==1) 
+			{ $gpu_typelist[] = 4; $to_search["gpu"]=1; if($quiz_mingputype<4) { $quiz_mingputype=4; } array_push($gpu_typelist,"4");  $gpu_ldmin=gmdate("Y-m-d",time()-31536000*1.5 ); }
+							
+			$cadratemin=0; $cadratemax=0; $gameratemin=0; $gameratemax=0;
+			
+			if (isset($_GET['autocadlight']) && $_GET['autocadlight']==1) 
+			{	$gpu_typelist[] = 0; $gpu_typelist[] = 1; $gpu_typelist[] = 3; $gpupowermax = 35; $to_search["gpu"]=1; }
+
+			if (isset($_GET['autocadmedium']) && $_GET['autocadmedium']==1) 
+			{	if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","3"); if($cadratemin<15) { $cadratemin=15; } if($cadratemax<25) { $cadratemax=25; } if ($gameratemin<30) { $gameratemin=30; } if($gameratemax<50) { $gameratemax=50; }	$to_search["gpu"]=1; }
+		
+			if (isset($_GET['autocadheavy']) && $_GET['autocadheavy']==1) 
+			{ if($cadratemin<20) { $cadratemin=20; } if($cadratemax<35) { $cadratemax=35; } if ($gameratemin<40) { $gameratemin=40; } if($gameratemax<65) { $gameratemax=65; }	if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","3","4"); $to_search["gpu"]=1; }
+		
+			if (isset($_GET['swlight']) && $_GET['swlight']==1) 
+			{ if($cadratemin<10) { $cadratemin=10; } if($cadratemax<30) { $cadratemax=30; } if ($gameratemin<24) { $gameratemin=24; } if($gameratemax<50) { $gameratemax=50; }	if($quiz_mingputype<2) { $quiz_mingputype=2; }; if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","3"); $to_search["gpu"]=1; }
+
+			if (isset($_GET['swmedium']) && $_GET['swmedium']==1) 
+			{ if($cadratemin<30) { $cadratemin=30; } if($cadratemax<50) { $cadratemax=50; } if ($gameratemin<45) { $gameratemin=45; } if($gameratemax<65) { $gameratemax=65; }	if($quiz_mingputype<2) { $quiz_mingputype=2; } if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","3","4"); $to_search["gpu"]=1; }
+		
+			if (isset($_GET['swheavy']) && $_GET['swheavy']==1) 
+			{ if($cadratemin<50) { $cadratemin=50; } if ($gameratemin<90) { $gameratemin=1000; } if($gameratemax<200) { $gameratemax=200; } if($quiz_mingputype<3) { $quiz_mingputype=3; } array_push($gpu_typelist,"3","4"); $to_search["gpu"]=1; }
+		
+			if (isset($_GET['3dsmaxlight']) && $_GET['3dsmaxlight']==1) 
+			{ if($cadratemin<20) { $cadratemin=20; } if($cadratemax<35) { $cadratemax=35; } if ($gameratemin<30) { $gameratemin=30; } if($gameratemax<60) { $gameratemax=60; } if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","4"); $to_search["gpu"]=1; }
+
+			if (isset($_GET['3dsmaxmedium']) && $_GET['3dsmaxmedium']==1) 
+			{ if($cadratemin<35) { $cadratemin=35; } if($cadratemax<60) { $cadratemax=60; } if ($gameratemin<60) { $gameratemin=60; } if($gameratemax<80) { $gameratemax=80; } if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","4"); $to_search["gpu"]=1; }
+		
+			if (isset($_GET['3dsmaxheavy']) && $_GET['3dsmaxheavy']==1) 
+			{ if($cadratemin<60) { $cadratemin=60; } if($cadratemax<200) { $cadratemax=200; } if ($gameratemin<90) { $gameratemin=90; } if($gameratemax<200) { $gameratemax=200; } if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"4"); $to_search["gpu"]=1; }
+		
+			if (isset($_GET['catialight']) && $_GET['catialight']==1) 
+			{ if($cadratemin<25) { $cadratemin=25; } if($cadratemax<35) { $cadratemax=35; } if ($gameratemin<50) { $gameratemin=50; } if($gameratemax<70) { $gameratemax=70; } if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","4"); $to_search["gpu"]=1; }
+
+			if (isset($_GET['catiamedium']) && $_GET['catiamedium']==1) 
+			{ if($cadratemin<35) { $cadratemin=35; } if($cadratemax<60) { $cadratemax=60; } if ($gameratemin<70) { $gameratemin=70; } if($gameratemax<200) { $gameratemax=200; } if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","4"); $to_search["gpu"]=1; }
+		
+			if (isset($_GET['catiaheavy']) && $_GET['catiaheavy']==1) 
+			{ if($cadratemin<60) { $cadratemin=60; }  if($cadratemax<200) { $cadratemax=200; }  if ($gameratemin<1000) { $gameratemin=1000; } if($gameratemax<200) { $gameratemax=200; } if($quiz_mingputype<3) { $quiz_mingputype=3; } array_push($gpu_typelist); $to_search["gpu"]=1; }
+		
+			if (isset($_GET['rhinolight']) && $_GET['rhinolight']==1) 
+			{ if($cadratemin<20) { $cadratemin=20; } if($cadratemax<35) { $cadratemax=35; } if ($gameratemin<30) { $gameratemin=30; } if($gameratemax<60) { $gameratemax=60; } if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","4"); $to_search["gpu"]=1; }
+
+			if (isset($_GET['rhinomedium']) && $_GET['rhinomedium']==1) 
+			{ if($cadratemin<35) { $cadratemin=35; } if($cadratemax<60) { $cadratemax=60; } if ($gameratemin<50) { $gameratemin=50; } if($gameratemax<80) { $gameratemax=80; } if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","4"); $to_search["gpu"]=1; }
+		
+			if (isset($_GET['rhinoheavy']) && $_GET['rhinoheavy']==1) 
+			{ if($cadratemin<60) { $cadratemin=60; } if($cadratemax<200) { $cadratemax=200; }  if ($gameratemin<1000) { $gameratemin=90; } if($gameratemax<200) { $gameratemax=200; } if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"4"); $to_search["gpu"]=1; }
+		
+			if (isset($_GET['cadolight']) && $_GET['cadolight']==1) 
+			{ if($cadratemin<25) { $cadratemin=25; } if($cadratemax<35) { $cadratemax=35; } if ($gameratemin<50) { $gameratemin=50; } if($gameratemax<70) { $gameratemax=70; }  if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","4"); $to_search["gpu"]=1; }
+			
+			if (isset($_GET['cadomedium']) && $_GET['cadomedium']==1) 
+			{ if($cadratemin<30) { $cadratemin=30; } if($cadratemax<60) { $cadratemax=60; } if ($gameratemin<70) { $gameratemin=70; }if($gameratemax<200) { $gameratemax=200; }  if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","4"); $to_search["gpu"]=1; }
+		
+			if (isset($_GET['cadoheavy']) && $_GET['cadoheavy']==1) 
+			{ if($cadratemin<60) { $cadratemin=60; } if($cadratemax<200) { $cadratemax=200; }  if ($gameratemin<1000) { $gameratemin=1000; } if($gameratemax<200) { $gameratemax=200; }   if($quiz_mingputype<3) { $quiz_mingputype=3; } $to_search["gpu"]=1; }
+
+			if($to_search["gpu"]) {  $gpu_typelist=array_unique($gpu_typelist); for($i=0;$i<=$quiz_mingputype;$i++) { array_diff($gpu_typelist,strval($i)); } }
+			
+		//variabile de test
+			//$cadratemin = 15;$cadratemax = 30;
+			if($cadratemin!==0)
+			{
+				$query = "SELECT DISTINCT model FROM notebro_db.GPU WHERE (rating>=".$cadratemin." AND rating<=".$cadratemax." AND typegpu=3) OR (rating>=".$gameratemin." AND rating<=".$gameratemax." AND typegpu IN (".implode(",",$gpu_typelist)."))";
+				//echo $query;
+				$result = mysqli_query($GLOBALS['con'],$query); 
+				while($row=mysqli_fetch_row($result)){$gpu_model[]=$row[0];} if(count($gpu_model)<1){ $gpu_typelist=["10"]; }
+			}
+			
+			if(!$to_search["gpu"]) { if($quiz_mingputype<1) { $quiz_mingputype=0; } array_push($gpu_typelist,"0","1"); if($model_maxclass>=2) { $gpupowermax=35; }; $to_search["gpu"]=1; } 
+			if($model_maxclass>=2) {  array_push($gpu_typelist,"3"); }
+			$gpu_typelist=array_unique($gpu_typelist);
+
+
+
+
+
+
+
+
+
+
+			
 			if (isset($_GET['odd']) && $_GET['odd']==1) 
 			{ $oddtype=["Any optical drive"];
 			  foreach ($oddtype as $element)
@@ -418,7 +561,7 @@ require_once("../search/proc/init.php");
 			{	$chassis_made[] = "Metal"; 	$chassis_made[] = "Aluminium"; 	$chassis_made[] = "Lithium";  $chassis_made[] = "Carbon"; $chassis_made[] = "Magnesium"; $chassis_made[] = "Glass fiber"; $chassis_made[] = "Shock-absorbing ultra-polymer";}		
 			
 			if (isset($_GET['media']) && $_GET['media']==1) 
-			{ $chassis_vports[] = "HDMI"; $diffvisearch=2;} 
+			{ $chassis_vports[] = "1 X HDMI"; $diffvisearch=2; } 
 			
 			if (isset($_GET['stylus']) && $_GET['stylus']==1) 
 			{ $chassis_misc[] = "stylus";} 
@@ -462,7 +605,7 @@ require_once("../search/proc/init.php");
 			{ if(isset($budgetmin) && $budgetmin>150) { $budgetmin=150; } if(isset($budgetmax) && $budgetmax<500) { $budgetmax=500; } }
 			
 			if (isset($_GET['b750']) && $_GET['b750']==1) 
-			{ if(isset($budgetmin) && $budgetmin>485) { $budgetmin=485; } if(isset($budgetmax) && $budgetmax<790) { $budgetmax=790; } }
+			{ if(isset($budgetmin) && $budgetmin>480) { $budgetmin=480; } if(isset($budgetmax) && $budgetmax<790) { $budgetmax=790; } }
 		
 			if (isset($_GET['b1000']) && $_GET['b1000']==1)
 			{ if(isset($budgetmin) && $budgetmin>740) { $budgetmin=740; } if(isset($budgetmax) && $budgetmax<1090) { $budgetmax=1090; } }
@@ -487,7 +630,7 @@ require_once("../search/proc/init.php");
 
 	if($budgetmax>800)
 	{
-		$sist_sist[]="macOS";
+		$sist_sist[]="macOS 10.12";
 		if(count($display_backt)<1) { $display_backt = ["LED IPS","LED IPS PenTile","LED TN WVA","OLED"]; }
 		if($displayvresmin<1080) { $displayvresmin=1080; }
 		if($totalcapmin<179) { $totalcapmin =180; }
@@ -517,18 +660,22 @@ require_once("../search/proc/init.php");
 }
 else
 {
-	$sist_sist[]="macOS"; $sist_sist[]="Chrome OS 1"; 
+	$sist_sist[]="macOS 10.12"; $sist_sist[]="Chrome OS 1"; 
 }
 
 //echo $model_minclass; echo $model_maxclass;
-	if ($model_minclass>=1 && $model_maxclass>=3) 
+	/*if ($model_minclass>=1 && $model_maxclass>=3) 
 		{$family.='<option selected="selected">All business families</option>';}
 	if ($model_minclass>=0 && $model_maxclass<=1) 
-		{$family.='<option selected="selected">All consumer families</option>';}
+		{$family.='<option selected="selected">All consumer families</option>';}*/
 	if ($model_minclass>=0 && $model_maxclass>=3) 
 		{
 			$family.='<option selected="selected">All business families</option>';
 			$family.='<option selected="selected">All consumer families</option>';}
+			else  if ($model_minclass>=1 && $model_maxclass>=3) 
+					{$family.='<option selected="selected">All business families</option>';}
+					if ($model_minclass>=0 && $model_maxclass<=1) 
+					{$family.='<option selected="selected">All consumer families</option>';}
 
 foreach ($cpu_misc as $element)
 		{	$cpumsc.='<option selected="selected">'.$element.'</option>';	}
@@ -555,8 +702,16 @@ foreach ($sist_sist as $element)
 	} //var_dump($valuetype[25]);
 		
 		
-		//var_dump($valuetype[25]);
+	
+		
+foreach ($chassis_vports as $element)
+		{	$mdbvport.='<option selected="selected">'.$element.'</option>'; }
 
+/*foreach ($chassis_ports as $element)
+		{	$mdbport.='<option selected="selected">'.$element.'</option>'; }*/
+		
+		
+		
 foreach ($regions_name as $element)
 		{	$regions.='<option selected="selected">'.$element.'</option>';	}
 foreach ($gpu_typelist as $element)
@@ -566,7 +721,7 @@ foreach ($chassis_made as $element)
 		{	$valuetype[26][] = $element;	}	
 if(isset($chassis_twoinone) && $chassis_twoinone == 1) {$twoinone_check = "checked";}
 
-$bdgmin=floatval($budgetmin)-1;
+$bdgmin=floatval($budgetmin); //echo $bdgmin;
 $bdgmax=floatval($budgetmax)+1;
 //$mdbslotsel0 = "selected";
 

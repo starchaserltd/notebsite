@@ -12,7 +12,6 @@ require_once("../etc/con_db.php");
 require_once("lib/php/headermodel.php");
 require_once("lib/php/genmodel.php");
 ?>
-
 <div class=" container-fluid headerback" style="margin-right:0px;padding-right: 0px;">
 <style>
 .modal-header {
@@ -33,7 +32,7 @@ if($nonexistent)
 else
 { 
 ?>
-	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="font-size:16px; color:#841313;">
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="font-size:16px; color:#575757;">
 		<strong>
 <?php
 		$_SESSION['model'] = $idmodel; $model_data=show_vars('model.prod, families.fam, families.subfam, families.showsubfam, model.model,model.submodel,model.regions,model.keywords', 'notebro_db.MODEL model JOIN notebro_db.FAMILIES families ON model.idfam=families.id',$idmodel); $mprod=$model_data["prod"]; if(isset($model_data["subfam"])&&$model_data["showsubfam"]!=0){ $model_data["subfam"]=" ".$model_data["subfam"]; } else { $model_data["subfam"]=""; } $mfam=$model_data["fam"].$model_data["subfam"];  $mmodel=$model_data["model"];  $msubmodel=$model_data["submodel"]; 
@@ -58,19 +57,7 @@ else
 <?php
 		show_vars('img_1,img_2,img_3,img_4','MODEL',$idmodel);
 		$imglist=$show_vars;
-?> <!-- 
-		<div class="modal fade" id="enlargeImageModal" tabindex="-1" role="dialog" aria-labelledby="enlargeImageModal" aria-hidden="true">
-			<div class="modal-dialog modal-lg" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-					</div>
-					<div class="modal-body">
-						<img src="//0" class="enlargeImageModalSource" style="width: 100%;" alt="Bigger version of <?php echo $mprod." ".$mmodel; ?>">
-					</div>
-				</div>
-			</div>
-		</div>  -->
+?> 
 		<div class="col-md-8 col-sm-12 col-xs-12 col-lg-7 " style="margin-top:25px;display:flex;flex-wrap:wrap;">
 <?php	if(isset($imglist["img_1"]))
 		{ ?>
@@ -100,7 +87,7 @@ else
 				<p style="padding-top:4px;text-align:center"><span style=""><b>Battery life: </b></span><span  class="labelblue"><span id="bat_life1" style="font-size:16px; color:#285F8F; margin-left:4px;"></span> - <span id="bat_life2" style="font-size:16px; color:#285F8F;"></span><span style="color:#285F8F;"> <?php echo " h"; ?></span></span></p>
 			</div>	
 			<div class="col-md-12 col-sm-12 col-xs-12 btn" style="padding:0px;margin-top:2px;">
-				<span class="compmod" id="addcompare" ><a style="text-decoration:none;">Add to compare</a></span>
+				<div class="btn addtocpmp" id="addcompare" ><a style="text-decoration:none;">Add to compare</a></div>
 				
 			</div>
 		</div>

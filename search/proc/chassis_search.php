@@ -6,7 +6,7 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 {
 	
 //var_dump($addmsc);
-	$sel_chassis="SELECT id,price,rating,err FROM notebro_db.CHASSIS WHERE 1=1";
+	$sel_chassis="SELECT id,price,rating,err FROM notebro_db.CHASSIS WHERE 1=1 AND valid=1";
 	
 	// Add producers to filter
 	$i=0;
