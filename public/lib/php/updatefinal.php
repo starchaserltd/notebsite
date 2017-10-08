@@ -56,6 +56,7 @@ if ($table == 'REVIEWS'){
 	if ($scor == 3) 
 	{
 		$sql = "insert into REVIEWS (id, model, model_id, site, title, link, notebreview) values ('".$idireviews[0]."','".$model_name."','".$model_id."','".$site."','','".$link."','0')";
+		
 		if(mysqli_query($rcon, $sql))
 		{
 			echo "<meta http-equiv=\"refresh\" content=\"0;URL=?public/ireviews.php\">";
@@ -63,6 +64,8 @@ if ($table == 'REVIEWS'){
 			if(mysqli_query($rcon, $sql))
 			{ /*echo "Succesfully submitted $site review on $model_name. Thank you!. <br><br>";*/	echo "<script type='text/javascript'>alert('$site review on $model_name submitted successfully. Thank you!')</script>";		}
 		}
+		else
+		{ echo "<script type='text/javascript'>alert('Were are sorry, but there was unknown error. Please contact the site administrator.')</script>"; }
 	}
 	else
 	{ echo "<script type='text/javascript'>alert('Please insert mandatory fields or link is invalid')</script>"; }
