@@ -92,7 +92,7 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 	
 	if($underwork==0)
 	{
-		if(isset($_GET['page'])){$page=$_GET['page'];} 
+		if(isset($_GET['page'])){$page=intval($_GET['page']);} 
 		else {$page=1;}
 		
 		if(isset($_GET['detailed'])) { $isdetailed=(is_numeric($_GET['detailed'])) ? intval($_GET['detailed']) : NULL; }
@@ -111,7 +111,7 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 		/********************************************************************/
 
 		else if ( isset($_GET['advsearch']) && $_GET['advsearch'])
-		{ 
+		{
 			include ("preproc/adv_search_varproc.php");
 		}
 		
@@ -132,16 +132,7 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 			include ("preproc/b_search_varproc.php");
 		}
 		
-
 		require("proc/search_filters.php");
-	/*
-		$result = mysqli_query($GLOBALS['con'], "SELECT code,sign, ROUND( convr, 5 ) rounded FROM notebro_site.exchrate HAVING rounded = $exch"); 
-		$item = mysqli_fetch_array($result);
-		$exchsign=$item["sign"];
-		$exchcode=$item["code"];
-		$_SESSION['exchcode']=$exchcode;
-		$_SESSION['exch']=$exch;
-	*/
 		include("results.php");
 		exit();
 	}

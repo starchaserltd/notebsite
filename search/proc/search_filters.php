@@ -53,7 +53,6 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 		require_once("proc/gpu_search.php");
 		$comp_lists["gpu"] = search_gpu ($gpu_typelist, $gpu_prod, $gpu_model, $gpu_arch, $gpu_techmin, $gpu_techmax, $gpu_shadermin, $gpu_cspeedmin, $gpu_cspeedmax, $gpu_sspeedmin, $gpu_sspeedmax, $gpu_mspeedmin, $gpu_mspeedmax, $gpu_mbwmin, $gpu_mbwmax, $gpu_mtype, $gpu_maxmemmin, $gpu_maxmemmax, $gpu_sharem, $gpu_powermin, $gpu_powermax, $gpu_ldmin, $gpu_ldmax, $gpu_misc, $gpu_ratemin, $gpu_ratemax, $pricemin ,$budgetmax, $battery_life);
 	}
-
 	if($to_search["wnet"])
 	{
 		require_once("proc/wnet_search.php");

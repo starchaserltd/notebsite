@@ -4,7 +4,7 @@
 
 function search_wnet ($prod, $model, $misc, $speedmin, $speedmax, $bt, $ratemin, $ratemax, $pricemin, $pricemax)
 {
-	$sel_wnet="SELECT id,price,rating,err FROM WNET WHERE 1=1";
+	$sel_wnet="SELECT id,price,rating,err FROM WNET WHERE 1=1 AND valid=1";
 	
 	// Add producers to filter
 	$i=0;
@@ -131,7 +131,7 @@ function search_wnet ($prod, $model, $misc, $speedmin, $speedmax, $bt, $ratemin,
     # echo "<br>";
 	# echo "<pre>" . $sel_wnet . "</pre>";
 	
-	$result = mysqli_query($GLOBALS['con'], "$sel_wnet");
+	$result = mysqli_query($GLOBALS['con'], $sel_wnet);
 	$wnet_return = array();
 	
 	while($rand = mysqli_fetch_array($result)) 

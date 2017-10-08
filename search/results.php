@@ -59,7 +59,7 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 			<div class="col-md-12 searchresult">
 				<div class="searchresultJPG">
 					<a onmousedown="OpenPage('model/model.php?conf=<?php echo $rand['id'];?>',event);">
-						<img src="../res/img/models/thumb/<?php echo $t_img; ?>" class="img-responsive searchresultJPG" alt="Image for <?php echo $model; ?>">
+						<img src="../res/img/models/thumb/<?php echo $t_img; ?>" class="img-responsive" alt="Image for <?php echo $model; ?>">
 					</a>
 				</div>
 				<br>

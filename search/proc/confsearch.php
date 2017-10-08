@@ -71,7 +71,6 @@ foreach($comp_lists["model"] as $m)
 	# array_push($queries, array(
 	#	"query" => $query_search,
 	#	"time" => $time_end_query - $time_start_query));
-
 		if (!is_null($result)) { $results[] = $result; }
 	}
 }

@@ -43,11 +43,11 @@ $datecpu[0] = $datecpu[0]-2;
 
 			$cores=2;
 			if (isset($_GET['calc']) && $_GET['calc']==1)
-			{ $cpufreqmin = 3.1; $cpu_misc[]="HT"; $cpucoremin=3; }
+			{ $cpufreqmin = 3.1; $cpu_misc[]="HT"; $cores=2.5; }
 				
 			if (isset($_GET['coding']) && $_GET['coding']==1)
-			{ $cpucoremin = 4;  if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} if((isset($_GET['lap']) && $_GET['lap']==1)||(isset($_GET['dispxsmall']) && $_GET['dispxsmall']==1)||(isset($_GET['dispsmall']) && $_GET['dispsmall']==1)) {  $cpucoremin = 2; $cpufreqmin = 3.1; $cpu_misc[]="HT"; $cores=2.5; } }
-		
+			{ $cpucoremin = 4;  if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} if((isset($_GET['lap']) && $_GET['lap']==1)||(isset($_GET['dispxsmall']) && $_GET['dispxsmall']==1)||(isset($_GET['dispsmall']) && $_GET['dispsmall']==1)) { $cpucoremin = 2; $cpufreqmin = 3.1; $cpu_misc[]="HT"; $cores=2.5; } }
+
 			if (isset($_GET['sysadmin']) && $_GET['sysadmin']==1)
 			{ $cpucoremin = 4; }   
 		
@@ -419,7 +419,7 @@ $quiz_mingputype=0; $gpu_typelist=[];
 			{ if($quiz_mingputype<0) { $quiz_mingputype=0; } array_push($gpu_typelist,"0","1"); $to_search["gpu"]=1; }
 											
 			if (isset($_GET['mmomedium']) && $_GET['mmomedium']==1) 
-			{ if($gpupowermin<35) { $gpupowermin = 35; } if($gpupowermax<69) { $gpupowermax = 69; } if((isset($_GET['atwork']) && $_GET['atwork']==1) && $gpupowermax<500) { $gpupowermax=500; } if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2"); $to_search["gpu"]=1; }
+			{ if($gpupowermin<36) { $gpupowermin = 36; } if($gpupowermax<69) { $gpupowermax = 69; } if((isset($_GET['atwork']) && $_GET['atwork']==1) && $gpupowermax<500) { $gpupowermax=500; } if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2"); $to_search["gpu"]=1; }
 											
 			if (isset($_GET['mmohigh']) && $_GET['mmohigh']==1 ) 
 			{ if($gpupowermin<59) { $gpupowermin = 59; } $to_search["gpu"]=1; if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","4"); $gpu_ldmin=gmdate("Y-01-01",time()-31536000*1.5 ); }
@@ -436,7 +436,7 @@ $quiz_mingputype=0; $gpu_typelist=[];
 			$cadratemin=0; $cadratemax=0; $gameratemin=0; $gameratemax=0;
 			
 			if (isset($_GET['autocadlight']) && $_GET['autocadlight']==1) 
-			{	$gpu_typelist[] = 0; $gpu_typelist[] = 1; $gpu_typelist[] = 3; $gpupowermax = 35; $to_search["gpu"]=1; }
+			{	$gpu_typelist[] = 0; $gpu_typelist[] = 1; $gpu_typelist[] = 3; $gpupowermax = 36; $to_search["gpu"]=1; }
 
 			if (isset($_GET['autocadmedium']) && $_GET['autocadmedium']==1) 
 			{	if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","3"); if($cadratemin<15) { $cadratemin=15; } if($cadratemax<25) { $cadratemax=25; } if ($gameratemin<30) { $gameratemin=30; } if($gameratemax<50) { $gameratemax=50; }	$to_search["gpu"]=1; }
@@ -501,7 +501,7 @@ $quiz_mingputype=0; $gpu_typelist=[];
 				while($row=mysqli_fetch_row($result)){$gpu_model[]=$row[0];} if(count($gpu_model)<1){ $gpu_typelist=["10"]; }
 			}
 			
-			if(!$to_search["gpu"]) { if($quiz_mingputype<1) { $quiz_mingputype=0; } array_push($gpu_typelist,"0","1"); if($model_maxclass>=2) { $gpupowermax=35; }; $to_search["gpu"]=1; } 
+			if(!$to_search["gpu"]) { if($quiz_mingputype<1) { $quiz_mingputype=0; } array_push($gpu_typelist,"0","1"); if($model_maxclass>=2) { $gpupowermax=36; }; $to_search["gpu"]=1; } 
 			if($model_maxclass>=2) {  array_push($gpu_typelist,"3"); }
 			$gpu_typelist=array_unique($gpu_typelist);
 
@@ -561,7 +561,7 @@ $quiz_mingputype=0; $gpu_typelist=[];
 			{	$chassis_made[] = "Metal"; 	$chassis_made[] = "Aluminium"; 	$chassis_made[] = "Lithium";  $chassis_made[] = "Carbon"; $chassis_made[] = "Magnesium"; $chassis_made[] = "Glass fiber"; $chassis_made[] = "Shock-absorbing ultra-polymer";}		
 			
 			if (isset($_GET['media']) && $_GET['media']==1) 
-			{ $chassis_vports[] = "1 X HDMI"; $diffvisearch=2; } 
+			{ $chassis_vports[] = "Any video port"; } 
 			
 			if (isset($_GET['stylus']) && $_GET['stylus']==1) 
 			{ $chassis_misc[] = "stylus";} 

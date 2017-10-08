@@ -16,7 +16,7 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 	$sort_func = "sort_func_by_price";
 	
 	require_once("../etc/con_db.php");
-	require_once("../etc/con_sdb.php");	
+	require_once("../etc/con_sdb.php");
 	include ("preproc/q_search_varproc.php");
 	
 	ob_start();
