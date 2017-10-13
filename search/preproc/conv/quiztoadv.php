@@ -133,10 +133,10 @@ $datecpu[0] = $datecpu[0]-2;
 			if (isset($_GET['FHDplus'])&& $_GET['FHDplus']==1 ) 
 			{ $displayvresmin = 1081; }
 							
-			if ((isset($_GET['disxsmall']) && $_GET['disxsmall']==1 ) || (isset($_GET['dispsmall'])	&& $_GET['dispsmall']==1 ) || (isset($_GET['dispmedium']) && $_GET['dispmedium']==1 ) || (isset($_GET['displarge'])	&& $_GET['displarge']==1 ) )
+			if ((isset($_GET['dispxsmall']) && $_GET['dispxsmall']==1 ) || (isset($_GET['dispsmall'])	&& $_GET['dispsmall']==1 ) || (isset($_GET['dispmedium']) && $_GET['dispmedium']==1 ) || (isset($_GET['displarge'])	&& $_GET['displarge']==1 ) )
 			{ $displaysizemin=30; $displaysizemax=0; }
 	 
-			if (isset($_GET['disxsmall'])	&& $_GET['disxsmall']==1 ) 
+			if (isset($_GET['dispxsmall'])	&& $_GET['dispxsmall']==1 ) 
 			{ if($displaysizemin>10) { $displaysizemin =10; }	if($displaysizemax<13) { $displaysizemax =13; } }
 		
 			if (isset($_GET['dispsmall'])	&& $_GET['dispsmall']==1 ) 
@@ -668,13 +668,13 @@ else
 		{$family.='<option selected="selected">All business families</option>';}
 	if ($model_minclass>=0 && $model_maxclass<=1) 
 		{$family.='<option selected="selected">All consumer families</option>';}*/
-	if ($model_minclass>=0 && $model_maxclass>=3) 
+	if ($model_minclass <= 0 && $model_maxclass>=3) 
 		{
 			$family.='<option selected="selected">All business families</option>';
 			$family.='<option selected="selected">All consumer families</option>';}
-			else  if ($model_minclass>=1 && $model_maxclass>=3) 
+	else if ($model_minclass>=1 && $model_maxclass>=3) 
 					{$family.='<option selected="selected">All business families</option>';}
-					if ($model_minclass>=0 && $model_maxclass<=1) 
+	else if ($model_minclass>=0 && $model_maxclass<=1) 
 					{$family.='<option selected="selected">All consumer families</option>';}
 
 foreach ($cpu_misc as $element)
@@ -683,6 +683,8 @@ foreach ($cpu_misc as $element)
 foreach ($display_backt as $element)
 		{	$displaymsc.='<option selected="selected">'.$element.'</option>';	}
 		
+if ($display_srgb>=80) 		{$displaymsc.='<option selected="selected">80% sRGB or better</option>';} 
+
 foreach ($chassis_misc as $element)
 		{	$chassisstuff.='<option selected="selected">'.$element.'</option>';	}	
 if ($nr_hdd == 2) {$nrhddselect = "selected";}

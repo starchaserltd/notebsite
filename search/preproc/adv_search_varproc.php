@@ -266,6 +266,10 @@ if(isset($_GET['DISPLAY_msc_id']))
 				unset($display_backt[$key]);
 				break;
 			}
+			case $el=='80% sRGB or better' :
+			{
+				$display_srgb=80; unset($display_backt[$key]); break;
+			}
 		}
 	}
 	array_unique($display_misc);

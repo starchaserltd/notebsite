@@ -77,6 +77,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			$regions_name[]="USA and Canada";
 			if (isset($_GET['atwork']) && $_GET['atwork']==1)
 			{ $model_minclass=1; $model_maxclass=3; if(((isset($_GET['lap']) && $_GET['lap']==1)||(isset($_GET['dispsmall']) && $_GET['dispsmall']==1 ))&& (isset($_GET['3dmodel']) && $_GET['3dmodel']==1 )) { $model_minclass=0; } }
+		
 
 			if (isset($_GET['athome']) && $_GET['athome']==1)
 			{ $model_minclass=0; $model_maxclass=1;	if ((isset($_GET['sysadmin']) && $_GET['sysadmin']==1) || (isset($_GET['coding']) && $_GET['coding']==1)){ $model_maxclass=3; } }
@@ -651,6 +652,7 @@ else
 {
 	$sist_sist[]="macOS"; $sist_sist[]="Chrome OS"; 
 }
+//echo $model_minclass."min ";echo $model_maxclass;
 //$budgetmin= $budgetmin-1;// echo $budgetmin;
 $budgetmax= $budgetmax+1;
 ?>
