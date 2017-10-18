@@ -110,8 +110,8 @@ require_once("etc/session.php");
 			</div>			
 			<!-- end left menu-->
 			<!-- simple search -->
-			<button class="btn btn-title" style="font-size:16px!important; text-align:justify;position:relative" data-toggle="collapse" data-target="#SearchParameters" aria-expanded="true" onclick=""><a style="color:white;">Quick laptop search</a><a></a></button>
-			<div class="SearchParameters collapse in"  id="SearchParameters">			
+			<button class="btn btn-title collapsed" style="font-size:16px!important; text-align:justify;position:relative" data-toggle="collapse" data-target="#SearchParameters" aria-expanded="false" onclick=""><a style="color:white;">Quick laptop search</a><a></a></button>
+			<div class="SearchParameters collapse"  id="SearchParameters">			
 			<?php include ("search/s_search.php");?>
 			</div>			
 			

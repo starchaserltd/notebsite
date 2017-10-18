@@ -54,14 +54,13 @@ $published_posts = $count_posts->publish;
 	
 		<!-- Noteb Quiz -->
 		<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style="padding:0px;">
-			<?php if(isset($_GET["beta"])&&$_GET["beta"]==1) { ?>
 			<div id="quiz" class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style="position:relative;"></div>
 			<div class="col-md-12 co-sm-12 col-xs-12 col-lg-12 advancedSearchButton" onmousedown="OpenPage('search/adv_search.php',event);">
 				<span style="font-size:12px; color:#fff" class="glyphicon glyphicon glyphicon-menu-left"></span>
 				<span>ADVANCED SEARCH</span>
 				<span style="font-size:12px; color:#fff" class="glyphicon glyphicon glyphicon-menu-right"></span>
 			</div>
-			<?php } ?>
+		
 			<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style="padding:5px 0px;">
 				<div class="col-md-4 col-lg-4 col-xs-12 col-sm-12" style="padding:1px;">
 					<a onmousedown="OpenPage('<?php	$category = get_the_category($recent_posts[0]["ID"]);	$categorie = $category[0]->cat_name; 				
@@ -73,7 +72,7 @@ $published_posts = $count_posts->publish;
 						<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[0]["ID"]) )); ?>
 					<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 imgcrop" style="height:180px;padding:0px;overflow:hidden;">
 						<img class="portrait crop3" src="<?php echo $url;?>">	
-						<div style="position:absolute; bottom:0; background-color:rgb(40, 95, 143); color:#fff; font-weight:normal; text-align:center;width:100%; font-size:16px;padding:3px;"><?php echo $recent_posts[0]["post_title"]; ?></div>	
+						<div class="articleTitle"><?php echo $recent_posts[0]["post_title"]; ?></div>	
 					</div>
 					</a>
 				</div>
@@ -88,7 +87,7 @@ $published_posts = $count_posts->publish;
 						<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[1]["ID"]) )); ?>
 					<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 imgcrop" style="padding:0px;height:180px;overflow:hidden;">	
 						<img class="portrait crop3" src="<?php echo $url;?>">
-						<div style="position:absolute; bottom:0; background-color:rgb(40, 95, 143);color:#fff; font-weight:normal; text-align:center; width:100%; font-size:16px;padding:3px;"><?php echo $recent_posts[1]["post_title"]; ?></div>
+						<div class="articleTitle"><?php echo $recent_posts[1]["post_title"]; ?></div>
 					</div>
 					</a>
 				</div>
@@ -103,13 +102,105 @@ $published_posts = $count_posts->publish;
 						<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[2]["ID"]) )); ?>
 					<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 imgcrop" style="height:180px;padding:0px;overflow:hidden;">	
 						<img class="portrait crop3" src="<?php echo $url;?>">
-						<div style="position:absolute; bottom:0; background-color:rgb(40, 95, 143); color:#fff; font-weight:normal; text-align:center;width:100%; font-size:16px;padding:3px;"><?php echo $recent_posts[2]["post_title"]; ?></div>
+						<div class="articleTitle"><?php echo $recent_posts[2]["post_title"]; ?></div>
 					</div>
 					</a>
 				</div>
 			</div>
 		</div>
-		
+	<!-- Noteb Quiz end -->
+
+	<!-- Top 10 laptops area -->
+	<?php 
+	$beta = 0;	
+	if ($beta == 1) {
+     ?>
+
+		<section class="row topLaptops">
+			<div class="col-lg-4 col-md-4 col-xs-12">				
+	 			<div class="row">
+					<div class="col-xs-4 imgTopLaptop">
+					 <img  class="img-responsive "src="https://placeholdit.co//i/555x150"/>
+					</div>
+					<div class="col-xs-8 textTopLaptop">
+					  text text text 
+					</div>				
+				</div>	
+				<div class="row">
+					<div class="col-xs-4 imgTopLaptop">
+					 <img  class="img-responsive "src="https://placeholdit.co//i/555x150"/>
+					</div>
+					<div class="col-xs-8 textTopLaptop">
+					  text text text 
+					</div>				
+				</div>		
+				<div class="row">
+					<div class="col-xs-4 imgTopLaptop">
+					 <img  class="img-responsive "src="https://placeholdit.co//i/555x150"/>
+					</div>
+					<div class="col-xs-8 textTopLaptop">
+					  text text text 
+					</div>				
+				</div>								
+			</div>			
+			<div class="col-lg-4 col-md-4 col-xs-12">
+				<div class="row">
+					<div class="col-xs-4 imgTopLaptop">
+					<img  class="img-responsive "src="https://placeholdit.co//i/555x150"/>
+					</div>
+					<div class="col-xs-8 textTopLaptop">
+					text text text 
+					</div>				
+				</div>
+				<div class="row">
+					<div class="col-xs-4 imgTopLaptop">
+					<img  class="img-responsive "src="https://placeholdit.co//i/555x150"/>
+					</div>
+					<div class="col-xs-8 textTopLaptop">
+					text text text 
+					</div>				
+				</div>		
+				<div class="row">
+					<div class="col-xs-4 imgTopLaptop">
+					<img  class="img-responsive "src="https://placeholdit.co//i/555x150"/>
+					</div>
+					<div class="col-xs-8 textTopLaptop">
+					text text text 
+					</div>				
+				</div>								
+		</div>
+
+		     <div class="col-lg-4 col-md-4 col-xs-12">
+				<div class="row">
+					<div class="col-xs-4 imgTopLaptop">
+					<img  class="img-responsive "src="https://placeholdit.co//i/555x150"/>
+					</div>
+					<div class="col-xs-8 textTopLaptop">
+					text text text 
+				</div>				
+				</div>
+				<div class="row">
+					<div class="col-xs-4 imgTopLaptop">
+					<img  class="img-responsive "src="https://placeholdit.co//i/555x150"/>
+					</div>
+					<div class="col-xs-8 textTopLaptop">
+					text text text 
+				</div>				
+				</div>		
+				<div class="row">
+					<div class="col-xs-4 imgTopLaptop">
+					<img  class="img-responsive "src="https://placeholdit.co//i/555x150"/>
+					</div>
+					<div class="col-xs-8 textTopLaptop">
+					text text text 
+				</div>				
+		      </div>								
+			</div>
+		</section>
+	 <?php    
+	}
+  ?>
+
 	<?php 	
 	$y = 3;
 	for ($y = 3; $y < 16; $y++) { 

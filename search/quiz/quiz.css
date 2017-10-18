@@ -643,10 +643,11 @@ _:-ms-lang(x),
 .containerNquiz {
     padding-top: 100px;
     min-height: 100vh;
-    background-image: url("../../lib/images/nquiz.jpg");
+    background-image: url("res/img/nquiz.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     position: relative;
+    max-width: 100%;
 }
 
 .containerNquiz .quiz_container {

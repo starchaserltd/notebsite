@@ -61,19 +61,19 @@ else
 		<div class="col-md-8 col-sm-12 col-xs-12 col-lg-7 " style="margin-top:25px;display:flex;flex-wrap:wrap;">
 <?php	if(isset($imglist["img_1"]))
 		{ ?>
-			<div class="col-lg-5 col-md-4 col-sm-4 col-xs-3" style="align-self:center"><a href="res/img/models/<?php echo $imglist["img_1"];?>" data-lightbox="slider"><img class="pics" style="width:100%; height:auto;" src="res/img/models/<?php echo $imglist["img_1"];?>" alt="<?php $mmodel ?>"></a></div>
+			<div class="col-lg-5 col-md-4 col-sm-4 col-xs-8 col-xs-offset-2 col-sm-offset-0 firstImageModel" style="align-self:center"><a href="res/img/models/<?php echo $imglist["img_1"];?>" data-lightbox="slider"><img class="pics" style="width:100%; height:auto;" src="res/img/models/<?php echo $imglist["img_1"];?>" alt="<?php $mmodel ?>"></a></div>
 <?php 	}
 		if($imglist["img_2"])
 		{ ?>
-			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="align-self:center"><a href="res/img/models/<?php echo $imglist["img_2"];?>" data-lightbox="slider" data-lightbox="slider"><img class="pics" style="width:100%; height:auto;" src="res/img/models/<?php echo $imglist["img_2"];?>" alt="<?php $mmodel ?>"></a></div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-4" style="align-self:center"><a href="res/img/models/<?php echo $imglist["img_2"];?>" data-lightbox="slider" data-lightbox="slider"><img class="pics" style="width:100%; height:auto;" src="res/img/models/<?php echo $imglist["img_2"];?>" alt="<?php $mmodel ?>"></a></div>
 <?php 	}
 		if($imglist["img_3"])
 		{ ?>
-			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="align-self:center"><a href="res/img/models/<?php echo $imglist["img_3"];?>" data-lightbox="slider" data-lightbox="slider"><img class="pics" style="width:100%; height:auto;" src="res/img/models/<?php echo $imglist["img_3"];?>" alt="<?php $mmodel ?>"></a></div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-4" style="align-self:center"><a href="res/img/models/<?php echo $imglist["img_3"];?>" data-lightbox="slider" data-lightbox="slider"><img class="pics" style="width:100%; height:auto;" src="res/img/models/<?php echo $imglist["img_3"];?>" alt="<?php $mmodel ?>"></a></div>
 <?php 	} 
 		if($imglist["img_4"])
 		{ ?>	
-			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3" style="align-self:center"><a href="res/img/models/<?php echo $imglist["img_4"];?>" data-lightbox="slider" data-lightbox="slider"><img class="pics" style="width:100%; height:auto;" src="res/img/models/<?php echo $imglist["img_4"];?>" alt="<?php $mmodel ?>" data-lightbox="slider"></a></div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-4" style="align-self:center"><a href="res/img/models/<?php echo $imglist["img_4"];?>" data-lightbox="slider" data-lightbox="slider"><img class="pics" style="width:100%; height:auto;" src="res/img/models/<?php echo $imglist["img_4"];?>" alt="<?php $mmodel ?>" data-lightbox="slider"></a></div>
 <?php 	} ?>
 		</div> 
 		<div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ptop" style="margin-top:25px; line-height:10px; padding:0px;">

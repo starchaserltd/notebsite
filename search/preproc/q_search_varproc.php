@@ -21,26 +21,26 @@ if(isset($_GET['qtype'])) { $qsearchtype = strval($_GET['qtype']); } else { $qse
 $result = mysqli_query($GLOBALS['con'], "SELECT * FROM notebro_site.nomen WHERE type = 18 OR type=21 OR type=22 OR type=33 OR type=34 OR type = 35 OR type = 36 OR type=59 OR type=60 OR type = 61 OR type = 62 OR type=67 OR type=68  OR type =70 OR type=71  OR type =81 ORDER BY type ASC");
 while( $row=mysqli_fetch_array($result)){ $nomenvalues[]=$row; }
 
-$cpu_ldatemax = $nomenvalues[0][2];//echo $cpu_ldatemin ;
+$cpu_ldatemax = $nomenvalues[0][2];
 $cpu_tdpmin = $nomenvalues[1][2];
 $cpu_tdpmax = $nomenvalues[2][2];
-$totalcapmin = round($nomenvalues[3][2]); //echo $totalcapmin;
+$totalcapmin = round($nomenvalues[3][2]);
 $hdd_capmax = round($nomenvalues[4][2]);
-$mem_capmin=round($nomenvalues[5][2]); //echo $mem_capmin;
-$mem_capmax=round($nomenvalues[6][2]); //echo $mem_capmax;
-$batlife_min=$nomenvalues[7][2];  // from nomen
-$batlife_max=$nomenvalues[8][2];// from nomen 
+$mem_capmin=round($nomenvalues[5][2]); 
+$mem_capmax=round($nomenvalues[6][2]);
+$batlife_min=$nomenvalues[7][2];  
+$batlife_max=$nomenvalues[8][2];
 $gpu_powermin = round($nomenvalues[9][2]);
 $gpu_powermax = 0;
 $display_vresmin=$nomenvalues[11][2];
 $display_vresmax=$nomenvalues[12][2];
 $price_min=$nomenvalues[13][2];
 $price_max=$nomenvalues[14][2];
-$gpu_ldatemax = $nomenvalues[15][2]; //echo $gpu_ldatemin;
+$gpu_ldatemax = $nomenvalues[15][2]; 
 
 //pt selectia anului si scaderea cu 2 pt procesoare
 $datecpu = array();
-$datecpu = explode("-",$cpu_ldatemax);//echo $date[0];
+$datecpu = explode("-",$cpu_ldatemax);
 $datecpu[0] = $datecpu[0]-2;
 
 $chassis_weightmin = 0;
@@ -51,19 +51,19 @@ $cadratemin="15"; $cadratemax=""; $gameratemin="30"; $gameratemax=""; $wnet_spee
 
 //LIST OF COMPONENTS WE WILL FILTER
 $to_search = array(
-	"model"   => 1,//
+	"model"   => 1,
     "acum"    => 1,  
-    "chassis" => 1,//
-    "cpu"     => 1,//
-    "display" => 1,//
+    "chassis" => 1,
+    "cpu"     => 1,
+    "display" => 1,
     "gpu"     => 0, 
-    "hdd"     => 1,//
-    "mdb"     => 1,//
-    "mem"     => 1,//
+    "hdd"     => 1,
+    "mdb"     => 1,
+    "mem"     => 1,
     "odd"     => 0,
     "shdd"    => 0,
-    "sist"    => 1,//
-    "war"     => 1,//
+    "sist"    => 1,
+    "war"     => 1,
     "wnet"    => 0, 
 	"regions" => 1
 );
@@ -454,12 +454,11 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 
 			if($to_search["gpu"]) {  $gpu_typelist=array_unique($gpu_typelist); for($i=0;$i<=$quiz_mingputype;$i++) { array_diff($gpu_typelist,strval($i)); } }
 			
-		//variabile de test
-			//$cadratemin = 15;$cadratemax = 30;
+		
 			if($cadratemin!==0)
 			{
 				$query = "SELECT DISTINCT model FROM notebro_db.GPU WHERE (rating>=".$cadratemin." AND rating<=".$cadratemax." AND typegpu=3) OR (rating>=".$gameratemin." AND rating<=".$gameratemax." AND typegpu IN (".implode(",",$gpu_typelist)."))";
-				//echo $query;
+				
 				$result = mysqli_query($GLOBALS['con'],$query); 
 				while($row=mysqli_fetch_row($result)){$gpu_model[]=$row[0];} if(count($gpu_model)<1){ $gpu_typelist=["10"]; }
 			}
@@ -467,7 +466,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			if(!$to_search["gpu"]) { if($quiz_mingputype<1) { $quiz_mingputype=0; } array_push($gpu_typelist,"0","1"); if($model_maxclass>=2) { $gpu_powermax=36; }; $to_search["gpu"]=1; } 
 			if($model_maxclass>=2) {  array_push($gpu_typelist,"3"); }
 			$gpu_typelist=array_unique($gpu_typelist);
-//var_dump($gpu_typelist);
+
 			break ;
 		}
 		
@@ -506,7 +505,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			{ if($chassis_weightmax>20) { $chassis_weightmax = 20; } if($chassis_thicmax>200){ $chassis_thicmax = 200;} }
 			
 			if (isset($_GET['bed']) && $_GET['bed']==1) 
-			{ if($chassis_weightmax>2.35) { $chassis_weightmax = 2.35; } if($chassis_thicmax>27){ $chassis_thicmax = 27;} /*$chassis_made[] = "Metal"; $chassis_made[] = "Aluminium"; $chassis_made[] = "Lithium"; $chassis_made[] = "Magnesium";*/ }
+			{ if($chassis_weightmax>2.35) { $chassis_weightmax = 2.35; } if($chassis_thicmax>27){ $chassis_thicmax = 27;}}
  									
 			if (isset($_GET['house']) && $_GET['house']==1) 
 			{ if($chassis_weightmax>2.8) { $chassis_weightmax = 2.8; } if($chassis_thicmax>31){ $chassis_thicmax = 31;} }
@@ -557,7 +556,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 		
 		case 'sist' :
 		{
-			//$sist_sist=["Windows+Home","Windows+Pro","Windows+S","macOS","Chrome OS"]; } 
+			
         	if (isset($_GET['atwork']) && $_GET['atwork']==1)
 			{ $sist_sist=["Windows+Home","Windows+Pro"];  }
 
@@ -568,7 +567,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			{ $sist_sist=["Windows+Home","Windows+Pro","Windows+S"]; } 
 					
 			break ;	
-		}	//var_dump($sist_sist);
+		}	
 		
 		case 'battery' :
 		{
@@ -652,7 +651,6 @@ else
 {
 	$sist_sist[]="macOS"; $sist_sist[]="Chrome OS"; 
 }
-//echo $model_minclass."min ";echo $model_maxclass;
-//$budgetmin= $budgetmin-1;// echo $budgetmin;
+
 $budgetmax= $budgetmax+1;
 ?>
