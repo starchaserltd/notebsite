@@ -909,10 +909,7 @@ fieldset[disabled] .btn-result.active {
   transform: translate(-50%, -50%);
 }
 
-.imgcrop {
-  position: relative;
-  overflow: hidden;
-}
+
 
 .imgcrop img {
   position: absolute;
@@ -924,9 +921,21 @@ fieldset[disabled] .btn-result.active {
             transform: translate(-50%,-50%);
 }*/
 
+.imgcrop {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    background-color: rgba(40, 95, 143, 0.1);
+}
+
 .imgcrop img.portrait {
-    height: 100%;
-    width: auto;
+    width:  100%;
+    height: auto;
     overflow: hidden;
 }
 
