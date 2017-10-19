@@ -878,63 +878,22 @@ fieldset[disabled] .btn-result.active {
     padding: 2px;
 }
 
-
-/*.crop1 {
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+.imgcrop {
+  position: relative;
 }
-
-.crop2 {
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-.crop3 {
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-.crop4 {
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-.crop5 {
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-
 
 .imgcrop img {
   position: absolute;
   left: 50%;
   top: 50%;
   height: 100%;
-  width: auto;  /*-webkit-transform: translate(-50%,-50%);
-        -ms-transform: translate(-50%,-50%);
-            transform: translate(-50%,-50%);
-}*/
-
-.imgcrop {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-line-pack: center;
-    align-content: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    background-color: rgba(40, 95, 143, 0.1);
+  width: auto;  
+  -webkit-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
 }
 
-.imgcrop img.portrait {
-    width:  100%;
+.imgcrop img.portrait {    
     height: auto;
     overflow: hidden;
 }
