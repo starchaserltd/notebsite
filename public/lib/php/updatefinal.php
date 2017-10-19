@@ -55,11 +55,9 @@ if ($table == 'REVIEWS'){
 
 	if ($scor == 3) 
 	{
-		$count = 0;
-		$query1 = "SELECT model,link from REVIEWS WHERE (model_id=".$model_id.") and (link like '%".$link."%')";
-		if(mysqli_query($con, $query1)){ $count = 1 }
-		
-		if ($count = 0)
+		$query1 = "SELECT model_id,link from REVIEWS WHERE model_id = ".$model_id." AND link like '%".$link."%'"; //echo $query1;
+		$result = mysqli_query($con,$query1);
+		if(!(mysqli_num_rows($result)>0))
 		{
 			$sql = "insert into REVIEWS (id, model, model_id, site, title, link, notebreview) values ('".$idireviews[0]."','".$model_name."','".$model_id."','".$site."','','".$link."','0')";
 			if(mysqli_query($rcon, $sql))
@@ -69,10 +67,13 @@ if ($table == 'REVIEWS'){
 				if(mysqli_query($rcon, $sql))
 				{echo "<script type='text/javascript'>alert('$site review on $model_name submitted successfully. Thank you!')</script>";		}
 			}
-			else { echo "<script type='text/javascript'>alert('Were are sorry, but there was unknown error. Please contact the site administrator.')</script>"; }
-		} else { echo "<script type='text/javascript'>alert('Sorry, but the $site review for $model_name has already been added to our database. Still, we thank you for your effort!')</script>";	}
+			else
+			{ echo "<script type='text/javascript'>alert('Were are sorry, but there was unknown error. Please contact the site administrator.')</script>"; }
+		}
+		else {echo "<script type='text/javascript'>alert('We are sorry, but the $site review for $model_name has already been submitted.')</script>";}
 	}
-	else { echo "<script type='text/javascript'>alert('Please insert mandatory fields or link is invalid')</script>"; }
+	else
+	{ echo "<script type='text/javascript'>alert('Please insert mandatory fields or link is invalid')</script>"; }
 	mysqli_close($rcon); mysqli_close($con);
 }
 else

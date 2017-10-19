@@ -620,7 +620,7 @@
     background: rgba(122, 130, 136, 0.2) !important;
     position: fixed;
     margin-top: 30px;
-    height: 90%;
+    height: 100vh;
     vertical-align: middle;
     display: flex;
     border-radius: 15px;
@@ -1650,13 +1650,22 @@ label.css-labelr {
     height: 50px;
 }
 
+/* Sticky sidebar */
+
+.firstContainer {
+    position: sticky;
+    top:0;
+    padding:0px; 
+    float:left;
+}
+
 
 /*Responsive media design */
 
 @media screen and (min-width:991px) {
     .SearchParameters.collapse.in {
         height: auto !important;
-    }
+    }    
 }
 
 @media screen and (max-width:991px) {
@@ -1665,6 +1674,9 @@ label.css-labelr {
     }
     .firstImageModel {
         margin-bottom: 10px;
+    }
+    .firstContainer {
+        position: relative;
     }
 }
 

@@ -28,6 +28,7 @@ require_once("etc/session.php");
 	<div class="row" style="height:100%;">
 	<!-- upper buttons desktop -->
 		<!--<div style="background-color:#285f8f;display:flex"> -->
+	<div class="navigation">	
 		<div class="col-md-10 col-xs-12 col-sm-12" style="padding:0px; float:left; position:relative;">
 			<div class="btn-group-justified btn-group siteMenu">
 				<h1 class="btn blue logonb lognb"  onmousedown="OpenPage('content/home.php',event);">Find the best laptop with Noteb notebook search engine.</h1>
@@ -45,12 +46,13 @@ require_once("etc/session.php");
 				</div>
 			</div>
 		</div>
+	</div>
 	<!--	</div> -->
 				
 		<!-- end div middle -->
 		<!-- end right area -->
 		<!-- left area -->	
-		<div class="col-md-2 col-xs-12 col-sm-12 firstContainer" style="padding:0px; float:left; position:relative;">
+		<div class="col-md-2 col-xs-12 col-sm-12 firstContainer">
 		
 		<!-- left area -->
 		<script type="text/javascript" src="libnb/js/compjsf.js" ></script><!-- compare list functions -->
