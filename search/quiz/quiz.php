@@ -536,7 +536,6 @@ function changeoptions(el,page,add)
 		{ if(maxdispsize>16){ maxdispsize=16; } }
 	}
 
-
 	switch(page)
 	{ 
 		case 0:
@@ -612,6 +611,16 @@ function changeoptions(el,page,add)
 							changeoptshow("3dmodel","cadother",add); changeoptshow("cadother","cadolight",add); changeoptshow("cadother","cadomedium",add); changeoptshow("cadother","cadoheavy",add);
 						}
 					}
+
+					if(add==1) { if(quiz["display_size"]['options']['dispsmall']['chk']['on']!=1&&quiz["display_size"]['options']['dispmedium']['chk']['on']!=1&&quiz["display_size"]['options']['displarge']['chk']['on']==1) { changeoptshow(1,"lap",-1); for(i=1;i<=6;i++) { if(window['opt'+i].getAttribute("onclick").indexOf("lap")>-1) { window['opt'+i].style.display="none"; } } } } 
+					else { changeoptshow(1,"lap",1); for(i=1;i<=6;i++) { if(window['opt'+i].getAttribute("onclick").indexOf("lap")>-1) { window['opt'+i].style.display="block";  } } }
+					
+					break;
+				}
+				case "extraopt3": 
+				{
+					if(add==1) { if(quiz["display_size"]['options']['dispsmall']['chk']['on']!=1&&quiz["display_size"]['options']['dispmedium']['chk']['on']!=1&&quiz["display_size"]['options']['displarge']['chk']['on']==1) { changeoptshow(1,"lap",-1); for(i=1;i<=6;i++) { if(window['opt'+i].getAttribute("onclick").indexOf("lap")>-1) { window['opt'+i].style.display="none"; } } } } 
+					else { changeoptshow(1,"lap",1); for(i=1;i<=6;i++) { if(window['opt'+i].getAttribute("onclick").indexOf("lap")>-1) { window['opt'+i].style.display="block";  } } }
 					break;
 				}
 				case "extraopt1": 
@@ -630,13 +639,16 @@ function changeoptions(el,page,add)
 						changeoptshow("3dmodel","rhinoceros",add); changeoptshow("rhinoceros","rhinolight",add); changeoptshow("rhinoceros","rhinomedium",add); changeoptshow("rhinoceros","rhinoheavy",add);
 						changeoptshow("3dmodel","cadother",add); changeoptshow("cadother","cadolight",add); changeoptshow("cadother","cadomedium",add); changeoptshow("cadother","cadoheavy",add);
 					}
+					
+					if(add==1) { if(quiz["display_size"]['options']['dispsmall']['chk']['on']!=1&&quiz["display_size"]['options']['dispmedium']['chk']['on']!=1&&quiz["display_size"]['options']['displarge']['chk']['on']==1) { changeoptshow(1,"lap",-1); for(i=1;i<=6;i++) { if(window['opt'+i].getAttribute("onclick").indexOf("lap")>-1) { window['opt'+i].style.display="none"; } } } } 
+					else { changeoptshow(1,"lap",1); for(i=1;i<=6;i++) { if(window['opt'+i].getAttribute("onclick").indexOf("lap")>-1) { window['opt'+i].style.display="block";  } } }
 					break;
 				}
 				case "extraopt4":
 				{
 					if(quiz["display_size"]['options']['dispmedium']['chk']['on']!=1&&quiz["display_size"]['options']['dispsmall']['chk']['on']!=1&&quiz["display_size"]['options']['dispxsmall']['chk']['on']!=1)
 					{
-						changeoptshow("otherfeatures","convertible",add); changeoptshow("otherfeatures","stylus",add);
+						changeoptshow("otherfeatures","convertible",add); changeoptshow("otherfeatures","stylus",add); changeoptshow(1,"lap",add); for(i=1;i<=6;i++) { if(window['opt'+i].getAttribute("onclick").indexOf("lap")>-1) { if(add!=1) { window['opt'+i].style.display="none"; } else { window['opt'+i].style.display="block";  } } }
 					}
 					break;
 				}
