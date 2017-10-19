@@ -370,7 +370,7 @@ _:-ms-lang(x),
     border-style: solid;
     border-width: 0px;
     border-color: #000000;
-    height: 350px;
+    height: 360px;
     position: relative;
     padding: 0px;
     color: #285F8F;
@@ -667,6 +667,12 @@ _:-ms-lang(x),
 
 
 /* Media Css for quiz */
+
+@media (min-width:1280px ) and (max-width: 1470px) {
+    .nrcircle {
+        width: 28px;
+    }
+}
 
 @media(max-width:1280px) {
     .nrcircle {
