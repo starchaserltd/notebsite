@@ -14,16 +14,17 @@ $('#submitformid').click(function(e)
 });
 			
 //FIRST, DEPENDING ON THE RANGE WE DECIDE THE NUMER SIZE
+var rangemaxbadv=0;
 function divideradv()
 {
-	rangemaxbadv=maxbadv;
+	var rangemaxbadv_temp=rangemaxbadv;
 	i=1;
-	while(rangemaxbadv>1)
+	while(rangemaxbadv_temp>1)
 	{
-		rangemaxbadv=rangemaxbadv/10;
+		rangemaxbadv_temp=rangemaxbadv_temp/10;
 		i++;
 	}
-	
+
 	divide=Math.pow(10,i-4);
 	if(i<=0) {divide=1;}
 	return divide;

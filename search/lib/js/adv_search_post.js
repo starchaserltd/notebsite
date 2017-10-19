@@ -633,7 +633,7 @@ document.getElementById('years').noUiSlider.on('update', function( values, handl
 $(document).ready(function()
 {
 	var t = parseFloat(currency_val[$('#currencyadv').val()]);
-	var x = minbudgetset; var y = maxbudgetset; y=parseInt(y*t); x=parseInt(x*t); minbadv=parseInt(minbudgetnomenadv*t); maxbadv=parseInt(maxbudgetnomenadv*t);
+	var x = minbudgetset; var y = maxbudgetset; y=parseInt(y*t); x=parseInt(x*t); minbadv=parseInt(minbudgetnomenadv*t); maxbadv=parseInt(maxbudgetnomenadv*t);	rangemaxbadv=y;
 
 	noUiSlider.create(document.getElementById('budgetadv'), {
 		start: [roundlimitadv(x), roundlimitadv(y)],
@@ -641,16 +641,16 @@ $(document).ready(function()
 		direction: 'ltr',
 		format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
 		range: {
-			'min': [ roundlimitadv(minbadv),roundstepadv((maxbadv-minbadv)*0.0015)],
-		//	'5%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.03),  roundstepadv((maxbadv-minbadv)*0.0015) ],
-		//	'10%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.058),  roundstepadv((maxbadv-minbadv)*0.00284) ],
-			'25%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.145),  roundstepadv((maxbadv-minbadv)*0.0071)],
-		//	'40%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.2),  roundstepadv((maxbadv-minbadv)*0.015) ],
-			'50%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.285),  roundstepadv((maxbadv-minbadv)*0.01425) ],
-		//	'60%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.428),  roundstepadv((maxbadv-minbadv)*0.02) ],
-			'70%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.571),  roundstepadv((maxbadv-minbadv)*0.0285) ],
-			'80%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.8),  roundstepadv((maxbadv-minbadv)*0.04) ],
-			'90%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.9), roundstepadv((maxbadv-minbadv)*0.045) ],		
+			'min': [ roundlimitadv(minbadv),roundstepadv((maxbadv-minbadv)*0.00065)],
+			'10%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.025),  roundstepadv((maxbadv-minbadv)*0.0015) ],
+			'20%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.035),  roundstepadv((maxbadv-minbadv)*0.0015)],
+			'30%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.055),  roundstepadv((maxbadv-minbadv)*0.0013)],
+			'40%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.075),  roundstepadv((maxbadv-minbadv)*0.0013) ],
+			'50%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.1),  roundstepadv((maxbadv-minbadv)*0.002) ],
+			'60%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.15),  roundstepadv((maxbadv-minbadv)*0.0033) ],
+			'70%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.20),  roundstepadv((maxbadv-minbadv)*0.0066) ],
+			'80%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.30),  roundstepadv((maxbadv-minbadv)*0.013) ],
+			'90%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.45), roundstepadv((maxbadv-minbadv)*0.033) ],		
 			'max': [ roundlimitadv(maxbadv),roundstepadv((maxbadv-minbadv)*0.055)]
 		}
 	});
