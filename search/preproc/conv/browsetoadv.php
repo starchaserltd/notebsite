@@ -108,7 +108,7 @@ switch ($browse_by)
 	case "largedisplay":
 	{
 		$displaysizemin=17;
-		$displaysizemax=18.7;
+		$displaysizemax=21;
 		$display_touch[] = "1"; $display_touch[] ="2";
 		$gputype = 2;
 		$mdbwwan = 1;

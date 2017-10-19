@@ -125,7 +125,7 @@ switch($browse_by)
 	case "largedisplay":
 	{
 		$display_sizemin=17;
-		$display_sizemax=18.7;
+		$display_sizemax=21;
 		$display_touch[] = "1"; $display_touch[] ="2"; 
 		$to_search["display"]=1;
 		$filtercomp = array("display");
