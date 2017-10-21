@@ -68,11 +68,11 @@ require_once("etc/session.php");
 						<ul>
 							<li class='has-sub'><a >By brand</a>
 								<ul>
-									<li><a  onmousedown="OpenPage('search/search.php?prod=Lenovo&browse_by=prod',event); scrolltoid('content');">Lenovo</a></li>
 									<li><a  onmousedown="OpenPage('search/search.php?prod=HP&browse_by=prod',event); scrolltoid('content');">HP</a></li>
+									<li><a  onmousedown="OpenPage('search/search.php?prod=Lenovo&browse_by=prod',event); scrolltoid('content');">Lenovo</a></li>
 									<li><a  onmousedown="OpenPage('search/search.php?prod=Dell&browse_by=prod',event); scrolltoid('content');">Dell</a></li>
-									<li><a  onmousedown="OpenPage('search/search.php?prod=Asus&browse_by=prod',event); scrolltoid('content');">Asus</a></li>
 									<li><a  onmousedown="OpenPage('search/search.php?prod=Apple&browse_by=prod',event); scrolltoid('content');">Apple</a></li>
+									<li><a  onmousedown="OpenPage('search/search.php?prod=Asus&browse_by=prod',event); scrolltoid('content');">Asus</a></li>
 									<li><a  onmousedown="OpenPage('search/search.php?prod=Acer&browse_by=prod',event); scrolltoid('content');">Acer</a></li>
 									<li><a  onmousedown="OpenPage('search/search.php?prod=Samsung&browse_by=prod',event); scrolltoid('content');">Samsung</a></li>
 									<li><a  style="color:#1D94DA" onmousedown="OpenPage('content/brands.php',event); scrolltoid('content');">Other brands</a></li>
@@ -80,17 +80,19 @@ require_once("etc/session.php");
 							</li>	
 							<li class='has-sub'><a >By class</a>
 								<ul>
+									<li><a  onmousedown="OpenPage('search/search.php?browse_by=budget',event); scrolltoid('content');">Budget</a></li>
 									<li><a  onmousedown="OpenPage('search/search.php?browse_by=mainstream',event); scrolltoid('content');">Mainstream</a></li>
 									<li><a  onmousedown="OpenPage('search/search.php?browse_by=ultraportable',event); scrolltoid('content');">Ultraportable</a></li>
 									<li><a  onmousedown="OpenPage('search/search.php?browse_by=gaming',event); scrolltoid('content');">Gaming</a></li>
-									<li><a  onmousedown="OpenPage('search/search.php?browse_by=professional',event); scrolltoid('content');">Professional</a></li>
+									<li><a  onmousedown="OpenPage('search/search.php?browse_by=business',event); scrolltoid('content');">Business</a></li>
+									<li><a  onmousedown="OpenPage('search/search.php?browse_by=professional',event); scrolltoid('content');">CAD/3D modeling</a></li>
 								</ul>
 							</li>		
 							<li class='has-sub'><a >By screen size</a>
 								<ul>
 									<li><a  onmousedown="OpenPage('search/search.php?browse_by=smalldisplay',event); scrolltoid('content');">10" - 13.9"</a></li>
-									<li><a  onmousedown="OpenPage('search/search.php?browse_by=mediumdisplay',event); scrolltoid('content');">14" - 17" </a></li>
-									<li><a  onmousedown="OpenPage('search/search.php?browse_by=largedisplay',event); scrolltoid('content');">17.1" - 18.5" </a></li>
+									<li><a  onmousedown="OpenPage('search/search.php?browse_by=mediumdisplay',event); scrolltoid('content');">14" - 16.9" </a></li>
+									<li><a  onmousedown="OpenPage('search/search.php?browse_by=largedisplay',event); scrolltoid('content');">17" - 21" </a></li>
 								</ul>
 							</li>				
 						</ul>

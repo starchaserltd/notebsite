@@ -187,7 +187,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 							
 			if ((isset($_GET['dispxsmall']) && $_GET['dispxsmall']==1 ) || (isset($_GET['dispsmall'])	&& $_GET['dispsmall']==1 ) || (isset($_GET['dispmedium']) && $_GET['dispmedium']==1 ) || (isset($_GET['displarge'])	&& $_GET['displarge']==1 ) )
 			{ $display_sizemin=30; $display_sizemax=0; }
-	 
+
 			if (isset($_GET['dispxsmall'])	&& $_GET['dispxsmall']==1 ) 
 			{ if($display_sizemin>10) { $display_sizemin =10; }	if($display_sizemax<13) { $display_sizemax =13; } }
 		
@@ -196,7 +196,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 		
 			if (isset($_GET['dispmedium'])	&& $_GET['dispmedium']==1 ) 
 			{ if($display_sizemin>14) { $display_sizemin =14; }	if($display_sizemax<16) { $display_sizemax =16; } }
-		
+
 			if (isset($_GET['displarge'])	&& $_GET['displarge']==1 ) 
 			{ if($display_sizemin>17) { $display_sizemin =17; }	if($display_sizemax<24) { $display_sizemax =24; } }
 
@@ -627,8 +627,7 @@ if($qsearchtype!=="p" && $qsearchtype!=="b")
 		
 		if($budgetmax>2100)
 		{
-			//if (isset($_GET['3dgameshigh']) && $display_sizemin>15 && $_GET['3dgameshigh']==1 && array_search("LED TN WVA",$display_backt))
-			//{ $display_misc=["120Hz"]; }
+			
 		}
 	}
 	else

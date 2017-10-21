@@ -62,7 +62,7 @@
 			$hdd_type[]="SSD";
 			$mdbwwansel0 = "selected";
 			$mdbwwan = 0;
-			$valuetype[25][] = "Windows 10 Pro"; $valuetype[25][] = "macOS 10.12"; 
+			$valuetype[25][] = "Windows 10 Pro"; $valuetype[25][] = "macOS 10.13"; 
 			break;
 		case "4":		// gaming
 			$cputdpmin = 15; 

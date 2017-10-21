@@ -5,6 +5,7 @@ $rootpath = realpath($_SERVER["DOCUMENT_ROOT"]).$root_mod;
 require_once("../../etc/con_db.php");
 ?>
 <link rel="stylesheet" href="../../lib/css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="../../libnb/css/loading.css" type="text/css" />
 <script type="text/javascript" src="../../lib/js/jquery.min.js"></script>
 <script type="text/javascript" src="../../libnb/js/tooltip.js" async></script>
 <script type="text/javascript" src="../quiz/classList.min.js"></script>

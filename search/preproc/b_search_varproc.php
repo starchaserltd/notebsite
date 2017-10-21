@@ -1,7 +1,7 @@
 <?php
 if(isset($_GET['sort_by'])) { $sort_by = $_GET['sort_by']; }
 if(isset($_GET['browse_by'])) { $browse_by = $_GET['browse_by']; }
-$to_search["model"]=1;
+$to_search["model"]=1; $totalcapmin=0;
 //LIST OF COMPONENTS WE WILL FILTER
 $to_search = array(
 	"model"   => 1,
@@ -34,74 +34,127 @@ switch($browse_by)
 	}	
 	
 	case "mainstream":
-	{	$cpu_tdpmin = 4;
+	{	
+		$model_minclass=0; $model_maxclass=1;
+		$cpu_tdpmin = 7;
+		$cpu_tdpmax = 45;
 		$display_sizemin=14;
 		$display_sizemax=17.3;
-		$display_touch[] = "1"; $display_touch[] ="2"; 
-		$cpu_tdpmax = 35;
+		$display_vresmin=1080;
+		$chassis_twoinone=0;
 		$mdb_wwan = 1;
-		$chassis_weightmin= 1.80;
+		$chassis_weightmin= 1.90;
 		$chassis_weightmax=3;
-		$chassis_thicmin=10;
-		$chassis_thicmax=30;
-		$gpu_typelist[]=0;
-		$gpu_typelist[]=1;
-		$to_search["chassis"]=1;
-		$to_search["mdb"]=1;
-		$to_search["cpu"]=1;
-		$to_search["gpu"]=1;
-		$to_search["display"]=1;
-		$filtercomp = array("cpu","chassis", "gpu", "mdb", "display");
+		$chassis_thicmin=18;
+		$chassis_thicmax=40;
+		$mem_capmin=8;
+		$gpu_typelist=[0,1];
+		$hdd_type = ["HDD","SSD","SSHD"];
+		$totalcapmin = 120; 
+		$sist_sist=["Windows+Home","Windows+Pro","Windows+S","Chrome OS","macOS","Linux Ubuntu"]; 
+		$to_search["chassis"]=1; $to_search["mdb"]=1; $to_search["cpu"]=1; $to_search["gpu"]=1;
+		$to_search["hdd"]=1; $to_search["mem"]=1; $to_search["display"]=1; $to_search["sist"]=1;
+		$filtercomp = array("cpu","chassis", "gpu", "mdb", "display","hdd","sist","mem");
 		break;
 	}
 	case "ultraportable":
 	{
+		$model_minclass=0; $model_maxclass=1;
 		$cpu_tdpmin = 0;
 		$cpu_tdpmax = 25; 
-		$chassis_weightmax=2;
-		$chassis_thicmax = 19;
-		$gpu_typelist[]=0;
-		$gpu_typelist[]=1;
-		$gpu_typelist[]=2;
-		$to_search["chassis"]=1;
-		$to_search["cpu"]=1;
-		$to_search["gpu"]=1;
-		$filtercomp = array("cpu","gpu", "chassis");
+		$mem_capmin=8;
+		$gpu_typelist=[0,1];
+		$display_vresmin=1080;
+		$hdd_type = ["EMMC","SSD"];
+		$totalcapmin = 120;
+		$chassis_weightmax=2.1;
+		$chassis_thicmax = 23;
+		$gpu_typelist=[0,1,2];
+		$sist_sist=["Windows+Home","Windows+Pro","Windows+S","Chrome OS","macOS","Linux Ubuntu"]; 
+		$to_search["chassis"]=1; $to_search["cpu"]=1; $to_search["gpu"]=1;
+		$to_search["hdd"]=1; $to_search["mem"]=1; $to_search["display"]=1; $to_search["sist"]=1;
+		$filtercomp = array("cpu","chassis", "gpu", "display","hdd","sist","mem");
+		break;
+	}
+	case "budget":
+	{
+		$model_minclass=0; $model_maxclass=1;
+		$cpu_tdpmin = 0;
+		$cpu_tdpmax = 15; 
+		$chassis_weightmax=2.8;
+		$chassis_thicmin = 16;
+		$mem_capmax=8;
+		$display_vresmax=1080;
+		$gpu_typelist=[0,1];
+		$mdb_wwan = 1;
+		$totalcapmin = 0;
+		$sist_sist=["Windows+Home","Android","Windows+S","Chrome OS","No OS","Linux Ubuntu"]; 
+		$to_search["chassis"]=1; $to_search["cpu"]=1; $to_search["gpu"]=1; $to_search["mdb"]=1;
+		$to_search["mem"]=1; $to_search["display"]=1; $to_search["sist"]=1;
+		$filtercomp = array("cpu","chassis", "gpu","mdb", "display","sist","mem");
+		break;
+	}
+	case "business":
+	{
+		$model_minclass=1; $model_maxclass=4;
+		$cpu_tdpmin = 4;
+		$cpu_tdpmax = 45;
+		$display_sizemin=13;
+		$display_sizemax=17.3;
+		$display_vresmin=1080;
+		$chassis_weightmax=3;
+		$chassis_thicmax=40;
+		$gpu_powermax=30;
+		$mem_capmin=8;
+		$gpu_typelist=[0,1,3];
+		$hdd_type = ["HDD","SSD","SSHD"];
+		$totalcapmin = 120;
+		$sist_sist=["Windows+Home","Windows+Pro","Windows+S","macOS","Linux Ubuntu"]; 
+		$to_search["chassis"]=1; $to_search["mdb"]=1; $to_search["cpu"]=1; $to_search["gpu"]=1;
+		$to_search["hdd"]=1; $to_search["mem"]=1; $to_search["display"]=1; $to_search["sist"]=1;
+		$filtercomp = array("cpu","chassis", "gpu", "mdb", "display","hdd","sist","mem");
 		break;
 	}
 	case "gaming":
 	{
+		$model_minclass=0; $model_maxclass=1;
 		$cpu_tdpmin = 30;
 		$cpu_tdpmax = 300;
-		$gpu_powermin=30;
-		$type_gpu = 1;
-		$gpu_typelist[]=1;
-		$gpu_typelist[]=2;
-		$gpu_typelist[]=4;
-		$display_touch[] = "1"; $display_touch[] ="2";
+		$display_sizemin=13;
+		$display_sizemax=17.3;
+		$display_vresmin=1080;
+		$mem_capmin=8;
+		$gpu_powermin=59;
+		$gpu_typelist=[2,4];
 		$mdb_wwan = 1;
+		$hdd_type = ["HDD","SSD","SSHD"];
+		$totalcapmin = 250;
 		$chassis_thicmin = 10;
-		$to_search["chassis"]=1;
-		$to_search["cpu"]=1;
-		$to_search["gpu"]=1;
-		$to_search["mdb"]=1;
-		$filtercomp = array("cpu", "mdb" , "chassis" ,"gpu");
+		$sist_sist=["Windows+Home","Windows+Pro","Windows+S"]; 
+		$to_search["chassis"]=1; $to_search["cpu"]=1; $to_search["gpu"]=1; $to_search["mdb"]=1;
+		$to_search["hdd"]=1; $to_search["mem"]=1; $to_search["display"]=1; $to_search["sist"]=1;
+		$filtercomp = array("cpu","chassis", "gpu","mdb", "display","hdd","sist","mem");
 		break;
 	}
 	case "professional":
 	{
-		$cpu_tdpmin = 15;
+		$model_minclass=1; $model_maxclass=4;
+		$cpu_tdpmin = 30;
 		$cpu_tdpmax = 300;
-		$gpu_powermin=20;
-		$gpu_typelist[]=0;
-		$gpu_typelist[]=1;
-		$gpu_typelist[]=3;
+		$display_sizemin=13;
+		$display_sizemax=17.3;
+		$display_vresmin=1080;
+		$mem_capmin=8;
+		$gpu_powermin=30;
+		$gpu_typelist=[3];
 		$mdb_wwan = 0;
-		$to_search["mdb"]=1;
-		$to_search["cpu"]=1;
-		$to_search["gpu"]=1;
-		$to_search["display"]=1;
-		$filtercomp = array("cpu", "mdb","gpu","display");
+		$hdd_type = ["SSD","SSHD"];
+		$totalcapmin = 250;
+		$chassis_thicmin = 10;
+		$sist_sist=["Windows+Home","Windows+Pro"]; 
+		$to_search["chassis"]=1; $to_search["cpu"]=1; $to_search["gpu"]=1; $to_search["mdb"]=1;
+		$to_search["hdd"]=1; $to_search["mem"]=1; $to_search["display"]=1; $to_search["sist"]=1;
+		$filtercomp = array("cpu","chassis", "gpu","mdb", "display","hdd","sist","mem");
 		break;
 	}
 	case "smalldisplay":

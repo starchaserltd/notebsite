@@ -116,7 +116,7 @@ $datecpu[0] = $datecpu[0]-2;
 			{ if($displaysizemin<13) { $displaysizemin =13; }	if($displaysizemax>16) { $displaysizemax =16; } }
 													
 			if (isset($_GET['lap'])	&& $_GET['lap']==1 ) 
-			{ if($displaysizemin<10) { $displaysizemin =10; }	if($displaysizemax>14) { $displaysizemax =14; } } //MATTE?
+			{ if($displaysizemin<10) { $displaysizemin =10; }	if($displaysizemax>14) { $displaysizemax =14; } }
 								
 			if (isset($_GET['bag']) && $_GET['bag']==1) 
 			{ if($displaysizemin<13) { $displaysizemin =13; }	if($displaysizemax>16) { $displaysizemax =16; } }
@@ -504,8 +504,7 @@ $quiz_mingputype=0; $gpu_typelist=[];
 					
 					} if(count($gpu_model)<1){ $gpu_typelist=["10"]; }
 			}
-			foreach ($gpu_model as $element)
-			{	$gpumodel.='<option selected="selected">'.$element.'</option>'; }
+			
 			if(!$to_search["gpu"]) { if($quiz_mingputype<1) { $quiz_mingputype=0; } array_push($gpu_typelist,"0","1"); if($model_maxclass>=2) { $gpupowermax=36; }; $to_search["gpu"]=1; } 
 			if($model_maxclass>=2) {  array_push($gpu_typelist,"3"); }
 			$gpu_typelist=array_unique($gpu_typelist);
@@ -635,7 +634,7 @@ $quiz_mingputype=0; $gpu_typelist=[];
 
 	if($budgetmax>800)
 	{
-		$sist_sist[]="macOS 10.12";
+		$sist_sist[]="macOS 10.13";
 		if(count($display_backt)<1) { $display_backt = ["LED IPS","LED IPS PenTile","LED TN WVA","OLED"]; }
 		if($displayvresmin<1080) { $displayvresmin=1080; }
 		if($totalcapmin<179) { $totalcapmin =180; }
@@ -665,23 +664,20 @@ $quiz_mingputype=0; $gpu_typelist=[];
 }
 else
 {
-	$sist_sist[]="macOS 10.12"; $sist_sist[]="Chrome OS 1"; 
+	$sist_sist[]="macOS 10.13"; $sist_sist[]="Chrome OS 1"; 
 }
 
-//echo $model_minclass; echo $model_maxclass;
-	/*if ($model_minclass>=1 && $model_maxclass>=3) 
-		{$family.='<option selected="selected">All business families</option>';}
-	if ($model_minclass>=0 && $model_maxclass<=1) 
-		{$family.='<option selected="selected">All consumer families</option>';}*/
-	if ($model_minclass <= 0 && $model_maxclass>=3) 
-		{
-			$family.='<option selected="selected">All business families</option>';
-			$family.='<option selected="selected">All consumer families</option>';}
-	else if ($model_minclass>=1 && $model_maxclass>=3) 
-					{$family.='<option selected="selected">All business families</option>';}
-	else if ($model_minclass>=0 && $model_maxclass<=1) 
-					{$family.='<option selected="selected">All consumer families</option>';}
+if ($model_minclass <= 0 && $model_maxclass>=3) 
+{
+	$family.='<option selected="selected">All business families</option>';
+	$family.='<option selected="selected">All consumer families</option>';
+}
+else if ($model_minclass>=1 && $model_maxclass>=3) {$family.='<option selected="selected">All business families</option>';}
+else if ($model_minclass>=0 && $model_maxclass<=1) {$family.='<option selected="selected">All consumer families</option>';}
 
+foreach ($gpu_model as $element)
+			{	$gpumodel.='<option selected="selected">'.$element.'</option>'; }
+			
 foreach ($cpu_misc as $element)
 		{	$cpumsc.='<option selected="selected">'.$element.'</option>';	}
 
@@ -697,16 +693,14 @@ if ($nr_hdd == 3) {$nrhddselect2 = "selected";}
 if(isset($hdd_type)) { $valuetype[54] = $hdd_type; }
 
 
-//$valuetype[52] = $oddtype;
-// de verificat de ce nu
-//var_dump($sist_sist);
+
 foreach ($sist_sist as $element)
 {$aaa = substr_count($element,"+");
 	if ($aaa == 1)
 	{$aa = str_replace("+"," 10 ",$element);
 	$valuetype[25][]= $aa;}
 	else $valuetype[25][]= $element;
-	} //var_dump($valuetype[25]);
+	} 
 		
 		
 	
@@ -723,12 +717,12 @@ foreach ($regions_name as $element)
 		{	$regions.='<option selected="selected">'.$element.'</option>';	}
 foreach ($gpu_typelist as $element)
 			{ if ($element>=1)  {$gputype =1;}
-			$gputypesel[$element]="selected"; }		//var_dump($gpu_typelist);
+			$gputypesel[$element]="selected"; }		
 foreach ($chassis_made as $element)
 		{	$valuetype[26][] = $element;	}	
 if(isset($chassis_twoinone) && $chassis_twoinone == 1) {$twoinone_check = "checked";}
 
-$bdgmin=floatval($budgetmin); //echo $bdgmin;
+$bdgmin=floatval($budgetmin); 
 $bdgmax=floatval($budgetmax)+1;
 //$mdbslotsel0 = "selected";
 

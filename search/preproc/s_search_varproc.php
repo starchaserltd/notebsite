@@ -338,7 +338,7 @@ foreach($_GET['storage'] as $x)
     switch($x)
 	{
 		case "1":  //normal
-			$hdd_type[] = "HDD"; $hdd_type[] = "EMMC"; $hdd_type[] = "SSHD";
+			$hdd_type = ["HDD","EMMC","SSHD"];
 			$hdd_capmin = 100;
 			$hdd_capmax = 1000;
 			break;
