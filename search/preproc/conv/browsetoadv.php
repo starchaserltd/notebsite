@@ -66,6 +66,7 @@ switch ($browse_by)
 		$model_minclass=0; $model_maxclass=1;
 		$cputdpmin = 0;
 		$cputdpmax = 15;
+		$cpufreqmax = 3.3;
 		$displayvresmax = 1080;
 		$memcapmax=8;
 		$mdbwwan = 1;

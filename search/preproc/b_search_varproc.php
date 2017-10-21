@@ -83,6 +83,7 @@ switch($browse_by)
 		$cpu_tdpmax = 15; 
 		$chassis_weightmax=2.8;
 		$chassis_thicmin = 16;
+		$cpu_freqmax = 3.3;
 		$mem_capmax=8;
 		$display_vresmax=1080;
 		$gpu_typelist=[0,1];
