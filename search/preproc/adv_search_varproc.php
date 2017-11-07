@@ -252,6 +252,12 @@ if(isset($_GET['DISPLAY_msc_id']))
 				unset($display_backt[$key]);
 				break;
 			}
+			case (stripos($el,"144Hz")!==FALSE && !isset($display_misc["75Hz0"])):
+			{
+				$display_misc[]=$display_backt[$key];
+				unset($display_backt[$key]);
+				break;
+			}
 			case (stripos($el,"120Hz")!==FALSE && !isset($display_misc["75Hz0"])):
 			{
 				$display_misc[]=$display_backt[$key];
