@@ -5,8 +5,7 @@ $sql = "SELECT name FROM notebro_site.nomen WHERE type=70 OR type=71";
 $result = mysqli_fetch_all(mysqli_query($con,$sql));
 $bdgmin=$result[0][0]*0.9;
 $bdgmax=$result[1][0]*1.1;
-$browse_by = $_GET['browse_by']; $producer="";
-$model_minclass=0; $model_maxclass=99;
+$browse_by = $_GET['browse_by']; $producer="";	
 switch ($browse_by) 
 {
 	case "prod":
