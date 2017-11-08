@@ -19,6 +19,8 @@ require_once("etc/session.php");
 	<!-- Bootstrap Mutliselect JavaScript -->
 	<script type="text/javascript" src="lib/js/bootstrap-multiselect.js"></script>
 	<script type="text/javascript" src="lib/js/nouislider.min.js"></script>
+	<!-- Lightbox js -->
+	<script src="lib/js/lightbox.min.js"></script> 
 </head>
 <body>
 <style>
@@ -62,6 +64,7 @@ require_once("etc/session.php");
 					</select>
 				</form>
 			</div>
+			<!-- simple search -->			
 			<div class="col-md-12 col-xs-12 col-sm-12 blue" id='cssmenu' style="padding:0px">
 				<ul >
 				   <li  class='has-sub'><a >Browse laptops</a>
@@ -83,8 +86,8 @@ require_once("etc/session.php");
 									<li><a  onmousedown="OpenPage('search/search.php?browse_by=budget',event); scrolltoid('content');">Budget</a></li>
 									<li><a  onmousedown="OpenPage('search/search.php?browse_by=mainstream',event); scrolltoid('content');">Mainstream</a></li>
 									<li><a  onmousedown="OpenPage('search/search.php?browse_by=ultraportable',event); scrolltoid('content');">Ultraportable</a></li>
-									<li><a  onmousedown="OpenPage('search/search.php?browse_by=gaming',event); scrolltoid('content');">Gaming</a></li>
 									<li><a  onmousedown="OpenPage('search/search.php?browse_by=business',event); scrolltoid('content');">Business</a></li>
+									<li><a  onmousedown="OpenPage('search/search.php?browse_by=gaming',event); scrolltoid('content');">Gaming</a></li>
 									<li><a  onmousedown="OpenPage('search/search.php?browse_by=professional',event); scrolltoid('content');">CAD/3D modeling</a></li>
 								</ul>
 							</li>		
@@ -96,11 +99,25 @@ require_once("etc/session.php");
 								</ul>
 							</li>				
 						</ul>
-					</li>					
+					</li>	
+				</ul>
+			</div>		
+				
+			<div>
+				<button class="btn btn-title collapsed leftMenuFilters" data-toggle="collapse" data-target="#SearchParameters" aria-expanded="false" onclick=""><a style="color:white;">Quick search filters</a><a></a></button>
+				<div class="SearchParameters collapse"  id="SearchParameters">			
+					<?php include ("search/s_search.php");?>
+				</div>			
+			</div>	
+			<div style="text-align:center;">
+     		 <button  class="leftMenuAdvSearch" id="sadvsearch" onmousedown="OpenPage('search/adv_search.php',event);" type="button" class="btn blue"><a style="text-decoration:none;color:white;">Advanced search</a></button>
+  			 </div>					
+			<div class="col-md-12 col-xs-12 col-sm-12 blue" id='cssmenu' style="padding:0px">
+				<ul>				
 					<li class='has-sub'><a >Compare</a>
 						<ul style="background-color: white;">
 							<li>
-								<table class="table" id="comparelist" style="margin-bottom:0px;">
+								<table class="table" id="comparelist" style="margin-bottom:2px;">
 									<tbody>
 										<tr id="toptrcomp"><td colspan="1" style="text-align:center; background:#FFF; font-weight:600"></td></tr>
 										<!-- GENERATING COMPARE LIST FROM SESSION -->
@@ -111,22 +128,15 @@ require_once("etc/session.php");
 						</ul>								
 					</li>
 				</ul>
-			</div>			
-			<!-- end left menu-->
-			<!-- simple search -->
-			<button class="btn btn-title collapsed" style="font-size:16px!important; text-align:justify;position:relative" data-toggle="collapse" data-target="#SearchParameters" aria-expanded="false" onclick=""><a style="color:white;">Quick laptop search</a><a></a></button>
-			<div class="SearchParameters collapse"  id="SearchParameters">			
-			<?php include ("search/s_search.php");?>
-			</div>			
+			</div>	
+
+			<!-- end left menu--> 
 			
-			
-				
-			<!-- end simple search -->	
 			
 		</div>
 		<!-- end left area-->
 		<!-- main content -->
-		<div class="col-md-8 col-sm-12 col-xs-12 container" style="padding:3px;border-left:1px solid #ddd;" id="content">
+		<div class="col-md-8 col-sm-12 col-xs-12 container" style="border-left:1px solid #ddd;padding:3px;overflow: hidden;" id="content">
 			Loading main content.... Please wait.<br>
 			This website requires modern browsers, it will not work on IE 9.0 or earlier.	
 		</div>
@@ -143,6 +153,12 @@ require_once("etc/session.php");
 				<div id="loadingNoteB_8" class="loadingNoteB"></div>
 			</div>
 		</div>
+		<!-- Back to Top Button -->
+		<span id="top-link-block" class="hidden">
+			<a href="#top" style="color:#fff; text-decoration:none;" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+				<i class="glyphicon glyphicon-chevron-up"></i><span class="backTop">Back to Top</span>
+			</a>
+		</span><!-- /top-link-block -->
 		<!-- end main content -->
 		<!--left promotional space-->
 		<div class="col-md-2 hidden-xs hidden-sm" style="float: right; position: relative">
@@ -174,6 +190,8 @@ require_once("etc/session.php");
 	<link rel="stylesheet" href="libnb/css/loading.css" type="text/css" />	
 	<!--Quiz css	-->
 	<link rel="stylesheet" href="search/quiz/quiz.css" type="text/css" />	
+	<!--Lightbox css	-->
+	<link rel="stylesheet" href="lib/css/lightbox.min.css" type="text/css"/>
 
 	<!-- Custom Theme JavaScript -->
 	<script><?php echo 'var siteroot = "'.$web_address.'";'; ?></script>
@@ -181,6 +199,21 @@ require_once("etc/session.php");
 	<script type="text/javascript" src="search/quiz/classList.min.js"></script>
 	<script type="text/javascript" src="libnb/js/index.js"></script>
 	<script type="text/javascript" src="lib/js/nouislider.min.js"></script>
-	
+	<script type="application/ld+json">	
+		{
+		  "@context": "http://schema.org",
+		  "@type": "Organization",
+		  "url": "https://www.noteb.com",
+		  "logo": "https://www.noteb.com/res/img/logo/logo_white.png",		
+		},
+		{		 
+		  "@type": "WebSite",		  
+		  "potentialAction": {
+		    "@type": "SearchAction",
+		    "target": "https://query.noteb.com/search?q={search_term_string}",
+		    "query-input": "required name=search_term_string"
+		  }
+		}
+	</script>
 </body>
 </html>
