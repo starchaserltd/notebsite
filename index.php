@@ -1,6 +1,5 @@
 <?php 
 require_once("etc/session.php");
-require_once("etc/conf.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -200,20 +199,25 @@ require_once("etc/conf.php");
 	<script type="text/javascript" src="search/quiz/classList.min.js"></script>
 	<script type="text/javascript" src="libnb/js/index.js"></script>
 	<script type="text/javascript" src="lib/js/nouislider.min.js"></script>
-	<script type="application/ld+json">
+	<script type="application/ld+json">	
 		{
 		  "@context": "http://schema.org",
-		  "@type": "Organization",
-		  "url": "https://www.noteb.com",
-		  "logo": "https://www.noteb.com/res/img/logo/logo_white.png",		
-		},
-		{		 
-		  "@type": "WebSite",		  
-		  "potentialAction": {
-		    "@type": "SearchAction",
-		    "target": "https://query.noteb.com/search?q={search_term_string}",
-		    "query-input": "required name=search_term_string"
-		  }
+		  "graph": [
+		  	{
+		  		 "@type": "Organization",
+				  "url": "https://www.noteb.com",
+				  "logo": "https://www.noteb.com/res/img/logo/logo_white.png"
+				},
+			{		 
+			  "@type": "WebSite",
+			  "url": "https://www.noteb.com",
+			  "potentialAction": {
+			    "@type": "SearchAction",
+			    "target": "https://query.noteb.com/search?q={search_term_string}",
+			    "query-input": "required name=search_term_string"
+			  }
+			}
+		  ]
 		}
 	</script>
 </body>
