@@ -1,0 +1,94 @@
+/* spacing for tables noteb compare */
+
+.table-xtra-condensed>thead>tr>th,
+.table-xtra-condensed>tbody>tr>th,
+.table-xtra-condensed>tfoot>tr>th,
+.table-xtra-condensed>thead>tr>td,
+.table-xtra-condensed>tbody>tr>td,
+.table-xtra-condensed>tfoot>tr>td {
+    padding: 2px!important;
+}
+
+/*Make a bordeless table*/
+
+.borderless td,
+.borderless th {
+    border: none !important;
+}
+
+/* compare img midle align*/
+.compare1 {
+    vertical-align: middle !important;}
+/*.compare1 a:hover{text-decoration: none}   */
+
+ .comparejpg {
+    display: block;
+    margin: 0 auto;
+    width: 55%;
+}   
+
+/* resize title */
+@media screen and (max-width: 425px){.titlucomp {font-size: 14px!important;}}
+
+.titlucomp {
+    font-size: 17px;
+    text-align: left;
+    height: 35px !important;
+    margin-top: 5px;
+    padding-right: 0px !important;
+    font-weight: bold;
+}
+.tbltitle {
+    color: #575757;
+    font-weight: bold;
+}
+
+
+.detaliicomp {
+    font-size: 16px;
+    text-align: center;
+}
+
+.detaliicomp2 {
+    font-size: 16px;
+}
+
+
+
+
+
+.shcomp {
+    background-color: #FFD466;
+    text-align: center;
+    border-radius: 3px;
+    font-size: 15px;
+}
+
+.rows {
+    text-align: center;
+    border-top: 1px solid #ddd;
+    padding: 2px!important;
+    flex: 1;
+}
+
+.colored {
+    background-color: #fff7e5;
+}
+
+@media (max-width: 550px) {
+
+    .compContainer {
+        overflow-y: scroll;
+    }
+    .compContainer table td {
+        min-width: 108px;
+    }
+
+    .addtocpmp>a {
+        font-size: 12px;
+        padding: 0 15px!important;
+    }
+    .tbltitle {
+        font-weight: normal;
+    }
+}

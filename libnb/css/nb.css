@@ -346,10 +346,6 @@
     transition: all 0.3s ease-in;
 }
 
-.tbltitle {
-    color: #575757;
-    font-weight: bold;
-}
 
 .nopding {
     padding: 0px !important;
@@ -696,46 +692,12 @@
 
 /* THE REST */
 
-.addtocpmp:hover {
-    background-color: #999999;
-    color: #fff;
-    border-color: #575757;
-}
 
-.addtocpmp {
-    border-radius: 20px !important;
-    height: auto;
-    padding: 3px 3px;
-    margin-top: 5px;
-    color: #575757;
-    cursor: pointer;
-    border: 2px solid #575757;
-    font-size: 14px;
-    font-weight: bold;
-    transition: all 0.3s ease-in;
-    background-color: #fff;
-}
 
-.addtocpmp>a {
-    color: #575757;
-    padding: 0px 35px;
-    text-decoration: none
-}
 
-.addtocpmp:hover>a {
-    color: #fff;
-    transition: all 0.3s ease-in;
-}
 
-.compare1 {
-    vertical-align: middle !important;
-}
 
-.comparejpg {
-    display: block;
-    margin: 0 auto;
-    width: 55%;
-}
+
 
 .btn-result {
     color: #fff;
@@ -871,14 +833,40 @@ fieldset[disabled] .btn-result.active {
     /*background-color:#f6f6f6;*/
 }
 
-.table-xtra-condensed>thead>tr>th,
-.table-xtra-condensed>tbody>tr>th,
-.table-xtra-condensed>tfoot>tr>th,
-.table-xtra-condensed>thead>tr>td,
-.table-xtra-condensed>tbody>tr>td,
-.table-xtra-condensed>tfoot>tr>td {
-    padding: 2px;
+/* add to  and remove from compare clases -searchresult and compare */
+.addtocpmp {
+    border-radius: 20px !important;
+    height: auto;
+    padding: 3px 3px;
+    margin-top: 5px;
+    color: #575757;
+    cursor: pointer;
+    border: 2px solid #575757;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease-in;
+    background-color: #fff;
 }
+
+.addtocpmp>a {
+    color: #575757;
+    padding: 0px 35px;
+    text-decoration: none
+}
+
+.addtocpmp:hover>a {
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease-in;
+}
+
+.addtocpmp:hover {
+    background-color: #999999;
+    color: #fff;
+    border-color: #575757;
+}
+/* end */
+
 
 .imgcrop {
   position: relative;
@@ -1040,10 +1028,6 @@ fieldset[disabled] .btn-result.active {
     background-color: none;
 }
 
-.colored {
-    background-color: rgba(253, 231, 129, 0.46);
-}
-
 .SearchParameters {
     overflow-x: hidden;
     overflow-y: hidden;
@@ -1058,7 +1042,6 @@ fieldset[disabled] .btn-result.active {
     font-size: 12px;
     text-decoration: none;
 }
-
 
 /*----- Tabs -----*/
 
@@ -1124,13 +1107,6 @@ li.active a:hover {
     display: block;
 }
 
-.shcomp {
-    background-color: #FFD466;
-    text-align: center;
-    border-radius: 3px;
-    font-size: 15px;
-}
-
 .multiselect-container>li>a>label {
     padding: 3px 20px 3px 30px !important;
 }
@@ -1179,36 +1155,12 @@ li.active a:hover {
     flex: 1;
 }
 
-.rows {
-    text-align: center;
-    border-top: 1px solid #ddd;
-    padding: 2px;
-    flex: 1;
-}
+
 
 .review {
     font-size: 14px;
     text-align: justify;
 }
-
-.titlucomp {
-    font-size: 17px;
-    text-align: left;
-    height: 35px !important;
-    margin-top: 5px;
-    padding-right: 0px !important;
-    font-weight: bold;
-}
-
-.detaliicomp {
-    font-size: 16px;
-    text-align: center;
-}
-
-.detaliicomp2 {
-    font-size: 16px;
-}
-
 
 /* meniu sus*/
 
@@ -1514,12 +1466,6 @@ label.css-labelr {
 }
 
 
-/*Make a bordeless table*/
-
-.borderless td,
-.borderless th {
-    border: none !important;
-}
 
 
 /* Advanced search button home page */
