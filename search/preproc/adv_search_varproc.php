@@ -252,17 +252,27 @@ if(isset($_GET['DISPLAY_msc_id']))
 				unset($display_backt[$key]);
 				break;
 			}
-			case (stripos($el,"120Hz")!==FALSE && !isset($display_misc["75Hz0"])):
+			case (stripos($el,"144Hz")!==FALSE):
 			{
-				$display_misc[]=$display_backt[$key];
+				if(!isset($display_misc["Hz"])){ $display_misc["Hz"]=array(); }
+				$display_misc["Hz"][]="144Hz";
+				unset($display_backt[$key]);
+				break;
+			}
+			case (stripos($el,"120Hz")!==FALSE):
+			{
+				if(!isset($display_misc["Hz"])){ $display_misc["Hz"]=array(); }
+				$display_misc["Hz"][]="144Hz";
+				$display_misc["Hz"][]="120Hz";
 				unset($display_backt[$key]);
 				break;
 			}
 			case (stripos($el,"75Hz")!==FALSE):
 			{
-				$display_misc[]=$display_backt[$key];
-				if(($key_del = array_search("120Hz", $display_misc)) !== false) { unset($display_misc[$key_del]); }
-				$display_misc["75Hz0"]="120Hz";
+				if(!isset($display_misc["Hz"])){ $display_misc["Hz"]=array(); }
+				$display_misc["Hz"][]="144Hz";
+				$display_misc["Hz"][]="120Hz";
+				$display_misc["Hz"][]="75Hz";
 				unset($display_backt[$key]);
 				break;
 			}
@@ -272,7 +282,8 @@ if(isset($_GET['DISPLAY_msc_id']))
 			}
 		}
 	}
-	array_unique($display_misc);
+	if(isset($display_misc["Hz"])) { $display_misc["Hz"]=array_unique($display_misc["Hz"]); }
+	$display_misc=array_unique($display_misc);
 }
 
 // DISPLAY touchscreen

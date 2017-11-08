@@ -1,5 +1,6 @@
-<?php 
+<?php
 require_once("etc/session.php");
+require_once("etc/conf.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">

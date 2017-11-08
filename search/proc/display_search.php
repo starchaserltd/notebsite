@@ -197,23 +197,29 @@ function search_display ($model, $sizemin, $sizemax, $format, $hresmin, $hresmax
 	if(gettype($misc)!="array") { $misc=(array)$misc; }
 	foreach($misc as $key=>$x)
 	{
-		if(is_int($key))
+		$sel_display.=" AND ( ";
+		if(is_array($x))
 		{
-			if($i)
-			{  
-				$sel_display.=" AND ";
-			}
-			else
+			$sel_display.="(";
+			$j=0;
+			foreach($x as $y)
 			{
-				$sel_display.=" AND ( ";
+				if($j>0) { $sel_display.=" OR "; }
+				$sel_display.="FIND_IN_SET('";
+				$sel_display.=$y;
+				$sel_display.="',msc)>0";
+				$j++;
 			}
-			if(isset($misc[$x.$k])) { $sel_display.="(";}
+			$sel_display.=")";
+		}
+		else
+		{
+			if($i>0) { $sel_display.=" AND "; }
 			$sel_display.="FIND_IN_SET('";
 			$sel_display.=$x;
 			$sel_display.="',msc)>0";
-			$k=0; while(isset($misc[$x.$k])){ $sel_display.=" OR FIND_IN_SET('".$misc[$x.$k]."',msc)>0"; $k++;} if($k>0){ $sel_display.=")"; }
-			$i++;
 		}
+		$i++;
 	}
 	if($i>0)
 	{ $sel_display.=" ) "; } 
