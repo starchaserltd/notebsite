@@ -1,5 +1,6 @@
 <?php 
 require_once("etc/session.php");
+require_once("etc/conf.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -199,7 +200,7 @@ require_once("etc/session.php");
 	<script type="text/javascript" src="search/quiz/classList.min.js"></script>
 	<script type="text/javascript" src="libnb/js/index.js"></script>
 	<script type="text/javascript" src="lib/js/nouislider.min.js"></script>
-	<script type="application/ld+json">	
+	<script type="application/ld+json">
 		{
 		  "@context": "http://schema.org",
 		  "@type": "Organization",

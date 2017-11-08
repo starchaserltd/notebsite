@@ -1,5 +1,4 @@
 <script>$.getScript("search/lib/js/ssearch.js");</script>
-
 	<div class="col-md-12 col-sm-12 col-xs-12" style="padding:0 5px;">	
 		<form style="overflow:hidden" action="javascript:void(0);" method="post" id="s_search">
 				<div style="margin-top:10px; font-size:14px;font-weight:bold; margin-bottom:2px;">Laptop type</div>			

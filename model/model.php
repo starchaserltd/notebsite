@@ -38,7 +38,7 @@ else
 		$_SESSION['model'] = $idmodel; $model_data=show_vars('model.prod, families.fam, families.subfam, families.showsubfam, model.model,model.submodel,model.regions,model.keywords', 'notebro_db.MODEL model JOIN notebro_db.FAMILIES families ON model.idfam=families.id',$idmodel); $mprod=$model_data["prod"]; if(isset($model_data["subfam"])&&$model_data["showsubfam"]!=0){ $model_data["subfam"]=" ".$model_data["subfam"]; } else { $model_data["subfam"]=""; } $mfam=$model_data["fam"].$model_data["subfam"];  $mmodel=$model_data["model"];  $msubmodel=$model_data["submodel"]; 
 		$mregion_id=intval(explode(",",$model_data['regions'])[0]); if($mregion_id!=1){ $mregion="(".show_vars("disp","REGIONS",$mregion_id).")"; } else { $mregion=""; } if(isset($model_data["keywords"])&&$model_data["keywords"]!=""&&$model_data["keywords"]!=NULL&&$model_data["keywords"]!=" ") { $keywords=str_replace(",","+",$model_data["keywords"]); } else { switch($mprod) { case "Dell": {$keywords=$mprod."+".$mfam."+".$mmodel; break; } case "Lenovo": {$keywords=$mprod."+".$mfam."+".$mmodel; break; } case "HP": {$keywords=$mprod."+".$mfam."+".$mmodel; break; } default: {$keywords=$mprod."+".$mmodel; } } }
 		
-			echo $mprod." ".$mfam." ".$mmodel." ".$msubmodel.$mregion."<br>";
+			echo "<span class='textModel'>".$mprod." ".$mfam." ".$mmodel." ".$msubmodel.$mregion."<span>"."<br>";
 ?>			
 			<span id="cpu_title"></span>,
 			<span id="gpu_title"></span>, 
@@ -52,7 +52,7 @@ else
 	mmodel=(mmodel.replace(' dGPU','')); mmodel=(mmodel.replace(' FHD','')); mmodel=(mmodel.replace(' HD','')); mmodel=(mmodel.replace(' QHD','')); mmodel=(mmodel.replace(' WWAN','')); mmodel=(mmodel.replace(' vPro',''));
 	metakeys(mprod.replace(' ',',')+','+mfamily.replace(' ',',')+','+mmodel.replace(' ',',')+',notebook,laptop'); exchsign='".showcurrency($exch)."'; document.title = 'Noteb - '+ mprod + ' ' + mfamily + ' ' + mmodel; </script>";
 ?>
-	<div class="col-md-12 col-sm-12 col-xs-12" style="background-color:white; font-family:arial">
+	<div class="col-md-12 col-sm-12 col-xs-12 modelContainer" style="background-color:white; font-family:arial">
 		<!-- Pictures -->
 <?php
 		show_vars('img_1,img_2,img_3,img_4','MODEL',$idmodel);
@@ -700,7 +700,7 @@ else
 		
 		<!-- end specs -->
 		<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
-			<p class="disclaimernb"><strong> Disclaimer.</strong> We can not guarantee that the information on this page is 100% correct. <a href="http://86.123.134.36/notebro/?footer/contact.php">Submit correction.</a></p>
+			<p class="disclaimernb"><strong> Disclaimer.</strong> We can not guarantee that the information on this page is 100% correct. <a href="<?php echo $web_address; ?>?footer/contact.php">Submit correction.</a></p>
 		</div>
 	</div>
 	<!-- REVIEWS -->
@@ -748,17 +748,18 @@ else
 <!-- <script type="text/javascript" src="model/lib/js/model_queries.js"></script> -->
 
  <script><?php include("lib/php/genjsmodel.php"); ?></script>
- <script src="lib/js/lightbox.min.js"></script> 
  <script>$.getScript("model/lib/js/model.js");</script>
  <script>
-  lightbox.option({
+ $( document ).ready(function() {
+    lightbox.option({
       'resizeDuration': 200,
       'fadeDuration' : 200,
       'imageFadeDuration':200     
-    })
+    });
+}); 
 </script>
 <?php  
 } ?>
 </div>
-<link rel="stylesheet" href="lib/css/lightbox.min.css" type="text/css"/>
-<link rel="stylesheet" href="model/lib/css/model.css?v=0.4" type="text/css"/>
+
+<link rel="stylesheet" href="model/lib/css/model.css?v=0.5" type="text/css"/>

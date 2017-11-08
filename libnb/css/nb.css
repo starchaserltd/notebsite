@@ -1,5 +1,7 @@
 .headerback {
-    min-height: 70vh;
+    min-height: 100vh;
+    padding: 0px 15px 0px 15px;
+
 }
 
 .advsearch {
@@ -92,6 +94,7 @@
     display: -webkit-inline-box;
     color: transparent !important;
     font-size: 19px;
+    webkit-text-fill-color:transparent;
 }
 
 .dropbtn.helpus[disabled]:hover,
@@ -206,7 +209,7 @@
 .btn.btn-title>a:before {
     position: absolute;
     right: 22px;
-    top: 17px;
+    top: 23px;
     display: block;
     width: 10px;
     height: 2px;
@@ -226,7 +229,7 @@
 .btn.btn-title>a:after {
     position: absolute;
     right: 26px;
-    top: 13px;
+    top: 19px;
     z-index: 5;
     display: block;
     height: 10px;
@@ -412,8 +415,7 @@
 }
 
 #cssmenu {
-    width: 100%;
-    /*font-family: Ralewayregular, sans-serif;*/
+    width: 100%;    
     color: #000;
 }
 
@@ -444,7 +446,7 @@
 #cssmenu>ul>li>a:hover {
     color: #fff;
     opacity: 0.6;
-    transition: all 0.3s ease-in;
+    transition: all 0.3s ease-in;   
 }
 
 #cssmenu ul>li.has-sub>a:after {
@@ -624,7 +626,7 @@
     vertical-align: middle;
     display: flex;
     border-radius: 15px;
-    z-index: 2 !important;
+    z-index:999;
 }
 
 .loadingdivsec {
@@ -1039,7 +1041,7 @@ fieldset[disabled] .btn-result.active {
 }
 
 .colored {
-    background-color: #eee;
+    background-color: rgba(253, 231, 129, 0.46);
 }
 
 .SearchParameters {
@@ -1660,7 +1662,175 @@ label.css-labelr {
 }
 
 
+.topLaptops h2 {
+    font-size: 18px;
+    background-color: #285f8f;
+    padding: 5px;
+    color: #fff;
+    text-align: center;
+    margin-left: -15px;
+    margin-right: -15px;
+    margin-top: 0;
+    margin-bottom: 0;
+    position: sticky;
+    top: 0;
+    z-index: 9;
+}
+
+.topLaptops .row {
+    padding-top: 5px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+    min-height: 61px;
+}
+
+.topLaptops .row:hover {    
+    cursor: pointer;   
+}
+
+.topLaptops .row:last-child {
+    border-bottom: 0;
+}
+
+.topLaptops {
+    margin:15px -3px 0 -3px;
+    color: #000;   
+    max-height: 265px;
+    overflow-y: scroll;
+    transition: max-height 0.4s ease;    
+}
+
+.topLaptops .gamingTopLaptops .row, .topLaptops .businessTopLaptops .row, .topLaptops .ultrabooksTopLaptops .row {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+}
+
+
+.topLaptops::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	background-color: #F5F5F5;
+}
+
+.topLaptops::-webkit-scrollbar {
+	width: 8px;
+	background-color: #F5F5F5;
+}
+
+.topLaptops::-webkit-scrollbar-thumb {
+	background-color: #285f8f;
+}
+
+.topLaptops.showMoreLaptops {
+    max-height: 500px;    
+}
+
+.topLaptops .col-lg-4.col-md-4.col-xs-12{
+   border-right: 1px solid #ddd;
+}
+
+.topLaptops .gaming {
+    text-align: center;
+}
+
+.topLaptops .imgTopLaptop {
+  text-align: left;
+}
+
+.topLaptops img {    
+    display: inline-block;
+    max-width: 40px;
+    float: left;
+    margin-right: 10px;
+}
+
+
+
+.navigation:after {
+   content: "."; 
+   visibility: hidden; 
+   display: block; 
+   height: 0; 
+   clear: both
+}
+
+.leftMenuFilters {
+    font-size: 16px;
+    border-radius: 0px !important;
+    text-align: justify;
+    position: relative;
+    padding: 16px 22px;
+}
+
+.leftMenuAdvSearch {
+    padding: 16px 22px;
+    border-radius: 0px;
+    color: #fff;
+    width: 100%;
+    display: block;
+    text-align: left;
+    font-size: 16px;
+    border:0;
+    background-color: #285f8f;
+}
+
+#top-link-block.affix-top {
+    position: absolute; /* allows it to "slide" up into view */
+    bottom: -82px; /* negative of the offset - height of link element */
+    left: 10px; /* padding from the left side of the window */
+    z-index: 99;
+}
+
+#top-link-block.affix {
+    position: fixed;
+    bottom: 115px;
+    right: 58px;
+    z-index: 99;
+    background-color: #292d2f;
+    padding: 10px;
+    border-radius: 16px;
+    color: #fff;
+    box-shadow: 2px 3px 1px rgba(0, 0, 0, 0.31);
+}
+
+
+
+
+
 /*Responsive media design */
+
+@media (min-width: 1600px) {
+     .topLaptops img { 
+        max-width: 40px;
+     }
+     .topLaptops .row {
+        min-height: 50px;
+     }
+     .topLaptops {
+        max-height: 275px;
+     }
+}
+@media (min-width: 991px) and (max-width: 1100px) {
+    #modelfind span.select2-container:after {
+        content: " ";
+    }
+    #cssmenu>ul>li>a {
+        font-size: 14px;
+        padding: 16px 8px;
+    }
+    .leftMenuFilters {
+        font-size: 14px;
+        padding: 16px 8px;
+    }
+    .leftMenuAdvSearch {
+         font-size: 14px;
+        padding: 16px 8px;
+    }
+
+}
 
 @media screen and (min-width:991px) {
     .SearchParameters.collapse.in {
@@ -1677,6 +1847,9 @@ label.css-labelr {
     }
     .firstContainer {
         position: relative;
+    }
+    .toplaptops {
+        display: block;            
     }
 }
 
@@ -1770,6 +1943,25 @@ label.css-labelr {
     }
 }
 
+@media (max-width: 767px) {
+    .topLaptops img { 
+    max-width: 50px;
+ }
+ .topLaptops {
+    max-height: 3000px;
+    overflow-y:unset;
+ }
+ .topLaptops h2 {
+    text-align: left;
+    padding-left: 15px;
+    font-weight: normal;
+ }
+ .topLaptops .row {
+ 	min-height: 45px;
+ }
+
+}
+
 @media(max-width:450px) {
     .socialButton a.btn.btn-social span {
         border: none;
@@ -1778,6 +1970,21 @@ label.css-labelr {
     }
     .socialButton a.btn.btn-social {
         text-indent: -5000px;
+    }
+    .btn.logonb {
+        background-size: 75%;
+    }
+    .btn.logonb:hover {
+        background-size: 75%;
+    }
+    .textModel {
+        font-size: 14px;
+    }
+    .backTop {
+        display: none;
+    }
+    #top-link-block.affix {
+        right: 20px;
     }
 }
 
@@ -1848,11 +2055,7 @@ _:-ms-lang(x),
     .helpus:active .helpimg {
         background-size: contain !important;
         font-size: 17px;
-    }
-    /* old version
-    .acthelp>[disabled].helpus.dropbtn>a {
-        background-size: contain;
-    }*/
+    }  
 }
 
 
