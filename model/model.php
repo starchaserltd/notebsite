@@ -758,8 +758,18 @@ else
     });
 }); 
 </script>
+<script type="application/ld+json">	
+		{
+		   "@context": "http://schema.org",
+ 		   "@type": "Website",
+ 		    "aggregateRating": {
+				    "@type": "AggregateRating",
+				    "ratingValue": config_rate,
+				    "reviewCount": cpu_rate_new
+  			}
+		}
+</script>
 <?php  
 } ?>
 </div>
-
 <link rel="stylesheet" href="model/lib/css/model.css?v=0.5" type="text/css"/>

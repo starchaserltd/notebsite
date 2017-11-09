@@ -248,3 +248,34 @@ $published_posts = $count_posts->publish;
 	<?php 	} 
 		} 
 	} ?>
+	<script type="application/ld+json">	
+		{
+		  "@context": "http://schema.org",
+		  "graph": [
+		  	{
+		  		 "@type": "Organization",
+				  "url": "https://www.noteb.com",
+				  "logo": "https://www.noteb.com/res/img/logo/logo_white.png"
+				},
+			{		 
+			  "@type": "WebSite",
+			  "url": "https://www.noteb.com",
+			  "potentialAction": {
+			    "@type": "SearchAction",
+			    "target": "https://query.noteb.com/search?q={search_term_string}",
+			    "query-input": "required name=search_term_string"
+			  }
+			},
+			{
+			  "@type": "Organization",
+			  "url": "https://www.noteb.com",
+			  "contactPoint": [
+			    { "@type": "ContactPoint",
+			      "telephone": "+1-401-555-1212",
+			      "contactType": "customer service"
+			    }
+			  ]
+			}
+		  ]
+		}
+	</script>

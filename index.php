@@ -199,37 +199,6 @@ require_once("etc/conf.php");
 	<script type="text/javascript" src="libnb/js/tooltip.js" async></script>
 	<script type="text/javascript" src="search/quiz/classList.min.js"></script>
 	<script type="text/javascript" src="libnb/js/index.js"></script>
-	<script type="text/javascript" src="lib/js/nouislider.min.js"></script>
-	<script type="application/ld+json">	
-		{
-		  "@context": "http://schema.org",
-		  "graph": [
-		  	{
-		  		 "@type": "Organization",
-				  "url": "https://www.noteb.com",
-				  "logo": "https://www.noteb.com/res/img/logo/logo_white.png"
-				},
-			{		 
-			  "@type": "WebSite",
-			  "url": "https://www.noteb.com",
-			  "potentialAction": {
-			    "@type": "SearchAction",
-			    "target": "https://query.noteb.com/search?q={search_term_string}",
-			    "query-input": "required name=search_term_string"
-			  }
-			},
-			{
-			  "@type": "Organization",
-			  "url": "https://www.noteb.com",
-			  "contactPoint": [
-			    { "@type": "ContactPoint",
-			      "telephone": "+1-401-555-1212",
-			      "contactType": "customer service"
-			    }
-			  ]
-			}
-		  ]
-		}
-	</script>
+	<script type="text/javascript" src="lib/js/nouislider.min.js"></script>	
 </body>
 </html>
