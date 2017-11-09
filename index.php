@@ -9,7 +9,7 @@ require_once("etc/conf.php");
 	<meta charset="utf-8">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Find the best laptop with Noteb notebook search engine.">
+	<meta name="description" content="Looking for a laptop? Search, Compare or even take a Quiz with Noteb.com to find the perfect laptop for your work, home or suggest one to your friends from over 1.000.000 models.">
 	<meta name="keywords" content="find,cheap,best,laptop,notebook,gaming,ultraportable,business">
 	<meta name="author" content="Starchaser">
 
@@ -217,6 +217,16 @@ require_once("etc/conf.php");
 			    "target": "https://query.noteb.com/search?q={search_term_string}",
 			    "query-input": "required name=search_term_string"
 			  }
+			},
+			{
+			  "@type": "Organization",
+			  "url": "https://www.noteb.com",
+			  "contactPoint": [
+			    { "@type": "ContactPoint",
+			      "telephone": "+1-401-555-1212",
+			      "contactType": "customer service"
+			    }
+			  ]
 			}
 		  ]
 		}
