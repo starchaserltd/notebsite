@@ -9,8 +9,8 @@ $result = mysqli_query($GLOBALS['con'], "SELECT id,disp FROM notebro_db.REGIONS"
 while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 ?>
 
-<div class="row container-fluid headerback" style="margin-right:0px;padding-right: 0px;">
-	<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style="background-color:white; font-family:arial;">
+<div class="row headerback" style="margin:0;">
+	<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style="background-color:white; font-family:arial;padding:0px">
 		<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style="padding:3px 0px 5px 0px"> 
 			<div class="col-md-6 col-sm-6 col-xs-12 col-lg-6">
 				<button type="button" <?php $nosearch=0; $search_ref=str_replace("/advanced_search","/adv_search",$absolute_url[0],$nosearch); if(!($nosearch)){ $search_ref=str_replace("/search.php?","/adv_search.php?",$absolute_url[0]);} $text='onmousedown="OpenPage('."'".$search_ref; foreach($sortby as $sort) {} $text.="',event)".'"'; echo $text ?> class="btn btn-result" style="margin-right:24px;border-radius:1px !important; height:25px; padding:2px 15px;"> <a style="text-decoration:none;color:white">Refine results</a></button>
@@ -113,7 +113,7 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 		?>
 	</div>
 </div>
-<div class="row">
+<div class="row" style="margin:0;">
 	<div class="col-md-12 col-sm-12 col-xs-12">
 		<ul class="pagination" style="margin:0px;padding-top:10px; float:right">
 			<li><a style="color:#000; cursor:pointer;" <?php echo 'onmousedown="OpenPage('."'".$absolute_url[0]."&page=1".$sortext."',event);".'scrolltoid('."'".'content'."'".');"'; ?> >&lt;&lt;</a></li>

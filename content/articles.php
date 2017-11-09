@@ -83,14 +83,7 @@ $published_posts = $category->category_count;
 	<?php }else {} 
 		} 
 	}?>		
-	<!-- *********************************************************************** -->		
-	<!-- Back to Top Button -->
-		<span id="top-link-block" class="hidden">
-			<a href="#top" style="color:black; text-decoration:none;" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
-				<i class="glyphicon glyphicon-chevron-up"></i> Back to Top
-			</a>
-		</span><!-- /top-link-block -->
-			
+							
 	<?php
 		//PAGINATION CODE START
 		function get_post_count($cat) {
@@ -158,11 +151,5 @@ $published_posts = $category->category_count;
 		actbtn("ARTICLES"); metakeys("noteb,laptop,articles");
 	});
 	
-	// Only enable if the document has a long scroll bar
-	// Note the window height + offset
-	if ( ($(window).height() + 100) < $(document).height() ) { $('#top-link-block').removeClass('hidden').affix({
-        // how far to scroll down before link "slides" into view
-        offset: {top:100}
-		}); }
 </script>
-<link rel="stylesheet" href="content/lib/css/article.css?v=0.1" type="text/css" />
+<link rel="stylesheet" href="content/lib/css/article.css?v=0.2" type="text/css" />

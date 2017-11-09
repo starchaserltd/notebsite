@@ -137,7 +137,7 @@ require_once("etc/conf.php");
 		</div>
 		<!-- end left area-->
 		<!-- main content -->
-		<div class="col-md-8 col-sm-12 col-xs-12 container" style="border-left:1px solid #ddd;padding:3px;overflow: hidden;" id="content">
+		<div class="col-md-8 col-sm-12 col-xs-12 container" style="border-left:1px solid #ddd;padding:3px;" id="content">
 			Loading main content.... Please wait.<br>
 			This website requires modern browsers, it will not work on IE 9.0 or earlier.	
 		</div>

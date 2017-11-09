@@ -6,18 +6,6 @@
 	padding: 0px
 }
 
-#top-link-block.affix-top {
-	position: absolute; /* allows it to "slide" up into view */
-	bottom: -82px; /* negative of the offset - height of link element */
-	left: 10px; /* padding from the left side of the window */
-}
-
-#top-link-block.affix {
-	position: fixed; /* keeps it on the bottom once in view */
-	bottom: 58px !important; /* height of link element */
-	left: 60%;   /* padding from the left side of the window */
-}
-
 @media (max-width: 1200px) {
 	.displayFlex {
 		display: block;

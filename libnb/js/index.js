@@ -477,3 +477,32 @@ function adjust_ssearch(page) {
         }
     }
 }
+
+//THIS FUNCTION IS FOR GENERATING PROPER MAX MIN FOR SLIDERS
+function listrange(list_comp)
+{
+	values={};
+	for(i=0;i<list_comp.length;i++)
+	{
+		if(i==0)
+		{
+			values['min']=[parseFloat(list_comp[i]),(list_comp[i+1]-list_comp[i])];
+		}
+		else
+		{
+			if(i==(list_comp.length-1))
+			{ values['max']=[parseFloat(list_comp[i])]; }
+			else
+			{ values[parseInt(100/(list_comp.length-1)*i)+'%']=[parseFloat(list_comp[i]),(list_comp[i+1]-list_comp[i])]; }
+		}
+	}
+	return values;
+}
+
+
+// Only enable if the document has a long scroll bar
+    // Note the window height + offset
+    if ( ($(window).height() + 100) < $(document).height() ) { $('#top-link-block').removeClass('hidden').affix({
+        // how far to scroll down before link "slides" into view
+        offset: {top:100}
+ }); }
