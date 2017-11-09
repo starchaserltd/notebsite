@@ -265,16 +265,6 @@ $published_posts = $count_posts->publish;
 			    "target": "https://query.noteb.com/search?q={search_term_string}",
 			    "query-input": "required name=search_term_string"
 			  }
-			},
-			{
-			  "@type": "Organization",
-			  "url": "https://www.noteb.com",
-			  "contactPoint": [
-			    { "@type": "ContactPoint",
-			      "telephone": "+1-401-555-1212",
-			      "contactType": "customer service"
-			    }
-			  ]
 			}
 		  ]
 		}
