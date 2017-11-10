@@ -565,6 +565,23 @@ function showSIST(str)
 
 				config_rate = config_rate-sist_rate_old+sist_rate_new;
 				document.getElementById('notebro_rate').innerHTML=(Math.round(config_rate * 10) / 10).toFixed(1);
+				window.onload =  (function(){
+							var schemaData = {
+		 							 "@context": "http://schema.org",
+		  							 "@type": "Website",   
+		     						 "aggregateRating": {
+		     						 "@type": "AggregateRating",
+		     						 "ratingValue":  config_rate,
+		    						 "bestRating": "100",
+		     						 "worstRating": "1",
+	     							 "ratingCount": cpu_rate_new
+	 								 }
+									}
+									var script = document.createElement('script');
+									script.type = "application/ld+json";
+									script.innerHTML = JSON.stringify(schemaData);
+									document.querySelector('.footer-distributed').appendChild(script);
+								})(document);
 				makelinks();
 			}
 		}
