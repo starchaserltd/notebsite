@@ -81,7 +81,7 @@
 					</div>
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						<div>Other features</div>
-						<select class="multisearch js-example-responsive" id="CPU_msc_id" name = "CPU_msc_id[]" data-lcom='CPU_model' data-lfield="cpu_misc" data-placeholder="Ex. Intel i7, Hyper-threading " data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
+						<select class="multisearch js-example-responsive" id="CPU_msc_id" name = "CPU_msc_id[]" data-lcom='CPU_model' data-lfield="cpu_misc" data-placeholder="Ex. Intel Core i7, Hyper-threading " data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
 					</div>
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">		
 						<div style="margin-top:5px">
@@ -557,5 +557,5 @@
 			</div>
 
 		</div>
-	</form>
+	</form>	
 	<?php if($gputype==1){ echo '<script>$(document).ready(function() { $("#r-no").click();  });</script>'; }?>
