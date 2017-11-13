@@ -226,7 +226,7 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 			$sel_cpu.=" AND ( ";
 		}
 
-		if(stripos($x,"Intel i")===FALSE)
+		if(stripos($x,"Intel Core i")===FALSE && stripos($x,"AMD Ryzen")===FALSE)
 		{	
 			if(strcmp($x,"AVX1.0")==0) { $x="AVX/AVX1.0/AVX2.0"; }
 			
@@ -250,8 +250,16 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 		}
 		else
 		{
-			$x=str_ireplace("Intel ","",$x);
-			$sel_cpu.="model LIKE '%".$x."%'";
+			if(stripos($x,"Intel Core i")!==FALSE)
+			{
+				$x=str_ireplace("Intel Core ","",$x);
+				$sel_cpu.="model LIKE '%".$x."%'";
+			}
+			elseif(stripos($x,"AMD Ryzen")!==FALSE)
+			{
+				$x=str_ireplace("AMD ","",$x);
+				$sel_cpu.="model LIKE '%".$x."%'";
+			}
 		}
 		$i++;
 	}
