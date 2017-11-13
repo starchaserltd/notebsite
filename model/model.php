@@ -38,7 +38,7 @@ else
 		$_SESSION['model'] = $idmodel; $model_data=show_vars('model.prod, families.fam, families.subfam, families.showsubfam, model.model,model.submodel,model.regions,model.keywords', 'notebro_db.MODEL model JOIN notebro_db.FAMILIES families ON model.idfam=families.id',$idmodel); $mprod=$model_data["prod"]; if(isset($model_data["subfam"])&&$model_data["showsubfam"]!=0){ $model_data["subfam"]=" ".$model_data["subfam"]; } else { $model_data["subfam"]=""; } $mfam=$model_data["fam"].$model_data["subfam"];  $mmodel=$model_data["model"];  $msubmodel=$model_data["submodel"]; 
 		$mregion_id=intval(explode(",",$model_data['regions'])[0]); if($mregion_id!=1){ $mregion="(".show_vars("disp","REGIONS",$mregion_id).")"; } else { $mregion=""; } if(isset($model_data["keywords"])&&$model_data["keywords"]!=""&&$model_data["keywords"]!=NULL&&$model_data["keywords"]!=" ") { $keywords=str_replace(",","+",$model_data["keywords"]); } else { switch($mprod) { case "Dell": {$keywords=$mprod."+".$mfam."+".$mmodel; break; } case "Lenovo": {$keywords=$mprod."+".$mfam."+".$mmodel; break; } case "HP": {$keywords=$mprod."+".$mfam."+".$mmodel; break; } default: {$keywords=$mprod."+".$mmodel; } } }
 ?>
-			<span class="invissible">The</span> 	
+				
 <?php	
 			echo "<span class='textModel'>".$mprod." ".$mfam." ".$mmodel." ".$msubmodel.$mregion."<span>"."<br>";
 ?>			<span style="font-size: 0;">has an</span>
