@@ -31,6 +31,7 @@ $to_search = array(
 	"regions" => 0
 );
 
+if(isset($_GET['s_prod'])) { $prod_model = $_GET['s_prod']; }
 $hdd_type = array();
 
 switch ($_GET['type']) 

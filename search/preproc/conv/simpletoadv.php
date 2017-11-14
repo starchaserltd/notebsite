@@ -5,6 +5,11 @@
 	$sel="SELECT name,type FROM notebro_site.nomen WHERE type=25"; $result = mysqli_query($con, $sel); $lvaluetype[25]=array(); $valuetype[51]=[150];
 	while($rand = mysqli_fetch_assoc($result)) { $valuetype[intval($rand["type"])][]=$rand["name"]; } mysqli_free_result($result);
 	
+	if(isset($_GET['s_prod']))
+	{	foreach ($_GET['s_prod'] as $element)
+		{	$producer.='<option selected="selected">'.$element.'</option>'; }
+	}
+	
 	/***************************   LAPTOP TYPE********************************/
 	switch ($_GET['type']) 
 	{
@@ -195,11 +200,13 @@ if(isset($_GET['display_type']))
 			}
 			case "7":
 			{
+				$classiclap_check = NULL;
 				$tcheck = "checked";
 				break;
 			}
 			case "8":
 			{
+				$classiclap_check = NULL;
 				$chassisstuff.='<option selected="selected">Stylus</option>';
 				break;
 			}

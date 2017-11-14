@@ -238,5 +238,44 @@ function sliderrange(old)
 	
 	$('#bdgmin').val(roundlimit(x));
 	$('#bdgmax').val(roundlimit(y));
-			
 }
+
+
+$('#s_prod_id').select2({
+	tags: false,
+	multiple: true,
+	maximumSelectionLength: 8,
+	minimumInputLength: 2,
+	language: {
+		noResults: function(term) {
+			return "Type something...";
+				}
+            },
+		ajax: { 
+		quietMillis: 100,
+		cache: false,
+		dataType: "json",
+		type: "POST",
+		url: "search/lib/func/list.php",
+		data: function (params) {
+			$idtype=2;
+            var queryParameters = {
+                q: "Producer",
+				list: "prod",
+				keys: params.term,
+			}
+			queryParameters=$.extend(queryParameters, "Producer_prod")
+			return queryParameters;
+        },
+        processResults: function (data) {
+            return { 
+                results: $.map(data, function (item) {
+					return {
+						id: item.model,
+                        text: item.model,
+                    }
+				})
+            };
+        }
+    }
+ })

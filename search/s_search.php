@@ -4,6 +4,8 @@ require_once("etc/conf.php"); ?>
 
 	<div class="col-md-12 col-sm-12 col-xs-12" style="padding:0 5px;">	
 		<form style="overflow:hidden" action="javascript:void(0);" method="post" id="s_search">
+				<div style="font-size:14px; font-weight:bold;">Producer</div>			
+				<select id="s_prod_id" name ="s_prod[]" data-placeholder="Ex. Lenovo, Dell, Apple" multiple="multiple" style="width: 100%;"></select>
 				<div style="margin-top:10px; font-size:14px;font-weight:bold; margin-bottom:2px;">Laptop type</div>			
 				<select name ="type" id="type">
 					<option value="99">All</option>
