@@ -40,7 +40,6 @@ switch ($_GET['type'])
 		$model_minclass=0; $model_maxclass=1;
 		$cpu_tdpmin = 7;
 		$cpu_tdpmax = 45;
-		$chassis_twoinone=0;
 		$mdb_wwan = 1;
 		$chassis_weightmin= 1.90;
 		$chassis_weightmax=3;
@@ -194,7 +193,7 @@ if(isset($_GET['s_dispsizemin'])) { $display_sizemin=floatval($_GET['s_dispsizem
 if(isset($_GET['s_dispsizemax'])) { $display_sizemax=floatval($_GET['s_dispsizemax']); }
 if(isset($_GET['display_type']))
 {
-	$display_backt=array(); $display_misc=array();
+	$display_backt=array(); $display_misc=array(); $display_touch=array();
 	foreach($_GET['display_type'] as $el)
 	{
 		switch($el)
@@ -233,11 +232,17 @@ if(isset($_GET['display_type']))
 			}
 			case "7":
 			{
-				$display_touch=1;
+				$display_touch[]=2;
 				$chassis_twoinone=[0,1];
 				break;
 			}
 			case "8":
+			{
+				$display_touch[]=1;
+				$chassis_twoinone=[0,1];
+				break;
+			}
+			case "9":
 			{
 				$chassis_twoinone=[0,1];
 				$chassis_stuff[]="Stylus";

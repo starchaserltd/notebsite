@@ -25,7 +25,6 @@
 			$mdbwwansel1 = "selected";
 			$gputype=1;
 			$gputypesel[0]="selected";
-			$classiclap_check = "checked";
 			$valuetype[25]=array_diff($valuetype[25],["No OS","Android 6"]);
 			break;
 		case "2":		//ultraportable
@@ -200,13 +199,16 @@ if(isset($_GET['display_type']))
 			}
 			case "7":
 			{
-				$classiclap_check = NULL;
-				$tcheck = "checked";
+				$ntcheck = "checked";
 				break;
 			}
 			case "8":
 			{
-				$classiclap_check = NULL;
+				$tcheck = "checked";
+				break;
+			}
+			case "9":
+			{
 				$chassisstuff.='<option selected="selected">Stylus</option>';
 				break;
 			}

@@ -72,8 +72,9 @@ require_once("etc/conf.php"); ?>
 					<option value="4">2K resolution</option>
 					<option value="5">4K resolution</option>
 					<option value="6">High color gamut</option>
-					<option value="7">Touchscreen</option>
-					<option value="8">Stylus support</option>
+					<option value="7" selected="selected">No touchscreen</option>
+					<option value="8">Touchscreen</option>
+					<option value="9">Stylus support</option>
 				</select>
 				
 				<div style="margin-top:10px; font-size:14px;font-weight:bold; margin-bottom:2px;">Graphics</div>	
