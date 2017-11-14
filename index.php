@@ -105,8 +105,8 @@ require_once("etc/conf.php");
 			</div>		
 				
 			<div>
-				<button class="btn btn-title collapsed leftMenuFilters" data-toggle="collapse" data-target="#SearchParameters" aria-expanded="false" onclick=""><a style="color:white;">Quick search filters</a><a></a></button>
-				<div class="SearchParameters collapse"  id="SearchParameters">			
+				<button class="btn btn-title leftMenuFilters"  onclick=""><a style="color:white;">Quick search filters</a><a></a></button>
+				<div class="SearchParameters" class="SearchParameters" id="SearchParameters">			
 					<?php include ("search/s_search.php");?>
 				</div>			
 			</div>	

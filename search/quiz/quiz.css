@@ -783,11 +783,14 @@ _:-ms-lang(x),
     .quiz_container>#tab2:checked~.tab2_intro {
         transform: translateY(-150%);
     }
+     .quiz_container .h2 {
+        font-size: 24px;
+        margin-top: 110px;
+    }
 }
 
 @media (max-width: 400px) {
     .quiz_container .h2 {
-        font-size: 26px;
         margin-top: 30px;
     }
     .quiz_container .tab2_intro p:nth-of-type(1) {

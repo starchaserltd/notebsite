@@ -12,9 +12,9 @@ $display_vresmax = "200000";
 /***** CONVERTING VARIABLES FROM SIMPLE TO ADVANCED SEARCH ****/
 /**************************************************************/
 
-if(isset($_GET['performfocus']))
+if(isset($_GET['s_memmin']))
 {
-	$issimple=$_GET['performfocus'];
+	$issimple=$_GET['s_memmin'];
 	if ($issimple) 
 	{	
 		include ("conv/simpletoadv.php");

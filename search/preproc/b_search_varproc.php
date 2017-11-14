@@ -28,7 +28,8 @@ switch($browse_by)
 		if($_GET['prod'])
 		{
 			$prod_model = $_GET['prod'];
-			$filtercomp = array();
+			$sist_sist=["Windows+Home","Windows+Pro","Windows+S","Chrome OS","macOS","Linux Ubuntu","Android"]; 
+			$to_search["sist"]=1;	$filtercomp = array("sist");
 		}
 		break;
 	}	
@@ -107,6 +108,7 @@ switch($browse_by)
 		$chassis_thicmax=40;
 		$gpu_powermax=30;
 		$mem_capmin=8;
+		$mdb_wwan = 0;
 		$gpu_typelist=[0,1,3];
 		$hdd_type = ["HDD","SSD","SSHD"];
 		$totalcapmin = 120;
@@ -119,7 +121,7 @@ switch($browse_by)
 	case "gaming":
 	{
 		$model_minclass=0; $model_maxclass=1;
-		$cpu_tdpmin = 30;
+		$cpu_tdpmin = 15;
 		$cpu_tdpmax = 300;
 		$display_sizemin=13;
 		$display_sizemax=17.3;
@@ -140,7 +142,7 @@ switch($browse_by)
 	case "professional":
 	{
 		$model_minclass=1; $model_maxclass=4;
-		$cpu_tdpmin = 30;
+		$cpu_tdpmin = 15;
 		$cpu_tdpmax = 300;
 		$display_sizemin=13;
 		$display_sizemax=17.3;
@@ -161,19 +163,21 @@ switch($browse_by)
 	case "smalldisplay":
 	{
 		$display_sizemin=10;
-		$display_sizemax=13.95;
+		$display_sizemax=13.9;
 		$display_touch[] = "1"; $display_touch[] ="2"; 
-		$to_search["display"]=1;
-		$filtercomp = array("display");
+		$to_search["display"]=1;  $to_search["sist"]=1;
+		$filtercomp = array("display","sist");
+		$sist_sist=["Windows+Home","Windows+Pro","Windows+S","Chrome OS","macOS","Linux Ubuntu","Android"]; 
 		break;
 	}
 	case "mediumdisplay":
 	{
 		$display_sizemin=14;
-		$display_sizemax=16.95;
+		$display_sizemax=16.4;
 		$display_touch[] = "1"; $display_touch[] ="2"; 
-		$to_search["display"]=1;
-		$filtercomp = array("display");
+		$to_search["display"]=1; $to_search["sist"]=1;
+		$filtercomp = array("display","sist");
+		$sist_sist=["Windows+Home","Windows+Pro","Windows+S","Chrome OS","macOS","Linux Ubuntu","Android"]; 
 		break;
 	}
 	case "largedisplay":
@@ -181,8 +185,9 @@ switch($browse_by)
 		$display_sizemin=17;
 		$display_sizemax=21;
 		$display_touch[] = "1"; $display_touch[] ="2"; 
-		$to_search["display"]=1;
-		$filtercomp = array("display");
+		$to_search["display"]=1; $to_search["sist"]=1;
+		$filtercomp = array("display","sist");
+		$sist_sist=["Windows+Home","Windows+Pro","Windows+S","Chrome OS","macOS","Linux Ubuntu","Android"]; 
 		break;
 	}	
 }

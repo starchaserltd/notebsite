@@ -55,7 +55,7 @@ var istime=0;
 		echo "<a href='../index.php' target='_self'> Let's go back to the home page, shall we?</a>";
 	}
 ?>
-<link rel="stylesheet" href="content/lib/css/article.css?v=0.1" type="text/css"/>
+<link rel="stylesheet" href="content/lib/css/article.css?v=0.3" type="text/css"/>
 <script type="text/javascript">
 $(document).ready(function()
 {

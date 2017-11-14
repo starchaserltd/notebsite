@@ -21,7 +21,7 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 	/* GENERIC SEARCH VARIABLES */	
 	/********************************************************************/
 	if(isset($_GET['advsearch'])) { $isadvanced=$_GET['advsearch']; }
-	if(isset($_GET['performfocus'])) { $issimple=$_GET['performfocus']; }
+	if(isset($_GET['s_memmin'])) { $issimple=$_GET['s_memmin']; }
 	
 	if(isset($_GET['sort_by'])){ $sort_by=$_GET['sort_by']; }
 	else { $sort_by="value"; }

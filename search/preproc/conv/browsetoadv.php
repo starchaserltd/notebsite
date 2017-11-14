@@ -1,16 +1,24 @@
 <?php
 require_once("../etc/con_db.php");
 if(isset($_GET['prod'])){ $prod_id = $_GET['prod']; } // adaugata de mine 
-$sql = "SELECT name FROM notebro_site.nomen WHERE type=70 OR type=71"; 
+$sql = "SELECT name FROM notebro_site.nomen WHERE type=70 OR type=71 OR type=25"; 
 $result = mysqli_fetch_all(mysqli_query($con,$sql));
-$bdgmin=$result[0][0]*0.9;
-$bdgmax=$result[1][0]*1.1;
-$browse_by = $_GET['browse_by']; $producer="";	
+$i=0;
+while(isset($result[$i][0]))
+{
+	$valuetype[25][]=$result[$i][0];
+	$i++;
+}
+$bdgmin=$result[$i-2][0]*0.9;
+$bdgmax=$result[$i-1][0]*1.1;
+$browse_by = $_GET['browse_by']; $producer="";
+$model_minclass=0; $model_maxclass=99;
 switch ($browse_by) 
 {
 	case "prod":
 	{
 		if($_GET['prod']){	$producer.='<option selected="selected">'.$_GET['prod'].'</option>'; }
+		$valuetype[25]=array_diff($valuetype[25],["No OS"]);
 		$prod_model = $_GET['prod'];
 		$mdbslotsel0 = "selected"; //plus
 		$nrhdd = 1;
@@ -39,7 +47,7 @@ switch ($browse_by)
 		$mdbslotsel0 = "selected";		
 		$valuetype[54]=["HDD","SSD","SSHD"]; 
 		$totalcapmin = 120; $hddcapmin=$totalcapmin;
-		$valuetype[25]= ["Windows 10 Pro","macOS 10.13","Windows 10 Home","Windows 10 Pro","Chrome OS 1","Windows 10 S","Linux Ubuntu 14.4","Linux Ubuntu 16.04"]; 
+		$valuetype[25]=array_diff($valuetype[25],["No OS","Android 6"]);
 		break;
 	}
 	case "ultraportable":
@@ -56,7 +64,7 @@ switch ($browse_by)
 		$chassisthicmax = 23;
 		$valuetype[54]=["EMMC","SSD"];
 		$totalcapmin = 120; $hddcapmin=$totalcapmin;
-		$valuetype[25]= ["Windows 10 Pro","macOS 10.13","Windows 10 Home","Windows 10 Pro","Chrome OS 1","Windows 10 S","Linux Ubuntu 14.4","Linux Ubuntu 16.04"]; 
+		$valuetype[25]=array_diff($valuetype[25],["No OS","Android 6"]);
 		$gputype=1; $gputypesel[0]="selected"; $gputypesel[2]="selected";
 		break;
 	}
@@ -73,7 +81,7 @@ switch ($browse_by)
 		$chassisweightmax=2.8;
 		$chassisthicmin=16;
 		$gputype=1; $gputypesel[0]="selected";
-		$valuetype[25]= ["Windows 10 Home","Chrome OS 1","Windows 10 S","Linux Ubuntu 14.4","Linux Ubuntu 16.04","No OS","Android 6"]; 
+		$valuetype[25]=array_diff($valuetype[25],["No OS","Windows 10 Pro","macOS 10.13"]);
 		break;
 	}
 	
@@ -95,14 +103,14 @@ switch ($browse_by)
 		$mdbslotsel0 = "selected";		
 		$valuetype[54]=["HDD","SSD","SSHD"]; 
 		$totalcapmin = 120; $hddcapmin=$totalcapmin;
-		$valuetype[25]= ["Windows 10 Pro","macOS 10.13","Windows 10 Home","Windows 10 S","Linux Ubuntu 14.4","Linux Ubuntu 16.04"]; 
+		$valuetype[25]=array_diff($valuetype[25],["Chrome OS 1","Android 6","No OS"]);
 		break;
 	}
 	case "gaming":
 	{
 		$model_minclass=0; $model_maxclass=1;
-		$cputdpmin = 30;
-		$cpu_tdpmax = 300;
+		$cputdpmin = 15;
+		$cputdpmax = 300;
 		$gpupowermin=59;
 		$displaysizemin=13;
 		$displaysizemax=17.3;
@@ -115,13 +123,13 @@ switch ($browse_by)
 		$chassisthicmin = 10;
 		$valuetype[54]=["HDD","SSD","SSHD"]; 
 		$totalcapmin = 250; $hddcapmin=$totalcapmin;
-		$valuetype[25]= ["Windows 10 Pro","Windows 10 Home","Windows 10 Pro","Windows 10 S"]; 
+		$valuetype[25]= ["Windows 10 Pro","Windows 10 Home","Windows 10 S"]; 
 		break;
 	}
 	case "professional":
 	{
 		$model_minclass=1; $model_maxclass=4;
-		$cputdpmin = 30;
+		$cputdpmin = 15;
 		$cputdpmax = 300;
 		$displaysizemin=13;
 		$displaysizemax=17.3;
@@ -140,28 +148,33 @@ switch ($browse_by)
 	}
 	case "smalldisplay":
 	{
+		$model_minclass=-1; $model_maxclass=-1;
 		$displaysizemin=10;
-		$displaysizemax=13.95;
+		$displaysizemax=13.9;
 		$display_touch[] = "1"; $display_touch[] ="2"; 
 		$gputype = 2;
 		$mdbwwan = 1;
 		$mdbslotsel0 = "selected";
 		$mdbwwansel0 = "selected";
+		$valuetype[25]=array_diff($valuetype[25],["No OS"]);
 		break;
 	}
 	case "mediumdisplay":
 	{
+		$model_minclass=-1; $model_maxclass=-1;
 		$displaysizemin=14;
-		$displaysizemax=16.95;
+		$displaysizemax=16.4;
 		$display_touch[] = "1"; $display_touch[] ="2"; 
 		$gputype = 2;
 		$mdbwwan = 1;
 		$mdbslotsel0 = "selected";
 		$mdbwwansel0 = "selected";
+		$valuetype[25]=array_diff($valuetype[25],["No OS"]);
 		break;
 	}
 	case "largedisplay":
 	{
+		$model_minclass=-1; $model_maxclass=-1;
 		$displaysizemin=17;
 		$displaysizemax=21;
 		$display_touch[] = "1"; $display_touch[] ="2";
@@ -169,6 +182,7 @@ switch ($browse_by)
 		$mdbwwan = 1;
 		$mdbslotsel0 = "selected";
 		$mdbwwansel0 = "selected";
+		$valuetype[25]=array_diff($valuetype[25],["No OS"]);
 		break;
 	}	
 }

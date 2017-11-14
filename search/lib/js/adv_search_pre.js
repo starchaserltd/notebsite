@@ -54,29 +54,3 @@ function checkminadv()
 
 function checkmaxadv()
 { document.getElementById('budgetadv').noUiSlider.set([null,document.getElementById('bdgmaxadv').value]); }
-
-//THIS FUNCTION IS FOR GENERATING PROPER MAX MIN FOR SLIDERS
-function listrange(list_comp)
-{
-	values={};
-	for(i=0;i<list_comp.length;i++)
-	{
-		if(i==0)
-		{
-			values['min']=[parseFloat(list_comp[i]),(list_comp[i+1]-list_comp[i])];
-		}
-		else
-		{
-			if(i==(list_comp.length-1))
-			{
-				values['max']=[parseFloat(list_comp[i])];
-			}
-			else
-			{
-				values[parseInt(100/(list_comp.length-1)*i)+'%']=[parseFloat(list_comp[i]),(list_comp[i+1]-list_comp[i])];
-			}
-					
-		}
-	}
-	return values;
-}

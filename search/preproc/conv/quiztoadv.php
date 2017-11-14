@@ -534,10 +534,11 @@ $quiz_mingputype=0; $gpu_typelist=[];
 			
 			if (isset($_GET['atroad']) && $_GET['atroad']==1)
 			{ $mdb_wwan=0; }
-           $mdbwwan = $mdb_wwan;
-		if ($mdbwwan ==1) {$mdbwwansel1 = "selected";}
+			$mdbwwan = $mdb_wwan;
+			
+			if ($mdbwwan ==1) {$mdbwwansel1 = "selected";}
 			else if ($mdbwwan == 2) {$mdbwwansel2 = "selected";}
-				else {$mdbwwansel0 = "selected";} 
+			else {$mdbwwansel0 = "selected";} 
 			 
 			$chassisweightmax=999999; $chassisthicmax=999999;
 			

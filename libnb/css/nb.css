@@ -220,10 +220,10 @@
     -ms-transition: all 0.1s ease-out;
     -o-transition: all 0.1s ease-out;
     transition: all 0.1s ease-out;
-    -moz-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    -o-transform: rotate(45deg);
-    transform: rotate(45deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
 }
 
 .btn.btn-title>a:after {
@@ -241,6 +241,23 @@
     -ms-transition: all 0.1s ease-out;
     -o-transition: all 0.1s ease-out;
     transition: all 0.1s ease-out;
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+
+.btn.btn-title.leftMenuFilters.rotate>a:before {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.btn.btn-title.leftMenuFilters.rotate>a:after {
+    -webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     -o-transform: rotate(45deg);
@@ -1028,9 +1045,17 @@ fieldset[disabled] .btn-result.active {
     background-color: none;
 }
 
+
 .SearchParameters {
     overflow-x: hidden;
     overflow-y: hidden;
+    max-height: 0;    
+    transition: max-height 0.4s ease;
+}
+
+.SearchParameters.showMoreDetails {
+    max-height: 1000px;
+    transition: max-height 0.4s ease;
 }
 
 .compbuttons {
@@ -1601,10 +1626,10 @@ label.css-labelr {
 /* Sticky sidebar */
 
 .firstContainer {
-    position: sticky;
-    top:0;
+    /*position: sticky;
+    top:0;*/
     padding:0px; 
-    float:left;
+    /*float:left;*/
 }
 
 
@@ -1627,7 +1652,7 @@ label.css-labelr {
     padding-top: 5px;
     border-bottom: 1px solid #ddd;
     padding-bottom: 5px;
-    min-height: 61px;
+    min-height: 81px;
 }
 
 .topLaptops .row:hover {    
@@ -1641,7 +1666,7 @@ label.css-labelr {
 .topLaptops {
     margin:15px -3px 0 -3px;
     color: #000;   
-    max-height: 265px;
+    max-height: 330px;
     overflow-y: scroll;
     transition: max-height 0.4s ease;    
 }
@@ -1688,11 +1713,12 @@ label.css-labelr {
 
 .topLaptops img {    
     display: inline-block;
-    max-width: 40px;
+    max-width: 100%;
     float: left;
-    margin-right: 10px;
+    padding-right: 5px;
+    width: 20%;
+    padding-top: 5px;
 }
-
 
 
 .navigation:after {
@@ -1751,13 +1777,16 @@ label.css-labelr {
 @media (min-width: 1600px) {
      .topLaptops img { 
         max-width: 40px;
-     }
-     .topLaptops .row {
-        min-height: 50px;
-     }
+     }     
      .topLaptops {
-        max-height: 275px;
-     }
+        max-height: 415px;
+     }     
+}
+
+@media(max-width: 1200px) {
+    .topLaptops h2 {
+        font-size: 16px;
+    }
 }
 @media (min-width: 991px) and (max-width: 1100px) {
     #modelfind span.select2-container:after {

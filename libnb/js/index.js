@@ -116,9 +116,8 @@ function OpenPage(url, e, dontpush) {
 }
 
 //Function for toolbox area
-function OpenPageMenu(url) {
-
-    //console.log("1"+url);
+function OpenPageMenu(url) 
+{
     $.get(url, function(response) {
         $('#leftmenu').html(response);
     });
@@ -126,14 +125,12 @@ function OpenPageMenu(url) {
 
 
 //Function for toolbox area
-function OpenQuiz(url) {
-
-    //console.log("1"+url);
+function OpenQuiz(url)
+{
     $.get(url, function(response) {
         $('#quiz').html(response);
     });
 }
-
 
 $(document).ready(function() {
 
@@ -455,24 +452,23 @@ function triggerchange(el, seltext, match_type) {
 function state_ssearch(type) {
     if (type == 0) {
         document.getElementsByClassName("btn-title")[0].classList.remove("collapsed");
-        document.getElementsByClassName("btn-title")[0].setAttribute("aria-expanded", "true");
-        document.getElementById("SearchParameters").classList.add("in");
+        document.getElementsByClassName("btn-title")[0].setAttribute("aria-expanded", "true");        
     }
 
     if (type == 1) {
         document.getElementsByClassName("btn-title")[0].classList.add("collapsed");
-        document.getElementsByClassName("btn-title")[0].setAttribute("aria-expanded", "false");
-        document.getElementById("SearchParameters").classList.remove("in");
+        document.getElementsByClassName("btn-title")[0].setAttribute("aria-expanded", "false");       
     }
 }
 
 function adjust_ssearch(page) {
     if (page.indexOf("adv_search.php") > -1 || page.indexOf("advsearch=1") > -1) {
+        document.querySelector(".SearchParameters").classList.remove('showMoreDetails');
+        document.querySelector(".leftMenuFilters").classList.remove('rotate');
         if (document.getElementsByClassName("btn-title")[0].getAttribute("aria-expanded") == "true") {
             if (first) {
                 document.getElementsByClassName("btn-title")[0].classList.add("collapsed");
-                document.getElementsByClassName("btn-title")[0].setAttribute("aria-expanded", "false");
-                document.getElementById("SearchParameters").classList.remove("in");
+                document.getElementsByClassName("btn-title")[0].setAttribute("aria-expanded", "false");                
             } else { document.getElementsByClassName('btn-title')[0].click(); }
         }
     }
@@ -506,3 +502,11 @@ function listrange(list_comp)
         // how far to scroll down before link "slides" into view
         offset: {top:100}
  }); }
+
+//Make dropdown for search filters
+$( document ).ready(function() {
+       $( ".leftMenuFilters" ).click(function() {
+       $( "#SearchParameters" ).toggleClass( "showMoreDetails" );
+       $( ".leftMenuFilters" ).toggleClass( "rotate" );
+    });
+});

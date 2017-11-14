@@ -69,9 +69,9 @@
 		$gpumemmin = $_GET['gpumemmin']; //echo $gpumemmin.";";
 		$gpumemmax = $_GET['gpumemmax']; //echo $gpumemmax.";";
 		$gpumembusmin = $_GET['gpubusmin'];//echo $gpumembusmin.";";
-		$gpumembusmax = $_GET['gpubusmax'];//echo $gpumembusmax.";";
-		$gpupowermin = $_GET['gpupowermin'];//echo $gpupowersmin.";";
-		$gpupowermax = $_GET['gpupowermax'];//echo $gpupowermax.";";
+		$gpumembusmax = $_GET['gpubusmax'];
+		$gpupowermin = $_GET['gpupowermin'];
+		$gpupowermax = $_GET['gpupowermax'];
 		if($_GET['gpulaunchdatemin']) { $gpumindate = $_GET['gpulaunchdatemin']; }
 		if($_GET['gpulaunchdatemax']) { $gpumaxdate = $_GET['gpulaunchdatemax']; }
 		
@@ -94,8 +94,8 @@
 	{ }
 
 			
-	$displaysizemin = $_GET['displaymin'];	//echo $displaysizemin.";";
-	$displaysizemax = $_GET['displaymax'];	//echo $displaysizemax.";";
+	$displaysizemin = $_GET['displaymin'];	
+	$displaysizemax = $_GET['displaymax'];	
 	if(isset($_GET['DISPLAY_ratio']))
 	{ 
 		$valuetype[8] = $_GET['DISPLAY_ratio'];  // Display format

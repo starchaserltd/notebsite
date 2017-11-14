@@ -1,428 +1,341 @@
 <?php
 
-	$valuetype[54] = $_GET['storage'];
-	$waryearsmin = $_GET['warmin']; 					//echo $waryearsmin; 
-	$waryearsmax = $_GET['warmax'];						//echo $waryearsmax; 
-	if(isset($_GET['premium']) && $_GET['premium'] == "on") {$nbdcheck = "checked"; $war_typewar = "1";} else {$war_typewar = "2";}
-	$hdd_type = array(); $displayhresmin = "1";	$displayhresmax = "99999"; 	$displayvresmin = "1"; 	$displayvresmax = "99999";	
-
-/***************************   LAPTOP TYPE********************************/
-
+	$valuetype[11]=array();
+	$hdd_type = array(); $displayhresmin = "1";	$displayhresmax = "99999"; 	$displayvresmin = "1"; 	$displayvresmax = "99999"; 	$mdbslotsel0 = "selected";	
+	$sel="SELECT name,type FROM notebro_site.nomen WHERE type=25"; $result = mysqli_query($con, $sel); $lvaluetype[25]=array(); $valuetype[51]=[150];
+	while($rand = mysqli_fetch_assoc($result)) { $valuetype[intval($rand["type"])][]=$rand["name"]; } mysqli_free_result($result);
+	
+	/***************************   LAPTOP TYPE********************************/
 	switch ($_GET['type']) 
 	{
-        case "1":		//normal
-			$cputdpmin = 5; 
+        case "1": //normal
+			$model_minclass=0;$model_maxclass =1;
+			$cputdpmin = 7; 
 			$cputdpmax = 45; 
-			$displaysizemin = 14;
-			$displaysizemax = 17.5;
-			$memcapmin = 4;
-			$memcapmax = 8;
-			$batlifemin = 3;
-			$batlifemax = 8;
-			$chassisweightmin= 1.8;
+			$chassisweightmin= 1.9;
 			$chassisweightmax=3;
-			$wnetspeedmin = 433;
+			$chassisthicmin=18;
+			$chassisthicmax=40;
+			$hdd_type=["HDD","SSD","SSHD"];
+			$mdbwwansel1 = "selected";
+			$gputype=1;
+			$gputypesel[0]="selected";
+			$classiclap_check = "checked";
+			$valuetype[25]=array_diff($valuetype[25],["No OS","Android 6"]);
 			break;
 		case "2":		//ultraportable
-			$cputdpmin = 1;
+			$model_minclass=0; $model_maxclass=1;
+			$cputdpmin = 0;
 			$cputdpmax = 25;
-			$displaysizemax = 16;
-			$memcapmin = 4;
-			$memcapmax = 8;
-			$batlifemin = 5;
-			$chassisweightmax=1.8; 
-			$wnetspeedmin = 867;      
-			$chassisthicmax = 19;
-			$hdd_type[] = "SSD";
-			$mdbwwansel0 = "selected";
 			$mdbwwan = 0;
+			$mdbwwansel0 = "selected";
+			$chassisweightmax=2.1;
+			$chassisthicmax = 23;
+			$valuetype[54]=["EMMC","SSD"];
+			$valuetype[25]=array_diff($valuetype[25],["No OS","Android 6"]);
+			$gputype=1; $gputypesel[0]="selected"; $gputypesel[2]="selected";
 			break;
 		case "3":		//business
-		   $cputdpmin = 10;
+			$model_minclass=1; $model_maxclass=4;
+			$cputdpmin = 4;
 			$cputdpmax = 45;
-			$displaysizemin = 14;
-			$displaysizemax = 17.3;
-			$valuetype[56][0] = "Matte";      
-			$memcapmin = 4;
-			$memcapmax = 16;
-			$batlifemin = 5;
-			$chassisweightmin=1.5;
-			$chassisthicmin = 17;
-			$wnetspeedmin = 867;       					 
-			$wartypewar = array(2,3,4);  		  
-			//$budgetmin = 400;
-			$hddcapmin = 100;
-			$chassis_ports=array(); $chassis_vports=array();
-			$mdbvport='<option selected="selected">1 X HDMI</option>';
-			$mdbport='<option selected="selected">1 X LAN</option>';
-			$chassis_ports[]="LAN";                 					  
-			$chassis_vports[]="HDMI";
-			$diffsearch=1;
-			$chassiswebmin=0.9;
-			$hdd_type[]="SSD";
-			$mdbwwansel0 = "selected";
+			$gpupowermax=30;
 			$mdbwwan = 0;
-			$valuetype[25][] = "Windows 10 Pro"; $valuetype[25][] = "macOS 10.13"; 
+			$mdbwwansel0 = "selected";
+			$chassisweightmax=3;
+			$chassisthicmax=40;
+			$gputype=1; $gputypesel[0]="selected"; $gputypesel[3]="selected";	
+			$valuetype[54]=["HDD","SSD","SSHD"]; 
+			$valuetype[25]=array_diff($valuetype[25],["Chrome OS 1","Android 6","No OS"]);
 			break;
 		case "4":		// gaming
-			$cputdpmin = 15; 
-			$displaysizemin = 13;
-			$memcapmin = 8;
-			$chassisthicmin = 20;
-			//$budgetmin = 400;
-			$hddcapmin = 200;
-			$wnetspeedmin = 867;     
-			$gputypegpumin = 1;
-			$displayhresmin = 1600;  
-			$displayvresmin = 900;
-			$gpumindate=($gpumaxdatei-1);			
-			$hdd_type[] = "SSD";
+			$model_minclass=0; $model_maxclass=1;
+			$cputdpmin = 15;
+			$cputdpmax = 300;
+			$mdbwwan = 1;
+			$mdbwwansel1 = "selected";
+			$chassisthicmin = 10;
+			$valuetype[54]=["HDD","SSD","SSHD"]; 
+			$valuetype[25]= ["Windows 10 Pro","Windows 10 Home","Windows 10 S"]; 
 			break;
 		case "5":		// cad/3d design
-			$cpufreqmin = 0.45*$cpufreqmaxi;
+			$model_minclass=1; $model_maxclass=4;
 			$cputdpmin = 15;
-			$cputdpmax = 55;
-			$displaysizemin = 14;
-			$memcapmin = 8;
-			$gputypegpumin = 3;
-			$gputype = 1;	//dedicated quadro video card
-			$displayhresmin = 1920; 		 
-			$displayvresmin = 1080;  	     
-			$hddcapmin = 200;  
+			$cputdpmax = 300;
+			$gpupowermin=30;
+			$chassisthicmin = 10;
+			$valuetype[54]=["SSD","SSHD"];
+			$gputype = 1; $gputypesel[3] = "selected";
+			$mdbwwan = 0;
 			$mdbwwansel0 = "selected";
-			$mdbwwan = 0;			 
-			 break;
+			$valuetype[25]= ["Windows 10 Pro","Windows 10 Home"]; 	 
+			break;
+			
+		case "99":// All
+			$model_minclass=-1; $model_maxclass=-1;
+			$valuetype[25]=array_diff($valuetype[25],["No OS"]);
+			$mdbwwan = 0;
+			$mdbwwansel0 = "selected";
+			break;
 	}
 	
-/***************************   FOCUS ON ********************************/
-	switch ($issimple)
-	{											 
-		case "1":		//balanced features(preselectat)
-		//DO NOTHING
-        break;
-    
-		case "2": // LONG BATTERY LIFE
-			if (($_GET['type'])==1)
+/***************************   CPU ********************************/
+if(isset($_GET['cpu_type']))
+{
+	$producer=""; $cpumsc="";
+	foreach($_GET['cpu_type'] as $el)
+	{
+		switch($el)
+		{
+			case "1":
 			{
-				$displaysizemin = 13;
-				$batlifemin = 4;
-				$cputdpmax = 40;
+				array_push($valuetype[11],"INTEL");
+				break;
 			}
-			else if (($_GET['type'])==2)
+			case "2":
 			{
-				$displaysizemin = 11;
-				$batlifemin = 6;
-				$cputdpmax = 22;
+				array_push($valuetype[11],"INTEL");
+				$cpumsc.='<option selected="selected">Intel Core i3</option>';
+				break;
 			}
-			else if (($_GET['type'])==3)
+			case "3":
 			{
-				$displaysizemin = 11;
-				$batlifemin = 7;
-				$cputdpmax = 40;
+				array_push($valuetype[11],"INTEL");
+				$cpumsc.='<option selected="selected">Intel Core i5</option>';
+				break;
 			}
-			else if (($_GET['type'])==4)
+			case "4":
 			{
-				$batlifemin = 4;
-				$cputdpmax = 45;
+				array_push($valuetype[11],"INTEL");
+				$cpumsc.='<option selected="selected">Intel Core i7</option>';
+				break;
 			}
-			else if (($_GET['type'])==5)
+			case "5":
 			{
-				$displaysizemin = 13;
-				$batlifemin = 4.5;
-				$cputdpmax = 40 ;
-			}	
-			break;
-
-		case "3":
-			$memcapmin = 8;
-			$memcapmax = 32;
-			if (($_GET['type'])==1) // NORMAL
-			{
-				$cpufreqmin = 0.55*$cpufreqmaxi;
-				$cputdpmin = 15;
+				array_push($valuetype[11],"AMD");
+				break;
 			}
-			else if (($_GET['type'])==2) // ULTRAP
+			case "6":
 			{
-				$cpufreqmin = 0.50*$cpufreqmaxi;
-				$cputdpmin = 15;
-				$cputdpmax = 45;
-				$chassisweightmax= 1.9;
-				$chassisthicmax = 19;
+				array_push($valuetype[11],"AMD");
+				$cpumsc.='<option selected="selected">AMD Ryzen</option>';
+				break;
 			}
-			else if (($_GET['type'])==3) // BUSINESS
+			case "7":
 			{
-				$cpufreqmin = 0.55*$cpufreqmaxi;
-				$cputdpmin = 15;
+				$cpumsc.='<option selected="selected">HT/Hyper-threading</option>';
+				break;
 			}
-			else if (($_GET['type'])==4) // GAMING
+			case "8":
 			{
-				$cpufreqmin = 0.50*$cpufreqmaxi;
-				$cputdpmin = 45;
+				$cpucoremin=4;
+				break;
 			}
-			else if (($_GET['type'])==5) //PRO
+			case "9":
 			{
-				$cpufreqmin = 0.55*$cpufreqmaxi;
-				$cputdpmin = 40;
-				$cputdpmax = 150;
+				if($cpucoremin<4){$cpucoremin=6;}
+				break;
 			}
-			break;
+		}
 	}
+	$valuetype[11]= array_unique($valuetype[11]);
+}
+
+
+if(isset($_GET['s_memmin'])) { $memcapmin=intval($_GET['s_memmin']); }
+if(isset($_GET['s_memmax'])) { $memcapmax=intval($_GET['s_memmax']); }
+
+if(isset($_GET['ssd'])) { $valuetype[54]=["SSD"]; }
+if(isset($_GET['s_hddmin'])) { $hddcapmin=intval($_GET['s_hddmin']); }
+if(isset($_GET['s_hddmax'])) { $hddcapmax=intval($_GET['s_hddmax']); }
+
+if(isset($_GET['s_dispsizemin'])) { $displaysizemin=floatval($_GET['s_dispsizemin']); }
+if(isset($_GET['s_dispsizemax'])) { $displaysizemax=floatval($_GET['s_dispsizemax']); }
+
+if(isset($_GET['display_type']))
+{
+	$display_backt=array(); $displaymsc=""; $chassisstuff="";
+	foreach($_GET['display_type'] as $el)
+	{
+		switch($el)
+		{
+			case "1":
+			{
+				$displaymsc.='<option selected="selected">LED IPS</option>';
+				$displaymsc.='<option selected="selected">OLED</option>';
+				$displaymsc.='<option selected="selected">LED IPS PenTile</option>';
+				break;
+			}
+			case "2":
+			{
+				$displaymsc.='<option selected="selected">LED TN WVA</option>';
+				$displaymsc.='<option selected="selected">120 Hz</option>';
+				$displaymsc.='<option selected="selected">144 Hz</option>';
+				break;
+			}
+			case "3":
+			{
+				$displayvresmin=1080;
+				break;
+			}
+			case "4":
+			{
+				if($displayvresmin!=1080) { $displayvresmin=1440; }
+				break;
+			}
+			case "5":
+			{
+				if($displayvresmin!=1080 && $displayvresmin!=1440 ) { $displayvresmin=2160; }
+				break;
+			}
+			case "6":
+			{
+				$displaymsc.='<option selected="selected">80% sRGB or better</option>';
+				break;
+			}
+			case "7":
+			{
+				$tcheck = "checked";
+				break;
+			}
+			case "8":
+			{
+				$chassisstuff.='<option selected="selected">Stylus</option>';
+				break;
+			}
+		}
+	}
+}
 
 /***************************  GRAPHIC NEED********************************/
-	switch ($_GET['graphics'])
+if(isset($_GET['graphics']))
+{	$gpumodel="";
+	foreach($_GET['graphics'] as $el)
 	{
-		case "1":	//essential
-			$wnetspeedmin=433;
-			$gputype=1;  //
-			$gputypesel[0]="selected";
-			if (($_GET['type'])==4) //GAMING
-			{
-				$gpupowermin = 15;
-				$gpupowermax = 40;
-				$gpumemmax = 4096;
-				$gputypesel[2]="selected";
-				$gputypesel[1]="selected";
-				$gputypesel[0]="";
-			}
-			else if (($_GET['type'])==5) //PROFESIONAL
-			{
-				$gpupowermin = 20;
-				$gpupowermax = 40;
-				$gputype=1;
-				$gputypesel[0]="";
-				$gputypesel[3]="selected";
-			}
-			
-        break;
-		
-		case "2":		//casual
-			$gputype=1;
-			if (($_GET['type'])==1) // NORMAL
-			{
-				$gputypesel[1]="selected";
-				$gputypesel[2]="selected";
-				$gpupowermin = 30;
-				$gpupowermax = 50;
-				$gpumemmax = 4096;
-			}
-			else if (($_GET['type'])==2) // ULTRAPOR
-			{
-				if($issimple=="2")
-				{ $batlifemin = 4; }
-				else
-				{ $batlifemin = 3; }
-				$gputypesel[1]="selected";
-				$gputypesel[2]="selected";
-				$gpupowermin = 20;
-				$gpupowermax = 50;
-				$gpumemmax = 4096;
-				$chassisweightmax= 2.0;
-				$chassisthicmax = 20;			
-			}
-			else if (($_GET['type'])==3) //BUSINESS
-			{
-				$gputypesel[1]="selected";
-				$gputypesel[2]="selected";
-				$gputypesel[3]="selected";
-				$gpupowermin = 25;
-				$gpupowermax = 50;
-				$gpumemmax = 4096;
-			}
-			else if (($_GET['type'])==4) //GAMING
-			{
-				$gputypesel[1]="selected";
-				$gputypesel[2]="selected";
-				$gpupowermin = 34;
-				$gpupowermax = 78;
-				$gpumemmax = 4096;
-			}
-			else if (($_GET['type'])==5) //PROFESIONAL
-			{
-				$gputypesel[3]="selected";
-				$gpupowermin = 34;
-				$gpupowermax = 79;
-			}
-			break;
-	
-		case "3":	//high performance
-			$gputype=1;
-			if (($_GET['type'])==5) //PROFESIONAL
-			{  $gputypesel[3]="selected"; }
-			else if (($_GET['type'])==2) // ULTRAPOR
-			{
-				$chassisweightmax= 2.0;
-				$chassisthicmax = 20;
-				if($issimple=="2")
-				{ $batlifemin = 4; }
-				else
-				{ $batlifemin = 3; }
-				$gputypesel[2]="selected"; $gputypesel[1]="selected";
-			}
-			else if (($_GET['type'])==3) //BUSINESS
-			{ 	
-				$gputypesel[1]="selected";
-				$gputypesel[2]="selected";
-				$gputypesel[3]="selected";				
-			}
-			else if (($_GET['type'])==4) //GAMING
-			{
-				$gputypesel[2]="selected";
-				$gputypesel[4]="selected";
-			}
-			else
-			{
-				$gputypesel[1]="selected";
-				$gputypesel[2]="selected";
-				$gputypesel[4]="selected";
-			}
-
-			$gpupowermin = 50;
-			$gpumbwmin = 128;
-			$gpumaxmemmin = 2048;
-			break;
-	}
-
-	
-/***************************  STORAGE********************************/
-
-	foreach($_GET['storage'] as $x)
-	{  			
-		switch($x)
+		switch ($el)
 		{
-			case "1": //normal
-				$hdd_type[] = "HDD"; $hdd_type[] = "EMMC";  $hdd_type[] = "SSHD";
-				$hddcapmin = 100;
-				$hddcapmax = 1000;
-				break;
-			case "2":	//high storage
-				$hddcapmin = 500;
-				$hddcapmax = $nomenvalues[2][2]*2; // adiu
-				break;
-			case "3":	//high speed
-				$hdd_type[] = "SSD" ; 
-				break;
-		}		
-	}
-
-/***************************   DISPLAY********************************/
-
-	switch ($_GET['display'])
-	{  			
-		case "1": //budget
-			if (!(($_GET['type'] == 4) OR ($_GET['type'] == 5)))
+			case "1":	//essential
 			{
-				$displayhresmin = "1";
-				$displayhresmax = "2000";
-				$displayvresmin = "1";
-				$displayvresmax = "1300";
+				if (($_GET['type'])==4) //GAMING
+				{
+					$gpupowermin = 20;
+					$gpumemmin = 1024;
+					$gputype=1;
+					$gputypesel[1]="selected";
+				}
+				else if (($_GET['type'])==5) //PROFESIONAL
+				{
+					$gpupowermin = 25;
+					$gpumemmin = 1024;
+					$result=mysqli_query($con, "SELECT model FROM notebro_db.GPU WHERE rating<=30 AND typegpu=3 AND power>=25");
+					while($row=mysqli_fetch_row($result)) { $gpumodel.='<option selected="selected">'.$row[0].'</option>'; } mysqli_free_result($result);
+					$gputype=1;
+					$gputypesel[3]="selected";
+				}
+				else //ALL
+				{
+					$gpupowermax = 50;
+					$gputype=1;
+					$gputypesel[3]="selected";
+					$gputypesel[0]="selected";
+				}
+				break;
 			}
-			else
+		
+			case "2":		//AVERAGE
 			{
-				$displayhresmax = "2000";
-				$displayvresmax = "1300";
+				if (($_GET['type'])==4) //GAMING
+				{
+					$gpumemmin = 2048;
+					$gputype=1;
+					$gputypesel[2]="selected";
+				}
+				else if (($_GET['type'])==5) //PROFESIONAL
+				{
+					$gpumemmin = 2048;
+					$result=mysqli_query($con, "SELECT model FROM notebro_db.GPU WHERE rating<=50 AND rating>=25 AND typegpu=3 AND power>=25");
+					while($row=mysqli_fetch_row($result)) { $gpumodel.='<option selected="selected">'.$row[0].'</option>'; } mysqli_free_result($result);
+					$gputype=1;
+					$gputypesel[3]="selected";
+				}
+				else //ALL
+				{
+					$gpupowermin = 55;
+					$gpupowermax = 80;
+					$gputype=1;
+					$gputypesel[3]="selected";
+					$gputypesel[2]="selected";
+				}
+				break;
 			}
-			break;
-		
-		case "2":	//high resolution
-			$displayhresmin= "1919";
-			$displayvresmin = "1079";
-			break;
-	}
-
-		
-	if(is_string($_GET['exchange']))
-	{
-		$excode=$_GET['exchange'];
-		$sel2 = "SELECT convr FROM notebro_site.exchrate WHERE code='".$excode."'";
-		$result = mysqli_query($con,$sel2);
-		$value=mysqli_fetch_array($result);
-		$exch=floatval($value[0]);
-	}
-
-	if($_GET['bdgmin']) $bdgmin = floatval($_GET['bdgmin'])/$exch;
-	if($_GET['bdgmax']) $bdgmax = floatval($_GET['bdgmax'])/$exch;
-		
-	if(isset($_GET['checkbox66']) && $_GET['checkbox66'] == "on") {$tcheck = "checked"; $display_touch = "1";} else {$display_touch ="2";}
-		
-/************ LOW BUDGET *******************/
-	if($bdgmax<550)
-	{
-		$hddcapmin = 32;
-		// We are on a budget eh? OK, let's make things less strict.
-		switch ($_GET['type'])
-		{
-			case "1": //normal
-				$cputdpmin = $cputdpmindb;
-				$cputdpmax = 30;
-				$displaysizemin = $dispsizemindb;
-				$memcapmin = $memcapmindb;
-				$memcapmax = 4;
-				$chassisweightmin= 1.1;
-				break;
 			
-			case "2":	//ultraportable
-				$displaysizemax = 16;
-				$memcapmin = $memcapmindb;
-				$memcapmax = 4;
-				$batlifemin = 54;
-				$chassisweightmax=2; //echo  $chassis_weightmax;
-				$wnetspeedmin = 300;
-				$chassisthicmax = 24;
+			case "3":		//HIGH PERFORMANCE
+			{
+				if (($_GET['type'])==4) //GAMING
+				{
+					$gputype=1;
+					$gputypesel[4]="selected";
+				}
+				else if (($_GET['type'])==5) //PROFESIONAL
+				{
+					$gpumemmin = 2048;
+					$result=mysqli_query($con, "SELECT model FROM notebro_db.GPU WHERE rating>=50 AND typegpu=3 AND power>=25");
+					while($row=mysqli_fetch_row($result)) { $gpumodel.='<option selected="selected">'.$row[0].'</option>'; } mysqli_free_result($result);
+					$gputype=1;
+					$gputypesel[3]="selected";
+				}
+				else //ALL
+				{
+					$gpupowermin = 69;
+					$gputype=1;
+					$gputypesel[3]="selected";
+					$gputypesel[4]="selected";
+				}
 				break;
-		
-			case "3":	//business
-				$cputdpmin = 4;
-				$cputdpmax = 35;
-				$displaysizemin = $dispsizemindb;
-				$displaysizemax = 16;
-				$memcapmin = 4;
-				$chassisweightmin=1.8;
-				$wnetspeedmin = 433;
-				$war_typewar = "2";
-				//$budgetmin = 400;
-				break;
-				
-			case "4":// gaming
-				$displaysizemin = 11;
-				$hddcapmin = 200;
-				$memcapmin = 4;
-				$wnetspeedmin = 433;
-				$displayhresmin= "1360";
-				$displayvresmin = "760";
-				break;
-			
-			case "5":// cad/3d design
-				$cputdpmin = 4;
-				$cputdpmax = 45;
-				$cpufreqmin=$cpufreqmin*0.75;
-				$displaysizemin = 11;
-				$memcapmin = 4;
-				$hddcapmin = 100;
-				$displayhresmin= "1360";
-				$displayvresmin = "760";
-				break;
+			}
 		}
-	}		
+	}
+}
 
-	$displayres="";
-	$result=mysqli_query($con,"SELECT DISTINCT CONCAT(hres,'x',vres) as resol FROM notebro_db.DISPLAY WHERE hres>=$displayhresmin AND hres<=$displayhresmax AND vres>=$displayvresmin AND vres<=$displayvresmax");
-	
-	while($row=mysqli_fetch_array($result))
+//regional search
+if(isset($_GET['region_type']))
+{
+	$regions="";
+	foreach($_GET['region_type'] as $el)
 	{
-		$displayres.='<option selected="selected">'.$row[0].'</option>';
+		if($el==1){ $regions.='<option selected="selected">USA and Canada</option>'; }
+		elseif ($el==2){ $regions.='<option selected="selected">Europe</option>'; $waryearsmin=2; }
 	}
+}
+
+if(is_string($_GET['exchange']))
+{
+	$excode=$_GET['exchange'];
+	$sel2 = "SELECT convr FROM notebro_site.exchrate WHERE code='".$excode."'";
+	$result = mysqli_query($con,$sel2);
+	$value=mysqli_fetch_array($result);
+	$exch=floatval($value[0]);
+}
+
+if($_GET['bdgmin']) $bdgmin = floatval($_GET['bdgmin'])/$exch;
+if($_GET['bdgmax']) $bdgmax = floatval($_GET['bdgmax'])/$exch;
 	
-	$valuetype[54]=$hdd_type;
-	$valuetype[51] = array($wnetspeedmin);	
-		
-	if($hddcapmin)
-	{
-		$totalcapmin=$hddcapmin;
-		$hddcapmin=0;
-	}
-	else
-	{ $totalcapmin=0; }
+if($hddcapmin)
+{
+	$totalcapmin=$hddcapmin;
+	$hddcapmin=0;
+}
+else
+{ $totalcapmin=0; }
+
+$totalcapmax=$hddcapmax;
 	
-	$totalcapmax=$hddcapmax;
-	$mdbslotsel0 = "selected";
+$family="";
+if ($model_minclass <= 0 && $model_maxclass>=3) 
+{
+	$family.='<option selected="selected">All business families</option>';
+	$family.='<option selected="selected">All consumer families</option>';
+}
+else if ($model_minclass>=1 && $model_maxclass>=3) {$family.='<option selected="selected">All business families</option>';}
+else if ($model_minclass>=0 && $model_maxclass<=1) {$family.='<option selected="selected">All consumer families</option>';}
 ?>

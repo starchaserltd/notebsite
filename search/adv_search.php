@@ -1,4 +1,4 @@
-	<?php
+<?php
 	require_once("../etc/conf.php");
 
 	if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_name) ==FALSE) 
