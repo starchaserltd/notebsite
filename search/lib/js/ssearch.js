@@ -279,3 +279,16 @@ $('#s_prod_id').select2({
         }
     }
  })
+ 
+//Function for form submissions left menu   
+    $("#s_search_btn").on("mousedown",function(e) {
+        scrolltoid('content');
+        $('#loadingNB').show();
+        trigger = 0;
+        $.get('search/search.php', $("#s_search").serialize(), function(data) {
+            url = "search/search.php" + "?" + $("#s_search").serialize();
+            currentpage = url;
+            if ($('#content').html(data)) { $('#loadingNB').hide(); }
+            history.pushState({}, 'NoteBrother', "?" + url);
+        });
+    });

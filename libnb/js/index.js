@@ -158,19 +158,6 @@ $(document).ready(function() {
         }
     });
 
-    //Function for form submissions left menu   
-    $("#s_search_btn").click(function() {
-        scrolltoid('content');
-        $('#loadingNB').show();
-        trigger = 0;
-        $.get('search/search.php', $("#s_search").serialize(), function(data) {
-            url = "search/search.php" + "?" + $("#s_search").serialize();
-            currentpage = url;
-            if ($('#content').html(data)) { $('#loadingNB').hide(); }
-            history.pushState({}, 'NoteBrother', "?" + url);
-        });
-    });
-
     //Function for form model search left menu   
     $('#model_id').on("select2:select", function(e) {
         scrolltoid('content');
