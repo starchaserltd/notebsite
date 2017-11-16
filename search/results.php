@@ -168,8 +168,8 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 ?>
 <script type="text/javascript"> excode='<?php echo $_SESSION['exchcode']; ?>'; document.title = 'Noteb - Search results';
 $.getScript("../lib/js/jquery.matchHeight-min.js").done(function(){ $.getScript("search/lib/js/results.js"); });
-<?php 
-if (isset($browse_by))
+<?php
+if (isset($browse_by)&&$browse_by!==0)
 { ?>
 	var el=document.getElementById("SearchParameters");
 	if(!(el.classList.contains("showMoreDetails"))){ el.classList.add("showMoreDetails");  document.getElementsByClassName("leftMenuFilters")[0].classList.add("rotate"); }
