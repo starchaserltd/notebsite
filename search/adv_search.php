@@ -558,4 +558,4 @@
 
 		</div>
 	</form>	
-	<?php if($gputype==1){ echo '<script>$(document).ready(function() { $("#r-no").click();  });</script>'; }?>
+	<?php if($gputype==1){ echo '<script>$(document).ready(function(){ $("#r-no").click(); });</script>'; }?>

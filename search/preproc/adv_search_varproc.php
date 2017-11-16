@@ -248,7 +248,7 @@ if(isset($_GET['DISPLAY_msc_id']))
 		{
 			case (stripos($el,"G-sync")!==FALSE):
 			{
-				$display_misc[]=$display_backt[$key];
+				$mdb_misc[]=$display_backt[$key];
 				unset($display_backt[$key]);
 				break;
 			}

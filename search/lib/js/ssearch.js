@@ -45,6 +45,7 @@ function checkmin()
 function checkmax()
 { document.getElementById('budget').noUiSlider.set([null,document.getElementById('bdgmax').value]); }
 
+function change_label(elementid) { $(elementid).each(function() { if(this.getAttribute("data-name")!==null) { var e = $("#display_type").next().children(".btn"); e.html(e.html().replace(RegExp(this.text, "g"), this.getAttribute("data-name"))); } }); } 
 
 /* WHEN DOCUMENT IS READY ! */
 $(document).ready(function() 
@@ -52,12 +53,12 @@ $(document).ready(function()
 	$('#currency').multiselect(btnsearchval);
 	$('#graphics').multiselect(btnsearch);		
 	$('#type').multiselect(btnsearch);
+	btnsearch["buttonText"]=function(options, select) { if (options.length === 0) { return 'None selected'; } else if (options.length > 3) { return '4 selected'; } else { var labels = []; options.each(function() { if ($(this).attr('data-name') !== undefined) { labels.push($(this).attr('data-name')) } else { labels.push($(this).html()); } }); return labels.join(', ') + ''; } }
 	$('#cpu_type').multiselect(btnsearch);
-	$('#display_type').multiselect(btnsearch);
+	$('#display_type').multiselect(btnsearch); delete btnsearch["buttonText"];
 	$('#region_type').multiselect(btnsearchval);
-	
-	$('#graphics').multiselect('disable');
 
+	$('#graphics').multiselect('disable');
 	
 	//CREATE MEMORY SLIDER	
 	noUiSlider.create(document.getElementById('s_mem'), {
@@ -114,7 +115,7 @@ $(document).ready(function()
 	step: 4,
 	direction: 'ltr',
 	format: { to: function(value){ return parseFloat(value); }, from: function(value){ return parseFloat(value); } },
-	range: listrange([10.1,12,13.3,14,15.4,15.6,17.3,18.1])
+	range: listrange([10.1,12,13.3,13.9,14,15.4,15.6,17.3,18.1])
 	});
 
 	//SET SDISPLAY SLIDER TEXT UPDATE FUNCTIONS
@@ -242,21 +243,13 @@ function sliderrange(old)
 
 
 $('#s_prod_id').select2({
-	tags: false,
-	multiple: true,
-	maximumSelectionLength: 8,
-	minimumInputLength: 2,
+	tags: false, multiple: true, maximumSelectionLength: 8, minimumInputLength: 2,
 	language: {
 		noResults: function(term) {
 			return "Type something...";
 				}
             },
-		ajax: { 
-		quietMillis: 100,
-		cache: false,
-		dataType: "json",
-		type: "POST",
-		url: "search/lib/func/list.php",
+		ajax: { quietMillis: 100, cache: false, dataType: "json", type: "POST", url: "search/lib/func/list.php",
 		data: function (params) {
 			$idtype=2;
             var queryParameters = {
@@ -281,14 +274,14 @@ $('#s_prod_id').select2({
  })
  
 //Function for form submissions left menu   
-    $("#s_search_btn").on("mousedown",function(e) {
-        scrolltoid('content');
-        $('#loadingNB').show();
-        trigger = 0;
-        $.get('search/search.php', $("#s_search").serialize(), function(data) {
-            url = "search/search.php" + "?" + $("#s_search").serialize();
-            currentpage = url;
-            if ($('#content').html(data)) { $('#loadingNB').hide(); }
-            history.pushState({}, 'NoteBrother', "?" + url);
-        });
-    });
+$("#s_search_btn").on("mousedown",function(e) {
+	scrolltoid('content');
+	$('#loadingNB').show();
+	trigger = 0;
+	$.get('search/search.php', $("#s_search").serialize(), function(data) {
+		url = "search/search.php" + "?" + $("#s_search").serialize();
+		currentpage = url;
+		if ($('#content').html(data)) { $('#loadingNB').hide(); }
+		history.pushState({}, 'NoteBrother', "?" + url);
+	});
+});

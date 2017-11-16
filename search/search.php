@@ -127,7 +127,7 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 		/* CHECKING IF DOING BROWSE SEARCH */	
 		/********************************************************************/
 
-		else if ($_GET['browse_by'])
+		else if (isset($_GET['browse_by']) && $_GET['browse_by'])
 		{
 			include ("preproc/b_search_varproc.php");
 		}

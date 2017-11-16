@@ -1,11 +1,18 @@
 <?php
 require_once("etc/conf.php"); ?>
 <script>$.getScript("search/lib/js/ssearch.js");</script>
+<style>
+.xxtest + span.select2.select2-container.select2-container--default {font-size:13px;} 	
+.xxtest + span.select2.select2-container.select2-container--default span.selection span.select2-selection.select2-selection--multiple{border: solid #d9d9d9 1px;
+min-height: 30px;
+line-height: 18px;}
+.xxtest + span.select2.select2-container.select2-container--default.select2-container--below.select2-container--focus.select2-container--open span.selection span.select2-selection.select2-selection--multiple{border: 1px solid black ;}
 
+</style>
 	<div class="col-md-12 col-sm-12 col-xs-12" style="padding:0 5px;">	
 		<form style="overflow:hidden" action="javascript:void(0);" method="post" id="s_search">
-				<div style="font-size:14px; font-weight:bold;">Producer</div>			
-				<select id="s_prod_id" name ="s_prod[]" data-placeholder="Ex. Lenovo, Dell, Apple" multiple="multiple" style="width: 100%;"></select>
+				<div style="font-size:14px; font-weight:bold;margin-top:5px">Producer</div>			
+				<select class="xxtest" id="s_prod_id" name ="s_prod[]" data-placeholder="Ex. Lenovo, Dell, Apple" multiple="multiple" style="width: 100%;"></select>
 				<div style="margin-top:10px; font-size:14px;font-weight:bold; margin-bottom:2px;">Laptop type</div>			
 				<select name ="type" id="type">
 					<option value="99">All</option>
@@ -18,15 +25,15 @@ require_once("etc/conf.php"); ?>
 
 				<div style="margin-top:10px; font-size:14px;font-weight:bold; margin-bottom:2px;">Processor type</div>	
 				<select id="cpu_type" name="cpu_type[]" multiple>
-					<option value="1">Intel any</option>
-					<option value="2">Intel Core i3</option>
-					<option value="3">Intel Core i5</option>
-					<option value="4">Intel Core i7</option>
-					<option value="5">AMD any</option>
-					<option value="6">AMD Ryzen</option>
-					<option value="7">Hyper-threading</option>
-					<option value="8">4-core processor</option>
-					<option value="9">6-core processor</option>
+					<option value="1" data-name="Intel">Intel any</option>
+					<option value="2" data-name="Core i3">Intel Core i3</option>
+					<option value="3" data-name="Core i5">Intel Core i5</option>
+					<option value="4" data-name="Core i7">Intel Core i7</option>
+					<option value="5" data-name="AMD">AMD any</option>
+					<option value="6" data-name="Ryzen">AMD Ryzen</option>
+					<option value="7" data-name="HT">Hyper-threading</option>
+					<option value="8" data-name="4-core">4-core processor</option>
+					<option value="9" data-name="6-core">6-core processor</option>
 				</select>				
 						
 				<div style="margin-top:10px;">
@@ -66,15 +73,15 @@ require_once("etc/conf.php"); ?>
 				
 								<div style="margin-top:10px; font-size:14px;font-weight:bold; margin-bottom:2px;">Display quality</div>	
 				<select id="display_type" name="display_type[]" multiple>
-					<option value="1" selected="selected">IPS panel</option>
-					<option value="2">120Hz panel</option>
-					<option value="3" selected="selected">FHD resolution</option>
-					<option value="4">2K resolution</option>
-					<option value="5">4K resolution</option>
-					<option value="6">High color gamut</option>
-					<option value="7" selected="selected">No touchscreen</option>
-					<option value="8">Touchscreen</option>
-					<option value="9">Stylus support</option>
+					<option value="1" data-name="IPS" selected="selected">IPS panel</option>
+					<option value="2" data-name="120Hz">120Hz panel</option>
+					<option value="3" data-name="FHD" selected="selected">FHD resolution</option>
+					<option value="4" data-name="2K">2K resolution</option>
+					<option value="5" data-name="4K">4K resolution</option>
+					<option value="6" data-name="High gamut">High color gamut</option>
+					<option value="7" data-name="No touch" selected="selected">No touchscreen</option>
+					<option value="8" data-name="Touch">Touchscreen</option>
+					<option value="9" data-name="Stylus">Stylus support</option>
 				</select>
 				
 				<div style="margin-top:10px; font-size:14px;font-weight:bold; margin-bottom:2px;">Graphics</div>	
@@ -119,7 +126,7 @@ require_once("etc/conf.php"); ?>
 				<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style="margin-top:10px;padding-left:10px">
 					<div id="budget"></div>
 				</div>
-			<input type="submit" id="s_search_btn" class="btn blue bsub" style="margin-top:20px;margin-bottom: 10px; padding:5px 25px 5px 25px; border-radius:1px; color:#fff; width:100%;" value="Apply filters">
+			<input type="submit" id="s_search_btn" class="btn blue bsub" style="margin-top:23px;margin-bottom: 23px; padding:5px 25px 5px 25px; border-radius:1px; color:#fff; width:100%;" value="Apply filters">
 	</form>	
 </div>
 	

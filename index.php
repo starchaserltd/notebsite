@@ -22,11 +22,12 @@ require_once("etc/conf.php");
 	<script type="text/javascript" src="lib/js/nouislider.min.js"></script>
 	<!-- Lightbox js -->
 	<script src="lib/js/lightbox.min.js"></script> 
+	<style>
+		btn.active.focus,.btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus
+		 {outline: none!important;outline-offset:initial!important}
+</style>
 </head>
 <body>
-<style>
-.btn.active.focus,.btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {outline: none!important;outline-offset:initial!important}
-</style>
 <div class="container-fluid headerback" style="height:100%;">
 	<div class="row" style="height:100%;">
 	<!-- upper buttons desktop -->
@@ -106,12 +107,12 @@ require_once("etc/conf.php");
 				
 			<div>
 				<button class="btn btn-title leftMenuFilters"  onclick=""><a style="color:white;">Quick search filters</a><a></a></button>
-				<div class="SearchParameters" class="SearchParameters" id="SearchParameters">			
+				<div class="SearchParameters" id="SearchParameters">			
 					<?php include ("search/s_search.php");?>
 				</div>			
 			</div>	
 			<div style="text-align:center;">
-     		 <button  class="leftMenuAdvSearch" id="sadvsearch" onmousedown="OpenPage('search/adv_search.php',event);" type="button" class="btn blue"><a style="text-decoration:none;color:white;">Advanced search</a></button>
+     		 <button  id="sadvsearch" onmousedown="OpenPage('search/adv_search.php',event);" type="button" class="btn blue leftMenuAdvSearch"><a style="text-decoration:none;color:white;">Advanced search</a></button>
   			 </div>					
 			<div class="col-md-12 col-xs-12 col-sm-12 blue" id='cssmenu' style="padding:0px">
 				<ul>				

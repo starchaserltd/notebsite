@@ -139,7 +139,7 @@ $(document).ready(function() {
     // Start tooltips
     // $('[data-toggle="tooltip"]').tooltip(); 
 
-    // Script pentru meniul din stanga   
+    // Script for left menu  
     $('#cssmenu li.active').addClass('open').children('ul').show();
     $('#cssmenu li.has-sub>a').on('click', function() {
         $(this).removeAttr('href');
@@ -361,27 +361,27 @@ function exchangeresults(exchange) {
 //SETTING THE CURRENTLY ACTIVE MENU BUTTON
 
 function actbtn(pagename, mobile) {
-    switch (pagename) {
-        case "USER":
-            {
-                if (!mobile) { $(".btn-sus").removeClass("active"); }
-                $('#usermenu').addClass("acthelp");
-                break;
-            }
-        default:
-            {
-                if (!mobile) {
-                    $(".btn-sus").removeClass("active");
-                    $('#usermenu').removeClass("acthelp");
-                }
+	switch (pagename) {
+		case "USER":
+		{
+			if (!mobile) { $(".btn-sus").removeClass("active"); }
+			$('#usermenu').addClass("acthelp");
+			break;
+		}
+		default:
+		{
+			if (!mobile) {
+				$(".btn-sus").removeClass("active");
+				$('#usermenu').removeClass("acthelp");
+			}
 
-                $(".btn-sus").each(function(index) {
-                    if (this.innerHTML == pagename && (pagename != "Find the best laptop with Noteb notebook search engine." || pagename != "NOTEBROTHER")) {
-                        $(this).addClass("active");
-                    }
-                });
-            }
-    }
+			$(".btn-sus").each(function(index) {
+				if (this.innerHTML == pagename && (pagename != "Find the best laptop with Noteb notebook search engine." || pagename != "NOTEBROTHER")) {
+					$(this).addClass("active");
+				}
+			});
+		}
+	}
 }
 
 function occur(string, subString, allowOverlapping) {
@@ -482,18 +482,14 @@ function listrange(list_comp)
 	return values;
 }
 
-
 // Only enable if the document has a long scroll bar
-    // Note the window height + offset
-    if ( ($(window).height() + 100) < $(document).height() ) { $('#top-link-block').removeClass('hidden').affix({
-        // how far to scroll down before link "slides" into view
-        offset: {top:100}
- }); }
+// Note the window height + offset
+if ( ($(window).height() + 100) < $(document).height() ) { $('#top-link-block').removeClass('hidden').affix({ offset: {top:100} }); }
 
 //Make dropdown for search filters
 $( document ).ready(function() {
-       $( ".leftMenuFilters" ).click(function() {
-       $( "#SearchParameters" ).toggleClass( "showMoreDetails" );
-       $( ".leftMenuFilters" ).toggleClass( "rotate" );
+	$( ".leftMenuFilters" ).click(function() {
+		$( "#SearchParameters" ).toggleClass("showMoreDetails");
+		$( ".leftMenuFilters" ).toggleClass("rotate");
     });
 });

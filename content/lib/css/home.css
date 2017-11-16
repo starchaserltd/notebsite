@@ -82,7 +82,7 @@ div.latest4 a {
 .topLaptopsDate {
 	text-align: center;
 	color: #fff;
-	font-size: 16px;
+	font-size: 10px;
 	background-color: #285f8f;
 	margin:0px -15px 10px -15px;
 }
@@ -110,7 +110,7 @@ div.latest4 a {
 	}
 
 	.gamingTopLaptops.showMoreTop, .businessTopLaptops.showMoreTop, .ultrabooksTopLaptops.showMoreTop, .studentTopLaptops.showMoreTop {
-		max-height: 240px;
+		max-height: 205px;
 		transition: max-height 0.4s ease;
 		margin-bottom: 30px;		
 	}
@@ -205,7 +205,7 @@ div.latest4 a {
 	    position: absolute;
 	    width: 100px;
 	    left: 200px;
-	    top: 4px;
+	    top: 10px;
 	    z-index: 10;
 	}
 	.topLaptops img {

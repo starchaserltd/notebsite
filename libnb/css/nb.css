@@ -220,10 +220,10 @@
     -ms-transition: all 0.1s ease-out;
     -o-transition: all 0.1s ease-out;
     transition: all 0.1s ease-out;
-    -moz-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
-    -o-transform: rotate(90deg);
-    transform: rotate(90deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
 }
 
 .btn.btn-title>a:after {
@@ -241,10 +241,10 @@
     -ms-transition: all 0.1s ease-out;
     -o-transition: all 0.1s ease-out;
     transition: all 0.1s ease-out;
-    -moz-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
-    -o-transform: rotate(90deg);
-    transform: rotate(90deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
 }
 
 
@@ -254,6 +254,11 @@
     -ms-transform: rotate(45deg);
     -o-transform: rotate(45deg);
     transform: rotate(45deg);
+    -webkit-transition: all 0.1s ease-out;
+    -moz-transition: all 0.1s ease-out;
+    -ms-transition: all 0.1s ease-out;
+    -o-transition: all 0.1s ease-out;
+    transition: all 0.1s ease-out;
 }
 
 .btn.btn-title.leftMenuFilters.rotate>a:after {
@@ -262,6 +267,11 @@
     -ms-transform: rotate(45deg);
     -o-transform: rotate(45deg);
     transform: rotate(45deg);
+    -webkit-transition: all 0.1s ease-out;
+    -moz-transition: all 0.1s ease-out;
+    -ms-transition: all 0.1s ease-out;
+    -o-transition: all 0.1s ease-out;
+    transition: all 0.1s ease-out;
 }
 
 .btn-title.collapsed>a:before {
@@ -1634,7 +1644,7 @@ label.css-labelr {
 
 
 .topLaptops h2 {
-    font-size: 18px;
+    font-size: 16px;
     background-color: #285f8f;
     padding: 5px;
     color: #fff;
@@ -1648,11 +1658,9 @@ label.css-labelr {
     z-index: 9;
 }
 
-.topLaptops .row {
-    padding-top: 5px;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 5px;
-    min-height: 81px;
+.topLaptops .row {    
+    border-right: 1px solid #ddd;    
+    min-height: 81px;      
 }
 
 .topLaptops .row:hover {    
@@ -1666,20 +1674,10 @@ label.css-labelr {
 .topLaptops {
     margin:15px -3px 0 -3px;
     color: #000;   
-    max-height: 330px;
+    max-height: 310px;
     overflow-y: scroll;
     transition: max-height 0.4s ease;    
 }
-
-.topLaptops .gamingTopLaptops .row, .topLaptops .businessTopLaptops .row, .topLaptops .ultrabooksTopLaptops .row {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
-}
-
 
 .topLaptops::-webkit-scrollbar-track {
 	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
@@ -1696,7 +1694,8 @@ label.css-labelr {
 }
 
 .topLaptops.showMoreLaptops {
-    max-height: 500px;    
+    max-height: 1500px;   
+    overflow-y: auto; 
 }
 
 .topLaptops .col-lg-4.col-md-4.col-xs-12{
@@ -1768,10 +1767,6 @@ label.css-labelr {
     box-shadow: 2px 3px 1px rgba(0, 0, 0, 0.31);
 }
 
-
-
-
-
 /*Responsive media design */
 
 @media (min-width: 1600px) {
@@ -1779,8 +1774,31 @@ label.css-labelr {
         max-width: 40px;
      }     
      .topLaptops {
-        max-height: 415px;
-     }     
+        max-height: 320px;
+     }  
+
+    .topLaptops .gamingTopLaptops .row:nth-child(7), .topLaptops .businessTopLaptops .row:nth-child(7), .topLaptops .ultrabooksTopLaptops .row:nth-child(7), .topLaptops .studentTopLaptops .row:nth-child(7) {
+        opacity: 0.3;
+    }   
+    .topLaptops.showMoreLaptops .gamingTopLaptops .row:nth-child(7), .topLaptops.showMoreLaptops .businessTopLaptops .row:nth-child(7), .topLaptops.showMoreLaptops .ultrabooksTopLaptops .row:nth-child(7), .topLaptops.showMoreLaptops .studentTopLaptops .row:nth-child(7) {
+        opacity: 1;
+    }   
+    .topLaptops .row {
+        min-height: 62px;
+    }
+    .topLaptopsDate {
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1600px) {
+
+    .topLaptops .gamingTopLaptops .row:nth-child(6), .topLaptops .businessTopLaptops .row:nth-child(6), .topLaptops .ultrabooksTopLaptops .row:nth-child(6), .studentTopLaptops .row:nth-child(6) {
+        opacity: 0.3;
+    }
+    .topLaptops.showMoreLaptops .gamingTopLaptops .row:nth-child(6), .topLaptops.showMoreLaptops .businessTopLaptops .row:nth-child(6), .topLaptops.showMoreLaptops .ultrabooksTopLaptops .row:nth-child(6),.topLaptops.showMoreLaptops .studentTopLaptops .row:nth-child(6) {
+        opacity: 1;
+    }
 }
 
 @media(max-width: 1200px) {
@@ -1826,6 +1844,15 @@ label.css-labelr {
     .toplaptops {
         display: block;            
     }
+}
+
+@media (min-width: 991px) and (max-width: 1150px) {
+	.topLaptops h2 {
+		min-height: 50px;
+	}
+	.topLaptops {
+		max-height: 340px;
+	}
 }
 
 @media screen and (max-width:1000px) {
@@ -1933,6 +1960,8 @@ label.css-labelr {
  }
  .topLaptops .row {
  	min-height: 45px;
+    border-bottom: 1px solid #ccc;
+    border-right: 0;
  }
 
 }
