@@ -1064,8 +1064,10 @@ fieldset[disabled] .btn-result.active {
 }
 
 .SearchParameters.showMoreDetails {
-    max-height: 1000px;
+    max-height: 500px;
     transition: max-height 0.4s ease;
+    overflow-y: visible;
+    overflow-x: visible;
 }
 
 .compbuttons {

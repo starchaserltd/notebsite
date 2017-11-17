@@ -106,7 +106,7 @@ require_once("etc/conf.php");
 			</div>		
 				
 			<div>
-				<button class="btn btn-title leftMenuFilters"  onclick=""><a style="color:white;">Quick search filters</a><a></a></button>
+				<button class="btn btn-title leftMenuFilters"  onclick=""><a style="color:white;">Quick search</a><a></a></button>
 				<div class="SearchParameters" id="SearchParameters">			
 					<?php include ("search/s_search.php");?>
 				</div>			
