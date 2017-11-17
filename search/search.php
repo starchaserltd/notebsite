@@ -74,11 +74,11 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 	{
 		if(isset($_GET['exchange'])){ $excode=$_GET['exchange']; }
 		if(isset($_GET['exchadv'])){ $excode=$_GET['exchadv']; }
-		$sel2 = "SELECT convr,code,sign, ROUND( convr, 5 ) FROM notebro_site.exchrate WHERE code='".$excode."' LIMIT 1";
+		$sel2 = "SELECT convr,code,sign, ROUND( convr, 5 ),id FROM notebro_site.exchrate WHERE code='".$excode."' LIMIT 1";
 	}
 	else
 	{
-		$sel2 = "SELECT convr,code,sign, ROUND( convr, 5 ) FROM notebro_site.exchrate WHERE code='USD' LIMIT 1";
+		$sel2 = "SELECT convr,code,sign, ROUND( convr, 5 ),id FROM notebro_site.exchrate WHERE code='USD' LIMIT 1";
 	}
 	
 	$result = mysqli_query($con,$sel2);
@@ -89,6 +89,7 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 	$_SESSION['exchcode']=$exchcode;
 	$_SESSION['exch']=$exch;
 	$_SESSION['exchsign']=$value["sign"];
+	$_SESSION['lang']=$value["id"];
 	
 	if($underwork==0)
 	{
