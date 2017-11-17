@@ -27,7 +27,7 @@ switch($browse_by)
 	{	
 		if($_GET['prod'])
 		{
-			$prod_model = $_GET['prod']; $set_j_ssearch="$('#s_prod_id').empty().select2(); $('#s_prod_id').append('<option selected=".'"'."selected".'"'.'>'.$prod_model."</option>'); $('#type').multiselect('select', ['99']); $('#type').multiselect('refresh');";
+			$prod_model = $_GET['prod']; $set_j_ssearch="$('#s_prod_id').val(null).trigger('change'); $('#s_prod_id').append('<option selected=".'"'."selected".'"'.'>'.$prod_model."</option>'); $('#type').multiselect('select', ['99']); $('#type').multiselect('refresh');";
 			$sist_sist=["Windows+Home","Windows+Pro","Windows+S","Chrome OS","macOS","Linux Ubuntu","Android"]; 
 			$to_search["sist"]=1;	$filtercomp = array("sist");
 		}

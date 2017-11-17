@@ -243,7 +243,7 @@ function sliderrange(old)
 
 
 $('#s_prod_id').select2({
-	tags: false, multiple: true, maximumSelectionLength: 8, minimumInputLength: 2,
+	tags: false, multiple: true, maximumSelectionLength: 8, minimumInputLength: 1,
 	language: {
 		noResults: function(term) {
 			return "Type something...";
