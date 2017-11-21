@@ -46,7 +46,7 @@ $published_posts = $count_posts->publish;
 
 ?>	
 <link rel="stylesheet" href="search/quiz/quiz.css" type="text/css" />
-<link rel="stylesheet" href="content/lib/css/home.css?v=0.24" type="text/css"/>
+<link rel="stylesheet" href="content/lib/css/home.css?v=0.25" type="text/css"/>
 <script>$.getScript("content/lib/js/home.js");</script>
 	
 		<!-- Noteb Quiz -->

@@ -1968,8 +1968,15 @@ label.css-labelr {
 
 @media (max-width: 767px) {
     .topLaptops img { 
-    max-width: 50px;
+    max-width: 80px;
+    padding: 10px 20px 10px 0;
+    width: auto;
  }
+
+ .topLaptopsName {
+    width: auto;
+ }
+
  .topLaptops {
     max-height: 3000px;
     overflow-y:unset;

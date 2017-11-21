@@ -103,7 +103,7 @@ div.latest4 a {
 	}
 
 	.gamingTopLaptops.showMoreTop, .businessTopLaptops.showMoreTop, .ultrabooksTopLaptops.showMoreTop, .studentTopLaptops.showMoreTop {
-		max-height: 260px;
+		max-height: 220px;
 		transition: max-height 0.4s ease;
 		margin-bottom: 30px;		
 	}
