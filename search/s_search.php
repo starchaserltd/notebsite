@@ -124,7 +124,7 @@ line-height: 18px;}
 				<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style="margin-top:10px;padding-left:10px">
 					<div id="budget"></div>
 				</div>
-			<input type="submit" id="s_search_btn" class="btn blue bsub" style="margin-top:10px;margin-bottom: 10px; padding:5px 25px 5px 25px; border-radius:1px; color:#fff; width:100%;" value="Apply filters">
+			<input type="submit" id="s_search_btn" class="btn blue bsub" style="margin-top:10px;margin-bottom: 10px; padding:5px 25px 5px 25px; border-radius:1px; color:#fff; width:100%;" value="Search">
 	</form>	
 </div>
 	

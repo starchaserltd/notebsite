@@ -450,7 +450,7 @@ function state_ssearch(type) {
 
 function adjust_ssearch(page) {
     if (page.indexOf("adv_search.php") > -1 || page.indexOf("advsearch=1") > -1) {
-        document.querySelector(".SearchParameters").classList.remove('showMoreDetails');
+        document.querySelector(".SearchParameters").style.display = "none";
         document.querySelector(".leftMenuFilters").classList.remove('rotate');
         if (document.getElementsByClassName("btn-title")[0].getAttribute("aria-expanded") == "true") {
             if (first) {
@@ -489,7 +489,7 @@ if ( ($(window).height() + 100) < $(document).height() ) { $('#top-link-block').
 //Make dropdown for search filters
 $( document ).ready(function() {
 	$( ".leftMenuFilters" ).click(function() {
-		$( "#SearchParameters" ).toggleClass("showMoreDetails");
-		$( ".leftMenuFilters" ).toggleClass("rotate");
+		$( ".SearchParameters" ).toggle("slow");
+        $( ".leftMenuFilters" ).toggleClass("rotate");	
     });
 });

@@ -12,7 +12,8 @@ require_once("etc/conf.php");
 	<meta name="description" content="Looking for a laptop? Search, Compare or even take a Quiz with Noteb.com to find the perfect laptop for your work, home or suggest one to your friends from over 1.000.000 models.">
 	<meta name="keywords" content="find,cheap,best,laptop,notebook,gaming,ultraportable,business">
 	<meta name="author" content="Starchaser">
-
+	<!-- Language href link for google -->  
+	<link rel="alternate" href="https://www.noteb.com" hreflang="en" />
 	<!-- JavaScript libraries -->   
 	<script type="text/javascript" src="lib/js/jquery.min.js"></script> 		
 	<script type="text/javascript" src="lib/js/bootstrap.min.js"></script>
@@ -35,7 +36,7 @@ require_once("etc/conf.php");
 	<div class="navigation">	
 		<div class="col-md-10 col-xs-12 col-sm-12" style="padding:0px; float:left; position:relative;">
 			<div class="btn-group-justified btn-group siteMenu">
-				<h1 class="btn blue logonb lognb"  onmousedown="OpenPage('content/home.php',event);">Find the best laptop with Noteb notebook search engine.</h1>
+				<h1 class="btn blue logonb lognb"  onmousedown="OpenPage('content/home.php',event);">Looking for a laptop? Search, compare or use our quiz to find the laptop for you with Noteb search engine.</h1>
 				<a class="btn btn-sus blue advsearch" >SEARCH</a>
 				<a class="btn btn-sus blue" onmousedown="OpenPage('content/articles.php',event);">ARTICLES</a>
 				<a class="btn btn-sus blue" onmousedown="OpenPage('content/reviews.php',event);">REVIEWS</a>
@@ -107,7 +108,7 @@ require_once("etc/conf.php");
 				
 			<div>
 				<button class="btn btn-title leftMenuFilters"  onclick=""><a style="color:white;">Quick search</a><a></a></button>
-				<div class="SearchParameters" id="SearchParameters">			
+				<div class="SearchParameters" id="SearchParameters" style="display: none;">			
 					<?php include ("search/s_search.php");?>
 				</div>			
 			</div>	

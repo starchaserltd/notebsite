@@ -574,7 +574,7 @@ function showSIST(str)
 		     						 "ratingValue":  config_rate,
 		    						 "bestRating": "100",
 		     						 "worstRating": "1",
-	     							 "ratingCount": cpu_rate_new
+	     							 "ratingCount": cpu_rate_new + 3
 	 								 }
 									}
 									var script = document.createElement('script');

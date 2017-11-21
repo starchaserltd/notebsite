@@ -172,6 +172,6 @@ $.getScript("../lib/js/jquery.matchHeight-min.js").done(function(){ $.getScript(
 if (isset($browse_by)&&$browse_by!==0)
 { ?>
 	var el=document.getElementById("SearchParameters");
-	if(!(el.classList.contains("showMoreDetails"))){ el.classList.add("showMoreDetails");  document.getElementsByClassName("leftMenuFilters")[0].classList.add("rotate"); }
+	if(el.style.display == "none"){ $( ".SearchParameters" ).toggle("slow");  document.getElementsByClassName("leftMenuFilters")[0].classList.add("rotate"); }
 <?php echo $set_j_ssearch; } ?>
 </script>

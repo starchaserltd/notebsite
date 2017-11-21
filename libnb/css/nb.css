@@ -1055,21 +1055,6 @@ fieldset[disabled] .btn-result.active {
     background-color: none;
 }
 
-
-.SearchParameters {
-    overflow-x: hidden;
-    overflow-y: hidden;
-    max-height: 0;    
-    transition: max-height 0.4s ease;
-}
-
-.SearchParameters.showMoreDetails {
-    max-height: 500px;
-    transition: max-height 0.4s ease;
-    overflow-y: visible;
-    overflow-x: visible;
-}
-
 .compbuttons {
     background-color: #EEEEEE;
     border-radius: 3px;
@@ -1660,9 +1645,14 @@ label.css-labelr {
     z-index: 9;
 }
 
-.topLaptops .row {    
-    border-right: 1px solid #ddd;    
-    min-height: 81px;      
+.topLaptops .row {        
+    min-height: 81px;     
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center; 
 }
 
 .topLaptops .row:hover {    
@@ -1674,11 +1664,15 @@ label.css-labelr {
 }
 
 .topLaptops {
-    margin:15px -3px 0 -3px;
+    margin:15px -3px 0 5px;
     color: #000;   
-    max-height: 310px;
-    overflow-y: scroll;
+    max-height: 320px;
+    overflow-y: hidden;
     transition: max-height 0.4s ease;    
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+
 }
 
 .topLaptops::-webkit-scrollbar-track {
@@ -1769,12 +1763,27 @@ label.css-labelr {
     box-shadow: 2px 3px 1px rgba(0, 0, 0, 0.31);
 }
 
+.topLaptopsName {
+    width: 80%;
+    float: right;
+    position: sticky;
+    top: 28px;
+}
+
+
 /*Responsive media design */
 
 @media (min-width: 1600px) {
-     .topLaptops img { 
-        max-width: 40px;
-     }     
+     .topLaptops img {
+        max-width: 82px;
+        width: auto;
+     }
+
+     .topLaptopsName {
+        width: auto;
+        padding-left: 15px;
+     }    
+
      .topLaptops {
         max-height: 320px;
      }  
@@ -1791,6 +1800,16 @@ label.css-labelr {
     .topLaptopsDate {
         font-size: 12px;
     }
+}
+
+@media(max-width: 1440px) {
+      .topLaptops img {
+        width: 25%;
+     }
+
+     .topLaptopsName {
+        width: 72%;
+     }    
 }
 
 @media (min-width: 768px) and (max-width: 1600px) {
@@ -1954,6 +1973,7 @@ label.css-labelr {
  .topLaptops {
     max-height: 3000px;
     overflow-y:unset;
+    display: block;
  }
  .topLaptops h2 {
     text-align: left;
@@ -1965,7 +1985,6 @@ label.css-labelr {
     border-bottom: 1px solid #ccc;
     border-right: 0;
  }
-
 }
 
 @media(max-width:450px) {
