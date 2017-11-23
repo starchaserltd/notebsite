@@ -7,6 +7,8 @@
 		</div>
 		<div class="footer-left">
 			<h3 class="footer-links" style="font-size:18px; color:#fff; font-weight:bold;">
+				<span  style="cursor:pointer" onmousedown="OpenPage('content/home.php');">Home</span>
+				·	
 				<span  style="cursor:pointer" onmousedown="OpenPage('footer/about.php',event);">About</span>
 				·								
 				<span style="cursor:pointer" onmousedown="OpenPage('footer/contact.php',event);">Contact</span>
