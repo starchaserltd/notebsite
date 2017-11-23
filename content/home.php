@@ -102,8 +102,8 @@ $published_posts = $count_posts->publish;
 	<?php $query=mysqli_query($con,"SELECT * FROM notebro_site.top_laptops where valid=1 order by type,price"); $tops=array(); $topshead=array(); while ($row=mysqli_fetch_assoc($query)) { $tops[$row['type']][$row['id']] = array('id' => $row['c_id'],'img' => $row['img'], 'name' => $row['name'], 'price' => $row['price']); if(isset($topshead[$row['type']]["count"])) { $topshead[$row['type']]["count"]++; } else {$topshead[$row['type']]["count"]=1; } $topdate= strtotime($row["date"]); if(isset($topshead[$row['type']]["maxdate"])){ if($topshead[$row['type']]["maxdate"] < $topdate) { $topshead[$row['type']]["maxdate"]=$topdate; } } else { $topshead[$row['type']]["maxdate"]=$topdate; } } ?>
 	<section class="row topLaptops">
 		<div class="col-lg-4 col-md-4 col-sm-4  col-xs-12 studentTopLaptops">
-			<h2 class="h2TopLaptopsStudent">Top <?php echo $topshead["HomeStudent"]["count"]; ?> Home & Student</h2>
-			<p class="topLaptopsDate"><?php echo date('M Y',$topshead["HomeStudent"]["maxdate"]); ?></p>
+			<h2 class="h2TopLaptopsStudent">Top <?php echo $topshead["HomeStudent"]["count"]; ?> Home & Student <span class="topLaptopsDate visible-xs hidden-md hidden-sm hidden-lg"><?php echo date('M Y',$topshead["HomeStudent"]["maxdate"]); ?></span></h2>
+			<p class="topLaptopsDate hidden-xs visible-md visible-sm visible-lg"><?php echo date('M Y',$topshead["HomeStudent"]["maxdate"]); ?></p>
 			<?php foreach ($tops['HomeStudent'] as $el) { ?>			
 			<div class="row">
 				<a href="<?php echo $web_address."?model/model.php?conf=".$el["id"]."&ex=USD"; ?>">
@@ -134,14 +134,14 @@ $published_posts = $count_posts->publish;
 		<div class="col-xs-12 mobileShowMoreUltrabooks"><span>Show All</span></div> -->
 
 		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 gamingTopLaptops">
-			<h2 class="h2TopLaptopsGaming">Top <?php echo $topshead["Gaming"]["count"]; ?> Gaming</h2>
-			<p class="topLaptopsDate"><?php echo date('M Y',$topshead["Gaming"]["maxdate"]); ?></p>
+			<h2 class="h2TopLaptopsGaming">Top <?php echo $topshead["Gaming"]["count"]; ?> Gaming <span class="topLaptopsDate visible-xs hidden-md hidden-sm hidden-lg"><?php echo date('M Y',$topshead["HomeStudent"]["maxdate"]); ?></span></h2>
+			<p class="topLaptopsDate hidden-xs visible-md visible-sm visible-lg"><?php echo date('M Y',$topshead["Gaming"]["maxdate"]); ?></p>
 			<?php foreach ($tops['Gaming'] as $el) { ?>				
 			<div class="row">
 				<a href="<?php echo $web_address."?model/model.php?conf=".$el["id"]."&ex=USD"; ?>">
 					<div class="col-xs-12 imgTopLaptop">
 						<img  class="img-responsive " src="<?php echo $el["img"]; ?>"/>
-						<p class="topLaptopsName"><?php echo $el["name"]; ?> <br/> <span class="pretTopLaptops"><?php echo $el["price"]; ?>$</span></p>							 
+						<p class="topLaptopsName  hidden-xs visible-md visible-sm visible-lg"><?php echo $el["name"]; ?> <br/> <span class="pretTopLaptops"><?php echo $el["price"]; ?>$</span></p>							 
 					</div>							
 				</a>
 			</div>											
@@ -150,14 +150,14 @@ $published_posts = $count_posts->publish;
 		<div class="col-xs-12 mobileShowMoreGaming"><span>Show All</span></div>
 			
 		<div class="col-lg-4 col-md-4 col-sm-4  col-xs-12 businessTopLaptops">
-			<h2 class="h2TopLaptopsBusiness">Top <?php echo $topshead["Business"]["count"]; ?> Business</h2>
-			<p class="topLaptopsDate"><?php echo date('M Y',$topshead["Business"]["maxdate"]); ?></p>
+			<h2 class="h2TopLaptopsBusiness">Top <?php echo $topshead["Business"]["count"]; ?> Business <span class="topLaptopsDate visible-xs hidden-md hidden-sm hidden-lg"><?php echo date('M Y',$topshead["HomeStudent"]["maxdate"]); ?></span></h2>
+			<p class="topLaptopsDate hidden-xs visible-md visible-sm visible-lg"><?php echo date('M Y',$topshead["Business"]["maxdate"]); ?></p>
 			<?php foreach ($tops['Business'] as $el) { ?>				
 			<div class="row">
 				<a href="<?php echo $web_address."?model/model.php?conf=".$el["id"]."&ex=USD"; ?>">
 					<div class="col-xs-12 imgTopLaptop">
 						<img  class="img-responsive " src="<?php echo $el["img"]; ?>"/>
-						<p class="topLaptopsName"><?php echo $el["name"]; ?> <br/> <span class="pretTopLaptops"><?php echo $el["price"]; ?>$</span></p>							 
+						<p class="topLaptopsName  hidden-xs visible-md visible-sm visible-lg"><?php echo $el["name"]; ?> <br/> <span class="pretTopLaptops"><?php echo $el["price"]; ?>$</span></p>							 
 					</div>
 				</a>
 			</div>											
