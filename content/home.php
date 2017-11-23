@@ -46,7 +46,7 @@ $published_posts = $count_posts->publish;
 
 ?>	
 <link rel="stylesheet" href="search/quiz/quiz.css" type="text/css" />
-<link rel="stylesheet" href="content/lib/css/home.css?v=0.25" type="text/css"/>
+<link rel="stylesheet" href="content/lib/css/home.css?v=0.27" type="text/css"/>
 <script>$.getScript("content/lib/js/home.js");</script>
 	
 		<!-- Noteb Quiz -->
@@ -167,6 +167,9 @@ $published_posts = $count_posts->publish;
 	</section>
 	<div class="showMore"><span class="showMoreSpan">Show All</span></div>
 
+	<!-- articles & reviews -->
+	<article class="articleMobile row"> 
+		<h2 class="h2Articles">Articles</h2>
 	<?php 	
 	$y = 0;
 	for ($y = 0; $y < 10; $y++) { 
@@ -181,9 +184,7 @@ $published_posts = $count_posts->publish;
 			else 
 			{
 	?>
-	
-	<!-- articles & reviews -->
-
+				
 		<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 latest2">
 			<div class="col-md-4 col-lg-3 col-sm-4 col-xs-4 latest3">
 				<a onmousedown="OpenPage('<?php echo $linkart;?>',event);" >	
@@ -207,10 +208,11 @@ $published_posts = $count_posts->publish;
 				</div>
 			</div>
 		</div>	
+
 	<?php 	} 
 		} 
 	} ?>
-	
+	</article>
 	<script type="application/ld+json">	
 		{
 		  "@context": "http://schema.org",

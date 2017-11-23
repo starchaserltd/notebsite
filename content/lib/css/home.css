@@ -96,7 +96,7 @@ div.latest4 a {
 
 @media screen and (max-width:767px) {
 	.gamingTopLaptops, .businessTopLaptops, .ultrabooksTopLaptops, .studentTopLaptops {
-		max-height: 30px;
+		max-height: 35px;
 		overflow: hidden;
 		transition: max-height 0.4s ease;
 		margin-bottom: 2px;
@@ -196,7 +196,7 @@ div.latest4 a {
 		text-align: left;
 	    padding-left: 8px;
 	    position: absolute;
-	    width: 100px;
+	    width: auto;
 	    left: 200px;
 	    top: 10px;
 	    z-index: 10;
@@ -261,4 +261,14 @@ div.latest4 a {
 	.topLaptopsName {
 		width: 80%;
 	}
+}
+
+@media(max-width: 350px) {
+	.h2TopLaptopsGaming:before, .h2TopLaptopsBusiness:before, .h2TopLaptopsUltrabooks:before, .h2TopLaptopsStudent:before {
+		right: 12px;
+	}
+
+	.h2TopLaptopsGaming:after, .h2TopLaptopsBusiness:after, .h2TopLaptopsUltrabooks:after, .h2TopLaptopsStudent:after {
+		right: 16px;
+	}	
 }

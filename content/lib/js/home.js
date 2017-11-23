@@ -127,6 +127,16 @@ $(document).ready(function(){
 });
 
 
+$(document).ready(function(){   
+        if ($(window).width() < 768) { 
+            $(".h2Articles").click(function(){                
+                $(".articleMobile ").toggleClass("showMoreArticles");                     
+            });
+        }      
+});
+
+
+
 
 $(document).ready(function(){   
         if ($(window).width() > 1600) { 

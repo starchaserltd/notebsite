@@ -1690,8 +1690,7 @@ label.css-labelr {
 }
 
 .topLaptops.showMoreLaptops {
-    max-height: 1500px;   
-    overflow-y: auto; 
+    max-height: 1500px;      
 }
 
 .topLaptops .col-lg-4.col-md-4.col-xs-12{
@@ -1768,6 +1767,40 @@ label.css-labelr {
     float: right;
     position: sticky;
     top: 28px;
+}
+
+.articleMobile.row {
+    margin-right: 0;
+    margin-left: 0;  
+}
+
+.articleMobile h2 {
+    font-size: 16px;
+    background-color: #285f8f;
+    padding: 10px 0px 10px 15px;
+    color: #fff;
+    text-align: left;   
+    margin-top: 0;
+    margin-bottom: 0;
+    position: sticky;
+    top: 0;
+    z-index: 9;
+    display: none;
+}
+
+
+.xxtest + span.select2.select2-container.select2-container--default {
+    font-size: 13px;
+}
+
+.xxtest + span.select2.select2-container.select2-container--default span.selection span.select2-selection.select2-selection--multiple {
+    border: solid #d9d9d9 1px;
+    min-height: 30px;
+    line-height: 18px;
+}
+
+.xxtest + span.select2.select2-container.select2-container--default.select2-container--below.select2-container--focus.select2-container--open span.selection span.select2-selection.select2-selection--multiple {
+    border: 1px solid black;
 }
 
 
@@ -1981,10 +2014,11 @@ label.css-labelr {
     max-height: 3000px;
     overflow-y:unset;
     display: block;
+    margin: 0 -3px;
  }
  .topLaptops h2 {
     text-align: left;
-    padding-left: 15px;
+    padding: 10px 0px 10px 15px;
     font-weight: normal;
  }
  .topLaptops .row {
@@ -1992,6 +2026,70 @@ label.css-labelr {
     border-bottom: 1px solid #ccc;
     border-right: 0;
  }
+ .articleMobile h2 {
+    display: block;
+ }
+
+ .articleMobile h2:after {
+    position: absolute;
+    right: 26px;
+    top: 11px;
+    z-index: 5;
+    display: block;
+    height: 10px;
+    width: 2px;
+    background: #fff;
+    content: "";
+    -webkit-transition: all 0.1s ease-out;
+    -moz-transition: all 0.1s ease-out;
+    -ms-transition: all 0.1s ease-out;
+    -o-transition: all 0.1s ease-out;
+    transition: all 0.1s ease-out;
+ }
+
+  .articleMobile h2:before {
+    position: absolute;
+    right: 22px;
+    top: 15px;
+    display: block;
+    width: 10px;
+    height: 2px;
+    background: #fff;
+    content: "";
+    -webkit-transition: all 0.1s ease-out;
+    -moz-transition: all 0.1s ease-out;
+    -ms-transition: all 0.1s ease-out;
+    -o-transition: all 0.1s ease-out;
+    transition: all 0.1s ease-out;
+  }
+  .articleMobile.showMoreArticles h2:after {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+.articleMobile.showMoreArticles h2:before {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+  .articleMobile.row {
+    margin-right: -3px;
+    margin-left: -3px;
+    max-height: 35px;
+    overflow:hidden;
+    transition: max-height 0.4s ease;
+  }
+
+  .articleMobile.row.showMoreArticles {
+    max-height: 3000px;    
+  }
+
 }
 
 @media(max-width:450px) {
@@ -2092,3 +2190,15 @@ _:-ms-lang(x),
 
 
 /************/
+
+@media(max-width: 350px) {
+    .articleMobile h2:before {
+        right: 12px;
+    }
+
+
+    .articleMobile h2:after {
+        right: 16px;
+    }
+
+}
