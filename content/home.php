@@ -141,7 +141,7 @@ $published_posts = $count_posts->publish;
 				<a href="<?php echo $web_address."?model/model.php?conf=".$el["id"]."&ex=USD"; ?>">
 					<div class="col-xs-12 imgTopLaptop">
 						<img  class="img-responsive " src="<?php echo $el["img"]; ?>"/>
-						<p class="topLaptopsName  hidden-xs visible-md visible-sm visible-lg"><?php echo $el["name"]; ?> <br/> <span class="pretTopLaptops"><?php echo $el["price"]; ?>$</span></p>							 
+						<p class="topLaptopsName"><?php echo $el["name"]; ?> <br/> <span class="pretTopLaptops"><?php echo $el["price"]; ?>$</span></p>							 
 					</div>							
 				</a>
 			</div>											
@@ -157,7 +157,7 @@ $published_posts = $count_posts->publish;
 				<a href="<?php echo $web_address."?model/model.php?conf=".$el["id"]."&ex=USD"; ?>">
 					<div class="col-xs-12 imgTopLaptop">
 						<img  class="img-responsive " src="<?php echo $el["img"]; ?>"/>
-						<p class="topLaptopsName  hidden-xs visible-md visible-sm visible-lg"><?php echo $el["name"]; ?> <br/> <span class="pretTopLaptops"><?php echo $el["price"]; ?>$</span></p>							 
+						<p class="topLaptopsName"><?php echo $el["name"]; ?> <br/> <span class="pretTopLaptops"><?php echo $el["price"]; ?>$</span></p>							 
 					</div>
 				</a>
 			</div>											
