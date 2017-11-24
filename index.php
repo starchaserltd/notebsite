@@ -6,8 +6,7 @@ require_once("etc/conf.php");
 <html lang="en">
 <head>
 	<title>Noteb</title>
-	<meta charset="utf-8">
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta charset="utf-8"/>	
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Looking for a laptop? Search, Compare or even take a Quiz with Noteb.com to find the perfect laptop for your work, home or suggest one to your friends from over 1.000.000 models.">
 	<meta name="keywords" content="find,cheap,best,laptop,notebook,gaming,ultraportable,business">
@@ -46,7 +45,7 @@ require_once("etc/conf.php");
 		<div class="col-md-2 col-lg-2" style="padding:0px"><!-- min-height:134px;-->
 			<div class="hidden-sm hidden-xs col-md-12 col-lg-12" style="padding:0px;">			
 				<div id="usermenu" class="btn-group dropdown">
-					<button disabled class="blue dropbtn helpus"><a class="helpimg">Review</a></button>
+					<button disabled class="blue dropbtn helpus"><span class="helpimg">Review</span></button>
 					<div class="dropdown-content"><a class="addrev" onmousedown="OpenPage('public/ireviews.php',event);">Add laptop review</a></div>
 				</div>
 			</div>
@@ -68,7 +67,7 @@ require_once("etc/conf.php");
 				</form>
 			</div>
 			<!-- simple search -->			
-			<div class="col-md-12 col-xs-12 col-sm-12 blue" id='cssmenu' style="padding:0px">
+			<div class="col-md-12 col-xs-12 col-sm-12 blue cssmenu" style="padding:0px">
 				<ul >
 				   <li  class='has-sub'><a >Browse laptops</a>
 						<ul>
@@ -107,15 +106,15 @@ require_once("etc/conf.php");
 			</div>		
 				
 			<div>
-				<button class="btn btn-title leftMenuFilters"  onclick=""><a style="color:white;">Quick search</a><a></a></button>
+				<button class="btn btn-title leftMenuFilters"  onclick=""><span style="color:white;">Quick search</span></button>
 				<div class="SearchParameters" id="SearchParameters" style="display: none;">			
 					<?php include ("search/s_search.php");?>
 				</div>			
 			</div>	
 			<div style="text-align:center;">
-     		 <button  id="sadvsearch" onmousedown="OpenPage('search/adv_search.php',event);" type="button" class="btn blue leftMenuAdvSearch"><a style="text-decoration:none;color:white;">Advanced search</a></button>
+     		 <button  id="sadvsearch" onmousedown="OpenPage('search/adv_search.php',event);" type="button" class="btn blue leftMenuAdvSearch"><span style="text-decoration:none;color:white;">Advanced search</span></button>
   			 </div>					
-			<div class="col-md-12 col-xs-12 col-sm-12 blue" id='cssmenu' style="padding:0px">
+			<div class="col-md-12 col-xs-12 col-sm-12 blue cssmenu" style="padding:0px">
 				<ul>				
 					<li class='has-sub'><a >Compare</a>
 						<ul style="background-color: white;">

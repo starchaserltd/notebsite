@@ -140,8 +140,8 @@ $(document).ready(function() {
     // $('[data-toggle="tooltip"]').tooltip(); 
 
     // Script for left menu  
-    $('#cssmenu li.active').addClass('open').children('ul').show();
-    $('#cssmenu li.has-sub>a').on('click', function() {
+    $('.cssmenu li.active').addClass('open').children('ul').show();
+    $('.cssmenu li.has-sub>a').on('click', function() {
         $(this).removeAttr('href');
         var element = $(this).parent('li');
         if (element.hasClass('open')) {

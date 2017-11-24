@@ -1,18 +1,10 @@
 <?php
 require_once("etc/conf.php"); ?>
 <script>$.getScript("search/lib/js/ssearch.js");</script>
-<style>
-.xxtest + span.select2.select2-container.select2-container--default {font-size:13px;} 	
-.xxtest + span.select2.select2-container.select2-container--default span.selection span.select2-selection.select2-selection--multiple{border: solid #d9d9d9 1px;
-min-height: 30px;
-line-height: 18px;}
-.xxtest + span.select2.select2-container.select2-container--default.select2-container--below.select2-container--focus.select2-container--open span.selection span.select2-selection.select2-selection--multiple{border: 1px solid black ;}
-
-</style>
 	<div class="col-md-12 col-sm-12 col-xs-12" style="padding:0 5px;">	
 		<form  action="javascript:void(0);" method="post" id="s_search">
 				<div style="font-size:14px; font-weight:bold;margin-top:5px">Producer</div>			
-				<select class="xxtest" id="s_prod_id" name ="s_prod[]" data-placeholder="Ex. Lenovo, Dell, Apple" multiple="multiple" style="width: 100%;"></select>
+				<select class="xxtest" id="s_prod_id" name ="s_prod[]" data-placeholder="Ex. Apple, Dell" multiple="multiple" style="width: 100%;"></select>
 				<div style="margin-top:10px; font-size:14px;font-weight:bold; margin-bottom:2px;">Laptop type</div>			
 				<select name ="type" id="type">
 					<option value="99">All</option>
