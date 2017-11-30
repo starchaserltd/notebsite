@@ -79,7 +79,7 @@ $(document).ready(function(){
             $(".mobileShowMoreGaming").click(function(){                
                 $(".gamingTopLaptops").toggleClass("showAllLaptops");    
                  if($( ".gamingTopLaptops" ).hasClass( "showAllLaptops" )) {
-                    $(".mobileShowMoreGaming").css("display", "none"); 
+                    $(".mobileShowMoreGaming span").html("Show Less"); 
                 } else {
                     $(".mobileShowMoreGaming span").html("Show All"); 
                 }            
@@ -92,7 +92,7 @@ $(document).ready(function(){
             $(".mobileShowMoreBusiness").click(function(){                
                 $(".businessTopLaptops").toggleClass("showAllLaptops");    
                  if($( ".businessTopLaptops" ).hasClass( "showAllLaptops" )) {
-                    $(".mobileShowMoreBusiness").css("display", "none"); 
+                    $(".mobileShowMoreBusiness span").html("Show Less"); 
                 } else {
                     $(".mobileShowMoreBusiness span").html("Show All"); 
                 }            
@@ -105,7 +105,7 @@ $(document).ready(function(){
             $(".mobileShowMoreUltrabooks").click(function(){                
                 $(".ultrabooksTopLaptops").toggleClass("showAllLaptops");    
                  if($( ".ultrabooksTopLaptops" ).hasClass( "showAllLaptops" )) {
-                    $(".mobileShowMoreUltrabooks").css("display", "none"); 
+                    $(".mobileShowMoreUltrabooks span").html("Show Less"); 
                 } else {
                     $(".mobileShowMoreUltrabooks span").html("Show All"); 
                 }            
@@ -118,9 +118,23 @@ $(document).ready(function(){
             $(".mobileShowMoreStudent").click(function(){                
                 $(".studentTopLaptops").toggleClass("showAllLaptops");    
                  if($( ".studentTopLaptops" ).hasClass( "showAllLaptops" )) {
-                    $(".mobileShowMoreStudent").css("display", "none"); 
+                    $(".mobileShowMoreStudent span").html("Show Less"); 
                 } else {
                     $(".mobileShowMoreStudent span").html("Show All"); 
+                }            
+            });
+        }      
+});
+
+
+$(document).ready(function(){   
+        if ($(window).width() < 768) { 
+            $(".mobileShowMoreArticles").click(function(){                
+                $(".articleMobile").toggleClass("showAllArticles");    
+                 if($( ".articleMobile" ).hasClass( "showAllArticles" )) {
+                    $(".mobileShowMoreArticles span").html("Show Less"); 
+                } else {
+                    $(".mobileShowMoreArticles span").html("Show All Articles"); 
                 }            
             });
         }      

@@ -46,7 +46,7 @@ $published_posts = $count_posts->publish;
 
 ?>	
 <link rel="stylesheet" href="search/quiz/quiz.css" type="text/css" />
-<link rel="stylesheet" href="content/lib/css/home.css?v=0.27" type="text/css"/>
+<link rel="stylesheet" href="content/lib/css/home.css?v=0.29" type="text/css"/>
 <script>$.getScript("content/lib/js/home.js");</script>
 	
 		<!-- Noteb Quiz -->
@@ -60,7 +60,7 @@ $published_posts = $count_posts->publish;
 				else {echo "Not Article or Review";} ?>',event);" style="cursor: pointer;">
 				<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[0]["ID"]) )); ?>
 				<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 imgcrop" style="height:180px;padding:0px;overflow:hidden;">
-					<img class="portrait crop3" src="<?php echo $url;?>">	
+					<img class="portrait crop3" src="<?php echo $url;?>" alt="crop">	
 					<div class="articleTitle"><?php echo $recent_posts[0]["post_title"]; ?></div>	
 				</div>
 			</a>
@@ -74,7 +74,7 @@ $published_posts = $count_posts->publish;
 				else {echo "Not Article or Review";} ?>',event);" style="cursor: pointer;">
 				<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[1]["ID"]) )); ?>
 				<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 imgcrop" style="padding:0px;height:180px;overflow:hidden;">	
-					<img class="portrait crop3" src="<?php echo $url;?>">
+					<img class="portrait crop3" src="<?php echo $url;?>" alt="crop2">
 					<div class="articleTitle"><?php echo $recent_posts[1]["post_title"]; ?></div>
 				</div>
 			</a>
@@ -87,7 +87,7 @@ $published_posts = $count_posts->publish;
 				else {echo "Not Article or Review";} ?>',event);" style="cursor: pointer;">
 				<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[2]["ID"]) )); ?>
 				<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 imgcrop" style="height:180px;padding:0px;overflow:hidden;">	
-					<img class="portrait crop3" src="<?php echo $url;?>">
+					<img class="portrait crop3" src="<?php echo $url;?>" alt="crop3">
 					<div class="articleTitle"><?php echo $recent_posts[2]["post_title"]; ?></div>
 				</div>
 			</a>
@@ -108,7 +108,7 @@ $published_posts = $count_posts->publish;
 			<div class="row">
 				<a href="<?php echo $web_address."?model/model.php?conf=".$el["id"]."&ex=USD"; ?>">
 					<div class="col-xs-12 imgTopLaptop">
-						<img  class="img-responsive " src="<?php echo $el["img"]; ?>"/>
+						<img  class="img-responsive " src="<?php echo $el["img"]; ?>" alt="imgStudent"/>
 						<p class="topLaptopsName"><?php echo $el["name"]; ?> <br/> <span class="pretTopLaptops"><?php echo $el["price"]; ?>$</span></p>
 					</div>	
 				</a>					
@@ -116,31 +116,15 @@ $published_posts = $count_posts->publish;
 			<?php } ?>
 		</div>
 		<div class="col-xs-12 mobileShowMoreStudent"><span>Show All</span></div>
-		
-		<!-- <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 ultrabooksTopLaptops">
-			<h2 class="h2TopLaptopsUltrabooks">Top <?php echo $topshead["Ultraportable"]["count"]; ?> Ultraportable</h2>
-			<p class="topLaptopsDate"><?php echo date('M Y',$topshead["Ultraportable"]["maxdate"]); ?></p>
-			<?php foreach ($tops['Ultrabooks'] as $el) { ?>			
-			<div class="row">
-				<a href="<?php echo $web_address."?model/model.php?conf=".$el["id"]."&ex=USD"; ?>">
-					<div class="col-xs-12 imgTopLaptop">
-						<img  class="img-responsive " src="<?php echo $el["img"]; ?>"/>
-						<p class="topLaptopsName"><?php echo $el["name"]; ?> <br/> <span class="pretTopLaptops"><?php echo $el["price"]; ?>$</span></p>							 
-					</div>							
-				</a>
-			</div>											
-			<?php } ?>
-		</div>	
-		<div class="col-xs-12 mobileShowMoreUltrabooks"><span>Show All</span></div> -->
 
 		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 gamingTopLaptops">
-			<h2 class="h2TopLaptopsGaming">Top <?php echo $topshead["Gaming"]["count"]; ?> Gaming <span class="topLaptopsDate visible-xs hidden-md hidden-sm hidden-lg"><?php echo date('M Y',$topshead["HomeStudent"]["maxdate"]); ?></span></h2>
+			<h2 class="h2TopLaptopsGaming">Top <?php echo $topshead["Gaming"]["count"]; ?> Gaming <span class="topLaptopsDate visible-xs hidden-md hidden-sm hidden-lg"><?php echo date('M Y',$topshead["Gaming"]["maxdate"]); ?></span></h2>
 			<p class="topLaptopsDate hidden-xs visible-md visible-sm visible-lg"><?php echo date('M Y',$topshead["Gaming"]["maxdate"]); ?></p>
 			<?php foreach ($tops['Gaming'] as $el) { ?>				
 			<div class="row">
 				<a href="<?php echo $web_address."?model/model.php?conf=".$el["id"]."&ex=USD"; ?>">
 					<div class="col-xs-12 imgTopLaptop">
-						<img  class="img-responsive " src="<?php echo $el["img"]; ?>"/>
+						<img  class="img-responsive " src="<?php echo $el["img"]; ?>" alt="imgGaming"/>
 						<p class="topLaptopsName"><?php echo $el["name"]; ?> <br/> <span class="pretTopLaptops"><?php echo $el["price"]; ?>$</span></p>							 
 					</div>							
 				</a>
@@ -150,13 +134,13 @@ $published_posts = $count_posts->publish;
 		<div class="col-xs-12 mobileShowMoreGaming"><span>Show All</span></div>
 			
 		<div class="col-lg-4 col-md-4 col-sm-4  col-xs-12 businessTopLaptops">
-			<h2 class="h2TopLaptopsBusiness">Top <?php echo $topshead["Business"]["count"]; ?> Business <span class="topLaptopsDate visible-xs hidden-md hidden-sm hidden-lg"><?php echo date('M Y',$topshead["HomeStudent"]["maxdate"]); ?></span></h2>
+			<h2 class="h2TopLaptopsBusiness">Top <?php echo $topshead["Business"]["count"]; ?> Business <span class="topLaptopsDate visible-xs hidden-md hidden-sm hidden-lg"><?php echo date('M Y',$topshead["Business"]["maxdate"]); ?></span></h2>
 			<p class="topLaptopsDate hidden-xs visible-md visible-sm visible-lg"><?php echo date('M Y',$topshead["Business"]["maxdate"]); ?></p>
 			<?php foreach ($tops['Business'] as $el) { ?>				
 			<div class="row">
 				<a href="<?php echo $web_address."?model/model.php?conf=".$el["id"]."&ex=USD"; ?>">
 					<div class="col-xs-12 imgTopLaptop">
-						<img  class="img-responsive " src="<?php echo $el["img"]; ?>"/>
+						<img  class="img-responsive " src="<?php echo $el["img"]; ?>" alt="imgBusiness"/>
 						<p class="topLaptopsName"><?php echo $el["name"]; ?> <br/> <span class="pretTopLaptops"><?php echo $el["price"]; ?>$</span></p>							 
 					</div>
 				</a>
@@ -211,8 +195,9 @@ $published_posts = $count_posts->publish;
 
 	<?php 	} 
 		} 
-	} ?>
+	} ?>	
 	</article>
+	<div class="col-xs-12 mobileShowMoreArticles"><span>Show All Articles</span></div>
 	<script type="application/ld+json">	
 		{
 		  "@context": "http://schema.org",

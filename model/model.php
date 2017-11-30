@@ -12,7 +12,6 @@ require_once("../etc/con_db.php");
 require_once("lib/php/headermodel.php");
 require_once("lib/php/genmodel.php");
 ?>
-<div class=" container-fluid headerback" style="margin-right:0px;padding-right: 0px;">
 <style>
 .modal-header {
     padding:0px!important;
@@ -23,6 +22,8 @@ button.close {padding:2px 7px 0px 10px!important}
 .btn.active, .btn:active { box-shadow:none!important;}
 .btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {outline:none!important}
 </style>
+<div class="container-fluid headerback" style="margin-right:0px;padding-right: 0px;">
+
 <?php 
 if($nonexistent)
 {
@@ -40,7 +41,7 @@ else
 ?>
 				
 <?php	
-			echo "<span class='textModel'>".$mprod." ".$mfam." ".$mmodel." ".$msubmodel.$mregion."<span>"."<br>";
+			echo "<span class='textModel'>".$mprod." ".$mfam." ".$mmodel." ".$msubmodel.$mregion."</span>"."<br>";
 ?>			
 			<span id="cpu_title"></span>, <span style="font-size: 0;">processor</span>
 			<span id="gpu_title"></span>, <span style="font-size: 0;">video card</span>

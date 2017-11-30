@@ -155,6 +155,7 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 </div>
 	
 <?php
+			mysqli_close($cons);
 		}
 		else
 		{ echo "</div></div></div>";
@@ -164,7 +165,7 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 	<span style="margin-top:2px;"> No results found for your criteria and budget <?php echo "(".$exchsign."".round($budgetmin*$exch)." - ".$exchsign."".round($budgetmax*$exch).")"; ?>.<br> Try different search options. <br></span>
 </div>
 <?php
-		} mysqli_close($cons);
+		}
 ?>
 <script type="text/javascript"> excode='<?php echo $_SESSION['exchcode']; ?>'; document.title = 'Noteb - Search results';
 $.getScript("../lib/js/jquery.matchHeight-min.js").done(function(){ $.getScript("search/lib/js/results.js"); });

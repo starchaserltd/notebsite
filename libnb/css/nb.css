@@ -2087,7 +2087,12 @@ label.css-labelr {
   }
 
   .articleMobile.row.showMoreArticles {
-    max-height: 5000px;    
+    max-height: 1105px;   
+    transition: max-height 0.4s ease;
+  }
+
+  .articleMobile.row.showMoreArticles.showAllArticles {
+    max-height: 5000px;
   }
 
 }
