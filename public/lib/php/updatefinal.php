@@ -2,6 +2,7 @@
 <?php
 require_once("../etc/con_rdb.php");
 require_once("../etc/con_db.php");
+$_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 $table = $_POST['table'];
 
 if ($table == 'REVIEWS'){   
