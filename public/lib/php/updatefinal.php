@@ -21,7 +21,7 @@ if ($table == 'REVIEWS'){
 	$link = preg_replace('!<a href="([^\"]+)" target="_blank">[^<]+</a>!', '<a href="$1" target="_blank">$1</a>', $link); 
 	$idireviews = mysqli_fetch_row(mysqli_query($con,"SELECT lastid FROM notebro_db.last_key WHERE info = 'lastid_ireviews'"));
 	$idlastireviews = mysqli_fetch_row(mysqli_query($con,"SELECT id FROM notebro_db.REVIEWS ORDER BY id DESC LIMIT 1"));
-	if ($idireviews[0] <= $idlastireviews[0]) {$idireviews[0] = $idlastireviews[0]+1;}
+	if(isset($idireviews[0])) { if ($idireviews[0] <= $idlastireviews[0]) {$idireviews[0] = $idlastireviews[0]+1;} } 
 
 	if(!empty($model_name)&&!empty($link)&&!empty($site)) /// validarea campurilor obligatorii
 	{
@@ -53,7 +53,9 @@ if ($table == 'REVIEWS'){
 		}
 	}
 	else { $scor=0; }
-
+	
+	if(!isset($idireviews[0])) { $scor=0; }
+	
 	if ($scor == 3) 
 	{
 		$query1 = "SELECT model_id,link from REVIEWS WHERE model_id = ".$model_id." AND link like '%".$link."%'"; //echo $query1;
