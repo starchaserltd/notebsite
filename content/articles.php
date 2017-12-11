@@ -149,6 +149,10 @@ $published_posts = $category->category_count;
 <script type="text/javascript">
 	$(document).ready(function(){
 		actbtn("ARTICLES"); metakeys("noteb,laptop,articles");
+		document.title = "Noteb - Articles";
+	});
+	$(document).ready(function(){
+   		 $('meta[name=description]').attr('content', "Laptop articles. Video cards: features and gimmicks (2016), System memory: the basics.");
 	});
 	
 </script>

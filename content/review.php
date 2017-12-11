@@ -26,7 +26,7 @@ echo preg_replace_callback('/\[ntab (.*)\](.*)(?=\[ntab .*\]|\Z)/Us',function ($
 ?>
 <script type="text/javascript">
 	var lang = <?php echo $lang; ?>;
-	var istime=0;
+	var istime=0;	
 </script>
 
 	<div class="col-md-12 col-sm-12" style="background-color:white;">
@@ -98,7 +98,10 @@ echo preg_replace_callback('/\[ntab (.*)\](.*)(?=\[ntab .*\]|\Z)/Us',function ($
         jQuery(this).parent('li').addClass('active').siblings().removeClass('active');
         e.preventDefault();
 		});
-		
+		document.title = "Noteb - Review";
+		$(document).ready(function(){
+    		$('meta[name=description]').attr('content', "Laptop review.");
+		});
 		actbtn("REVIEWS");
 		
 		<?php 
@@ -122,5 +125,5 @@ echo preg_replace_callback('/\[ntab (.*)\](.*)(?=\[ntab .*\]|\Z)/Us',function ($
 	{
 		echo "$('#taburi').on( ".'"click"'.", '#tab-".$i."', function(e){ $('#ta".$i."').trigger('click'); }); ";
 	}
-	?>
+	?>	
 </script>

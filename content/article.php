@@ -76,5 +76,9 @@ $(document).ready(function()
 	
 	setTimeout(function()
 	{ istime=1; },1000);
+	document.title = "Noteb - Article";
+	$(document).ready(function(){
+   		 $('meta[name=description]').attr('content', "Laptop article.");
+	});
 });
 </script>

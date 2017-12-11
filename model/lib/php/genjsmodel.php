@@ -6,6 +6,8 @@ var disqus_config = function () {
  this.page.title = '<?php echo "Comment at model nr: ".$idmodel;?>';
 };
  
+var best_low = {lowest_price:"<?php echo $best_low["lowest_price"]; ?>", best_performance:"<?php echo $best_low["best_performance"]; ?>", best_value:"<?php echo $best_low["best_value"]; ?>"};
+ 
 $(document).ready(function(){
 $.getScript("model/lib/js/model_queries.js").done(function(){ showCPU(<?php echo $idcpu; ?>); showGPU(<?php echo $idgpu; ?>); showDISPLAY(<?php echo $iddisplay; ?>); showHDD(<?php echo $idhdd; ?>);
  showSHDD(<?php echo $idshdd; ?>); showMDB(<?php echo $idmdb; ?>); showMEM(<?php echo $idmem; ?>); showODD(<?php echo $idodd; ?>); showACUM(<?php echo $idacum; ?>);

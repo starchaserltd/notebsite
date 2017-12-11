@@ -47,52 +47,15 @@ $published_posts = $count_posts->publish;
 ?>	
 <link rel="stylesheet" href="search/quiz/quiz.css" type="text/css" />
 <link rel="stylesheet" href="content/lib/css/home.css?v=0.29" type="text/css"/>
-<script>$.getScript("content/lib/js/home.js");</script>
+<script>$.getScript("content/lib/js/home.js");document.title = "Noteb - Home";$(document).ready(function(){
+    $('meta[name=description]').attr('content', "Looking for a laptop? Search, Compare or even take a Quiz with Noteb.com to find the perfect laptop for your work, home or suggest one to your friends from over 1.000.000 models.");
+});</script>
 	
-		<!-- Noteb Quiz -->
-		<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style="padding:0px;">
-			<div id="quiz" class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style="position:relative;"></div>	
-		</div>			
-			<!-- <div class="col-md-4 col-lg-4 col-xs-12 col-sm-12" style="padding:1px;">
-			<a onmousedown="OpenPage('<?php	$category = get_the_category($recent_posts[0]["ID"]);	$categorie = $category[0]->cat_name; 				
-				if ($categorie == "Article"){echo $ad=str_replace($wpsite."/article.php/article/","content/article.php?/",str_replace("","",get_permalink($recent_posts[0]["ID"])));}
-				elseif ($categorie == "Review") {echo $ad=str_replace($wpsite."/article.php/review/","content/review.php?/",get_permalink($recent_posts[0]["ID"]));}
-				else {echo "Not Article or Review";} ?>',event);" style="cursor: pointer;">
-				<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[0]["ID"]) )); ?>
-				<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 imgcrop" style="height:180px;padding:0px;overflow:hidden;">
-					<img class="portrait crop3" src="<?php echo $url;?>" alt="crop">	
-					<div class="articleTitle"><?php echo $recent_posts[0]["post_title"]; ?></div>	
-				</div>
-			</a>
-		</div>
-			
-		
-		<div class="col-md-4 col-lg-4 col-xs-12 col-sm-12" style="padding:1px;">
-			<a onmousedown="OpenPage('<?php $category = get_the_category($recent_posts[1]["ID"]); $categorie = $category[0]->cat_name; 
-				if ($categorie == "Article"){echo $ad=str_replace($wpsite."/article.php/article/","content/article.php?/",get_permalink($recent_posts[1]["ID"]));}
-				elseif ($categorie == "Review") {echo $ad=str_replace($wpsite."/article.php/review/","content/review.php?/",get_permalink($recent_posts[1]["ID"]));}
-				else {echo "Not Article or Review";} ?>',event);" style="cursor: pointer;">
-				<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[1]["ID"]) )); ?>
-				<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 imgcrop" style="padding:0px;height:180px;overflow:hidden;">	
-					<img class="portrait crop3" src="<?php echo $url;?>" alt="crop2">
-					<div class="articleTitle"><?php echo $recent_posts[1]["post_title"]; ?></div>
-				</div>
-			</a>
-		</div>
-				
-		<div class="col-md-4 col-lg-4 col-xs-12 col-sm-12" style="padding:1px;">
-			<a onmousedown="OpenPage('<?php  $category = get_the_category($recent_posts[2]["ID"]);	$categorie = $category[0]->cat_name; 
-				if ($categorie == "Article"){echo $ad=str_replace($wpsite."/article.php/article/","content/article.php?/",get_permalink($recent_posts[2]["ID"]));}
-				elseif ($categorie == "Review") {echo $ad=str_replace($wpsite."/article.php/review/","content/review.php?/",get_permalink($recent_posts[2]["ID"]));}
-				else {echo "Not Article or Review";} ?>',event);" style="cursor: pointer;">
-				<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[2]["ID"]) )); ?>
-				<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 imgcrop" style="height:180px;padding:0px;overflow:hidden;">	
-					<img class="portrait crop3" src="<?php echo $url;?>" alt="crop3">
-					<div class="articleTitle"><?php echo $recent_posts[2]["post_title"]; ?></div>
-				</div>
-			</a>
-		</div>
- -->
+	<!-- Noteb Quiz -->
+	<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style="padding:0px;">
+		<div id="quiz" class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style="position:relative;"></div>	
+	</div>			
+
 	<!-- Noteb Quiz end -->
 	<div class="clearfix"></div>
 	
@@ -106,7 +69,7 @@ $published_posts = $count_posts->publish;
 			<p class="topLaptopsDate hidden-xs visible-md visible-sm visible-lg"><?php echo date('M Y',$topshead["HomeStudent"]["maxdate"]); ?></p>
 			<?php foreach ($tops['HomeStudent'] as $el) { ?>			
 			<div class="row">
-				<a href="<?php echo $web_address."?model/model.php?conf=".$el["id"]."&ex=USD"; ?>">
+				<a href="javascript:void(0)" onmousedown="OpenPage('<?php echo "model/model.php?conf=".$el["id"]."&ex=USD"; ?>',event)";?>
 					<div class="col-xs-12 imgTopLaptop">
 						<img  class="img-responsive " src="<?php echo $el["img"]; ?>" alt="imgStudent"/>
 						<p class="topLaptopsName"><?php echo $el["name"]; ?> <br/> <span class="pretTopLaptops"><?php echo $el["price"]; ?>$</span></p>
@@ -122,7 +85,7 @@ $published_posts = $count_posts->publish;
 			<p class="topLaptopsDate hidden-xs visible-md visible-sm visible-lg"><?php echo date('M Y',$topshead["Gaming"]["maxdate"]); ?></p>
 			<?php foreach ($tops['Gaming'] as $el) { ?>				
 			<div class="row">
-				<a href="<?php echo $web_address."?model/model.php?conf=".$el["id"]."&ex=USD"; ?>">
+				<a href="javascript:void(0)" onmousedown="OpenPage('<?php echo "model/model.php?conf=".$el["id"]."&ex=USD"; ?>',event)";?>
 					<div class="col-xs-12 imgTopLaptop">
 						<img  class="img-responsive " src="<?php echo $el["img"]; ?>" alt="imgGaming"/>
 						<p class="topLaptopsName"><?php echo $el["name"]; ?> <br/> <span class="pretTopLaptops"><?php echo $el["price"]; ?>$</span></p>							 
@@ -138,7 +101,7 @@ $published_posts = $count_posts->publish;
 			<p class="topLaptopsDate hidden-xs visible-md visible-sm visible-lg"><?php echo date('M Y',$topshead["Business"]["maxdate"]); ?></p>
 			<?php foreach ($tops['Business'] as $el) { ?>				
 			<div class="row">
-				<a href="<?php echo $web_address."?model/model.php?conf=".$el["id"]."&ex=USD"; ?>">
+				<a href="javascript:void(0)" onmousedown="OpenPage('<?php echo "model/model.php?conf=".$el["id"]."&ex=USD"; ?>',event)";?>
 					<div class="col-xs-12 imgTopLaptop">
 						<img  class="img-responsive " src="<?php echo $el["img"]; ?>" alt="imgBusiness"/>
 						<p class="topLaptopsName"><?php echo $el["name"]; ?> <br/> <span class="pretTopLaptops"><?php echo $el["price"]; ?>$</span></p>							 

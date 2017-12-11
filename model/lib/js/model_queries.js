@@ -593,8 +593,7 @@ function showSIST(str)
 function getconf(comp,id,exactconf) 
 {
 	gocomp=0;
-	var cpu_id=cpu["id"]; var display_id=display["id"]; var mem_id=mem["id"]; var hdd_id=hdd["id"];  var shdd_id=shdd["id"]; var gpu_id=gpu["id"]; var wnet_id=wnet["id"]; var odd_id=odd["id"]; var mdb_id=mdb["id"]; var chassis_id=chassis["id"]; var acum_id=acum["id"]; var war_id=war["id"]; var sist_id=sist["id"];  var 
-	confdata = {}; var success=false; var go=false; var mdb_hdd=0;
+	var cpu_id=cpu["id"]; var display_id=display["id"]; var mem_id=mem["id"]; var hdd_id=hdd["id"];  var shdd_id=shdd["id"]; var gpu_id=gpu["id"]; var wnet_id=wnet["id"]; var odd_id=odd["id"]; var mdb_id=mdb["id"]; var chassis_id=chassis["id"]; var acum_id=acum["id"]; var war_id=war["id"]; var sist_id=sist["id"]; var confdata = {}; var success=false; var go=false; var mdb_hdd=0;
 	switch(comp)
 	{
 		case "CPU":
@@ -660,7 +659,7 @@ function getconf(comp,id,exactconf)
 					else
 					{ history.replaceState(stateObj, confdata["cid"], "?model/model.php?conf="+confdata["cid"]+"&ex="+excode); }	
 					currentPage = window.location.href;
-					
+					set_best_low(confdata["cid"],best_low);
 					switch(comp)
 					{
 						case "CPU":
@@ -848,4 +847,40 @@ function makelinks()
 	hotlink=countrybuy+"+"+hotlinkpart1+'+'+googlelink["resolution"]+'+'+googlelink["sist"];
 	hotlink=hotlink.replace("++","+"); hotlink=hotlink.replace('+""+','+');
 	document.getElementById('google_link').href=googlelink["first"]+hotlink;
+}
+
+function set_best_low(confid,array_values)
+{
+	function set_active_confopt(key)
+	{
+		var confopts=document.getElementsByClassName("configOptions");
+		for(var key2=0;key2<3;key2++)
+		{
+			if(key==key2)
+			{ document.getElementsByClassName("configOptions")[key2].classList.add("selectedOption"); }
+			else
+			{ document.getElementsByClassName("configOptions")[key2].classList.remove("selectedOption"); }
+		}
+	}
+	
+	var i=1;
+	for (var key in array_values)
+	{
+		if(confid===array_values[key])
+		{
+			switch(key)
+			{
+				case "lowest_price":
+				{ set_active_confopt(2); break;	}
+				case "best_performance":
+				{ set_active_confopt(1); break;	}
+				case "best_value":
+				{ set_active_confopt(0); break;	}
+				default:
+				{ break; }
+			}
+			i=0;
+		}
+	}
+	if(i) { set_active_confopt(-1); }
 }

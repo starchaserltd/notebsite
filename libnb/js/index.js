@@ -67,8 +67,7 @@ function urlrequest(url, e, dontpush) {
     $.get(url, function(response) {
         var urltitle = /([^\/]*).php/g.exec(url);
         urltitle = urltitle[1];
-        currentpage = url;
-        document.title = 'Noteb';
+        currentpage = url;        
         if ($('#content').html(response)) { $('#loadingNB').hide(); }
         if (!dontpush) {
             dontpush = 0;

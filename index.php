@@ -114,7 +114,7 @@ require_once("etc/conf.php");
 			<div style="text-align:center;">
      		 <button  id="sadvsearch" onmousedown="OpenPage('search/adv_search.php',event);" type="button" class="btn blue leftMenuAdvSearch"><span style="text-decoration:none;color:white;">Advanced search</span></button>
   			 </div>					
-			<div class="col-md-12 col-xs-12 col-sm-12 blue cssmenu" style="padding:0px">
+			<div class="col-md-12 col-xs-12 col-sm-12 blue cssmenu compareDropdown" style="padding:0px">
 				<ul>				
 					<li class='has-sub'><a >Compare</a>
 						<ul style="background-color: white;">

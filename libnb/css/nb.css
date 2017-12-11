@@ -1752,8 +1752,8 @@ label.css-labelr {
 
 #top-link-block.affix {
     position: fixed;
-    bottom: 115px;
-    right: 58px;
+    bottom: 12px;
+    right: 50px;
     z-index: 99;
     background-color: #292d2f;
     padding: 10px;

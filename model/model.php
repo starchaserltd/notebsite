@@ -34,7 +34,7 @@ else
 { 
 ?>
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="font-size:16px; color:#575757;">
-		<h2 class="h4 strong">
+		<h2 class="h4 strong modelHeader">
 <?php
 		$_SESSION['model'] = $idmodel; $model_data=show_vars('model.prod, families.fam, families.subfam, families.showsubfam, model.model,model.submodel,model.regions,model.keywords', 'notebro_db.MODEL model JOIN notebro_db.FAMILIES families ON model.idfam=families.id',$idmodel); $mprod=$model_data["prod"]; if(isset($model_data["subfam"])&&$model_data["showsubfam"]!=0){ $model_data["subfam"]=" ".$model_data["subfam"]; } else { $model_data["subfam"]=""; } $mfam=$model_data["fam"].$model_data["subfam"];  $mmodel=$model_data["model"];  $msubmodel=$model_data["submodel"]; 
 		$mregion_id=intval(explode(",",$model_data['regions'])[0]); if($mregion_id!=1){ $mregion="(".show_vars("disp","REGIONS",$mregion_id).")"; } else { $mregion=""; } if(isset($model_data["keywords"])&&$model_data["keywords"]!=""&&$model_data["keywords"]!=NULL&&$model_data["keywords"]!=" ") { $keywords=str_replace(",","+",$model_data["keywords"]); } else { switch($mprod) { case "Dell": {$keywords=$mprod."+".$mfam."+".$mmodel; break; } case "Lenovo": {$keywords=$mprod."+".$mfam."+".$mmodel; break; } case "HP": {$keywords=$mprod."+".$mfam."+".$mmodel; break; } default: {$keywords=$mprod."+".$mmodel; } } }
@@ -90,8 +90,20 @@ else
 				<p style="padding-top:4px;text-align:center"><span style=""><b>Battery life: </b></span><span  class="labelblue"><span id="bat_life1" style="font-size:16px; color:#285F8F; margin-left:4px;"></span> - <span id="bat_life2" style="font-size:16px; color:#285F8F;"></span><span style="color:#285F8F;"> <?php echo " h"; ?></span></span></p>
 			</div>	
 			<div class="col-md-12 col-sm-12 col-xs-12 btn" style="padding:0px;margin-top:2px;">
-				<div class="btn addtocpmp" id="addcompare" ><a style="text-decoration:none;">Add to compare</a></div>
-				
+				<div class="btn addtocpmp" id="addcompare" ><a style="text-decoration:none;">Add to compare</a></div>				
+			</div>
+			<div class="col-md-12 col-sm-12 col-xs-12 config" style="padding: 0px;">
+				<div class="dropdown">
+					<button id="dLabel" class="btn addtocpmp showConfigOption" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Configure for
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu configDropdown" aria-labelledby="dLabel">
+						<li class="configOptions" <?php if(!isset($best_low["best_value"])||(isset($best_low["best_value"])&&$best_low["best_value"]=="")){ echo 'style="display:none;"'; } ?> onmousedown="OpenPage('<?php echo "model/model.php?conf=".$best_low["best_value"]."&ex=USD"; ?>',event)";>Best Value</li>
+						<li class="configOptions" <?php if(!isset($best_low["best_performance"])||(isset($best_low["best_performance"])&&$best_low["best_performance"]=="")){ echo 'style="display:none;"'; } ?> onmousedown="OpenPage('<?php echo "model/model.php?conf=".$best_low["best_performance"]."&ex=USD"; ?>',event)";>Max Performance</li>
+						<li class="configOptions" <?php if(!isset($best_low["lowest_price"])||(isset($best_low["lowest_price"])&&$best_low["lowest_price"]=="")){ echo 'style="display:none;"'; } ?> onmousedown="OpenPage('<?php echo "model/model.php?conf=".$best_low["lowest_price"]."&ex=USD"; ?>',event)";>Lowest Price</li>						
+					</ul>
+				</div>
 			</div>
 		</div>
 		<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" style="padding:0px" >
@@ -761,8 +773,11 @@ else
       'imageFadeDuration':200     
     });
 }); 
+$(document).ready(function(){
+    $('meta[name=description]').attr('content', mprod + ' ' + mfamily + ' ' + mmodel);
+});
 </script>
 <?php  
 } ?>
 </div>
-<link rel="stylesheet" href="model/lib/css/model.css?v=0.5" type="text/css"/>
+<link rel="stylesheet" href="model/lib/css/model.css?v=17" type="text/css"/>

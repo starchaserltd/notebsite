@@ -16,6 +16,9 @@
 	$.getScript("search/lib/js/tokenlist.js").done(function(){ $.getScript("search/lib/js/adv_search_post.js"); });
 	$.getScript("search/lib/js/adv_search_pre.js");
 	document.title = 'Noteb - Search';
+	$(document).ready(function(){
+   		 $('meta[name=description]').attr('content', "Custom laptop search.");
+	});
 	var basevalueoldadv=currency_val[<?php echo '"'.$basevalue.'"'; ?>];
 	var minbudgetnomenadv=<?php echo $minconfigprice; ?>;
 	var maxbudgetnomenadv=<?php echo $maxconfigprice; ?>;

@@ -133,6 +133,57 @@ div.ListElem:hover {
 	align-items: center;
 }
 
+.config {
+	margin-top: 5px;
+	text-align: center;
+}
+
+.config span {
+	font-weight: bold;
+}
+
+.config .addtocpmp {
+	padding: 3px 10px;
+	min-width: 165px;
+}
+
+
+.configSelect:focus, 
+.configSelect:hover {
+	color: #fff!important;
+}
+
+.config .configDropdown {
+	right: 5px;
+    left: 5px;
+}
+
+
+.config .configOptions {
+	padding: 10px 5px;
+	transition: all 0.3s ease;
+	cursor: pointer;
+}
+
+.config .configOptions.selectedOption {
+	color: #fff;
+	background-color: #575757;
+}
+
+.config .configOptions:hover {
+	font-weight: bold;
+}
+
+.modelHeader {
+		font-size: 15px!important;
+}
+
+.modelHeader .textModel {
+		font-size: 20px;
+		margin-bottom: 5px;
+		display: inline-block;
+}
+
 @media (max-width: 991px) {
 	.modelContainer {
 		padding-right: 0 !important;
@@ -142,4 +193,10 @@ div.ListElem:hover {
 		padding-right: 15px;
 	}
 }
+
+@media (max-width: 767px) {
+	.config {
+		text-align: center;
+	}
+	}
 

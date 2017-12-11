@@ -165,5 +165,9 @@ $published_posts = $category->category_count;
         // how far to scroll down before link "slides" into view
         offset: {top:100}
 		}); }
+	document.title = "Noteb - Reviews";
+	$(document).ready(function(){
+    $('meta[name=description]').attr('content', "Laptop reviews. Asus ROG G752VT ");
+	});
 </script>
 <link rel="stylesheet" href="content/lib/css/article.css" type="text/css"/>

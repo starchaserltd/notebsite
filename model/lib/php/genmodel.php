@@ -79,7 +79,14 @@ if($idmodel)
 			$idsist=current(array_slice(explode(',',$modelsist),0,1));
 		}
 	}
+	require_once("../etc/con_sdb.php"); $cons=dbs_connect();
+	$sql="SELECT * FROM `notebro_temp`.`best_low_opt` WHERE id_model=$idmodel";
+	$best_low=mysqli_fetch_assoc(mysqli_query($cons,$sql));
+	if($best_low["lowest_price"]==$best_low["best_value"]) { $best_low["lowest_price"]=""; }
+	if($best_low["lowest_price"]==$best_low["best_performance"]) { $best_low["lowest_price"]=""; }
+	if($best_low["best_value"]==$best_low["best_performance"]) { $best_low["best_performance"]=""; }
 }
+
 function showcurrency($exc)
 {
 	$exc=round($exc,5);
