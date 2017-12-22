@@ -10,13 +10,12 @@ require_once("etc/conf.php");
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Looking for a laptop? Search, Compare or even take a Quiz with Noteb.com to find the perfect laptop for your work, home or suggest one to your friends from over 1.000.000 models.">
 	<meta name="keywords" content="find,cheap,best,laptop,notebook,gaming,ultraportable,business">
-	<meta name="author" content="Starchaser">
-	<!-- Language href link for google -->  
-	<link rel="alternate" href="https://www.noteb.com" hreflang="en" />
+	<meta name="author" content="Starchaser">	
 	<!-- JavaScript libraries -->   
 	<script type="text/javascript" src="lib/js/jquery.min.js"></script> 		
 	<script type="text/javascript" src="lib/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="lib/js/select2.min.js"></script>
+	<script type="text/javascript" src="lib/js/classList.min.js"></script>
 	<!-- Bootstrap Mutliselect JavaScript -->
 	<script type="text/javascript" src="lib/js/bootstrap-multiselect.js"></script>
 	<script type="text/javascript" src="lib/js/nouislider.min.js"></script>
@@ -66,7 +65,8 @@ require_once("etc/conf.php");
 					</select>
 				</form>
 			</div>
-			<!-- simple search -->			
+			<!-- simple search -->		
+	<nav>	
 			<div class="col-md-12 col-xs-12 col-sm-12 blue cssmenu" style="padding:0px">
 				<ul >
 				   <li  class='has-sub'><a >Browse laptops</a>
@@ -131,7 +131,7 @@ require_once("etc/conf.php");
 					</li>
 				</ul>
 			</div>	
-
+	</nav>
 			<!-- end left menu--> 
 			
 			
@@ -190,15 +190,12 @@ require_once("etc/conf.php");
 	<!--custom OK	-->
 	<link rel="stylesheet" href="libnb/css/responsive.css" type="text/css" />
 	<link rel="stylesheet" href="libnb/css/loading.css" type="text/css" />	
-	<!--Quiz css	-->
-	<link rel="stylesheet" href="search/quiz/quiz.css" type="text/css" />	
 	<!--Lightbox css	-->
 	<link rel="stylesheet" href="lib/css/lightbox.min.css" type="text/css"/>
 
 	<!-- Custom Theme JavaScript -->
 	<script><?php echo 'var siteroot = "'.$web_address.'";'; ?></script>
 	<script type="text/javascript" src="libnb/js/tooltip.js" async></script>
-	<script type="text/javascript" src="search/quiz/classList.min.js"></script>
 	<script type="text/javascript" src="libnb/js/index.js"></script>
 	<script type="text/javascript" src="lib/js/nouislider.min.js"></script>	
 </body>

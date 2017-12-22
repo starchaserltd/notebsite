@@ -1,4 +1,3 @@
-
 <?php
 require_once("../etc/conf.php");
 
@@ -43,15 +42,18 @@ $recent_posts = wp_get_recent_posts( $args, ARRAY_A );
 $category = get_category(2);
 $count_posts = wp_count_posts();//echo $count_posts;
 $published_posts = $count_posts->publish;	
-
-?>	
-<link rel="stylesheet" href="search/quiz/quiz.css" type="text/css" />
+?>
+<head>
+	<!-- Language href link for google -->  
+	<link rel="alternate" hreflang="en-US" href="https://noteb.com" />
+</head>
 <link rel="stylesheet" href="content/lib/css/home.css?v=0.29" type="text/css"/>
 <script>$.getScript("content/lib/js/home.js");document.title = "Noteb - Home";$(document).ready(function(){
     $('meta[name=description]').attr('content', "Looking for a laptop? Search, Compare or even take a Quiz with Noteb.com to find the perfect laptop for your work, home or suggest one to your friends from over 1.000.000 models.");
 });</script>
 	
 	<!-- Noteb Quiz -->
+	<link rel="stylesheet" href="search/quiz/lib/css/quiz.css" type="text/css"/>
 	<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style="padding:0px;">
 		<div id="quiz" class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style="position:relative;"></div>	
 	</div>			
@@ -59,9 +61,7 @@ $published_posts = $count_posts->publish;
 	<!-- Noteb Quiz end -->
 	<div class="clearfix"></div>
 	
-	<?php //echo $row["id"]; ?>
 	<!-- Top 10 laptops area -->
-	
 	<?php $query=mysqli_query($con,"SELECT * FROM notebro_site.top_laptops where valid=1 order by type,price"); $tops=array(); $topshead=array(); while ($row=mysqli_fetch_assoc($query)) { $tops[$row['type']][$row['id']] = array('id' => $row['c_id'],'img' => $row['img'], 'name' => $row['name'], 'price' => $row['price']); if(isset($topshead[$row['type']]["count"])) { $topshead[$row['type']]["count"]++; } else {$topshead[$row['type']]["count"]=1; } $topdate= strtotime($row["date"]); if(isset($topshead[$row['type']]["maxdate"])){ if($topshead[$row['type']]["maxdate"] < $topdate) { $topshead[$row['type']]["maxdate"]=$topdate; } } else { $topshead[$row['type']]["maxdate"]=$topdate; } } ?>
 	<section class="row topLaptops">
 		<div class="col-lg-4 col-md-4 col-sm-4  col-xs-12 studentTopLaptops">
