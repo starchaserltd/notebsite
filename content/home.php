@@ -43,13 +43,10 @@ $category = get_category(2);
 $count_posts = wp_count_posts();//echo $count_posts;
 $published_posts = $count_posts->publish;	
 ?>
-<head>
-	<!-- Language href link for google -->  
-	<link rel="alternate" hreflang="en-US" href="https://noteb.com" />
-</head>
 <link rel="stylesheet" href="content/lib/css/home.css?v=0.29" type="text/css"/>
 <script>$.getScript("content/lib/js/home.js");document.title = "Noteb - Home";$(document).ready(function(){
     $('meta[name=description]').attr('content', "Looking for a laptop? Search, Compare or even take a Quiz with Noteb.com to find the perfect laptop for your work, home or suggest one to your friends from over 1.000.000 models.");
+    $('head').append('<link rel="alternate" hreflang="en-US" href="https://noteb.com" />');
 });</script>
 	
 	<!-- Noteb Quiz -->
