@@ -47,20 +47,11 @@ function remodel()
 		{
 			for(var key2 in compatibility[key]['nogo'])
 			{
-				//console.log(key); console.log(key2);
-				//console.log(compatibility[key]['nogo'][key2]);
 				var count=compatibility[key]['nogo'][key2].length;
 				for(var key3 in compatibility[key]['nogo'][key2])
 				{
-					//console.log(compatibility[key]['nogo'][key2][key3]); console.log(avoidnogo);
 					if(compatibility[key]['nogo'][key2][key3]=="all" && avoidnogo!=-1)
 					{
-						/*if(key=="stylus")
-								{
-								console.log(qkey2+" "+compatibility[key]['nogo'][key2][key3]);
-								console.log(quiz[qkey]['options'][qkey2]['chk']['on']);
-								}*/
-								
 						changeoptshow(key,0); disabled=1;
 					}
 					else
@@ -69,13 +60,6 @@ function remodel()
 						{
 							for(var qkey2 in quiz[qkey]['options'])
 							{
-								/*if(key=="stylus")
-								{if(qkey2==compatibility[key]['nogo'][key2][key3])
-								{
-								console.log(qkey2+" "+compatibility[key]['nogo'][key2][key3]);
-								console.log(quiz[qkey]['options'][qkey2]['chk']['on']);
-								}
-								}*/
 								if(quiz[qkey]['options'][qkey2]['chk']['on']==1 && qkey2==compatibility[key]['nogo'][key2][key3])
 								{ count--; }
 							}
@@ -529,10 +513,10 @@ function navigation()
         { //navnr[key].classList.remove("nrcircleactive");
             quizfinal=0;
         }
-        
+		
         if(key>lastactive && !quizfinal)
         {
-            navnr[key].removeAttribute( "onClick", "makePage("+key+");" );
+			navnr[key].removeAttribute( "onClick", "makePage("+key+");" );
             navnr[key].classList.remove("nrcircleactive");
         }
     }
