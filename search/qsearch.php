@@ -8,7 +8,7 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 {
 	//$_SESSION['auth']=0;
 	$presearch_budgetmax=0; $presearch_budgetmin=9999999999;
-	$presearch_batlifemax=0; $presearch_batlifemin=9999999999;
+	$presearch_batlifemax=0; $presearch_batlifemin=9999999999; $query_search="";
 
 	$orderby = "ORDER BY price ASC";
 	$orderby_index = "USE INDEX FOR ORDER BY (price)";
@@ -61,9 +61,9 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 		}
 
 		/* DEBUGGING CODE */
-		#echo "<pre>" . var_dump($query_search) . "</pre>";
-		#$time_start_query = microtime(true);
-		#echo "<pre>"; var_dump($query_search); var_dump( $batlifemin); echo "<br>"; echo "</pre>";
+		# echo "<pre>" . var_dump($query_search) . "</pre>";
+		# $time_start_query = microtime(true);
+		# echo "<pre>"; var_dump($query_search); var_dump( $presearch_batlifemin); echo "<br>"; echo "</pre>";
 		$result=mysqli_query($cons, $query_search);
 		#echo $query_search; echo "<br>";
 		if($result)

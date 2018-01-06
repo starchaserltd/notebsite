@@ -50,8 +50,8 @@ $published_posts = $count_posts->publish;
 });</script>
 	
 	<!-- Noteb Quiz -->
-	<link rel="stylesheet" href="search/quiz/lib/css/quiz.css" type="text/css"/>
-	<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style="padding:0px;">
+	<link rel="stylesheet" href="search/quiz/lib/css/quiz.css?v=0.1" type="text/css"/>
+	<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 quizDisplay" style="padding:0px;">
 		<div id="quiz" class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style="position:relative;"></div>	
 	</div>			
 
@@ -157,7 +157,7 @@ $published_posts = $count_posts->publish;
 		} 
 	} ?>	
 	</article>
-	<div class="col-xs-12 mobileShowMoreArticles"><span>Show All Articles</span></div>
+	<div class="col-xs-12 mobileShowMoreArticles"><span>Show All Articles</span></div>	
 	<script type="application/ld+json">	
 		{
 		  "@context": "http://schema.org",

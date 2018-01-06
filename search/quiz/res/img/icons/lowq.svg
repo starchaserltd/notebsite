@@ -3,6 +3,10 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="55px" height="55px" viewBox="0 0 55 55" enable-background="new 0 0 55 55" xml:space="preserve">
-<rect x="23.792" y="32.239" fill="#767676" stroke="#767676" stroke-miterlimit="10" width="7.417" height="21"/>
-<ellipse fill="#CCCCCC" stroke="#767676" stroke-miterlimit="10" cx="27.5" cy="17.323" rx="17.042" ry="14.917"/>
+<polygon fill="#767676" stroke="#767676" stroke-miterlimit="10" points="23.792,32.239 31.209,32.239 31.209,49.75 34.25,53.239 
+	20.75,53.239 23.792,49.75 "/>
+<path fill="#CCCCCC" stroke="#767676" stroke-miterlimit="10" d="M27.5,2.406c4.555,0,8.443,2.608,11.5,5.156
+	c3.262,2.717,5.542,5.509,5.542,9.761c0,2.226-3.355,6.967-4.354,8.864C37.49,31.313,34.369,32.24,27.5,32.24
+	c-5.938,0-9.824-3.521-12.875-7.553c-1.785-2.358-4.167-4.323-4.167-7.364c0-3.17,1.867-5.907,3.792-8.323
+	C17.33,5.136,21.709,2.406,27.5,2.406z"/>
 </svg>

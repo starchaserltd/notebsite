@@ -1,5 +1,4 @@
 //Initialization
-
 var trigger = 1;
 var z = 0;
 var first = 1;
@@ -207,9 +206,12 @@ $(document).ready(function() {
         OpenPage(d);
     });
 
-    //Load main content area
-    if (!(window.location.href.split('?')[1])) {
-        currentpage = "content/home.php"
+	if(history.state!==null && history.state["back"]!==undefined){ window.location.href=history.state["back"]; }
+   
+   //Load main content area
+   if (!(window.location.href.split('?')[1])) 
+   {
+     currentpage = "content/home.php";
     } else {
         var urlParts = window.location.href.split('?');
         var currentpage = urlParts.slice(1).join('?');
@@ -458,6 +460,9 @@ function adjust_ssearch(page) {
             } else { document.getElementsByClassName('btn-title')[0].click(); }
         }
     }
+    if (page.indexOf("home.php") > -1) {
+        $('.headerback').addClass('home');        
+    } else {$('.headerback').removeClass('home'); }
 }
 
 //THIS FUNCTION IS FOR GENERATING PROPER MAX MIN FOR SLIDERS

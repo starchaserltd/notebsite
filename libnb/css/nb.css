@@ -1748,6 +1748,7 @@ label.css-labelr {
     bottom: -82px; /* negative of the offset - height of link element */
     left: 10px; /* padding from the left side of the window */
     z-index: 99;
+    opacity: 0;
 }
 
 #top-link-block.affix {
@@ -1801,6 +1802,46 @@ label.css-labelr {
 
 .xxtest + span.select2.select2-container.select2-container--default.select2-container--below.select2-container--focus.select2-container--open span.selection span.select2-selection.select2-selection--multiple {
     border: 1px solid black;
+}
+
+
+nav:after {
+	content: ".";
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+.searchDetails {
+	display: none;
+}
+
+.searchDetailsFirstContainer {
+	display: block;
+}
+
+.navbar-header {
+    background: #285f8f;
+    color: #fff;
+}
+
+.navbar {
+    border:0;
+}
+
+.navbar-header {
+    display: none;
+}
+
+.navbar-collapse {
+    padding-right: 0;
+    padding-left: 0;
+    border:0;
+}
+
+.navbar-brand, .navbar-nav>li>a {
+    text-shadow: none;
 }
 
 
@@ -2095,6 +2136,20 @@ label.css-labelr {
     max-height: 5000px;
   }
 
+  
+
+  .navbar-toggle .icon-bar {
+    background-color: #fff;
+  }
+
+  .navbar-toggle {
+    border:1px solid #fff;
+  }
+
+  .navbar-header {
+    display: block;
+  }
+
 }
 
 @media(max-width:450px) {
@@ -2121,6 +2176,58 @@ label.css-labelr {
     #top-link-block.affix {
         right: 20px;
     }
+
+    .home #content {
+    	display: -webkit-box;
+    	display: -ms-flexbox;
+    	display: flex;
+    	-webkit-box-orient: vertical;
+    	-webkit-box-direction: normal;
+    	-ms-flex-direction: column;
+    	 flex-direction: column;    	 
+    }
+     .home .quizDisplay {
+    	-webkit-box-ordinal-group:4;
+    	-ms-flex-order:3;
+    	order:3;
+    }
+
+     .home .topLaptops {
+    	-webkit-box-ordinal-group:2;
+    	-ms-flex-order:1;
+    	order:1;
+    }
+   
+
+     .home .articleMobile.row {
+    	-webkit-box-ordinal-group:6;
+    	-ms-flex-order:5;
+    	order:5;
+    }
+
+    .searchDetails {
+    	margin-top: 35px;
+    	display: block;
+    }
+
+    .firstContainer {
+    	margin-top: 30px;
+    }
+
+     .home .containerContentIndex {
+    	display: flex;
+    	flex-direction: column;
+    } 
+
+     .home .showMoreArticles + .mobileShowMoreArticles {
+    	-webkit-box-ordinal-group:7;
+    	-ms-flex-order:6;
+    	order:6;
+    }
+
+    .home #quiz_container {
+    	margin:20px 0; 
+    }    
 }
 
 @media(max-width:1200px) {

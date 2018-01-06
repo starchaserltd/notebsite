@@ -123,7 +123,8 @@ $list_memfreq = $rand[0][51];
 $list_chassisweb = $rand[0][52];
 $list_verres = $rand[0][53];
 $time = strtotime($rand[0][54]); 
-$gpumindatei=date('Y', $time);if(!isset($gpumindate)) { $gpumindate=$gpumindatei;}
+$gpumindatei=date('Y', $time);
+if(!isset($gpumindate)) { $gpumindate=$gpumindatei;}
 $time = strtotime($rand[0][55]);
 $gpumaxdatei=date('Y', $time); if(!isset($gpumaxdate)) { $gpumaxdate=$gpumaxdatei;}
 

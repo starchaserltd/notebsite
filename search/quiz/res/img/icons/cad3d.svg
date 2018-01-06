@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="55px" height="55px" viewBox="0 0 55 55" enable-background="new 0 0 55 55" xml:space="preserve">
+<g id="Layer_2">
+	<polygon fill="#FFFFFF" stroke="#7D7D7D" stroke-width="1.7" stroke-miterlimit="10" points="24.251,30.412 24.167,11.87 
+		26.833,11.832 27,10.328 26.583,8.661 22.792,5.078 21.25,5.078 17.931,8.322 16.921,10.297 17.219,11.875 19.747,11.871 
+		19.831,31.831 11.73,40.266 9.781,38.445 8.62,39.416 7.766,40.906 8.019,46.117 9.131,47.186 13.772,47.145 15.869,46.419 
+		16.747,45.074 14.92,43.326 23.75,34.748 42.938,34.756 42.991,37.422 44.496,37.579 46.16,37.152 49.721,33.34 49.711,31.797 
+		46.447,28.498 44.466,27.5 42.891,27.808 42.909,30.336 	"/>
+</g>
+<g id="Layer_3">
+	<g id="facesocultas" transform="translate(-54,-54)" display="none">
+		
+			<line id="line7000" display="inline" fill="#CCCCCC" stroke="#7D7D7D" stroke-dasharray="12,4" x1="71.257" y1="85.036" x2="76.684" y2="83.981"/>
+		
+			<line id="line7002" display="inline" fill="#CCCCCC" stroke="#7D7D7D" stroke-dasharray="12,4" x1="81.971" y1="85.599" x2="76.684" y2="83.981"/>
+		
+			<line id="line7004" display="inline" fill="#CCCCCC" stroke="#7D7D7D" stroke-dasharray="12,4" x1="76.493" y1="87.617" x2="77.014" y2="77.665"/>
+	</g>
+	<g id="faces">
+		<polygon id="polygon7007" fill="#CCCCCC" stroke="#7D7D7D" stroke-linejoin="round" points="24.575,40.105 35.998,35.243 
+			35.877,20.773 24.44,23.953 		"/>
+		<polygon id="polygon7009" fill="#CCCCCC" stroke="#7D7D7D" stroke-linejoin="round" points="24.575,40.105 12.302,36.617 
+			12.171,21.051 24.44,23.953 		"/>
+		<polygon id="polygon7011" fill="#CCCCCC" stroke="#7D7D7D" stroke-linejoin="round" points="24.44,23.953 12.171,21.051 
+			24.181,17.872 35.877,20.773 		"/>
+	</g>
+</g>
+</svg>

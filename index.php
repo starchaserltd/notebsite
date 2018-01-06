@@ -28,7 +28,7 @@ require_once("etc/conf.php");
 </head>
 <body>
 <div class="container-fluid headerback" style="height:100%;">
-	<div class="row" style="height:100%;">
+	<div class="row containerContentIndex" style="height:100%;">
 	<!-- upper buttons desktop -->
 		<!--<div style="background-color:#285f8f;display:flex"> -->
 	<div class="navigation">	
@@ -55,18 +55,28 @@ require_once("etc/conf.php");
 		<!-- end div middle -->
 		<!-- end right area -->
 		<!-- left area -->	
-		<div class="col-md-2 col-xs-12 col-sm-12 firstContainer">
-		
-		<!-- left area -->
-		<script type="text/javascript" src="libnb/js/compjsf.js" ></script><!-- compare list functions -->
-		<div class="col-md-12 col-xs-12 cod-sm-12 col-lg-12" style="padding:5px">
+		<script type="text/javascript" src="libnb/js/compjsf.js" ></script><!-- compare list functions -->		
+		<div class="col-md-2 col-xs-12 col-sm-12 firstContainer">		
+		<div class="col-md-12 col-xs-12 cod-sm-12 col-lg-12 searchDetailsFirstContainer" style="padding:5px">
 				<form action="javascript:void(0);" method="post" id="modelfind" style="text-align: -webkit-center;">		
 					<select class="modelsearch js-example-responsive" id="model_id" name ="model_id" data-placeholder="Search a laptop model" data-initvalue="search for a model"  style="width: 100%; margin:5px 0px 10px 0px; border-radius:1px;"> 
 					</select>
 				</form>
-			</div>
+		</div>
+		<!-- left area -->
+		
 			<!-- simple search -->		
-	<nav>	
+			<div class="clearfix"></div>
+			<div class="navbar-header" data-toggle="collapse" data-target="#navigationMeniu">
+				<span class="navbar-brand">Menu</span>
+			 <button type="button" class="navbar-toggle" >
+			      <span class="sr-only">Menu</span>
+			      <span class="icon-bar"></span>
+			      <span class="icon-bar"></span>
+			      <span class="icon-bar"></span>			      
+    		</button>
+    	</div>
+	<nav class="navbar-collapse collapse" role="navigation" id="navigationMeniu">	
 			<div class="col-md-12 col-xs-12 col-sm-12 blue cssmenu" style="padding:0px">
 				<ul >
 				   <li  class='has-sub'><a >Browse laptops</a>
