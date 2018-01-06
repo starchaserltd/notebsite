@@ -91,7 +91,7 @@
 				</div>
 			</div>
 		</div>
-		<div id="quiz_noresults" style="display: block;"><span>Sorry, but there are no laptops currently on the market <br> with your selected features!<br><br><br>Try to change or remove some of your selected options before returning to this step.</span></div>
+		<div id="quiz_noresults" style="display: block;"><span style="font-size:14pt;"><strong>Oups!</strong> Looks like there are currently no laptops on the market <br> with your selected features!<br><br><br>Try to <strong>change or remove</strong> some of your selected options before returning to this step.</span></div>
 		<div id="extraopt" class="shadow hidel">
 		<div class="row" align="center" id="icontable">
 			<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" style="display: block; border-top:8px solid; border-color: transparent;">
