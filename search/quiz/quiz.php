@@ -168,4 +168,4 @@
 		</span>
 	</div>
 </div>
-<script type="text/javascript">$.getScript("<?php echo $quiz_css_addr.'lib/js/quiz_data.js'; ?>").done(function(){ $.getScript("<?php echo $quiz_css_addr.'lib/js/quiz_functions.js'; ?>").done(function(){ var locationPath = location.pathname; if(locationPath == "/search/quiz/nquiz.php") {imgadd="res/img/icons/"; } $.getScript("<?php echo $quiz_css_addr.'lib/js/set_quiz.js'; ?>").done(function(){ function quiz_init() { makePage(pagetomake); } quiz_init(); }); }); });</script>
+<script type="text/javascript">$.getScript("<?php echo $quiz_css_addr.'lib/js/quiz_data.js'; ?>").done(function(){ $.getScript("<?php echo $quiz_css_addr.'lib/js/quiz_functions.js'; ?>").done(function(){ var locationPath = location.pathname; if(locationPath.indexOf("/search/quiz/nquiz.php")>=0) {imgadd="res/img/icons/"; } $.getScript("<?php echo $quiz_css_addr.'lib/js/set_quiz.js'; ?>").done(function(){ function quiz_init() { makePage(pagetomake); } quiz_init(); }); }); });</script>
