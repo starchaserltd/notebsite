@@ -35,7 +35,6 @@ function locationHashChanged() {
                 }
             }
         }
-
         OpenPage(currentpage, 1, 1); //dontpush is set to 1 to prevent pushing states on back and forward buttons, use OpenPage function on all links
     }
     trigger = 1;
@@ -46,6 +45,7 @@ setInterval(function() {
         currentPage = window.location.href;
         locationHashChanged();
     }
+	
     if ($(window).width() < 992) {
         if (ismobile != 1) {
             ismobile = 1;
@@ -451,14 +451,14 @@ function state_ssearch(type) {
 
 function adjust_ssearch(page) {
     if (page.indexOf("adv_search.php") > -1 || page.indexOf("advsearch=1") > -1) {
-        document.querySelector(".SearchParameters").style.display = "none";
+      /*  document.querySelector(".SearchParameters").style.display = "none";
         document.querySelector(".leftMenuFilters").classList.remove('rotate');
         if (document.getElementsByClassName("btn-title")[0].getAttribute("aria-expanded") == "true") {
             if (first) {
                 document.getElementsByClassName("btn-title")[0].classList.add("collapsed");
                 document.getElementsByClassName("btn-title")[0].setAttribute("aria-expanded", "false");                
             } else { document.getElementsByClassName('btn-title')[0].click(); }
-        }
+        }*/
     }
     if (page.indexOf("home.php") > -1) {
         $('.headerback').addClass('home');        

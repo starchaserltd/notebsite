@@ -9,8 +9,6 @@ $(document).ready(function() {
 	    $('.compareDropdown ul li').addClass('open');
 	    $('.compareDropdown ul li ul').slideDown();
 	    $('.navbar-collapse.collapse').collapse("show");
-	    console.log('pressed');
+	    //console.log('pressed');
 	});
-
-
 });
