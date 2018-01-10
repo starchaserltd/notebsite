@@ -91,7 +91,6 @@ function changeoptshow(option,add)
 						if(add==1){ window['opt'+i].style.display="block"; }
 						if(add==0){ window['opt'+i].style.display="none"; }
 					}
-					
 					if(window["extraopt"+i].getAttribute('onclick')!=="" && window["extraopt"+i].getAttribute('onclick').match(/press\(['"](.*?)['"]/)!==null && window["extraopt"+i].getAttribute('onclick').match(/press\(['"](.*?)['"]/)[1]==option)
 					{
 						if(add==1){ window['extraopt'+i].style.display="block"; }
@@ -254,7 +253,7 @@ function makeextraPage(quizp,el)
         setTimeout(function() { document.getElementById("extraopt").classList.remove("hidel");},10);
         
         var elms = document.getElementsByClassName('extraiconel'); quiz[quizp]['selected']=0;
-        for (var i = 0; i < elms.length; i++) { elms[i].style.display="none"; }
+        for (var i = 0; i < elms.length; i++) { elms[i].style.display="none"; elms[i].setAttribute("onClick",""); }
         document.getElementById("doneextra").setAttribute( "onClick", closeextratext+"('"+quizp+"','"+el+"');" );
         document.getElementById("doneextra").style.display="block";
         options=quiz[quizp]['options']; var i=1;
