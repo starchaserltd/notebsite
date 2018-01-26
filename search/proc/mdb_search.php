@@ -13,20 +13,15 @@ function search_mdb ($prod, $model, $ramcap, $gpu, $chip, $socket, $interface, $
 	foreach($prod as $x)
 	{
 		if($i) 	
-		{  
-			$sel_mdb.=" OR ";
-		}
+		{ $sel_mdb.=" OR "; }
 		else
-		{
-			$sel_mdb.=" ( ";
-		}
+		{ $sel_mdb.=" ( "; }
 		$sel_mdb.="prod='";
 		$sel_mdb.=$x;
 		$sel_mdb.="'";
 		$i++;
 	}
-	if($i>0)
-	{ $sel_mdb.=" ) "; }
+	if($i>0){ $sel_mdb.=" ) "; }
 	
 	// Add models to filter	
 	$i=0;
@@ -34,21 +29,16 @@ function search_mdb ($prod, $model, $ramcap, $gpu, $chip, $socket, $interface, $
 	foreach($model as $x)
 	{
 		if($i)
-		{  
-			$sel_mdb.=" OR ";
-		}
+		{ $sel_mdb.=" OR "; }
 		else
-		{
-			$sel_mdb.=" AND ( ";
-		}
+		{ $sel_mdb.=" AND ( "; }
 
 		$sel_mdb.="model='";
 		$sel_mdb.=$x;
 		$sel_mdb.="'";
 		$i++;
 	}
-	if($i>0)
-	{ $sel_mdb.=" ) "; }
+	if($i>0){ $sel_mdb.=" ) "; }
 	
 	// Add ram to filter 	
 	$i=0;
@@ -56,21 +46,16 @@ function search_mdb ($prod, $model, $ramcap, $gpu, $chip, $socket, $interface, $
 	foreach($ramcap as $x)
 	{
 		if($i)
-		{  
-			$sel_mdb.=" OR ";
-		}
+		{ $sel_mdb.=" OR "; }
 		else
-		{
-			$sel_mdb.=" AND ( ";
-		}
+		{ $sel_mdb.=" AND ( "; }
 
 		$sel_mdb.="ram>='";
 		$sel_mdb.=$x;
 		$sel_mdb.="'";
 		$i++;
 	}
-	if($i>0)
-	{ $sel_mdb.=" ) "; }
+	if($i>0){ $sel_mdb.=" ) "; }
 
 	// ADD integrated GPU to the filter
 	$i=0;
@@ -78,21 +63,16 @@ function search_mdb ($prod, $model, $ramcap, $gpu, $chip, $socket, $interface, $
 	foreach($gpu as $x)
 	{
 		if($i)
-		{
-			$sel_mdb.=" OR ";
-		}
+		{ $sel_mdb.=" OR "; }
 		else
-		{
-			$sel_mdb.=" AND ( ";
-		}
+		{ $sel_mdb.=" AND ( "; }
 
 		$sel_mdb.="gpu=";
 		$sel_mdb.=$x;
 		$sel_mdb.="";
 		$i++;
 	}
-	if($i>0)
-	{ $sel_mdb.=" ) "; }
+	if($i>0){ $sel_mdb.=" ) "; }
 
 	// ADD Chipset to the filter
 	$i=0;
@@ -100,21 +80,16 @@ function search_mdb ($prod, $model, $ramcap, $gpu, $chip, $socket, $interface, $
 	foreach($chip as $x)
 	{	
 		if($i)
-		{  
-			$sel_mdb.=" OR ";
-		}
+		{ $sel_mdb.=" OR "; }
 		else
-		{
-			$sel_mdb.=" AND ( ";
-		}
+		{ $sel_mdb.=" AND ( "; }
 
 		$sel_mdb.="chipset='";
 		$sel_mdb.=$x;
 		$sel_mdb.="'";
 		$i++;
 	}
-	if($i>0)
-	{ $sel_mdb.=" ) "; }
+	if($i>0){ $sel_mdb.=" ) "; }
 	
 	// ADD socket to the filter
 	$i=0;
@@ -122,21 +97,16 @@ function search_mdb ($prod, $model, $ramcap, $gpu, $chip, $socket, $interface, $
 	foreach($socket as $x)
 	{	
 		if($i)
-		{  
-			$sel_mdb.=" OR ";
-		}
+		{ $sel_mdb.=" OR "; }
 		else
-		{
-			$sel_mdb.=" AND ( ";
-		}
+		{ $sel_mdb.=" AND ( "; }
 
 		$sel_mdb.="socket='";
 		$sel_mdb.=$x;
 		$sel_mdb.="'";
 		$i++;
 	}
-	if($i>0)
-	{ $sel_mdb.=" ) "; }
+	if($i>0){ $sel_mdb.=" ) "; }
 	
 	//ADD interfaces to the filter
 	$i=0;
@@ -144,21 +114,16 @@ function search_mdb ($prod, $model, $ramcap, $gpu, $chip, $socket, $interface, $
 	foreach($interface as $x)
 	{
 		if($i)
-		{  
-			$sel_mdb.=" AND ";
-		}
+		{ $sel_mdb.=" AND "; }
 		else
-		{
-			$sel_mdb.=" AND ( ";
-		}
+		{ $sel_mdb.=" AND ( "; }
 		
 		$sel_mdb.="FIND_IN_SET('";
 		$sel_mdb.=$x;
 		$sel_mdb.="',interface)>0";
 		$i++;
 	}
-	if($i>0)
-	{ $sel_mdb.=" ) "; }
+	if($i>0){ $sel_mdb.=" ) "; }
 
 	// ADD network to the filter
 	$i=0;
@@ -166,21 +131,16 @@ function search_mdb ($prod, $model, $ramcap, $gpu, $chip, $socket, $interface, $
 	foreach($netw as $x)
 	{			
 		if($i)
-		{  
-			$sel_mdb.=" OR ";
-		}
+		{ $sel_mdb.=" OR "; }
 		else
-		{
-			$sel_mdb.=" AND ( ";
-		}
+		{ $sel_mdb.=" AND ( "; }
 
 		$sel_mdb.="netw='";
 		$sel_mdb.=$x;
 		$sel_mdb.="'";
 		$i++;
 	}
-	if($i>0)
-	{ $sel_mdb.=" ) ";}
+	if($i>0){ $sel_mdb.=" ) ";}
 
 	// ADD network to the filter
 	$i=0;
@@ -188,21 +148,16 @@ function search_mdb ($prod, $model, $ramcap, $gpu, $chip, $socket, $interface, $
 	foreach($hdd as $x)
 	{	
 		if($i)
-		{  
-			$sel_mdb.=" OR ";
-		}
+		{ $sel_mdb.=" OR "; }
 		else
-		{
-			$sel_mdb.=" AND ( ";
-		}
+		{ $sel_mdb.=" AND ( "; }
 
 		$sel_mdb.="hdd='";
 		$sel_mdb.=$x;
 		$sel_mdb.="'";
 		$i++;
 	}
-	if($i>0)
-	{ $sel_mdb.=" ) "; }	
+	if($i>0){ $sel_mdb.=" ) "; }	
 
 	// Add MISC to filter
 	$i=0;
@@ -210,14 +165,9 @@ function search_mdb ($prod, $model, $ramcap, $gpu, $chip, $socket, $interface, $
 	foreach($misc as $x)
 	{ 
 		if($i)
-		{ /*if ($x = "G-sync" or $x = "Freesync") 
-			{$sel_mdb.=" OR ";} else {$sel_mdb.=" AND ";}*/
-		$sel_mdb.=" AND ";
-		}
+		{ $sel_mdb.=" AND "; }
 		else
-		{
-			$sel_mdb.=" AND ( ";
-		}
+		{ $sel_mdb.=" AND ( "; }
 		
 		if(strpbrk($x,"/"))
 		{	$sel_mdb.=" (";
@@ -238,21 +188,16 @@ function search_mdb ($prod, $model, $ramcap, $gpu, $chip, $socket, $interface, $
 		}
 		$i++;
 	}
-	if($i>0)
-	{ $sel_mdb.=" ) "; }
+	if($i>0){ $sel_mdb.=" ) "; }
 
 	// Add NO WWAN
 	$i=0;
 	if($nowwan)
 	{
 		if($i)
-		{  
-			$sel_mdb.=" AND ";
-		}
+		{ $sel_mdb.=" AND "; }
 		else
-		{
-			$sel_mdb.=" AND ( "; 
-		}
+		{ $sel_mdb.=" AND ( ";  }
 		
 		if($nowwan==1)
 		{ $sel_mdb.="msc NOT LIKE '%WWAN%') "; }

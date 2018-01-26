@@ -23,7 +23,6 @@ function search_regions ($name)
 	}
 	if($i>0)
 	{ $sel_regions.=" ) "; }
-
 	
 	// DO THE SEARCH
 	# echo "Query to select the WARRANTYs:";

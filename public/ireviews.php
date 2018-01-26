@@ -8,8 +8,7 @@ if(!empty($_POST['captcha_code']))
 	$enteredcaptchaCode = $_POST['captcha_code'];
 	//verify the captcha code
 	if($enteredcaptchaCode === $captchaCode)
-	{
-		require_once("lib/php/updatefinal.php"); }
+	{ require_once("lib/php/updatefinal.php"); }
 	else
 	{ $errMsg = 'Captcha code not matched, please try again.'; }
 }
@@ -51,9 +50,4 @@ else { $errMsg = 'Please enter the captcha code:'; }
 	</form>
 <link rel="stylesheet" href="public/lib/css/ireviews.css" type="text/css" />
 <script>$.getScript("public/lib/js/ireviews.js");</script>
-<script type="text/javascript">
-$(document).ready(function()
-	{ actbtn("USER"); 
-});
-</script>
 

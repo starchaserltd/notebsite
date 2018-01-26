@@ -13,7 +13,7 @@
 				·								
 				<span style="cursor:pointer" onmousedown="OpenPage('footer/contact.php',event);">Contact</span>
 			</h3>
-			<p>2017 Copyright Starchaser S.R.L. </p>
+			<p>© 2017-2018 Starchaser S.R.L. </p>
 			</div>
 	</footer>
 <link rel="stylesheet" href="../lib/css/footer-distributed.css" type="text/css" />

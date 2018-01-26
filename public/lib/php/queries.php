@@ -55,7 +55,6 @@ switch($select)
 	}
 }
 
-
 print preg_replace('/,\s*"[^"]+":null|"[^"]+":null,?/', '', json_encode($list));
 mysqli_close($con);
 ?>

@@ -74,11 +74,8 @@ $(document).ready(function()
 		echo 'metakeys("'.$keywords.'");';
 	?>
 	
-	setTimeout(function()
-	{ istime=1; },1000);
+	setTimeout(function(){ istime=1; },1000);
 	document.title = "Noteb - Article";
-	$(document).ready(function(){
-   		 $('meta[name=description]').attr('content', "Laptop article.");
-	});
+	$('meta[name=description]').attr('content', "Laptop article.");
 });
 </script>

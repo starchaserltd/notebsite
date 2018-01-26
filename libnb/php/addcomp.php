@@ -33,7 +33,6 @@ mysqli_close($cons);
 
 if($config_id)
 {
-	
 	$conf_model=$row["model"];
 
 	$sql2='SELECT model FROM CPU WHERE id='.$row["cpu"];

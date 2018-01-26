@@ -60,14 +60,9 @@ function extrainfo(data, item)
 	switch(item)
 	{
 		case "GPU_model":
-		{
-			return data.typegpu;
-			break;
-		}
+		{ return data.typegpu; break; }
 		default:
-		{
-			return false;
-		}	
+		{ return false; }	
 	}
 }
 

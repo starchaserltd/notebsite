@@ -28,9 +28,7 @@ elseif ($issimple || $isadvanced || $isquiz)
 	}
 
 	$conds["batlife_min"] = "batlife >= ".$batlife_min; 
-	//var_dump("min ".$conds["batlife_min"]); 							 // verificare batlife
 	$conds["batlife_max"] = "batlife <= ".$batlife_max; 
-	//var_dump("max ".$conds["batlife_max"]);							 // verificare batlife
 
 	if ($nr_hdd ==2) { $conds["shdd"]="shdd > 0"; }
 

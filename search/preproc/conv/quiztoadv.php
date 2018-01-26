@@ -7,7 +7,6 @@ while( $row=mysqli_fetch_array($result)){ $nomenvalues[]=$row; }
 $totalcapmin = round($nomenvalues[3][2]);
 $totalcapmax = round($nomenvalues[4][2]);
 
-
 $cpucoremin=1; $to_search["gpu"]=0; $memcapmin=2; $mdbslots=-1; $gpupowermin=0; $gpupowermax=500; $displayvresmax=99999; $displayvresmin=0;
 
 if (isset($_GET['casual']) && $_GET['casual']==1 && !(isset($_GET['office'])))
@@ -28,10 +27,8 @@ if (isset($_GET['gaming']) && $_GET['gaming']==1 && !(isset($_GET['games'])))
 if (isset($_GET['cad3d']) && $_GET['cad3d']==1 && !(isset($_GET['3dmodel'])))
 {	$_GET['3dsmaxlight']=1; }
 
-
 //REGIONAL Conditions
 $regions_name[]="USA and Canada";
-
 	
 // Laptop Class Conditions
 $model_minclass=999; $model_maxclass=-1;
@@ -52,7 +49,6 @@ if (isset($_GET['cad3d']) && $_GET['cad3d']==1)
 
 if (isset($_GET['business']) && $_GET['business']==1)
 {	$model_minclass=1;  $model_maxclass=3; }	
-
 
 // CPU Conditions
 $cores=2;
@@ -440,16 +436,33 @@ if (isset($_GET['cadoheavy']) && $_GET['cadoheavy']==1)
 
 if($to_search["gpu"]) {	$gpu_typelist=array_unique($gpu_typelist); for($i=0;$i<=$quiz_mingputype;$i++) { array_diff($gpu_typelist,array(strval($i))); } }
 
-//variabile de test
-//$cadratemin = 15;$cadratemax = 30;
 if($cadratemin!==0)
 {
-	$query = "SELECT DISTINCT model FROM notebro_db.GPU WHERE (rating>=".$cadratemin." AND rating<=".$cadratemax." AND typegpu=3) OR (rating>=".$gameratemin." AND rating<=".$gameratemax." AND typegpu IN (".implode(",",$gpu_typelist)."))";
-	//echo $query;
+	$addgaming="";
+	if (isset($_GET['gaming']) && $_GET['gaming']==1) { if($gpu_powermax<1){$gpu_powermax=999999;} $addgaming=" AND (power>=".$gpu_powermin." AND power<=".$gpu_powermax.")"; }
+	$query = "SELECT DISTINCT model FROM notebro_db.GPU WHERE (rating>=".$cadratemin." AND rating<=".$cadratemax." AND typegpu=3) OR (rating>=".$gameratemin." AND rating<=".$gameratemax.$addgaming." AND typegpu IN (".implode(",",$gpu_typelist)."))";
 	$result = mysqli_query($GLOBALS['con'],$query);
 	array_push($gpu_typelist,"3");
 	while($row=mysqli_fetch_row($result)){	$gpu_model[]=$row[0]; }
-	if(count($gpu_model)<1){	$gpu_typelist=["10"]; }
+	if(count($gpu_model)<1)
+	{
+		if(isset($_GET['gaming']) && $_GET['gaming']==1)
+		{
+			if($gamerating<$gpu_powermin)
+			{ $query = "SELECT DISTINCT model FROM notebro_db.GPU WHERE (".$addgaming." AND typegpu IN (1,2,3,4))"; }
+			else
+			{ $query = "SELECT DISTINCT model FROM notebro_db.GPU WHERE (rating>=".$cadratemin." AND rating<=".$cadratemax." AND typegpu=3) OR (rating>=".$gameratemin." AND rating<=".$gameratemax." AND typegpu IN (".implode(",",$gpu_typelist)."))"; }
+			
+			$result = mysqli_query($GLOBALS['con'],$query);
+			array_push($gpu_typelist,"3");
+			while($row=mysqli_fetch_row($result)){$gpu_model[]=$row[0];}
+			if(count($gpu_model)<1){ $gpu_typelist=["10"]; }
+		}
+		else
+		{
+			$gpu_typelist=["10"]; 
+		}
+	}
 }
 
 if(!$to_search["gpu"]) { if($quiz_mingputype<1) { $quiz_mingputype=0; } array_push($gpu_typelist,"0","1"); if($model_maxclass>=2) { $gpupowermax=36; }; $to_search["gpu"]=1; } 
@@ -518,8 +531,6 @@ if(isset($chassis_made) && count($chassis_made)>0) { $chassis_made=array_unique(
 // WARRANTY Conditions
 $to_search["war"] = 1;
 $war_typewar=["1","2"];
-
-
 
 // SIST Conditions
 if ((isset($_GET['casual']) && $_GET['casual']==1)||(isset($_GET['content']) && $_GET['content']==1)||(isset($_GET['gaming']) && $_GET['gaming']==1))
@@ -660,7 +671,6 @@ foreach ($chassis_made as $element)
 
 if(isset($chassis_twoinone) && $chassis_twoinone == 1)
 {	$twoinone_check = "checked"; }
-
 
 $bdgmin=floatval($budgetmin); 
 $bdgmax=floatval($budgetmax)+1;

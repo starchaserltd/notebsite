@@ -34,11 +34,11 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 		$sel_gpu.="'";
 		$i++;
 
-		if($k==1)
-		{ $sel_gpu.=" )";}
+		if($k==1){ $sel_gpu.=" )";}
 	}
 	if($i>0) { $sel_gpu.=" ) "; }
-// Add TDP filter	
+	
+	// Add TDP filter	
 	if($k>1)	
 	{
 		if($powermin)
@@ -55,26 +55,25 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 			$sel_gpu.=$powermax;
 		}
 		
-// Add memory size to filter 	
-	if($maxmemmin)
-	{
-		$sel_gpu.=" AND ";
-		$sel_gpu.="maxmem>=";
-		$sel_gpu.=$maxmemmin;
-	}
+		// Add memory size to filter 	
+		if($maxmemmin)
+		{
+			$sel_gpu.=" AND ";
+			$sel_gpu.="maxmem>=";
+			$sel_gpu.=$maxmemmin;
+		}
 
- 
-	if($maxmemmax)
-	{
-		$sel_gpu.=" AND ";
-		$sel_gpu.="maxmem<=";
-		$sel_gpu.=$maxmemmax;
-	}
+		if($maxmemmax)
+		{
+			$sel_gpu.=" AND ";
+			$sel_gpu.="maxmem<=";
+			$sel_gpu.=$maxmemmax;
+		}
 		
 		if($dend)
-		{ 	$sel_gpu.=" )) " ; }
+		{ $sel_gpu.=" )) " ; }
 		else
-		{ 	$sel_gpu.=" ) " ; }
+		{ $sel_gpu.=" ) " ; }
 	}
 
 	// Add models to filter	
@@ -141,8 +140,7 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 		$i++;
 	}
 
-	if($i>0)
-	{ $sel_gpu.=" ) "; }
+	if($i>0){ $sel_gpu.=" ) "; }
 		
 	// Add tech to filter - smaller is better here		
 	if($techmin)
@@ -226,9 +224,8 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 		$sel_gpu.="mbw<=";
 		$sel_gpu.=$mbwmax;
 	}
-
-                               
-// Add memory type to the filter	
+                   
+	// Add memory type to the filter	
 	$i=0;
 	if(gettype($mtype)!="array") { $mtype=(array)$mtype; }
 	foreach($mtype as $x)
@@ -248,10 +245,8 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 		$i++;
 	}
 
-	if($i>0)
-	{ $sel_gpu.=" ) "; }
+	if($i>0){ $sel_gpu.=" ) "; }
 
-	
 	// ADD shared memory filter
 	if($sharem!=NULL)
 	{
@@ -260,7 +255,7 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 		$sel_gpu.=$sharem;
 	}
 	
-		// Add date to filter		
+	// Add date to filter		
 	if($ldmin)
 	{
 		$sel_gpu.=" AND";
@@ -296,13 +291,9 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 	{
 			
 		if($i)
-		{  
-			$sel_gpu.=" AND ";
-		}
+		{ $sel_gpu.=" AND "; }
 		else
-		{
-			$sel_gpu.=" AND ( ";
-		}
+		{ $sel_gpu.=" AND ( "; }
 		
 		if(strpbrk($x,"/"))
 		{	$sel_gpu.=" (";
@@ -325,8 +316,7 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 		$i++;
 	}
 	
-	if($i>0)
-	{ $sel_gpu.=" ) "; }
+	if($i>0){ $sel_gpu.=" ) "; }
 	
 	// Add rating to filter	
 	if($ratemin)

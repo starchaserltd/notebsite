@@ -607,8 +607,7 @@
 
 .noUi-horizontal .noUi-handle {
     width: 1.5em !important;
-    height: 1.2em !important;
-    left: -8px !important;
+    height: 1.2em !important;    
     top: -4px !important;
 }
 
@@ -618,7 +617,7 @@
 }
 
 .noUi-horizontal {
-    height: .7em !important;
+    height: 10px !important;
 }
 
 .noUi-connect {
@@ -1632,7 +1631,7 @@ label.css-labelr {
 
 .topLaptops h2 {
     font-size: 16px;
-    background-color: #285f8f;
+    background-color: #49505a;
     padding: 5px;
     color: #fff;
     text-align: center;
@@ -1653,6 +1652,7 @@ label.css-labelr {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center; 
+    border-bottom: 1px solid #dddddd;
 }
 
 .topLaptops .row:hover {    
@@ -1664,7 +1664,7 @@ label.css-labelr {
 }
 
 .topLaptops {
-    margin:15px -3px 0 5px;
+    margin:15px -3px 0 -3px;
     color: #000;   
     max-height: 320px;
     overflow-y: hidden;
@@ -1767,7 +1767,7 @@ label.css-labelr {
     width: 80%;
     float: right;
     position: sticky;
-    top: 28px;
+    top: 28px;    
 }
 
 .articleMobile.row {
@@ -1777,7 +1777,7 @@ label.css-labelr {
 
 .articleMobile h2 {
     font-size: 16px;
-    background-color: #285f8f;
+    background-color: #49505a;
     padding: 10px 0px 10px 15px;
     color: #fff;
     text-align: left;   
@@ -1837,20 +1837,45 @@ nav:after {
 .navbar-collapse {
     padding-right: 0;
     padding-left: 0;
-    border:0;
+    border:0;    
 }
 
 .navbar-brand, .navbar-nav>li>a {
     text-shadow: none;
 }
 
+.row.detaliicomp {
+    padding-bottom: 5px;    
+}
+
+.titlucomp {
+    margin-bottom: 5px;
+}
+
+.row.detaliicomp .col-md-5.col-xs-5.col-sm-5.col-lg-5.rows {
+    padding-left: 15px;
+}
+
+.row.detaliicomp .col-md-5.col-xs-5.col-sm-5.col-lg-5.rows {
+    padding-left: 30px;
+    padding-right: 0;
+}
+
+.ListBox {
+    text-align: center;
+}
 
 /*Responsive media design */
 
 @media (min-width: 1600px) {
      .topLaptops img {
-        max-width: 82px;
+        max-width: 65px;
         width: auto;
+     }
+
+     .row.detaliicomp .col-md-5.col-xs-5.col-sm-5.col-lg-5.rows {
+        text-align: right;
+        padding-right: 50px;
      }
 
      .topLaptopsName {
@@ -2042,7 +2067,7 @@ nav:after {
 
 @media (max-width: 767px) {
     .topLaptops img { 
-    max-width: 80px;
+    max-width: 65px;
     padding: 10px 20px 10px 0;
     width: auto;
  }
@@ -2228,6 +2253,22 @@ nav:after {
     .home #quiz_container {
     	margin:20px 0; 
     }    
+
+    .addtocpmp>a {
+        padding: 0 20px;        
+    }
+
+    .config .addtocpmp {
+        min-width: 135px;
+    }
+
+    .logoheightof {
+        height: 22px!important;
+    }
+
+    .logoheight {
+        height: 20px!important;
+    }
 }
 
 @media(max-width:1200px) {

@@ -18,8 +18,11 @@ if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_n
 	 
 	 <p><b>Where can I buy the laptop I found on your website?</b></p>
 	 <p>Firstly, we do not sell laptops, we only help you find the right laptop. Best advice is to search for that exact configuration either directly on the producer's website or at on-line shops. We also provide on each notebook page a quick Google/Bing/Amazon search option for buying that exact configuration. We would love to provide direct purchase links from various suppliers but unfortunately this is not currently possible.
-	 Also, be advised that configurations vary from country to country and across different regions. Altough rare, the same laptop model may sell with different components across different countries or it may not be available at all.</p>
+	 Also, be advised that configurations vary from country to country and across different regions. Although rare, the same laptop model may sell with different components across different countries or it may not be available at all.</p>
 
+	 	 <p><b>Where do we get our information?</b></p>
+	 <p>In takes care and effort in gathering the most complete and accurate information for every laptop model. Most of the information is sourced from the official documentation provided by laptop manufacturers. When the documentation is incomplete or not entirely reliable we do our own research both on-line and off-line. We hope that in the future we will be able to open up the database and make it more like a "wikipedia" for laptops.</p>
+	 
 	 	 <p><b>How do you estimate prices?</b></p>
 Prices are sourced from producer websites, Amazon and other price comparison websites. However, due to the fact that some laptops can have millions of possible configurations, it is impossible to collect market prices for each of them. Conseqeuntly, for many models we extrapolate the prices based on the data we constantly collect and update.<br>We can confidently say that 95% of all our prices are within a 10% margin of error compared to what is available on the market, with a very few exception (under 4% of latops) prices can be off by almost 30%.
 Large price differences are almost always due to changes in producer price policies which we have yet to update or changes in technical specifications.

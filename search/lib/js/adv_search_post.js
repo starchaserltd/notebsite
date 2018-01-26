@@ -801,6 +801,8 @@ $(document).ready(function()
 	$('#opsist').multiselect(btnsearch);
 	
 	actbtn("SEARCH");
+	document.title = 'Noteb - Search';
+	$('meta[name=description]').attr('content', "Custom laptop search.");
 });
 
 function setrecommended()

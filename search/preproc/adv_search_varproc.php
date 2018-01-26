@@ -24,7 +24,6 @@ $to_search = array(
 	"regions" => 1
 );
 
-
 // BUDGET min si max
 if(isset($_GET['bdgminadv'])){ $budgetmin = (floatval($_GET['bdgminadv'])/$exch)-1; }
 if(isset($_GET['bdgmaxadv'])){ $budgetmax = (floatval($_GET['bdgmaxadv'])/$exch)+1; }
@@ -182,9 +181,7 @@ if ($_GET['gpupowermax'])
 if (isset($_GET['GPU_model_id']))
 { $gpu_model = $_GET['GPU_model_id']; 
 	foreach ($gpu_model as $key=>$x)
-	{
-		$gpu_model[$key]=preg_replace("/[ ]\([0-9\.]+\/10\)/", "", $x);
-	}
+	{ $gpu_model[$key]=preg_replace("/[ ]\([0-9\.]+\/10\)/", "", $x); }
 }
 
 if (isset($_GET['GPU_arch_id']))
@@ -192,14 +189,6 @@ if (isset($_GET['GPU_arch_id']))
 
 if (isset($_GET['GPU_msc_id']))
 { $gpu_misc = $_GET['GPU_msc_id']; }
-/*$gpu_misc = array_flip($gpu_misc);
-if (isset($gpu_misc['G-Sync/FreeSync'])) {$mdb_misc[]="G-Sync";$mdb_misc[] = "FreeSync";}
-unset($gpu_misc['G-Sync/FreeSync']);
-$gpu_misc = array_flip($gpu_misc); 
- */
-
-// var_dump($gpu_misc);
- 
  
 // GPU Maxmem
 if($_GET['gpumemmin'])
@@ -309,7 +298,6 @@ if($_GET['verresmin'])
 if($_GET['verresmax'])
 { $display_vresmax = $_GET['verresmax']; }
 
-
 /* *** STORAGE *** */
 // STOR capacity
 if($_GET['capacitymin'])
@@ -346,29 +334,19 @@ if(isset($_GET['MDB_port_id']))
 foreach($chassis_ports as $key => $x)
 {
 	if((stripos($x,"RS-232"))!==FALSE)
-	{
-		$addmsc["RS-232"][]="RS-232";
-	}
+	{ $addmsc["RS-232"][]="RS-232"; }
 	
 	if((stripos($x,"ExpressCard"))!==FALSE)
-	{
-		$addmsc["ExpressCard"][]="ExpressCard";
-	}
+	{ $addmsc["ExpressCard"][]="ExpressCard"; }
 	
 	if((stripos($x,"SIM card"))!==FALSE)
-	{
-		$addmsc["SIM card"][]="SIM card";
-	}
+	{ $addmsc["SIM card"][]="SIM card"; }
 	
 	if((stripos($x,"SmartCard"))!==FALSE)
-	{
-		$addmsc["SmartCard"][]="SmartCard";
-	}
+	{ $addmsc["SmartCard"][]="SmartCard"; }
+	
 	if((stripos($x,"SD card reader"))!==FALSE)
 	{
-		
-		//$addpi[] = ["4in1","6in1","3in1"];
-		//$addpi[]="SD card reader";
 		$chassis_addpi["SD card reader"][]="2-in-1 card reader";
 		$chassis_addpi["SD card reader"][]="3-in-1 card reader";
 		$chassis_addpi["SD card reader"][]="4-in-1 card reader";
@@ -388,7 +366,6 @@ foreach($chassis_ports as $key => $x)
 			{ $chassis_addpi[$x][]=$i." X ".$y2[1]; }
 		}
 	}
-	
 }
 
 if(isset($_GET['MDB_vport_id']))
@@ -427,13 +404,10 @@ foreach($chassis_vports as $key => $x)
 	}
 }
 
-//DO %var% type of SQL search
-
 /* *** WWAN *** */
 if ($_GET['mdbwwan'])
 { $mdb_wwan = $_GET['mdbwwan']; }
 
-		
 /* *** RAM *** */
 // RAM capacity
 if($_GET['rammin'])
@@ -451,11 +425,9 @@ if($_GET['freqmax'])
 if(isset($_GET['memtype']))
 { $mem_type = $_GET['memtype']; }
 
-
 /* *** Optical Drive *** */
 if($_GET['oddtype']!="Any/None" && $_GET['oddtype']!="Any")
 { $odd_type = $_GET['oddtype']; }
-
 
 /* *** ACUM *** */
 if($_GET['acumcapmin'])
@@ -512,7 +484,7 @@ if (isset($_GET['twoinone-yes']) && $_GET['twoinone-yes'] == TRUE)
 { $chassis_twoinone[] = "1"; } //convertible
 
 //if(!isset($chassis_twoinone))
-	if (!isset($_GET['twoinone-no']) && !isset($_GET['twoinone-yes'])) 
+if (!isset($_GET['twoinone-no']) && !isset($_GET['twoinone-yes'])) 
 { $chassis_twoinone[] = "0"; $chassis_twoinone[] ="1"; } // 0 classic; 1 convertible
 
 //All sort of extra Chassis stuff
@@ -521,26 +493,17 @@ if(isset($_GET['CHASSIS_stuff_id']))
 $chassis_speakers=array(); $chassis_subwoofer=array();
 foreach($chassis_stuff as $key => $x)
 {
-	
 	if(((stripos($x,"speakers"))!==FALSE)&&!((stripos($x,"premium"))!==FALSE))
-	{
-		unset($chassis_stuff[$key]); $chassis_speakers[]=$x;
-	}
+	{ unset($chassis_stuff[$key]); $chassis_speakers[]=$x; }
 	
 	if((stripos($x,"subwoofer"))!==FALSE)
-	{
-		unset($chassis_stuff[$key]); $chassis_subwoofer[]=$x;
-	}
+	{ unset($chassis_stuff[$key]); $chassis_subwoofer[]=$x; }
 	
 	if((stripos($x,"keyboard"))!==FALSE)
-	{
-		$chassis_stuff[$key]=str_ireplace(" keyboard","",$x);
-	}
+	{ $chassis_stuff[$key]=str_ireplace(" keyboard","",$x); }
 	
 	if((stripos($x,"legacy ports"))!==FALSE)
-	{
-		$chassis_stuff[$key]=str_ireplace(" ports","",$x);
-	}
+	{ $chassis_stuff[$key]=str_ireplace(" ports","",$x); }
 	
 	if((stripos($x,"premium speakers"))!==FALSE)
 	{
@@ -555,6 +518,7 @@ foreach($chassis_stuff as $key => $x)
 		$chassis_stuff[]="ungroup";
 	}
 }
+
 $addgroup=1;
 foreach($chassis_speakers as $x)
 {
@@ -587,9 +551,7 @@ if($addgroup==2) { $chassis_stuff[]="ungroup"; $addgroup=1; }
 
 $addmsc=array_unique($addmsc);
 foreach($addmsc as $key=>$addtomsc)
-{
-	$chassis_extra_stuff[$key]=$addtomsc;
-}
+{ $chassis_extra_stuff[$key]=$addtomsc; }
 
 /* *** WNET *** */
 //speed
@@ -608,9 +570,7 @@ if(isset($_GET['opsist']))
 	foreach($sist_list as $key => $x)
 	{
 		if((stristr($x,"No OS")!=FALSE))
-		{
-		 $sist_sist[]=$x;
-		}
+		{ $sist_sist[]=$x; }
 		else
 		{
 			$sist_parts=explode(" ",$x);

@@ -37,10 +37,11 @@ $args = array(
     'suppress_filters' => true );
 	
 $recent_posts = wp_get_recent_posts( $args, ARRAY_A );
-$x = 0;
+$x = 0; $javavar=1;
 $category = get_category(2);
 $published_posts = $category->category_count;
 ?>
+<script type="text/javascript">var review_metatitle_part="";</script>
 <div class="row container-fluid headerback" style="margin-right:0px;padding-right: 0px;">
 	<div class="col-md-12 col-sm-12" style="background-color:white; font-family:arial">
 <?php
@@ -83,6 +84,7 @@ $published_posts = $category->category_count;
 		</div>	
 		<hr style="height:2px; color:#ededed;">
 	<?php }	else {} 
+		if($javavar){echo '<script type="text/javascript">review_metatitle_part="'.$recent_posts[$x]["post_title"].'";</script>'; $javava=0; }
 		}
 	} ?>		
 	</div>
@@ -157,17 +159,12 @@ $published_posts = $category->category_count;
 <script type="text/javascript">
 	$(document).ready(function(){
 		actbtn("REVIEWS");
+		document.title = "Noteb - Reviews";
+		$('meta[name=description]').attr('content', "Laptop reviews. "+review_metatitle_part+" ");
 	});
 	
 	// Only enable if the document has a long scroll bar
 	// Note the window height + offset
-	if ( ($(window).height() + 100) < $(document).height() ) { $('#top-link-block').removeClass('hidden').affix({
-        // how far to scroll down before link "slides" into view
-        offset: {top:100}
-		}); }
-	document.title = "Noteb - Reviews";
-	$(document).ready(function(){
-    $('meta[name=description]').attr('content', "Laptop reviews. Asus ROG G752VT ");
-	});
+	if ( ($(window).height() + 100) < $(document).height() ) { $('#top-link-block').removeClass('hidden').affix({ offset: {top:100} }); }
 </script>
 <link rel="stylesheet" href="content/lib/css/article.css" type="text/css"/>

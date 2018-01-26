@@ -131,12 +131,6 @@ function OpenQuiz(url)
 }
 
 $(document).ready(function() {
-
-    //console.log("ready");
-
-    // Start tooltips
-    // $('[data-toggle="tooltip"]').tooltip(); 
-
     // Script for left menu  
     $('.cssmenu li.active').addClass('open').children('ul').show();
     $('.cssmenu li.has-sub>a').on('click', function() {
@@ -201,8 +195,6 @@ $(document).ready(function() {
         } else {
             d = "search/adv_search.php?";
         }
-        //trigger=0;
-        //console.log("2"+d);
         OpenPage(d);
     });
 

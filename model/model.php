@@ -9,6 +9,14 @@ $rootpath = realpath($_SERVER["DOCUMENT_ROOT"]).$root_mod;
 require_once($rootpath.$admin_address.'/wp/wp-blog-header.php');
 require_once("../etc/session.php");
 require_once("../etc/con_db.php");
+if($underwork)
+{
+	$hourtext="hour"; if($underwork>1){$hourtext="hours";}
+	echo "<div class='serverMaintenance'><div class='animationContainer'><span class='glyphicon glyphicon-cog' aria-hidden='true'></span>
+	<span class='glyphicon glyphicon-cog' aria-hidden='true'></span>
+	<span class='glyphicon glyphicon-cog' aria-hidden='true'></span></div><p>We apologies, but we are currently undergoing server maintenance.<br><br>Our laptop database has been temporarily disabled.<br>We will be back in approximately ".$underwork." ".$hourtext."!</p></div>";
+}
+else {
 require_once("lib/php/headermodel.php");
 require_once("lib/php/genmodel.php");
 ?>
@@ -81,13 +89,13 @@ else
 		</div> 
 		<div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ptop" style="margin-top:25px; line-height:10px; padding:0px;">
 			<div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
-				<p style="text-align:center"><span><b>Laptop Rating: </b></span><span  class="labelblue"><span id="notebro_rate" style="font-size:16px; color:#285F8F; margin-left:4px;"></span><span style="font-size:16px; color:#285F8F;"> / 100</span></span></p>
+				<p style="text-align:center;"><span><b>Laptop Rating: </b></span><span  class="labelblue"><span id="notebro_rate" style="font-size:16px; color:#285F8F; margin-left:4px;"></span><span style="font-size:16px; color:#285F8F;"> / 100</span></span></p>
 			</div>
 			<div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
-				<p style="padding-top:4px;text-align:center"><span style=""><b>Price Range: </b></span><span  class="labelblue"><span style="color:#285F8F; font-size:15px; margin-left:4px;"><?php echo " "; echo showcurrency($exch); ?></span><span id="config_price1" style="font-size:16px; color:#285F8F; margin-left:2px;"></span> - <span id="config_price2" style="font-size:16px; color:#285F8F;"></span></span></p>
+				<p style="padding-top:4px;text-align:center;"><span style=""><b>Price Range: </b></span><span  class="labelblue"><span style="color:#285F8F; font-size:15px; margin-left:4px;"><?php echo " "; echo showcurrency($exch); ?></span><span id="config_price1" style="font-size:16px; color:#285F8F; margin-left:2px;"></span> - <span id="config_price2" style="font-size:16px; color:#285F8F;"></span></span></p>
 			</div>
 			<div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
-				<p style="padding-top:4px;text-align:center"><span style=""><b>Battery life: </b></span><span  class="labelblue"><span id="bat_life1" style="font-size:16px; color:#285F8F; margin-left:4px;"></span> - <span id="bat_life2" style="font-size:16px; color:#285F8F;"></span><span style="color:#285F8F;"> <?php echo " h"; ?></span></span></p>
+				<p style="padding-top:4px;text-align:center;"><span style=""><b>Battery life: </b></span><span  class="labelblue"><span id="bat_life1" style="font-size:16px; color:#285F8F; margin-left:4px;"></span> - <span id="bat_life2" style="font-size:16px; color:#285F8F;"></span><span style="color:#285F8F;"> <?php echo " h"; ?></span></span></p>
 			</div>	
 			<div class="col-md-12 col-sm-12 col-xs-12 btn" style="padding:0px;margin-top:2px;">
 				<div class="btn addtocpmp" id="addcompare" ><a style="text-decoration:none;">Add to compare</a></div>				
@@ -134,7 +142,7 @@ else
 		<div class="clearfix"></div>
 		<h3 class="h4" style="margin-top: 15px;">Specifications:</h3>
 		<!-- start specs -->
-		<div class="col-md-12 col-sm-12 col-xs-12" style="background-color:white; font-family:arial;padding:0px;text-align:center;margin-right: -15px;margin-left: -15px;">
+		<div class="col-md-12 col-sm-12 col-xs-12" style="background-color:white; font-family:arial;padding:0px;text-align:left;margin-right: -15px;margin-left: -15px;">
 			<div class="col-md-4 col-sm-6 col-lg-4 col-xs-12 btn" style="text-align:left;padding-top:0px">
 				<div>
 					<span class="toggler compmod" data-hide="all" style="color:black;background-color:#FFD466;padding:2px 20px;font-weight:normal"> Show all details </span>
@@ -146,7 +154,7 @@ else
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 				<!-- CPU -->
 				<div class="row modelwidht">
-					<div class="col-md-12 titlucomp toolinfo" data-toolid="0" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-load="1" data-original-title="data-loading..."><p><strong><span class="toolinfo1">Processor</span></strong></p></div>
+					<div class="col-md-12 titlucomp toolinfo text-center" data-toolid="0" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-load="1" data-original-title="data-loading..."><strong><span class="toolinfo1">Processor</span></strong></div>
 				</div>
 				<div class="row modelwidht">	
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">	
@@ -198,9 +206,9 @@ else
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows toolinfo" data-toolid="5" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1">Rating:</span></div>
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="5" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1"><b><span  class="labelblue-s"><span id="cpu_rating" ></span> / 100</span></b></span></div>							
 						</div>	
-						<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+						<div class="row col-md-12 col-xs-12 col-sm-12 col-lg-12">
 							<div style="background-color:#FFD466;  text-align:center; border-radius:3px; ">
-								<a  class="toggler" data-hide="cpu" style="text-decoration:none; color:black;">Show more details</a>
+								<a  class="toggler" data-hide="cpu" style="text-decoration:none; color:black;margin-top: 10px;display: block;">Show more details</a>
 							</div>
 						</div>								
 					</div>		
@@ -208,7 +216,7 @@ else
 				<br>
 				<!-- Video Card -->
 				<div class="row titlucomp toolinfo modelwidht" data-toolid="20" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
-					<div class="col-md-12"><strong><span class="toolinfo1">Video card</span></strong></div>
+					<div class="col-md-12 text-center"><strong><span class="toolinfo1">Video card</span></strong></div>
 				</div>
 				<div class="row modelwidht">						
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">	
@@ -268,9 +276,9 @@ else
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows toolinfo" data-toolid="30" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1">Rating:</span></div>
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="30" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1"><b><span  class="labelblue-s"><span id="gpu_rating"></span> / 100</span></b></span></div>
 						</div>		
-						<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+						<div class="row col-md-12 col-xs-12 col-sm-12 col-lg-12">
 							<div  style="background-color:#FFD466;  text-align:center; border-radius:3px;">
-								<a  class="toggler" data-hide="gpu" style="text-decoration:none; color:black;">Show more details</a>
+								<a  class="toggler" data-hide="gpu" style="text-decoration:none; color:black;margin-top: 10px;display: block;">Show more details</a>
 							</div>
 						</div>
 					</div>																
@@ -278,7 +286,7 @@ else
 				<br>	
 				<!-- Display -->
 				<div class="row titlucomp toolinfo modelwidht" data-toolid="42" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
-					<div class="col-md-12"><strong><span class="toolinfo1">Display</span></strong></div>
+					<div class="col-md-12 text-center"><strong><span class="toolinfo1 ">Display</span></strong></div>
 				</div>
 				<div class="row modelwidht">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -318,9 +326,9 @@ else
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows toolinfo" data-toolid="48" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1">Rating:</span></div>
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="48" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1"><span id="display_rating"></span> / 100</span></div>
 						</div>
-						<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+						<div class="row col-md-12 col-xs-12 col-sm-12 col-lg-12">
 							<div style="background-color:#FFD466;  text-align:center; border-radius:3px;">
-								<a  class="toggler" data-hide="dis" style="text-decoration:none; color:black;">Show more details</a>
+								<a  class="toggler" data-hide="dis" style="text-decoration:none; color:black;margin-top: 10px;display: block;">Show more details</a>
 							</div>
 						</div>
 					</div>								
@@ -328,7 +336,7 @@ else
 				<br>
 				<!-- Storage -->
 				<div class="row titlucomp modelwidht">
-					<div class="col-md-12"><strong>Storage</strong></div>
+					<div class="col-md-12 text-center"><strong>Storage</strong></div>
 				</div>
 				<div class="row modelwidht">						
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -356,9 +364,9 @@ else
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Miscellaneous:</div>
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows" id ="hdd_misc"></div>
 						</div>
-						<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+						<div class="row col-md-12 col-xs-12 col-sm-12 col-lg-12">
 							<div style="background-color:#FFD466;  text-align:center; border-radius:3px;">
-								<a class="toggler" data-hide="sto" style="text-decoration:none; color:black;">Show more details</a>
+								<a class="toggler" data-hide="sto" style="text-decoration:none; color:black;margin-top: 10px;display: block;">Show more details</a>
 							</div>
 						</div>
 					</div>					
@@ -371,7 +379,7 @@ else
 					<br>
 					<!-- Secondary Storage (if exists) -->						
 					<div class="row titlucomp modelwidht">
-						<div class="col-md-12"><strong>Secondary Storage</strong></div>
+						<div class="col-md-12 text-center"><strong>Secondary Storage</strong></div>
 					</div>
 					<div class="row modelwidht">						
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -395,9 +403,9 @@ else
 								<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Write Speed:</div>
 								<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows" ><span id ="shdd_writes"></span> MB/s</div>
 							</div>
-							<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+							<div class="row col-md-12 col-xs-12 col-sm-12 col-lg-12">
 								<div style="background-color:#FFD466;  text-align:center; border-radius:3px;">
-									<a class="toggler" data-hide="sto1" style="text-decoration:none; color:black;">Show more details</a>
+									<a class="toggler" data-hide="sto1" style="text-decoration:none; color:black;margin-top: 10px;display: block;">Show more details</a>
 								</div>
 							</div>
 						</div>	
@@ -406,7 +414,7 @@ else
 				<br>
 				<!-- Motherboard -->	
 				<div class="row titlucomp toolinfo modelwidht" data-toolid="53" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
-					<div class="col-md-12"><strong><span class="toolinfo1">Motherboard</span></strong></div>
+					<div class="col-md-12 text-center"><strong><span class="toolinfo1">Motherboard</span></strong></div>
 				</div>
 				<div class="row modelwidht">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -442,9 +450,9 @@ else
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Miscellaneous:</div>
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows" id = "mdb_misc"></div>
 						</div>
-						<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+						<div class="row col-md-12 col-xs-12 col-sm-12 col-lg-12">
 							<div style="background-color:#FFD466;  text-align:center; border-radius:3px;">
-								<a  class="toggler" data-hide="mdb" style="text-decoration:none; color:black;">Show more details</a>
+								<a  class="toggler" data-hide="mdb" style="text-decoration:none; color:black;margin-top: 10px;display: block;">Show more details</a>
 							</div>
 						</div>	
 					</div>					
@@ -454,7 +462,7 @@ else
 			<!-- START SECOND HALF OF MODEL -->
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">				
 				<div class="row titlucomp toolinfo modelwidht" data-toolid="59" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
-					<div class="col-md-12"><strong><span class="toolinfo1">Memory</span></strong></div>
+					<div class="col-md-12 text-center"><strong><span class="toolinfo1">Memory</span></strong></div>
 				</div>
 				<div class="row modelwidht">						
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -478,9 +486,9 @@ else
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Miscellaneous:</div>
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows" id = "mem_misc"></div>
 						</div>
-						<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+						<div class="row col-md-12 col-xs-12 col-sm-12 col-lg-12">
 							<div style="background-color:#FFD466;  text-align:center; border-radius:3px;">
-								<a  class="toggler" data-hide="mem" style="text-decoration:none; color:black;">Show more details</a>
+								<a  class="toggler" data-hide="mem" style="text-decoration:none; color:black;margin-top: 10px;display: block;">Show more details</a>
 							</div>
 						</div>												
 					</div>					
@@ -488,7 +496,7 @@ else
 				<br>
 				<!--Optical Drive (if exists) -->		
 				<div class="row titlucomp toolinfo modelwidht" data-toolid="64" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
-					<div class="col-md-12"><strong><span class="toolinfo1">Optical drive</span></strong></div>
+					<div class="col-md-12 text-center"><strong><span class="toolinfo1">Optical drive</span></strong></div>
 				</div>
 				<div class="row modelwidht">					
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -506,9 +514,9 @@ else
 								<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Miscellaneous:</div>
 								<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows" id = "odd_misc"></div>
 							</div>
-							<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+							<div class="row col-md-12 col-xs-12 col-sm-12 col-lg-12">
 								<div style="background-color:#FFD466;  text-align:center; border-radius:3px;">
-									<a class="toggler" data-hide="odd" style="text-decoration:none; color:black;">Show more details</a>
+									<a class="toggler" data-hide="odd" style="text-decoration:none; color:black;margin-top: 10px;display: block;">Show more details</a>
 								</div>
 							</div>	
 <?php					} ?>		
@@ -517,7 +525,7 @@ else
 				<br>
 				<!-- Battery -->	
 				<div class="row titlucomp modelwidht">
-					<div class="col-md-12"><strong>Battery</strong></div>
+					<div class="col-md-12 text-center"><strong>Battery</strong></div>
 				</div>
 				<div class="row modelwidht">					
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -546,9 +554,9 @@ else
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows" id = "acum_misc"></div>
 						</div>
 						
-						<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+						<div class="row col-md-12 col-xs-12 col-sm-12 col-lg-12">
 							<div style="background-color:#FFD466;  text-align:center; border-radius:3px;">
-								<a class="toggler" data-hide="acu" style="text-decoration:none; color:black;">Show more details</a>
+								<a class="toggler" data-hide="acu" style="text-decoration:none; color:black;margin-top: 10px;display: block;">Show more details</a>
 							</div>
 						</div>
 									
@@ -557,7 +565,7 @@ else
 				<br>
 				<!-- Chassis -->	
 				<div class="row titlucomp modelwidht" data-toolid="69" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><strong><span class="toolinfo1">Chassis</span></strong></div>
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center"><strong><span class="toolinfo1">Chassis</span></strong></div>
 				</div>
 				<div class="row modelwidht">					
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -622,9 +630,9 @@ else
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Miscellaneous:</div>
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows" id = "chassis_misc"></div>
 						</div>
-						<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+						<div class="row col-md-12 col-xs-12 col-sm-12 col-lg-12">
 							<div style="background-color:#FFD466;  text-align:center; border-radius:3px;">
-								<a class="toggler" data-hide="cha" style="text-decoration:none; color:black;">Show more details</a>
+								<a class="toggler" data-hide="cha" style="text-decoration:none; color:black;margin-top: 10px;display: block;">Show more details</a>
 							</div>
 						</div>
 					</div>							
@@ -632,7 +640,7 @@ else
 				<br>
 				<!-- Wireless card -->	
 				<div class="row titlucomp toolinfo modelwidht" data-toolid="71" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
-					<div class="col-md-12"><strong><span class="toolinfo1">Wireless card</span></strong></div>
+					<div class="col-md-12 text-center"><strong><span class="toolinfo1">Wireless card</span></strong> </div>
 				</div>
 				<div class="row modelwidht">				
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -656,9 +664,9 @@ else
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Miscellaneous:</div>
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows" id = "wnet_misc"></div>
 						</div>
-						<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+						<div class="row col-md-12 col-xs-12 col-sm-12 col-lg-12">
 							<div style="background-color:#FFD466;  text-align:center; border-radius:3px;">
-								<a class="toggler" data-hide="wnet" style="text-decoration:none; color:black;">Show more details</a>
+								<a class="toggler" data-hide="wnet" style="text-decoration:none; color:black;margin-top: 10px;display: block;">Show more details</a>
 							</div>
 						</div>		
 					</div>				
@@ -666,7 +674,7 @@ else
 				<br>
 				<!-- Warranty -->			
 				<div class="row modelwidht">
-					<div class="col-md-12 titlucomp"><strong>Warranty</strong></div>
+					<div class="col-md-12 titlucomp text-center"><strong>Warranty</strong></div>
 				</div>
 				<div class="row modelwidht">					
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -683,13 +691,13 @@ else
 				<br>
 				<!-- Operating System -->	
 				<div class="row toolinfo modelwidht" data-toolid="75" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
-					<div class="col-md-12 titlucomp"><strong><span class="toolinfo1">Operating System</span></strong></div>
+					<div class="col-md-12 titlucomp text-center"><strong><span class="toolinfo1">Operating System</span></strong></div>
 				</div>
 				<div class="row modelwidht">					
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="row detaliicomp">
-							<div class="col-md-6 col-xs-6 col-sm-6 col-lg-6 rows">System:</div>
-							<div class="col-md-6 col-xs-6 col-sm-6 col-lg-6 rows"><?php show_sist($modelsist); ?></div>
+							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">System:</div>
+							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows"><?php show_sist($modelsist); ?></div>
 						</div>
 					</div>
 				</div>
@@ -699,7 +707,7 @@ else
 				if(!($msctext==""))
 				{ ?>
 					<div class="row modelwidht">
-						<div class="col-md-12 titlucomp"><strong>Miscellaneous</strong></div>
+						<div class="col-md-12 titlucomp text-center"><strong>Miscellaneous</strong></div>
 					</div>
 					<div class="row modelwidht">					
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -718,10 +726,7 @@ else
 		<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
 			<p class="disclaimernb"><strong> Disclaimer.</strong> We can not guarantee that the information on this page is 100% correct. <a href="<?php echo $web_address; ?>?footer/contact.php">Submit correction.</a></p>
 		</div>
-	</div>
-	<!-- REVIEWS -->
 <?php
-	//include("lib/php/modelreviews.php");
 	include("lib/php/db_reviews.php");
 	
 	if($nr_nb_reviews>0)
@@ -733,7 +738,7 @@ else
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0px;">
 				<?php foreach($nb_reviews as $el) { ?>	
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ListElem">
-					<a onmousedown="OpenPage('<?php echo $el["link"]; ?>',event);"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="font-weight:bold;text-align:center;font-size:medium;cursor: pointer;"><?php echo $el["title"]; ?></div></a>
+					<a onmousedown="OpenPage('<?php echo $el["link"]; ?>',event);"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="font-weight:bold;text-align:left;font-size:medium;cursor: pointer;"><?php echo $el["title"]; ?></div></a>
 				</div>
 			<?php } ?>
 			</div>
@@ -749,7 +754,7 @@ else
 				<?php foreach($int_reviews as $el) { ?>	
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ListElem">
 					<a href="<?php echo $el["link"]; ?>" target="blank" >
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="font-weight:bold;text-align:center;font-size:medium;"><?php echo $el["site"]; ?></div					
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="font-weight:bold;font-size:medium;"><?php echo $el["site"]; ?></div					
 					</a>
 				</div>
 				<?php } ?>
@@ -757,11 +762,12 @@ else
 		</div>
 	</div>
 <?php } ?>
-	<!-- COMMENTS -->
-	<div id="disqus_thread"></div>
+</div>
+	<!-- REVIEWS -->
 
+	<!-- COMMENTS -->
+	<div id="disqus_thread" style="margin-left: 10px;"></div>
 	<div id="leave_comment"></div>
-<!-- <script type="text/javascript" src="model/lib/js/model_queries.js"></script> -->
 
  <script><?php include("lib/php/genjsmodel.php"); ?></script>
  <script>$.getScript("model/lib/js/model.js");</script>
@@ -778,6 +784,6 @@ $(document).ready(function(){
 });
 </script>
 <?php  
-} ?>
+} } ?>
 </div>
-<link rel="stylesheet" href="model/lib/css/model.css?v=17" type="text/css"/>
+<link rel="stylesheet" href="model/lib/css/model.css?v=18" type="text/css"/>

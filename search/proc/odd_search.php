@@ -11,19 +11,13 @@ function search_odd ($type, $prod, $misc, $speedmin, $speedmax, $ratemin, $ratem
 	if(gettype($type)!="array") { $type=(array)$type; }
 	foreach($type as $x)
 	{
-
 		if($i)
-		{  
-			$sel_odd.=" OR ";
-		}
+		{ $sel_odd.=" OR "; }
 		else
-		{
-			$sel_odd.=" AND ( ";
-		}
+		{ $sel_odd.=" AND ( "; }
 	
-	if(strcasecmp($x,"Any optical drive")!=0)
+		if(strcasecmp($x,"Any optical drive")!=0)
 		{
-		
 			$sel_odd.="type='";
 			$sel_odd.=$x;
 			$sel_odd.="'";
@@ -39,8 +33,7 @@ function search_odd ($type, $prod, $misc, $speedmin, $speedmax, $ratemin, $ratem
 		}
 		$i++;
 	}
-	if($i>0)
-	{ $sel_odd.=" ) "; }
+	if($i>0){ $sel_odd.=" ) "; }
 
 	// Add prod to filter	
 	$i=0;
@@ -48,22 +41,16 @@ function search_odd ($type, $prod, $misc, $speedmin, $speedmax, $ratemin, $ratem
 	foreach($prod as $x)
 	{		
 		if($i)
-		{  
-			$sel_odd.=" OR ";
-		}
+		{ $sel_odd.=" OR "; }
 		else
-		{
-			$sel_odd.=" AND ( ";
-		}
+		{ $sel_odd.=" AND ( "; }
 		
 		$sel_odd.="prod='";
 		$sel_odd.=$x;
 		$sel_odd.="'";
 		$i++;
-	
 	}
-	if($i>0)
-	{ $sel_odd.=" ) "; }
+	if($i>0){ $sel_odd.=" ) "; }
 
 	// Add MISC to filter
 	$i=0;
@@ -71,21 +58,16 @@ function search_odd ($type, $prod, $misc, $speedmin, $speedmax, $ratemin, $ratem
 	foreach($misc as $x)
 	{
 		if($i)
-		{  
-			$sel_odd.=" AND ";
-		}
+		{ $sel_odd.=" AND "; }
 		else
-		{
-			$sel_odd.=" AND ( ";
-		}
+		{ $sel_odd.=" AND ( "; }
 		
 		$sel_odd.="FIND_IN_SET('";
 		$sel_odd.=$x;
 		$sel_odd.="',msc)>0";
 		$i++;
 	}
-	if($i>0)
-	{ $sel_odd.=" ) "; }
+	if($i>0){ $sel_odd.=" ) "; }
 
 	//Add speed to filter
 	if($speedmin)

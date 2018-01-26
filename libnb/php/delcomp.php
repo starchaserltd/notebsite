@@ -9,9 +9,7 @@ $id=strval($_POST['conf']);
 		if(isset($_SESSION['conf'.$i]["id"]))
 		{
 			if($_SESSION['conf'.$i]["id"]==$id)
-			{
-				unset($_SESSION['conf'.$i]);
-			}
+			{ unset($_SESSION['conf'.$i]); }
 		}			
 	}
 	

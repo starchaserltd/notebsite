@@ -4,7 +4,6 @@
  
 function search_acum ($tipc, $nrcmin, $nrcmax, $volt, $capmin, $capmax, $pricemin, $pricemax, $misc, $selcap)
 {
-
 	if($selcap>0)
 	{ $sel_acum="SELECT id,price,rating,err,cap FROM notebro_db.ACUM WHERE 1=1 AND valid=1"; }
 	else
@@ -17,13 +16,9 @@ function search_acum ($tipc, $nrcmin, $nrcmax, $volt, $capmin, $capmax, $pricemi
 	{
 			
 		if($i)
-		{  
-			$sel_acum.=" OR ";
-		}
+		{ $sel_acum.=" OR "; }
 		else
-		{
-			$sel_acum.=" AND ( ";
-		}
+		{ $sel_acum.=" AND ( "; }
 		
 		$sel_acum.="tipc='";
 		$sel_acum.=$x;
@@ -75,16 +70,11 @@ function search_acum ($tipc, $nrcmin, $nrcmax, $volt, $capmin, $capmax, $pricemi
 	$i=0;
 	if(gettype($misc)!="array") { $misc=(array)$misc; }
 	foreach($misc as $x)
-	{
-			
+	{	
 		if($i)
-		{  
-			$sel_acum.=" AND ";
-		}
+		{ $sel_acum.=" AND "; }
 		else
-		{
-			$sel_acum.=" AND ( ";
-		}
+		{ $sel_acum.=" AND ( "; }
 		
 		$sel_acum.="FIND_IN_SET('";
 		$sel_acum.=$x;
@@ -130,6 +120,5 @@ function search_acum ($tipc, $nrcmin, $nrcmax, $volt, $capmin, $capmax, $pricemi
 	
 	mysqli_free_result($result);
 	return($acum_return);
-	
 }
 ?>

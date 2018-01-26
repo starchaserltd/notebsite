@@ -12,21 +12,16 @@ function search_model ($mmodel,$prodmodel,$fammodel,$msc,$regions,$minclass,$max
 	foreach($mmodel as $x)
 	{
 		if($i)
-		{  
-			$sel_model.=" OR ";
-		}
+		{ $sel_model.=" OR "; }
 		else
-		{
-			$sel_model.=" AND ( ";
-		}
+		{ $sel_model.=" AND ( "; }
 		
 		$sel_model.="model='";
 		$sel_model.=$x;
 		$sel_model.="'";
 		$i++;
 	}
-	if($i>0)
-	{ $sel_model.=" ) "; }
+	if($i>0){ $sel_model.=" ) "; }
 
 	// Add prod to filter	
 	$i=0;
@@ -34,21 +29,16 @@ function search_model ($mmodel,$prodmodel,$fammodel,$msc,$regions,$minclass,$max
 	foreach($prodmodel as $x)
 	{
 		if($i)
-		{  
-			$sel_model.=" OR ";
-		}
+		{ $sel_model.=" OR "; }
 		else
-		{
-			$sel_model.=" AND ( ";
-		}
+		{ $sel_model.=" AND ( "; }
 		
 		$sel_model.="prod='";
 		$sel_model.=$x;
 		$sel_model.="'";
 		$i++;
 	}
-	if($i>0)
-	{ $sel_model.=" ) "; }
+	if($i>0){ $sel_model.=" ) "; }
 
 	// Add fam to filter	
 	$i=0;
@@ -57,9 +47,7 @@ function search_model ($mmodel,$prodmodel,$fammodel,$msc,$regions,$minclass,$max
 	{
 		$fam_parts=explode(" ",$x); unset($fam_parts[0]); $x=implode(" ",$fam_parts);
 		if($i)
-		{  
-			$sel_model.=" OR ";
-		}
+		{ $sel_model.=" OR "; }
 		else
 		{
 			$sel_model.=" AND idfam IN ( SELECT id FROM `FAMILIES` WHERE ";
@@ -70,8 +58,7 @@ function search_model ($mmodel,$prodmodel,$fammodel,$msc,$regions,$minclass,$max
 		$sel_model.="'";
 		$i++;
 	}
-	if($i>0)
-	{ $sel_model.=" ) "; }
+	if($i>0){ $sel_model.=" ) "; }
 
 	// Add class to filter
 	if($minclass>=0 && $maxclass<=10) { if($advclass && $i>0){ $prep="OR";}else{$prep="AND";} $sel_model.=" ".$prep." idfam IN ( SELECT id FROM `FAMILIES` WHERE business BETWEEN ".$minclass." AND ".$maxclass.")"; }
@@ -82,21 +69,16 @@ function search_model ($mmodel,$prodmodel,$fammodel,$msc,$regions,$minclass,$max
 	foreach($msc as $x)
 	{
 		if($i)
-		{  
-			$sel_model.=" OR ";
-		}
+		{ $sel_model.=" OR "; }
 		else
-		{
-			$sel_model.=" AND ( ";
-		}
+		{ $sel_model.=" AND ( "; }
 		
 		$sel_model.="msc LIKE '%";
 		$sel_model.=$x;
 		$sel_model.="%'";
 		$i++;
 	}
-	if($i>0)
-	{ $sel_model.=" ) "; }
+	if($i>0){ $sel_model.=" ) "; }
 	
 	//REGIONS search
 	$i=0;
@@ -117,13 +99,9 @@ function search_model ($mmodel,$prodmodel,$fammodel,$msc,$regions,$minclass,$max
 		else
 		{
 			if($i)
-			{  
-				$sel_model.=" OR ";
-			}
+			{ $sel_model.=" OR "; }
 			else
-			{
-				$sel_model.=" AND ( ";
-			}
+			{ $sel_model.=" AND ( "; }
 			
 			$sel_model.="FIND_IN_SET('";
 			$sel_model.=$x;
@@ -131,8 +109,7 @@ function search_model ($mmodel,$prodmodel,$fammodel,$msc,$regions,$minclass,$max
 			$i++;
 		}
 	}
-	if($i>0)
-	{ $sel_model.=" ) "; }
+	if($i>0){ $sel_model.=" ) "; }
 		
 	$sel_model.=" ORDER BY idabc ASC";
 	

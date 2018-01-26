@@ -15,13 +15,9 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 	foreach($prod as $x)
 	{
 		if($i)
-		{  
-			$sel_cpu.=" OR ";
-		}
+		{ $sel_cpu.=" OR "; }
 		else
-		{
-			$sel_cpu.=" AND ( ";
-		}
+		{ $sel_cpu.=" AND ( "; }
 	
 		$sel_cpu.="prod='";
 		$sel_cpu.=$x;
@@ -37,13 +33,9 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 	foreach($model as $x)
 	{	
 		if($i)
-		{  
-			$sel_cpu.=" OR ";
-		}
+		{ $sel_cpu.=" OR "; }
 		else
-		{
-			$sel_cpu.=" AND ( ";
-		}
+		{ $sel_cpu.=" AND ( "; }
 
 		$sel_cpu.="model='";
 		$sel_cpu.=$x;
@@ -213,13 +205,9 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 		if(stripos($x,"Intel Core i")===FALSE && stripos($x,"Ryzen")===FALSE )
 		{
 			if($i)
-			{  
-				$sel_cpu.=" AND ";
-			}
+			{ $sel_cpu.=" AND "; }
 			else
-			{
-				$sel_cpu.=" AND ( ";
-			}	
+			{ $sel_cpu.=" AND ( "; }	
 			
 			if(strcmp($x,"AVX1.0")==0) { $x="AVX/AVX1.0/AVX2.0"; }
 			
@@ -252,13 +240,9 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 		if(stripos($x,"Intel Core i")!==FALSE)
 		{
 			if($i)
-			{  
-				$sel_cpu.=" OR ";
-			}
+			{ $sel_cpu.=" OR "; }
 			else
-			{
-				$sel_cpu.=" AND (";
-			}
+			{ $sel_cpu.=" AND ("; }
 			
 			$x=str_ireplace("Intel Core ","",$x);
 			$sel_cpu.="model LIKE '%".$x."%'";	
@@ -268,13 +252,9 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 		if(stripos($x,"Ryzen")!==FALSE)
 		{
 			if($i)
-			{  
-				$sel_cpu.=" OR ";
-			}
+			{ $sel_cpu.=" OR "; }
 			else
-			{
-				$sel_cpu.=" AND (";
-			}
+			{ $sel_cpu.=" AND ("; }
 			
 			$sel_cpu.="model LIKE '%"."Ryzen"."%'";	
 			$i++;

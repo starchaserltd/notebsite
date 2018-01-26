@@ -5,7 +5,6 @@ function sort_func_by_rating(&$results) {
     });
 }
 
-
 function sort_func_by_value(&$results) {
     usort($results, function ($row1, $row2) {
         return (floatval($row1["value"]) > floatval($row2["value"])) ? -1 : 1;

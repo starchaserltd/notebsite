@@ -4,24 +4,20 @@
 
 function show($col, $tab, $id)
 {
-
 	$result = mysqli_query($GLOBALS['con'], "SELECT $col FROM $tab WHERE id = '".$id."'"); 
 	$item = mysqli_fetch_array($result);
 
 	if(strcasecmp($item[$col],"Standard")==0)
-	{
-		$item[$col]="";
-	}
+	{ $item[$col]=""; }
 
 	if(!($col<=>"clocks") && substr($item[$col],-1)==='0')
 	{ $item[$col]=sprintf('%0.2f',floatval($item[$col])); }
-
+	
 	echo $item[$col];
 }
 
 function showhdd($col, $tab, $id, $shdd)
 {
-
 	if(intval($shdd)==0)
 	{
 		$result = mysqli_query($GLOBALS['con'], "SELECT $col FROM $tab WHERE id = '".$id."'"); 
@@ -93,9 +89,7 @@ function getdetails($id)
 	$region_m_id=intval(explode(",",$item['regions'])[0]);
 	if(isset($item['submodel'])){ $submodel=$item['submodel']; if(strlen($submodel)>6 && !preg_match("/\(.*\)/",$submodel) && stripos($prod,"apple")===FALSE){ $submodel=substr($submodel,0,6)."."; } } 
 }
-
-
-
+ 
 function showprice($tab, $id, $exc)
 { 
 	$result = mysqli_query($GLOBALS['cons'], "SELECT price,err FROM ".$tab." WHERE id = '".$id."'"); 

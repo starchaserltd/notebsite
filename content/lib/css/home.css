@@ -103,26 +103,36 @@ div.latest4 a {
 	font-size: 14px;
 }
 
-
-
 .showMoreTop + .mobileShowMoreGaming, .showMoreTop + .mobileShowMoreBusiness, .showMoreTop + .mobileShowMoreUltrabooks, .showMoreTop + .mobileShowMoreStudent, .showAllArticles .mobileShowMoreArticles {
 	display: block;
 	font-size: 14px;
 	margin-bottom: 15px;
 }
 
+.showMoreTop + .mobileShowMoreGaming span, .showMoreTop + .mobileShowMoreBusiness span, .showMoreTop + .mobileShowMoreUltrabooks span, .showMoreTop + .mobileShowMoreStudent span, .showAllArticles .mobileShowMoreArticles {
+	display: block;
+	font-size: 14px;
+	margin: 0 auto 15px auto;
+	border: 1px solid #285f8f;
+    padding: 5px 15px;
+    border-radius: 15px;
+    color: #fff;
+    background-color: #285f8f;
+    max-width: 110px;
+}
+
 .topLaptopsDate {
 	text-align: center;
 	color: #fff;
 	font-size: 10px;
-	background-color: #285f8f;
+	background-color: #49505a;
 	margin:0px -15px 0px -15px;
 }
 
 .pretTopLaptops {
 	font-weight: bold;
+	color: #49505a;
 }
-
 
 /* Media queries */
 
@@ -248,7 +258,6 @@ div.latest4 a {
 
 }
 
-
 @media screen and (max-width:500px) {
 	.latest3 {
 		float: none !important;
@@ -256,7 +265,6 @@ div.latest4 a {
 		width: 100% !important
 	}
 }
-
 
 @media screen and (max-width:1439px) and (min-width:900px) {
 	div.latest3 a {
@@ -277,8 +285,6 @@ div.latest4 a {
 		width: 65% !important;
 	}
 }
-
-
 
 @media screen and (max-width:500px) {
 	.latest4 {

@@ -167,9 +167,7 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 <?php
 		}
 ?>
-<script type="text/javascript"> excode='<?php echo $_SESSION['exchcode']; ?>'; document.title = 'Noteb - Search results'; $(document).ready(function(){
-   		 $('meta[name=description]').attr('content', "Search results.");
-	});
+<script type="text/javascript"> excode='<?php echo $_SESSION['exchcode']; ?>';
 $.getScript("../lib/js/jquery.matchHeight-min.js").done(function(){ $.getScript("search/lib/js/results.js"); });
 <?php
 if (isset($browse_by)&&$browse_by!==0)

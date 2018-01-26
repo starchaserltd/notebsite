@@ -4,11 +4,11 @@ var quiz = {
         0:{
             'question': 'You will use your laptop mainly for:<br>(multiple choices)',
             'options': {
-                'casual' : { 'txt':['internet<br>and office','multiple'], 'img':['internet2.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                'content' : { 'txt':['photo and<br>video editing','mltiple'], 'img':['pvedit.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-				'coding' : { 'txt':['coding and<br>it management','multiple'], 'img':['itstuff.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-				'business' : { 'txt':['business','multiple'], 'img':['briefcase.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                'gaming' : { 'txt':['gaming','multiple'], 'img':['gaming.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                'casual' : { 'txt':['Internet<br>and office','multiple'], 'img':['internet2.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                'content' : { 'txt':['Photo and<br>video editing','mltiple'], 'img':['pvedit.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+				'coding' : { 'txt':['Coding and<br>IT management','multiple'], 'img':['itstuff.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+				'business' : { 'txt':['Business','multiple'], 'img':['briefcase.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                'gaming' : { 'txt':['Gaming','multiple'], 'img':['gaming.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
 				'cad3d' : { 'txt':['CAD/3D<br>content','multiple'], 'img':['cad3d.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 }
             },
             'selected': 0,
@@ -17,11 +17,11 @@ var quiz = {
         1:{
             'question': 'You will keep it mainly:<br>(multiple choices)',
             'options': {
-                'desk' : { 'txt':['on a desk','multiple'], 'img':['desk.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                'lap' : { 'txt':['on the go','multiple'], 'img':['onlap.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-				'bed' : { 'txt':['in bed','multiple'], 'img':['bed.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                'house' : { 'txt':['around the<br>house or office','multiple'], 'img':['aroundhouse.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                'bag' : { 'txt':['in a bag or<br>backpack','multiple'], 'img':['backpack.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                'desk' : { 'txt':['On a desk','multiple'], 'img':['desk.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                'lap' : { 'txt':['On the go','multiple'], 'img':['onlap.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+				'bed' : { 'txt':['In bed','multiple'], 'img':['bed.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                'house' : { 'txt':['Around the<br>house or office','multiple'], 'img':['aroundhouse.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                'bag' : { 'txt':['In a bag or<br>backpack','multiple'], 'img':['backpack.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
                 'display_size' : { 'txt':['or directly<br>select its size','multiple'], 'img':['display.svg',''], 'chk':{'on':0,'style':['display:none;']},'extra':['display_size'],'no':1 }
             },
             'selected': 0,
@@ -30,11 +30,11 @@ var quiz = {
         2:{
             'question': 'Give more details on your choices:<br>(optional,multiple choices)',
             'options': {
-				'office' : { 'txt':['office<br>activities','multiple'], 'img':['office.svg',''],'chk':{'on':0,'style':['display:none;']},'extra':['office'],'no':1 },
-                'displayq' : { 'txt':['display<br>quality','multiple'], 'img':['displayopt.svg',''],'chk':{'on':0,'style':['display:none;']},'extra':['displayq'],'no':1 },
-				'vms' : { 'txt':['virtual machine<br>usage','multiple'], 'img':['vms.svg',''], 'chk':{'on':0,'style':['display:none;']},'extra':['vms'],'no':1 },
-				'games' : { 'txt':['gaming<br>quality','multiple'], 'img':['games.svg',''], 'chk':{'on':0,'style':['display:none;']},'extra':['games'],'no':1 },
-                'vedit' : { 'txt':['video editing<br>activity','multiple'], 'img':['videoedit.svg',''], 'chk':{'on':0,'style':['display:none;']},'extra':['vedit'],'no':1 },
+				'office' : { 'txt':['Office<br>activities','multiple'], 'img':['office.svg',''],'chk':{'on':0,'style':['display:none;']},'extra':['office'],'no':1 },
+                'displayq' : { 'txt':['Display<br>quality','multiple'], 'img':['displayopt.svg',''],'chk':{'on':0,'style':['display:none;']},'extra':['displayq'],'no':1 },
+				'vms' : { 'txt':['Virtual machine<br>usage','multiple'], 'img':['vms.svg',''], 'chk':{'on':0,'style':['display:none;']},'extra':['vms'],'no':1 },
+				'games' : { 'txt':['Gaming<br>quality','multiple'], 'img':['games.svg',''], 'chk':{'on':0,'style':['display:none;']},'extra':['games'],'no':1 },
+                'vedit' : { 'txt':['Video editing<br>activity','multiple'], 'img':['videoedit.svg',''], 'chk':{'on':0,'style':['display:none;']},'extra':['vedit'],'no':1 },
                 '3dmodel' : { 'txt':['CAD / 3D<br>modeling','multiple'], 'img':['3dmodel.svg',''], 'chk':{'on':0,'style':['display:none;']},'extra':['3dmodel'],'no':1 }
             },
             'selected': 0,
@@ -43,11 +43,11 @@ var quiz = {
         3:{
             'question': 'Other uses and features:<br>(multiple choices)',
             'options': {
-				'comm' : { 'txt':['video calls','multiple'], 'img':['communication.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-				'media' : { 'txt':['enjoying<br>movies<br>and music','multiple'], 'img':['movies.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-				'convertible' : { 'txt':['tablet<br>mode','multiple'], 'img':['2in1.svg',''], 'chk':{'on':0,'style':['display:none;']},'extra':['convertible'],'no':1 },
-				'metal' : { 'txt':['durable<br>build materials','multiple'], 'img':['metal.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                'otherfeatures' : { 'txt':['<span style="font-size:12px;">other<br>features</span>','multiple'], 'img':['other.svg',''], 'chk':{'on':0},'extra':['otherfeatures'],'no':1 }
+				'comm' : { 'txt':['Video calls','multiple'], 'img':['communication.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+				'media' : { 'txt':['Enjoying<br>movies<br>and music','multiple'], 'img':['movies.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+				'convertible' : { 'txt':['Tablet<br>mode','multiple'], 'img':['2in1.svg',''], 'chk':{'on':0,'style':['display:none;']},'extra':['convertible'],'no':1 },
+				'metal' : { 'txt':['Durable<br>build materials','multiple'], 'img':['metal.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                'otherfeatures' : { 'txt':['<span style="font-size:13px;">other<br>features</span>','multiple'], 'img':['other.svg',''], 'chk':{'on':0},'extra':['otherfeatures'],'no':1 }
             },
             'selected': 0,
             'done': 0
@@ -79,10 +79,10 @@ var quiz = {
         'games':{
             'question': 'Type of games you will play (multiple choices): ',
             'options': {
-                '2dgames' : { 'txt':['<span style="font-size:13px;">non-3D games</span><span style="color: #ffffff"><br>-</span>','multiple'], 'img':['2dgames.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                'oldgames' : { 'txt':['<span style="font-size:13px;">older games</span><span style="color: #ffffff"><br>-</span>','multiple'], 'img':['oldgames.svg',''], 'chk':{'on':0,'style':['display:none;']},'extra':['oldgames'],'no':1 },
-                'mmo' : { 'txt':['<span style="font-size:13px;">multiplayer<br>games</span>','multiple'], 'img':['mmo.svg',''], 'chk':{'on':0,'style':['display:none;']},'extra':['mmo'],'no':1 },
-                '3dgames' : { 'txt':['<span style="font-size:12px;">latest<br>releases</span>','multiple'], 'img':['performance.svg',''], 'chk':{'on':0,'style':['display:none;']},'extra':['3dgames'],'no':1 }
+                '2dgames' : { 'txt':['<span style="font-size:13px;">Non-3D games</span><span style="color: #ffffff"><br>-</span>','multiple'], 'img':['2dgames.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                'mmo' : { 'txt':['<span style="font-size:13px;">Multiplayer<br>games</span>','multiple'], 'img':['mmo.svg',''], 'chk':{'on':0,'style':['display:none;']},'extra':['mmo'],'no':1 },
+                '3dgames' : { 'txt':['<span style="font-size:13px;">Latest<br>releases</span>','multiple'], 'img':['performance.svg',''], 'chk':{'on':0,'style':['display:none;']},'extra':['3dgames'],'no':1 },
+				'oldgames' : { 'txt':['<span style="font-size:13px;">Older games</span><span style="color: #ffffff"><br>-</span>','multiple'], 'img':['oldgames.svg',''], 'chk':{'on':0,'style':['display:none;']},'extra':['oldgames'],'no':1 }
             },
             'selected': 0,
             'done': 1
@@ -103,9 +103,9 @@ var quiz = {
         '2dgames':{
             'question': 'Minimal graphics quality: ',
             'options': {
-                '2dgameslow' : { 'txt':['<span style="font-size:13px;">low<br>quality</span>','single'], 'img':['lowq.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                '2dgamesmedium' : { 'txt':['<span style="font-size:13px;">normal<br>quality</span>','single'], 'img':['medq.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                '2dgameshigh' : { 'txt':['<span style="font-size:13px;">high<br>quality</span>','single'], 'img':['highq.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 }
+                '2dgameslow' : { 'txt':['Low<br>quality','single'], 'img':['lowq.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                '2dgamesmedium' : { 'txt':['Normal<br>quality','single'], 'img':['medq.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                '2dgameshigh' : { 'txt':['High<br>quality','single'], 'img':['highq.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 }
             },
             'selected': 0,
             'done': 1
@@ -113,9 +113,9 @@ var quiz = {
         'oldgames':{
             'question': 'Minimal graphics quality: ',
             'options': {
-                'oldgameslow' : { 'txt':['<span style="font-size:13px;">low<br>quality</span>','single'], 'img':['lowq.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                'oldgamesmedium' : { 'txt':['<span style="font-size:13px;">normal<br>quality</span>','single'], 'img':['medq.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                'oldgameshigh' : { 'txt':['<span style="font-size:13px;">high<br>quality</span>','single'], 'img':['highq.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 }
+                'oldgameslow' : { 'txt':['Low<br>quality','single'], 'img':['lowq.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                'oldgamesmedium' : { 'txt':['Normal<br>quality','single'], 'img':['medq.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                'oldgameshigh' : { 'txt':['High<br>quality','single'], 'img':['highq.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 }
             },
             'selected': 0,
             'done': 1
@@ -123,9 +123,9 @@ var quiz = {
         'mmo':{
             'question': 'Minimal graphics quality: ',
             'options': {
-                'mmolow' : { 'txt':['<span style="font-size:13px;">low<br>quality</span>','single'], 'img':['lowq.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                'mmomedium' : { 'txt':['<span style="font-size:13px;">normal<br>quality</span>','single'], 'img':['medq.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                'mmohigh' : { 'txt':['<span style="font-size:13px;">high<br>quality</span>','single'], 'img':['highq.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 }
+                'mmolow' : { 'txt':['Low<br>quality','single'], 'img':['lowq.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                'mmomedium' : { 'txt':['Normal<br>quality','single'], 'img':['medq.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                'mmohigh' : { 'txt':['High<br>quality','single'], 'img':['highq.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 }
             },
             'selected': 0,
             'done': 1
@@ -133,9 +133,9 @@ var quiz = {
         '3dgames':{
             'question': 'Minimal graphic quality: ',
             'options': {
-                '3dgameslow' : { 'txt':['<span style="font-size:13px;">low<br>quality</span>','single'], 'img':['lowq.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                '3dgamesmedium' : { 'txt':['<span style="font-size:13px;">normal<br>quality</span>','single'], 'img':['medq.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                '3dgameshigh' : { 'txt':['<span style="font-size:13px;">high<br>quality</span>','single'], 'img':['highq.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 }
+                '3dgameslow' : { 'txt':['Low<br>quality','single'], 'img':['lowq.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                '3dgamesmedium' : { 'txt':['Normal<br>quality','single'], 'img':['medq.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                '3dgameshigh' : { 'txt':['High<br>quality','single'], 'img':['highq.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 }
             },
             'selected': 0,
             'done': 1
@@ -143,9 +143,9 @@ var quiz = {
         'autocad':{
             'question': 'AutoCAD model complexity: ',
             'options': {
-                'autocadlight' : { 'txt':['<span style="font-size:13px;">simple<br>models</span>','single'], 'img':['cadlight.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                'autocadmedium' : { 'txt':['<span style="font-size:13px;">average<br>models</span>','single'], 'img':['cadmedium.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                'autocadheavy' : { 'txt':['<span style="font-size:13px;">complex<br>models</span>','single'], 'img':['cadheavy.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 }
+                'autocadlight' : { 'txt':['Simple<br>models','single'], 'img':['cadlight.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                'autocadmedium' : { 'txt':['Average<br>models','single'], 'img':['cadmedium.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                'autocadheavy' : { 'txt':['Complex<br>models','single'], 'img':['cadheavy.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 }
             },
             'selected': 0,
             'done': 1
@@ -153,9 +153,9 @@ var quiz = {
             'solidworks':{
             'question': 'SolidWorks model complexity: ',
             'options': {
-                'swlight' : { 'txt':['<span style="font-size:13px;">simple<br>models</span>','single'], 'img':['cadlight.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                'swmedium' : { 'txt':['<span style="font-size:13px;">average<br>models</span>','single'], 'img':['cadmedium.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                'swheavy' : { 'txt':['<span style="font-size:13px;">complex<br>models</span>','single'], 'img':['cadheavy.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 }
+                'swlight' : { 'txt':['Simple<br>models','single'], 'img':['cadlight.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                'swmedium' : { 'txt':['Average<br>models','single'], 'img':['cadmedium.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                'swheavy' : { 'txt':['Complex<br>models','single'], 'img':['cadheavy.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 }
             },
             'selected': 0,
             'done': 1
@@ -163,9 +163,9 @@ var quiz = {
             'catia':{
             'question': 'CATIA model complexity: ',
             'options': {
-                'catialight' : { 'txt':['<span style="font-size:13px;">simple<br>models</span>','single'], 'img':['cadlight.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                'catiamedium' : { 'txt':['<span style="font-size:13px;">average<br>models</span>','single'], 'img':['cadmedium.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                'catiaheavy' : { 'txt':['<span style="font-size:13px;">complex<br>models</span>','single'], 'img':['cadheavy.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 }
+                'catialight' : { 'txt':['Simple<br>models','single'], 'img':['cadlight.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                'catiamedium' : { 'txt':['Average<br>models','single'], 'img':['cadmedium.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                'catiaheavy' : { 'txt':['Complex<br>models','single'], 'img':['cadheavy.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 }
             },
             'selected': 0,
             'done': 1
@@ -173,9 +173,9 @@ var quiz = {
             '3dsmaxmaya':{
             'question': '3Ds Max / Maya model complexity: ',
             'options': {
-                '3dsmaxlight' : { 'txt':['<span style="font-size:13px;">simple<br>models</span>','single'], 'img':['cadlight.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                '3dsmaxmedium' : { 'txt':['<span style="font-size:13px;">average<br>models</span>','single'], 'img':['cadmedium.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                '3dsmaxheavy' : { 'txt':['<span style="font-size:13px;">complex<br>models</span>','single'], 'img':['cadheavy.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 }
+                '3dsmaxlight' : { 'txt':['Simple<br>models','single'], 'img':['cadlight.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                '3dsmaxmedium' : { 'txt':['Average<br>models','single'], 'img':['cadmedium.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                '3dsmaxheavy' : { 'txt':['Complex<br>models','single'], 'img':['cadheavy.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 }
             },
             'selected': 0,
             'done': 1
@@ -183,9 +183,9 @@ var quiz = {
             'rhinoceros':{
             'question': 'Rhinoceros model complexity: ',
             'options': {
-                'rhinolight' : { 'txt':['<span style="font-size:13px;">simple<br>models</span>','single'], 'img':['cadlight.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                'rhinomedium' : { 'txt':['<span style="font-size:13px;">average<br>models</span>','single'], 'img':['cadmedium.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                'rhinoheavy' : { 'txt':['<span style="font-size:13px;">complex<br>models</span>','single'], 'img':['cadheavy.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 }
+                'rhinolight' : { 'txt':['Simple<br>models','single'], 'img':['cadlight.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                'rhinomedium' : { 'txt':['Average<br>models','single'], 'img':['cadmedium.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                'rhinoheavy' : { 'txt':['Complex<br>models','single'], 'img':['cadheavy.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 }
             },
             'selected': 0,
             'done': 1
@@ -193,9 +193,9 @@ var quiz = {
             'cadother':{
             'question': 'General CAD/3D model complexity: ',
             'options': {
-                'cadolight' : { 'txt':['<span style="font-size:13px;">simple<br>models</span>','single'], 'img':['cadlight.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                'cadomedium' : { 'txt':['<span style="font-size:13px;">average<br>models</span>','single'], 'img':['cadmedium.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                'cadoheavy' : { 'txt':['<span style="font-size:13px;">complex<br>models</span>','single'], 'img':['cadheavy.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 }
+                'cadolight' : { 'txt':['Simple<br>models','single'], 'img':['cadlight.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                'cadomedium' : { 'txt':['Average<br>models','single'], 'img':['cadmedium.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                'cadoheavy' : { 'txt':['Complex<br>models','single'], 'img':['cadheavy.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 }
             },
             'selected': 0,
             'done': 1
@@ -203,8 +203,8 @@ var quiz = {
         'otherfeatures':{
             'question': 'Other special features (multiple choices): ',
             'options': {
-                'shdd' : { 'txt':['<span style="font-size:12px;">secondary<br>HDD</span><span style="color: #ffffff"><br>-</span>','multiple'], 'img':['shdd.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                'odd' : { 'txt':['<span style="font-size:12px;">optical<br>drive</span>','multiple'], 'img':['odd.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 }
+                'shdd' : { 'txt':['<span style="font-size:13px;">Secondary<br>HDD</span><span style="color: #ffffff"><br>-</span>','multiple'], 'img':['shdd.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                'odd' : { 'txt':['<span style="font-size:13px;">Optical<br>drive</span>','multiple'], 'img':['odd.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 }
             },
             'selected': 0,
             'done': 1
@@ -212,8 +212,8 @@ var quiz = {
         'srgb':{
             'question': 'Color reproduction quality: ',
             'options': {
-                '60srgb' : { 'txt':['<span style="font-size:13px;">normal<br>colour gamut</span>','single'], 'img':['ngamut.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                '90srgb' : { 'txt':['<span style="font-size:13px;">high<br>colour gamut</span>','single'], 'img':['hgamut.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 }
+                '60srgb' : { 'txt':['<span style="font-size:13px;">Normal<br>colour gamut</span>','single'], 'img':['ngamut.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                '90srgb' : { 'txt':['<span style="font-size:13px;">High<br>colour gamut</span>','single'], 'img':['hgamut.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 }
             },
             'selected': 0,
             'done': 1
@@ -221,8 +221,8 @@ var quiz = {
         'vedit':{
             'question': 'Your video editing activities will be: ',
             'options': {
-                'lvedit' : { 'txt':['<span style="font-size:13px;">casual<br>editing<span>','single'], 'img':['lvideoedit.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                'hvedit' : { 'txt':['<span style="font-size:13px;">heavy<br>editing</span>','single'], 'img':['hvideoedit.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 }
+                'lvedit' : { 'txt':['Casual<br>editing','single'], 'img':['lvideoedit.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                'hvedit' : { 'txt':['Heavy<br>editing','single'], 'img':['hvideoedit.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 }
             },
             'selected': 0,
             'done': 1
@@ -230,10 +230,10 @@ var quiz = {
         'display_size':{
             'question': 'Select display size:<br>(multiple choices)',
             'options': {
-                'dispxsmall' : { 'txt':['<span style="font-size:13px;">10 - 13 inch</span>','multiple'], 'img':['xsmall.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1  },
-                'dispsmall' : { 'txt':['<span style="font-size:13px;">13 - 14 inch</span>','multiple'], 'img':['small.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                'dispmedium' : { 'txt':['<span style="font-size:13px;">14 - 16 inch</span>','multiple'], 'img':['normal.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                'displarge' : { 'txt':['<span style="font-size:13px;">17+ inch</span>','multiple'], 'img':['large.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 }
+                'dispxsmall' : { 'txt':['10 - 13 inch','multiple'], 'img':['xsmall.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1  },
+                'dispsmall' : { 'txt':['13 - 14 inch','multiple'], 'img':['small.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                'dispmedium' : { 'txt':['14 - 16 inch','multiple'], 'img':['normal.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                'displarge' : { 'txt':['17+ inch','multiple'], 'img':['large.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 }
             },
             'selected': 0,
             'done': 1
@@ -241,9 +241,9 @@ var quiz = {
 		'displayq':{
             'question': 'Dispay quality and features:<br>(multiple choices)',
             'options': {
-                'FHD' : { 'txt':['<span style="font-size:13px;">normal<br>resolution</span>','multiple'], 'img':['fhd.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                'FHDplus' : { 'txt':['<span style="font-size:13px;">high<br>resolution</span>','multiple'], 'img':['fhdplus.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                'srgb' : { 'txt':['<span style="font-size:13px;">color<br>quality</span>','multiple'], 'img':['srgb.svg',''], 'chk':{'on':0,'style':['display:none;']},'extra':['srgb'],'no':1 }
+                'FHD' : { 'txt':['<span style="font-size:13px;">Normal<br>resolution</span>','multiple'], 'img':['fhd.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                'FHDplus' : { 'txt':['<span style="font-size:13px;">High<br>resolution</span>','multiple'], 'img':['fhdplus.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                'srgb' : { 'txt':['<span style="font-size:13px;">Color<br>quality</span>','multiple'], 'img':['srgb.svg',''], 'chk':{'on':0,'style':['display:none;']},'extra':['srgb'],'no':1 }
             },
             'selected': 0,
             'done': 1
@@ -251,9 +251,9 @@ var quiz = {
 		'office':{
             'question': 'Some office activities:<br>(multiple choices)',
             'options': {
-                'relax' : { 'txt':['<span style="font-size:13px;">normal<br>office work</span>','multiple'], 'img':['relax.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1  },
-                'calc' : { 'txt':['<span style="font-size:13px;">managing large<br>spreadsheets</span>','multiple'], 'img':['sheet.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                'heavybrowsing' : { 'txt':['<span style="font-size:13px;">heavy<br>browsing</span>','multiple'], 'img':['heavybrowse.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 }
+                'relax' : { 'txt':['<span style="font-size:13px;">Normal<br>office work</span>','multiple'], 'img':['relax.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1  },
+                'calc' : { 'txt':['<span style="font-size:13px;">Managing large<br>spreadsheets</span>','multiple'], 'img':['sheet.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                'heavybrowsing' : { 'txt':['<span style="font-size:13px;">Heavy<br>browsing</span>','multiple'], 'img':['heavybrowse.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 }
             },
             'selected': 0,
             'done': 1
@@ -261,10 +261,10 @@ var quiz = {
 		'vms':{
             'question': 'Number of active virtual machines:<br>',
             'options': {
-                'vmsmall' : { 'txt':['<span style="font-size:13px;">1 - 2 active<br>VMs</span>','single'], 'img':['vms1.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1  },
-                'vmmedium' : { 'txt':['<span style="font-size:13px;">2 - 4 active<br>VMs</span>','single'], 'img':['vms2.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                'vmheavy' : { 'txt':['<span style="font-size:13px;">4+ active<br>VMs</span>','single'], 'img':['vms3.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-				'vmnone' : { 'txt':['<span style="font-size:13px;">no active<br>VMs</span>','single'], 'img':['vms0.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1  }
+                'vmsmall' : { 'txt':['1 - 2 active<br>VMs','single'], 'img':['vms1.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1  },
+                'vmmedium' : { 'txt':['2 - 4 active<br>VMs','single'], 'img':['vms2.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                'vmheavy' : { 'txt':['4+ active<br>VMs','single'], 'img':['vms3.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+				'vmnone' : { 'txt':['No active<br>VMs','single'], 'img':['vms0.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1  }
             },
             'selected': 0,
             'done': 1
@@ -272,14 +272,13 @@ var quiz = {
 		'convertible':{
             'question': 'Touchscreen requirements:<br>',
             'options': {
-                'ntouch' : { 'txt':['<span style="font-size:13px;">normal<br>touchscreen</span>','single'], 'img':['ntouch.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1  },
-                'stylus' : { 'txt':['<span style="font-size:12px;">stylus<br>support</span>','single'], 'img':['stylus.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 }
+                'ntouch' : { 'txt':['<span style="font-size:12px;">Normal<br>touchscreen</span>','single'], 'img':['ntouch.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1  },
+                'stylus' : { 'txt':['<span style="font-size:12px;">Stylus<br>support</span>','single'], 'img':['stylus.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 }
             },
             'selected': 0,
             'done': 1
         }
     };
-
 
 var compatibility={
 	'relax' : { 'nogo':[['all']], 'go':[['casual','permissive'],['business','permissive'],['coding','permissive']]},

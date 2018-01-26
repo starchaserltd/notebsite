@@ -762,7 +762,7 @@ function cpumisc(str)
 		if(value.match("VT-c")) { msc=msc+text1+"18"+text2+value+", "+text3; }
 		if(value.match("TBT") || value.match("AMD XFR") || value.match("Turbo Boost") || value.match("TC") || value.match("BPT")) { msc=msc+text1+"19"+text2+value+", "+text3; }
 	}
-	msc  = msc.substr(0, (msc.length - 9)) + msc.substr((msc.length - 8) + 1);	
+	msc  = msc.substr(0, (msc.length - 16)) + msc.substr((msc.length - 15) + 1);	
 	return msc;
 }
 	
@@ -793,7 +793,7 @@ function gpumisc(str)
 		if(value.indexOf("ZeroCore")>=0){ msc=msc+text1+"41"+text2+value+text3+", "; } else
 		{ msc=msc+"<span>"+value+"</span>"+", "; }
 	}
-	msc  = msc.substr(0, (msc.length -2));	
+	msc  = msc.substr(0, (msc.length -2));
 	return msc;
 }
 
@@ -815,7 +815,7 @@ function wnetmisc(str)
 		{ msc=msc+"<span>"+value+"</span>"+", "; }
 	}
 
-	msc  = msc.substr(0, (msc.length -2));	
+	msc  = msc.substr(0, (msc.length -2));
 	return msc;
 }
 

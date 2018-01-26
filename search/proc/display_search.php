@@ -16,21 +16,16 @@ function search_display ($model, $sizemin, $sizemax, $format, $hresmin, $hresmax
 	foreach($model as $x)
 	{
 		if($i) 	
-		{  
-			$sel_display.=" OR ";
-		}
+		{ $sel_display.=" OR "; }
 		else
-		{
-			$sel_display.=" AND ( ";
-		}
+		{ $sel_display.=" AND ( "; }
 		
 		$sel_display.="model='";
 		$sel_display.=$x;
 		$sel_display.="'";
 		$i++;
 	}
-	if($i>0)
-	{ $sel_display.=" ) "; }
+	if($i>0){ $sel_display.=" ) "; }
 	
 	// Add size to filter - smaller is better here		
 	if($sizemin)
@@ -53,21 +48,16 @@ function search_display ($model, $sizemin, $sizemax, $format, $hresmin, $hresmax
 	foreach($format as $x)
 	{
 		if($i) 	
-		{  
-			$sel_display.=" OR ";
-		}
+		{ $sel_display.=" OR "; }
 		else
-		{
-			$sel_display.=" AND ( ";
-		}
+		{ $sel_display.=" AND ( "; }
 		
 		$sel_display.="format='";
 		$sel_display.=$x;
 		$sel_display.="'";
 		$i++;
 	}
-	if($i>0)
-	{ $sel_display.=" ) "; }
+	if($i>0){ $sel_display.=" ) "; }
 
 	//Add surfic to filter
 	$i=0;
@@ -75,21 +65,16 @@ function search_display ($model, $sizemin, $sizemax, $format, $hresmin, $hresmax
 	foreach($surft as $x)
 	{	
 		if($i) 	
-		{  
-			$sel_display.=" OR ";
-		}
+		{ $sel_display.=" OR "; }
 		else
-		{
-			$sel_display.=" AND ( ";
-		}
+		{ $sel_display.=" AND ( "; }
 		
 		$sel_display.="surft='";
 		$sel_display.=$x;
 		$sel_display.="'";
 		$i++;
 	}
-	if($i>0)
-	{ $sel_display.=" ) "; }
+	if($i>0){ $sel_display.=" ) "; }
 	
 	//Add backlight to filter
 	$i=0;
@@ -97,21 +82,16 @@ function search_display ($model, $sizemin, $sizemax, $format, $hresmin, $hresmax
 	foreach($backt as $x)
 	{	
 		if($i) 	
-		{  
-			$sel_display.=" OR ";
-		}
+		{ $sel_display.=" OR "; }
 		else
-		{
-			$sel_display.=" AND ( ";
-		}
+		{ $sel_display.=" AND ( "; }
 		
 		$sel_display.="backt='";
 		$sel_display.=$x;
 		$sel_display.="'";
 		$i++;
 	}
-	if($i>0)
-	{ $sel_display.=" ) "; }
+	if($i>0){ $sel_display.=" ) "; }
 
 	// Add touch to filter
 	$i=0;
@@ -119,21 +99,16 @@ function search_display ($model, $sizemin, $sizemax, $format, $hresmin, $hresmax
 	foreach($touch as $x)
 	{
 		if($i) 	
-		{  
-			$sel_display.=" OR ";
-		}
+		{ $sel_display.=" OR "; }
 		else
-		{
-			$sel_display.=" AND ( ";
-		}
+		{ $sel_display.=" AND ( "; }
 		
 		$sel_display.="touch='";
 		$sel_display.=$x;
 		$sel_display.="'";
 		$i++;
 	}
-	if($i>0)
-	{ $sel_display.=" ) "; }
+	if($i>0){ $sel_display.=" ) "; }
 
 	// Add resolutions to the filter
 	$i=0;
@@ -146,8 +121,7 @@ function search_display ($model, $sizemin, $sizemax, $format, $hresmin, $hresmax
 		$c=0;
 		foreach ($resolutions as $resolution)
 		{
-			if($c)
-			{ $sel_display.=" OR "; }
+			if($c){ $sel_display.=" OR "; }
 		
 			$sel_display.="(";
 			$resolution2=explode("x",$resolution);
@@ -221,8 +195,7 @@ function search_display ($model, $sizemin, $sizemax, $format, $hresmin, $hresmax
 		}
 		$i++;
 	}
-	if($i>0)
-	{ $sel_display.=" ) "; } 
+	if($i>0){ $sel_display.=" ) "; } 
 	
 	//Add sRGB to filter
 	if ($srgb) 

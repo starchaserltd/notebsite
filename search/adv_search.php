@@ -13,17 +13,13 @@
 
 	?>
 	<script>
-	$.getScript("search/lib/js/tokenlist.js").done(function(){ $.getScript("search/lib/js/adv_search_post.js"); });
-	$.getScript("search/lib/js/adv_search_pre.js");
-	document.title = 'Noteb - Search';
-	$(document).ready(function(){
-   		 $('meta[name=description]').attr('content', "Custom laptop search.");
-	});
-	var basevalueoldadv=currency_val[<?php echo '"'.$basevalue.'"'; ?>];
-	var minbudgetnomenadv=<?php echo $minconfigprice; ?>;
-	var maxbudgetnomenadv=<?php echo $maxconfigprice; ?>;
-	var minbudgetset=<?php if(!isset($bdgmin)){ $bdgmin=$minconfigprice*4; } echo $bdgmin; ?>;
-	var maxbudgetset=<?php if(!isset($bdgmax)){ $bdgmax=$minconfigprice*6; } echo $bdgmax; ?>;
+		$.getScript("search/lib/js/tokenlist.js").done(function(){ $.getScript("search/lib/js/adv_search_post.js"); });
+		$.getScript("search/lib/js/adv_search_pre.js");
+		var basevalueoldadv=currency_val[<?php echo '"'.$basevalue.'"'; ?>];
+		var minbudgetnomenadv=<?php echo $minconfigprice; ?>;
+		var maxbudgetnomenadv=<?php echo $maxconfigprice; ?>;
+		var minbudgetset=<?php if(!isset($bdgmin)){ $bdgmin=$minconfigprice*4; } echo $bdgmin; ?>;
+		var maxbudgetset=<?php if(!isset($bdgmax)){ $bdgmax=$minconfigprice*6; } echo $bdgmax; ?>;
 	</script>
 	<form  method="post" id="advform" name="advform">
 	<input type="hidden" name="advsearch" value="1">
@@ -252,7 +248,6 @@
 							<label for="nontouchscreen" class="css-label sme depressed" style="font-weight:normal;min-height:16px;">No Touchscreen</label>
 						</div>
 					</div>
-					
 				</div>	
 				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -271,9 +266,6 @@
 						<div>Resolutions</div>
 						<select class="multisearch js-example-responsive" name="DISPLAY_resol_id[]" id="DISPLAY_resol_id" data-lcom="none" data-lfield="none" data-placeholder="Ex. 3200x1800" data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
 					</div>					
-					
-					
-					
 				</div>
 			</div>	
 			

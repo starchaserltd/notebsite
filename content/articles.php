@@ -46,7 +46,9 @@ $published_posts = $category->category_count;
 ?>
 	
 	<div class="row headerback" style="margin-top:5px;margin-right:0px; margin-left:0px;padding-right:0px; background-color:white;">
-	
+	<article style="display: -webkit-box;    display: -ms-flexbox;    display: flex;    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;-ms-flex-direction: row; flex-direction: row; -ms-flex-wrap: wrap;
+        flex-wrap: wrap;">
 <?php
 	
 	for ($x = 0; $x <= 7; $x++) 
@@ -59,7 +61,7 @@ $published_posts = $category->category_count;
 		// ************Get the category*********
 
 			if ($categorie == "Article" && $recent_posts[$x]["ID"]){
-?>
+?>  
 		<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 displayFlex">
 			<div class="col-lg-5 col-md-4 col-sm-4 col-xs-12 centerImgFlex">	
 				<a onmousedown="OpenPage('<?php  echo $ad=str_replace($wpsite."/article.php/article/","content/article.php?/",get_permalink($recent_posts[$x]["ID"])); ?>',event);" style="cursor: pointer;" >
@@ -79,7 +81,8 @@ $published_posts = $category->category_count;
 			<!--sfarsit descriere -->
 				<a onmousedown="OpenPage('<?php  echo $ad=str_replace($wpsite."/article.php/article/","content/article.php?/",get_permalink($recent_posts[$x]["ID"])); ?>',event);" style="cursor: pointer;" ><?php echo "Read more"; ?></a>
 			</div>						
-		</div>		
+		</div>
+		
 	<?php }else {} 
 		} 
 	}?>		
@@ -145,15 +148,13 @@ $published_posts = $category->category_count;
 			</ul>
 		</div>
 	<?php //PAGINATION CODE END ?>
-	</div>
+	</article>	
+</div>
 <script type="text/javascript">
 	$(document).ready(function(){
 		actbtn("ARTICLES"); metakeys("noteb,laptop,articles");
 		document.title = "Noteb - Articles";
+		$('meta[name=description]').attr('content', "Laptop articles. Video cards: features and gimmicks (2016), System memory: the basics.");
 	});
-	$(document).ready(function(){
-   		 $('meta[name=description]').attr('content', "Laptop articles. Video cards: features and gimmicks (2016), System memory: the basics.");
-	});
-	
 </script>
 <link rel="stylesheet" href="content/lib/css/article.css?v=0.2" type="text/css" />

@@ -14,21 +14,16 @@ function search_war ($prod, $yearsmin, $yearsmax, $typewar, $misc, $ratemin, $ra
 	foreach($prod as $x)
 	{
 		if($i)
-		{  
-			$sel_war.=" OR ";
-		}
+		{ $sel_war.=" OR "; }
 		else
-		{
-			$sel_war.=" AND ( ";
-		}
+		{ $sel_war.=" AND ( "; }
 		
 		$sel_war.="prod='";
 		$sel_war.=$x;
 		$sel_war.="'";
 		$i++;
 	}
-	if($i>0)
-	{ $sel_war.=" ) "; }
+	if($i>0){ $sel_war.=" ) "; }
 
 	// Add years to filter 		
 	if($yearsmin)
@@ -50,22 +45,18 @@ function search_war ($prod, $yearsmin, $yearsmax, $typewar, $misc, $ratemin, $ra
 	{
 		foreach($typewar as $x)
 		{
-		if($i)
-		{  
-			$sel_war.=" OR ";
-		}
-		else
-		{
-			$sel_war.=" AND ( ";
+			if($i)
+			{ $sel_war.=" OR "; }
+			else
+			{ $sel_war.=" AND ( "; }
+			
+			$sel_war.="typewar='";
+			$sel_war.=$x;
+			$sel_war.="'";
+			$i++;
 		}
 		
-		$sel_war.="typewar='";
-		$sel_war.=$x;
-		$sel_war.="'";
-		$i++;
-	}
-	if($i>0)
-	{ $sel_war.=" ) "; }
+		if($i>0){ $sel_war.=" ) "; }
 	}
 
 	// Add MISC to filter
@@ -74,21 +65,16 @@ function search_war ($prod, $yearsmin, $yearsmax, $typewar, $misc, $ratemin, $ra
 	foreach($misc as $x)
 	{
 		if($i)
-		{  
-			$sel_war.=" AND ";
-		}
+		{ $sel_war.=" AND "; }
 		else
-		{
-			$sel_war.=" AND ( ";
-		}
+		{ $sel_war.=" AND ( "; }
 		
 		$sel_war.="FIND_IN_SET('";
 		$sel_war.=$x;
 		$sel_war.="',msc)>0";
 		$i++;
 	}
-	if($i>0)
-	{ $sel_war.=" ) "; }
+	if($i>0){ $sel_war.=" ) "; }
 
 	// Add rating to filter	
 	if($ratemin)

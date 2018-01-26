@@ -37,9 +37,7 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 	}
 	
 	if ($nr_hdd > 1) { $conds["shdd"]="shdd > 0"; }
-
 	$conds["capacity"] = "(capacity BETWEEN " . $totalcapmin . " AND " . $totalcapmax . " )";
-
 	$results = array(); $queries = array();
 
 	/* DEBUGGING CODE */

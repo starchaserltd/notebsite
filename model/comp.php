@@ -241,8 +241,6 @@ else
 							<tr class=""></tr>
 						</tbody>
 				</table>
-				
-		<?php } ?>
 	</div>
-
-<script>$.getScript("model/lib/js/comp.js").done(function(){$.getScript("model/lib/js/gencomp.php")});</script>
+	<script>$.getScript("model/lib/js/comp.js").done(function(){$.getScript("model/lib/js/gencomp.php")});</script>
+	<?php } ?>

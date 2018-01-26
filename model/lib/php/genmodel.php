@@ -155,7 +155,6 @@ function show_gpu ($model)
 	
 			if($b)
 			{ $gpulist=$id; $b=0; }
-	
 		}
 		else
 		{ $havecpuint=1;}

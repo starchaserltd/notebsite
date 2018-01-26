@@ -67,13 +67,11 @@ while($rand = mysqli_fetch_row($result))
 	//SENDING THE RESULTS
 	$list[]=["id"=>intval($rand[0]),"model"=>strval($rand[4]." ".$rand[2].$mdb_submodel.$region["disp"])];
 }
-mysqli_free_result($result);
-				
+mysqli_free_result($result);			
 //SUPPLYING RESULTS				
 /*if(count($list)>20)
 $list[]=["id"=>"-1","model"=>"More available..."];
 */
 print preg_replace('/,\s*"[^"]+":null|"[^"]+":null,?/', '', json_encode($list));
-
 mysqli_close($con);
 ?>

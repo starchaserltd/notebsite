@@ -9,7 +9,7 @@ $quiz_css_addr="";
 	<script type="text/javascript" src="../../lib/js/jquery.min.js"></script>
 	<link rel="stylesheet" href="../../lib/css/bootstrap.min.css" type="text/css" />
 	<link rel="stylesheet" href="../../libnb/css/loading.css" type="text/css" />
-	<link rel="stylesheet" href="lib/css/quiz.css" type="text/css"/>
+	<link rel="stylesheet" href="lib/css/quiz.css?v=0.3" type="text/css"/>
 </head>
 <body>
 	<div class="row containerNquiz">

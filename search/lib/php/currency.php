@@ -8,8 +8,7 @@ $sel2 = "SELECT code,convr,sign FROM exchrate";
 $result = mysqli_query($con,$sel2);
 
 if(empty($_SESSION['exchcode'])) { $excode="USD"; } else { $excode=$_SESSION['exchcode']; }
-$var_currency="";
-$i=0;
+$var_currency=""; $i=0;
 
 while ($row=mysqli_fetch_row($result))
 {
@@ -19,20 +18,19 @@ while ($row=mysqli_fetch_row($result))
 }
    
 mysqli_free_result($result);
-
 $jscurrency=" currency_val={".implode(",",$var_jsel)."}; "; 
  
 $sel2 = "SELECT type,name FROM notebro_site.nomen WHERE type=70 OR type=71";
 $result = mysqli_query($con,$sel2);
- while ($row=mysqli_fetch_row($result))
-   {
-	   if($row[0]==70)
-	   { $minconfigprice=($row[1]-10); }
-	   
-	   	   if($row[0]==71)
-		   {	$maxconfigprice=($row[1]+10); }
-	   
-   }
-   mysqli_free_result($result);
- mysqli_close ($con);
+while ($row=mysqli_fetch_row($result))
+{
+	if($row[0]==70)
+	{ $minconfigprice=($row[1]-10); }
+
+	if($row[0]==71)
+	{ $maxconfigprice=($row[1]+10); }
+}
+
+mysqli_free_result($result);
+mysqli_close ($con);
  ?>

@@ -12,21 +12,16 @@ function search_wnet ($prod, $model, $misc, $speedmin, $speedmax, $bt, $ratemin,
 	foreach($prod as $x)
 	{
 		if($i)
-		{  
-			$sel_wnet.=" OR ";
-		}
+		{ $sel_wnet.=" OR "; }
 		else
-		{
-			$sel_wnet.=" AND ( ";
-		}
+		{ $sel_wnet.=" AND ( "; }
 		
 		$sel_wnet.="prod='";
 		$sel_wnet.=$x;
 		$sel_wnet.="'";
 		$i++;
 	}
-	if($i>0)
-	{ $sel_wnet.=" ) "; }
+	if($i>0){ $sel_wnet.=" ) "; }
 
 	// Add models to filter	
 	$i=0;
@@ -34,21 +29,16 @@ function search_wnet ($prod, $model, $misc, $speedmin, $speedmax, $bt, $ratemin,
 	foreach($model as $x)
 	{
 		if($i)
-		{  
-			$sel_wnet.=" OR ";
-		}
+		{ $sel_wnet.=" OR "; }
 		else
-		{
-			$sel_wnet.=" AND ( ";
-		}
+		{ $sel_wnet.=" AND ( "; }
 		
 		$sel_wnet.="model='";
 		$sel_wnet.=$x;
 		$sel_wnet.="'";
 		$i++;
 	}
-	if($i>0)
-	{ $sel_wnet.=" ) "; }
+	if($i>0){ $sel_wnet.=" ) "; }
 
 	// Add MISC to filter
 	$i=0;
@@ -56,21 +46,16 @@ function search_wnet ($prod, $model, $misc, $speedmin, $speedmax, $bt, $ratemin,
 	foreach($misc as $x)
 	{
 		if($i)
-		{  
-			$sel_wnet.=" AND ";
-		}
+		{ $sel_wnet.=" AND "; }
 		else
-		{
-			$sel_wnet.=" AND ( ";
-		}
+		{ $sel_wnet.=" AND ( "; }
 		
 		$sel_wnet.="FIND_IN_SET('";
 		$sel_wnet.=$x;
 		$sel_wnet.="',msc)>0";
 		$i++;
 	}
-	if($i>0)
-	{ $sel_wnet.=" ) "; }
+	if($i>0){ $sel_wnet.=" ) "; }
 
 	//Add speed to filter
 	if($speedmin)

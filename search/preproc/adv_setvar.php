@@ -1,7 +1,6 @@
 <?php
 require_once("conv/init.php");
 $sel="SELECT name FROM notebro_site.nomen WHERE type=16 OR type=21 OR type=31 OR type=35 or type=81";
-//echo $sel;
 mysqli_multi_query($con, $sel);
 $result=mysqli_use_result($con);
 $rand = mysqli_fetch_all($result);
@@ -16,35 +15,26 @@ if(isset($_GET['s_memmin']))
 {
 	$issimple=$_GET['s_memmin'];
 	if ($issimple) 
-	{	
-		include ("conv/simpletoadv.php");
-	}
+	{ include ("conv/simpletoadv.php"); }
 }
 /********************************************************************/
 /* CONVERTING VARIABLES FROM ADVANCED SEARCH TO ADVANCED SEARCH */	
 /********************************************************************/
 
 else if (isset($_GET['advsearch']))
-{
-	include ("conv/advtoadv.php");
-}
+{ include ("conv/advtoadv.php"); }
 /*******************************************************************/	
 /* CONVERTING VARIABLES FROM QUIZ TO ADVANCED SEARCH */	
 /*******************************************************************/
 
 else if (isset($_GET['quizsearch']) && $_GET['quizsearch'])
-{
-	include ("conv/quiztoadv.php");
-	
-}
+{ include ("conv/quiztoadv.php"); }
 /*******************************************************************/	
 /* CONVERTING VARIABLES FROM BROWSE BY TO ADVANCED SEARCH */	
 /*******************************************************************/
 
 else if (isset($_GET['browse_by']) && $_GET['browse_by'])
-{
-	include ("conv/browsetoadv.php");
-}
+{ include ("conv/browsetoadv.php"); }
 /**** IF WE HAVE NO INCOMING VALUES WE NEED TO SET SOME DEFAULTS ****/
 else
 {

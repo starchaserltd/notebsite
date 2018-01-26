@@ -11,7 +11,7 @@ for(var qkey in quiz)
 			quiz[qkey]['selected']++;
 			pagetomake=5;
 		}
-		else if(set_quiz_data.indexOf(qkey2+"=no", 10)>0)
+		else if(set_quiz_data.indexOf("&"+qkey2+"=no", 10)>0)
 		{
 			quiz[qkey]['options'][qkey2]['no']=0;
 		}

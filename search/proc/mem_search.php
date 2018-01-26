@@ -12,21 +12,16 @@ function search_mem ($prod, $capmin, $capmax, $stan, $freqmin, $freqmax, $type, 
 	foreach($prod as $x)
 	{
 		if($i)
-		{  
-			$sel_mem.=" OR ";
-		}
+		{ $sel_mem.=" OR "; }
 		else
-		{
-			$sel_mem.=" AND ( ";
-		}
+		{ $sel_mem.=" AND ( "; }
 		
 		$sel_mem.="prod='";
 		$sel_mem.=$x;
 		$sel_mem.="'";
 		$i++;
 	}
-	if($i>0)
-	{ $sel_mem.=" ) "; }
+	if($i>0){ $sel_mem.=" ) "; }
 
 	// Add cap to filter	
 	if($capmin)
@@ -64,21 +59,16 @@ function search_mem ($prod, $capmin, $capmax, $stan, $freqmin, $freqmax, $type, 
 	foreach($stan as $x)
 	{
 		if($i)
-		{  
-			$sel_mem.=" OR ";
-		}
+		{ $sel_mem.=" OR "; }
 		else
-		{
-			$sel_mem.=" AND ( ";
-		}
+		{ $sel_mem.=" AND ( "; }
 		
 		$sel_mem.="stan='";
 		$sel_mem.=$x;
 		$sel_mem.="'";
 		$i++;
 	}
-	if($i>0)
-	{ $sel_mem.=" ) "; }
+	if($i>0){ $sel_mem.=" ) "; }
 
 	// Add type to filter	
 	$i=0;
@@ -86,21 +76,16 @@ function search_mem ($prod, $capmin, $capmax, $stan, $freqmin, $freqmax, $type, 
 	foreach($type as $x)
 	{
 		if($i)
-		{  
-			$sel_mem.=" OR ";
-		}
+		{ $sel_mem.=" OR "; }
 		else
-		{
-			$sel_mem.=" AND ( ";
-		}
+		{ $sel_mem.=" AND ( "; }
 	
 		$sel_mem.="type='";
 		$sel_mem.=$x;
 		$sel_mem.="'";
 		$i++;
 	}
-	if($i>0)
-	{ $sel_mem.=" ) "; }
+	if($i>0){ $sel_mem.=" ) "; }
 	
 	// Add latency to filter - smaller is better here		
 	if($latmin)
@@ -138,21 +123,16 @@ function search_mem ($prod, $capmin, $capmax, $stan, $freqmin, $freqmax, $type, 
 	foreach($misc as $x)
 	{
 		if($i)
-		{  
-			$sel_mem.=" AND ";
-		}
+		{ $sel_mem.=" AND "; }
 		else
-		{
-			$sel_mem.=" AND ( ";
-		}
+		{ $sel_mem.=" AND ( "; }
 		
 		$sel_mem.="FIND_IN_SET('";
 		$sel_mem.=$x;
 		$sel_mem.="',msc)>0";
 		$i++;
 	}
-	if($i>0)
-	{ $sel_mem.=" ) "; }
+	if($i>0){ $sel_mem.=" ) "; }
 
 	// Add rating to filter	
 	if($ratemin)

@@ -1,6 +1,6 @@
 <?php
 require_once("../etc/con_db.php");
-if(isset($_GET['prod'])){ $prod_id = $_GET['prod']; } // adaugata de mine 
+if(isset($_GET['prod'])){ $prod_id = $_GET['prod']; }
 $sql = "SELECT name FROM notebro_site.nomen WHERE type=70 OR type=71 OR type=25"; 
 $result = mysqli_fetch_all(mysqli_query($con,$sql));
 $i=0;
@@ -84,7 +84,6 @@ switch ($browse_by)
 		$valuetype[25]=array_diff($valuetype[25],["No OS","Windows 10 Pro","macOS 10.13"]);
 		break;
 	}
-	
 	case "business":
 	{	
 		$model_minclass=1; $model_maxclass=4;

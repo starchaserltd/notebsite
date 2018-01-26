@@ -103,35 +103,28 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 		/********************************************************************/
 
 		if ($issimple) 
-		{	
-		include ("preproc/s_search_varproc.php");
-		}
+		{ include ("preproc/s_search_varproc.php"); }
 
 		/********************************************************************/
 		/* CHECKING IF DOING ADVANCED SEARCH */	
 		/********************************************************************/
 
 		else if ( isset($_GET['advsearch']) && $_GET['advsearch'])
-		{
-			include ("preproc/adv_search_varproc.php");
-		}
+		{ include ("preproc/adv_search_varproc.php"); }
 		
 		/********************************************************************/
 		/* CHECKING IF DOING QUIZ SEARCH */	
 		/********************************************************************/
 
 		else if ( isset($_GET['quizsearch']) && $_GET['quizsearch'])
-		{
-			include ("preproc/q_search_varproc.php"); 
-		}
+		{ include ("preproc/q_search_varproc.php"); }
+	
 		/********************************************************************/
 		/* CHECKING IF DOING BROWSE SEARCH */	
 		/********************************************************************/
 
 		else if (isset($_GET['browse_by']) && $_GET['browse_by'])
-		{
-			include ("preproc/b_search_varproc.php");
-		}
+		{ include ("preproc/b_search_varproc.php"); }
 		
 		require("proc/search_filters.php");
 		include("results.php");

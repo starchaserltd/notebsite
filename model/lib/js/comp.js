@@ -68,5 +68,3 @@ addcolumn(array_var,"OS_table",'style="vertical-align:middle"');
 $(document).ready(function(){
 	actbtn("");
 });
-	 
-	 

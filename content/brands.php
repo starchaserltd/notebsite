@@ -17,3 +17,8 @@ while($row = mysqli_fetch_array($results))
 	</div></div></a>';
 }
 ?>
+<script type="text/javascript">
+$(document).ready(function(){
+	actbtn("SEARCH");
+});
+</script>

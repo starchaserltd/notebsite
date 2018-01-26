@@ -20,10 +20,10 @@ function nobrackets($text)
 		$offset+=($endmatches[0][$i][1]-$startmatches[0][$i][1]+1);
 		
 		if($startmatches[0][$i][1] && !($endmatches[0][$i][1]))
-		{ 	$offset-=($endmatches[0][$i][1]-$startmatches[0][$i][1]+1);	
+		{ 	
+			$offset-=($endmatches[0][$i][1]-$startmatches[0][$i][1]+1);	
 			$text=substr_replace($text,'',($startmatches[0][$i][1]-$offset),$startmatches[0][$i][1]-strlen($text));  }
 		}
-		
 	return $text;	
 }
 ?>

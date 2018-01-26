@@ -2,30 +2,23 @@
 
 function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shadermin, $cspeedmin, $cspeedmax, $sspeedmin, $sspeedmax, $mspeedmin, $mspeedmax, $mbwmin, $mbwmax, $mtype, $maxmemmin, $maxmemmax, $sharem, $powermin, $powermax, $ldmin, $ldmax, $misc, $ratemin, $ratemax, $pricemin, $pricemax, $seltdp)
 {
-
 	if($seltdp>0)
-	$sel_gpu="SELECT id,model,rating,typegpu FROM notebro_db.GPU WHERE valid=1 ";
+	{ $sel_gpu="SELECT id,model,rating,typegpu FROM notebro_db.GPU WHERE valid=1 "; }
 	else
-	$sel_gpu="SELECT id,model,rating,typegpu FROM notebro_db.GPU WHERE valid=1 ";
+	{ $sel_gpu="SELECT id,model,rating,typegpu FROM notebro_db.GPU WHERE valid=1 "; }
 	
-// Add Type filter (Integrated / Dedicated / Professional)
+	// Add Type filter (Integrated / Dedicated / Professional)
 	
 	$i=0; $k=0; $dend=0;
 	if(gettype($typelist)!="array") { $typelist=(array)$typelist; }
 	foreach($typelist as $x)
 	{
-		if($x==0)
-		{
-			$x=1;
-		}
+		if($x==0){ $x=1; }
+		
 		if($i)
-		{  
-			$sel_gpu.=" OR ";
-		}
+		{ $sel_gpu.=" OR "; }
 		else
-		{
-			{ $sel_gpu.=" AND ( "; }
-		}
+		{ $sel_gpu.=" AND ( "; }
 
 		$sel_gpu.="typegpu='";
 		$sel_gpu.=$x;
@@ -33,7 +26,8 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 		$i++;
 	}
 	if($i>0) { $sel_gpu.=" ) "; }
-// Add prod to filter	
+	
+	// Add prod to filter	
 	$i=0;
 	if(gettype($prod)!="array") { $prod=(array)$prod; }
 	foreach($prod as $x)
@@ -48,12 +42,9 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 		$sel_gpu.="'";
 		$i++;
 	}
+	if($i>0) { $sel_gpu.=" ) "; }
 
-	if($i>0)
-		$sel_gpu.=" ) ";
-
-
-// Add models to filter	
+	// Add models to filter	
 	$i=0;
 	if(gettype($model)!="array") { $prod=(array)$model; }
 	foreach($model as $x)
@@ -68,12 +59,9 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 		$sel_gpu.="'";
 		$i++;
 	}
-
-	if($i>0)
-		$sel_gpu.=" ) ";
+	if($i>0) { $sel_gpu.=" ) "; }
 		
-	
-// Add gpu architecture to filter	
+	// Add gpu architecture to filter	
 	$i=0;
 	if(gettype($arch)!="array") { $arch=(array)$arch; }
 	foreach($arch as $x)
@@ -88,20 +76,16 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 		$sel_gpu.="'";
 		$i++;
 	}
-
-	if($i>0)
-		$sel_gpu.=" ) ";
+	if($i>0) { $sel_gpu.=" ) "; }
 		
-// Add tech to filter - smaller is better here		
+	// Add tech to filter - smaller is better here		
 	if($techmin)
 	{
-
-	$sel_gpu.=" AND ";
-	$sel_gpu.="tech>=";
-	$sel_gpu.=$techmin;
+		$sel_gpu.=" AND ";
+		$sel_gpu.="tech>=";
+		$sel_gpu.=$techmin;
 	}
 
- 
 	if($techmax)
 	{
 		$sel_gpu.=" AND ";
@@ -109,25 +93,22 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 		$sel_gpu.=$techmax;
 	}
 	
-// Minimum Shader model filter
+	// Minimum Shader model filter
 	if($shadermin)
 	{
 		$sel_gpu.=" AND ";
-	$sel_gpu.="shader>=";
-	$sel_gpu.=$shadermin;
+		$sel_gpu.="shader>=";
+		$sel_gpu.=$shadermin;
 	}
 
-
-	
-// Add core speed to filter 	
+	// Add core speed to filter 	
 	if($cspeedmin)
 	{
 		$sel_gpu.=" AND ";
-	$sel_gpu.="cspeed>=";
-	$sel_gpu.=$cspeedmin;
+		$sel_gpu.="cspeed>=";
+		$sel_gpu.=$cspeedmin;
 	}
 
- 
 	if($cspeedmax)
 	{
 		$sel_gpu.=" AND ";
@@ -135,15 +116,14 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 		$sel_gpu.=$cspeedmax;
 	}
 
-// Add shader speed to filter 	
+	// Add shader speed to filter 	
 	if($sspeedmin)
 	{
 		$sel_gpu.=" AND ";
-	$sel_gpu.="sspeed>=";
-	$sel_gpu.=$sspeedmin;
+		$sel_gpu.="sspeed>=";
+		$sel_gpu.=$sspeedmin;
 	}
 
- 
 	if($sspeedmax)
 	{
 		$sel_gpu.=" AND ";
@@ -151,14 +131,13 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 		$sel_gpu.=$sspeedmax;
 	}	
 
-// Add memory speed to filter 	
+	// Add memory speed to filter 	
 	if($mspeedmin)
 	{
 		$sel_gpu.=" AND ";
-	$sel_gpu.="sspeed>=";
-	$sel_gpu.=$mspeedmin;
+		$sel_gpu.="sspeed>=";
+		$sel_gpu.=$mspeedmin;
 	}
-
  
 	if($mspeedmax)
 	{
@@ -167,29 +146,26 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 		$sel_gpu.=$mspeedmax;
 	}
 	
-	
 	// Add memory bus filter 	**************
 	if($mbwmin)
 	{
 		$sel_gpu.=" AND ";
-	$sel_gpu.="mbw>=";
-	$sel_gpu.=$mbwmin;
+		$sel_gpu.="mbw>=";
+		$sel_gpu.=$mbwmin;
 	}
 	
 	if($mbwmax)
 	{
 		$sel_gpu.=" AND ";
-	$sel_gpu.="mbw<=";
-	$sel_gpu.=$mbwmax;
+		$sel_gpu.="mbw<=";
+		$sel_gpu.=$mbwmax;
 	}
-
-                               
+	
 // Add memory type to the filter	
 	$i=0;
 	if(gettype($mtype)!="array") { $mtype=(array)$mtype; }
 	foreach($mtype as $x)
 	{
-		
 		if($i)
 		{ $sel_gpu.=" OR ";	}
 		else
@@ -200,18 +176,15 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 		$sel_gpu.="'";
 		$i++;
 	}
-
-	if($i>0)
-		$sel_gpu.=" ) ";
+	if($i>0) { $sel_gpu.=" ) "; }
 
 	// Add memory size to filter 	
 	if($maxmemmin)
 	{
 		$sel_gpu.=" AND ";
-	$sel_gpu.="maxmem>=";
-	$sel_gpu.=$maxmemmin;
+		$sel_gpu.="maxmem>=";
+		$sel_gpu.=$maxmemmin;
 	}
-
  
 	if($maxmemmax)
 	{
@@ -221,22 +194,21 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 	}
 	
 	// ADD shared memory filter
-		if($sharem!=NULL)
+	if($sharem!=NULL)
 	{
 		$sel_gpu.=" AND ";
 		$sel_gpu.="sharem=";
 		$sel_gpu.=$sharem;
 	}
 	
-		// Add TDP filter	
+	// Add TDP filter	
 	if($powermin)
 	{
 		$sel_gpu.=" AND ";
-	$sel_gpu.="power>=";
-	$sel_gpu.=$powermin;
+		$sel_gpu.="power>=";
+		$sel_gpu.=$powermin;
 	}
 
- 
 	if($powermax)
 	{
 		$sel_gpu.=" AND ";
@@ -244,7 +216,7 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 		$sel_gpu.=$powermax;
 	}
 	
-			// Add date to filter		
+	// Add date to filter		
 	if($ldmin)
 	{
 		$sel_gpu.=" AND";
@@ -272,7 +244,6 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 		$sel_gpu.=date('Y-m-d', strtotime("-1 days"));
 		$sel_gpu.="')";
 	}
-		
 	
 	// Add MISC to filter
 	$i=0;
@@ -301,73 +272,58 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 			$sel_gpu.=$x;	
 			$sel_gpu.="',msc)>0";
 		}
-		
 		$i++;
-	
 	}
-	if($i>0)
-		$sel_gpu.=" ) ";	
-	
+	if($i>0) { $sel_gpu.=" ) "; }	
 	
 	// Add rating to filter	
 	if($ratemin)
 	{
-	$sel_gpu.=" AND ";
-	$sel_gpu.="rating>=";
-	$sel_gpu.=$ratemin;
+		$sel_gpu.=" AND ";
+		$sel_gpu.="rating>=";
+		$sel_gpu.=$ratemin;
 	}
 
- 
 	if($ratemax)
 	{
-	$sel_gpu.=" AND ";
+		$sel_gpu.=" AND ";
 		$sel_gpu.="rating<=";
 		$sel_gpu.=$ratemax;
-	}		
+	}
 	
-		
-// Add price to filter		
+	// Add price to filter		
 	if ($pricemin)
 	{
-	$sel_gpu.=" AND ";
-	$sel_gpu.="(price+price*err)>=";
-	$sel_gpu.=$pricemin;
+		$sel_gpu.=" AND ";
+		$sel_gpu.="(price+price*err)>=";
+		$sel_gpu.=$pricemin;
 	
 	}
-
- 
+	
 	if($pricemax)
 	{
-	$sel_gpu.=" AND ";
+		$sel_gpu.=" AND ";
 		$sel_gpu.="(price-price*err)<=";
 		$sel_gpu.=$pricemax;
 	}
 	
-	
 	$sel_gpu.=" GROUP BY model";
-	
 	$sel_gpu.=" ORDER BY rating DESC";
 	
-// DO THE SEARCH
-	
-//	var_dump ($sel_gpu);
-//	echo $sel_gpu."aaaaaaaa"; 	
-#error_log( $sel_gpu );
+	// DO THE SEARCH
+	#error_log( $sel_gpu );
 	$result = mysqli_query($GLOBALS['con'], "$sel_gpu");
-	
 	$gpu_return = array();
 	while($rand = mysqli_fetch_array($result)) 
 	{ 
-
 		if($seltdp>0)
-		$gpu_return[]=["id"=>intval($rand[0]), "model"=>(strval($rand[1])."  (".strval(round($rand[2])/10)."/10)"), "typegpu"=>(intval($rand[3]))];		
+		{ $gpu_return[]=["id"=>intval($rand[0]), "model"=>(strval($rand[1])."  (".strval(round($rand[2])/10)."/10)"), "typegpu"=>(intval($rand[3]))]; }
 		else
-		$gpu_return[]=["id"=>intval($rand[0]), "model"=>(strval($rand[1])."  (".strval(round($rand[2])/10)."/10)"), "typegpu"=>(intval($rand[3]))];	
+		{ $gpu_return[]=["id"=>intval($rand[0]), "model"=>(strval($rand[1])."  (".strval(round($rand[2])/10)."/10)"), "typegpu"=>(intval($rand[3]))];	}
 
 	}
-		mysqli_free_result($result);
-
-		return($gpu_return);
+	
+	mysqli_free_result($result);
+	return($gpu_return);
 }
-
 ?>

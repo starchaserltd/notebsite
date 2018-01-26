@@ -86,8 +86,7 @@
 }
 
 .rows.gpuhddd form select {
-	max-width: 240px;
-	margin-left: -15px
+	max-width: 240px;	
 }
 
 /** Review list **/

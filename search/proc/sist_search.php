@@ -15,13 +15,9 @@ function search_sist ($sist, $vers, $misc, $pricemin, $pricemax)
 		{
 			$newx=explode("+",$x);
 			if($i)
-			{  
-				$sel_sist.=") OR (";
-			}
+			{ $sel_sist.=") OR ("; }
 			else
-			{
-				$sel_sist.=" AND ( ";
-			}
+			{ $sel_sist.=" AND ( "; }
 		
 			$sel_sist.="sist='";
 			$sel_sist.=$newx[0];
@@ -36,13 +32,9 @@ function search_sist ($sist, $vers, $misc, $pricemin, $pricemax)
 		else
 		{
 			if($i)
-			{  
-				$sel_sist.=") OR (";
-			}
+			{ $sel_sist.=") OR ("; }
 			else
-			{
-				$sel_sist.=" AND ( ";
-			}
+			{ $sel_sist.=" AND ( "; }
 	
 			$sel_sist.="sist='";
 			$sel_sist.=$x;
@@ -50,8 +42,7 @@ function search_sist ($sist, $vers, $misc, $pricemin, $pricemax)
 			$i++;
 		}
 	}
-	if($i>0)
-	{ $sel_sist.=" ) "; }
+	if($i>0){ $sel_sist.=" ) "; }
 
 	// Add type to filter	
 	$i=0;
@@ -59,13 +50,9 @@ function search_sist ($sist, $vers, $misc, $pricemin, $pricemax)
 	foreach($vers as $x)
 	{
 		if($i)
-		{  
-			$sel_sist.=" OR ";
-		}
+		{ $sel_sist.=" OR "; }
 		else
-		{
-			$sel_sist.=" AND ( ";
-		}
+		{ $sel_sist.=" AND ( "; }
 		
 		$sel_sist.="vers='";
 		$sel_sist.=$x;
@@ -82,21 +69,16 @@ function search_sist ($sist, $vers, $misc, $pricemin, $pricemax)
 	foreach($misc as $x)
 	{
 		if($i)
-		{  
-			$sel_sist.=" AND ";
-		}
+		{ $sel_sist.=" AND "; }
 		else
-		{
-			$sel_sist.=" AND ( ";
-		}
+		{ $sel_sist.=" AND ( "; }
 		
 		$sel_sist.="FIND_IN_SET('";
 		$sel_sist.=$x;
 		$sel_sist.="',msc)>0";
 		$i++;
 	}
-	if($i>0)
-	{ $sel_sist.=" ) ";	}
+	if($i>0){ $sel_sist.=" ) ";	}
 
 	// Add price to filter		
 	if ($pricemin)

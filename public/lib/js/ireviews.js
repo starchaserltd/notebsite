@@ -1,4 +1,6 @@
-$(document).ready(function(){ 
+$(document).ready(function()
+{ 
+	actbtn("USER");
     $(".modelsearch").each(function(){
 	var query_address=siteroot+"/search/lib/func/m_search.php";
 	var $this = $(this);
@@ -19,7 +21,6 @@ $(document).ready(function(){
 			url: query_address,
 			type: "POST",
 			data: function (params) {
-			//	console.log($idtype);
 				var queryParameters = {
 					list: $this.attr('field'),
 					q: "model",

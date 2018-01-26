@@ -12,21 +12,16 @@ function search_hdd ($model, $capmin, $capmax, $type, $readspeedmin, $readspeedm
 	foreach($model as $x)
 	{		
 		if($i)
-		{  
-			$sel_hdd.=" OR ";
-		}
+		{ $sel_hdd.=" OR "; }
 		else
-		{
-			$sel_hdd.=" AND ( ";
-		}
+		{ $sel_hdd.=" AND ( "; }
 		
 		$sel_hdd.="model='";
 		$sel_hdd.=$x;
 		$sel_hdd.="'";
 		$i++;
 	}
-	if($i>0)
-	{ $sel_hdd.=" ) "; }
+	if($i>0){ $sel_hdd.=" ) "; }
 
 	// Add cap to filter
 	if($capmin)
@@ -49,21 +44,16 @@ function search_hdd ($model, $capmin, $capmax, $type, $readspeedmin, $readspeedm
 	foreach($type as $x)
 	{
 		if($i)
-		{  
-			$sel_hdd.=" OR ";
-		}
+		{ $sel_hdd.=" OR "; }
 		else
-		{
-			$sel_hdd.=" AND ( ";
-		}
+		{ $sel_hdd.=" AND ( "; }
 		
 		$sel_hdd.="type='";
 		$sel_hdd.=$x;
 		$sel_hdd.="'";
 		$i++;
 	}
-	if($i>0)
-	{ $sel_hdd.=" ) "; }
+	if($i>0){ $sel_hdd.=" ) "; }
 	
 	// Add readspeed to filter - smaller is better here		
 	if($readspeedmin)
@@ -129,8 +119,7 @@ function search_hdd ($model, $capmin, $capmax, $type, $readspeedmin, $readspeedm
 		$sel_hdd.="',msc)>0";
 		$i++;
 	}
-	if($i>0)
-	{ $sel_hdd.=" ) "; }
+	if($i>0){ $sel_hdd.=" ) "; }
 
 	// Add rating to filter	
 	if($ratemin)

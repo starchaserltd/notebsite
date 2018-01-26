@@ -3,18 +3,16 @@
 function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, $techmax, $cachemin, $cachemax, $clockmin, $clockmax, $turbomin, $turbomax, $tdpmax, $tdpmin, $coremin, $coremax, $intgpu, $misc, $ratemin, $ratemax, $pricemin, $pricemax, $seltdp)
 {
 	if($seltdp>0)
-	$sel_cpu="SELECT id,model,prod,gpu,tdp,rating FROM CPU WHERE valid=1";
+	{ $sel_cpu="SELECT id,model,prod,gpu,tdp,rating FROM CPU WHERE valid=1"; }
 	else
-	$sel_cpu="SELECT id,model,prod,gpu,rating FROM CPU WHERE valid=1";
+	{ $sel_cpu="SELECT id,model,prod,gpu,rating FROM CPU WHERE valid=1"; }
 	
-// Add producers to filter
+	// Add producers to filter
 	$i=0;
-	
 	if(gettype($prod)!="array") { $prod=(array)$prod; }
 	
 	foreach($prod as $x)
 	{
-			
 		if($i)
 		{ $sel_cpu.=" OR "; }
 		else
@@ -24,18 +22,14 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 		$sel_cpu.=$x;
 		$sel_cpu.="'";
 		$i++;
-	
 	}
-	if($i>0)
-		$sel_cpu.=" ) ";
+	if($i>0) { $sel_cpu.=" ) "; }
 
-
-// Add models to filter	
+	// Add models to filter	
 	$i=0;
 	if(gettype($model)!="array") { $model=(array)$model; }
 	foreach($model as $x)
-	{
-			
+	{			
 		if($i)
 		{ $sel_cpu.=" OR "; }
 		else
@@ -46,23 +40,21 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 		$sel_cpu.="'";
 		$i++;
 	}
-
-	if($i>0)
-		$sel_cpu.=" ) ";
+	if($i>0) { $sel_cpu.=" ) "; }
 	
 	
-// Add date to filter		
+	// Add date to filter		
 	if($ldmin)
 	{
-	$sel_cpu.=" AND (";
-	$sel_cpu.="ldate BETWEEN '";
-	$sel_cpu.=$ldmin;
+		$sel_cpu.=" AND (";
+		$sel_cpu.="ldate BETWEEN '";
+		$sel_cpu.=$ldmin;
 	}
 	else
 	{	
-	$sel_cpu.=" AND (";
-	$sel_cpu.="ldate BETWEEN ";
-	$sel_cpu.="'0000-00-00";
+		$sel_cpu.=" AND (";
+		$sel_cpu.="ldate BETWEEN ";
+		$sel_cpu.="'0000-00-00";
 	}
 
  	if($ldmax)
@@ -73,20 +65,20 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 	}
 	else
 	{
-	$sel_cpu.="' AND '";
-	$sel_cpu.=date('Y-m-d', strtotime("-1 days"));
-	$sel_cpu.="')";
+		$sel_cpu.="' AND '";
+		$sel_cpu.=date('Y-m-d', strtotime("-1 days"));
+		$sel_cpu.="')";
 	}
 
-// Add STATUS to filter		
+	// Add STATUS to filter		
 	if($status)
 	{
-	$sel_cpu.=" AND ";
-	$sel_cpu.="status=";
-	$sel_cpu.=$status;
+		$sel_cpu.=" AND ";
+		$sel_cpu.="status=";
+		$sel_cpu.=$status;
 	}	
 
-// Add SOCKET to filter	
+	// Add SOCKET to filter	
 	$i=0;
 	if(gettype($socket)!="array") { $socket=(array)$socket; }
 	foreach($socket as $x)
@@ -103,18 +95,16 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 		$i++;
 	
 	}
-	if($i>0)
-		$sel_cpu.=" ) ";	
+	if($i>0) { $sel_cpu.=" ) "; }
 	
-// Add tech to filter - smaller is better here		
+	// Add tech to filter - smaller is better here		
 	if($techmin)
 	{
-	$sel_cpu.=" AND ";
-	$sel_cpu.="tech<=";
-	$sel_cpu.=$techmin;
+		$sel_cpu.=" AND ";
+		$sel_cpu.="tech<=";
+		$sel_cpu.=$techmin;
 	}
 
- 
 	if($techmax)
 	{
 		$sel_cpu.=" AND ";
@@ -122,15 +112,13 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 		$sel_cpu.=$techmax;
 	}
 	
-
-// Add cache to filter	
+	// Add cache to filter	
 	if($cachemin)
 	{
-	$sel_cpu.=" AND ";
-	$sel_cpu.="cache>=";
-	$sel_cpu.=$cachemin;
+		$sel_cpu.=" AND ";
+		$sel_cpu.="cache>=";
+		$sel_cpu.=$cachemin;
 	}
-
  
 	if($cachemax)
 	{
@@ -142,12 +130,11 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 	// Add clock to filter	
 	if($clockmin)
 	{
-	$sel_cpu.=" AND ";
-	$sel_cpu.="clocks>=";
-	$sel_cpu.=$clockmin;
+		$sel_cpu.=" AND ";
+		$sel_cpu.="clocks>=";
+		$sel_cpu.=$clockmin;
 	}
 
- 
 	if($clockmax)
 	{
 		$sel_cpu.=" AND ";
@@ -155,15 +142,14 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 		$sel_cpu.=$clockmax;
 	}	
 	
-		// Add turbo clock to filter	
+	// Add turbo clock to filter	
 	if($turbomin)
 	{
-	$sel_cpu.=" AND ";
-	$sel_cpu.="maxtf>=";
-	$sel_cpu.=$turbomin;
+		$sel_cpu.=" AND ";
+		$sel_cpu.="maxtf>=";
+		$sel_cpu.=$turbomin;
 	}
 
- 
 	if($turbomax)
 	{
 		$sel_cpu.=" AND ";
@@ -171,16 +157,14 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 		$sel_cpu.=$turbomax;
 	}	
 	
-	
 	// Add tdp to filter		
 	if($tdpmin)
 	{
-	$sel_cpu.=" AND ";
-	$sel_cpu.="tdp>=";
-	$sel_cpu.=$tdpmin;
+		$sel_cpu.=" AND ";
+		$sel_cpu.="tdp>=";
+		$sel_cpu.=$tdpmin;
 	}
 
- 
 	if($tdpmax)
 	{
 		$sel_cpu.=" AND ";
@@ -191,12 +175,11 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 	// Add cores to filter	
 	if($coremin)
 	{
-	$sel_cpu.=" AND ";
-	$sel_cpu.="cores>=";
-	$sel_cpu.=$coremin;
+		$sel_cpu.=" AND ";
+		$sel_cpu.="cores>=";
+		$sel_cpu.=$coremin;
 	}
 
- 
 	if($coremax)
 	{
 		$sel_cpu.=" AND ";
@@ -204,27 +187,23 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 		$sel_cpu.=$coremax;
 	}	
 	
-// Add Integrated GPU to filter		
+	// Add Integrated GPU to filter		
 	if($intgpu)
 	{
-	$sel_cpu.=" AND ";
-	$sel_cpu.="gpu>=";
-	$sel_cpu.=$intgpu;
+		$sel_cpu.=" AND ";
+		$sel_cpu.="gpu>=";
+		$sel_cpu.=$intgpu;
 	}	
 	
-// Add MISC to filter
+	// Add MISC to filter
 	$i=0;
 	if(gettype($misc)!="array") { $misc=(array)$misc; }
 	foreach($misc as $x)
-		{
+	{
 		if($i)
-		{  
-			$sel_cpu.=" AND ";
-		}
+		{ $sel_cpu.=" AND "; }
 		else
-		{
-			$sel_cpu.=" AND ( ";
-		}
+		{ $sel_cpu.=" AND ( "; }
 
 		if(stripos($x,"Intel Core i")===FALSE && stripos($x,"AMD Ryzen")===FALSE)
 		{	
@@ -268,11 +247,10 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 	// Add rating to filter	
 	if($ratemin)
 	{
-	$sel_cpu.=" AND ";
-	$sel_cpu.="rating>=";
-	$sel_cpu.=$ratemin;
+		$sel_cpu.=" AND ";
+		$sel_cpu.="rating>=";
+		$sel_cpu.=$ratemin;
 	}
-
  
 	if($ratemax)
 	{
@@ -281,16 +259,13 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 		$sel_cpu.=$ratemax;
 	}		
 	
-		
-// Add price to filter		
+	// Add price to filter		
 	if ($pricemin)
 	{
-	$sel_cpu.=" AND ";
-	$sel_cpu.="(price+price*err)>=";
-	$sel_cpu.=$pricemin;
-	
+		$sel_cpu.=" AND ";
+		$sel_cpu.="(price+price*err)>=";
+		$sel_cpu.=$pricemin;
 	}
-
  
 	if($pricemax)
 	{
@@ -301,10 +276,8 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 	
 	$sel_cpu.=" ORDER BY rating DESC";
 	
-// DO THE SEARCH
-	
-//	echo $sel_cpu;
-
+	// DO THE SEARCH
+	//	echo $sel_cpu;
 
 	$result = mysqli_query($GLOBALS['con'], "$sel_cpu");
 	$cpu_return = array();
@@ -312,15 +285,13 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 	{ 
 
 		if($seltdp>0)
-		$cpu_return[]=["id"=>intval($rand[0]), "model"=>(strval($rand[2])." ".strval($rand[1])."  (".strval(round($rand[4])/10)."/10)"),"gpu"=>intval($rand[3]),"tdp"=>intval($rand[4])];		
+		{ $cpu_return[]=["id"=>intval($rand[0]), "model"=>(strval($rand[2])." ".strval($rand[1])."  (".strval(round($rand[4])/10)."/10)"),"gpu"=>intval($rand[3]),"tdp"=>intval($rand[4])]; }
 		else
-		$cpu_return[]=["id"=>intval($rand[0]),"model"=>(strval($rand[2])." ".strval($rand[1]). "   (".strval(round($rand[4])/10)."/10)"),"gpu"=>intval($rand[3])];
-
+		{ $cpu_return[]=["id"=>intval($rand[0]),"model"=>(strval($rand[2])." ".strval($rand[1]). "   (".strval(round($rand[4])/10)."/10)"),"gpu"=>intval($rand[3])]; }
 	}
-		mysqli_free_result($result);
-//	$cpu_return[]=["id"=>"0","model"=>$sel_cpu,"gpu"=>$info];
-		return($cpu_return);
+	
+	mysqli_free_result($result);
+	//	$cpu_return[]=["id"=>"0","model"=>$sel_cpu,"gpu"=>$info];
+	return($cpu_return);
 }
-
-
 ?>

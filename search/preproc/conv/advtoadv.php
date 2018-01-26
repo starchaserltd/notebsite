@@ -9,7 +9,7 @@
 		foreach ($_GET['Family_fam'] as $element)
 		{	if ($element =="All business families")	{$model_minclass=1;$model_maxclass =3;$model_advclass=1;} 
 			if ($element =="All consumer families")	{$model_minclass=0;$model_maxclass =1;$model_advclass=1;} 
-			$family.='<option selected="selected">'.$element.'</option>';}//echo $minclass; echo $maxclass;
+			$family.='<option selected="selected">'.$element.'</option>';}
 	}
 	
 	if(isset($_GET['Producer_prod']))
@@ -50,14 +50,14 @@
 	if($_GET['nrcoresmin'])	{ $cpucoremin = $_GET['nrcoresmin'];	}
 	if($_GET['nrcoresmax']) { $cpucoremax = $_GET['nrcoresmax']; }
 	
-	$cputdpmin = $_GET['cputdpmin']; //echo $cputdpmin.";";
-	$cputdpmax = $_GET['cputdpmax'];	//echo $cputdpmax.";";
-	$cpufreqmin = $_GET['cpufreqmin']; //echo $cpufreqmin.";";
-	$cpufreqmax = $_GET['cpufreqmax']; //echo  $cpufreqmax.";";
-	$cputechmin = $_GET['cputechmax']; //echo $cputechmin.";";
-	$cputechmax = $_GET['cputechmin']; //echo $cputechmax.";";
+	$cputdpmin = $_GET['cputdpmin'];
+	$cputdpmax = $_GET['cputdpmax'];
+	$cpufreqmin = $_GET['cpufreqmin'];
+	$cpufreqmax = $_GET['cpufreqmax'];
+	$cputechmin = $_GET['cputechmax'];
+	$cputechmax = $_GET['cputechmin'];
 	
-	$gputype = $_GET['gputype']; //echo $gputype.";";
+	$gputype = $_GET['gputype'];
 	
 	if ($gputype==1)
 	{
@@ -66,9 +66,9 @@
 			foreach ($_GET['gputype2'] as $element)
 			{ $gputypesel[$element]="selected"; } // values for GPU type
 		}
-		$gpumemmin = $_GET['gpumemmin']; //echo $gpumemmin.";";
-		$gpumemmax = $_GET['gpumemmax']; //echo $gpumemmax.";";
-		$gpumembusmin = $_GET['gpubusmin'];//echo $gpumembusmin.";";
+		$gpumemmin = $_GET['gpumemmin'];
+		$gpumemmax = $_GET['gpumemmax'];
+		$gpumembusmin = $_GET['gpubusmin'];
 		$gpumembusmax = $_GET['gpubusmax'];
 		$gpupowermin = $_GET['gpupowermin'];
 		$gpupowermax = $_GET['gpupowermax'];
@@ -92,8 +92,7 @@
 	}
 	else
 	{ }
-
-			
+	
 	$displaysizemin = $_GET['displaymin'];	
 	$displaysizemax = $_GET['displaymax'];	
 	if(isset($_GET['DISPLAY_ratio']))
@@ -116,11 +115,11 @@
 	if($_GET['verresmax']){ $displayvresmax = $_GET['verresmax']; }
 	
 	
-	$totalcapmin = $_GET['capacitymin'];//echo $hddcapmin.";";
-	$totalcapmax = $_GET['capacitymax'];//echo $totalcapmax.";";
+	$totalcapmin = $_GET['capacitymin'];
+	$totalcapmax = $_GET['capacitymax'];
 	$hddcapmin=$totalcapmin;
 	$hddcapmax=$totalcapmax;
-	$nrhdd = intval($_GET['nrhdd']); //echo $nrhdd."; ";
+	$nrhdd = intval($_GET['nrhdd']);
 	if ($nrhdd == 2) {$nrhddselect = "selected";}
 	if ($nrhdd == 3) {$nrhddselect2 = "selected";}
 	
@@ -131,7 +130,6 @@
 		else if ($mdbslots ==3) {$mdbslotsel3 = "selected";}
 			else if ($mdbslots == 4) {$mdbslotsel4 = "selected";}
 				else {$mdbslotsel0 = "selected";}
-					//echo $mdbslots.";sloturi ";
 				
 	$mdbwwan = $_GET['mdbwwan'];
 		if ($mdbwwan ==1) {$mdbwwansel1 = "selected";}
@@ -147,36 +145,31 @@
 	{	foreach ($_GET['MDB_port_id'] as $element)
 		{	$mdbport.='<option selected="selected">'.$element.'</option>'; }
 	}	
-	$memcapmin = $_GET['rammin'];//echo $memcapmin."; ";
-	$memcapmax = $_GET['rammax'];//echo $memcapmax."; ";
-	$memfreqmin = $_GET['freqmin'];//echo $memfreqmin."; ";
-	$memfreqmax = $_GET['freqmax'];//echo $memfreqmax."; ";
-	//memtype
+	$memcapmin = $_GET['rammin'];
+	$memcapmax = $_GET['rammax'];
+	$memfreqmin = $_GET['freqmin'];
+	$memfreqmax = $_GET['freqmax'];
 	
+	$batlifemin = $_GET['batlifemin'];
+ 	$batlifemax = $_GET['batlifemax'];
+	$acumcapmin = $_GET['acumcapmin'];
+	$acumcapmax = $_GET['acumcapmax'];
 	
-	$batlifemin = $_GET['batlifemin'];//echo $batlifemin."; ";
- 	$batlifemax = $_GET['batlifemax'];	//echo $batlifemax."; ";
-	//$acumnrcmin = $_GET['nrcellsmin'];//echo $acumnrcmin."; ";
-	//$acumnrcmax = $_GET['nrcellsmax'];//echo $acumnrcmax."; ";
-	$acumcapmin = $_GET['acumcapmin'];	//echo $acumcapmin."; ";
-	$acumcapmax = $_GET['acumcapmax'];	//echo $acumcapmax  ."; ";
-	
-	//$material = $_GET['material'];echo $material."; ";
-	$chassisweightmin = $_GET['weightmin'];	//echo $chassisweightmin."; ";
-	$chassisweightmax = $_GET['weightmax'];	//echo $chassisweightmax ."; ";
-	$chassisthicmin = $_GET['thicmin'];		//echo $chassisthicmin ."; ";
-	$chassisthicmax = $_GET['thicmax'];			//echo $chassisthicmax."; ";
-	$chassisdepthmin = $_GET['depthmin'];	//echo $chassisdepthmin."; ";
-	$chassisdepthmax = $_GET['depthmax'];			//echo $chassisdepthmax."; ";
-	$chassiswidthmin = $_GET['widthmin'];	//echo $chassiswidthmin."; ";
-	$chassiswidthmax = $_GET['widthmax'];		//echo $chassiswidthmax."; ";
+	$chassisweightmin = $_GET['weightmin'];
+	$chassisweightmax = $_GET['weightmax'];
+	$chassisthicmin = $_GET['thicmin'];
+	$chassisthicmax = $_GET['thicmax'];
+	$chassisdepthmin = $_GET['depthmin'];
+	$chassisdepthmax = $_GET['depthmax'];
+	$chassiswidthmin = $_GET['widthmin'];
+	$chassiswidthmax = $_GET['widthmax'];
 	$chassiswebmin = $_GET['webmin'];
 	$chassiswebmax = $_GET['webmax'];
+	
 	//******************************************************************************************************************************
 	if(isset($_GET['twoinone-no']) && $_GET['twoinone-no'] == "on") {$classiclap_check = "checked";}
 	if(isset($_GET['twoinone-yes']) && $_GET['twoinone-yes'] == "on") {$twoinone_check = "checked";}
 
-	//$oddtype = $_GET['oddtype']; echo $oddtype;
 	if(isset($_GET['oddtype'])) { $valuetype[52] = $_GET['oddtype']; }
 	if(isset($_GET['memtype'])) { $valuetype[53] = $_GET['memtype']; }
 	if(isset($_GET['opsist'])) { $valuetype[25] = $_GET['opsist']; } //var_dump($valuetype[25]);

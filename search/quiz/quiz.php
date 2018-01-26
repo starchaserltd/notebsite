@@ -1,8 +1,8 @@
 <?php if(!isset($quiz_css_addr)){ $quiz_css_addr="search/quiz/"; } else { $quiz_css_addr=""; } ?>
 <div class="quiz_container">
-	<input id="tab1" type="checkbox"><label for="tab1" class="label_intro1"><span class="startQuiz">Take the Quiz!</span></label>	
+	<input id="tab1" type="checkbox"><label for="tab1" class="label_intro1"><span class="startQuiz">Find your <strong class="strongText">laptop!</strong></span></label>
 	<input id="tab2" type="checkbox"><label for="tab2" class="label_intro2"><span class="startQuiz">Start Quiz!</span></label>		
-	<section class="tab1_intro"><p class="h2 text-center quizParagraf1">Find your laptop match</p></section>
+	<section class="tab1_intro"><!-- <p class="h2 text-center quizParagraf1">Find your laptop match</p> --></section>
 	<section class="tab2_intro">
 		<!-- <p class="h2 text-center quizParagraf2">How to use our Quiz</p> -->
         <p>Before you begin:</p>       
@@ -91,7 +91,7 @@
 				</div>
 			</div>
 		</div>
-		<div id="quiz_noresults" style="display: block;"><span style="font-size:14pt;"><strong>Oups!</strong> Looks like there are currently no laptops on the market <br> with your selected features!<br><br><br>Try to <strong>change or remove</strong> some of your selected options before returning to this step.</span></div>
+		<div id="quiz_noresults" style="display: none;"><div style="font-size:14pt;"><p class="noresultsFirstParagraph"><strong>Oups!</strong> Looks like there are currently no laptops on the market<br> with your selected features!</p><br><br><p class="noresultsSecondParagraph">Try to <strong>change or remove</strong> some of your selected options before returning to this step.</p></div></div>
 		<div id="extraopt" class="shadow hidel">
 		<div class="row" align="center" id="icontable">
 			<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" style="display: block; border-top:8px solid; border-color: transparent;">
@@ -168,4 +168,7 @@
 		</span>
 	</div>
 </div>
-<script type="text/javascript">$.getScript("<?php echo $quiz_css_addr.'lib/js/quiz_data.js'; ?>").done(function(){ $.getScript("<?php echo $quiz_css_addr.'lib/js/quiz_functions.js'; ?>").done(function(){ var locationPath = location.pathname; if(locationPath.indexOf("/search/quiz/nquiz.php")>=0) {imgadd="res/img/icons/"; } $.getScript("<?php echo $quiz_css_addr.'lib/js/set_quiz.js'; ?>").done(function(){ function quiz_init() { makePage(pagetomake); } quiz_init(); }); }); });</script>
+<script type="text/javascript">$.getScript("<?php echo $quiz_css_addr.'lib/js/quiz_data.js'; ?>").done(function(){ $.getScript("<?php echo $quiz_css_addr.'lib/js/quiz_functions.js'; ?>").done(function(){ var locationPath = location.pathname; if(locationPath.indexOf("/search/quiz/nquiz.php")>=0) {imgadd="res/img/icons/"; } $.getScript("<?php echo $quiz_css_addr.'lib/js/set_quiz.js'; ?>").done(function(){ function quiz_init() { makePage(pagetomake); } quiz_init(); }); }); });
+$(document).ready(function()
+{	$(".tab1_intro").click(function(){ $("input#tab1").prop("checked", true); }) });
+</script>

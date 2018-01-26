@@ -446,7 +446,7 @@ function prequery(str,type)
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
             {
                 result = JSON.parse(xmlhttp.responseText);
-                console.log(result);
+                //console.log(result);
                 $('#loadingNBquiz').hide();
                 activequery=1;
                 if(type=="b")
@@ -471,7 +471,7 @@ function prequery(str,type)
                 return;
             }
         }
-        console.log(siteroot+"search/qsearch.php?"+str+"&qtype="+type);
+        //console.log(siteroot+"search/qsearch.php?"+str+"&qtype="+type);
         xmlhttp.open("GET",siteroot+"search/qsearch.php?"+str+"&qtype="+type,true);
         xmlhttp.send();
     }
@@ -509,9 +509,7 @@ function navigation()
             if(quizfinal) {lastactive=key;}
         }
         else
-        { //navnr[key].classList.remove("nrcircleactive");
-            quizfinal=0;
-        }
+		{ quizfinal=0; }
 		
         if(key>lastactive && !quizfinal)
         {

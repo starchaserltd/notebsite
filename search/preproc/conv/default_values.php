@@ -216,7 +216,6 @@ while($rand = mysqli_fetch_assoc($result))
 		}
 		$droplists[$rand["type"]].='>'.$rand["name"].'</option>';
 }
-//var_dump($droplists);
 mysqli_free_result($result);
 
 ?>

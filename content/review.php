@@ -90,19 +90,20 @@ echo preg_replace_callback('/\[ntab (.*)\](.*)(?=\[ntab .*\]|\Z)/Us',function ($
 	</div>
 	
 	<script type="text/javascript">
-	jQuery(document).ready(function() {	jQuery('.tabs .tab-links a').on('click', function(e)  {
-        var currentAttrValue = jQuery(this).attr('href');
-         // Show/Hide Tabs
-        jQuery('.tabs ' + currentAttrValue).slideDown(400).siblings().slideUp(400);
-         // Change/remove current tab to active
-        jQuery(this).parent('li').addClass('active').siblings().removeClass('active');
-        e.preventDefault();
+	jQuery(document).ready(function()
+	{	
+		jQuery('.tabs .tab-links a').on('click', function(e)
+		{
+			var currentAttrValue = jQuery(this).attr('href');
+			// Show/Hide Tabs
+			jQuery('.tabs ' + currentAttrValue).slideDown(400).siblings().slideUp(400);
+			// Change/remove current tab to active
+			jQuery(this).parent('li').addClass('active').siblings().removeClass('active');
+			e.preventDefault();
 		});
-		document.title = "Noteb - Review";
-		$(document).ready(function(){
-    		$('meta[name=description]').attr('content', "Laptop review.");
-		});
+		$('meta[name=description]').attr('content', "Laptop review.");
 		actbtn("REVIEWS");
+		document.title = "Noteb - Review";
 		
 		<?php 
 		$posttags = wp_get_post_tags($echoid);
