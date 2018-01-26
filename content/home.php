@@ -50,7 +50,7 @@ $published_posts = $count_posts->publish;
 });</script>
 	
 	<!-- Noteb Quiz -->
-	<link rel="stylesheet" href="search/quiz/lib/css/quiz.css?v=0.18" type="text/css"/>
+	<link rel="stylesheet" href="search/quiz/lib/css/quiz.css?v=0.19" type="text/css"/>
 	<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 quizDisplay" style="padding:0px;">
 		<div id="quiz" class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style="position:relative;"></div>	
 	</div>			

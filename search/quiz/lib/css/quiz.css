@@ -521,7 +521,7 @@ _:-ms-lang(x),
     position: absolute;
     bottom: 5px;
     right: 33%;
-    margin-right: -80px;
+    margin-right: -90px;
     z-index: 98;
     color: #fff;
     transition: all 0.7s ease-in;
