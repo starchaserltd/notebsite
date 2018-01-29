@@ -738,7 +738,7 @@ else
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0px;">
 				<?php foreach($nb_reviews as $el) { ?>	
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ListElem">
-					<a onmousedown="OpenPage('<?php echo $el["link"]; ?>',event);"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="font-weight:bold;text-align:left;font-size:medium;cursor: pointer;"><?php echo $el["title"]; ?></div></a>
+					<a onmousedown="OpenPage('<?php echo $el["link"]; ?>',event);"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="font-weight:bold;text-align:center;font-size:medium;cursor: pointer;"><?php echo $el["title"]; ?></div></a>
 				</div>
 			<?php } ?>
 			</div>
