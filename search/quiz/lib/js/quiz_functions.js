@@ -446,7 +446,7 @@ function prequery(str,type)
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
             {
                 result = JSON.parse(xmlhttp.responseText);
-				console.log(result);
+				//console.log(result);
 				$('#loadingNBquiz').hide();
 				activequery=1;
 				if(type=="b")
