@@ -446,17 +446,16 @@ function prequery(str,type)
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
             {
                 result = JSON.parse(xmlhttp.responseText);
-                //console.log(result);
-                $('#loadingNBquiz').hide();
-                activequery=1;
-                if(type=="b")
-                {
-                    if(result["batlifemax"]<=7.5){ quiz[4]['options']['12hour']['no']=0; } else { quiz[4]['options']['12hour']['no']=1; }
+				console.log(result);
+				$('#loadingNBquiz').hide();
+				activequery=1;
+				if(type=="b")
+				{
+					if(result["batlifemax"]<=7.5){ quiz[4]['options']['12hour']['no']=0; } else { quiz[4]['options']['12hour']['no']=1; }
                     if(result["batlifemax"]<=5){ quiz[4]['options']['10hour']['no']=0; } else { quiz[4]['options']['10hour']['no']=1; }
                     if(result["batlifemax"]<=2.7){ quiz[4]['options']['6hour']['no']=0; } else { quiz[4]['options']['6hour']['no']=1; }
                     if(result["batlifemax"]<=0.9){ quiz[4]['options']['2hour']['no']=0; } else { quiz[4]['options']['2hour']['no']=1; }
-                }
-                
+					}
                 if(type=="p")
                 {
                     if(result["budgetmin"]<=500 && result["budgetmax"]>=1){ quiz[5]['options']['b500']['no']=1; } else { quiz[5]['options']['b500']['no']=0; }
