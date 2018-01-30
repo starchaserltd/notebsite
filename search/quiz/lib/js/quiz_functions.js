@@ -458,12 +458,12 @@ function prequery(str,type)
 					}
                 if(type=="p")
                 {
-                    if(result["budgetmin"]<=500 && result["budgetmax"]>=1){ quiz[5]['options']['b500']['no']=1; } else { quiz[5]['options']['b500']['no']=0; }
-                    if(result["budgetmin"]<=750 && result["budgetmax"]>=500){ quiz[5]['options']['b750']['no']=1; } else { quiz[5]['options']['b750']['no']=0; }
-                    if(result["budgetmin"]<=1000 && result["budgetmax"]>=750){ quiz[5]['options']['b1000']['no']=1; } else { quiz[5]['options']['b1000']['no']=0; }
-                    if(result["budgetmin"]<=1500 && result["budgetmax"]>=1000){ quiz[5]['options']['b1500']['no']=1; } else { quiz[5]['options']['b1500']['no']=0; }
-                    if(result["budgetmin"]<=2000 && result["budgetmax"]>=1500){ quiz[5]['options']['b2000']['no']=1; } else { quiz[5]['options']['b2000']['no']=0; }
-                    if(result["budgetmin"]<=3000 && result["budgetmax"]>=2000){ quiz[5]['options']['b3000']['no']=1; } else { quiz[5]['options']['b3000']['no']=0; }
+                    if(result["budgetmin"]<500 && result["budgetmax"]>=1){ quiz[5]['options']['b500']['no']=1; } else { quiz[5]['options']['b500']['no']=0; }
+                    if(result["budgetmin"]<750 && result["budgetmax"]>=500){ quiz[5]['options']['b750']['no']=1; } else { quiz[5]['options']['b750']['no']=0; }
+                    if(result["budgetmin"]<1000 && result["budgetmax"]>=750){ quiz[5]['options']['b1000']['no']=1; } else { quiz[5]['options']['b1000']['no']=0; }
+                    if(result["budgetmin"]<1500 && result["budgetmax"]>=1000){ quiz[5]['options']['b1500']['no']=1; } else { quiz[5]['options']['b1500']['no']=0; }
+                    if(result["budgetmin"]<2000 && result["budgetmax"]>=1500){ quiz[5]['options']['b2000']['no']=1; } else { quiz[5]['options']['b2000']['no']=0; }
+                    if(result["budgetmin"]<3000 && result["budgetmax"]>=2000){ quiz[5]['options']['b3000']['no']=1; } else { quiz[5]['options']['b3000']['no']=0; }
                 }
                             
                 makePage(currentp);
