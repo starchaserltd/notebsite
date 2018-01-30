@@ -508,7 +508,7 @@ if (isset($_GET['bag']) && $_GET['bag']==1)
 	if(isset($_GET['displarge']) && $_GET['displarge']==1)
 	{	if($chassisweightmax>3.6) { $chassisweightmax = 3.6; } if($chassisthicmax>37){ $chassisthicmax = 37;} }
 	else
-	{	if($chassisweightmax>2.8) { $chassisweightmax = 2.8; } if($chassisthicmax>35){ $chassisthicmax = 35;} }
+	{	if($chassisweightmax>2.9) { $chassisweightmax = 2.9; } if($chassisthicmax>35){ $chassisthicmax = 35;} }
 }
 
 if (isset($_GET['metal']) && $_GET['metal']==1 ) 

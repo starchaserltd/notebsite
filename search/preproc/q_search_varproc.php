@@ -590,7 +590,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 				if(isset($_GET['displarge']) && $_GET['displarge']==1)
 				{	if($chassis_weightmax>3.6) { $chassis_weightmax = 3.6; } if($chassis_thicmax>37){ $chassis_thicmax = 37;} }
 				else
-				{	if($chassis_weightmax>2.8) { $chassis_weightmax = 2.8; } if($chassis_thicmax>35){ $chassis_thicmax = 35;} }
+				{	if($chassis_weightmax>2.9) { $chassis_weightmax = 2.9; } if($chassis_thicmax>35){ $chassis_thicmax = 35;} }
 			}
 		
 			if (isset($_GET['metal']) && $_GET['metal']==1 ) 
