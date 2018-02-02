@@ -9,8 +9,8 @@ if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_n
 	<div style="margin-top:50px; margin-left: 20px; margin-right: 40px;">
 	<p style="font-size:18px"><b>A bit about Noteb:</b></p>
 		 	<p>
-	 Noteb is a project that first started in 2010 with the purpose of providing an internet gateway to the laptop world.<br> After two failed attempts, in 2014 work started on the current website.
-	 It still has a long way to go and there are still many features that we hope to implement, provided we get enough visitors to make it count.</p>
+	 Noteb is a project that first started in 2010 with the purpose of providing an internet gateway to the laptop world.<br> In 2014 work started on the current website.
+	 There are still many features that we hope to implement, provided we get enough visitors to make it count.</p>
 	 <p>The core values of Noteb is functionality over everything else. We want this website to be useful and really help people in getting the laptop that best fits their needs and budget. 
 	 <br><br>If by any chance you find something that you believe needs improvement, like a missing laptop configuration or a new search feature, please let us know. Well-grounded feedback will always reach our development team.</p>
 	 <br><br>
@@ -24,7 +24,7 @@ if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_n
 	 <p>In takes care and effort in gathering the most complete and accurate information for every laptop model. Most of the information is sourced from the official documentation provided by laptop manufacturers. When the documentation is incomplete or not entirely reliable we do our own research both on-line and off-line. We hope that in the future we will be able to open up the database and make it more like a "wikipedia" for laptops.</p>
 	 
 	 	 <p><b>How do you estimate prices?</b></p>
-Prices are sourced from producer websites, Amazon and other price comparison websites. However, due to the fact that some laptops can have millions of possible configurations, it is impossible to collect market prices for each of them. Consequently, for many models we extrapolate the prices based on the data we constantly collect and update.<br>We can confidently say that 95% of all our prices are within a 7% margin of error compared to what is available on the market, with a very few exception (under 5% of latops) prices can be off by almost 15%.
+Prices are sourced from producer websites, Amazon and other price comparison websites. However, due to the fact that some laptops can have millions of possible configurations, it is impossible to collect market prices for each of them. Consequently, for many models we extrapolate the prices based on the data we constantly collect and update.<br>We can confidently say that 95% of all our prices are within a 7% margin of error compared to what is available on the market, with a very few exception (under 5% of laptops) prices can be off by almost 15%.
 Large price differences are almost always due to changes in producer price policies which we have yet to update or changes in technical specifications.
 <br>
 If you do notice a large price difference please <a href="https://<?php echo $site_name;?>?footer/contact.php">contact us</a> and we will make the necessary adjustments. <br> <br>
