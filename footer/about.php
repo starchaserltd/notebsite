@@ -43,7 +43,9 @@ Our estimate is for normal usage with simple tasks, like watching movies, browsi
 				2. The characteristics you are searching for exist but they do not fit your budget.<br>
 				<br>
 			Our advice is to adjust the price range and start your search with a more relaxed set of characteristics and make them progressively more restrictive.
-	 
+			<br><br>
+			<p><b>Privacy and cookie policy</b></p>
+			Noteb.com does not collect or store any type of personal data nor does it use tracking cookies. We are firm believers that our users are our customers not our product.
 	 </div>
 	 </div>
 	 <script type="text/javascript">
