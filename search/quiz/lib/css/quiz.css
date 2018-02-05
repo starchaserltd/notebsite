@@ -521,7 +521,7 @@ _:-ms-lang(x),
     position: absolute;
     bottom: 5px;
     right: 33%;
-    margin-right: -90px;
+    margin-right: -160px;
     z-index: 98;
     color: #fff;
     transition: all 0.7s ease-in;
@@ -620,12 +620,12 @@ _:-ms-lang(x),
     border-radius: 25px;
     line-height: 15px;
     transition: all 0.3s ease-in;
-    width: 260px;
+    width: 220px;
     cursor: pointer;
     border: 1px solid rgb(40, 95, 143);
     text-align: center;
     color: rgb(40, 95, 143);
-    font-size: 28px;
+    font-size: 22px;
 }
 
 .startQuiz:hover {
@@ -695,6 +695,13 @@ _:-ms-lang(x),
     font-size: 16px;
 }
 
+.startQuiz strong {
+    display: block;
+    margin-top: 10px;
+}
+
+/* Animations for quiz button and image */
+
 @-webkit-keyframes bannerButton {
      0% {right: -100%;opacity: 0;}
     100% {right: 33%;opacity: 1;}
@@ -716,11 +723,11 @@ _:-ms-lang(x),
 }
 
 /* Media Css for quiz */
-@media(min-width: 1600px) {
-	.startQuiz {
-		width: 290px;
-		margin-left:-145px;
-	}
+
+@media(min-width: 2360px) {
+  .quiz_container label.label_intro1 {
+    bottom: 15px;
+  }
 }
 
 @media(max-width: 1600px) {
