@@ -197,5 +197,9 @@ div.ListElem:hover {
 	.config {
 		text-align: center;
 	}
+
+	.modelContainer form select {
+		max-width: 160px!important;
 	}
+}
 
