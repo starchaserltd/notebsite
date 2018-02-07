@@ -13,7 +13,8 @@ for($i=0;$i<10;$i++)
 	if(isset($_GET["conf$i"]))
 	{
 		$getconfs[$nrgetconfs]=$_GET["conf$i"];
-		$sql="SELECT * FROM notebro_temp.all_conf_".table($getconfs[$nrgetconfs])." WHERE id = $getconfs[$nrgetconfs]";
+		$t=table($getconfs[$nrgetconfs]); $getconfs[$nrgetconfs]=$t[0]."_".$t[1];
+		$sql="SELECT * FROM notebro_temp.all_conf_".$t[1]." WHERE id = ".$t[0]."";
 		if($result = mysqli_query($cons,$sql))
 		{
 			$_SESSION['compare_list'][$getconfs[$nrgetconfs]] = mysqli_fetch_assoc($result);
@@ -44,7 +45,8 @@ if($nrgetconfs<2)
 			if ($_SESSION['conf'.$k]["checked"]==1)
 			{
 				$session_idconf[$nrconf] = $k;
-				$sql="SELECT * FROM notebro_temp.all_conf_".table($_SESSION['conf'.$k]['id'])." WHERE id = ".$_SESSION['conf'.$k]['id']."";
+				$t=table($_SESSION['conf'.$k]['id']); $_SESSION['conf'.$k]['id']=$t[0]."_".$t[1];
+				$sql="SELECT * FROM notebro_temp.all_conf_".$t[1]." WHERE id = ".$t[0]."";
 				if($result = mysqli_query($cons,$sql))
 				{
 					$_SESSION['compare_list'][$_SESSION['conf'.$k]['id']] = mysqli_fetch_assoc($result);

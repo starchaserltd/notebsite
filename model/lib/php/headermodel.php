@@ -25,6 +25,7 @@ else
 	if(isset($_SESSION['exchsign'])){ $exchsign=$_SESSION['exchsign']; } else { $exchsign="$"; }
 } 
 //CODE FOR THE MODEL SEARCH
+if(isset($_GET['conf']) && $_GET['conf']!="NaN") { $conf = $_GET['conf']; }
 if(isset($_GET['model_id']) && $_GET['model_id']!="NaN")
 {
 	require_once("../etc/con_sdb.php");
@@ -35,7 +36,6 @@ if(isset($_GET['model_id']) && $_GET['model_id']!="NaN")
 	$id=mysqli_fetch_row($result);
 	mysqli_close($cons);
 }
-if(isset($_GET['conf']) && $_GET['conf']!="NaN") { $conf = (string)($_GET['conf']); }
 if(isset($idmodel) && $idmodel){  $conf=$id[0]; } // for a model
 ?>
 <script>

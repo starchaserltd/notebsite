@@ -107,9 +107,9 @@ else
 						<span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu configDropdown" aria-labelledby="dLabel">
-						<li class="configOptions" <?php if(!isset($best_low["best_value"])||(isset($best_low["best_value"])&&$best_low["best_value"]=="")){ echo 'style="display:none;"'; } ?> onmousedown="OpenPage('<?php echo "model/model.php?conf=".$best_low["best_value"]."&ex=USD"; ?>',event)";>Best Value</li>
-						<li class="configOptions" <?php if(!isset($best_low["best_performance"])||(isset($best_low["best_performance"])&&$best_low["best_performance"]=="")){ echo 'style="display:none;"'; } ?> onmousedown="OpenPage('<?php echo "model/model.php?conf=".$best_low["best_performance"]."&ex=USD"; ?>',event)";>Max Performance</li>
-						<li class="configOptions" <?php if(!isset($best_low["lowest_price"])||(isset($best_low["lowest_price"])&&$best_low["lowest_price"]=="")){ echo 'style="display:none;"'; } ?> onmousedown="OpenPage('<?php echo "model/model.php?conf=".$best_low["lowest_price"]."&ex=USD"; ?>',event)";>Lowest Price</li>						
+						<li class="configOptions" <?php if(!isset($best_low["best_value"])||(isset($best_low["best_value"])&&$best_low["best_value"]=="")){ echo 'style="display:none;"'; } ?> onmousedown="OpenPage('<?php echo "model/model.php?conf=".$best_low["best_value"]."_".$idmodel."&ex=USD"; ?>',event)";>Best Value</li>
+						<li class="configOptions" <?php if(!isset($best_low["best_performance"])||(isset($best_low["best_performance"])&&$best_low["best_performance"]=="")){ echo 'style="display:none;"'; } ?> onmousedown="OpenPage('<?php echo "model/model.php?conf=".$best_low["best_performance"]."_".$idmodel."&ex=USD"; ?>',event)";>Max Performance</li>
+						<li class="configOptions" <?php if(!isset($best_low["lowest_price"])||(isset($best_low["lowest_price"])&&$best_low["lowest_price"]=="")){ echo 'style="display:none;"'; } ?> onmousedown="OpenPage('<?php echo "model/model.php?conf=".$best_low["lowest_price"]."_".$idmodel."&ex=USD"; ?>',event)";>Lowest Price</li>						
 					</ul>
 				</div>
 			</div>

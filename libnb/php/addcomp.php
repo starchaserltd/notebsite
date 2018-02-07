@@ -19,7 +19,8 @@ else
 
 if($config_id)
 {
-	$sql="SELECT id,cpu,gpu,display,mem,hdd,model FROM notebro_temp.all_conf_".table($config_id)." WHERE id=$config_id LIMIT 1";;
+	$t=table($config_id); $config_id=$t[0];
+	$sql="SELECT id,cpu,gpu,display,mem,hdd,model FROM notebro_temp.all_conf_".$t[1]." WHERE id=$config_id LIMIT 1";;
 }
 else
 {
@@ -63,7 +64,7 @@ if($config_id)
 	$conf_hdd_info=$r['cap']."GB ".$r['type'];
 }
 
-$currentconf=array("checked" =>0, "id" => $row["id"] ,"name" => $conf_model, "model"=> $conf_model , "cpu_info" => $conf_cpu_name, "gpu_info" => $conf_gpu_name, "disp_size" => $conf_display_size, "disp_res" => $conf_display_res, "mem_info" => $conf_mem_info, "hdd_info" => $conf_hdd_info );
+$currentconf=array("checked" =>0, "id" => $row["id"]."_".$conf_model ,"name" => $conf_model, "model"=> $conf_model , "cpu_info" => $conf_cpu_name, "gpu_info" => $conf_gpu_name, "disp_size" => $conf_display_size, "disp_res" => $conf_display_res, "mem_info" => $conf_mem_info, "hdd_info" => $conf_hdd_info );
 
 $ij=0; $k=0; $nrcheck=-1; $already=1;
 for($i=0;$i<=9;$i++)

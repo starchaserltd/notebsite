@@ -5,26 +5,29 @@ $afismodel=0;
 if($conf) 
 {
 	require_once("../etc/con_sdb.php");
-	$sel3="SELECT * FROM notebro_temp.all_conf_".table($conf)." WHERE id=$conf LIMIT 1"; 
+	$t=table($conf); $conf=$t[0];
+	$sel3="SELECT * FROM notebro_temp.all_conf_".$t[1]." WHERE id=$conf LIMIT 1"; 
 	$cons=dbs_connect();
 	$result = mysqli_query($cons, $sel3);
-	$row = mysqli_fetch_array($result);
+	if($result && mysqli_num_rows($result)>0)
+	{
+		$row = mysqli_fetch_array($result);
+		$idcpu=$row["cpu"]; 
+		$iddisplay=$row["display"];
+		$idmem=$row["mem"];
+		$idhdd=$row["hdd"];
+		$idshdd=$row["shdd"];
+		$idgpu=$row["gpu"];
+		$idwnet=$row["wnet"];
+		$idodd=$row["odd"];
+		$idmdb=$row["mdb"];
+		$idchassis=$row["chassis"];
+		$idacum=$row["acum"];
+		$idwar=$row["war"];
+		$idsist=$row["sist"];
+		$idmodel=$row["model"];
+	}
 	mysqli_close($cons);
-	
-	$idcpu=$row["cpu"]; 
-	$iddisplay=$row["display"];
-	$idmem=$row["mem"];
-	$idhdd=$row["hdd"];
-	$idshdd=$row["shdd"];
-	$idgpu=$row["gpu"];
-	$idwnet=$row["wnet"];
-	$idodd=$row["odd"];
-	$idmdb=$row["mdb"];
-	$idchassis=$row["chassis"];
-	$idacum=$row["acum"];
-	$idwar=$row["war"];
-	$idsist=$row["sist"];
-	$idmodel=$row["model"];
 } 
 else 
 {	

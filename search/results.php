@@ -58,13 +58,13 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 		<div class="col-md-3 col-sm-4 col-xs-6 col-lg-3" style="padding-left:7px !important;padding-right:7px !important" >
 			<div class="col-md-12 searchresult">
 				<div class="searchresultJPG">
-					<a onmousedown="OpenPage('model/model.php?conf=<?php echo $rand['id'];?>',event);">
+					<a onmousedown="OpenPage('model/model.php?conf=<?php echo $rand['id']."_".$rand['model'];?>',event);">
 						<img src="../res/img/models/thumb/<?php echo $t_img; ?>" class="img-responsive" alt="Image for <?php echo $model; ?>">
 					</a>
 				</div>
 				<br>
 				<div class="searchresultitlu">
-					<a onmousedown="OpenPage('model/model.php?conf=<?php echo $rand['id'];?>',event);">
+					<a onmousedown="OpenPage('model/model.php?conf=<?php echo $rand['id']."_".$rand['model'];?>',event);">
 						<p>
 							<?php
 								echo $prod; echo " ";
@@ -78,7 +78,7 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 					</a>
 				</div>
 		        <div class="searchresultdesc">
-					<a onmousedown="OpenPage('model/model.php?conf=<?php echo $rand['id'];?>',event);">
+					<a onmousedown="OpenPage('model/model.php?conf=<?php echo $rand['id']."_".$rand['model'];?>',event);">
 						<ul>
 							<li class="resulspace"><?php show('size','DISPLAY',$rand['display'] );echo '" ('; show('hres','DISPLAY',$rand['display']); echo "x"; show('vres','DISPLAY',$rand['display']); echo ")";?></li>
 							<li class="resulspace"><?php show('prod', 'CPU',$rand['cpu'] ); echo " "; show('model', 'CPU',$rand['cpu'] ); echo " ("; show('clocks', 'CPU',$rand['cpu'] ); echo " MHz)"?></li>
@@ -86,12 +86,12 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 							<li class="resulspace"><?php showmem('cap, type, freq', 'MEM',$rand['mem'] );echo " ";?></li>
 							<li class="resulspace"><?php showhdd('cap,type,rpm','HDD',$rand['hdd'],$rand['shdd']);echo "";?></li>
 							<li class="resulspace"><?php showsist('sist,vers,type', 'SIST',$rand['sist']);echo " ";?></li>
-							<li class="resulspace"><?php showbat('notebro_temp.all_conf_'.table($rand['id']),$rand['id'],0);echo " ";?></li>
+							<li class="resulspace"><?php showbat('notebro_temp.all_conf_'.$rand['model'],$rand['id'],0);echo " ";?></li>
 						</ul>
 					</a>
 				</div>
-				<div class="searchprice"><?php echo ""; echo $exchsign; echo " "; echo showprice(('notebro_temp.'.$temp_table."_".table($rand['id'])), $rand['id'], $exch );?></div>
-				<div class="btn col-md-12 col-sm-12 col-xs-12 addtocpmp" onclick="addcompare('<?php echo $rand['id'];?>')">Add to compare</div>
+				<div class="searchprice"><?php echo ""; echo $exchsign; echo " "; echo showprice(('notebro_temp.'.$temp_table."_".$rand['model']), $rand['id'], $exch );?></div>
+				<div class="btn col-md-12 col-sm-12 col-xs-12 addtocpmp" onclick="addcompare('<?php echo $rand['id']."_".$rand['model'];?>')">Add to compare</div>
 			</div>
 		</div>
 		<?php
