@@ -3,35 +3,33 @@ require_once("../../etc/session.php");
 require_once("../../etc/con_db.php");
 
 $id=strval($_POST['conf']);
+for($i=0;$i<=9;$i++)
+{
+	if(isset($_SESSION['conf'.$i]["id"]))
+	{
+		if($_SESSION['conf'.$i]["id"]==$id)
+		{ unset($_SESSION['conf'.$i]); }
+	}			
+}
 
-	for($i=0;$i<=9;$i++)
+$j=-1;
+for($i=0;$i<=9;$i++)
+{
+	if((!isset($_SESSION['conf'.$i])) || ($_SESSION['conf'.$i]["id"]=="0"))
 	{
-		if(isset($_SESSION['conf'.$i]["id"]))
-		{
-			if($_SESSION['conf'.$i]["id"]==$id)
-			{ unset($_SESSION['conf'.$i]); }
-		}			
+		if($j<0)
+		$j=$i;
 	}
-	
-	$j=0;
-	for($i=0;$i<=9;$i++)
+	else
 	{
-		if((!isset($_SESSION['conf'.$i])) || ($_SESSION['conf'.$i]["id"]=="0"))
+		if($j>=0)
 		{
-			if(!$j)
-			$j=$i;
-		}
-		else
-		{
-			if($j)
-			{
-				$_SESSION['conf'.$j]=$_SESSION['conf'.$i];
-				unset($_SESSION['conf'.$i]);
-				$i=$j;
-				$j=0;
-			}
+			$_SESSION['conf'.$j]=$_SESSION['conf'.$i];
+			unset($_SESSION['conf'.$i]);
+			$i=$j;
+			$j=-1;
 		}
 	}
-
+}
 ?>
 

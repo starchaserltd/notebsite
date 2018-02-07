@@ -69,9 +69,9 @@ function removecomplink(idstring)
 		url: "libnb/php/addcomp.php",
 		async: true,
 		data: thedata,
-		success: function(data) {
+		success: function(data)
+		{
 			var compinfo = data.split("++");
-			console.log(data); console.log(compinfo[3]);
 			if(compinfo[3]!="0")
 			{
 				var generateHere = document.getElementById("comparelist");

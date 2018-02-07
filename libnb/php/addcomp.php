@@ -1,10 +1,9 @@
 <?php
-require_once("../../etc/session.php"); 
+require_once("../../etc/session.php");
 require_once("../../etc/con_db.php");
 require_once("../../etc/con_sdb.php");
 require_once("../../etc/conf.php");
 ?>
-
 <?php
 if(isset($_POST['sendid'])){ $config_id = $_POST['sendid']; }
 else
@@ -40,24 +39,23 @@ if($config_id)
 	$result2 = mysqli_query($con,$sql2);
 	$r = mysqli_fetch_assoc($result2); 
 	$conf_cpu_name=$r["model"];
-	
+
 	$sql2='SELECT prod,model FROM GPU WHERE id='.$row["gpu"];
 	$result2 = mysqli_query($con,$sql2);
 	$r = mysqli_fetch_assoc($result2); 
 	$conf_gpu_name=$r["prod"]." ".$r["model"];
 
-	
 	$sql2='SELECT size,hres,vres FROM DISPLAY WHERE id='.$row["display"];
 	$result2 = mysqli_query($con,$sql2);
 	$r = mysqli_fetch_assoc($result2); 
 	$conf_display_size=$r['size'];
 	$conf_display_res=$r['hres']."x".$r['vres'];
-	
+
 	$sql2='SELECT cap,type FROM MEM WHERE id='.$row["mem"];
 	$result2 = mysqli_query($con,$sql2);
 	$r = mysqli_fetch_assoc($result2); 
 	$conf_mem_info=$r['cap']."GB ".$r['type'];
-	
+
 	$sql2='SELECT cap,type FROM HDD WHERE id='.$row["hdd"];
 	$result2 = mysqli_query($con,$sql2);
 	$r = mysqli_fetch_assoc($result2); 
@@ -69,6 +67,7 @@ $currentconf=array("checked" =>0, "id" => $row["id"]."_".$conf_model ,"name" => 
 $ij=0; $k=0; $nrcheck=-1; $already=1;
 for($i=0;$i<=9;$i++)
 {
+	//var_dump($_SESSION);
 	if(isset($_SESSION['conf'.$i]) && $_SESSION['conf'.$i])
 	{ 	
 		if($_SESSION['conf'.$i]["checked"])
