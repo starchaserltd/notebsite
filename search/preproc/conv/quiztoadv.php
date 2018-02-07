@@ -603,6 +603,7 @@ if ($qsearchtype!=="p" && $qsearchtype!=="b")
 		else
 		{
 			$hdd_type=[];
+			$memcapmin=4;
 		}
 	}
 }
