@@ -59,20 +59,20 @@ require_once("etc/conf.php");
 							</select>
 						</form>
 				</div>
-			<!-- left area -->
+				<!-- left area -->
 				
 				<!-- simple search -->		
 				<div class="clearfix"></div>
-				<div class="navbar-header" data-toggle="collapse" data-target="#navigationMeniu">
+				<div class="navbar-header">
 					<span class="navbar-brand">Menu</span>
-				 <button type="button" class="navbar-toggle" >
-					  <span class="sr-only">Menu</span>
-					  <span class="icon-bar"></span>
-					  <span class="icon-bar"></span>
-					  <span class="icon-bar"></span>			      
-				</button>
+					<button type="button" class="navbar-toggle navbarToggleMenu">
+						  <span class="sr-only">Menu</span>
+						  <span class="icon-bar"></span>
+						  <span class="icon-bar"></span>
+						  <span class="icon-bar"></span>			      
+					</button>
 				</div>
-				<nav class="navbar-collapse collapse" role="navigation" id="navigationMeniu">	
+				<nav class="navbar-collapse" role="navigation">	
 					<div class="col-md-12 col-xs-12 col-sm-12 blue cssmenu" style="padding:0px">
 						<ul >
 						   <li  class='has-sub'><a >Browse laptops</a>

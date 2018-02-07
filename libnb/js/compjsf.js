@@ -71,6 +71,7 @@ function removecomplink(idstring)
 		data: thedata,
 		success: function(data) {
 			var compinfo = data.split("++");
+			console.log(data); console.log(compinfo[3]);
 			if(compinfo[3]!="0")
 			{
 				var generateHere = document.getElementById("comparelist");
@@ -90,12 +91,12 @@ function removecomplink(idstring)
 				}
 					
 				if(compinfo[1])
-				{ if(idconf){ addcomplink(idconf);} else addcomplink(compinfo[3]); }	
+				{ if(idconf){ addcomplink(idconf);} else addcomplink(compinfo[3]); }
 			}
 			else
 			{
-				if(firstcompare==0)
-				alert("Configuration already added to compare list!");		
+				if(compinfo[4]!=="max"){ if(firstcompare==0) { alert("Configuration already added to compare list!"); } }
+				else { alert(compinfo[0]); }
 			}
 		}
 	});

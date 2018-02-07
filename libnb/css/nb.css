@@ -1865,6 +1865,11 @@ nav:after {
     text-align: center;
 }
 
+@keyframes opacityAnimation {
+	0%{opacity: 0;}
+	100%{opacity: 1;}
+}
+
 /*Responsive media design */
 
 @media (min-width: 1600px) {
@@ -2173,6 +2178,10 @@ nav:after {
 
   .navbar-header {
     display: block;
+  }
+
+  .navbar-collapse {
+    display: none;
   }
 
 }

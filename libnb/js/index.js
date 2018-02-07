@@ -487,4 +487,9 @@ $( document ).ready(function() {
 		$( ".SearchParameters" ).toggle("slow");
         $( ".leftMenuFilters" ).toggleClass("rotate");	
     });
+
+    $(".navbarToggleMenu").click(function() {
+        $('.navbar-collapse').slideToggle("slow");
+    });
 });
+

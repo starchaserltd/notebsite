@@ -88,7 +88,7 @@ $i=$ij;
 if($already)
 {
 	if($i>9)
-	{ echo "Maximum number of compare configurations reached!"; }
+	{ echo "Maximum number of compare configurations reached!++0++0++0++max"; }
 	else
 	{
 		mysqli_select_db($con,"notebro_db");
@@ -105,7 +105,6 @@ if($already)
 		{ $_SESSION['conf'.$i]["checked"]=1; $checked="checked='checked'"; }
 		else
 		{ $_SESSION['conf'.$i]["checked"]=0; $checked=""; $nrcheck=4;}
-		
 		if($k)
 		{
 			$_SESSION['conf'.$i]["name"]=$name." (".$k.")";
