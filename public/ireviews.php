@@ -44,7 +44,7 @@ else { $errMsg = 'Please enter the captcha code:'; }
 
 <?php if(!empty($errMsg)) echo '<div class="col-md-12 col-md-offset-3 Irevm"><p style="color:#EA4335">'.$errMsg.'</p></div>';?>
 <?php if(!empty($succMsg)) echo '<p style="color:#34A853;">'.$succMsg.'</p>';?>
-<div class="col-md-6 col-md-offset-3">	<img src="<?php echo $web_address;?>public/lib/php/captcha.php" id="capImage"/></br><p style="font-size:10px">Can't read the image? click here to<a style="margin-left:2px;text-decoration:none" href="javascript:void(0);" onclick="javascript:$('#capImage').attr('src','<?php echo $web_address;?>public/lib/php/captcha.php?'+new Date().getTime());">refresh</a></p>Enter the code: <input name="captcha_code" type="text" value=""></div>
+<div class="col-md-6 col-md-offset-3">	<img src="<?php echo $web_address;?>public/lib/php/captcha.php?<?php echo mt_rand(); ?>" id="capImage"/></br><p style="font-size:10px">Can't read the image? click here to<a style="margin-left:2px;text-decoration:none" href="javascript:void(0);" onclick="javascript:$('#capImage').attr('src','<?php echo $web_address;?>public/lib/php/captcha.php?'+new Date().getTime());">refresh</a></p>Enter the code: <input name="captcha_code" type="text" value=""></div>
 	<input class="btn blue bsub" type="submit" value="Submit" id="ireviews_form_btn" name="submit" style="position: absolute; left:290px; top:450px; width: 150px;color:white;" >
 </div>
 	</form>
