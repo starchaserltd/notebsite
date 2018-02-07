@@ -32,7 +32,7 @@ button.close {padding:2px 7px 0px 10px!important}
 </style>
 <div class="container-fluid headerback" style="margin-right:0px;padding-right: 0px;">
 
-<?php 
+<?php
 if($nonexistent)
 {
 	echo "<b>The model you are looking for doesn't exist.</b><br>";
@@ -778,8 +778,7 @@ else
       'fadeDuration' : 200,
       'imageFadeDuration':200     
     });
-}); 
-$(document).ready(function(){
+
     $('meta[name=description]').attr('content', mprod + ' ' + mfamily + ' ' + mmodel);
 });
 </script>

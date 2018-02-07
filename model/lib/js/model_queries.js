@@ -657,7 +657,7 @@ function getconf(comp,id,exactconf)
 						{ history.replaceState(stateObj, confdata["cid"]+" "+excode, currentPage+"&ex="+excode); }
 					}
 					else
-					{ history.replaceState(stateObj, confdata["cid"], "?model/model.php?conf="+confdata["cid"]+"&ex="+excode); }	
+					{ history.replaceState(stateObj, confdata["cid"], "?model/model.php?conf="+confdata["cid"]+"_"+mid+"&ex="+excode); }	
 					currentPage = window.location.href;
 					set_best_low(confdata["cid"],best_low);
 					switch(comp)
