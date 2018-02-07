@@ -75,7 +75,7 @@ $(".predbvalues").each(function()
         },
         processResults: function (data) {
             return {
-                results: $.map(data, function (item) { console.log(data); item.id=item.name;
+                results: $.map(data, function (item) { item.id=item.name;
 					return {
 						id: item.name,
                         text: item.name

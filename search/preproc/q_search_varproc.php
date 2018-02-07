@@ -657,7 +657,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 		{
 			if($qsearchtype!="p" && $qsearchtype!="b"){ $budgetmin=99999999; $budgetmax=0; }
 			if (isset($_GET['b500']) && $_GET['b500']==1)
-			{	if(isset($budgetmin) && $budgetmin>169) { $budgetmin=169; } if(isset($budgetmax) && $budgetmax<500) { $budgetmax=500; } }
+			{	if(isset($budgetmin) && $budgetmin>169) { $budgetmin=169; } if(isset($budgetmax) && $budgetmax<500) { $budgetmax=505; } }
 			
 			if (isset($_GET['b750']) && $_GET['b750']==1) 
 			{	if(isset($budgetmin) && $budgetmin>480) { $budgetmin=480; } if(isset($budgetmax) && $budgetmax<790) { $budgetmax=790; } }
@@ -702,8 +702,8 @@ if($qsearchtype!=="p" && $qsearchtype!=="b")
 	else
 	{
 		$sist_sist[]="Chrome OS";
-		
-		if($budgetmax>500)
+
+		if($budgetmax>506)
 		{ 
 			$totalcapmin=100;
 			if($to_search["gpu"] && $quiz_mingputype>1 ) { $hdd_type=["HDD","SSD"]; }
