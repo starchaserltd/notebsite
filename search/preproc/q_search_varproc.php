@@ -117,7 +117,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 		
 		case 'cpu':
 		{
-			$cores=2;
+			$cores=1.5;
 			if (isset($_GET['calc']) && $_GET['calc']==1)
 			{	$cpu_turbomin = 3.1; $cpu_misc[]="HT"; $cores=2.5; }
 		
@@ -125,7 +125,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			{	$cpu_turbomin = 3.1; $cpu_misc[]="HT"; $cores=2.5; }
 				
 			if (isset($_GET['coding']) && $_GET['coding']==1)
-			{	if($cores<2) { $cpu_coremin = 2; $cpu_turbomin = 3.1; $cores=2.5;} $cpu_misc[]="HT"; }
+			{	if($cores<=2) { $cpu_coremin = 2; $cpu_turbomin = 3.1; $cores=2.5;} $cpu_misc[]="HT"; }
 		
 			if (isset($_GET['vmnone']) && $_GET['vmnone']==1)
 			{ }
@@ -713,8 +713,7 @@ if($qsearchtype!=="p" && $qsearchtype!=="b")
 		{
 			$hdd_type=[];
 			$mem_capmin=4;
-			if (isset($_GET['coding']) && $_GET['coding']==1)
-			{	if($cores<2) { $cpu_coremin = 2; $cpu_turbomin = 2.5; $cores=2.5; } $cpu_misc[]="HT"; $totalcapmin=64; }
+			if (isset($_GET['coding']) && $_GET['coding']==1){ $totalcapmin=64; }
 		}
 	}
 }

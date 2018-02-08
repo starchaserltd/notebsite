@@ -51,7 +51,7 @@ if (isset($_GET['business']) && $_GET['business']==1)
 {	$model_minclass=1;  $model_maxclass=3; }	
 
 // CPU Conditions
-$cores=2;
+$cores=1.5;
 if (isset($_GET['calc']) && $_GET['calc']==1)
 {	$cpufreqmin = 3.1; $cpu_misc[]="HT"; $cores=2.5; }
 	
@@ -604,8 +604,7 @@ if ($qsearchtype!=="p" && $qsearchtype!=="b")
 		{
 			$hdd_type=[];
 			$memcapmin=4;
-			if (isset($_GET['coding']) && $_GET['coding']==1)
-			{	if($cores<2) { $cpucoremin = 2; $cpufreqmin = 2.5; $cores=2.5; } $cpu_misc[]="HT"; $totalcapmin =64; }
+			if (isset($_GET['coding']) && $_GET['coding']==1){ $totalcapmin =64; }
 		}
 	}
 }
