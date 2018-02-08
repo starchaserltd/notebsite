@@ -713,7 +713,7 @@ if($qsearchtype!=="p" && $qsearchtype!=="b")
 		{
 			$hdd_type=[];
 			$mem_capmin=4;
-			if (isset($_GET['coding']) && $_GET['coding']==1){ $totalcapmin=64; }
+			if (isset($_GET['coding']) && $_GET['coding']==1){ $totalcapmin=64; $cpu_turbomin*=0.75; }
 		}
 	}
 }
