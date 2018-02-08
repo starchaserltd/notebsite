@@ -91,31 +91,25 @@ function show($tab, $id)
 			{
 				case ($resu['power']<10):
 					$class="Basic/Integrated";
-				break;
-				
+					break;
 				case ($resu['power']>=10 && $resu['power']<=20):
 					$class="Basic/Multimedia";
-				break;
-				
-				case ($resu['power']>20 && $resu['power']<35):
+					break;
+				case ($resu['power']>20 && $resu['power']<40):
 					$class="Budget/Casual Gaming";
-				break;
-				
-				case ($resu['power']>=35 && $resu['power']<55):
+					break;
+				case ($resu['power']>=40 && $resu['power']<70):
 					$class="Midrange";
-				break;
-				
-				case ($resu['power']>=55 && $resu['power']<105):
+					break;
+				case ($resu['power']>=70 && $resu['power']<105):
 					$class="Highend";
-				break;
-				
+					break;
 				case ($resu['power']>=105 && $resu['power']<500):
 					$class="Desktop";
-				break;
-			
+					break;
 				default:
 					$resu['class']="Undefined";
-				break;
+					break;
 			}
 			$resu['gpuclass']=$class;
 			break;

@@ -43,17 +43,14 @@ if($q>=0)
 			case ($rows[0]['power']>=10 && $rows[0]['power']<20):
 				$rows[0]['class']="Basic/Multimedia";
 				break;
-			case ($rows[0]['power']>=20 && $rows[0]['power']<35):
+			case ($rows[0]['power']>=20 && $rows[0]['power']<40):
 				$rows[0]['class']="Budget/Casual Gaming";
 				break;
-			case ($rows[0]['power']>=35 && $rows[0]['power']<55):
+			case ($rows[0]['power']>=40 && $rows[0]['power']<70):
 				$rows[0]['class']="Midrange";
 				break;
-			case ($rows[0]['power']>=55 && $rows[0]['power']<76):
+			case ($rows[0]['power']>=70 && $rows[0]['power']<105):
 				$rows[0]['class']="Highend";
-				break;
-			case ($rows[0]['power']>=76 && $rows[0]['power']<105):
-				$rows[0]['class']="Extreme";
 				break;
 			case ($rows[0]['power']>=105 && $rows[0]['power']<500):
 				$rows[0]['class']="Desktop";
