@@ -714,7 +714,7 @@ if($qsearchtype!=="p" && $qsearchtype!=="b")
 			$hdd_type=[];
 			$mem_capmin=4;
 			if (isset($_GET['coding']) && $_GET['coding']==1)
-			{	if($cores<2) { $cpu_coremin = 2; $cpu_turbomin = 2.5; $cores=2.5} $cpu_misc[]="HT"; $totalcapmin=64; }
+			{	if($cores<2) { $cpu_coremin = 2; $cpu_turbomin = 2.5; $cores=2.5; } $cpu_misc[]="HT"; $totalcapmin=64; }
 		}
 	}
 }
