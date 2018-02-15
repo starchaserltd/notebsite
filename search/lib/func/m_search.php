@@ -1,10 +1,10 @@
 <?php
-require_once("../../../etc/session.php");
-require_once("../../../etc/con_db.php");
+
+if(!isset($relativepath)){ $relativepath="../../../"; }
+require_once($relativepath."etc/session.php");
+require_once($relativepath."etc/con_db.php");
 
 //WE GET THE INPUTS
-$q = filter_input(INPUT_POST,'q',FILTER_SANITIZE_ENCODED);
-$select = filter_input(INPUT_POST,'list',FILTER_SANITIZE_ENCODED);
 $keys = filter_input(INPUT_POST,'keys',FILTER_SANITIZE_ENCODED);
 
 //$keys="7%20aspire";
@@ -72,6 +72,8 @@ mysqli_free_result($result);
 /*if(count($list)>20)
 $list[]=["id"=>"-1","model"=>"More available..."];
 */
-print preg_replace('/,\s*"[^"]+":null|"[^"]+":null,?/', '', json_encode($list));
+if(!isset($m_search_included)){ print preg_replace('/,\s*"[^"]+":null|"[^"]+":null,?/', '', json_encode($list)); }
+else { $m_search_included=$list; }
+
 mysqli_close($con);
 ?>
