@@ -70,7 +70,7 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 								echo $prod; echo " ";
 								echo $fam; echo " ";
 								echo $model; echo " ";			
-								show('submodel','MDB',$rand['mdb'] );
+								echo show('submodel','MDB',$rand['mdb'] );
 								$sspace=1; if(isset($submodel) && strlen($submodel)>0){ echo " ".$submodel; $sspace=0; }
 								if(($region_m_id==0 || $dispregion==1)&&($region_m_id!=1)) {  if($sspace){ echo " "; } echo "(".$regions[$region_m_id].")"; }
 							?>
@@ -80,11 +80,12 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 		        <div class="searchresultdesc">
 					<a onmousedown="OpenPage('model/model.php?conf=<?php echo $rand['id']."_".$rand['model'];?>',event);">
 						<ul>
-							<li class="resulspace"><?php show('size','DISPLAY',$rand['display'] );echo '" ('; show('hres','DISPLAY',$rand['display']); echo "x"; show('vres','DISPLAY',$rand['display']); echo ")";?></li>
-							<li class="resulspace"><?php show('prod', 'CPU',$rand['cpu'] ); echo " "; show('model', 'CPU',$rand['cpu'] ); echo " ("; show('clocks', 'CPU',$rand['cpu'] ); echo " MHz)"?></li>
-							<li class="resulspace"><?php show('prod', 'GPU',$rand['gpu'] ); echo " "; show('model', 'GPU',$rand['gpu'] );?></li>
-							<li class="resulspace"><?php showmem('cap, type, freq', 'MEM',$rand['mem'] );echo " ";?></li>
-							<li class="resulspace"><?php showhdd('cap,type,rpm','HDD',$rand['hdd'],$rand['shdd']);echo "";?></li>
+							<li class="resulspace"><?php echo show('size','DISPLAY',$rand['display'] ).'" ('.show('hres','DISPLAY',$rand['display'])."x".show('vres','DISPLAY',$rand['display']).")";?></li>
+							<li class="resulspace"><?php echo show('prod', 'CPU',$rand['cpu'] )." ".show('model', 'CPU',$rand['cpu'] )." (".show('clocks', 'CPU',$rand['cpu'] )." MHz)"?></li>
+							<li class="resulspace"><?php echo show('prod', 'GPU',$rand['gpu'] )." ".show('model', 'GPU',$rand['gpu'] );?></li>
+							<li class="resulspace"><?php echo showmem('cap, type, freq', 'MEM',$rand['mem'] );echo " ";?></li>
+							<li class="resulspace"><?php echo showhdd('cap,type,rpm','HDD',$rand['hdd'],$rand['shdd']);echo "";?></li>
+							<li class="resulspace"><?php $kgw=show('weight','CHASSIS',$rand['chassis']); echo round(floatval($kgw),2)." Kg / ".round(floatval($kgw*2.20462262),2)." lb";?></li>
 							<li class="resulspace"><?php showsist('sist,vers,type', 'SIST',$rand['sist']);echo " ";?></li>
 							<li class="resulspace"><?php showbat('notebro_temp.all_conf_'.$rand['model'],$rand['id'],0);echo " ";?></li>
 						</ul>

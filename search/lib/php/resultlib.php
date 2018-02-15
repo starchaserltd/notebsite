@@ -13,7 +13,7 @@ function show($col, $tab, $id)
 	if(!($col<=>"clocks") && substr($item[$col],-1)==='0')
 	{ $item[$col]=sprintf('%0.2f',floatval($item[$col])); }
 	
-	echo $item[$col];
+	return $item[$col];
 }
 
 function showhdd($col, $tab, $id, $shdd)

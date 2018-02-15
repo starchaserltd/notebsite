@@ -331,6 +331,7 @@ if ($_GET['mdbslots'])
 if(isset($_GET['MDB_port_id']))
 { $chassis_ports = $_GET['MDB_port_id']; } //var_dump($chassis_ports);
 
+$usb2_set=999; 	for($usbv=0;$usbv<3;$usbv++){ ${'usb3'.$usbv.'_set'}=999; ${'usb3c'.$usbv.'_set'}=999; }
 foreach($chassis_ports as $key => $x)
 {
 	if((stripos($x,"RS-232"))!==FALSE)
@@ -355,21 +356,47 @@ foreach($chassis_ports as $key => $x)
 		$chassis_addpi["SD card reader"][]="MicroSD card reader";
 	}
 	
-	if(stripos($x,"USB 3.0")!==FALSE)
+	if(stripos($x,"USB")!==FALSE)
 	{
-		$y=str_ireplace("3.0","3.1",$x);
-		$y2=explode(" X ",$y);
-		$y2i=intval($y2[0]);
-		if($y2i>0 && $y2i<6)
+		$piparts=explode(" X ",$x);
+		if(stripos($piparts[1],"USB 2")!==FALSE)
+		{ 
+			if($usb2_set>intval($piparts[0]))
+			{ $chassis_ports[$key]=$piparts[0]." X "."USB"; $usb2_set=intval($piparts[0]);  }
+			else
+			{ unset($chassis_ports[$key]); }
+		}
+		else
 		{
-			for($i=$y2i;$i<=6;$i++)
-			{ $chassis_addpi[$x][]=$i." X ".$y2[1]; }
+			for($usbv=0;$usbv<3;$usbv++)
+			{
+				if(stripos($piparts[1],"USB 3.".$usbv)!==FALSE)
+				{
+					if(stripos($piparts[1],"Type")===FALSE)
+					{
+						if(${'usb3'.$usbv.'_set'}>intval($piparts[0]))
+						{ $chassis_ports[$key]=$piparts[0]." X "."USB 3.".$usbv; ${'usb3'.$usbv.'_set'}=intval($piparts[0]); for($usbv2=$usbv+1;$usbv2<3;$usbv2++){$chassis_addpi[$piparts[0]." X "."USB 3.".$usbv][]=$piparts[0]." X "."USB 3.".$usbv2; } }
+						else
+						{ unset($chassis_ports[$key]); }
+					}
+					else
+					{
+						if(${'usb3c'.$usbv.'_set'}>intval($piparts[0]))
+						{ $chassis_ports[$key]=$piparts[0]." X "."USB 3.".$usbv." (Type-C)"; ${'usb3c'.$usbv.'_set'}=intval($piparts[0]); for($usbv2=$usbv+1;$usbv2<3;$usbv2++){$chassis_addpi[$piparts[0]." X "."USB 3.".$usbv." (Type-C)"][]=$piparts[0]." X "."USB 3.".$usbv2." (Type-C)"; } }
+						else
+						{ unset($chassis_ports[$key]); }
+					}
+				}
+			}
 		}
 	}
+	//preg_replace("/([0-9] X )USB 2.[0-9a-z]/","$1 USB", "2 X USB 2.x"))
 }
 
 if(isset($_GET['MDB_vport_id']))
 { $chassis_vports = $_GET['MDB_vport_id']; }
+
+$hdmi_set=0; $dp_set=0;
 
 foreach($chassis_vports as $key => $x)
 {
@@ -379,11 +406,19 @@ foreach($chassis_vports as $key => $x)
 		$diffvisearch=2;
 	}
 	
+	if((stripos($x,"mDP"))!==FALSE && $dp_set)
+	{
+		unset($chassis_vports[$key]);
+	}
+	
 	if((stripos($x,"1 X mDP"))!==FALSE)
 	{
 		$chassis_vports[$key]="mDP";
 		$diffvisearch=1;
 	}
+	
+	if((stripos($x,"X DP"))!==FALSE)
+	{ $dp_set=1; }
 	
 	if((stripos($x,"1 X DP"))!==FALSE)
 	{
@@ -391,10 +426,18 @@ foreach($chassis_vports as $key => $x)
 		$diffvisearch=1;
 	}
 
+	if((stripos($x,"X HDMI"))!==FALSE)
+	{ $hdmi_set=1; }
+	
 	if((stripos($x,"1 X HDMI"))!==FALSE)
 	{
 		$chassis_vports[$key]="HDMI";
 		$diffvisearch=1;
+	}
+	
+	if((stripos($x,"Micro HDMI"))!==FALSE && $hdmi_set)
+	{
+		unset($chassis_vports[$key]);
 	}
 	
 	if((stripos($x,"1 X VGA"))!==FALSE)

@@ -164,18 +164,17 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 				$sel_chassis.="',pi)>0";
 			}
 			else
-			{ 
-				$sel_chassis.="FIND_IN_SET('";
-				$sel_chassis.=$x;
-				$sel_chassis.="',pi)>0";
-							
+			{ 			
+				$sel_chassis.='pi LIKE "%';
+				$sel_chassis=$sel_chassis.$x2[0]." X ".$x2[1]; 
+				$sel_chassis.='%"';
+				
 				for($z=(intval($x2[0])+1);$z<7;$z++) 
 				{
 					$sel_chassis.=" OR ";
-					$sel_chassis.="FIND_IN_SET('";
+					$sel_chassis.='pi LIKE "%';
 					$sel_chassis=$sel_chassis.$z." X ".$x2[1]; 
-					$sel_chassis.="',pi)>0";
-					
+					$sel_chassis.='%"';
 				}
 			}
 		
