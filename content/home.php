@@ -44,7 +44,7 @@ $count_posts = wp_count_posts();//echo $count_posts;
 $published_posts = $count_posts->publish;	
 ?>
 <link rel="stylesheet" href="content/lib/css/home.css?v=0.34" type="text/css"/>
-<script>$.getScript("content/lib/js/home.js?v=0.1");document.title = "Noteb - Search, Find and Compare the best laptop for you";$(document).ready(function(){
+<script>$.getScript("content/lib/js/home.js?v=0.1");document.title = "Noteb - Search, Compare and Find the Best Laptop for You";$(document).ready(function(){
     $('meta[name=description]').attr('content', "Looking for a laptop? Search, Compare or even take a Quiz with Noteb.com to find the perfect laptop for your work, home or suggest one to your friends from over 900 models and 5.000.000 configurations");
     $('head').append('<link rel="alternate" hreflang="en-US" href="https://noteb.com" />');
 });</script>
