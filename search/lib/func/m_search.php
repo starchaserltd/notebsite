@@ -1,6 +1,7 @@
 <?php
 
 if(!isset($relativepath)){ $relativepath="../../../"; }
+if(!isset($close_con)) { $close_con=1; }
 require_once($relativepath."etc/session.php");
 require_once($relativepath."etc/con_db.php");
 
@@ -75,5 +76,5 @@ $list[]=["id"=>"-1","model"=>"More available..."];
 if(!isset($m_search_included)){ print preg_replace('/,\s*"[^"]+":null|"[^"]+":null,?/', '', json_encode($list)); }
 else { $m_search_included=$list; }
 
-mysqli_close($con);
+if($close_con){ mysqli_close($con); }
 ?>

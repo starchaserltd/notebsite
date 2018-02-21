@@ -381,7 +381,7 @@ $gpumindate = $gpudate[0];
 $cadratemin=0; $cadratemax=0; $gameratemin=0; $gameratemax=0;
 
 if (isset($_GET['autocadlight']) && $_GET['autocadlight']==1) 
-{	$gpu_typelist[] = 0; $gpu_typelist[] = 1; $gpu_typelist[] = 3; $gpupowermax = 36; $to_search["gpu"]=1; }
+{	$gpu_typelist[] = 0; $gpu_typelist[] = 1; $gpu_typelist[] = 3; if($gpupowermax<36) { $gpupowermax = 36; } $to_search["gpu"]=1; }
 
 if (isset($_GET['autocadmedium']) && $_GET['autocadmedium']==1) 
 {	if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2"); if($cadratemin<15) { $cadratemin=15; } if($cadratemax<25) { $cadratemax=25; } if ($gameratemin<24) { $gameratemin=24; } if($gameratemax<50) { $gameratemax=50; }	$to_search["gpu"]=1; }
