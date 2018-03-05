@@ -1849,7 +1849,12 @@ nav:after {
 }
 
 .titlucomp {
-    margin-bottom: 5px;
+    margin-bottom: 0;
+    margin-top: 25px;
+}
+
+.compContainer table {
+    margin-bottom: 0;
 }
 
 .row.detaliicomp .col-md-5.col-xs-5.col-sm-5.col-lg-5.rows {
@@ -1868,6 +1873,10 @@ nav:after {
 @keyframes opacityAnimation {
 	0%{opacity: 0;}
 	100%{opacity: 1;}
+}
+
+.compContainer .shcomp {
+    padding:2px 0;
 }
 
 /*Responsive media design */
