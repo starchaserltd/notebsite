@@ -40,6 +40,8 @@ foreach($keysparts as $el)
 	$conditions.="REGEXP_REPLACE(CONCAT(prod,' ',IFNULL((SELECT fam FROM `notebro_db`.`FAMILIES` WHERE id=idfam),''),' ',IFNULL((SELECT subfam FROM `notebro_db`.`FAMILIES` WHERE id=idfam and showsubfam=1),''),' ',model),'[[:space:]]+', ' ') LIKE '%".$el."%' AND ";
 }
 $conditions=substr($conditions, 0, -5);
+if(isset($id_set) && $id_set)
+{ $conditions.="AND id=$id_set"; }
 
 // CONSTRUCTING THE SEARCH QUERY
 $sel="SELECT id,mdb,submodel,regions,REGEXP_REPLACE(CONCAT(prod,' ',IFNULL((SELECT fam FROM `notebro_db`.`FAMILIES` WHERE id=idfam),''),' ',IFNULL((SELECT subfam FROM `notebro_db`.`FAMILIES` WHERE id=idfam and showsubfam=1),''),' ',model),'[[:space:]]+', ' ') as name from `notebro_db`.`MODEL` WHERE ".$conditions;
@@ -66,7 +68,8 @@ while($rand = mysqli_fetch_row($result))
 	foreach($regions as $el) { if(intval($el)===1 || intval($el)===0 ) { $show_reg=0; } }
 	if($show_reg) { $sel_r="SELECT disp FROM notebro_db.REGIONS WHERE id=".$regions[0]." LIMIT 1"; $result_r = mysqli_query($con, $sel_r); $region=mysqli_fetch_array($result_r); $region["disp"]="(".$region["disp"].")"; }
 	//SENDING THE RESULTS
-	$list[]=["id"=>intval($rand[0]),"model"=>strval($rand[4]." ".$rand[2].$mdb_submodel.$region["disp"])];
+	if(!isset($m_search_included)){ $list[]=["id"=>intval($rand[0]),"model"=>strval($rand[4]." ".$rand[2].$mdb_submodel.$region["disp"])]; }
+	else { $list[]=["id"=>intval($rand[0]),"noteb_name"=>strval($rand[4]." ".$rand[2].$mdb_submodel.$region["disp"]),"submodel"=>strval($rand[2]),"mdb_submodel"=>strval($mdb_submodel),"region"=>strval($region["disp"]),"name"=>strval($rand[4])]; }
 }
 mysqli_free_result($result);			
 //SUPPLYING RESULTS				

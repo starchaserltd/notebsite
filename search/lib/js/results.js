@@ -7,8 +7,8 @@ $(document).ready(function() {
 	//Dropdown add to compare
 	$('.addtocpmp').on('click', function() {
 	    $('.compareDropdown ul li').addClass('open');
-	    $('.compareDropdown ul li ul').slideDown();
-	    $('.navbar-collapse.collapse').collapse("show");
+	    $('.compareDropdown ul li ul').slideDown();	    
+	    $('.navbar-collapse').slideDown("slow");
 	});
 	
 	document.title = 'Noteb - Search results';

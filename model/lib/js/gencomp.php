@@ -85,7 +85,7 @@ for($x = 0; $x <= $nrconf; $x++)
 	);
 
 	$danvar=implode("','",$vars);
-	$danvar="'".$danvar."'"; echo 'document.title="Noteb - ";' ;
+	$danvar="'".$danvar."'"; if($x==0){ echo 'document.title="Noteb - ";' ; }
 ?>
 	var array_var=[<?php echo $danvar; ?>];
 	document.title = document.title + <?php if($x>0) { echo "' vs '";} else { echo "' '"; } ?> + '<?php echo $resu['prod']." ".$resu['fam']." ".$resu['model']; ?> '; excode='<?php echo  $exchcode ?>';

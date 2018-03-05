@@ -12,7 +12,6 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 
 	$orderby = "ORDER BY price ASC";
 	$orderby_index = "USE INDEX FOR ORDER BY (price)";
-	$price_button = " active";
 	$sort_func = "sort_func_by_price";
 	
 	require_once("../etc/con_db.php");

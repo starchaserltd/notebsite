@@ -1,0 +1,46 @@
+
+<!doctype html>
+
+<html>
+<head>
+<link href="model.css" rel="stylesheet" type="text/css" />
+<BASE href="http://86.123.134.36/notebro/?content/home.php">
+</head>
+
+
+<body>
+
+<form action="../notebro/api/webservice.php" method = "post">
+  Api Keys:<br>
+  <input type="text" name="apikey">
+  <br>
+  Metoda:<br>
+  <input type="text" name="method" value = "get_model_info">
+  <br>
+  Parametrii:<br>
+  id <input type="text" name="param[model_id]"> 
+ name <input type="text" name="param[model_name]"><br>
+ Cpu name <input type="text" name="param[cpu_name]"><br>
+Gpu name <input type="text" name="param[gpu_name]"><br>
+Display resolution <input type="text" name="param[display_res]"><br>
+Display type <input type="text" name="param[display_type]"><br>
+Display sRGB <input type="text" name="param[display_srgb]"><br>
+Max RAM model <input type="text" name="param[maxmem]"><br>
+HDD capacity <input type="text" name="param[firsthddcap]"><br>
+SHDD <input type="text" name="param[secondhddcap]"><br>
+Mdb Wan <input type="text" name="param[mdb_wan]"><br>
+Mdb G-sync <input type="text" name="param[mdb_gsync]"><br>
+Mdb Optimus <input type="text" name="param[mdb_optimus]"><br>
+Wnet type <input type="text" name="param[wireless_type]"><br>
+ODD type <input type="text" name="param[odd_type]"><br>
+Battery capacity <input type="text" name="param[battery_size]"><br>
+Warranty years <input type="text" name="param[warranty_years]"><br>
+Warranty type <input type="text" name="param[warranty_type]"><br>
+Sistem <input type="text" name="param[opsist]"><br>
+  <br><br>
+  <input type="hidden" name="intr" value="2">
+  <input type="submit" value="Submit">
+</form> 
+</body>
+</html>
+
