@@ -1,5 +1,11 @@
 <?php
 require_once("../etc/conf.php");
+if(isset($_POST)){ $_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING); }
+if(isset($_POST['table'])) { $table = $_POST['table']; }
+if(isset($_POST['model_id_ireviews'])){ $model_id = $_POST['model_id_ireviews']; }
+if(isset($_POST['site'])) { $site = $_POST['site']; }
+if(isset($_POST['link'])) { $link = $_POST['link']; }
+$error=1;
 if(!empty($_POST['captcha_code']))
 {
 	//get captcha code from session
@@ -10,11 +16,20 @@ if(!empty($_POST['captcha_code']))
 	if($enteredcaptchaCode === $captchaCode)
 	{ require_once("lib/php/updatefinal.php"); }
 	else
-	{ $errMsg = 'Captcha code not matched, please try again.'; }
+	{ $errMsg = 'Captcha code not matched, please try again.'; echo "<script type='text/javascript'>alert('Wrong captcha code. Please try again.')</script>"; }
 }
 else { $errMsg = 'Please enter the captcha code:'; }
 ?>
-
+<script>
+<?php
+if($error)
+{
+	if(isset($_POST['model_name_ireviews'])&&isset($model_id)) { echo "$('#model_id_ireviews').html('<option selected=".'"'."selected".'"'." value=".'"'.$model_id.'"'.">".$_POST['model_name_ireviews'].'"'."<option>');"; }
+	if(isset($site)) { echo "$('#site').html('<option selected=".'"'."selected".'"'.">".$site."<option>');"; }
+	if(isset($link)) { echo "$('#link').html('".$link."');"; }
+}
+?>
+</script>
 
 <form id="ireviews_form" action="javascript:void(0);" method="post">
 <div style="min-height:650px">
@@ -23,24 +38,24 @@ else { $errMsg = 'Please enter the captcha code:'; }
 	<div class="col-md-12 col-lg-12 irevtop">
 		<div class="Irevm col-md-1">Model :</div>
 		<div class="col-md-6" id="modelfind">			
-			<select class="modelsearch Irevmod" id="model_id" name ="model_id" data-placeholder="Search a laptop model" data-initvalue="search for a model"></select>			
+			<select class="modelsearch Irevmod" id="model_id_ireviews" name ="model_id_ireviews" data-placeholder="Search a laptop model" data-initvalue="search for a model"></select>			
 		</div>
 	</div>
 	
 	<div class="col-md-12 col-lg-12 irevtop">
 		<div class="Irevm col-md-1">Site :</div>
 		<div class="col-md-6" id="modelfind">
-		<select class="predbvalues Irevmod" name="site" data-placeholder="Ex. Tom's Hardware, Notebookcheck" data-initvalue="Type website name" data-url="public/lib/php/queries.php" data-type="review_websites"></select>
-		<!-- <div class="col-md-6"><textarea class="input" style="margin:0" name="site" autocomplete="off" spellcheck="false" name="site" placeholder="Ex. Tom's Hardware, Notebookcheck" value=""></textarea></div> -->
+		<select class="predbvalues Irevmod" id="site" name="site" data-placeholder="Ex. Tom's Hardware, Notebookcheck" data-initvalue="Type website name" data-url="public/lib/php/queries.php" data-type="review_websites"></select>
 		</div>
 	</div>
 
 	<div class="col-md-12 col-lg-12 irevtop">
 		<div class="Irevm col-md-1">Link :</div>
-		<div class="col-md-6"><textarea class="Irevmod input" style="margin:0" name="link" autocomplete="off" spellcheck="false" name="link" placeholder="Ex. http://www.tomshardware.com/reviews/dell-inspiron-15-7000-gaming-laptop,4944.html" value=""></textarea></div>
+		<div class="col-md-6"><textarea class="Irevmod input" style="margin:0" name="link" autocomplete="off" spellcheck="false" id="link" name="link" placeholder="Ex. http://www.tomshardware.com/reviews/dell-inspiron-15-7000-gaming-laptop,4944.html" value=""></textarea></div>
 	</div>
 	<input type="hidden" name="intr" value="1">
 	<input type="hidden" name="table" value="REVIEWS">
+	<input type="hidden" name="model_name_ireviews" id="model_name_ireviews" value="">
 
 <?php if(!empty($errMsg)) echo '<div class="col-md-12 col-md-offset-3 Irevm"><p style="color:#EA4335">'.$errMsg.'</p></div>';?>
 <?php if(!empty($succMsg)) echo '<p style="color:#34A853;">'.$succMsg.'</p>';?>

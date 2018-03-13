@@ -2,15 +2,9 @@
 <?php
 require_once("../etc/con_rdb.php");
 require_once("../etc/con_db.php");
-$_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-$table = $_POST['table'];
 
-if ($table == 'REVIEWS'){   
- // sanitise links before insert
-	if(isset($_POST['model_id'])){ $model_id = $_POST['model_id']; }
-	if(isset($_POST['site'])) { $site = $_POST['site']; }
-	if(isset($_POST['link'])) { $link = $_POST['link']; }
-	
+if ($table == 'REVIEWS')
+{   	
 	$sql="SELECT idfam,prod,model,fam.fam,fam.subfam,fam.showsubfam FROM MODEL model JOIN ( SELECT id,fam,subfam,showsubfam FROM notebro_db.FAMILIES ) fam ON fam.id=model.idfam WHERE model.id=$model_id LIMIT 1";
 	$query=mysqli_query($con,$sql);
 	$row=mysqli_fetch_assoc($query);
@@ -19,8 +13,8 @@ if ($table == 'REVIEWS'){
 
 	//verify and take last id for reviews
 	$link = preg_replace('!<a href="([^\"]+)" target="_blank">[^<]+</a>!', '<a href="$1" target="_blank">$1</a>', $link); 
-	$idireviews = mysqli_fetch_row(mysqli_query($con,"SELECT lastid FROM notebro_db.last_key WHERE info = 'lastid_ireviews'"));
-	$idlastireviews = mysqli_fetch_row(mysqli_query($con,"SELECT id FROM notebro_db.REVIEWS ORDER BY id DESC LIMIT 1"));
+	$idireviews = mysqli_fetch_row(mysqli_query($rcon,"SELECT lastid FROM notebro_db.last_key WHERE info = 'lastid_ireviews'"));
+	$idlastireviews = mysqli_fetch_row(mysqli_query($rcon,"SELECT id FROM notebro_db.REVIEWS ORDER BY id DESC LIMIT 1"));
 	if(isset($idireviews[0])) { if ($idireviews[0] <= $idlastireviews[0]) {$idireviews[0] = $idlastireviews[0]+1;} } 
 
 	if(!empty($model_name)&&!empty($link)&&!empty($site)) /// validarea campurilor obligatorii
@@ -59,7 +53,7 @@ if ($table == 'REVIEWS'){
 	if ($scor == 3) 
 	{
 		$query1 = "SELECT model_id,link from REVIEWS WHERE model_id = ".$model_id." AND link like '%".$link."%'"; //echo $query1;
-		$result = mysqli_query($con,$query1);
+		$result = mysqli_query($rcon,$query1);
 		if(!(mysqli_num_rows($result)>0))
 		{
 			$sql = "insert into REVIEWS (id, model, model_id, site, title, link, notebreview) values ('".$idireviews[0]."','".$model_name."','".$model_id."','".$site."','','".$link."','0')";
@@ -68,7 +62,7 @@ if ($table == 'REVIEWS'){
 				echo "<meta http-equiv=\"refresh\" content=\"0;URL=?public/ireviews.php\">";
 				$sql = "UPDATE notebro_db.last_key SET lastid = '".($idireviews[0]+1)."' WHERE info = 'lastid_ireviews'" ;
 				if(mysqli_query($rcon, $sql))
-				{echo "<script type='text/javascript'>alert('$site review on $model_name submitted successfully. Thank you!')</script>";		}
+				{echo "<script type='text/javascript'>alert('$site review on $model_name submitted successfully. Thank you!')</script>"; $error=0;}
 			}
 			else
 			{ echo "<script type='text/javascript'>alert('Were are sorry, but there was unknown error. Please contact the site administrator.')</script>"; }
@@ -80,6 +74,6 @@ if ($table == 'REVIEWS'){
 	mysqli_close($rcon); mysqli_close($con);
 }
 else
-{ echo "Something went terribly wrong" . mysqli_error($con); }
+{ echo "Something went terribly wrong" . mysqli_error($rcon); }
 
 ?>
