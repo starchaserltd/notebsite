@@ -118,8 +118,8 @@
 							<span id="cpufreqval"><?php echo $cpufreqmin; ?> - <?php echo $cpufreqmax; ?></span><span> GHz</span>
 						</div>	  
 						<div class="advspace" id="cpufreq"></div>
-						<input type="hidden" name="cpufreqmin" id="cpufreqmin" value="<?php echo $cpufreqmin; ?>" data-lcom='CPU_model' data-lfield="cpu_clockmin" >	 
-						<input type="hidden" name="cpufreqmax" id="cpufreqmax" value="<?php echo $cpufreqmax; ?>" data-lcom='CPU_model' data-lfield="cpu_clockmax" >			
+						<input type="hidden" name="cpufreqmin" id="cpufreqmin" value="<?php echo $cpufreqmin; ?>" data-lcom='CPU_model' data-lfield="cpu_turbomin" >	 
+						<input type="hidden" name="cpufreqmax" id="cpufreqmax" value="<?php echo $cpufreqmax; ?>" data-lcom='CPU_model' data-lfield="cpu_turbomax" >			
 					</div>					
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						<div class="advspace1">
