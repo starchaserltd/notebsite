@@ -72,8 +72,8 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 
 	if((isset($_GET['exchange']) && is_string($_GET['exchange']))||(isset($_GET['exchadv']) && is_string($_GET['exchadv'])))
 	{
-		if(isset($_GET['exchange'])){ $excode=$_GET['exchange']; }
-		if(isset($_GET['exchadv'])){ $excode=$_GET['exchadv']; }
+		if(isset($_GET['exchange'])){ $excode=strtoupper($_GET['exchange']); }
+		if(isset($_GET['exchadv'])){ $excode=strtoupper($_GET['exchadv']); }
 		$sel2 = "SELECT convr,code,sign, ROUND( convr, 5 ),id FROM notebro_site.exchrate WHERE code='".$excode."' LIMIT 1";
 	}
 	else

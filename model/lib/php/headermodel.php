@@ -2,7 +2,7 @@
 $idmodel=''; $conf=''; $nonexistent=1;
 if(isset($_GET['ex']))
 {
-	$exchcode=$_GET['ex']; $_SESSION['exchcode']=$exchcode;
+	$exchcode=strtoupper($_GET['ex']); $_SESSION['exchcode']=$exchcode;
 	$query=mysqli_query($con,"SELECT * FROM notebro_site.exchrate");
 	while( $row=mysqli_fetch_assoc($query))
 	{

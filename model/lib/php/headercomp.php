@@ -4,7 +4,7 @@ require_once("../etc/con_sdb.php");
 require_once("../etc/con_db.php");
 //HERE WE PROCESS THE CONFIGURATIONS FROM GET AND SESSION
 $getconfs=array();	$nrgetconfs=0;
-if(isset($_GET['ex'])){ $_SESSION['excomp']=$_GET['ex']; }
+if(isset($_GET['ex'])){ $_SESSION['excomp']=strtoupper($_GET['ex']); }
 $addtojava="<script> $(document).ready(function() { if(firstcompare) {";
 $_SESSION['compare_list']=array(); $_SESSION['toalert']=array();
 $cons=dbs_connect();
