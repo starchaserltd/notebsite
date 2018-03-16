@@ -207,8 +207,8 @@ if (isset($_GET['mmomedium']) && $_GET['mmomedium']==1 && $memcapmin < 8)
 if (isset($_GET['mmohigh']) && $_GET['mmohigh']==1 && $memcapmin < 8) 
 {	$memcapmin = 8;}
 										
-if (isset($_GET['3dgameslow']) && $_GET['3dgameslow']==1 && $memcapmin < 16) 
-{	$memcapmin = 16;}
+if (isset($_GET['3dgameslow']) && $_GET['3dgameslow']==1 && $memcapmin < 8) 
+{	$memcapmin = 8;}
 											
 if (isset($_GET['3dgamesmedium']) && $_GET['3dgamesmedium']==1 && $memcapmin < 16) 
 {	$memcapmin = 16;}
@@ -221,7 +221,13 @@ if (isset($_GET['calc']) && $_GET['calc']==1 && $memcapmin < 4)
 
 if (isset($_GET['coding']) && $_GET['coding']==1 && $memcapmin < 16) 
 {	$memcapmin = 8;	}
-	
+
+if (isset($_GET['lvedit']) && $_GET['lvedit']==1 && $memcapmin  < 4) 
+{	$memcapmin  = 4;	}
+																	
+if (isset($_GET['hvedit']) && $_GET['hvedit']==1 && $memcapmin  < 8) 
+{	$memcapmin  = 8; }
+
 if (isset($_GET['vmnone']) && $_GET['vmnone']==1)
 {	}
 						
@@ -261,6 +267,12 @@ if (isset($_GET['3dsmaxheavy']) && $_GET['3dsmaxheavy']==1 && $memcapmin < 16)
 if (isset($_GET['catialight']) && $_GET['catialight']==1 && $memcapmin < 8) 
 {	$memcapmin = 8;}
 
+if (isset($_GET['catiamedium']) && $_GET['catiamedium']==1 && $memcapmin < 16) 
+{	$memcapmin = 16;}
+
+if (isset($_GET['catiaheavy']) && $_GET['catiaheavy']==1 && $memcapmin < 16) 
+{	$memcapmin = 16;}
+
 if (isset($_GET['rhinolight']) && $_GET['rhinolight']==1 && $memcapmin < 8) 
 {	$memcapmin = 8;}
 
@@ -271,8 +283,28 @@ if (isset($_GET['rhinoheavy']) && $_GET['rhinoheavy']==1 && $memcapmin < 16)
 {	$memcapmin = 16;}
 
 if (isset($_GET['cadolight']) && $_GET['cadolight']==1 && $memcapmin < 8) 
-{	$memcapmin = 8;}       
+{	$memcapmin = 8;}
 
+if (isset($_GET['cadomedium']) && $_GET['cadomedium']==1 && $memcapmin < 16) 
+{	$memcapmin = 16;}
+
+if (isset($_GET['cadoheavy']) && $_GET['cadoheavy']==1 && $memcapmin < 16) 
+{	$memcapmin = 16;}
+   
+if (isset($_GET['memxsmall']) && $_GET['memxsmall']==1 && $memcapmin < 4) 
+{	$memcapmin = 4; }
+
+if (isset($_GET['memsmall']) && $_GET['memsmall']==1 && $memcapmin < 8) 
+{	$memcapmin = 8; }
+
+if (isset($_GET['memmedium']) && $_GET['memmedium']==1 && $memcapmin < 16) 
+{	$memcapmin = 16; }
+
+if (isset($_GET['memlarge']) && $_GET['memlarge']==1 && $memcapmin < 32) 
+{	$memcapmin = 32; }
+
+if (isset($_GET['memxlarge']) && $_GET['memxlarge']==1 && $memcapmin < 64) 
+{	$memcapmin = 64; }
 
 // STORAGE Conditions
 $hdd_type=["SSD"];

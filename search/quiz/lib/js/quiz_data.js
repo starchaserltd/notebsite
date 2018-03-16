@@ -204,7 +204,8 @@ var quiz = {
             'question': 'Other special features (multiple choices): ',
             'options': {
                 'shdd' : { 'txt':['<span style="font-size:13px;">Secondary<br>HDD</span><span style="color: #ffffff"><br>-</span>','multiple'], 'img':['shdd.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                'odd' : { 'txt':['<span style="font-size:13px;">Optical<br>drive</span>','multiple'], 'img':['odd.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 }
+                'odd' : { 'txt':['<span style="font-size:13px;">Optical<br>drive</span>','multiple'], 'img':['odd.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+				'mem' : { 'txt':['System<br>memory','multiple'], 'img':['sysram.svg',''], 'chk':{'on':0,'style':['display:none;']},'extra':['mem'],'no':1 },
             },
             'selected': 0,
             'done': 1
@@ -269,6 +270,18 @@ var quiz = {
             'selected': 0,
             'done': 1
         },
+		'mem':{
+            'question': 'Minimum desired system memory:<br>',
+            'options': {
+                'memxsmall' : { 'txt':['4 GB','single'], 'img':['ramxsmall.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1  },
+                'memsmall' : { 'txt':['8 GB','single'], 'img':['ramsmall.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                'memmedium' : { 'txt':['16 GB','single'], 'img':['rammedium.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+				'memlarge' : { 'txt':['32 GB','single'], 'img':['ramlarge.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1  },
+				'memxlarge' : { 'txt':['64 GB','single'], 'img':['ramxlarge.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':0  }
+            },
+            'selected': 0,
+            'done': 1
+        },
 		'convertible':{
             'question': 'Touchscreen requirements:<br>',
             'options': {
@@ -326,5 +339,10 @@ var compatibility={
 	'ntouch' : { 'nogo':[['mmohigh'],['3dgamesmedium'],['3dgameshigh'],['autocadheavy'],['swmedium'],['swheavy'],['3dsmaxmedium'],['3dsmaxheavy'],['catialight'],['catiamedium'],['catiaheavy'],['rhinomedium'],['rhinoheavy'],['cadolight'],['cadomedium'],['cadoheavy'],['odd'],['hvedit','business'],['dispsmall','mmomedium']], 'go':[['']]},
 	'odd' : { 'nogo':[['all'],['swheavy'],['stylus'],['ntouch'],['vmheavy'],['hvedit','business'],['FHDplus','business'],['autocadmedium','shdd'],['swlight','shdd'],['3dsmaxlight','shdd'],['rhinolight','shdd'],['mmomedium','shdd'],['business','shdd','3dgameslow']], 'go':[['dispsmall','!gaming','!cad3d','!vmheavy','!hvedit'],['dispmedium','permissive'],['displarge','permissive'],['desk','!dispxsmall','!dispsmall','permissive'],['bed','!dispxsmall','!dispsmall','permissive'],['bag','!dispxsmall','!dispsmall','permissive'],['house','!dispxsmall','!dispsmall','permissive']]},
 	'shdd' : { 'nogo':[['dispxsmall'],['autocadmedium','convertible'],['swlight','convertible'],['3dsmaxlight','convertible'],['rhinolight','convertible'],['mmomedium','convertible'],['business','odd','3dgameslow']], 'go':[['dispsmall'],['displarge'],['dispmedium']]},
+	'memxsmall' : { 'nogo':[['gaming'],['cad3d'],['oldgamesmedium'],['oldgameshigh'],['mmolow'],['mmomedium'],['mmohigh'],['3dgameslow'],['3dgamesmedium'],['3dgameshigh'],['coding'],['hvedit'],['vmsmall'],['vmmedium'],['vmheavy'],['autocadmedium'],['autocadheavy'],['swlight'],['swmedium'],['swheavy'],['3dsmaxlight'],['3dsmaxmedium'],['3dsmaxheavy'],['catialight'],['catiamedium'],['catiaheavy'],['rhinolight'],['rhinomedium'],['rhinoheavy'],['cadolight'],['cadomedium'],['cadoheavy']],'go':[]},
+	'memsmall' : { 'nogo':[['3dgamesmedium'],['3dgameshigh'],['vmmedium'],['vmheavy'],['autocadheavy'],['swmedium'],['swheavy'],['3dsmaxmedium'],['3dsmaxheavy'],['catiamedium'],['catiaheavy'],['rhinomedium'],['rhinoheavy'],['cadomedium'],['cadoheavy']],'go':[]},
+	'memmedium' : { 'nogo':[['vmheavy']],'go':[]},
+	'memlarge' : { 'nogo':[],'go':[]},
+	'memxlarge' : { 'nogo':[['all']],'go':[]},
 	'media' : { 'nogo':[['all']], 'go':[['casual','permissive'],['gaming','permissive'],['cad3d','permissive'],['content','permissive']]},
 };
