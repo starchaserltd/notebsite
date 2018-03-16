@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="55px" height="55px" viewBox="0 0 55 55" enable-background="new 0 0 55 55" xml:space="preserve">
+<polygon fill="#9B9994" stroke="#7D7D7D" stroke-width="0.5" stroke-miterlimit="10" points="49.539,22.505 51.848,22.518 
+	51.848,15.759 4.79,15.759 4.79,22.53 6.989,22.536 6.994,24.208 4.79,24.208 4.79,26.296 7.023,26.29 7.026,27.843 4.79,27.843 
+	4.79,32.659 27.397,32.659 27.384,31.678 27.654,30.948 28.318,30.627 28.924,30.996 29.125,31.669 29.141,32.648 51.848,32.659 
+	51.848,27.984 49.453,27.976 49.453,26.384 51.848,26.378 51.848,24.216 49.514,24.202 "/>
+<rect x="3.75" y="31.538" fill="#FFFFFF" stroke="#7D7D7D" stroke-width="0.5" stroke-miterlimit="10" width="49.137" height="2.021"/>
+<polyline fill="none" stroke="#7D7D7D" stroke-width="0.5" stroke-miterlimit="10" points="51.29,23.087 52.888,23.087 
+	52.888,31.479 "/>
+<rect x="10.234" y="17.1" fill="#767676" stroke="#767676" stroke-miterlimit="10" width="4.042" height="9.284"/>
+<rect x="20.864" y="17.1" fill="#767676" stroke="#767676" stroke-miterlimit="10" width="4.043" height="9.284"/>
+<rect x="31.57" y="17.1" fill="#767676" stroke="#767676" stroke-miterlimit="10" width="4.043" height="9.284"/>
+<rect x="42.352" y="17.1" fill="#767676" stroke="#767676" stroke-miterlimit="10" width="4.043" height="9.284"/>
+<polygon fill="#9B9994" stroke="#7D7D7D" stroke-width="0.5" stroke-miterlimit="10" points="47.902,29.087 50.211,29.099 
+	50.211,22.339 3.153,22.339 3.153,29.111 5.353,29.116 5.357,30.789 3.153,30.789 3.153,32.876 5.387,32.871 5.39,34.425 
+	3.153,34.425 3.153,39.241 25.76,39.241 25.748,38.259 26.019,37.528 26.682,37.208 27.288,37.577 27.488,38.249 27.504,39.229 
+	50.211,39.241 50.211,34.565 47.818,34.558 47.818,32.964 50.211,32.959 50.211,30.797 47.877,30.783 "/>
+<rect x="5.678" y="35.958" fill="#CCCBCB" width="18.566" height="2.873"/>
+<rect x="8.598" y="23.681" fill="#767676" stroke="#767676" stroke-miterlimit="10" width="4.042" height="9.284"/>
+<rect x="19.228" y="23.681" fill="#767676" stroke="#767676" stroke-miterlimit="10" width="4.043" height="9.284"/>
+<rect x="29.936" y="23.681" fill="#767676" stroke="#767676" stroke-miterlimit="10" width="4.041" height="9.284"/>
+<rect x="40.715" y="23.681" fill="#767676" stroke="#767676" stroke-miterlimit="10" width="4.043" height="9.284"/>
+<rect x="29.016" y="35.944" fill="#CCCBCB" width="18.564" height="2.871"/>
+<rect x="2.113" y="37.22" fill="#FFFFFF" stroke="#7D7D7D" stroke-width="0.5" stroke-miterlimit="10" width="49.137" height="2.021"/>
+<polyline fill="none" stroke="#7D7D7D" stroke-width="0.5" stroke-miterlimit="10" points="3.71,28.823 2.113,28.823 2.113,37.22 
+	"/>
+<polyline fill="none" stroke="#7D7D7D" stroke-width="0.5" stroke-miterlimit="10" points="49.652,28.769 51.25,28.769 
+	51.25,37.161 "/>
+</svg>

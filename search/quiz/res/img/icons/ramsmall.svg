@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="55px" height="55px" viewBox="0 0 55 55" enable-background="new 0 0 55 55" xml:space="preserve">
+<polygon fill="#9B9994" stroke="#7D7D7D" stroke-width="0.5" stroke-miterlimit="10" points="40.72,15.242 42.129,13.847 
+	38.021,9.74 9.433,38.329 13.547,42.444 14.886,41.11 15.905,42.123 14.566,43.463 15.834,44.731 17.189,43.37 18.134,44.313 
+	16.775,45.672 19.701,48.598 33.437,34.863 32.83,34.275 32.552,33.666 32.762,33.068 33.354,32.924 33.883,33.211 34.488,33.797 
+	48.291,20.009 45.45,17.168 43.991,18.617 43.023,17.649 44.474,16.192 43.16,14.878 41.734,16.289 "/>
+<rect x="17.776" y="39.069" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -20.9561 30.0161)" fill="#CCCBCB" width="15.952" height="2.468"/>
+<rect x="15.867" y="33.441" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -21.3104 23.4105)" fill="#767676" stroke="#767676" stroke-miterlimit="10" width="3.473" height="7.977"/>
+<rect x="22.324" y="26.982" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -14.8517 26.0852)" fill="#767676" stroke="#767676" stroke-miterlimit="10" width="3.475" height="7.977"/>
+<rect x="28.83" y="20.477" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -8.3473 28.7796)" fill="#767676" stroke="#767676" stroke-miterlimit="10" width="3.472" height="7.977"/>
+<rect x="35.38" y="13.928" transform="matrix(0.707 -0.7072 0.7072 0.707 -1.7951 31.5005)" fill="#767676" stroke="#767676" stroke-miterlimit="10" width="3.473" height="7.977"/>
+<rect x="31.947" y="24.884" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -6.7744 35.8766)" fill="#CCCBCB" width="15.951" height="2.465"/>
+<polygon fill="#9B9994" stroke="#7D7D7D" stroke-width="0.5" stroke-miterlimit="10" points="25.308,9.867 25.995,8.007 
+	20.537,6.021 6.708,44.014 12.176,46.004 12.827,44.229 14.177,44.717 13.531,46.497 15.216,47.11 15.869,45.304 17.123,45.76 
+	16.466,47.565 20.355,48.979 26.999,30.728 26.2,30.451 25.69,30.017 25.628,29.386 26.103,29.005 26.704,29.042 27.501,29.316 
+	34.183,10.987 30.409,9.613 29.698,11.543 28.411,11.075 29.11,9.142 27.364,8.506 26.669,10.387 "/>
+<rect x="14.357" y="37.671" transform="matrix(0.3419 -0.9397 0.9397 0.3419 -21.8634 46.5882)" fill="#CCCBCB" width="15.952" height="2.468"/>
+<rect x="11.997" y="35.756" transform="matrix(0.3421 -0.9397 0.9397 0.3421 -28.3111 39.0541)" fill="#767676" stroke="#767676" stroke-miterlimit="10" width="3.474" height="7.976"/>
+<rect x="15.119" y="27.173" transform="matrix(0.342 -0.9397 0.9397 0.342 -18.1902 36.3448)" fill="#767676" stroke="#767676" stroke-miterlimit="10" width="3.475" height="7.977"/>
+<rect x="18.267" y="18.528" transform="matrix(0.342 -0.9397 0.9397 0.342 -7.9972 33.613)" fill="#767676" stroke="#767676" stroke-miterlimit="10" width="3.472" height="7.977"/>
+<rect x="21.435" y="9.825" transform="matrix(0.3419 -0.9397 0.9397 0.3419 2.2675 30.8649)" fill="#767676" stroke="#767676" stroke-miterlimit="10" width="3.473" height="7.977"/>
+<rect x="21.204" y="18.827" transform="matrix(0.342 -0.9397 0.9397 0.342 0.3507 40.6191)" fill="#CCCBCB" width="15.951" height="2.465"/>
+</svg>

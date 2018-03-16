@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="55px" height="55px" viewBox="0 0 55 55" enable-background="new 0 0 55 55" xml:space="preserve">
+<polygon fill="#9B9994" stroke="#7D7D7D" stroke-width="0.5" stroke-miterlimit="10" points="40.003,14.877 41.412,13.482 
+	37.305,9.375 8.716,37.964 12.831,42.079 14.169,40.745 15.188,41.758 13.849,43.098 15.118,44.366 16.472,43.005 17.417,43.948 
+	16.059,45.307 18.984,48.232 32.72,34.498 32.113,33.91 31.835,33.301 32.045,32.703 32.637,32.559 33.166,32.846 33.771,33.432 
+	47.574,19.644 44.733,16.803 43.274,18.252 42.307,17.284 43.757,15.827 42.443,14.513 41.018,15.923 "/>
+<rect x="17.06" y="38.704" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -20.9078 29.4023)" fill="#CCCBCB" width="15.952" height="2.468"/>
+<rect x="15.15" y="33.076" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -21.2621 22.7967)" fill="#767676" stroke="#767676" stroke-miterlimit="10" width="3.473" height="7.977"/>
+<rect x="21.608" y="26.616" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -14.8034 25.4714)" fill="#767676" stroke="#767676" stroke-miterlimit="10" width="3.475" height="7.977"/>
+<rect x="28.114" y="20.112" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -8.2989 28.1658)" fill="#767676" stroke="#767676" stroke-miterlimit="10" width="3.472" height="7.977"/>
+<rect x="34.663" y="13.563" transform="matrix(0.707 -0.7072 0.7072 0.707 -1.7468 30.8865)" fill="#767676" stroke="#767676" stroke-miterlimit="10" width="3.473" height="7.977"/>
+<rect x="31.23" y="24.518" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -6.7261 35.2628)" fill="#CCCBCB" width="15.951" height="2.465"/>
+</svg>
