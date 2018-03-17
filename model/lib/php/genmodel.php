@@ -92,13 +92,12 @@ if($idmodel)
 
 function showcurrency($exc)
 {
-	$exc=round($exc,5);
-	$result = mysqli_query($GLOBALS['con'], "SELECT code, sign, ROUND( convr, 5 ) rounded FROM notebro_site.exchrate HAVING rounded = $exc");
-	if($result)
-	{ $item = mysqli_fetch_array($result); }
+	$exc_2=round($exc,5);
+	$result = mysqli_query($GLOBALS['con'], "SELECT code, sign, ROUND( convr, 5 ) rounded FROM notebro_site.exchrate HAVING rounded = $exc_2");
+	if($result && $item = mysqli_fetch_array($result);)
+	{ return $item['sign']; }
 	else
-	{ $exc=round($exc,5,PHP_ROUND_HALF_DOWN); $result = mysqli_query($GLOBALS['con'], "SELECT code, sign, ROUND( convr, 5 ) rounded FROM notebro_site.exchrate HAVING rounded = $exc"); $item = mysqli_fetch_array($result); }
-	return $item['sign'];
+	{ $exc_2=round($exc,5,PHP_ROUND_HALF_DOWN); $result = mysqli_query($GLOBALS['con'], "SELECT code, sign, ROUND( convr, 5 ) rounded FROM notebro_site.exchrate HAVING rounded = $exc_2"); $item = mysqli_fetch_array($result); return $item['sign']; }
 }
 
 /* MAKE CPU */
