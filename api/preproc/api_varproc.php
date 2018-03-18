@@ -141,7 +141,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 				if($totalcapmin>0 && $totalcapmin<100000)
 				{ $to_search['hdd'] = 1; }
 				else
-				{ $response->code=31; $response->message.=" HardDrive capacity out of range."; }
+				{ unset($totalcapmin); $response->code=31; $response->message.=" HardDrive capacity out of range."; }
 			}
 			if (isset($param['firsthddtype'])&& !empty($param['firsthddtype']) && !$abort)
 			{
@@ -150,7 +150,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 				if(in_array($param['firsthddtype'],$hdd_types))
 				{ $to_search['hdd'] = 1; }
 				else
-				{ $response->code=31; $response->message.=" HardDrive type unidentified."; }
+				{ unset($hdd_types); $response->code=31; $response->message.=" HardDrive type unidentified."; }
 			}
 			break;	
 		}	
@@ -262,7 +262,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 				if($acum_capmin>0 && $acum_capmin<1000)
 				{ $to_search['acum'] = 1; }
 				else
-				{ $response->code=31; $response->message.=" Battery capacity out of range."; }	
+				{ unset($acum_capmin); $response->code=31; $response->message.=" Battery capacity out of range."; }	
 			}
 			break;
 		}
@@ -271,8 +271,11 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 		{   
 			if (isset($param['warranty_years'])&& !empty($param['warranty_years']) && !$abort)
 			{
-				$war_yearsmin=$param['warranty_years'];
-				$to_search["war"] = 1;
+				$war_yearsmin=intval($param['warranty_years']);
+				if($war_yearsmin>0 && $war_yearsmin<10)
+				{ 	$to_search["war"] = 1; }
+				else
+				{ unset($war_yearsmin); $response->code=31; $response->message.=" Number of warranty years is out of range."; }	
 			}
 			if (isset($param['warranty_type'])&& !empty($param['warranty_type']))
 			{
@@ -297,23 +300,26 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 				else { $response->code=31; $response->message.=" Unknown operating system."; }
 				
 
-				foreach($opsist as $opsist)
+				if(isset($opsist[0]))
 				{
-					$sist_parts=explode(" ",$opsist);
-					
-					if(is_numeric(end($sist_parts)))
+					foreach($opsist as $opsist)
 					{
-						$sist_vers[]=end($sist_parts);
-						array_pop($sist_parts);
-						$sist_sist[]=implode(" ",$sist_parts);
-					}
-					else
-					{
-						$sist_type=end($sist_parts);
-						$sist_vers[]=prev($sist_parts);
-						array_splice($sist_parts,-2,2);
-						$sist_sist[]=implode(" ",$sist_parts)."+".$sist_type;
-					
+						$sist_parts=explode(" ",$opsist);
+						
+						if(is_numeric(end($sist_parts)))
+						{
+							$sist_vers[]=end($sist_parts);
+							array_pop($sist_parts);
+							$sist_sist[]=implode(" ",$sist_parts);
+						}
+						else
+						{
+							$sist_type=end($sist_parts);
+							$sist_vers[]=prev($sist_parts);
+							array_splice($sist_parts,-2,2);
+							$sist_sist[]=implode(" ",$sist_parts)."+".$sist_type;
+						
+						}
 					}
 				}
 			}	
