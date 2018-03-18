@@ -1,30 +1,6 @@
 <?php
-/*
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-echo getcwd() . "\n";
-
-*/
-// code when we have model id
 require_once("../search/proc/init.php");
 $totalcapmin=0; $totalcapmax=999999999; $nr_hdd=0;
-/*
-$param['display_type'] = "TN";
-$param['cpu_name']= "Intel i7-5750"; 
-$param['gpu_name']= "NVIDIA GeForce GTX 1070"; 
-$param['display_srgb'] = "80%";
-$param['firsthddcap'] = "2048"; 
-$param['mdb_gsync'] = "0";
-$param['mdb_optimus'] = "0";
-$param['wireless_name'] = "Intel Wireless-AC 9260";
-$param['opsist'] = "Windows 10.00";
-$param['display_res'] = "1920x1080";
-$param['warranty_type'] = "Premium";
-$param['warranty_years'] = "2";
-$param['battery_size'] = "60 Whr";
-$param['odd_type'] = "NONE";
-*/
 
 //LIST OF COMPONENTS WE WILL FILTER
 $to_search = array(
@@ -46,8 +22,7 @@ $to_search = array(
 	
 );
 
-//************WNET****************
-
+$abort=0;
 foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "wnet", "sist", "odd", "mem", "mdb", "chassis") as $v) 
 {
 	switch($v)
@@ -62,74 +37,104 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 
 				if(!$id_set){ $_POST["keys"]=$param['model_name']; } else { $_POST["keys"]=""; }
 				$relativepath="../";      $close_con=0;      $m_search_included=1;
-				require_once('../search/lib/func/m_search.php');
-				foreach($m_search_included as $el){ $comp_lists_api["model"][]["id"]=$el["id"]; }
+				require_once('../search/lib/func/m_search.php'); $nr_models=0;
+				foreach($m_search_included as $el){ $comp_lists_api["model"][]["id"]=$el["id"]; $nr_models++; }
+				if($nr_models>7) { $response->code=30; $response->message.=" Too many models selected, please be more specific."; $abort=1; }
+				elseif($nr_models<1) { $response->code=30; $response->message.="Fatal error: Unable to identify the model by name.";  $abort=1; }
 			}
 			break;
 		}
 		
 		case 'cpu':
 		{
-			if (isset($param['cpu_name']) && !empty($param['cpu_name']))
+			if (isset($param['cpu_name']) && !empty($param['cpu_name']) && !$abort)
 			{
 				$param['cpu_name'] = strtoupper($param['cpu_name']);
 				$result = mysqli_query($GLOBALS['con'], "SELECT name FROM notebro_site.nomen WHERE type = 11 ORDER BY type ASC");
 				while( $row=mysqli_fetch_array($result)){ $cpu_prod[]=$row[0]; } 
-				foreach($cpu_prod as $el){ $param['cpu_name'] = trim(str_replace($el,"",$param['cpu_name'])," "); }	
-				$cpu_name = mysqli_fetch_row(mysqli_query($GLOBALS['con'],"SELECT model FROM notebro_db.CPU where model like '%".$param['cpu_name']."%' limit 1"));
-				$cpu_model = $cpu_name[0];
-				$to_search['cpu'] = 1;
+				foreach($cpu_prod as $el){ $param['cpu_name'] = trim(str_replace($el,"",$param['cpu_name'])," "); } $cpu_prod=array();
+				if($cpu_name = mysqli_fetch_row(mysqli_query($GLOBALS['con'],"SELECT model FROM notebro_db.CPU where model like '%".$param['cpu_name']."%' limit 1")))
+				{ $cpu_model = $cpu_name[0]; $to_search['cpu'] = 1; }
+				else
+				{ $response->code=31; $response->message.=" Unable to identify the CPU by name."; }
 			}
 			break;
 		}
 		
 		case 'display' :
 		{
-			if (isset($param['display_res'])&& !empty($param['display_res']))
+			if (isset($param['display_res'])&& !empty($param['display_res']) && !$abort)
 			{	
 				$display_res = $param['display_res'];
 				$result_explode = explode('x', $display_res);
-				$display_hresmax = intval(trim($result_explode[0]," "));
-				$display_vresmax = intval(trim($result_explode[1]," "));
-				$to_search['display'] = 1;
+				$display_hresmin = intval(trim($result_explode[0]," "));
+				$display_vresmin = intval(trim($result_explode[1]," "));
+				if($display_hresmin>0 && $display_hresmin<50000 && $display_vresmin>0 && $display_vresmin<50000)
+				{ $to_search['display'] = 1; }
+				else
+				{ $response->code=31; $response->message.=" Display resolution out of range.";}
 			}
-			if (isset($param['display_type'])&& !empty($param['display_type'])) 
+			if (isset($param['display_type'])&& !empty($param['display_type']) && !$abort)
 			{
-				$result = mysqli_query($GLOBALS['con'], "SELECT DISTINCT backt FROM notebro_db.DISPLAY WHERE backt like '%".$param['display_type']."%'");
-				while( $row=mysqli_fetch_array($result)){$display_type[] = $row[0]; }
-				$to_search['display'] = 1; 
+				$result = mysqli_query($GLOBALS['con'], "SELECT name FROM `notebro_site`.`nomen` WHERE name LIKE '%".$param['display_type']."%' AND type=10");
+				if($result && mysqli_num_rows($result)>0)
+				{
+					while( $row=mysqli_fetch_array($result)){$display_backt[] = $row[0];}
+					$to_search['display'] = 1;
+				}
+				else
+				{ $response->code=31; $response->message.=" Unable to identify Display type.";}
 			}
-			if (isset($param['display_srgb'])&& !empty($param['display_srgb'])) 
+			if (isset($param['display_srgb'])&& !empty($param['display_srgb']) && !$abort)
 			{
 				$display_srgb = intval(trim($param['display_srgb'],"\x25"));
-				$to_search['display'] = 1;	
+				if($display_srgb>0 && $display_srgb<100)
+				{	$to_search['display'] = 1; }
+				else
+				{ $response->code=31; $response->message.=" sRGB value is out of range."; }
 			} 
 			break;
 		}
 		
 		case 'mem' :
 		{   
-			if (isset($param['maxmem'])&& !empty($param['maxmem']))
+			if (isset($param['maxmem'])&& !empty($param['maxmem']) && !$abort)
 			{
-				$mem_capmax = intval(preg_replace("/[^0-9]+/", "",$param['maxmem']));
-				$to_search['mem']=1;
+				$mem_capmin = intval(preg_replace("/[^0-9]+/", "",$param['maxmem']));
+				if($mem_capmin>0 && $mem_capmin<1000)
+				{ $to_search['mem']=1; }
+				else
+				{ $response->code=31; $response->message.=" Memory capacity out of range."; }
+					
 			}				
 			break;
 		}
 		
 		case 'hdd' :
 		{
-			if (isset($param['firsthddcap'])&& !empty($param['firsthddcap']))
+			if (isset($param['storagecap'])&& !empty($param['storagecap']) && !$abort)
 			{
-				$hdd_capmin =intval(preg_replace("/[^0-9]+/", "",$param['firsthddcap']));
-				$to_search['hdd'] = 1;
+				$totalcapmin =intval(preg_replace("/[^0-9]+/", "",$param['storagecap']));
+				if($totalcapmin>0 && $totalcapmin<100000)
+				{ $to_search['hdd'] = 1; }
+				else
+				{ $response->code=31; $response->message.=" HardDrive capacity out of range."; }
+			}
+			if (isset($param['firsthddtype'])&& !empty($param['firsthddtype']) && !$abort)
+			{
+				$result = mysqli_query($GLOBALS['con'], "SELECT name FROM `notebro_site`.`nomen` WHERE type=54");
+				while( $row=mysqli_fetch_array($result)){$hdd_types[] = $row[0];}
+				if(in_array($param['firsthddtype'],$hdd_types))
+				{ $to_search['hdd'] = 1; }
+				else
+				{ $response->code=31; $response->message.=" HardDrive type unidentified."; }
 			}
 			break;	
 		}	
 		
 		case 'shdd' :
 		{   
-			if (isset($param['secondhddcap'])&& !empty($param['secondhddcap']))
+			if (isset($param['secondhdd'])&& !empty($param['secondhdd']) && !$abort)
 			{
 				$nr_hdd=2;
 				$to_search['shdd'] = 1;
@@ -139,29 +144,31 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 	
 		case 'gpu' :
 		{
-			if (isset($param['gpu_name'])&& !empty($param['gpu_name']))
+			if (isset($param['gpu_name'])&& !empty($param['gpu_name']) && !$abort)
 			{
 				$result = mysqli_query($GLOBALS['con'], "SELECT name FROM notebro_site.nomen WHERE type = 12 ORDER BY type ASC");
 				while( $row=mysqli_fetch_array($result)){$gpu_prod[] = $row[0]; }
-				foreach($gpu_prod as $el) {	$param['gpu_name'] = trim(str_replace($el,"",$param['gpu_name'])," "); }	
+				foreach($gpu_prod as $el) {	$param['gpu_name'] = trim(str_replace($el,"",$param['gpu_name'])," "); } $gpu_prod=array();
 				$sql = "SELECT model FROM notebro_db.GPU where model like '%".$param['gpu_name']."%' ";
 				if (stripos($param['gpu_name'],"SLI")!==FALSE) { $sql.=' AND model LIKE "%SLI%" ORDER BY rating DESC limit 1'; }
 				else { $sql.=' AND model NOT LIKE "%SLI%" ORDER BY rating DESC LIMIT 1'; } 
-				$gpu_name = mysqli_fetch_row(mysqli_query($GLOBALS['con'],$sql));	
-				$gpu_model = $gpu_name[0];
-				$to_search['gpu'] = 1;
+				$gpu_name = mysqli_fetch_row(mysqli_query($GLOBALS['con'],$sql));
+				if($gpu_name && count($gpu_name)>0) 
+				{ $gpu_model = $gpu_name[0]; $to_search['gpu'] = 1; }
+				else
+				{ $response->code=31; $response->message.=" Unable to identify GPU name."; }
 			}
 			break;
 		}
 		
 		case 'wnet' :
-		{  
-			if (isset($param['wireless_name'])&& !empty($param['wireless_type']))
+		{
+			if (isset($param['wireless_name'])&& !empty($param['wireless_name']) && !$abort)
 			{
 				$result = mysqli_query($GLOBALS['con'], "SELECT DISTINCT prod FROM notebro_db.WNET WHERE 1=1");
 				while($row=mysqli_fetch_array($result)){$wnet_prod[] = $row[0]; }
-				foreach( $wnet_prod as $el){ $param['wireless_name'] = trim(str_replace($el,"",$param['wireless_name'])," "); }
-				$wireless_type = $param['wireless_name'];
+				foreach( $wnet_prod as $el){ $param['wireless_name'] = trim(str_replace($el,"",$param['wireless_name'])," "); } unset($wnet_prod);
+				$wnet_model = $param['wireless_name'];
 				$to_search['wnet'] = 1;
 			}
 			break;	
@@ -169,19 +176,25 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 		
 		case 'odd' :
 		{
-			if (isset($param['odd_type'])&& !empty($param['odd_type']))
+			if (isset($param['odd_type'])&& !empty($param['odd_type']) && !$abort)
 			{
-				$odd_type = strtoupper($param['odd_type']);
-				$to_search['odd'] = 1; 
+				$param['odd_type']=strtoupper(str_replace(" ","%",$param['odd_type']));
+				$result = mysqli_query($GLOBALS['con'], "SELECT name FROM `notebro_site`.`nomen` WHERE name LIKE '%".$param['odd_type']."%' AND type=52");
+				if($result && mysqli_num_rows($result)>0)
+				{
+					while( $row=mysqli_fetch_array($result)){$odd_type[] = $row[0];}
+					$to_search['odd'] = 1;
+				}
+				else { $response->code=31; $response->message.=" Unknown optical drive."; }
 			}
             break;
 		}
 		
 		case 'mdb' :
 		{	
-			if (isset($param['mdb_wan'])&& !empty($param['mdb_wan']))
+			if (isset($param['mdb_wan'])&& !empty($param['mdb_wan']) && !$abort)
 			{
-				switch($param['mdb_wan'])
+				switch(strtolower($param['mdb_wan']))
 				{
 					case "yes":
 					{ $mdb_wwan=2; $to_search['mdb']=1; break; }
@@ -191,9 +204,9 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 					{ $mdb_wwan=0;  break; }
 				}
 			}
-			if (isset($param['mdb_gsync'])&& !empty($param['mdb_gsync'])) 
+			if (isset($param['mdb_gsync'])&& !empty($param['mdb_gsync']) && !$abort)
 			{
-				switch($param['mdb_gsync'])
+				switch(strtolower($param['mdb_gsync']))
 				{	
 					case "yes":
 					{ $mdb_misc[]="G-Sync/FreeSync"; $to_search['mdb']=1; break; }
@@ -202,9 +215,9 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 				}
 			}
 
-			if (isset($param['mdb_optimus'])&& !empty($param['mdb_optimus']))
+			if (isset($param['mdb_optimus'])&& !empty($param['mdb_optimus']) && !$abort)
 			{
-				switch($param['mdb_optimus'])
+				switch(strtolower($param['mdb_optimus']))
 				{	
 					case "yes":
 					{ $mdb_misc[]="Optimus/Enduro"; $to_search['mdb']=1; break; }
@@ -220,51 +233,66 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 		
 		case 'acum' :
 		{
-			if (isset($param['battery_size'])&& !empty($param['battery_size']))
+			if (isset($param['battery_size'])&& !empty($param['battery_size'])  && !$abort)
 			{
 				$acum_capmin = floatval(preg_replace("/[^0-9]+/", "",$param['battery_size']));
-				$to_search['acum'] = 1;
+				if($acum_capmin>0 && $acum_capmin<1000)
+				{ $to_search['acum'] = 1; }
+				else
+				{ $response->code=31; $response->message.=" Battery capacity out of range."; }	
 			}
 			break;
 		}
 	
 		case 'war' :
 		{   
-			if (isset($param['warranty_years'])&& !empty($param['warranty_years']))
+			if (isset($param['warranty_years'])&& !empty($param['warranty_years']) && !$abort)
 			{
 				$war_yearsmin=$param['warranty_years'];
 				$to_search["war"] = 1;
 			}
 			if (isset($param['warranty_type'])&& !empty($param['warranty_type']))
 			{
-				if ($param['warranty_type'] = "Premium") {$war_typewar =array(2,3,4); }
-				else if ($param['warranty_type'] = "Standard") {$war_typewar = array(1); }
-				$to_search["war"] = 1; 
+				if (strcasecmp($param['warranty_type'],"premium")===0) {$war_typewar =array(2,3,4); $to_search["war"] = 1; }
+				elseif (strcasecmp($param['warranty_type'],"standard")===0) {$war_typewar = array(1); $to_search["war"] = 1;  }
+				else { $response->code=31; $response->message.=" Unknown warranty type, can only be Standard or Premium."; }
 			}
 			break;	
 		}
 		
 		case 'sist' :
 		{
-			if (isset($param['opsist'])&& !empty($param['opsist']))
+			if (isset($param['opsist'])&& !empty($param['opsist']) && !$abort)
 			{
-				$opsist	= $param['opsist'];
-				$sist_parts=explode(" ",$opsist);
+				$param['opsist']=str_replace(" ","%",$param['opsist']);
+				$result = mysqli_query($GLOBALS['con'], "SELECT name FROM `notebro_site`.`nomen` WHERE name LIKE '%".$param['opsist']."%' AND type=25 LIMIT 1");
+				if($result && mysqli_num_rows($result)>0)
+				{
+					while( $row=mysqli_fetch_array($result)){$opsist[] = $row[0];}
+					$to_search['sist'] = 1;
+				}
+				else { $response->code=31; $response->message.=" Unknown operating system."; }
 				
-				if(is_numeric(end($sist_parts)))
+
+				foreach($opsist as $opsist)
 				{
-					$sist_vers[]=end($sist_parts);
-					array_pop($sist_parts);
-					$sist_sist[]=implode(" ",$sist_parts);
+					$sist_parts=explode(" ",$opsist);
+					
+					if(is_numeric(end($sist_parts)))
+					{
+						$sist_vers[]=end($sist_parts);
+						array_pop($sist_parts);
+						$sist_sist[]=implode(" ",$sist_parts);
+					}
+					else
+					{
+						$sist_type=end($sist_parts);
+						$sist_vers[]=prev($sist_parts);
+						array_splice($sist_parts,-2,2);
+						$sist_sist[]=implode(" ",$sist_parts)."+".$sist_type;
+					
+					}
 				}
-				else
-				{
-					$sist_type=end($sist_parts);
-					$sist_vers[]=prev($sist_parts);
-					array_splice($sist_parts,-2,2);
-					$sist_sist[]=implode(" ",$sist_parts)."+".$sist_type;
-				}
-				$to_search["sist"] = 1;
 			}	
 			break ;	
 		}	
