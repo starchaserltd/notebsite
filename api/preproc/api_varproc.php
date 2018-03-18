@@ -79,7 +79,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 				if($display_hresmin>0 && $display_hresmin<50000 && $display_vresmin>0 && $display_vresmin<50000)
 				{ $to_search['display'] = 1; }
 				else
-				{ unset($display_hresmin); unset($display_vresmin); $response->code=31; $response->message.=" Display resolution out of range.";}
+				{ $display_hresmin=0; $display_vresmin=0; $response->code=31; $response->message.=" Display resolution out of range.";}
 			}
 			if (isset($param['display_type'])&& !empty($param['display_type']) && !$abort)
 			{
@@ -141,7 +141,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 				if($totalcapmin>0 && $totalcapmin<100000)
 				{ $to_search['hdd'] = 1; }
 				else
-				{ unset($totalcapmin); $response->code=31; $response->message.=" HardDrive capacity out of range."; }
+				{ $totalcapmin=0; $response->code=31; $response->message.=" HardDrive capacity out of range."; }
 			}
 			if (isset($param['firsthddtype'])&& !empty($param['firsthddtype']) && !$abort)
 			{
@@ -262,7 +262,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 				if($acum_capmin>0 && $acum_capmin<1000)
 				{ $to_search['acum'] = 1; }
 				else
-				{ unset($acum_capmin); $response->code=31; $response->message.=" Battery capacity out of range."; }	
+				{ $acum_capmin=0; $response->code=31; $response->message.=" Battery capacity out of range."; }	
 			}
 			break;
 		}
@@ -275,7 +275,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 				if($war_yearsmin>0 && $war_yearsmin<10)
 				{ 	$to_search["war"] = 1; }
 				else
-				{ unset($war_yearsmin); $response->code=31; $response->message.=" Number of warranty years is out of range."; }	
+				{ $war_yearsmin=0; $response->code=31; $response->message.=" Number of warranty years is out of range."; }	
 			}
 			if (isset($param['warranty_type'])&& !empty($param['warranty_type']))
 			{
