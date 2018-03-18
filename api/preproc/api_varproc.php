@@ -33,7 +33,13 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			{				
 				$id_set=NULL;
 				if (isset($param['model_id'])&&!empty($param['model_id'])) 
-				{ $id_set=$param['model_id']; }
+				{ 
+					$result = mysqli_query($GLOBALS['con'], "SELECT id FROM `notebro_db`.`MODEL` WHERE id=".$param['model_id']." LIMIT 1");
+					if($result && mysqli_num_rows($result)>0)
+					{ $id_set=$param['model_id']; }
+					else
+					{ $response->message.=" Unable to identify model by ID, falling back to name search."; }
+				}
 
 				if(!$id_set){ $_POST["keys"]=$param['model_name']; } else { $_POST["keys"]=""; }
 				$relativepath="../";      $close_con=0;      $m_search_included=1;
@@ -41,6 +47,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 				foreach($m_search_included as $el){ $comp_lists_api["model"][]["id"]=$el["id"]; $nr_models++; }
 				if($nr_models>7) { $response->code=30; $response->message.=" Too many models selected, please be more specific."; $abort=1; }
 				elseif($nr_models<1) { $response->code=30; $response->message.="Fatal error: Unable to identify the model by name.";  $abort=1; }
+				
 			}
 			break;
 		}
@@ -72,7 +79,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 				if($display_hresmin>0 && $display_hresmin<50000 && $display_vresmin>0 && $display_vresmin<50000)
 				{ $to_search['display'] = 1; }
 				else
-				{ $response->code=31; $response->message.=" Display resolution out of range.";}
+				{ unset($display_hresmin); unset($display_vresmin); $response->code=31; $response->message.=" Display resolution out of range.";}
 			}
 			if (isset($param['display_type'])&& !empty($param['display_type']) && !$abort)
 			{
@@ -89,9 +96,25 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			{
 				$display_srgb = intval(trim($param['display_srgb'],"\x25"));
 				if($display_srgb>0 && $display_srgb<100)
-				{	$to_search['display'] = 1; }
+				{ $to_search['display'] = 1; }
 				else
-				{ $response->code=31; $response->message.=" sRGB value is out of range."; }
+				{ $display_srgb=0; $response->code=31; $response->message.=" sRGB value is out of range."; }
+			}
+			if (isset($param['display_size_min'])&& !empty($param['display_size_min']) && !$abort)
+			{
+				$val=floatval($param['display_size_min']);
+				if($val>0 && $val<30)
+				{ $display_sizemin=$val; $to_search['display'] = 1; }
+				else
+				{ $response->code=31; $response->message.=" Display minimum size value is out of range."; }
+			} 
+			if (isset($param['display_size_max'])&& !empty($param['display_size_max']) && !$abort)
+			{
+				$val=floatval($param['display_size_max']);
+				if($val>0 && $val<30)
+				{ $display_sizemax=$val; $to_search['display'] = 1; }
+				else
+				{ $response->code=31; $response->message.=" Display maximum size value is out of range."; }
 			} 
 			break;
 		}
