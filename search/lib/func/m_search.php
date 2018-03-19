@@ -47,10 +47,10 @@ if(isset($id_set) && $id_set)
 $sel="SELECT id,mdb,submodel,regions,REGEXP_REPLACE(CONCAT(prod,' ',IFNULL((SELECT fam FROM `notebro_db`.`FAMILIES` WHERE id=idfam),''),' ',IFNULL((SELECT subfam FROM `notebro_db`.`FAMILIES` WHERE id=idfam and showsubfam=1),''),' ',model),'[[:space:]]+', ' ') as name from `notebro_db`.`MODEL` WHERE ".$conditions;
 $i=0;
 
-//DOING THE SEARCH		
+//DOING THE SEARCH;
 $result = mysqli_query($con, $sel);
 $list = array();
-while($rand = mysqli_fetch_row($result)) 
+while($rand = mysqli_fetch_row($result))
 { 
 	$region="";
 	//GETTING MDB SUBMODEL

@@ -41,12 +41,12 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 					{ $response->message.=" Unable to identify model by ID, falling back to name search."; }
 				}
 
-				if(!$id_set){ $_POST["keys"]=$param['model_name']; } else { $_POST["keys"]=""; }
+				if(!$id_set){ $_POST["keys"]=str_replace(" ","%",$param['model_name']); } else { $_POST["keys"]=""; }
 				$relativepath="../";      $close_con=0;      $m_search_included=1;
 				require_once('../search/lib/func/m_search.php'); $nr_models=0;
 				foreach($m_search_included as $el){ $comp_lists_api["model"][]["id"]=$el["id"]; $nr_models++; }
-				if($nr_models>7) { $response->code=30; $response->message.=" Too many models selected, please be more specific."; $abort=1; }
-				elseif($nr_models<1) { $response->code=30; $response->message.="Fatal error: Unable to identify the model by name.";  $abort=1; }
+				if($nr_models>7) { $response->code=30; $response->message.=" Fatal error: Too many models selected, please provide a more specific name."; $abort=1; }
+				elseif($nr_models<1) { $response->code=30; $response->message.=" Fatal error: Unable to identify the model by name.";  $abort=1; }
 				
 			}
 			break;
@@ -59,7 +59,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 				$param['cpu_name'] = strtoupper($param['cpu_name']);
 				$result = mysqli_query($GLOBALS['con'], "SELECT name FROM notebro_site.nomen WHERE type = 11 ORDER BY type ASC");
 				while( $row=mysqli_fetch_array($result)){ $cpu_prod[]=$row[0]; } 
-				foreach($cpu_prod as $el){ $param['cpu_name'] = trim(str_replace($el,"",$param['cpu_name'])," "); } $cpu_prod=array();
+				foreach($cpu_prod as $el){ $param['cpu_name'] = trim(str_replace($el,"",$param['cpu_name'])," "); } $cpu_prod=array(); $param['cpu_name']=str_replace(" ","%",$param['cpu_name']);
 				if($cpu_name = mysqli_fetch_row(mysqli_query($GLOBALS['con'],"SELECT model FROM notebro_db.CPU where model like '%".$param['cpu_name']."%' limit 1")))
 				{ $cpu_model = $cpu_name[0]; $to_search['cpu'] = 1; }
 				else
@@ -121,9 +121,9 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 		
 		case 'mem' :
 		{   
-			if (isset($param['maxmem'])&& !empty($param['maxmem']) && !$abort)
+			if (isset($param['min_mem'])&& !empty($param['min_mem']) && !$abort)
 			{
-				$mem_capmin = intval(preg_replace("/[^0-9]+/", "",$param['maxmem']));
+				$mem_capmin = intval(preg_replace("/[^0-9]+/", "",$param['min_mem']));
 				if($mem_capmin>0 && $mem_capmin<1000)
 				{ $to_search['mem']=1; }
 				else
@@ -135,29 +135,37 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 		
 		case 'hdd' :
 		{
-			if (isset($param['storagecap'])&& !empty($param['storagecap']) && !$abort)
+			if (isset($param['storage_cap'])&& !empty($param['storage_cap']) && !$abort)
 			{
-				$totalcapmin =intval(preg_replace("/[^0-9]+/", "",$param['storagecap']));
+				$totalcapmin =intval(preg_replace("/[^0-9]+/", "",$param['storage_cap']));
 				if($totalcapmin>0 && $totalcapmin<100000)
 				{ $to_search['hdd'] = 1; }
 				else
-				{ $totalcapmin=0; $response->code=31; $response->message.=" HardDrive capacity out of range."; }
+				{ $totalcapmin=0; $response->code=31; $response->message.=" Hard drive capacity out of range."; }
 			}
-			if (isset($param['firsthddtype'])&& !empty($param['firsthddtype']) && !$abort)
+			if (isset($param['first_hdd_min_size'])&& !empty($param['first_hdd_min_size']) && !$abort)
+			{
+				$hdd_capmin =intval(preg_replace("/[^0-9]+/", "",$param['first_hdd_min_size']));
+				if($hdd_capmin>0 && $hdd_capmin<100000)
+				{ $to_search['hdd'] = 1; }
+				else
+				{ $hdd_capmin=0; $response->code=31; $response->message.=" Hard drive capacity out of range."; }
+			}
+			if (isset($param['first_hdd_type'])&& !empty($param['first_hdd_type']) && !$abort)
 			{
 				$result = mysqli_query($GLOBALS['con'], "SELECT name FROM `notebro_site`.`nomen` WHERE type=54");
 				while( $row=mysqli_fetch_array($result)){$hdd_types[] = $row[0];}
-				if(in_array($param['firsthddtype'],$hdd_types))
+				if(in_array($param['first_hdd_type'],$hdd_types))
 				{ $to_search['hdd'] = 1; }
 				else
-				{ unset($hdd_types); $response->code=31; $response->message.=" HardDrive type unidentified."; }
+				{ unset($hdd_types); $response->code=31; $response->message.=" Hard drive type unidentified."; }
 			}
 			break;	
 		}	
 		
 		case 'shdd' :
 		{   
-			if (isset($param['secondhdd'])&& !empty($param['secondhdd']) && !$abort)
+			if (isset($param['second_hdd'])&& !empty($param['second_hdd']) && !$abort)
 			{
 				$nr_hdd=2;
 				$to_search['shdd'] = 1;
@@ -172,7 +180,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 				$result = mysqli_query($GLOBALS['con'], "SELECT name FROM notebro_site.nomen WHERE type = 12 ORDER BY type ASC");
 				while( $row=mysqli_fetch_array($result)){$gpu_prod[] = $row[0]; }
 				foreach($gpu_prod as $el) {	$param['gpu_name'] = trim(str_replace($el,"",$param['gpu_name'])," "); } $gpu_prod=array();
-				$sql = "SELECT model FROM notebro_db.GPU where model like '%".$param['gpu_name']."%' ";
+				$sql = "SELECT model FROM notebro_db.GPU where model like '%".$param['gpu_name']."%' "; $param['gpu_name']=str_replace(" ","%",$param['gpu_name']);
 				if (stripos($param['gpu_name'],"SLI")!==FALSE) { $sql.=' AND model LIKE "%SLI%" ORDER BY rating DESC limit 1'; }
 				else { $sql.=' AND model NOT LIKE "%SLI%" ORDER BY rating DESC LIMIT 1'; } 
 				$gpu_name = mysqli_fetch_row(mysqli_query($GLOBALS['con'],$sql));
@@ -190,9 +198,12 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			{
 				$result = mysqli_query($GLOBALS['con'], "SELECT DISTINCT prod FROM notebro_db.WNET WHERE 1=1");
 				while($row=mysqli_fetch_array($result)){$wnet_prod[] = $row[0]; }
-				foreach( $wnet_prod as $el){ $param['wireless_name'] = trim(str_replace($el,"",$param['wireless_name'])," "); } unset($wnet_prod);
-				$wnet_model = $param['wireless_name'];
-				$to_search['wnet'] = 1;
+				foreach( $wnet_prod as $el){ $param['wireless_name'] = trim(str_replace($el,"",$param['wireless_name'])," "); } unset($wnet_prod); $param['wireless_name']=str_replace(" ","%",$param['wireless_name']);
+				if($result=mysqli_fetch_row(mysqli_query($GLOBALS['con'],"SELECT model FROM notebro_db.WNET where model like '%".$param['wireless_name']."%' limit 1")))
+				{ $wnet_model = $result[0]; $to_search['wnet'] = 1; }
+				else
+				{ $response->code=31; $response->message.=" Unable to identify Wireless card."; }
+
 			}
 			break;	
 		}

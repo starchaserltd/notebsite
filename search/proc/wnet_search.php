@@ -33,9 +33,9 @@ function search_wnet ($prod, $model, $misc, $speedmin, $speedmax, $bt, $ratemin,
 		else
 		{ $sel_wnet.=" AND ( "; }
 		
-		$sel_wnet.="model='";
+		$sel_wnet.="model LIKE '%";
 		$sel_wnet.=$x;
-		$sel_wnet.="'";
+		$sel_wnet.="%'";
 		$i++;
 	}
 	if($i>0){ $sel_wnet.=" ) "; }
@@ -112,9 +112,9 @@ function search_wnet ($prod, $model, $misc, $speedmin, $speedmax, $bt, $ratemin,
 	}
 
 	// DO THE SEARCH
-	# echo "Query to select the WNET:";
-    # echo "<br>";
-	# echo "<pre>" . $sel_wnet . "</pre>";
+	#echo "Query to select the WNET:";
+    #echo "<br>";
+	#echo "<pre>" . $sel_wnet . "</pre>";
 	
 	$result = mysqli_query($GLOBALS['con'], $sel_wnet);
 	$wnet_return = array();

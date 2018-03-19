@@ -14,7 +14,7 @@ $method =""; $api_key =""; $param =""; $response=new stdClass(); $response->code
 if(isset($_POST['method'])) { $method=filter_var($_POST['method'], FILTER_SANITIZE_STRING); } 
 if(isset($_POST['apikey'])) { $api_key = filter_var($_POST['apikey'], FILTER_SANITIZE_STRING);}
 if(isset($_POST['param'])) { $param = $_POST['param'];}
-
+//var_dump($_POST);
 if($api_key!==""&&$api_key!==NULL)
 {
 	require_once("../etc/con_db.php");
