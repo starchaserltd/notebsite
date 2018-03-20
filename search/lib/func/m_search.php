@@ -41,7 +41,7 @@ foreach($keysparts as $el)
 }
 $conditions=substr($conditions, 0, -5);
 if(isset($id_set) && $id_set)
-{ $conditions.="AND id=$id_set"; }
+{ $conditions.="AND id IN ($id_set)"; }
 
 // CONSTRUCTING THE SEARCH QUERY
 $sel="SELECT id,mdb,submodel,regions,REGEXP_REPLACE(CONCAT(prod,' ',IFNULL((SELECT fam FROM `notebro_db`.`FAMILIES` WHERE id=idfam),''),' ',IFNULL((SELECT subfam FROM `notebro_db`.`FAMILIES` WHERE id=idfam and showsubfam=1),''),' ',model),'[[:space:]]+', ' ') as name from `notebro_db`.`MODEL` WHERE ".$conditions;
