@@ -1,5 +1,5 @@
 $(document).ready(function()
-{ 
+{
 	actbtn("USER");
     $(".modelsearch").each(function(){
 	var query_address=siteroot+"/search/lib/func/m_search.php";
@@ -89,8 +89,10 @@ $(".predbvalues").each(function()
 
 //Function for form submissions left menu   
 $("#ireviews_form_btn").click(function () {
-	
-	document.getElementById("model_name_ireviews").value = $("#model_id_ireviews :selected").text(); 
+	model_names=new Array();
+	for(var i=0;i<((Object.keys($("#model_id_ireviews :selected")).length)-2);i++)
+	{ model_names[i]=$("#model_id_ireviews :selected")[i].text; }
+	document.getElementById("model_name_ireviews").value=model_names;
 	scrolltoid('content');
 	$('#loadingNB').show();
 	trigger=0;

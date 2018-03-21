@@ -20,17 +20,6 @@ if(!empty($_POST['captcha_code']))
 }
 else { $errMsg = 'Please enter the captcha code:'; }
 ?>
-<script>
-<?php
-if($error)
-{
-	if(isset($_POST['model_name_ireviews'])&&isset($model_id)) { echo "$('#model_id_ireviews').html('<option selected=".'"'."selected".'"'." value=".'"'.$model_id.'"'.">".$_POST['model_name_ireviews'].'"'."<option>');"; }
-	if(isset($site)) { echo "$('#site').html('<option selected=".'"'."selected".'"'.">".$site."<option>');"; }
-	if(isset($link)) { echo "$('#link').html('".$link."');"; }
-}
-?>
-</script>
-
 <form id="ireviews_form" action="javascript:void(0);" method="post">
 <div style="min-height:650px">
 	<div class="title"><p><b>Add an external review to Noteb database</b></p></div>
@@ -38,7 +27,7 @@ if($error)
 	<div class="col-md-12 col-lg-12 irevtop">
 		<div class="Irevm col-md-1">Model :</div>
 		<div class="col-md-6" id="modelfind">			
-			<select class="modelsearch Irevmod" id="model_id_ireviews" name ="model_id_ireviews" data-placeholder="Search a laptop model" data-initvalue="search for a model"></select>			
+			<select class="modelsearch Irevmod" id="model_id_ireviews" name ="model_id_ireviews[]" data-placeholder="Search a laptop model" data-initvalue="search for a model"></select>			
 		</div>
 	</div>
 	
@@ -64,5 +53,15 @@ if($error)
 </div>
 	</form>
 <link rel="stylesheet" href="public/lib/css/ireviews.css" type="text/css" />
-<script>$.getScript("public/lib/js/ireviews.js");</script>
-
+<script>$.getScript("public/lib/js/ireviews.js");
+setTimeout(function (){
+<?php
+if($error)
+{
+	if(isset($_POST['model_name_ireviews'])&&isset($model_id)) { $model_names=explode(",",str_replace('"','',$_POST['model_name_ireviews'])); foreach($model_names as $key=>$el){ echo "$('#model_id_ireviews').append('<option selected=".'"'."selected".'"'." value=".'"'.$model_id[$key].'"'.">".$model_names[$key]."</option>');";  } }
+	if(isset($site)) { echo "$('#site').html('<option selected=".'"'."selected".'"'.">".$site."<option>');"; }
+	if(isset($link)) { echo "$('#link').html('".$link."');"; }
+}
+?>
+}, 200);
+</script>
