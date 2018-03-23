@@ -7,7 +7,7 @@ $relativepath="";
 
 if(!$abort)
 {
-	require_once("../../etc/con_sdb.php");
+	require_once("../etc/con_sdb.php");
 	ob_start();
 	require("../search/proc/search_filters.php");
 	ob_get_clean();
@@ -37,6 +37,7 @@ if(!$abort)
 			/* DEBUGGING CODE */
 			//echo "<pre>" . var_dump($query_search) . "</pre>";
 			$result=mysqli_query($cons, $query_search);
+			var_dump($cons);
 			echo mysqli_errno($cons) . ": " . mysqli_error($cons) . "\n";
 			if($result)
 			{ 
