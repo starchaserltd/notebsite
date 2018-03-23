@@ -33,18 +33,17 @@ if(!$abort)
 			$conds_model = $conds;
 			
 			if($conds_model)
-			{ $query_search = "SELECT id FROM notebro_temp.all_conf_".$model." WHERE " . implode(" AND ", $conds_model) . " AND price>0 ORDER BY value DESC LIMIT 1"; }
+			{ $query_search = "SELECT id,model FROM notebro_temp.all_conf_".$model." WHERE " . implode(" AND ", $conds_model) . " AND price>0 ORDER BY value DESC LIMIT 1"; }
 
 			/* DEBUGGING CODE */
 			//echo "<pre>" . var_dump($query_search) . "</pre>";
-			var_dump($cons);
 			$result=mysqli_query($cons, $query_search);
 			if($result)
 			{ 
 				$result = mysqli_fetch_assoc($result); 
 				if ((!is_null($result)) && ($result["id"]!=NULL))
 				{ 
-					$idmodel[] = mysqli_fetch_row(mysqli_query($cons,"SELECT model FROM notebro_temp.all_conf WHERE id = ".$result['id'].""))[0];
+					$idmodel[] = $result["model"];
 					if($single_result){	break; }
 				}
 			}
