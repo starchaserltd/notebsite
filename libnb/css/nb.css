@@ -1879,6 +1879,16 @@ nav:after {
     padding:2px 0;
 }
 
+.starchaserLink {
+	text-decoration: none;
+	color: #fff;	
+}
+
+.starchaserLink:hover {
+	text-decoration: none;
+	color: #fff;
+}
+
 /*Responsive media design */
 
 @media (min-width: 1600px) {
