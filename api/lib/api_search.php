@@ -5,10 +5,9 @@ $orderby_index = "USE INDEX FOR ORDER BY (rating)";
 $sort_func = "sort_func_by_rating";
 $relativepath="";
 
-require_once("../etc/con_sdb.php");
-
 if(!$abort)
 {
+	require_once("../../etc/con_sdb.php");
 	ob_start();
 	require("../search/proc/search_filters.php");
 	ob_get_clean();
