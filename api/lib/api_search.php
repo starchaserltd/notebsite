@@ -38,6 +38,7 @@ if(!$abort)
 			/* DEBUGGING CODE */
 			//echo "<pre>" . var_dump($query_search) . "</pre>";
 			$result=mysqli_query($cons, $query_search);
+			mysqli_errno($cons) . ": " . mysqli_error($cons) . "\n";
 			if($result)
 			{ 
 				$result = mysqli_fetch_assoc($result); 
