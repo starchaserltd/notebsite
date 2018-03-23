@@ -37,7 +37,7 @@ if($api_key!==""&&$api_key!==NULL)
 						if(isset($idmodel[0]))
 						{
 							require_once("lib/model_param.php");
-							$resulti = mysqli_query($GLOBALS['con'], "SELECT * FROM notebro_temp.all_conf_".$idmodel[0]." WHERE id = ".$result['id']." LIMIT 1");
+							$resulti = mysqli_query($GLOBALS['cons'], "SELECT * FROM notebro_temp.all_conf_".$idmodel[0]." WHERE id = ".$result['id']." LIMIT 1");
 							$i=0;
 							while( $row=mysqli_fetch_assoc($resulti))
 							{
@@ -86,7 +86,7 @@ if($api_key!==""&&$api_key!==NULL)
 						require_once("lib/model_param.php");
 						if(isset($idmodel[0]))
 						{
-							$resulti = mysqli_query($GLOBALS['con'], "SELECT * FROM notebro_temp.all_conf_".$idmodel[0]." WHERE id = ".$result['id']." LIMIT 1");
+							$resulti = mysqli_query($GLOBALS['cons'], "SELECT * FROM notebro_temp.all_conf_".$idmodel[0]." WHERE id = ".$result['id']." LIMIT 1");
 							$i=0;
 							while( $row=mysqli_fetch_assoc($resulti))
 							{
