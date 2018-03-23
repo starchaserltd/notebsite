@@ -44,7 +44,7 @@ if(!$abort)
 				$result = mysqli_fetch_assoc($result); 
 				if ((!is_null($result)) && ($result["id"]!=NULL))
 				{ 
-					$idmodel[] = mysqli_fetch_row(mysqli_query($con,"SELECT model FROM notebro_temp.all_conf WHERE id = ".$result['id'].""))[0];
+					$idmodel[] = mysqli_fetch_row(mysqli_query($cons,"SELECT model FROM notebro_temp.all_conf WHERE id = ".$result['id'].""))[0];
 					if($single_result){	break; }
 				}
 			}
