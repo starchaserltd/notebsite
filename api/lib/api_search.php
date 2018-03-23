@@ -35,11 +35,10 @@ if(!$abort)
 			{ $query_search = "SELECT id,model FROM notebro_temp.all_conf_".$model." WHERE " . implode(" AND ", $conds_model) . " AND price>0 ORDER BY value DESC LIMIT 1"; }
 
 			/* DEBUGGING CODE */
-			$result=mysqli_query($cons, $query_search);
-			if($result)
+			$results=mysqli_query($cons, $query_search);
+			if($results)
 			{ 
-				var_dump($result); var_dump(mysqli_fetch_assoc($result)); echo "<br><br>";
-				$result = mysqli_fetch_assoc($result); 
+				$result = mysqli_fetch_assoc($results); 
 				if ((!is_null($result)) && ($result["id"]!=NULL))
 				{ 
 					$idmodel[] = $result["model"];
