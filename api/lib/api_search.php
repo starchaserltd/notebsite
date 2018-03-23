@@ -41,6 +41,7 @@ if(!$abort)
 			echo mysqli_errno($cons) . ": " . mysqli_error($cons) . "\n";
 			if($result)
 			{ 
+				var_dump($result); var_dump(mysqli_fetch_assoc($result));
 				$result = mysqli_fetch_assoc($result); 
 				if ((!is_null($result)) && ($result["id"]!=NULL))
 				{ 
