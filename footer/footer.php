@@ -1,8 +1,8 @@
 	<footer class="footer-distributed">
 		<div class="footer-right">
 			<a style="cursor:pointer" href="https://www.facebook.com/Noteb-162949570886382/"><i class="socicon socicon-facebook"></i></a>
-			<a style="cursor:pointer" href="https://twitter.com/notebrother"><i class="socicon socicon-twitter"></i></a>
-			<a style="cursor:pointer" href=""><i class="socicon socicon-google-plus"></i></a>
+			<a style="cursor:pointer" href="https://twitter.com/notebcom"><i class="socicon socicon-twitter"></i></a>
+			
 			
 		</div>
 		<div class="footer-left">
@@ -13,7 +13,7 @@
 				·								
 				<span style="cursor:pointer" onmousedown="OpenPage('footer/contact.php',event);">Contact</span>
 			</h3>
-			<p>© 2017-2018 Starchaser S.R.L. </p>
+			<p><a href="http://www.starchaser.ro/">© 2017-2018 Starchaser S.R.L. </a></p>
 			</div>
 	</footer>
 <link rel="stylesheet" href="../lib/css/footer-distributed.css" type="text/css" />
