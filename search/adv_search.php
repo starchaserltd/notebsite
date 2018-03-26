@@ -275,7 +275,7 @@
 				<div style="font-size:16px; font-weight:bold;padding-bottom:5px;">Storage</div>
 				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" >
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-						<div style="margin-top:10px"><span style="font-size:13.5px;">Capacity:</span>  <span id="capacityval"><?php echo $totalcapmin; ?> - <?php echo $totalcapmax; ?> GB</span></div>	  
+						<div style="margin-top:10px"><span style="font-size:13.5px;">Total Capacity:</span>  <span id="capacityval"><?php echo $totalcapmin; ?> - <?php echo $totalcapmax; ?> GB</span></div>	  
 						<div style="margin-top:5px;" id="capacity"></div>
 						<input type="hidden" name="capacitymin" id="capacitymin" value="<?php echo $totalcapmin; ?>">	
 						<input type="hidden" name="capacitymax" id="capacitymax" value="<?php echo $totalcapmax; ?>">				
