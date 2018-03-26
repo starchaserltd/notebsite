@@ -35,9 +35,9 @@ if($q>=0)
 		}
 		
 		if(stripos($rows[0]["backt"],"OLED")!==FALSE)
-		{ $rows[0]['bat']=((floatval($rows[0]["size"])*0.10)+(pow((intval($rows[0]["hres"])*intval($rows[0]["vres"])),0.5)*0.0026-3.6))*0.6; }
+		{ $rows[0]['bat']=((floatval($rows[0]["size"])*0.10)+(pow((intval($rows[0]["hres"])*intval($rows[0]["vres"])),0.5)*0.00255-3.4))*0.6; }
 		else
-		{ $rows[0]['bat']=((floatval($rows[0]["size"])*0.10)+(pow((intval($rows[0]["hres"])*intval($rows[0]["vres"])),0.5)*0.0026-3.6))*0.7; }
+		{ $rows[0]['bat']=((floatval($rows[0]["size"])*0.10)+(pow((intval($rows[0]["hres"])*intval($rows[0]["vres"])),0.5)*0.00255-3.4))*0.7; }
 		
 		if($rows[0]['touch']=="Yes"){ $rows[0]['bat']+=(floatval($rows[0]["size"])*floatval($rows[0]["size"]))/400; }
 				
