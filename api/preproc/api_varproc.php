@@ -1,4 +1,5 @@
 <?php
+require_once("../etc/conf.php");
 require_once("../search/proc/init.php");
 $totalcapmin=0; $totalcapmax=999999999; $nr_hdd=0;
 
@@ -23,32 +24,33 @@ $to_search = array(
 );
 
 $abort=0;
-foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "wnet", "sist", "odd", "mem", "mdb", "chassis") as $v) 
+foreach ($search_array as $v) 
 {
 	switch($v)
 	{
-		case 'model' :
+		case 'model':
 		{		
 			if((isset($param['model_id'])&&!empty($param['model_id']))||(isset($param['model_name'])&&!empty($param['model_name'])))
-			{				
+			{	
 				$id_set=NULL;
 				if (isset($param['model_id'])&&!empty($param['model_id'])) 
 				{ 
-					$result = mysqli_query($GLOBALS['con'], "SELECT id FROM `notebro_db`.`MODEL` WHERE id=".$param['model_id']." LIMIT 1");
+					$param['model_id']=mysqli_real_escape_string($con,$param['model_id']);
+					$result = mysqli_query($GLOBALS['con'], "SELECT id FROM `notebro_db`.`MODEL` WHERE id IN (".$param['model_id'].") LIMIT ".$nr_max_models);
 					if($result && mysqli_num_rows($result)>0)
 					{ $id_set=$param['model_id']; }
 					else
 					{ $response->message.=" Unable to identify model by ID, falling back to name search."; }
 				}
-
-				if(!$id_set){ $_POST["keys"]=str_replace(" ","%",$param['model_name']); } else { $_POST["keys"]=""; }
-				$relativepath="../";      $close_con=0;      $m_search_included=1;
-				require_once('../search/lib/func/m_search.php'); $nr_models=0;
+				if(!$id_set){ $param['model_name']=mysqli_real_escape_string($con,$param['model_name']); $_POST["keys"]=str_replace(" ","%",$param['model_name']); } else { $_POST["keys"]=""; }
+				$relativepath="../"; $close_con=0; $m_search_included=1;
+				require_once('../search/lib/func/m_search.php');
 				foreach($m_search_included as $el){ $comp_lists_api["model"][]["id"]=$el["id"]; $nr_models++; }
-				if($nr_models>7) { $response->code=30; $response->message.=" Fatal error: Too many models selected, please provide a more specific name."; $abort=1; }
+				if($nr_models>$nr_max_models) { $response->code=30; $response->message.=" Fatal error: Too many models selected, please provide a more specific name."; $abort=1; }
 				elseif($nr_models<1) { $response->code=30; $response->message.=" Fatal error: Unable to identify the model by name.";  $abort=1; }
-				
 			}
+			else
+			{ $response->code=30; $response->message.=" Fatal error: No model id or model name provided.";  $abort=1; }
 			break;
 		}
 		
@@ -56,7 +58,8 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 		{
 			if (isset($param['cpu_name']) && !empty($param['cpu_name']) && !$abort)
 			{
-				$param['cpu_name'] = strtoupper($param['cpu_name']);
+				
+				$param['cpu_name'] = mysqli_real_escape_string($con,strtoupper($param['cpu_name']));
 				$result = mysqli_query($GLOBALS['con'], "SELECT name FROM notebro_site.nomen WHERE type = 11 ORDER BY type ASC");
 				while( $row=mysqli_fetch_array($result)){ $cpu_prod[]=$row[0]; } 
 				foreach($cpu_prod as $el){ $param['cpu_name'] = trim(str_replace($el,"",$param['cpu_name'])," "); } $cpu_prod=array(); $param['cpu_name']=str_replace(" ","%",$param['cpu_name']);
@@ -72,7 +75,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 		{
 			if (isset($param['display_res'])&& !empty($param['display_res']) && !$abort)
 			{	
-				$display_res = $param['display_res'];
+				$display_res = mysqli_real_escape_string($con,$param['display_res']);
 				$result_explode = explode('x', $display_res);
 				$display_hresmin = intval(trim($result_explode[0]," "));
 				$display_vresmin = intval(trim($result_explode[1]," "));
@@ -83,6 +86,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			}
 			if (isset($param['display_type'])&& !empty($param['display_type']) && !$abort)
 			{
+				$param['display_type']=mysqli_real_escape_string($con,$param['display_type']);
 				$result = mysqli_query($GLOBALS['con'], "SELECT name FROM `notebro_site`.`nomen` WHERE name LIKE '%".$param['display_type']."%' AND type=10");
 				if($result && mysqli_num_rows($result)>0)
 				{
@@ -102,6 +106,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			}
 			if (isset($param['display_size_min'])&& !empty($param['display_size_min']) && !$abort)
 			{
+				
 				$val=floatval($param['display_size_min']);
 				if($val>0 && $val<30)
 				{ $display_sizemin=$val; $to_search['display'] = 1; }
@@ -153,10 +158,13 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			}
 			if (isset($param['first_hdd_type'])&& !empty($param['first_hdd_type']) && !$abort)
 			{
-				$result = mysqli_query($GLOBALS['con'], "SELECT name FROM `notebro_site`.`nomen` WHERE type=54");
-				while( $row=mysqli_fetch_array($result)){$hdd_types[] = $row[0];}
-				if(in_array($param['first_hdd_type'],$hdd_types))
-				{ $to_search['hdd'] = 1; }
+				$param['first_hdd_type']=str_replace(" ","%",mysqli_real_escape_string($con,$param['first_hdd_type']));
+				$result = mysqli_query($GLOBALS['con'], "SELECT name FROM `notebro_site`.`nomen` WHERE type=54 AND name LIKE '%".$param['first_hdd_type']."%'");
+				if($result && mysqli_num_rows($result)>0)
+				{
+					while( $row=mysqli_fetch_array($result)){$hdd_type[] = $row[0];}
+					$to_search['hdd'] = 1;
+				}
 				else
 				{ unset($hdd_types); $response->code=31; $response->message.=" Hard drive type unidentified."; }
 			}
@@ -177,10 +185,11 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 		{
 			if (isset($param['gpu_name'])&& !empty($param['gpu_name']) && !$abort)
 			{
+				$param['gpu_name']=str_replace(" ","%",mysqli_real_escape_string($con,$param['gpu_name']));
 				$result = mysqli_query($GLOBALS['con'], "SELECT name FROM notebro_site.nomen WHERE type = 12 ORDER BY type ASC");
 				while( $row=mysqli_fetch_array($result)){$gpu_prod[] = $row[0]; }
 				foreach($gpu_prod as $el) {	$param['gpu_name'] = trim(str_replace($el,"",$param['gpu_name'])," "); } $gpu_prod=array();
-				$sql = "SELECT model FROM notebro_db.GPU where model like '%".$param['gpu_name']."%' "; $param['gpu_name']=str_replace(" ","%",$param['gpu_name']);
+				$sql = "SELECT model FROM notebro_db.GPU where model like '%".$param['gpu_name']."%' ";
 				if (stripos($param['gpu_name'],"SLI")!==FALSE) { $sql.=' AND model LIKE "%SLI%" ORDER BY rating DESC limit 1'; }
 				else { $sql.=' AND model NOT LIKE "%SLI%" ORDER BY rating DESC LIMIT 1'; } 
 				$gpu_name = mysqli_fetch_row(mysqli_query($GLOBALS['con'],$sql));
@@ -196,9 +205,10 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 		{
 			if (isset($param['wireless_name'])&& !empty($param['wireless_name']) && !$abort)
 			{
+				$param['wireless_name']=str_replace(" ","%",mysqli_real_escape_string($con,$param['wireless_name']));
 				$result = mysqli_query($GLOBALS['con'], "SELECT DISTINCT prod FROM notebro_db.WNET WHERE 1=1");
 				while($row=mysqli_fetch_array($result)){$wnet_prod[] = $row[0]; }
-				foreach( $wnet_prod as $el){ $param['wireless_name'] = trim(str_replace($el,"",$param['wireless_name'])," "); } unset($wnet_prod); $param['wireless_name']=str_replace(" ","%",$param['wireless_name']);
+				foreach( $wnet_prod as $el){ $param['wireless_name'] = trim(str_replace($el,"",$param['wireless_name'])," "); } unset($wnet_prod);
 				if($result=mysqli_fetch_row(mysqli_query($GLOBALS['con'],"SELECT model FROM notebro_db.WNET where model like '%".$param['wireless_name']."%' limit 1")))
 				{ $wnet_model = $result[0]; $to_search['wnet'] = 1; }
 				else
@@ -212,7 +222,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 		{
 			if (isset($param['odd_type'])&& !empty($param['odd_type']) && !$abort)
 			{
-				$param['odd_type']=strtoupper(str_replace(" ","%",$param['odd_type']));
+				$param['odd_type']=strtoupper(str_replace(" ","%",mysqli_real_escape_string($con,$param['odd_type'])));
 				$result = mysqli_query($GLOBALS['con'], "SELECT name FROM `notebro_site`.`nomen` WHERE name LIKE '%".$param['odd_type']."%' AND type=52");
 				if($result && mysqli_num_rows($result)>0)
 				{
@@ -259,6 +269,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 					{ break; }
 				}
 			}
+			break;
 		}			
 		case 'chassis' :
 		{
@@ -301,7 +312,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 		{
 			if (isset($param['opsist'])&& !empty($param['opsist']) && !$abort)
 			{
-				$param['opsist']=str_replace(" ","%",$param['opsist']);
+				$param['opsist']=mysqli_real_escape_string($con,str_replace(" ","%",$param['opsist']));
 				$result = mysqli_query($GLOBALS['con'], "SELECT name FROM `notebro_site`.`nomen` WHERE name LIKE '%".$param['opsist']."%' AND type=25 LIMIT 1");
 				if($result && mysqli_num_rows($result)>0)
 				{
@@ -334,7 +345,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 					}
 				}
 			}	
-			break ;	
+			break;	
 		}	
 	}
 }

@@ -41,18 +41,17 @@ function comp_details($comp,$id)
 			$res['integrated_video'] = ucfirst(strtolower($cpugpu[0]))." ".$cpugpu[1];
 			return $res; break;
 		}
-		case "gpu":
-		{		
-			$sel="SELECT id,prod,model,arch as architecture,tech as lithography,pipe as shaders,cspeed as base_speed,bspeed as boost_speed,sspeed as shader_speed,mspeed as memory_speed,mbw as memory_bandwidth,maxmem as memory_size,mtype as memory_type,ROUND(power,0) as tdp,msc as other_info,ROUND(rating,1) as rating,typegpu FROM notebro_db.GPU WHERE id=".$id.""; 
-			$res=array(); $res=mysqli_fetch_assoc(mysqli_query($GLOBALS['con'], $sel));
-			$res["prod"]=ucfirst(strtolower($res["prod"]));
-			return $res; break;
-		}
 		case "display":
 		{
 			$sel="SELECT id,size,hres as horizontal_resolution,vres as vertical_resolution,backt as type,sRGB,touch,msc as other_info FROM notebro_db.DISPLAY WHERE id=".$id."";
 			$res=array(); $res=mysqli_fetch_assoc(mysqli_query($GLOBALS['con'], $sel));
 			if ($res['touch']==0) {$row_display['touch'] = "yes";}else {$res['touch'] = "no";}
+			return $res; break;
+		}
+		case "mem":
+		{
+			$sel="SELECT id,cap as size,freq as speed,type FROM notebro_db.MEM WHERE id=".$id.""; 
+			$res=array(); $res=mysqli_fetch_assoc(mysqli_query($GLOBALS['con'], $sel));
 			return $res; break;
 		}
 		case "hdd":
@@ -62,18 +61,16 @@ function comp_details($comp,$id)
 			if(intval($res["rpm"])==0) { $res["rpm"]=NULL; } if(intval($res["read_speed"])==0) { $res["read_speed"]=NULL; }
 			return $res; break;
 		}
-		case "mdb":
-		{
-			$sel="SELECT id,ram as ram_slots,netw as lan_card,hdd as storage_slots,msc as other_info FROM notebro_db.MDB WHERE id=".$id.""; 
+		case "gpu":
+		{		
+			$sel="SELECT id,prod,model,arch as architecture,tech as lithography,pipe as shaders,cspeed as base_speed,bspeed as boost_speed,sspeed as shader_speed,mspeed as memory_speed,mbw as memory_bandwidth,maxmem as memory_size,mtype as memory_type,ROUND(power,0) as tdp,msc as other_info,ROUND(rating,1) as rating,typegpu FROM notebro_db.GPU WHERE id=".$id.""; 
 			$res=array(); $res=mysqli_fetch_assoc(mysqli_query($GLOBALS['con'], $sel));
-			if(intval($res["ram_slots"])==0) { $res["ram_slots"]="soldered"; }
-			if($res["lan_card"]=="NONE"){ $res["lan_card"]=strtolower($res["lan_card"]); }
-			if(intval($res["storage_slots"])==0) { $res["storage_slots"]="soldered"; }
+			$res["prod"]=ucfirst(strtolower($res["prod"]));
 			return $res; break;
 		}
-		case "mem":
-		{
-			$sel="SELECT id,cap as size,freq as speed,type FROM notebro_db.MEM WHERE id=".$id.""; 
+		case "wnet":
+		{		
+			$sel="SELECT id,model,speed,msc as other_info FROM notebro_db.WNET WHERE id=".$id.""; 
 			$res=array(); $res=mysqli_fetch_assoc(mysqli_query($GLOBALS['con'], $sel));
 			return $res; break;
 		}
@@ -84,24 +81,27 @@ function comp_details($comp,$id)
 			if($res["type"]=="NONE"){ $res["type"]=strtolower($res["type"]); }
 			return $res; break;
 		}	
-		case "acum":
+		case "mdb":
 		{
-			$sel="SELECT id,cap as capacity,tipc as cell_type,msc as other_info FROM notebro_db.ACUM WHERE id=".$id."";
+			$sel="SELECT id,ram as ram_slots,netw as lan_card,hdd as storage_slots,msc as other_info FROM notebro_db.MDB WHERE id=".$id.""; 
 			$res=array(); $res=mysqli_fetch_assoc(mysqli_query($GLOBALS['con'], $sel));
+			if(intval($res["ram_slots"])==0) { $res["ram_slots"]="soldered"; }
+			if($res["lan_card"]=="NONE"){ $res["lan_card"]=strtolower($res["lan_card"]); }
+			if(intval($res["storage_slots"])==0) { $res["storage_slots"]="soldered"; }
 			return $res; break;
-		}				
+		}			
 		case "chassis":
 		{
 			$sel="SELECT id,ROUND(thic/10,2) as height_cm, ROUND(thic*0.0393701,2) as height_inch,ROUND(depth/10,2) as depth_cm, ROUND(depth*0.0393701,2) as depth_inch, ROUND(width/10,2) as width_cm, ROUND(width*0.0393701,2) as width_inch, color as colors,made as build_materials,pi as peripheral_interfaces, vi as video_interfaces, web as webcam_mp,keyboard as keyboard_type,charger,msc as other_info FROM notebro_db.CHASSIS WHERE id=".$id.""; 
 			$res=array(); $res=mysqli_fetch_assoc(mysqli_query($GLOBALS['con'], $sel));
 			return $res; break;
 		}
-		case "wnet":
-		{		
-			$sel="SELECT id,model,speed,msc as other_info FROM notebro_db.WNET WHERE id=".$id.""; 
+		case "acum":
+		{
+			$sel="SELECT id,cap as capacity,tipc as cell_type,msc as other_info FROM notebro_db.ACUM WHERE id=".$id."";
 			$res=array(); $res=mysqli_fetch_assoc(mysqli_query($GLOBALS['con'], $sel));
 			return $res; break;
-		}
+		}	
 		case "war":
 		{	
 			$sel="SELECT id,years,prod as type_short,msc as type_long FROM notebro_db.WAR WHERE id=".$id.""; 
