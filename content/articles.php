@@ -158,3 +158,4 @@ $published_posts = $category->category_count;
 	});
 </script>
 <link rel="stylesheet" href="content/lib/css/article.css?v=0.2" type="text/css" />
+<?php include_once("../etc/scripts_pages.php"); ?>

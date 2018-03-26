@@ -5,6 +5,7 @@ if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_n
 	header("Location: ".$port_type."://".str_replace($site_name."/",$site_name."/?",$actual_link)."");
 	die();
 }
+function clean_string($string){ return preg_replace('~[\x00\x0A\x0D\x1A\x22\x27\x5C]~u', '\\\$0', filter_var($string,FILTER_SANITIZE_STRING)); }
 require_once("../etc/session.php");
 require_once("../libnb/php/urlproc.php");
 require_once("proc/init.php");
@@ -20,10 +21,10 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 	/********************************************************************/
 	/* GENERIC SEARCH VARIABLES */	
 	/********************************************************************/
-	if(isset($_GET['advsearch'])) { $isadvanced=$_GET['advsearch']; }
+	if(isset($_GET['advsearch'])) { $isadvanced=intval($_GET['advsearch']); }
 	if(isset($_GET['s_memmin'])) { $issimple=$_GET['s_memmin']; }
 	
-	if(isset($_GET['sort_by'])){ $sort_by=$_GET['sort_by']; }
+	if(isset($_GET['sort_by'])){ $sort_by=clean_string($_GET['sort_by']); }
 	else { $sort_by="value"; }
 	$name_button=""; $performance_button=""; $value_button=""; $price_button="";
 	//SET PARAMETERS FOR ORDERING
@@ -72,8 +73,8 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 
 	if((isset($_GET['exchange']) && is_string($_GET['exchange']))||(isset($_GET['exchadv']) && is_string($_GET['exchadv'])))
 	{
-		if(isset($_GET['exchange'])){ $excode=strtoupper($_GET['exchange']); }
-		if(isset($_GET['exchadv'])){ $excode=strtoupper($_GET['exchadv']); }
+		if(isset($_GET['exchange'])){ $excode=strtoupper(clean_string($_GET['exchange'])); }
+		if(isset($_GET['exchadv'])){ $excode=strtoupper(clean_string($_GET['exchadv'])); }
 		$sel2 = "SELECT convr,code,sign, ROUND( convr, 5 ),id FROM notebro_site.exchrate WHERE code='".$excode."' LIMIT 1";
 	}
 	else
@@ -142,3 +143,4 @@ else
 	echo "Heh! What are you trying to do?";
 }
 ?>
+<?php include_once("../etc/scripts_pages.php"); ?>

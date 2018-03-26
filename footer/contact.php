@@ -21,3 +21,4 @@ if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_n
 	  actbtn("HOME");
 	 });
 	 </script>
+	 <?php include_once("../etc/scripts_pages.php"); ?>

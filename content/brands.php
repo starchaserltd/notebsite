@@ -22,3 +22,4 @@ $(document).ready(function(){
 	actbtn("SEARCH");
 });
 </script>
+<?php include_once("../etc/scripts_pages.php"); ?>

@@ -168,3 +168,4 @@ $published_posts = $category->category_count;
 	if ( ($(window).height() + 100) < $(document).height() ) { $('#top-link-block').removeClass('hidden').affix({ offset: {top:100} }); }
 </script>
 <link rel="stylesheet" href="content/lib/css/article.css" type="text/css"/>
+<?php include_once("../etc/scripts_pages.php"); ?>

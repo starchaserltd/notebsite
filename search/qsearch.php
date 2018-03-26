@@ -17,8 +17,11 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 	require_once("../etc/con_db.php");
 	require_once("../etc/con_sdb.php");
 	include ("preproc/q_search_varproc.php");
+	
+	ob_start();
 	require("proc/search_filters.php");
-
+	ob_get_clean();
+	
 	$conds = array();
 	foreach (array("cpu", "display", "gpu", "acum", "war", "hdd", "wnet", "sist", "odd", "mem", "mdb", "chassis") as $v) 
 	{

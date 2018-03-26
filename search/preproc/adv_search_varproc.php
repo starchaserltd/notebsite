@@ -27,7 +27,7 @@ $to_search = array(
 // BUDGET min si max
 if(isset($_GET['bdgminadv'])){ $budgetmin = (floatval($_GET['bdgminadv'])/$exch)-1; }
 if(isset($_GET['bdgmaxadv'])){ $budgetmax = (floatval($_GET['bdgmaxadv'])/$exch)+1; }
-if(isset($_GET['Producer_prod'])) { $prod_model = $_GET['Producer_prod']; }
+if(isset($_GET['Producer_prod'])) { array_walk($_GET['Producer_prod'],'clean_string'); $prod_model = $_GET['Producer_prod']; }
 if(isset($_GET['Family_fam'] ))
 {
 	foreach ($_GET['Family_fam'] as $element)
@@ -62,12 +62,12 @@ if(isset($_GET['Family_fam'] ))
 }
 
 /* *** CPU *** */
-if(isset($_GET['CPU_prod_id'])) { $cpu_prod = $_GET['CPU_prod_id']; }
+if(isset($_GET['CPU_prod_id'])) { array_walk($_GET['CPU_prod_id'],'clean_string');  $cpu_prod = $_GET['CPU_prod_id']; }
 
 //THE CPU MODEL IS SPECIAL SO IT NEEDS SOME TRIMMING AND REBUILDING	
 if(isset($_GET['CPU_model_id']))
 {	
-	$cpu_model = $_GET['CPU_model_id']; 
+	array_walk($_GET['CPU_model_id'],'clean_string'); $cpu_model=$_GET['CPU_model_id'];
 	$i=0;
 	
 	foreach ($cpu_model as $x)
@@ -93,11 +93,11 @@ if(isset($_GET['CPU_model_id']))
 
 //CPU Socket
 if(isset($_GET['CPU_socket_id']))
-{ $cpu_socket = $_GET['CPU_socket_id']; }
+{ array_walk($_GET['CPU_socket_id'],'clean_string'); $cpu_socket = $_GET['CPU_socket_id']; }
 
 // CPU miscellaneous
 if(isset($_GET['CPU_msc_id']))
-{ $cpu_misc = $_GET['CPU_msc_id']; }
+{ array_walk($_GET['CPU_msc_id'],'clean_string'); $cpu_misc = $_GET['CPU_msc_id']; }
 
 // CPU Launch date
 if($_GET['launchdatemin'])
@@ -110,34 +110,34 @@ $cpu_ldmax=$cpu_ldmax."-12-31";
 
 // CPU nr cores
 if($_GET['nrcoresmin'])
-{ $cpu_coremin = $_GET['nrcoresmin']; }
+{ $cpu_coremin = intval($_GET['nrcoresmin']); }
 if($_GET['nrcoresmax'])
-{ $cpu_coremax = $_GET['nrcoresmax']; }
+{ $cpu_coremax = intval($_GET['nrcoresmax']); }
 
 // CPU TDP
 if($_GET['cputdpmin'])
-{ $cpu_tdpmin = $_GET['cputdpmin']; }
+{ $cpu_tdpmin = floatval($_GET['cputdpmin']); }
 if($_GET['cputdpmax'])
-{ $cpu_tdpmax = $_GET['cputdpmax'];	}		
+{ $cpu_tdpmax = floatval($_GET['cputdpmax']);	}		
 
 // CPU Frequency
 if($_GET['cpufreqmin'])
-{ $cpu_turbomin = $_GET['cpufreqmin']; }
+{ $cpu_turbomin = floatval($_GET['cpufreqmin']); }
 if($_GET['cpufreqmax'])
-{ $cpu_turbomax = $_GET['cpufreqmax']; }
+{ $cpu_turbomax = floatval($_GET['cpufreqmax']); }
 
 // CPU Lithography
 if($_GET['cputechmin'])
-{ $cpu_techmin = $_GET['cputechmax']; }
+{ $cpu_techmin = floatval($_GET['cputechmax']); }
 if($_GET['cputechmax'])
-{ $cpu_techmax = $_GET['cputechmin']; }
+{ $cpu_techmax = floatval($_GET['cputechmin']); }
 			
 
 /* *** GPU *** */
  $gpu_typelist=array();
 if(isset($_GET['gputype']))
 {
-	$typegpu=$_GET['gputype'];
+	$typegpu=intval($_GET['gputype']);
 	if($typegpu==0)
 	{ $gpu_typelist[]=0;}
 
@@ -171,58 +171,58 @@ if($typegpu==1)
 $gpu_typelist=array_unique($gpu_typelist);
 
 if (isset($_GET['GPU_prod_id']))
-{ $gpu_prod = $_GET['GPU_prod_id']; }
+{ array_walk($_GET['GPU_prod_id'],'clean_string'); $gpu_prod = $_GET['GPU_prod_id']; }
 
 if ($_GET['gpupowermin'])
-{ $gpu_powermin = $_GET['gpupowermin']; }
+{ $gpu_powermin = floatval($_GET['gpupowermin']); }
 if ($_GET['gpupowermax'])
-{ $gpu_powermax = $_GET['gpupowermax']; }
+{ $gpu_powermax = floatval($_GET['gpupowermax']); }
 
 if (isset($_GET['GPU_model_id']))
-{ $gpu_model = $_GET['GPU_model_id']; 
+{ array_walk($_GET['GPU_model_id'],'clean_string'); $gpu_model = $_GET['GPU_model_id']; 
 	foreach ($gpu_model as $key=>$x)
 	{ $gpu_model[$key]=preg_replace("/[ ]\([0-9\.]+\/10\)/", "", $x); }
 }
 
 if (isset($_GET['GPU_arch_id']))
-{ $gpu_arch = $_GET['GPU_arch_id']; }
+{  array_walk($_GET['GPU_arch_id'],'clean_string'); $gpu_arch = $_GET['GPU_arch_id']; }
 
 if (isset($_GET['GPU_msc_id']))
-{ $gpu_misc = $_GET['GPU_msc_id']; }
+{ array_walk($_GET['GPU_msc_id'],'clean_string'); $gpu_misc = $_GET['GPU_msc_id']; }
  
 // GPU Maxmem
 if($_GET['gpumemmin'])
-{ $gpu_maxmemmin = $_GET['gpumemmin']; }
+{ $gpu_maxmemmin = intval($_GET['gpumemmin']); }
 
 if($_GET['gpumemmax'])
-{ $gpu_maxmemmax = $_GET['gpumemmax']; }
+{ $gpu_maxmemmax = intval($_GET['gpumemmax']); }
 			
 //  GPU Memory band
 if($_GET['gpubusmin'])
-{ $gpu_mbwmin = $_GET['gpubusmin']; }
+{ $gpu_mbwmin = intval($_GET['gpubusmin']); }
 
 if($_GET['gpubusmax'])
-{ $gpu_mbwmax = $_GET['gpubusmax']; }
+{ $gpu_mbwmax = intval($_GET['gpubusmax']); }
 
 // GPU Launch date
 if($_GET['gpulaunchdatemin'])
-{ $gpu_ldmin = $_GET['gpulaunchdatemin']; }
+{ $gpu_ldmin =intval($_GET['gpulaunchdatemin']); }
 $gpu_ldmin=$gpu_ldmin."-01-01";
 
 if($_GET['gpulaunchdatemax'])
-{ $gpu_ldmax = $_GET['gpulaunchdatemax']; }
+{ $gpu_ldmax = intval($_GET['gpulaunchdatemax']); }
 $gpu_ldmax=$gpu_ldmax."-12-31";
 
 
 /* *** DISPLAY *** */
 if($_GET['displaymin'])
-{ $display_sizemin = $_GET['displaymin']; }
+{ $display_sizemin = floatval($_GET['displaymin']); }
 if($_GET['displaymax'])
-{ $display_sizemax = $_GET['displaymax']; }
+{ $display_sizemax = floatval($_GET['displaymax']); }
 
 if(isset($_GET['DISPLAY_resol_id']))
 {
-	$display_resolutions = $_GET['DISPLAY_resol_id']; 
+	array_walk($_GET['DISPLAY_resol_id'],'clean_string'); $display_resolutions = $_GET['DISPLAY_resol_id']; 
 	$result_explode = explode('x', $display_resolutions[0]);
 	$display_hresmax = $result_explode[0];
 	$display_vresmax = $result_explode[1];
@@ -230,7 +230,7 @@ if(isset($_GET['DISPLAY_resol_id']))
 
 if(isset($_GET['DISPLAY_msc_id']))
 {
-	$display_backt = $_GET['DISPLAY_msc_id'];
+	array_walk($_GET['DISPLAY_msc_id'],'clean_string'); $display_backt = $_GET['DISPLAY_msc_id'];
 	foreach($display_backt as $key=>$el)
 	{
 		switch($el)
@@ -287,31 +287,31 @@ if(!isset($display_touch))
 
 //DISPLAY ratio
 if(isset($_GET['DISPLAY_ratio']))
-{ $display_format = $_GET['DISPLAY_ratio']; }
+{ array_walk($_GET['DISPLAY_ratio'],'clean_string'); $display_format=$_GET['DISPLAY_ratio']; }
 
 //DISPLAY surface type
 if(isset($_GET['surface']))
-{ $display_surft = $_GET['surface']; }
+{ array_walk($_GET['surface'],'clean_string'); $display_surft=$_GET['surface']; }
 
 if($_GET['verresmin'])
-{ $display_vresmin = $_GET['verresmin']; }
+{ $display_vresmin = intval($_GET['verresmin']); }
 if($_GET['verresmax'])
-{ $display_vresmax = $_GET['verresmax']; }
+{ $display_vresmax = intval($_GET['verresmax']); }
 
 /* *** STORAGE *** */
 // STOR capacity
 if($_GET['capacitymin'])
-{ $hdd_capmin = $_GET['capacitymin']; }
+{ $hdd_capmin = intval($_GET['capacitymin']); }
 if($_GET['capacitymax'])
-{ $hdd_capmax = $_GET['capacitymax']; }
+{ $hdd_capmax = intval($_GET['capacitymax']); }
 
 //STOR type 
 if(isset($_GET['typehdd']))
-{ $hdd_type = $_GET['typehdd']; }
+{ array_walk($_GET['typehdd'],'clean_string'); $hdd_type = $_GET['typehdd']; }
 
 // STOR rpm
 if(isset($_GET['rpm']))
-{ $hdd_rpmmax = $_GET['rpm']; }
+{ $hdd_rpmmax = intval($_GET['rpm']); }
 
 //STOR nr of hdd		
 if($_GET['nrhdd'])
@@ -326,10 +326,10 @@ else
 } */
 
 if ($_GET['mdbslots'])
-{ $mdb_ramcap = $_GET['mdbslots']; }
+{ $mdb_ramcap = intval($_GET['mdbslots']); }
 	
 if(isset($_GET['MDB_port_id']))
-{ $chassis_ports = $_GET['MDB_port_id']; } //var_dump($chassis_ports);
+{ array_walk($_GET['MDB_port_id'],'clean_string'); $chassis_ports = $_GET['MDB_port_id']; } //var_dump($chassis_ports);
 
 $usb2_set=999; 	for($usbv=0;$usbv<3;$usbv++){ ${'usb3'.$usbv.'_set'}=999; ${'usb3c'.$usbv.'_set'}=999; }
 foreach($chassis_ports as $key => $x)
@@ -394,7 +394,7 @@ foreach($chassis_ports as $key => $x)
 }
 
 if(isset($_GET['MDB_vport_id']))
-{ $chassis_vports = $_GET['MDB_vport_id']; }
+{ array_walk($_GET['MDB_vport_id'],'clean_string'); $chassis_vports = $_GET['MDB_vport_id']; }
 
 $hdmi_set=0; $dp_set=0;
 
@@ -449,75 +449,75 @@ foreach($chassis_vports as $key => $x)
 
 /* *** WWAN *** */
 if ($_GET['mdbwwan'])
-{ $mdb_wwan = $_GET['mdbwwan']; }
+{ $mdb_wwan = intval($_GET['mdbwwan']); }
 
 /* *** RAM *** */
 // RAM capacity
 if($_GET['rammin'])
-{ $mem_capmin = $_GET['rammin']; }
+{ $mem_capmin = intval($_GET['rammin']); }
 if($_GET['rammax'])
-{ $mem_capmax = $_GET['rammax']; }
+{ $mem_capmax = intval($_GET['rammax']); }
 		
 // RAM speed
 if($_GET['freqmin'])
-{ $mem_freqmin = $_GET['freqmin']; }
+{ $mem_freqmin = intval($_GET['freqmin']); }
 if($_GET['freqmax'])
-{ $mem_freqmax = $_GET['freqmax']; }
+{ $mem_freqmax = intval($_GET['freqmax']); }
 
 // RAM type
 if(isset($_GET['memtype']))
-{ $mem_type = $_GET['memtype']; }
+{ array_walk($_GET['memtype'],'clean_string'); $mem_type = $_GET['memtype']; }
 
 /* *** Optical Drive *** */
 if($_GET['oddtype']!="Any/None" && $_GET['oddtype']!="Any")
-{ $odd_type = $_GET['oddtype']; }
+{ array_walk($_GET['oddtype'],'clean_string'); $odd_type = $_GET['oddtype']; }
 
 /* *** ACUM *** */
 if($_GET['acumcapmin'])
-{ $acum_capmin = $_GET['acumcapmin']; }
+{ $acum_capmin = floatval($_GET['acumcapmin']); }
 if($_GET['acumcapmax'])
-{ $acum_capmax = $_GET['acumcapmax']; }
+{ $acum_capmax = floatval($_GET['acumcapmax']); }
 
 // Battery life
 if($_GET['batlifemin'])
-{ $batlife_min = $_GET['batlifemin']; }
+{ $batlife_min = floatval($_GET['batlifemin']); }
 if($_GET['batlifemax'])
-{ $batlife_max = $_GET['batlifemax']; }
+{ $batlife_max = floatval($_GET['batlifemax']); }
 
 /* *** CHASSIS *** */
 // made of
 if(isset($_GET['material']))
-{ $chassis_made = $_GET['material']; }
+{ array_walk($_GET['material'],'clean_string'); $chassis_made = $_GET['material']; }
 
 //weight
 if($_GET['weightmin'])
-{ $chassis_weightmin = $_GET['weightmin']; }
+{ $chassis_weightmin = floatval($_GET['weightmin']); }
 if($_GET['weightmax'])
-{ $chassis_weightmax = $_GET['weightmax']; }
+{ $chassis_weightmax = floatval($_GET['weightmax']); }
 
 //thickness
 if($_GET['thicmin'])
-{ $chassis_thicmin = $_GET['thicmin']; }
+{ $chassis_thicmin = floatval($_GET['thicmin']); }
 if($_GET['thicmax'])
-{ $chassis_thicmax = $_GET['thicmax']; }		
+{ $chassis_thicmax = floatval($_GET['thicmax']); }		
 
 //depth
 if($_GET['depthmin'])
-{ $chassis_depthmin = $_GET['depthmin']; }
+{ $chassis_depthmin = floatval($_GET['depthmin']); }
 if($_GET['depthmax'])
-{ $chassis_depthmax = $_GET['depthmax']; }		
+{ $chassis_depthmax = floatval($_GET['depthmax']); }		
 		
 //width
 if($_GET['widthmin'])
-{ $chassis_widthmin = $_GET['widthmin']; }
+{ $chassis_widthmin = floatval($_GET['widthmin']); }
 if($_GET['widthmax'])
-{ $chassis_widthmax = $_GET['widthmax']; }
+{ $chassis_widthmax = floatval($_GET['widthmax']); }
 
 //webcam
 if($_GET['webmin'])
-{ $chassis_webmin = $_GET['webmin']; }
+{ $chassis_webmin = floatval($_GET['webmin']); }
 if($_GET['webmax'])
-{ $chassis_webmax = $_GET['webmax']; }
+{ $chassis_webmax = floatval($_GET['webmax']); }
 //****************************************************************************************************************************
 //normal/2 in 1
 
@@ -532,7 +532,7 @@ if (!isset($_GET['twoinone-no']) && !isset($_GET['twoinone-yes']))
 
 //All sort of extra Chassis stuff
 if(isset($_GET['CHASSIS_stuff_id']))
-{ $chassis_stuff = $_GET['CHASSIS_stuff_id']; }
+{ array_walk($_GET['CHASSIS_stuff_id'],'clean_string'); $chassis_stuff = $_GET['CHASSIS_stuff_id']; }
 $chassis_speakers=array(); $chassis_subwoofer=array();
 foreach($chassis_stuff as $key => $x)
 {
@@ -599,7 +599,7 @@ foreach($addmsc as $key=>$addtomsc)
 /* *** WNET *** */
 //speed
 if($_GET['wnetspeed'])
-{ $wnet_speedmin = $_GET['wnetspeed']; }
+{ $wnet_speedmin = intval($_GET['wnetspeed']); }
 $wnet_speedmax = 9999999;
 
 //bluetooth
@@ -609,7 +609,7 @@ if (isset($_GET['bluetooth']) && $_GET['bluetooth'] == TRUE)
 //Operating System
 if(isset($_GET['opsist']))
 {
-	$sist_list = $_GET['opsist']; 
+	array_walk($_GET['opsist'],'clean_string'); $sist_list=$_GET['opsist']; 
 	foreach($sist_list as $key => $x)
 	{
 		if((stristr($x,"No OS")!=FALSE))
@@ -635,13 +635,13 @@ if(isset($_GET['opsist']))
 }
 /* *** REGIONS *** */
 
-if(isset($_GET['Regions']) && $_GET['Regions']) { $regions_name =$_GET['Regions']; } else {$to_search["regions"]=0;} 
+if(isset($_GET['Regions']) && $_GET['Regions']) { array_walk($_GET['Regions'],'clean_string'); $regions_name = $_GET['Regions']; } else {$to_search["regions"]=0;} 
 
 /* *** WARRANTY *** */
 if(isset($_GET['yearsmin']) && ($_GET['yearsmin'])) 
-{ $war_yearsmin = $_GET['yearsmin']; }
+{ $war_yearsmin = intval($_GET['yearsmin']); }
 if(isset($_GET['yearsmax']) && ($_GET['yearsmax'])) 
-{ $war_yearsmax = $_GET['yearsmax']; }
+{ $war_yearsmax = intval($_GET['yearsmax']); }
 
 $war_typewar[1] = "1"; $war_typewar[2] = "2";
 

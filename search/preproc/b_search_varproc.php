@@ -1,6 +1,7 @@
 <?php
-if(isset($_GET['sort_by'])) { $sort_by = $_GET['sort_by']; }
-if(isset($_GET['browse_by'])) { $browse_by = $_GET['browse_by']; }
+
+if(isset($_GET['sort_by'])) { $sort_by = clean_string($_GET['sort_by']); }
+if(isset($_GET['browse_by'])) { $browse_by = clean_string($_GET['browse_by']); }
 $to_search["model"]=1; $totalcapmin=0; $set_j_ssearch="";
 //LIST OF COMPONENTS WE WILL FILTER
 $to_search = array(
@@ -27,6 +28,8 @@ switch($browse_by)
 	{	
 		if($_GET['prod'])
 		{
+		$_GET['prod'] = clean_string($_GET['prod']);	//************
+		
 			$prod_model = $_GET['prod']; $set_j_ssearch="$('#s_prod_id').val(null).trigger('change'); $('#s_prod_id').append('<option selected=".'"'."selected".'"'.'>'.$prod_model."</option>'); $('#type').multiselect('select', ['99']); $('#type').multiselect('refresh');";
 			$sist_sist=["Windows+Home","Windows+Pro","Windows+S","Chrome OS","macOS","Linux Ubuntu","Android"]; 
 			$to_search["sist"]=1;	$filtercomp = array("sist");

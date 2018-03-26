@@ -128,3 +128,4 @@ echo preg_replace_callback('/\[ntab (.*)\](.*)(?=\[ntab .*\]|\Z)/Us',function ($
 	}
 	?>	
 </script>
+<?php include_once("../etc/scripts_pages.php"); ?>

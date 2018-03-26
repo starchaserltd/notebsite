@@ -79,3 +79,4 @@ $(document).ready(function()
 	$('meta[name=description]').attr('content', "Laptop article.");
 });
 </script>
+<?php include_once("../etc/scripts_pages.php"); ?>

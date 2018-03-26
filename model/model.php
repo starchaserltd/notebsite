@@ -786,3 +786,4 @@ else
 } } ?>
 </div>
 <link rel="stylesheet" href="model/lib/css/model.css?v=19" type="text/css"/>
+<?php include_once("../etc/scripts_pages.php"); ?>

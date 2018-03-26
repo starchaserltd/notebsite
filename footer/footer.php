@@ -17,3 +17,4 @@
 			</div>
 	</footer>
 <link rel="stylesheet" href="../lib/css/footer-distributed.css" type="text/css" />
+<?php include_once("etc/scripts_gen.php"); ?>

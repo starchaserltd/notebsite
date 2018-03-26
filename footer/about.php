@@ -52,4 +52,5 @@ Our estimate is for normal usage with simple tasks, like watching movies, browsi
 	 $(document).ready(function(){
 	  actbtn("HOME");
 	 });
-	 </script> 
+	 </script>
+	 <?php include_once("../etc/scripts_pages.php"); ?>

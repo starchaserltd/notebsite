@@ -179,3 +179,4 @@ $published_posts = $count_posts->publish;
 		  ]
 		}
 	</script>
+	<?php include_once("../etc/scripts_pages.php"); ?>

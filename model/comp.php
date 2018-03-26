@@ -244,3 +244,4 @@ else
 	</div>
 	<script>$.getScript("model/lib/js/comp.js").done(function(){$.getScript("model/lib/js/gencomp.php")});</script>
 	<?php } ?>
+	<?php include_once("../etc/scripts_pages.php"); ?>
