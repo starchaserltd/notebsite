@@ -44,7 +44,10 @@ require_once("etc/conf.php");
 					<div class="hidden-sm hidden-xs col-md-12 col-lg-12" style="padding:0px;">			
 						<div id="usermenu" class="btn-group dropdown">
 							<button disabled class="blue dropbtn helpus"><span class="helpimg">Review</span></button>
-							<div class="dropdown-content"><a class="addrev" onmousedown="OpenPage('public/ireviews.php',event);">Add laptop review</a></div>
+							<div class="dropdown-content">
+								<a class="addrev" onmousedown="OpenPage('public/ireviews.php',event);">Add laptop review</a>
+								<a class="addrev" onmousedown="OpenPage('public/api.php',event);">Api</a>
+							</div>
 						</div>
 					</div>
 				</div>
