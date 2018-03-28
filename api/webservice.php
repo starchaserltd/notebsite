@@ -61,7 +61,7 @@ if($api_key!==""&&$api_key!==NULL)
 								$object_addr->config_price_min=strval(round((floatval($row["price"])-(floatval($row["err"])/2)),0));
 								$object_addr->config_price_max=strval(round((floatval($row["price"])+(floatval($row["err"])/2)),0));
 								$object_addr->battery_life_raw=strval(round(floatval($row["batlife"]),1));
-								$hours=intval($row["batlife"]); $minutes=floatval($row["batlife"]); $minutes=intval(($minutes-floor($minutes))*60);
+								$hours=intval($row["batlife"]); $minutes=floatval($row["batlife"]); $minutes=intval(intval(($minutes-floor($minutes))*60)/5)*5;
 								$object_addr->battery_life_hours=$hours.":".sprintf("%02d", $minutes);
 								$object_addr->total_storage_capacity=$row["capacity"];
 								$i++;
@@ -111,7 +111,7 @@ if($api_key!==""&&$api_key!==NULL)
 								$object_addr->config_price_min=strval(round((floatval($row["price"])-(floatval($row["err"])/2)),0));
 								$object_addr->config_price_max=strval(round((floatval($row["price"])+(floatval($row["err"])/2)),0));
 								$object_addr->battery_life_raw=strval(round(floatval($row["batlife"]),1));
-								$hours=intval($row["batlife"]); $minutes=floatval($row["batlife"]); $minutes=intval(($minutes-floor($minutes))*60);
+								$hours=intval($row["batlife"]); $minutes=floatval($row["batlife"]); $minutes=intval(intval(($minutes-floor($minutes))*60)/5)*5;
 								$object_addr->battery_life_hours=$hours.":".sprintf("%02d", $minutes);
 								$object_addr->total_storage_capacity=$row["capacity"];
 								$i++;
@@ -140,6 +140,87 @@ if($api_key!==""&&$api_key!==NULL)
 						}
 						break;
 					}
+					case "get_conf_info":
+					{
+						$response->code=26; $response->message="Valid method.";$response->daily_hits_left=$hits_left;
+						require_once("../etc/con_sdb.php"); $abort=0; $object_addr=$response->result;
+						if(isset($param['conf_id'])&&$param['conf_id']!=NULL)
+						{
+							$param['conf_id']=mysqli_real_escape_string($con,$param['conf_id']);
+							$result=mysqli_query($cons,"SELECT model FROM `notebro_temp`.`all_conf` WHERE id=".$param['conf_id']." LIMIT 1");
+							if($result && mysqli_num_rows($result)>0)
+							{
+								$model_id=mysqli_fetch_assoc($result)["model"];
+								$result=mysqli_query($cons,"SELECT model,rating,price,err,batlife,capacity FROM notebro_temp.all_conf_".$model_id." WHERE id=".$param['conf_id']." LIMIT 1");
+								$row=mysqli_fetch_assoc($result);
+							}
+							else
+							{ $response->code=29; $response->message.=" Unable to retrieve data by configuration id, falling back to component search."; }
+						}
+						else
+						{
+							$response->code=29; $response->message.=" No valid configuration id provided, falling back to component search.";
+							if(!$abort){ if(isset($param['model_id']) && $param['model_id']!=NULL && $param['model_id']!=""){ $model_id=intval($param['model_id']); } else { $response->code=28; $response->message.=" Fatal error: No model id provided."; $abort=1; } }
+							if(!$abort){ if(isset($param['cpu_id']) && $param['cpu_id']!=NULL && $param['cpu_id']!=""){ $cpu_id=intval($param['cpu_id']); } else { $response->code=28; $response->message.=" Fatal error: No processor id provided."; $abort=1; } }
+							if(!$abort){ if(isset($param['display_id']) && $param['display_id']!=NULL && $param['display_id']!=""){ $display_id=intval($param['display_id']); } else { $response->code=28; $response->message.=" Fatal error: No display id provided."; $abort=1; } }
+							if(!$abort){ if(isset($param['memory_id']) && $param['memory_id']!=NULL && $param['memory_id']!=""){ $mem_id=intval($param['memory_id']); } else { $response->code=28; $response->message.=" Fatal error: No memory id provided."; $abort=1; } }
+							if(!$abort){ if(isset($param['primary_storage_id']) && $param['primary_storage_id']!=NULL && $param['primary_storage_id']!=""){ $hdd_id=intval($param['primary_storage_id']); } else { $response->code=28; $response->message.=" Fatal error: No primary storage id provided."; $abort=1; } }
+							if(!$abort){ if(isset($param['secondary_storage_id']) && $param['secondary_storage_id']!=NULL && $param['secondary_storage_id']!=""){ $shdd_id=intval($param['secondary_storage_id']); } else { $response->code=28; $response->message.=" Fatal error: No secondary storage id provided."; $abort=1; } }
+							if(!$abort){ if(isset($param['gpu_id']) && $param['gpu_id']!=NULL && $param['gpu_id']!=""){ $gpu_id=intval($param['gpu_id']); } else { $response->code=28; $response->message.=" Fatal error: No graphics id provided."; $abort=1; } }
+							if(!$abort){ if(isset($param['wireless_id']) && $param['wireless_id']!=NULL && $param['wireless_id']!=""){ $wnet_id=intval($param['wireless_id']); } else { $response->code=28; $response->message.=" Fatal error: No wireless id provided."; $abort=1; } }
+							if(!$abort){ if(isset($param['optical_drive_id']) && $param['optical_drive_id']!=NULL && $param['optical_drive_id']!=""){ $odd_id=intval($param['optical_drive_id']); } else { $response->code=28; $response->message.=" Fatal error: No optical drive id provided."; $abort=1; } }
+							if(!$abort){ if(isset($param['motherboard_id']) && $param['motherboard_id']!=NULL && $param['motherboard_id']!=""){ $mdb_id=intval($param['motherboard_id']); } else { $response->code=28; $response->message.=" Fatal error: No motherboard id provided."; $abort=1; } }
+							if(!$abort){ if(isset($param['chassis_id']) && $param['chassis_id']!=NULL && $param['chassis_id']!=""){ $chassis_id=intval($param['chassis_id']); } else { $response->code=28; $response->message.=" Fatal error: No chassis id provided."; $abort=1; } }
+							if(!$abort){ if(isset($param['battery_id']) && $param['battery_id']!=NULL && $param['battery_id']!=""){ $acum_id=intval($param['battery_id']); } else { $response->code=28; $response->message.=" Fatal error: No battery id provided."; $abort=1; } }
+							if(!$abort){ if(isset($param['warranty_id']) && $param['warranty_id']!=NULL && $param['warranty_id']!=""){ $war_id=intval($param['warranty_id']); } else { $response->code=28; $response->message.=" Fatal error: No warranty id provided."; $abort=1; } }
+							if(!$abort){ if(isset($param['operating_system_id']) && $param['operating_system_id']!=NULL && $param['operating_system_id']!=""){ $sist_id=intval($param['operating_system_id']); } else { $response->code=28; $response->message.=" Fatal error: No operating system id provided."; $abort=1; } }
+							if(!$abort)
+							{
+								$result=mysqli_query($cons,"SELECT model,rating,price,err,batlife,capacity FROM notebro_temp.all_conf_".$model_id." WHERE model=".$model_id." AND cpu=".$cpu_id." AND display=".$display_id." AND mem=".$mem_id." AND hdd=".$hdd_id." AND shdd=".$shdd_id." AND gpu=".$gpu_id." AND wnet=".$wnet_id." AND odd=".$odd_id." AND mdb=".$mdb_id." AND chassis=".$chassis_id." AND acum=".$acum_id." AND war=".$war_id." AND sist=".$sist_id." LIMIT 1");
+								if(!($result && mysqli_num_rows($result)>0))
+								{
+									$result=mysqli_query($con,"SELECT typegpu FROM `notebro_db`.`GPU` WHERE id=".$gpu_id." LIMIT 1");
+									if($result && mysqli_num_rows($result)>0)
+									{
+										if(intval(mysqli_fetch_assoc($result)["typegpu"])===0)
+										{
+											$result=mysqli_query($con, "SELECT gpu FROM `notebro_db`.`CPU` WHERE id=".$cpu_id." LIMIT 1");
+											$cpugpu=intval(mysqli_fetch_assoc($result)["gpu"]);
+											if($cpugpu!==$gpu_id)
+											{	
+												$gpu_id=$cpugpu; $response->code=29; $response->message.=" Wrong GPU id provided, attempting to correct.";
+												$result=mysqli_query($cons,"SELECT model,rating,price,err,batlife,capacity FROM notebro_temp.all_conf_".$model_id." WHERE model=".$model_id." AND cpu=".$cpu_id." AND display=".$display_id." AND mem=".$mem_id." AND hdd=".$hdd_id." AND shdd=".$shdd_id." AND gpu=".$gpu_id." AND wnet=".$wnet_id." AND odd=".$odd_id." AND mdb=".$mdb_id." AND chassis=".$chassis_id." AND acum=".$acum_id." AND war=".$war_id." AND sist=".$sist_id." LIMIT 1");
+												if($result && mysqli_num_rows($result)>0)
+												{
+													$response->message.=" GPU correction successful.";
+													$row=mysqli_fetch_assoc($result);	
+												}
+												else { $response->code=28; $response->message.=" Error: No configuration available with specified component ids."; $abort=1; }		
+											}
+											else { $response->code=28; $response->message.=" Error: No configuration available with specified component ids."; $abort=1; }		
+										}
+										else { $response->code=28; $response->message.=" Error: No configuration available with specified component ids."; $abort=1; }
+									}
+									else { $response->code=28; $response->message.=" Fata error: No video card found with provided gpu id"; $abort=1; }
+								}
+								else { $row=mysqli_fetch_assoc($result); }	
+							}
+						}
+						
+						if(!$abort)
+						{
+							$object_addr->model_id=strval($row["model"]);
+							$object_addr->config_score=strval(floatval($row["rating"])/100);
+							$object_addr->config_price=strval(intval($row["price"]));
+							$object_addr->config_price_min=strval(round((floatval($row["price"])-(floatval($row["err"])/2)),0));
+							$object_addr->config_price_max=strval(round((floatval($row["price"])+(floatval($row["err"])/2)),0));
+							$object_addr->battery_life_raw=strval(round(floatval($row["batlife"]),1));
+							$hours=intval($row["batlife"]); $minutes=floatval($row["batlife"]); $minutes=intval(intval(($minutes-floor($minutes))*60)/5)*5;
+							$object_addr->battery_life_hours=$hours.":".sprintf("%02d", $minutes);
+							$object_addr->total_storage_capacity=$row["capacity"];
+						}
+						break;
+					}
 					default:
 					{
 						$response->code=12; $response->message="Unknown method provided."; $response->daily_hits_left=$hits_left;
@@ -147,17 +228,13 @@ if($api_key!==""&&$api_key!==NULL)
 					}
 				}
 			}
-			else
-			{ $response->code=11; $response->message="No method provided, nothing to do."; $response->daily_hits_left=$hits_left; }
+			else { $response->code=11; $response->message="No method provided, nothing to do."; $response->daily_hits_left=$hits_left; }
 		}
-		else
-		{ $response->code=10; $response->message="Maximum daily queries has been exceeded. Contact site admin."; $response->daily_hits_left=$hits_left; }
+		else { $response->code=10; $response->message="Maximum daily queries has been exceeded. Contact site admin."; $response->daily_hits_left=$hits_left; }
 	}
-	else
-	{ $response->code=0; $response->message="Unknown API key."; }
+	else { $response->code=0; $response->message="Unknown API key."; }
 }
-else
-{ $response->code=0; $response->message="No valid API key provided."; }
+else { $response->code=0; $response->message="No valid API key provided."; }
 
 echo json_encode($response);		
 ?>

@@ -40,7 +40,7 @@ foreach ($search_array as $v)
 					if($result && mysqli_num_rows($result)>0)
 					{ $id_set=$param['model_id']; }
 					else
-					{ $response->message.=" Unable to identify model by ID, falling back to name search."; }
+					{  $response->code=29; $response->message.=" Unable to identify model by ID, falling back to name search."; }
 				}
 				if(!$id_set){ $param['model_name']=mysqli_real_escape_string($con,$param['model_name']); $_POST["keys"]=str_replace(" ","%",$param['model_name']); } else { $_POST["keys"]=""; }
 				$relativepath="../"; $close_con=0; $m_search_included=1;
