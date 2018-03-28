@@ -7,38 +7,112 @@ if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_n
 }
 ?>
 	<div style="margin-top:50px; margin-left: 20px; margin-right: 40px;">
-	<p style="font-size:18px"><b>Noteb API - General information</b></p>
-	<p>Noteb gives free limited access to its laptop database to anyone willing to develop or enhanced third party applications or websites based on the information provided here.<br><br>
-	<p style="font-size:18px"><b>Access</b></p>
-	In order to access the Noteb API, it is necessary to have an API key. For testing purposes, in the API documentation there is a public API key with very limited usability. However, if you are serious about developing with the Noteb API, we advise to contact us at <img src="res/img/starofficeemail.png" width="149" height="20"> and request an individual unique API key.
+	<p style="font-size:18px"><b>Noteb API Terms of Service Agreement </b></p>
+	<p style="font-size:16px"><b>1.	Acceptance of Terms</b></p>
+This Noteb API Terms of Service document (the <b>“API TOS”</b>) is an agreement you must accept in order to use the Noteb API (as described below). This document describes both your rights and your obligations as part of using the Noteb API. It is important that you read it carefully because you will be legally bound to these terms. Starchaser S.R.L.  (<b>“Starchaser” “we” “us”</b>) only provides the Noteb API to you subject to this API TOS. By accepting this API TOS or by accessing or using the Noteb API, you agree to be bound by this API TOS (including the Privacy Policy, Brand Guidelines, and general Terms of Service, which are incorporated here by reference).<br><br>
+If you are entering into this API TOS on behalf of a company or other legal entity, you represent that you have the authority to bind such entity to this API TOS. In that case, the terms <b>“you”</b> or <b>“your”</b> shall also refer to such entity. If you do not have such authority, or if you do not agree with this API TOS, you may not use the Noteb API. You acknowledge that this API TOS is a contract between you and Starchaser, even though it is electronic and is not physically signed by you and Starchaser, and it governs your use of the Noteb API.
 	<br><br>
-	<p style="font-size:18px"><b>Usage conditions</b></p>
-	 The legal conditions governing the usage of the Noteb API are the Noteb API Terms of Service Agreement. <b>By using the Noteb API, you agree to <a href="https://<?php echo $site_name;?>/?public/api_tos.php">Noteb API Terms of Service Agreement</a>.</b>
+	<p style="font-size:16px"><b>2.	API Key Definitions</b></p>
+	1.	<b>Application</b> – Any software application, website, or product you create or service you offer using the Noteb API (defined below).<br>
+	2.	<b>API Documentation</b> – The documentation, data and information that Starchaser provides regarding the use of the Noteb API through the Developer Site.<br>
+	3.	<b>Data</b> – means any data and content uploaded, posted, transmitted or otherwise made available by users via the Services, including laptop information, messages, files, comments, reviews  and anything else entered or uploaded into the Service by a user of the Service.<br>
+	4.	<b>Developer Site</b> – Noteb’s Developer site found at <a href="https://noteb.com/?public/api.php">https://noteb.com/?public/api.php</a><br>
+	5.	<b>Noteb API or “our API”</b> – The publicly available Noteb Application Programming Interface (“API”) as well as the related API Documentation.<br>
+	6.	<b>Noteb Brand</b> – The Noteb brand and brand assets, including names, logos, trade names and trademarks.<br>
+	7.	<b>Noteb Service(s)</b> – Noteb’s laptop database, archives, search services and related systems and technologies, as well as the website http://noteb.com (the “Site”), and all software, applications, data, reports, text, images, and other content made available by or on behalf of Starchaser through any of the foregoing. The “Service” does not include Data or any software application or service that is provided by you or a third party (including Applications), whether or not Starchaser designates them as “official integrations”.<br>
+	<br>
+	<p style="font-size:16px"><b>3.	API License</b></p>
+	As long as you follow this API TOS, Starchaser grants you a limited, non-exclusive, non-assignable, non-transferable license to use the APIs to develop, test, and support any software application, website, or product, and to integrate the Noteb APIs with your Application. Your license is subject to the limitations set forth in Section 4.2 through 4.11 and Section 9 below, and you agree that violation of Section 4 will automatically terminate your license to use the Noteb APIs.
 	<br><br>
-	All API keys are provided free of charge and come with a limited number of <b>daily requests per key</b>. The number of available daily requests automatically resets to its maximum daily allowance once every 24 hours. The maximum value of requests should be enough for developing and light usage of the Noteb database. Increasing the maximum value of daily requests is possible, but may require a small monthly fee in order to cover our hosting costs. The fee dependents on the server load generated by requests from the API key.
+	<p style="font-size:16px"><b>4.	Use of APIs and Noteb Data</b></p>
+	The following identifies limitations on use related to the Noteb API:
+	<br>
+	<br>
+	1.	<b>Reliance on API.</b> Noteb is still evolving, and we need the flexibility to occasionally make changes to our APIs, including backwards incompatible ones. We will try to give notice of these changes. Also, parts of our API are undocumented, including certain methods, events, and properties. Given that these undocumented aspects of our API may change at any time, you should not rely on these behaviors.<br>
+	2.	<b>Applicable laws or agreements.</b> You may not use the Noteb API in violation of any law or regulation, or rights of any person, including but not limited to intellectual property rights, rights of privacy, or rights of personality, or in any manner inconsistent with this API TOS or Starchaser’s other agreements to which you are subject.<br>
+	3.	<b>Scope of acceptable use.</b> You may not use the Noteb API or any other technology in a manner that accesses or uses any information beyond what Starchaser allows under this API TOS or the Documentation; that changes the Noteb Service; that breaks or circumvents any of Noteb’s technical, administrative, process or security measures; that disrupts or degrades the performance of the Noteb Service or the Noteb API; or that tests the vulnerability of Noteb’s systems or networks.<br>
+	4.	<b>Malware.</b> You may not transmit any viruses or other computer programming that may damage, detrimentally interfere with, surreptitiously intercept, or expropriate any system or data.<br>
+	5.	<b>Reverse engineering.</b> You may not attempt to reverse engineer or otherwise derive source code, trade secrets, or know-how in the Noteb API or portion thereof;<br>
+	6.	<b>Functionality.</b> You may not use the Noteb API to replicate or compete with core products or services offered by Noteb. You acknowledge and agree that Noteb has or may in the future offer products or services that are similar to your Application, and nothing will prevent Noteb from doing so;<br>
+	7.	<b>Commercial Use.</b> You may charge for your Application. However, you may not sell, rent, lease, sublicense, redistribute, or syndicate access to the Noteb API.<br>
+	8.	<b>Advertising.</b> You may place advertisements on and around your Application. However, you may <u>not</u>:<br>
+		i.	Place any advertisements within Noteb Service channels, and your advertisements may not resemble or be reasonably likely to confuse users as being a Noteb Service message;<br>
+		ii.	Use Data or any content from Noteb in any advertisements or for purposes of targeting advertisements, in your Application or elsewhere; or <br>
+		iii.	Use contact information obtained from Noteb (including email addresses) to contact Noteb users outside of Noteb without their express permission.<br>
+	9.	<b>Rate Limits.</b> You will not attempt to exceed or circumvent limitations on access, calls and use of Noteb API, or otherwise use the Noteb API in a manner that exceeds reasonable request volume, constitutes excessive or abusive usage, or otherwise fails to comply or is inconsistent with any part of this API TOS or the Documentation. See <a href="https://noteb.com/?public/api.php">https://noteb.com/?public/api.php</a> . <br>
+	10.	<b>Use for promotion of gambling or adult content.</b> You may not use the Noteb APIs in any Application that includes adult content, promotes gambling, involves the sale of tobacco or alcohol to persons under 21 years of age, or otherwise violates any applicable law or regulation.<br>
+	11.	<b>Distribution of your application.</b> You may not distribute or allow access to the Noteb APIs to anyone other than, if applicable, the company on whose behalf you entered into this API TOS. Anyone who wants to access our APIs must agree to be bound by this API TOS.<br>
+	5.	<b>Use of Noteb Brand or Marks.</b> You must not use the Noteb Brand in a way that suggests your service is endorsed by or sponsored by Noteb. You must acknowledge the source of you laptop data and or laptop search functionalities in your Application and you must abide by Noteb’s Brand Guidelines available at <a href="https://noteb.com/?public/api.php">https://noteb.com/?public/api.php</a> . <br>
+	<br>
+	<p style="font-size:16px"><b>5.	Use of Noteb Brand or Marks.</b></p>
+	You must not use the Noteb Brand in a way that suggests your service is endorsed by or sponsored by Noteb. You must acknowledge the source of you laptop data and or laptop search functionalities in your Application and you must abide by Noteb’s Brand Guidelines available at <a href="https://noteb.com/?public/api.php">https://noteb.com/?public/api.php</a> . <br>
+	<br>
+	<p style="font-size:16px"><b>6.	Storage of Data</b></p>
+	1.	<b>Caching Data.</b> Where Data is cached, you should refresh the cache at least every 24 hours.<br>
+	2.	<b>Secure Storage Measures.</b> All Data should be stored and served using strong encryption.<br>
+	3.	<b>Deletion at Termination.</b> If we terminate your use of the Noteb APIs for any reason, then you must permanently delete all Data and any other information that you stored pursuant to your use of the Noteb APIs, except when doing so would cause you to violate any law or obligation imposed by a governmental authority.<br>
+	4.	<b>No Other Storing.</b> You may not copy or store any Data or capture or store any information expressed by the Data (such as hashed or transferred data), except to the extent permitted by this API TOS.<br>
+	<br>
+	<p style="font-size:16px"><b>7.	Your User Agreement and Privacy Policy</b></p>
+	If you offer your Application for use by others outside your organization, you must maintain a user agreement and privacy policy for your Application, which is prominently identified or located where users download or access your Application. Your privacy policy must meet applicable legal standards and accurately describe the collection, use, storage and sharing of data. You must promptly notify us of any breaches of your user agreement or privacy policy that impact or may impact Noteb Services. Your privacy policy must be at least as stringent and user-friendly as ours.
 	<br><br>
-	If a website or application, developed using the Noteb API, becomes available to public or is used for commercial purposes, it is necessary to acknowledge Noteb as a provider of information and place a visible link to Noteb on pages that request information from Noteb API. Wherever these conditions apply, it is necessary to include one of the following elements:<br><br>
-	<a href="https://noteb.com" style="font-weight: bold;color:#3f8f86;">Powered by noteb.com</a><br>Code: <pre>&lt;a href="https://noteb.com" style="font-weight: bold;color:#3f8f86;"&gt;Powered by noteb.com&lt;/a&gt;</pre>
-	<br>
-	or
-	<br>
-	<img src="res/img/logo/logo_noteb.png" width="149" height="149">
-	<br>
-	<p style="font-size:18px"><b>Technical aspects</b></p>
-		The API of Noteb is based on POST requests to Noteb's web service, which replays with JSON structured data.<br>
-		Currently the API only supports methods for the retrieval of laptop model information, including all technical details, available configurations, prices, battery life and Noteb rating. Other functionalities may be developed upon request.<br>
-		For further details, please consult the API documentation. 
-	 <br><br>
-	 	<p style="font-size:18px"><b>Termination of service</b></p>
-	Usage of Noteb database data for malicious purposes can and will lead to termination or suspension of access to Noteb web service.<br>
-	Attempts to circumvent API limitations and designed functionalities can and will lead to termination or suspension of access to Noteb web service.<br>
-	Any unauthorised access of web service and unauthorised API requests can and will lead to termination or suspension of access to Noteb web service. 
-		<br><br>
-
-	 <p style="font-size:18px"><b>Documentation</b></p>
-	 <b><a href="https://<?php echo $site_name;?>/res/doc/noteb_API_documentation.pdf">Download Noteb API documentation here</a></b><br> <br>
-	 
-	
+	<p style="font-size:16px"><b>8.	Security Measures</b></p>
+	1.	<b>Protections.</b> The network, operating system and software of your web servers, databases, and computer systems (collectively, <b>“Your Systems”</b>) must be properly configured to securely operate your Application and store Data. Your Application must use reasonable security measures to protect your users’ information. You must not architect or select Your Systems in a manner to avoid the foregoing obligation.<br>
+2.	<b>Reporting.</b> You must promptly report any security deficiencies in, or intrusions to, your Systems to Starchaser in writing via email to <img src="res/img/starofficeemail.png" width="149" height="20"> or subsequent contact information posted on the Developer Site. This includes any unauthorized access, use, disclosure or destruction of Data. You will work with Starchaser to immediately correct any security deficiency, and will immediately disconnect any intrusions or intruder. In the event of any security deficiency or intrusion involving the Application, Noteb APIs or Data, you will make no public statements regarding such deficiencies or intrusions (e.g., press, blogs, social media, bulletin boards, etc.) without prior written and express permission from Starchaser in each instance.<br>
+<br>
+<p style="font-size:16px"><b>9.	Government Access</b></p>
+You will not knowingly:<br>
+1.	Allow or assist any government entities, law enforcement, or other organizations to conduct surveillance or obtain data using your access to the Noteb API in order to avoid serving legal process directly on Starchaser. Any such use by you for law enforcement purposes is a breach of this API TOS.<br>
+2.	Display, distribute or otherwise make available Data or any Application to any person or entity that you reasonably believe will use Data to violate the <a href="http://www.un.org/en/documents/udhr/">Universal Declaration of Human Rights</a> (located at <a href="http://www.un.org/en/documents/udhr/">http://www.un.org/en/documents/udhr/</a>), including without limitation Articles 12, 18, or 19. Any law enforcement personnel seeking information about Noteb users will be referred to Noteb’s User Data Request Policy. You will not conduct and your Application will not provide analyses or research that isolates a small group of individuals or any single individual for any unlawful or discriminatory purposes. Exemptions to these restrictions may be requested for exigent circumstances and are subject to prior written approval from Starchaser.<br>
+<br>
+<p style="font-size:16px"><b>10. Ownership</b></p>
+As between you and us, we own all rights, title, and interest, including all intellectual property rights, in and to, the (1) Noteb APIs, Documentation, and all elements and components thereof; (2) Data; (3) Noteb Services; and (4) Brand Features (collectively, the “Noteb Materials”). The only exception to this is Data that you as a Noteb user have licensed to Starchaser under the <a href="https://noteb.com/?public/api.php">https://noteb.com/?public/api.php</a>, which governs that Data. Except for the express licenses granted in this API TOS, Starchaser does not grant you any right, title, or interest in the Noteb Materials. You agree to take such actions as Starchaser may reasonably request to perfect Starchaser’s rights to the Noteb Materials.
+<br><br>
+<p style="font-size:16px"><b>11. Term and Termination</b></p>
+1.	<b>Duration of Terms.</b> This API TOS will go into effect on the date upon which you agree to them, by accessing or using the Noteb API, and will continue until terminated as set forth herein.<br>
+2.	<b>Your Right to Terminate.</b> You may terminate this API TOS by discontinuing use of our APIs.<br>
+3.	<b>Suspension; Termination.</b> We may change, suspend or discontinue the Noteb API and suspend or terminate your use of the Noteb API, the Noteb Service, and/or Noteb Brand at any time and for any reason, without notice. Without limiting the foregoing, we may limit your Application's access to the Noteb API if it, in our sole discretion, may negatively affect our Service or our ability to provide our Service.<br>
+4.	<b>Effect of Termination.</b> Upon termination of this API TOS:<br>
+i.	All rights and licenses granted to you will terminate immediately;<br>
+ii.	You will promptly destroy Documentation and any other Noteb information in your possession or control that was received under this API TOS;<br>
+iii.	Unless we agree otherwise in writing or as stated in this API TOS, you must permanently delete all Data and other information that you stored pursuant to your use of the Noteb APIs. Starchaser may request that you certify in writing your compliance with this section; and<br>
+iv.	Starchaser will make commercially reasonable efforts to remove all references and links to your Application from its Services (Starchaser has no other obligation to delete copies of, references to, or links to your Application).<br>
+5.	The following sections of this API TOS shall survive any termination, Sections 4 (“Use of the APIs and Noteb Data”), 5 (“Use of Noteb Brand or Marks”), 6.4 (“Delete at User Request”), 6.5 (“Deletion at Termination”), 7 (“Your User Agreement and Privacy Policy”), 8 (“Security Measures”), 11 (“Ownership”), 12 (“Term and Termination”), 13 (“Other Important Terms”), 14 (“Disclaimer of Warranties; Limitation of Liability; Indemnity”), 15 (“Dispute Resolution”) and 16 (“General Legal Terms”).
+<br><br>
+<p style="font-size:16px"><b>12. Other Important Terms</b></p>
+1.	<b>Legal Representations.</b> You represent and warrant to Starchaser that, excluding Noteb Materials, you have the right to use, reproduce, transmit, copy, publicly display, publicly perform, and distribute your Application, and that use of your Application by Starchaser and its users will not violate the rights of any third party (e.g., copyright, patent, trademark, privacy, publicity or other proprietary right of any person or entity), or any applicable regulation or law, including the Digital Millennium Copyright Act, the laws of any country in which your Application is made available and any applicable export laws.<br>
+2.	<b>Modification of the API TOS.</b> We may change, add to or delete this API TOS or any portion thereof from time to time in our sole discretion. If we make a material change to this API TOs, we will provide you with reasonable notice prior to the changes either by emailing the email address associated with your account or by posting a notice on the Developer Site. You acknowledge that these updates and modifications may adversely impact how you access, use, and communicate with the Noteb API. If any change in unacceptable to you, then your only recourse is to cease all use of the Noteb API. Your continued access or use of the Noteb API will mean that you agree to the updates and modifications.<br>
+3.	<b>Other Applicable Agreements.</b> You and your Application must also comply with the following, which are hereby incorporated by reference:<br>
+i. <a href="https://noteb.com/?public/api.php">Noteb Terms of Service</a><br>
+ii.	<a href="https://noteb.com/?footer/about.php">Noteb Privacy Policy</a><br>
+iii. <a href="https://noteb.com/?public/api.php">Noteb Brand Guidelines</a>
+<br><br>
+In the event of any conflict between the content in this document and the above documents, this document controls your use of the Noteb APIs.<br>
+<br>
+<p style="font-size:16px"><b>13. Disclaimer of Warranties; Limitation of Liability; Indemnity</b></p>
+1.	<b>NO WARRANTIES.</b> THE NOTEB API AND ALL RELATED COMPONENTS AND INFORMATION ARE PROVIDED ON AN “AS IS” AND “AS AVAILABLE” BASIS WITHOUT ANY WARRANTIES OF ANY KIND, AND STARCHASER EXPRESSLY DISCLAIMS ANY AND ALL WARRANTIES, WHETHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY, TITLE, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. YOU ACKNOWLEDGE THAT STARCHASER DOES NOT WARRANT THAT THE NOTEB API WILL BE UNINTERRUPTED, TIMELY, SECURE, ERROR-FREE OR VIRUS-FREE, NOR DOES IT MAKE ANY WARRANTY AS TO THE RESULTS THAT MAY BE OBTAINED FROM USE OF THE NOTEB API, AND NO INFORMATION, ADVICE OR SERVICES OBTAINED BY YOU FROM STARCHASER OR THROUGH THE DEVELOPER SITE SHALL CREATE ANY WARRANTY NOT EXPRESSLY STATED IN THIS API TOS.<br>
+2.	<b>LIMITATION ON LIABILITY.</b> UNDER NO CIRCUMSTANCES AND UNDER NO LEGAL THEORY (WHETHER IN CONTRACT, TORT, OR OTHERWISE) SHALL STARCHASER BE LIABLE TO YOU OR ANY THIRD PARTY FOR (A) ANY INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, CONSEQUENTIAL OR PUNITIVE DAMAGES, INCLUDING LOST PROFITS, LOST SALES OR BUSINESS, LOST DATA, OR (B) FOR ANY AMOUNT IN THE AGGREGATE IN EXCESS OF THE FEES ACTUALLY PAID BY YOU IN THE SIX (6) MONTHS PRECEDING THE EVENT GIVING RISE TO YOUR CLAIM OR, IF NO FEES APPLY, FIVE HUNDRED ($500) U.S. DOLLARS, OR (C) ANY MATTER BEYOND OUR REASONABLE CONTROL. THE PROVISIONS OF THIS SECTION ALLOCATE THE RISKS UNDER THIS TOS BETWEEN THE PARTIES, AND THE PARTIES HAVE RELIED ON THESE LIMITATIONS IN DETERMINING WHETHER TO ENTER INTO THIS TOS. Some jurisdictions do not allow the exclusion of implied warranties or limitation of liability for incidental or consequential damages, which means that some of the above limitations may not apply to you. IN THESE JURISDICTIONS, STARCHASER’S LIABILITY WILL BE LIMITED TO THE GREATEST EXTENT PERMITTED BY LAW.<br>
+3.	<b>Indemnity.</b> You agree to defend, hold harmless and indemnify Starchaser, and its subsidiaries, affiliates, officers, agents, employees, and suppliers, from and against any third party claim arising from or in any way related to your or your users’ use of the Application, Noteb API or Data, use of Noteb Brand, or violation of this API TOS, including any liability or expense arising from all claims, losses, damages (actual and consequential), suits, judgments, litigation costs and attorneys’ fees, of every kind and nature. In such a case, we will provide you with written notice of such claim, suit, or action.<br>
+<br>
+<p style="font-size:16px"><b>14. Dispute Resolution</b></p>
+This API TOS and any claim, cause of action or dispute (“<b>Claim</b>”) arising out of or related to this Agreement shall be governed by the laws of Romania, regardless of your country of origin or where you access the Noteb Service, and notwithstanding any conflicts of law principles and the United Nations Convention for the International Sale of Goods. You and Starchaser agree that all Claims arising out of or related to this Agreement must be resolved exclusively in the courts located in Bucharest, Romania. You and Starchaser agree to submit to the personal jurisdiction of the courts located within Bucharest, Romania, and agree to waive any and all objections to the exercise of jurisdiction over the parties by such courts and to venue in such courts for the purpose of litigating all such Claims. Notwithstanding the above, you agree that Starchaser shall still be allowed to apply for injunctive remedies (or an equivalent type of urgent legal relief) in any jurisdiction.<br><br>
+<p style="font-size:16px"><b>15. General Legal Terms</b></p>
+1.	<b>Severability.</b> If any provision of this API TOS is found to be illegal, void, or unenforceable, the unenforceable provision will be modified so as to render it enforceable to the maximum extent possible in order to effect the intention of the provision; if a term cannot be so modified, it will be severed and the remaining provisions of this API TOS will not be affected in any way.<br>
+2.	<b>Language.</b> Where Starchaser has provided you with a translation of the English language version of this API TOS or any document referenced in this API TOS, you agree that the translation is provided for your convenience only and that the English language versions of any such document, will control.<br>
+3.	<b>Notice and Service of Process.</b> We may notify you via postings on the Developer Site or via the email address associated with your Application or Noteb Service account. Starchaser accepts service of process by mail or courier at the physical address set forth in Section 16.9 below. Any notices that you provide without compliance with this section shall have no legal effect.<br>
+4.	<b>Entire Agreement.</b> This API TOS and any documents incorporated into this API TOS by reference, constitute the entire agreement between you and Starchaser regarding the Noteb APIs and supersedes all prior agreements and understandings, whether written or oral, or whether established by custom, practice, policy or precedent, with respect to the subject matter of this API TOS.<br>
+5.	<b>No Informal Waivers, Agreements, or Representations.</b> Our failure to act with respect to a breach of this API TOs by you or others does not waive our right to act with respect to that breach or subsequent similar or other breaches. No representations, statements, consents, waivers or other acts or omissions by any Starchaser affiliate shall be deemed legally binding on any Starchaser affiliate, unless documented in a physical writing hand signed by a duly appointed officer of Starchaser.<br>
+6.	<b>Injunctive Relief.</b> In no event shall you seek or be entitled to rescission, injunctive or other equitable relief, or to enjoin or restrain the operation of the Developer Site or Noteb Service or any Noteb APIs, or other material used or displayed through the Noteb Developer Site or Noteb Service.<br>
+7.	<b>Assignment and Delegation.</b> You may not assign or delegate any rights or obligations under this API TOS, including in connection with a change of control. Any purported assignment and delegation shall be ineffective. We may freely assign or delegate all rights and obligations under this API TOs, fully or partially without notice to you. We may also substitute, by way of unilateral novation, effective upon notice to you, Starchaser S.R.L. for any third party that assumes our rights and obligations under this API TOs.<br>
+8.	<b>Potential Other Rights and Obligations.</b> You may have rights or obligations under local law other than those enumerated here if you are located outside Romania.<br>
+9.	<b>How to Contact Us.</b> If you have questions or comments about this API TOS, or wish to make use of our Noteb API in any way not permitted by this API TOS, please contact us via email at <img src="res/img/starofficeemail.png" width="149" height="20"> or by physical mail at:<br>
+Starchaser S.R.L.<br>
+Regina Maria nr. 7<br>
+Bl. C1, sc. C, ap. 6<br>
+Ramnicu Valcea, Valcea<br>
+240151<br>
+Romania<br>
+<br>
 	 </div>
 	 <script type="text/javascript">
 	 $(document).ready(function(){
