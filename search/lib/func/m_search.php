@@ -6,7 +6,7 @@ require_once($relativepath."etc/session.php");
 require_once($relativepath."etc/con_db.php");
 
 //WE GET THE INPUTS
-$keys = preg_replace('~[\x00\x0A\x0D\x1A\x22\x27\x5C]~u', '\\\$0',filter_var($_POST["keys"], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH));
+$keys = preg_replace('~[\x00\x0A\x0D\x1A\x22\x27\x5C]~u', '\\\$0',filter_var($_POST["keys"], FILTER_SANITIZE_STRING));
 
 //$keys="7%20aspire";
 
