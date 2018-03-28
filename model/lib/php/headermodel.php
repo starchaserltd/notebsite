@@ -1,8 +1,9 @@
 <?php
+function clean_string($string){ return preg_replace('~[\x00\x0A\x0D\x1A\x22\x27\x5C]~u', '\\\$0', filter_var($string,FILTER_SANITIZE_STRING)); }
 $idmodel=''; $conf=''; $nonexistent=1;
 if(isset($_GET['ex']))
 {
-	$exchcode=strtoupper($_GET['ex']); $_SESSION['exchcode']=$exchcode;
+	$exchcode=strtoupper(clean_string($_GET["ex"])); $_SESSION['exchcode']=$exchcode;
 	$query=mysqli_query($con,"SELECT * FROM notebro_site.exchrate");
 	while( $row=mysqli_fetch_assoc($query))
 	{
@@ -25,12 +26,12 @@ else
 	if(isset($_SESSION['exchsign'])){ $exchsign=$_SESSION['exchsign']; } else { $exchsign="$"; }
 } 
 //CODE FOR THE MODEL SEARCH
-if(isset($_GET['conf']) && $_GET['conf']!="NaN") { $conf = $_GET['conf']; }
+if(isset($_GET['conf']) && $_GET['conf']!="NaN") { $conf = clean_string($_GET['conf']); }
 if(isset($_GET['model_id']) && $_GET['model_id']!="NaN")
 {
 	require_once("../etc/con_sdb.php");
 	$cons=dbs_connect();
-	$idmodel=$_GET['model_id'];
+	$idmodel=clean_string($_GET['model_id']);
 	$sql="SELECT id FROM notebro_temp.all_conf_".$idmodel." ORDER BY VALUE DESC LIMIT 1";
 	$result=mysqli_query($cons,$sql);
 	$id=mysqli_fetch_row($result);

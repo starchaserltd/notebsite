@@ -1,7 +1,7 @@
 <?php
 require_once("../../etc/session.php"); 
 
-$id=strval($_POST['conf']);
+$id=preg_replace('~[\x00\x0A\x0D\x1A\x22\x27\x5C]~u', '\\\$0', filter_var($_POST["conf"],FILTER_SANITIZE_STRING));
 
 	for($i=0;$i<=9;$i++)
 	{

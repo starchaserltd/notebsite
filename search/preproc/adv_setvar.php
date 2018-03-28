@@ -13,7 +13,7 @@ $display_vresmax = "200000";
 
 if(isset($_GET['s_memmin']))
 {
-	$issimple=$_GET['s_memmin'];
+	$issimple=intval($_GET['s_memmin']);
 	if ($issimple) 
 	{ include ("conv/simpletoadv.php"); }
 }

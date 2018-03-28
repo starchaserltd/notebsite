@@ -4,7 +4,7 @@ require_once("../etc/con_sdb.php");
 require_once("../etc/con_db.php");
 //HERE WE PROCESS THE CONFIGURATIONS FROM GET AND SESSION
 $getconfs=array();	$nrgetconfs=0;
-if(isset($_GET['ex'])){ $_SESSION['excomp']=strtoupper($_GET['ex']); }
+if(isset($_GET['ex'])){ $_SESSION['excomp']=strtoupper(mysqli_real_escape_string($con,filter_var($_GET["ex"],FILTER_SANITIZE_STRING))); }
 $addtojava="<script> $(document).ready(function() { if(firstcompare) {";
 $_SESSION['compare_list']=array(); $_SESSION['toalert']=array();
 $cons=dbs_connect();
@@ -12,7 +12,7 @@ for($i=0;$i<10;$i++)
 {
 	if(isset($_GET["conf$i"]))
 	{
-		$getconfs[$nrgetconfs]=$_GET["conf$i"];
+		$getconfs[$nrgetconfs]=mysqli_real_escape_string($con,filter_var($_GET["conf$i"],FILTER_SANITIZE_STRING));
 		$t=table($getconfs[$nrgetconfs]); $getconfs[$nrgetconfs]=$t[0]."_".$t[1];
 		$sql="SELECT * FROM notebro_temp.all_conf_".$t[1]." WHERE id = ".$t[0]."";
 		if($result = mysqli_query($cons,$sql))

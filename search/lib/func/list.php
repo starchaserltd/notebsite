@@ -3,26 +3,28 @@ require_once("../../../etc/session.php");
 require("../../../etc/con_db.php");
 $cpu_prod=array(); $cpu_model=array(); $cpu_ldmin=0; $cpu_ldmax=0; $cpu_status=0; $cpu_socket=array(); $cpu_techmin=0; $cpu_techmax=0; $cpu_cachemin=0; $cpu_cachemax=0; $cpu_clockmin=0; $cpu_clockmax=0; $cpu_turbomin=0; $cpu_turbomax=0; $cpu_tdpmax=0;$cpu_tdpmin=0; $cpu_coremin=0; $cpu_coremax=0; $cpu_intgpu=0; $cpu_misc=array(); $cpu_ratemin=0; $cpu_ratemax=0; $battery_life=0; $cpu_pricemin=0; $cpu_pricemax=0;
 $gpu_type=array(); $gpu_prod=array(); $gpu_model=array(); $gpu_arch=array(); $gpu_techmin=0; $gpu_techmax=0; $gpu_shadermin=0; $gpu_cspeedmin=0; $gpu_cspeedmax=0; $gpu_sspeedmin=0; $gpu_sspeedmax=0; $gpu_mspeedmin=0; $gpu_mspeedmax=0; $gpu_mbwmin=0; $gpu_mbwmax=0; $gpu_mtype=array(); $gpu_maxmemmin=0; $gpu_maxmemmax=0; $gpu_sharem=0; $gpu_powermin=0;$gpu_powermax=0; $gpu_ldmin="1970"; $gpu_ldmax="2999"; $gpu_misc=array(); $gpu_ratemin=0; $gpu_ratemax=0; $seltdp=0; $gpu_pricemin=0; $gpu_pricemax=0;
-$q = filter_input(INPUT_POST,'q',FILTER_SANITIZE_ENCODED);
-$select = filter_input(INPUT_POST,'list',FILTER_SANITIZE_ENCODED);
-$keys = filter_input(INPUT_POST,'keys',FILTER_SANITIZE_ENCODED);
+function clean_string($string){ return preg_replace('~[\x00\x0A\x0D\x1A\x22\x27\x5C]~u', '\\\$0', filter_var($string,FILTER_SANITIZE_STRING)); }
+$q = clean_string(filter_input(INPUT_POST,'q',FILTER_SANITIZE_ENCODED));
+$select = clean_string(filter_input(INPUT_POST,'list',FILTER_SANITIZE_ENCODED));
+$keys = clean_string(filter_input(INPUT_POST,'keys',FILTER_SANITIZE_ENCODED));
 
 //HERE I TAKE PROP AND CLEAN IT
 foreach ( array_slice($_POST,2) as $param_name => $param_val) 
 {
-	switch( gettype($param_val))
+	switch(gettype($param_val))
 	{
 		case "string":
-		{ ${$param_name} = filter_var($param_val, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH); break; }
+		{ ${$param_name} = clean_string(filter_var($param_val, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH)); break; }
 		case "array":
-		{ ${$param_name} = filter_var_array($param_val, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH); break; }
+		{ array_walk(${$param_name},"clean_string"); break; }
 		case "integer":
-		{ ${$param_name} = filter_var($param_val, FILTER_SANITIZE_NUMBER_INT); break; }
+		{ ${$param_name} = intval(filter_var($param_val, FILTER_SANITIZE_NUMBER_INT)); break; }
 		case "float":
-		{ ${$param_name} = filter_var($param_val, FILTER_SANITIZE_NUMBER_FLOAT); break; }
+		{ ${$param_name} = floatval(filter_var($param_val, FILTER_SANITIZE_NUMBER_FLOAT)); break; }
 		default: { ${$param_name} ="Something went wrong!"; }
 	}
 }
+
 if(!isset($cpu_ldmin)){ $cpu_ldmin="";} if(!isset($cpu_ldmax)){ $cpu_ldmax="";} if(!isset($sockmin)){ $sockmin="";} if(!isset($sockmax)){ $sockmax="";}
 
 if($cpu_ldmin || $sockmin)

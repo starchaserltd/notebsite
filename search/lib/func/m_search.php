@@ -6,30 +6,9 @@ require_once($relativepath."etc/session.php");
 require_once($relativepath."etc/con_db.php");
 
 //WE GET THE INPUTS
-$keys = filter_input(INPUT_POST,'keys',FILTER_SANITIZE_ENCODED);
+$keys = preg_replace('~[\x00\x0A\x0D\x1A\x22\x27\x5C]~u', '\\\$0',filter_var($_POST["keys"], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH));
 
 //$keys="7%20aspire";
-//HERE I TAKE PROP AND CLEAN IT
-foreach ( array_slice($_POST,2) as $param_name => $param_val) 
-{
-   switch( gettype($param_val))
-   {
-		case "string":
-			${$param_name} = filter_var($param_val, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
-			break;
-		case "array":
-			${$param_name} = filter_var_array($param_val, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
-			break;
-		case "integer":
-			${$param_name} = filter_var($param_val, FILTER_SANITIZE_NUMBER_INT);
-			break;
-		case "float":
-			${$param_name} = filter_var($param_val, FILTER_SANITIZE_NUMBER_FLOAT);
-			break;
-	   default:
-			${$param_name} ="Something went wrong!"; 
-	}
-}
 
 if(strlen($keys)>2 && $keys[-3]=="%")
 { $keys=substr($keys, 0, -3); }

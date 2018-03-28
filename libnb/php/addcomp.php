@@ -5,15 +5,15 @@ require_once("../../etc/con_sdb.php");
 require_once("../../etc/conf.php");
 ?>
 <?php
-if(isset($_POST['sendid'])){ $config_id = $_POST['sendid']; }
+if(isset($_POST['sendid'])){ $config_id = mysqli_real_escape_string($con,filter_var($_POST['sendid'], FILTER_SANITIZE_STRING)); }
 else
 {
-	$conf_model = $_POST['sendmid']; $conf_cpu=$_POST['sendcpu']; $conf_gpu=$_POST['sendgpu']; $conf_disp=$_POST['senddisp']; $conf_hdd=$_POST['sendhdd']; $conf_shdd=$_POST['sendshdd'];
-	$conf_mem=$_POST['sendmem']; $conf_chassis=$_POST['sendchassis']; $conf_odd=$_POST['sendodd']; $conf_wnet=$_POST['sendwnet']; $conf_war=$_POST['sendwar']; $conf_sist=$_POST['sendsis'];
-	$conf_acum=$_POST['sendacum'];  $conf_mdb=$_POST['sendmdb'];
+	$conf_model = intval($_POST['sendmid']); $conf_cpu=intval($_POST['sendcpu']); $conf_gpu=intval($_POST['sendgpu']); $conf_disp=intval($_POST['senddisp']); $conf_hdd=intval($_POST['sendhdd']); $conf_shdd=intval($_POST['sendshdd']);
+	$conf_mem=intval($_POST['sendmem']); $conf_chassis=intval($_POST['sendchassis']); $conf_odd=intval($_POST['sendodd']); $conf_wnet=intval($_POST['sendwnet']); $conf_war=intval($_POST['sendwar']); $conf_sist=intval($_POST['sendsis']);
+	$conf_acum=intval($_POST['sendacum']);  $conf_mdb=intval($_POST['sendmdb']);
 	$config_id=0;
-	$conf_cpu_name=$_POST['sendcpuname']; $conf_gpu_name=$_POST['sendgpuname'];	$conf_display_size=$_POST['senddissize'];
-	$conf_display_res=$_POST['senddisres']; 	$conf_mem_info=$_POST['sendmeminfo']; 	$conf_hdd_info=$_POST['sendhddinfo'];
+	$conf_cpu_name= mysqli_real_escape_string($con,filter_var($_POST['sendcpuname'], FILTER_SANITIZE_STRING)); $conf_gpu_name= mysqli_real_escape_string($con,filter_var($_POST['sendgpuname'], FILTER_SANITIZE_STRING)); $conf_display_size= mysqli_real_escape_string($con,filter_var($_POST['senddissize'], FILTER_SANITIZE_STRING));
+	$conf_display_res=mysqli_real_escape_string($con,filter_var($_POST['senddisres'], FILTER_SANITIZE_STRING));	$conf_mem_info=mysqli_real_escape_string($con,filter_var($_POST['sendmeminfo'], FILTER_SANITIZE_STRING)); $conf_hdd_info=mysqli_real_escape_string($con,filter_var($_POST['sendhddinfo'], FILTER_SANITIZE_STRING));
 }
 
 if($config_id)

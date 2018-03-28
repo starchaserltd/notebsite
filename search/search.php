@@ -22,7 +22,7 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 	/* GENERIC SEARCH VARIABLES */	
 	/********************************************************************/
 	if(isset($_GET['advsearch'])) { $isadvanced=intval($_GET['advsearch']); }
-	if(isset($_GET['s_memmin'])) { $issimple=$_GET['s_memmin']; }
+	if(isset($_GET['s_memmin'])) { $issimple=intval($_GET['s_memmin']); }
 	
 	if(isset($_GET['sort_by'])){ $sort_by=clean_string($_GET['sort_by']); }
 	else { $sort_by="value"; }

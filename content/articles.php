@@ -19,8 +19,7 @@ if (have_posts()) :
    endwhile;
 endif;
 
-if(isset($_GET['page'])) { $page=$_GET['page']; } else { $page=1; }
-
+if(isset($_GET['page'])) { $page=intval($_GET['page']); } else { $page=1; }
 $page--;
 $page*=8;
 
