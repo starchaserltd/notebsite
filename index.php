@@ -46,7 +46,7 @@ require_once("etc/conf.php");
 							<button disabled class="blue dropbtn helpus"><span class="helpimg">Review</span></button>
 							<div class="dropdown-content">
 								<a class="addrev" onmousedown="OpenPage('public/ireviews.php',event);">Add laptop review</a>
-								<a class="addrev" onmousedown="OpenPage('public/api.php',event);">Api</a>
+								<a class="addrev" onmousedown="OpenPage('public/api.php',event);">API</a>
 							</div>
 						</div>
 					</div>
