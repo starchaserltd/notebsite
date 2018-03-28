@@ -217,12 +217,12 @@ if(isset($_GET['display_type']))
 			}
 			case "4":
 			{
-				if($display_vresmin!=1080) { $display_vresmin=1440; }
+				if($display_vresmin!=1080) { $display_vresmin=1280; }
 				break;
 			}
 			case "5":
 			{
-				if($display_vresmin!=1080 && $display_vresmin!=1440 ) { $display_vresmin=2160; }
+				if($display_vresmin!=1080 && $display_vresmin!=1280 ) { $display_vresmin=1920; }
 				break;
 			}
 			case "6":

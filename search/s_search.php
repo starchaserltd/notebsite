@@ -71,7 +71,7 @@ require_once("etc/conf.php"); ?>
 				<option value="4" data-name="2K">2K resolution</option>
 				<option value="5" data-name="4K">4K resolution</option>
 				<option value="6" data-name="High gamut">High color gamut</option>
-				<option value="7" data-name="No touch" selected="selected">No touchscreen</option>
+				<option value="7" data-name="No touch">No touchscreen</option>
 				<option value="8" data-name="Touch">Touchscreen</option>
 				<option value="9" data-name="Stylus">Stylus support</option>
 			</select>
