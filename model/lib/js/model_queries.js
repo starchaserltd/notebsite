@@ -642,7 +642,6 @@ function getconf(comp,id,exactconf)
 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
 			{
 				confdata = JSON.parse(xmlhttp.responseText);
-				console.log(confdata);
 				confdata["cprice"]=parseInt(confdata["cprice"]); if(confdata["cprice"]>0){ success=true; }
 				if(success || go)
 				{

@@ -1,5 +1,4 @@
 <?php
-function clean_string($string){ return preg_replace('~[\x00\x0A\x0D\x1A\x22\x27\x5C]~u', '\\\$0', filter_var($string,FILTER_SANITIZE_STRING)); }
 $idmodel=''; $conf=''; $nonexistent=1;
 if(isset($_GET['ex']))
 {

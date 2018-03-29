@@ -5,7 +5,6 @@ if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_n
 	header("Location: ".$port_type."://".str_replace($site_name."/",$site_name."/?",$actual_link)."");
 	die();
 }
-function clean_string($string){ return preg_replace('~[\x00\x0A\x0D\x1A\x22\x27\x5C]~u', '\\\$0', filter_var($string,FILTER_SANITIZE_STRING)); }
 require_once("../etc/session.php");
 require_once("../libnb/php/urlproc.php");
 require_once("proc/init.php");

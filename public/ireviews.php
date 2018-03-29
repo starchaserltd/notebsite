@@ -1,17 +1,18 @@
 <?php
 require_once("../etc/conf.php");
-if(isset($_POST)){ $_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING); }
-if(isset($_POST['table'])) { $table = $_POST['table']; }
-if(isset($_POST['model_id_ireviews'])){ $model_id = $_POST['model_id_ireviews']; }
-if(isset($_POST['site'])) { $site = $_POST['site']; }
-if(isset($_POST['link'])) { $link = $_POST['link']; }
+
+if(isset($_POST['table'])) { $table = clean_string($_POST['table']); }
+if(isset($_POST['model_id_ireviews'])){ $model_id=array(); foreach($_POST['model_id_ireviews'] as $key=>$el) { $model_id[intval($key)]=intval($el); } }
+if(isset($_POST['site'])) { $site = clean_string($_POST['site']); }
+if(isset($_POST['link'])) { $link = clean_string(filter_var($_POST['link'], FILTER_VALIDATE_URL)); }
+
 $error=1;
 if(!empty($_POST['captcha_code']))
 {
 	//get captcha code from session
 	$captchaCode = $_SESSION['captchaCode'];
 	//get captcha code from input field
-	$enteredcaptchaCode = $_POST['captcha_code'];
+	$enteredcaptchaCode = clean_string($_POST['captcha_code']);
 	//verify the captcha code
 	if($enteredcaptchaCode === $captchaCode)
 	{ require_once("lib/php/updatefinal.php"); }
@@ -58,7 +59,7 @@ setTimeout(function (){
 <?php
 if($error)
 {
-	if(isset($_POST['model_name_ireviews'])&&isset($model_id)) { $model_names=explode(",",str_replace('"','',$_POST['model_name_ireviews'])); foreach($model_names as $key=>$el){ echo "$('#model_id_ireviews').append('<option selected=".'"'."selected".'"'." value=".'"'.$model_id[$key].'"'.">".$model_names[$key]."</option>');";  } }
+	if(isset($_POST['model_name_ireviews'])&&isset($model_id)) { $model_names=explode(",",str_replace('"','',clean_string($_POST['model_name_ireviews']))); foreach($model_names as $key=>$el){ echo "$('#model_id_ireviews').append('<option selected=".'"'."selected".'"'." value=".'"'.intval($model_id[$key]).'"'.">".$model_names[$key]."</option>');";  } }
 	if(isset($site)) { echo "$('#site').html('<option selected=".'"'."selected".'"'.">".$site."<option>');"; }
 	if(isset($link)) { echo "$('#link').html('".$link."');"; }
 }

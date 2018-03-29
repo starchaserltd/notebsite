@@ -49,7 +49,7 @@ $(".predbvalues").each(function()
 	var $this = $(this);
 	$this.select2({
     tags: true,
-    multiple: true,
+    multiple: false,
     tokenSeparators: [','],
     minimumInputLength: 1,
 	//maximumResultsForSearch: 20,

@@ -1,18 +1,17 @@
 <?php
-
 if(!isset($relativepath)){ $relativepath="../../../"; }
 if(!isset($close_con)) { $close_con=1; }
 require_once($relativepath."etc/session.php");
 require_once($relativepath."etc/con_db.php");
 
 //WE GET THE INPUTS
-$keys = preg_replace('~[\x00\x0A\x0D\x1A\x22\x27\x5C]~u', '\\\$0',filter_var($_POST["keys"], FILTER_SANITIZE_STRING));
+$keys = mysqli_real_escape_string($con,filter_var($_POST["keys"], FILTER_SANITIZE_STRING));
 
 //$keys="7%20aspire";
 
 if(strlen($keys)>2 && $keys[-3]=="%")
 { $keys=substr($keys, 0, -3); }
-$keysparts=explode("%20",$keys); $conditions="";
+$keysparts=explode(" ",$keys); $conditions="";
 
 foreach($keysparts as $el)
 {
