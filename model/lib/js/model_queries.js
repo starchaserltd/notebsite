@@ -642,12 +642,23 @@ function getconf(comp,id,exactconf)
 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
 			{
 				confdata = JSON.parse(xmlhttp.responseText);
+				console.log(confdata);
 				confdata["cprice"]=parseInt(confdata["cprice"]); if(confdata["cprice"]>0){ success=true; }
 				if(success || go)
 				{
 					confdata["cerr"]=parseInt(confdata["cerr"]);
 					document.getElementById('config_price1').innerHTML=parseInt((confdata["cprice"]-confdata["cerr"]/2)*exch);
 					document.getElementById('config_price2').innerHTML=parseInt((confdata["cprice"]+confdata["cerr"]/2)*exch);
+					
+					if(confdata["changes"]!==undefined) 
+					{
+						for (var key in confdata["changes"])
+						{
+							if(key!=="txt") {	window['show'+key](confdata["changes"][key]); setselectedcomp(key,confdata["changes"][key]); }
+							else { alert("This component is only available in combination with a different "+confdata["changes"][key]+"."); }
+						}
+					}
+					
 					var stateObj = { no: "empty" }; setTimeout(function(){ gocomp=1;}, 10);
 					//conf=(\d*)(\&|$)
 					if(currentPage.match(/(conf=)(\d+)(.*)/i)!==null)
@@ -729,7 +740,7 @@ function getconf(comp,id,exactconf)
 			}			
 		}
 	}
-	xmlhttp.open("GET","model/lib/php/query/getconf.php?c="+mid+"-"+cpu_id+"-"+display_id+"-"+mem_id+"-"+hdd_id+"-"+shdd_id+"-"+gpu_id+"-"+wnet_id+"-"+odd_id+"-"+mdb_id+"-"+chassis_id+"-"+acum_id+"-"+war_id+"-"+sist_id,true);
+	xmlhttp.open("GET","model/lib/php/query/getconf.php?c="+mid+"-"+cpu_id+"-"+display_id+"-"+mem_id+"-"+hdd_id+"-"+shdd_id+"-"+gpu_id+"-"+wnet_id+"-"+odd_id+"-"+mdb_id+"-"+chassis_id+"-"+acum_id+"-"+war_id+"-"+sist_id+"&cf="+config_rate+"&comp="+comp,true);
 	xmlhttp.send();
 }
 
