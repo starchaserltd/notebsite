@@ -33,7 +33,7 @@ if(isset($_GET['model_id']) && $_GET['model_id']!="NaN")
 	$idmodel=clean_string($_GET['model_id']);
 	$sql="SELECT id FROM notebro_temp.all_conf_".$idmodel." ORDER BY VALUE DESC LIMIT 1";
 	$result=mysqli_query($cons,$sql);
-	$id=mysqli_fetch_row($result);
+	if($result){ $id=mysqli_fetch_row($result); }else{$id[0]=0;}
 	mysqli_close($cons);
 }
 if(isset($idmodel) && $idmodel){  $conf=$id[0]."_".$idmodel; } // for a model

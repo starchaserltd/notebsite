@@ -1,7 +1,7 @@
 <?php
 require("../../../../etc/con_db.php");
 require("../../../../etc/rates_conf.php");;
-
+error_log($_GET['q']);
 if(isset($_GET['q'])){ $q = intval($_GET['q']); } else {$q=-1;}
 if($q>=0)
 {
