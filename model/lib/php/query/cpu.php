@@ -1,5 +1,5 @@
 <?php
-if(isset($_GET['q'])){ $q = intval($_GET['q']); } else {$q=-1;}
+if(isset($_GET['q'])){ error_log($_GET['q']); $q = intval($_GET['q']); } else {$q=-1;}
 error_log($q);
 if($q>=0)
 {
