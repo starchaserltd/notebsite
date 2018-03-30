@@ -1,5 +1,5 @@
 <?php
-if(isset($_GET['q'])&&filter_var($_GET['q'], FILTER_VALIDATE_INT)){ $q = intval($_GET['q']); } else {$q=-1;}
+if(isset($_GET['q'])){ $q=filter_var($_GET['q'], FILTER_VALIDATE_INT); if($q===FALSE){ $q=-1; } } else { $q=-1;}
 if($q>=0)
 {
 	require("../../../../etc/con_db.php");
@@ -25,6 +25,7 @@ if($q>=0)
 	//$rows[0]['price']=round($rows[0]['price'],2);
 	$rows[0]['price']=0;
 	$rows[0]['rating']=0;
+	
 	print json_encode($rows[0]);
 	mysqli_close($con);
 }
