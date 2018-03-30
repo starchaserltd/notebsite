@@ -67,4 +67,6 @@ if($c)
 	mysqli_close($cons);
 	print json_encode($rows);
 }
+else
+{ header('X-PHP-Response-Code: 204', true, 204); }
 ?>

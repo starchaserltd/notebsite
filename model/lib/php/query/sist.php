@@ -30,4 +30,6 @@ if($q>=0)
 	print json_encode($rows[0]);
 	mysqli_close($con);
 }
+else
+{ header('X-PHP-Response-Code: 204', true, 204); }
 ?>
