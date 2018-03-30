@@ -1,10 +1,10 @@
 <?php
-require("../../../../etc/con_db.php");
-require("../../../../etc/rates_conf.php");
-
-if(isset($_GET['q'])){ $q = intval($_GET['q']); } else {$q=-1;}
+if(isset($_GET['q'])&&filter_var($_GET['q'], FILTER_VALIDATE_INT)){ $q = intval($_GET['q']); } else {$q=-1;}
 if($q>=0)
 {
+	require("../../../../etc/con_db.php");
+	require("../../../../etc/rates_conf.php");
+	
 	mysqli_select_db($con,"notebro_db");
 	$sql="SELECT * FROM WAR WHERE id = '".$q."'";
 	$result = mysqli_query($con,$sql);

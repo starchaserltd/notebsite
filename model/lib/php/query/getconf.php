@@ -1,7 +1,7 @@
 <?php
 if(isset($_GET['c'])){ $c=preg_replace('~[\x00\x0A\x0D\x1A\x22\x27\x5C]~u', '\\\$0', filter_var($_GET['c'],FILTER_SANITIZE_STRING)); if(stripos($c,"undefined")==FALSE){ $conf = explode("-",$c);}else{$c=0;} } else {$conf=array(); $c=0;}
 if(isset($_GET['comp'])){ $comp=preg_replace('~[\x00\x0A\x0D\x1A\x22\x27\x5C]~u', '\\\$0', filter_var($_GET['comp'],FILTER_SANITIZE_STRING)); if(stripos($comp,"undefined")!=FALSE){ $comp=NULL; } }
-if(isset($_GET['cf'])){ $cf=floatval($_GET['cf']); } else {$cf=0;}
+if(isset($_GET['cf'])&&($_GET['cf']!="undefined")){ $cf=floatval($_GET['cf']); } else {$cf=0;}
 
 if($c)
 {
