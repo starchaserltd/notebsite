@@ -25,6 +25,7 @@ if($c)
 	
 	if($retry)
 	{
+		$filter="";
 		if($cf!==-1)
 		{
 			switch($comp)
@@ -41,7 +42,7 @@ if($c)
 				case "CHASSIS": { $filter="chassis=".$conf[10]; break; } 
 				case "ACUM": { $filter="acum=".$conf[1]; break; } 
 				case "WAR":	{ $filter="war=".$conf[12]; break; }  
-				case "SIST": { $filter="sist=".$conf[13]; break; } 
+				case "SIST": { $filter="sist=".$conf[13]; break; }
 			}
 		}
 		

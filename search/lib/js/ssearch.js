@@ -111,7 +111,7 @@ $(document).ready(function()
 		step: 4,
 		direction: 'ltr',
 		format: { to: function(value){ return parseFloat(value); }, from: function(value){ return parseFloat(value); } },
-		range: listrange([10.1,12,13.3,13.9,14,15.4,15.6,17.3,18.1])
+		range: listrange([10.1,12,13.3,13.9,14,15,15.4,15.6,17.3,18.1])
 	});
 
 	//SET SDISPLAY SLIDER TEXT UPDATE FUNCTIONS
