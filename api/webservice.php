@@ -1,7 +1,7 @@
 <?php 
-$_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 $method =""; $api_key =""; $param =""; $response=new stdClass(); $response->code=999; $response->message="Unknown error."; $response->result=new stdClass(); $response->daily_hits_left=null; $single_result=0;
 
+$_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 if(isset($_POST['method'])) { $method=$_POST['method']; } 
 if(isset($_POST['apikey'])) { $api_key = $_POST['apikey']; }
 if(isset($_POST['param'])) { $param = $_POST['param']; }
@@ -219,6 +219,61 @@ if($api_key!==""&&$api_key!==NULL)
 							$object_addr->battery_life_hours=$hours.":".sprintf("%02d", $minutes);
 							$object_addr->total_storage_capacity=$row["capacity"];
 						}
+						break;
+					}
+					case "get_exact_conf_info":
+					{
+						$response->code=26; $response->message="Valid method.";$response->daily_hits_left=$hits_left;
+						require_once("../etc/con_sdb.php"); $abort=0; $object_addr=$response->result;
+						$single_result=1; $search_array=array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "wnet", "sist", "odd", "mem", "mdb", "chassis"); $nr_max_models=7;
+						if(isset($param['conf_id'])&&$param['conf_id']!=NULL)
+						{
+							$param['conf_id']=mysqli_real_escape_string($cons,$param['conf_id']);
+							$result=mysqli_query($cons,"SELECT model FROM `notebro_temp`.`all_conf` WHERE id=".$param['conf_id']." LIMIT 1");
+							if($result && mysqli_num_rows($result)>0)
+							{
+								$model_id=mysqli_fetch_assoc($result)["model"];
+								$result=mysqli_query($cons,"SELECT * FROM notebro_temp.all_conf_".$model_id." WHERE id=".$param['conf_id']." LIMIT 1");
+								$row=mysqli_fetch_assoc($result);
+								$search_array=array("model"); $param['model_id']=$model_id; $nr_models=1;
+								require_once("preproc/api_varproc.php");
+								require_once("lib/model_param.php");
+								// Model info
+								$object_addr->model_info=comp_details("model_name_msearch",$row["model"]);
+								$object_addr->config_id=$row["id"];
+								$object_addr->model_resources=comp_details("model_res",$row["model"]);
+								unset($object_addr->model_resources["cpu"]); unset($object_addr->model_resources["display"]); unset($object_addr->model_resources["mem"]); unset($object_addr->model_resources["hdd"]); unset($object_addr->model_resources["shdd"]);
+								unset($object_addr->model_resources["gpu"]); unset($object_addr->model_resources["wnet"]); unset($object_addr->model_resources["odd"]); unset($object_addr->model_resources["mdb"]); unset($object_addr->model_resources["chassis"]);
+								unset($object_addr->model_resources["acum"]); unset($object_addr->model_resources["warranty"]); unset($object_addr->model_resources["sist"]); unset($object_addr->model_resources["id"]);
+								//Components
+								$object_addr->cpu=comp_details("cpu",$row['cpu']); unset($object_addr->cpu["id"]); $object_addr->cpu["integrated_video_id"]==NULL;
+								$object_addr->display=comp_details("display",$row['display']); unset($object_addr->display["id"]);
+								$object_addr->memory=comp_details("mem",$row['mem']); unset($object_addr->memory["id"]);
+								$object_addr->primary_storage=comp_details("hdd",$row['hdd']); unset($object_addr->primary_storage["id"]);
+								$object_addr->secondary_storage=comp_details("hdd",$row['shdd']); unset($object_addr->secondary_storage["id"]);
+								$object_addr->gpu=comp_details("gpu",$row['gpu']); unset($object_addr->gpu["id"]); unset($object_addr->gpu["typegpu"]);
+								$object_addr->wireless_card=comp_details("wnet",$row['wnet']); unset($object_addr->wireless_card["id"]);
+								$object_addr->optical_drive=comp_details("odd",$row['odd']); unset($object_addr->optical_drive["id"]);
+								$object_addr->motherboard=comp_details("mdb",$row['mdb']); unset($object_addr->motherboard["id"]);
+								$object_addr->chassis=comp_details("chassis",$row['chassis']); unset($object_addr->chassis["id"]);
+								$object_addr->battery=comp_details("acum",$row['acum']); unset($object_addr->battery["id"]);
+								$object_addr->warranty=comp_details("war",$row['war']); unset($object_addr->warranty["id"]);
+								$object_addr->operating_system=comp_details("sist",$row['sist'])["name"];
+								//OTHER CONFIG INFO
+								$object_addr->config_score=strval(floatval($row["rating"])/100);
+								$object_addr->config_price=strval(intval($row["price"]));
+								$object_addr->config_price_min=strval(round((floatval($row["price"])-(floatval($row["err"])/2)),0));
+								$object_addr->config_price_max=strval(round((floatval($row["price"])+(floatval($row["err"])/2)),0));
+								$object_addr->battery_life_raw=strval(round(floatval($row["batlife"]),1));
+								$hours=intval($row["batlife"]); $minutes=floatval($row["batlife"]); $minutes=intval(intval(($minutes-floor($minutes))*60)/5)*5;
+								$object_addr->battery_life_hours=$hours.":".sprintf("%02d", $minutes);
+								$object_addr->total_storage_capacity=$row["capacity"];
+							}
+							else
+							{ $response->code=29; $response->message.=" Unable to retrieve data by configuration id"; }
+						}
+						else
+						{ $response->code=28; $response->message.=" No valid configuration id provided."; }
 						break;
 					}
 					default:
