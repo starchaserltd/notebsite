@@ -455,10 +455,10 @@ function showCHASSIS(str)
 				if(chassis["web"]!="None"){document.getElementById('chassis_web').innerHTML = chassis["web"]+" MP";}else{document.getElementById('chassis_web').innerHTML = chassis["web"];}
 				document.getElementById('chassis_touch').innerHTML = chassis["touch"];
 				document.getElementById('chassis_charger').innerHTML = chassis["charger"];
-				document.getElementById('chassis_weight').innerHTML = chassis["weight"];
-				document.getElementById('chassis_thic').innerHTML = (chassis["thic"]/10).toFixed(1);;
-				document.getElementById('chassis_depth').innerHTML = (chassis["depth"]/10).toFixed(1);;
-				document.getElementById('chassis_width').innerHTML = (chassis["width"]/10).toFixed(1);;
+				document.getElementById('chassis_weight').innerHTML = chassis["weight"].toFixed(2);
+				document.getElementById('chassis_thic').innerHTML = (chassis["thic"]/10).toFixed(1);
+				document.getElementById('chassis_depth').innerHTML = (chassis["depth"]/10).toFixed(1);
+				document.getElementById('chassis_width').innerHTML = (chassis["width"]/10).toFixed(1);
 				
 				if(chassis["color"]!=="") { document.getElementById('chassis_color').innerHTML = chassis["color"]; }
 				else { document.getElementById('chassis_color').innerHTML = "-"; }
