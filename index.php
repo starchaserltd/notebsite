@@ -114,12 +114,12 @@ require_once("etc/conf.php");
 						</ul>
 					</div>		
 						
-					<div>
+					<div class="quickSearchContainer">
 						<button class="btn btn-title leftMenuFilters"  onclick=""><span style="color:white;">Quick search</span></button>
 						<div class="SearchParameters" id="SearchParameters" style="display: none;">			
 							<?php include ("search/s_search.php");?>
 						</div>			
-					</div>	
+					</div>						
 					<div style="text-align:center;">
 					 <button  id="sadvsearch" onmousedown="OpenPage('search/adv_search.php',event);" type="button" class="btn blue leftMenuAdvSearch"><span style="text-decoration:none;color:white;">Advanced search</span></button>
 					 </div>					
@@ -141,7 +141,7 @@ require_once("etc/conf.php");
 						</ul>
 					</div>	
 				</nav>
-				<!-- end left menu--> 	
+				<!-- end left menu--> 					
 			</div>
 			<!-- end left area-->
 			

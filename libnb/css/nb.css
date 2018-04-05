@@ -1889,6 +1889,11 @@ nav:after {
 	color: #fff;
 }
 
+.displayMobile {
+    display: none;
+}
+
+
 /*Responsive media design */
 
 @media (min-width: 1600px) {
@@ -2089,7 +2094,7 @@ nav:after {
     }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
     .topLaptops img { 
     max-width: 65px;
     padding: 10px 20px 10px 0;
@@ -2183,9 +2188,7 @@ nav:after {
 
   .articleMobile.row.showMoreArticles.showAllArticles {
     max-height: 5000px;
-  }
-
-  
+  }  
 
   .navbar-toggle .icon-bar {
     background-color: #fff;
@@ -2203,6 +2206,43 @@ nav:after {
     display: none;
   }
 
+  .leftMenuFilters {
+    padding:10px 0px 10px 15px;
+    background-color:#49505a;
+    line-height: 17px;
+    margin-top:3px;
+  }
+
+  .btn.leftMenuFilters >span:before {
+    top:15px;
+  }
+
+  .btn.leftMenuFilters >span:after {
+    top:11px;
+  }
+
+  .firstContainer {
+    display: flex;
+    flex-direction: column;
+    }
+    
+    .searchDetailsFirstContainer {
+        order: 2;
+    }
+
+    .quickSearchContainer {
+        order: 3;
+    }
+
+    .navbar-header{
+        order: 1;
+        margin-top: 3px;
+    }
+
+    .navbar-collapse {
+        order: 1;
+    }
+    
 }
 
 @media(max-width:450px) {

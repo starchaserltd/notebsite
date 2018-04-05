@@ -253,6 +253,11 @@ $(document).ready(function() {
             }
         })
     });
+
+    //Make dropdown for search filters
+	$( ".leftMenuFilters" ).click(function() { $( ".SearchParameters" ).toggle("slow"); $( ".leftMenuFilters" ).toggleClass("rotate"); });
+	$(".navbar-header").click(function() { $('.navbar-collapse').slideToggle("slow"); });
+	if ($(window).width() < 768) { $(".quickSearchContainer").appendTo($(".firstContainer")); }
 });
 
 //THE SORT BY RESULTS BUTTONS 
@@ -480,16 +485,3 @@ function listrange(list_comp)
 // Only enable if the document has a long scroll bar
 // Note the window height + offset
 if ( ($(window).height() + 100) < $(document).height() ) { $('#top-link-block').removeClass('hidden').affix({ offset: {top:100} }); }
-
-//Make dropdown for search filters
-$( document ).ready(function() {
-	$( ".leftMenuFilters" ).click(function() {
-		$( ".SearchParameters" ).toggle("slow");
-        $( ".leftMenuFilters" ).toggleClass("rotate");	
-    });
-
-    $(".navbarToggleMenu").click(function() {
-        $('.navbar-collapse').slideToggle("slow");
-    });
-});
-
