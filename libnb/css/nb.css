@@ -1893,6 +1893,13 @@ nav:after {
     display: none;
 }
 
+.irevtop #modelfind .select2-container--default .select2-selection--single {
+    border:1px solid #aaa;
+}
+
+.irevtop #site + .select2-container:after{
+    content: " ";
+}
 
 /*Responsive media design */
 
