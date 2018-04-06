@@ -133,7 +133,7 @@ function showGPU(str)
 						
 				gpu_bat_old = gpu_bat_new;
 				gpu_bat_new = gpu["bat"];
-				if(mdb["optimus"]){ gpu_bat_new=3; }
+				if(mdb["optimus"] && gpu_bat_new>3){ gpu_bat_new=3; }
 				config_batlife=config_batlife-gpu_bat_old+gpu_bat_new;
 				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
 				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);

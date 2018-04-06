@@ -77,7 +77,7 @@ if($q>=0)
 	$row[0]['price']=0;
 	$rows[0]['bat']=floatval($rows[0]["power"])/8;
 	if($rows[0]['arch']=="Pascal"){$rows[0]["bat"]/=1.5;}
-	if(!$rows[0]['typegpu']) { $rows[0]['power']="-"; }
+	if(!$rows[0]['typegpu']) { $rows[0]['power']="-"; $rows[0]["bat"]=0.2; }
 
 	$rows[0]['rating']=sprintf("%.1f", round($rows[0]['rating'],1));
 	print json_encode($rows[0]);
