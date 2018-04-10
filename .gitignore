@@ -1,6 +1,7 @@
 etc/conf.php
 etc/con_db.php
 etc/con_sdb.php
+etc/con_rdb.php
 etc/scripts_pages.php
 etc/scripts_gen.php
 res/img

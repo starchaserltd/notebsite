@@ -397,7 +397,7 @@
     color: #285f8f;
 }
 
-.compmod>a {
+.compmod > a {
     color: white;
 }
 
@@ -2343,6 +2343,10 @@ nav:after {
 
     .logoheight {
         height: 20px!important;
+    }
+
+    .findLaptop {
+        margin-left: 34px;
     }
 }
 

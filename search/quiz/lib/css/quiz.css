@@ -564,8 +564,9 @@ _:-ms-lang(x),
 }
 
 .quiz_container:hover .startQuiz {
-    background-color: rgb(40, 95, 143);
+    background: url('../../res/img/shape_button_full.png') no-repeat;
     color: #fff;
+     background-size: 100% 100%;
 }
 
 .quiz_container>#tab1~.tab2_intro {
@@ -616,21 +617,26 @@ _:-ms-lang(x),
 .startQuiz {
    display: inline-block;
     margin-left: -130px;
-    padding: 15px 10px;
-    border-radius: 25px;
+    padding: 13px 15px;   
     line-height: 15px;
     transition: all 0.3s ease-in;
-    width: 220px;
-    cursor: pointer;
-    border: 1px solid rgb(40, 95, 143);
+    width: 260px;
+    cursor: pointer;   
     text-align: center;
     color: rgb(40, 95, 143);
     font-size: 22px;
+    background: url('../../res/img/shape_button_round.png') no-repeat;
+    background-size: 100% 100%;
+}
+
+.findLaptop {
+	margin-left: 41px;
 }
 
 .startQuiz:hover {
-    background-color: rgb(40, 95, 143);
+    background: url('../../res/img/shape_button_full.png') no-repeat;
     color: #fff;
+     background-size: 100% 100%;
 }
 
 .quiz_container .tab2_intro p:not(.h2) {
@@ -697,7 +703,8 @@ _:-ms-lang(x),
 
 .startQuiz strong {
     display: block;
-    margin-top: 10px;
+    margin-top: 14px;
+    margin-left: -40px;
 }
 
 /* Animations for quiz button and image */
