@@ -159,7 +159,7 @@ if($api_key!==""&&$api_key!==NULL)
 						}
 						else
 						{
-							$response->code=29; $response->message.=" No valid configuration id provided, falling back to component search.";
+							$response->code=29; $response->message.=" No valid configuration id provided, falling back to component search."; $abort=0;
 							if(!$abort){ if(isset($param['model_id']) && $param['model_id']!=NULL && $param['model_id']!=""){ $model_id=intval($param['model_id']); } else { $response->code=28; $response->message.=" Fatal error: No model id provided."; $abort=1; } }
 							if(!$abort){ if(isset($param['cpu_id']) && $param['cpu_id']!=NULL && $param['cpu_id']!=""){ $cpu_id=intval($param['cpu_id']); } else { $response->code=28; $response->message.=" Fatal error: No processor id provided."; $abort=1; } }
 							if(!$abort){ if(isset($param['display_id']) && $param['display_id']!=NULL && $param['display_id']!=""){ $display_id=intval($param['display_id']); } else { $response->code=28; $response->message.=" Fatal error: No display id provided."; $abort=1; } }
@@ -206,7 +206,7 @@ if($api_key!==""&&$api_key!==NULL)
 								else { $row=mysqli_fetch_assoc($result); }	
 							}
 						}
-						
+						if(!(isset($row)&&isset($row["price"]))) { $response->code=29; $response->message.=" Unable to retrive data"; $abort=1; }
 						if(!$abort)
 						{
 							$object_addr->model_id=strval($row["model"]);
