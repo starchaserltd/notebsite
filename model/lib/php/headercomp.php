@@ -12,17 +12,43 @@ for($i=0;$i<10;$i++)
 {
 	if(isset($_GET["conf$i"]))
 	{
+		$retry=0;
 		$getconfs[$nrgetconfs]=mysqli_real_escape_string($con,filter_var($_GET["conf$i"],FILTER_SANITIZE_STRING));
-		$t=table($getconfs[$nrgetconfs]); $getconfs[$nrgetconfs]=$t[0]."_".$t[1];
-		$sql="SELECT * FROM notebro_temp.all_conf_".$t[1]." WHERE id = ".$t[0]."";
-		if($result = mysqli_query($cons,$sql))
+		if($t=table($getconfs[$nrgetconfs]))
 		{
-			$_SESSION['compare_list'][$getconfs[$nrgetconfs]] = mysqli_fetch_assoc($result);
-			$addtojava.=" addcompare('".$getconfs[$nrgetconfs]."'); ";
-			$nrgetconfs++;
+			$getconfs[$nrgetconfs]=$t[0]."_".$t[1];
+			$sql="SELECT * FROM notebro_temp.all_conf_".$t[1]." WHERE id = ".$t[0]."";
+			if($result = mysqli_query($cons,$sql))
+			{
+				$_SESSION['compare_list'][$getconfs[$nrgetconfs]] = mysqli_fetch_assoc($result);
+				$addtojava.=" addcompare('".$getconfs[$nrgetconfs]."'); ";
+				$nrgetconfs++;
+			}
+			else
+			{ $retry=1; }
 		}
 		else
-		{ $_SESSION['toalert'][]=$getconfs[$nrgetconfs]; unset($getconfs[$nrgetconfs]); }
+		{ $retry=1; }
+	
+		if($retry)
+		{
+			if(strpos($getconfs[$nrgetconfs],"_")!==FALSE)
+			{
+				$t=explode("_",$getconfs[$nrgetconfs]);
+				$sql="SELECT * FROM notebro_temp.all_conf_".$t[1]." WHERE value=(SELECT max(value) FROM notebro_temp.all_conf_".$t[1]." LIMIT 1) LIMIT 1";
+				if($result = mysqli_query($cons,$sql))
+				{
+					$row=mysqli_fetch_assoc($result); $getconfs[$nrgetconfs]=$row['id']."_".$t[1];
+					$_SESSION['compare_list'][$getconfs[$nrgetconfs]] = $row;
+					$addtojava.=" addcompare('".$getconfs[$nrgetconfs]."'); ";
+					$nrgetconfs++;	
+				}
+				else
+				{ $_SESSION['toalert'][]=$getconfs[$nrgetconfs]; unset($getconfs[$nrgetconfs]); }
+			}
+			else
+			{ $_SESSION['toalert'][]=$getconfs[$nrgetconfs]; unset($getconfs[$nrgetconfs]); }
+		}
 	}
 }
 $addtojava.="} });"; 
@@ -46,7 +72,7 @@ if($nrgetconfs<2)
 			{
 				$session_idconf[$nrconf] = $k;
 				$t=table($_SESSION['conf'.$k]['id']); $_SESSION['conf'.$k]['id']=$t[0]."_".$t[1];
-				$sql="SELECT * FROM notebro_temp.all_conf_".$t[1]." WHERE id = ".$t[0]."";
+				$sql="SELECT * FROM `notebro_temp`.`all_conf_".$t[1]."` WHERE id = ".$t[0]."";
 				if($result = mysqli_query($cons,$sql))
 				{
 					$_SESSION['compare_list'][$_SESSION['conf'.$k]['id']] = mysqli_fetch_assoc($result);
