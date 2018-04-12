@@ -11,7 +11,7 @@
 				·	
 				<span  style="cursor:pointer" onmousedown="OpenPage('footer/about.php',event);">About</span>
 				·								
-				<span style="cursor:pointer" onmousedown="OpenPage('footer/contact.php',event);">Contact</span>
+				<span style="cursor:pointer" onmousedown="OpenPage('footer/contact.php',event);">Contact Us</span>
 				·								
 				<span style="cursor:pointer" onmousedown="OpenPage('footer/privacy_policy.php',event);">Privacy Policy</span>
 			</h3>
