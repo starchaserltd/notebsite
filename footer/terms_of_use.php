@@ -12,7 +12,7 @@ if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_n
 	<br>
 	<p style="font-size:18px"><b>1. Key Terms</b></p>
 	<p><b>Noteb.com</b> (referred to here as <b>“noteb”</b>, <b>“Website”</b>, <b>“we”</b>, <b>“us”</b> or <b>“our”</b>) is primarily a laptop database with advanced search functionalities, where users can find the best laptop for their needs and search for technical specification, availability and prices on specific laptop models (collectively, the <b>"Services"</b>), which Services are accessible at www.noteb.com and any other websites through which Noteb makes the Services available (collectively, the <b>"Site"</b>) and as applications for mobile, tablet and other smart devices and application program interfaces (collectively, the <b>"Application"</b>).<br>
-	Noteb.com website and Noteb brand are fully owned and maintained by the <b>Starchaser SRL</b> company (referred to here as <b>“Starchaser”</b>).<br>
+	Noteb.com website and Noteb brand are fully owned and maintained by the limited company <b>Starchaser SRL</b> (referred to here as <b>“Starchaser”</b>).<br>
 	<b>"Noteb Content"</b> means all Content that Noteb makes available through the Site, Application, Services, or its related promotional campaigns and official social media channels, including any Content licensed from a third party, but excluding User Content.<br>
 	<b>"Content"</b> means text, graphics, images, music, software (excluding the Application), audio, video, information or other materials.</p>
 	<br>
