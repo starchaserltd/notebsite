@@ -146,6 +146,7 @@ if(isset($_GET['cpu_type']))
 			{
 				$cpu_prod[]="Intel";
 				$cpu_misc[]="Intel Core i7";
+				$cpu_misc[]="Intel Core i9";
 				break;
 			}
 			case "5":

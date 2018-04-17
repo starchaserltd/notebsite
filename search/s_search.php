@@ -20,7 +20,7 @@ require_once("etc/conf.php"); ?>
 				<option value="1" data-name="Intel">Intel any</option>
 				<option value="2" data-name="Core i3">Intel Core i3</option>
 				<option value="3" data-name="Core i5">Intel Core i5</option>
-				<option value="4" data-name="Core i7">Intel Core i7</option>
+				<option value="4" data-name="Core i7/i9">Intel Core i7/i9</option>
 				<option value="5" data-name="AMD">AMD any</option>
 				<option value="6" data-name="Ryzen">AMD Ryzen</option>
 				<option value="7" data-name="HT">Hyper-threading</option>

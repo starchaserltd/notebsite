@@ -111,7 +111,7 @@ if(isset($_GET['cpu_type']))
 			case "4":
 			{
 				array_push($valuetype[11],"INTEL");
-				$cpumsc.='<option selected="selected">Intel Core i7</option>';
+				$cpumsc.='<option selected="selected">Intel Core i7/i9</option>';
 				break;
 			}
 			case "5":

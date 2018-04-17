@@ -200,13 +200,13 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 	if(gettype($misc)!="array") { $misc=(array)$misc; }
 	foreach($misc as $x)
 	{
-		if($i)
-		{ $sel_cpu.=" AND "; }
-		else
-		{ $sel_cpu.=" AND ( "; }
-
-		if(stripos($x,"Intel Core i")===FALSE && stripos($x,"AMD Ryzen")===FALSE)
-		{	
+		if(stripos($x,"Intel Core i")===FALSE && stripos($x,"Ryzen")===FALSE )
+		{
+			if($i)
+			{ $sel_cpu.=" AND "; }
+			else
+			{ $sel_cpu.=" AND ( "; }	
+			
 			if(strcmp($x,"AVX1.0")==0) { $x="AVX/AVX1.0/AVX2.0"; }
 			
 			if(strpbrk($x,"/"))
@@ -226,23 +226,41 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 				$sel_cpu.=$x;
 				$sel_cpu.="',msc)>0";
 			}
+			$i++;
 		}
-		else
-		{
-			if(stripos($x,"Intel Core i")!==FALSE)
-			{
-				$x=str_ireplace("Intel Core ","",$x);
-				$sel_cpu.="model LIKE '%".$x."%'";
-			}
-			elseif(stripos($x,"AMD Ryzen")!==FALSE)
-			{
-				$x=str_ireplace("AMD ","",$x);
-				$sel_cpu.="model LIKE '%".$x."%'";
-			}
-		}
-		$i++;
 	}
-	if($i>0) { $sel_cpu.=" ) ";	}
+	if($i>0){ $sel_cpu.=" ) "; }
+
+	$i=0;
+	if(gettype($misc)!="array") { $misc=(array)$misc; }
+	foreach($misc as $x)
+	{
+		if(stripos($x,"Intel Core i")!==FALSE)
+		{
+			if($i)
+			{ $sel_cpu.=" OR "; }
+			else
+			{ $sel_cpu.=" AND ("; }
+			
+			$x=str_ireplace("Intel Core ","",$x);
+			if(stripos($x,"/")!==FALSE)
+			{ $x=explode("/",$x); $sel_cpu.="(model LIKE '%".$x[0]."%' OR model LIKE '%".$x[1]."%')"; }
+			else
+			{ $sel_cpu.="model LIKE '%".$x."%'"; }
+			$i++;
+		}
+		elseif(stripos($x,"Ryzen")!==FALSE)
+		{
+			if($i)
+			{ $sel_cpu.=" OR "; }
+			else
+			{ $sel_cpu.=" AND ("; }
+			
+			$sel_cpu.="model LIKE '%"."Ryzen"."%'";	
+			$i++;
+		}
+	}
+	if($i>0){ $sel_cpu.=" ) "; }
 
 	// Add rating to filter	
 	if($ratemin)
@@ -277,7 +295,7 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 	$sel_cpu.=" ORDER BY rating DESC";
 	
 	// DO THE SEARCH
-	//	echo $sel_cpu;
+	error_log($sel_cpu);
 
 	$result = mysqli_query($GLOBALS['con'], "$sel_cpu");
 	$cpu_return = array();
@@ -291,7 +309,6 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 	}
 	
 	mysqli_free_result($result);
-	//	$cpu_return[]=["id"=>"0","model"=>$sel_cpu,"gpu"=>$info];
 	return($cpu_return);
 }
 ?>
