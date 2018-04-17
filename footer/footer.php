@@ -8,12 +8,14 @@
 		<div class="footer-left">
 			<h3 class="footer-links" style="font-size:18px; color:#fff; font-weight:bold;">
 				<span  style="cursor:pointer" onmousedown="OpenPage('content/home.php');">Home</span>
-				·	
+				·
 				<span  style="cursor:pointer" onmousedown="OpenPage('footer/about.php',event);">About</span>
-				·								
+				·
 				<span style="cursor:pointer" onmousedown="OpenPage('footer/contact.php',event);">Contact Us</span>
-				·								
+				·
 				<span style="cursor:pointer" onmousedown="OpenPage('footer/privacy_policy.php',event);">Privacy Policy</span>
+				·
+				<span style="cursor:pointer" onmousedown="OpenPage('footer/terms_of_use.php',event);">Terms of Use</span>
 			</h3>
 			<p><a class="starchaserLink" href="http://www.starchaser.ro/">© 2017-2018 Starchaser S.R.L. </a></p>
 			</div>
