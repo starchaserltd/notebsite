@@ -396,7 +396,7 @@ div.searchresultitlu  p {
 
 @media screen and (min-width:405px) and (max-width:500px) {
 	.searchresultdesc {
-		height: 170px !important;
+		height: 185px !important;
 		font-size: 10.5px;
 	}
 

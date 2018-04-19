@@ -152,7 +152,7 @@
 					<input type="radio" name="gputype" value="2" id="r-any" class="css-radiobox" <?php if($gputype==2){ echo 'checked="checked"';} ?>>
 					<label for="r-any" class="css-labelr" style="font-weight:normal">Any</label>
 				</div>
-				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						<div>Type</div>			
 						<select id="gputype2" name="gputype2[]" data-lcom='GPU_model' data-lfield="gpu_type" multiple="multiple">

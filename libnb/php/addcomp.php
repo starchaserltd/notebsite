@@ -91,11 +91,10 @@ if($already)
 	else
 	{
 		mysqli_select_db($con,"notebro_db");
-		$sql="SELECT families.fam, model.model, model.submodel FROM notebro_db.MODEL model JOIN notebro_db.FAMILIES families on model.idfam=families.id WHERE model.id=".$conf_model;
+		$sql="SELECT families.fam, model.model, model.submodel, img_1 FROM notebro_db.MODEL model JOIN notebro_db.FAMILIES families on model.idfam=families.id WHERE model.id=".$conf_model;
 		$result = mysqli_query($con,$sql);
-
-		while ($row = mysqli_fetch_assoc($result)) { if(strlen($row["submodel"])>6 && !preg_match("/\(.*\)/",$row["submodel"])){ $row["submodel"]=substr($row["submodel"],0,6)."."; } $name=$row["fam"]." ".$row["model"]." ".$row["submodel"]; }
-		
+		$currentconf["img"]="missing";
+		while ($row = mysqli_fetch_assoc($result)) { if(strlen($row["submodel"])>6 && !preg_match("/\(.*\)/",$row["submodel"])){ $row["submodel"]=substr($row["submodel"],0,6)."."; } $name=$row["fam"]." ".$row["model"]." ".$row["submodel"]; $currentconf["img"]=$row["img_1"]; } 
 		mysqli_free_result($result);
 		$_SESSION['conf'.$i]=$currentconf;
 		$nrcheck++;
@@ -107,12 +106,12 @@ if($already)
 		if($k)
 		{
 			$_SESSION['conf'.$i]["name"]=$name." (".$k.")";
-			echo $name." (".$k.")++".$checked."++".$nrcheck."++".$currentconf["id"]."++".$currentconf['cpu_info']."++".$currentconf['gpu_info']."++".$currentconf['disp_size']."++".$currentconf['disp_res']."++".$currentconf['mem_info']."++".$currentconf['hdd_info']."++".$i;
+			echo $name." (".$k.")++".$checked."++".$nrcheck."++".$currentconf["id"]."++".$currentconf['cpu_info']."++".$currentconf['gpu_info']."++".$currentconf['disp_size']."++".$currentconf['disp_res']."++".$currentconf['mem_info']."++".$currentconf['hdd_info']."++".$currentconf["img"]."++".$i;
 		}
 		else
 		{
 			$_SESSION['conf'.$i]["name"]=$name;	
-			echo $name."++".$checked."++".$nrcheck."++".$currentconf["id"]."++".$currentconf['cpu_info']."++".$currentconf['gpu_info']."++".$currentconf['disp_size']."++".$currentconf['disp_res']."++".$currentconf['mem_info']."++".$currentconf['hdd_info']."++".$i;
+			echo $name."++".$checked."++".$nrcheck."++".$currentconf["id"]."++".$currentconf['cpu_info']."++".$currentconf['gpu_info']."++".$currentconf['disp_size']."++".$currentconf['disp_res']."++".$currentconf['mem_info']."++".$currentconf['hdd_info']."++".$currentconf["img"]."++".$i;
 		}
 	}
 }

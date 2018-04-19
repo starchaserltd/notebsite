@@ -84,6 +84,7 @@ $(function() {
 
 //Open add to compare when you add a laptop
 $('#addcompare').on('click', function() {
+	$('.compareDropdown').css('display', 'block');
 	$('.compareDropdown ul li').addClass('open');
 	$('.compareDropdown ul li ul').slideDown();
 });

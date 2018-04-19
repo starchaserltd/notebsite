@@ -258,6 +258,9 @@ $(document).ready(function() {
 	$( ".leftMenuFilters" ).click(function() { $( ".SearchParameters" ).toggle("slow"); $( ".leftMenuFilters" ).toggleClass("rotate"); });
 	$(".navbar-header").click(function() { $('.navbar-collapse').slideToggle("slow"); });
 	if ($(window).width() < 768) { $(".quickSearchContainer").appendTo($(".firstContainer")); }
+
+    //Append Compare to FirstContainer
+    if ($(window).width() < 768) { $(".compareDropdown").appendTo($(".firstContainer")); }
 });
 
 //THE SORT BY RESULTS BUTTONS 

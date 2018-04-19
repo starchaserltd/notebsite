@@ -145,7 +145,7 @@ else
 		<div class="col-md-12 col-sm-12 col-xs-12" style="background-color:white; font-family:arial;padding:0px;text-align:left;margin-right: -15px;margin-left: -15px;">
 			<div class="col-md-4 col-sm-6 col-lg-4 col-xs-12 btn" style="text-align:left;padding-top:0px">
 				<div>
-					<span class="toggler compmod" data-hide="all" style="color:black;background-color:#FFD466;padding:2px 20px;font-weight:normal"> Show all details </span>
+					<span class="toggler compmod" data-hide="all" style="color:black;background-color:#FFD466;padding:2px 20px;font-weight:normal">Show all details</span>
 						<!-- We take great effort to assure component compatibility for each configuration. If you think we made a mistake, please contact us. -->
 				</div>
 			</div>
@@ -785,5 +785,5 @@ else
 <?php  
 } } ?>
 </div>
-<link rel="stylesheet" href="model/lib/css/model.css?v=19" type="text/css"/>
+<link rel="stylesheet" href="model/lib/css/model.css?v=20" type="text/css"/>
 <?php include_once("../etc/scripts_pages.php"); ?>

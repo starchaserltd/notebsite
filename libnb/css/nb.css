@@ -917,8 +917,7 @@ fieldset[disabled] .btn-result.active {
 .comparename {
     padding: 0px !important;
     color: #000 !important;
-    background-color: #fff !important;
-    font-size: 16px !important;
+    background-color: #fff !important;    
 }
 
 .comparecell1 {
@@ -926,12 +925,11 @@ fieldset[disabled] .btn-result.active {
     padding-left: 3px !important;
     padding-bottom: 2px !important;
     padding-top: 2px !important;
+    width: 20px;
 }
 
 .comparecell2 {
-    padding-bottom: 2px !important;
-    padding-top: 2px !important;
-    padding-left: 20px !important;
+    padding: 4px 0px 0px 0px!important;
 }
 
 .submitbutton {
@@ -1753,8 +1751,8 @@ label.css-labelr {
 
 #top-link-block.affix {
     position: fixed;
-    bottom: 12px;
-    right: 50px;
+    bottom: 5px;
+    right: 235px;
     z-index: 99;
     background-color: #292d2f;
     padding: 10px;
@@ -1900,6 +1898,90 @@ nav:after {
 .irevtop #site + .select2-container:after{
     content: " ";
 }
+
+.compareDropdown {
+	position: fixed;
+	bottom: -2px;
+	right: 0;
+	width: 220px;
+	display: none;
+	border-radius: 15px 15px 0 0;
+    z-index: 99;
+}
+
+.cssmenu.compareDropdown ul>li.has-sub>a {
+    position: relative;  
+    display: block;       
+}
+
+.cssmenu.compareDropdown ul ul li a {
+    padding: 0;
+    background: #fff;
+}
+
+.cssmenu.compareDropdown ul>li.has-sub>a:before {
+   content: "\e253";
+   width: 0;
+   top:18px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;    
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    right: 35px;
+}
+
+.cssmenu.compareDropdown ul>li.has-sub>a:after {  
+   width: 0;
+  
+}
+
+.cssmenu.compareDropdown ul>li.has-sub.open>a:before {
+    content: "\e252";
+}
+
+td.text-center.comparecell3 {
+    width: 60px;
+    margin-left: 10px;
+    padding: 4px 0px 4px 0px;
+}
+
+table#comparelist td {
+    vertical-align: bottom;
+    padding-bottom: 15px!important;
+    padding-top: 10px!important;
+}
+
+table#comparelist td.text-center.comparecell2 {
+    vertical-align: middle;
+}
+
+td.text-center.comparecell3 img {
+    padding: 5px 5px 0px 5px;
+    width: 50px;
+}
+
+
+a.toggler {
+ cursor: pointer;
+}
+
+table#comparelist td.text-center.comparecell2 {
+    padding-bottom: 7px!important;
+}
+
+table#comparelist td.text-center.comparecell3 {
+    padding-bottom: 7px!important;
+}
+
+
 
 /*Responsive media design */
 
@@ -2274,7 +2356,9 @@ nav:after {
         display: none;
     }
     #top-link-block.affix {
-        right: 20px;
+        right: auto;
+        left:20px;
+        bottom: 15px;
     }
 
     .home #content {
@@ -2347,6 +2431,39 @@ nav:after {
 
     .findLaptop {
         margin-left: 34px;
+    }
+
+    .compareDropdown {
+        width: 130px;
+        font-size: 14px;
+    }
+
+    button.btn.btnc {
+        padding: 5px 10px!important;
+    }
+
+    .cssmenu.compareDropdown ul>li.has-sub>a {
+        padding: 9px 15px;
+        font-size: 14px;
+        margin-left: -15px;
+        text-align: center;
+    }
+
+    .cssmenu.compareDropdown ul>li.has-sub>a:before {
+        top:11px;
+        right: 37px;
+    }
+
+    td.text-center.comparecell3 {
+        display: none;
+    }
+
+    tr#toptrcomp {
+        font-size: 12px;
+    }
+
+    table#comparelist tr#toptrcomp > td {
+        padding: 3px!important;
     }
 }
 

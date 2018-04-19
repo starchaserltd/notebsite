@@ -92,7 +92,7 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 					</a>
 				</div>
 				<div class="searchprice"><?php echo ""; echo $exchsign; echo " "; echo showprice(('notebro_temp.'.$temp_table."_".$rand['model']), $rand['id'], $exch );?></div>
-				<div class="btn col-md-12 col-sm-12 col-xs-12 addtocpmp" onclick="addcompare('<?php echo $rand['id']."_".$rand['model'];?>')">Add to compare</div>
+				<div class="btn col-md-12 col-sm-12 col-xs-12 addtocpmp" onclick="addcompare('<?php echo $rand['id']."_".$rand['model'];?>')">Compare</div>
 			</div>
 		</div>
 		<?php

@@ -6,6 +6,7 @@ $(document).ready(function() {
 	actbtn("SEARCH");	
 	//Dropdown add to compare
 	$('.addtocpmp').on('click', function() {
+		$('.compareDropdown').css('display', 'block');
 	    $('.compareDropdown ul li').addClass('open');
 	    $('.compareDropdown ul li ul').slideDown();	    
 	    $('.navbar-collapse').slideDown("slow");
