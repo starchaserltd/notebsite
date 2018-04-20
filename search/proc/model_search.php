@@ -45,7 +45,7 @@ function search_model ($mmodel,$prodmodel,$fammodel,$msc,$regions,$minclass,$max
 	if(gettype($fammodel)!="array") { $fammodel=(array)$fammodel; }
 	foreach($fammodel as $x)
 	{
-		$fam_parts=explode(" ",$x); unset($fam_parts[0]); $x=implode(" ",$fam_parts);
+		$fam_parts=explode(" ",$x); $fam_prod=$fam_parts[0]; unset($fam_parts[0]); $x=implode(" ",$fam_parts);
 		if($i)
 		{ $sel_model.=" OR "; }
 		else
@@ -53,9 +53,11 @@ function search_model ($mmodel,$prodmodel,$fammodel,$msc,$regions,$minclass,$max
 			$sel_model.=" AND idfam IN ( SELECT id FROM `FAMILIES` WHERE ";
 		}
 		
-		$sel_model.="fam='";
+		$sel_model.=" ( `FAMILIES`.`fam`='";
 		$sel_model.=$x;
-		$sel_model.="'";
+		$sel_model.="' AND `FAMILIES`.`prod`='";
+		$sel_model.=$fam_prod;
+		$sel_model.="')";
 		$i++;
 	}
 	if($i>0){ $sel_model.=" ) "; }
