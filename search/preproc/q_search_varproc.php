@@ -93,7 +93,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 	{
 		case 'model' :
 		{		
-			$regions_name[]="USA and Canada";
+			$regions_name[]="United States";
 			
 			if (isset($_GET['casual']) && $_GET['casual']==1)
 			{	if($model_minclass>0) { $model_minclass=0; }  if($model_maxclass<2){ $model_maxclass=1; } } 

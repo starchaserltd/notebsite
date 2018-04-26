@@ -28,7 +28,7 @@ if (isset($_GET['cad3d']) && $_GET['cad3d']==1 && !(isset($_GET['3dmodel'])))
 {	$_GET['3dsmaxlight']=1; }
 
 //REGIONAL Conditions
-$regions_name[]="USA and Canada";
+$regions_name[]="United States";
 	
 // Laptop Class Conditions
 $model_minclass=999; $model_maxclass=-1;

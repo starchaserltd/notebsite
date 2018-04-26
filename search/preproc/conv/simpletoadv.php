@@ -312,7 +312,7 @@ if(isset($_GET['region_type']))
 	$regions="";
 	foreach($_GET['region_type'] as $el)
 	{
-		if($el==1){ $regions.='<option selected="selected">USA and Canada</option>'; }
+		if($el==1){ $regions.='<option selected="selected">United States</option>'; }
 		elseif ($el==2){ $regions.='<option selected="selected">Europe</option>'; $waryearsmin=2; }
 	}
 }
