@@ -90,7 +90,7 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 	$_SESSION['exch']=$exch;
 	$_SESSION['exchsign']=$value["sign"];
 	$_SESSION['lang']=$value["id"];
-	
+	include_once("../etc/scripts_pages.php");
 	if($underwork==0)
 	{
 		if(isset($_GET['page'])){$page=intval($_GET['page']);} 
@@ -142,4 +142,3 @@ else
 	echo "Heh! What are you trying to do?";
 }
 ?>
-<?php include_once("../etc/scripts_pages.php"); ?>
