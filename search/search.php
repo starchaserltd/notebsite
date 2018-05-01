@@ -124,7 +124,7 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 		/********************************************************************/
 
 		else if (isset($_GET['browse_by']) && $_GET['browse_by'])
-		{ include ("preproc/b_search_varproc.php"); }
+		{ $mem_capmax=32; include ("preproc/b_search_varproc.php"); }
 		
 		require("proc/search_filters.php");
 		include("results.php");

@@ -2,7 +2,7 @@
 
 if(isset($_GET['sort_by'])) { $sort_by = clean_string($_GET['sort_by']); }
 if(isset($_GET['browse_by'])) { $browse_by = clean_string($_GET['browse_by']); }
-$to_search["model"]=1; $totalcapmin=0; $set_j_ssearch="";
+$to_search["model"]=1; $totalcapmin=0; $set_j_ssearch="";  $mem_capmax=32;
 //LIST OF COMPONENTS WE WILL FILTER
 $to_search = array(
 	"model"   => 1,
@@ -13,7 +13,7 @@ $to_search = array(
     "gpu"     => 0,
     "hdd"     => 0,
     "mdb"     => 0,
-    "mem"     => 0,
+    "mem"     => 1,
     "odd"     => 0,
     "prod"    => 0,
     "shdd"    => 0,

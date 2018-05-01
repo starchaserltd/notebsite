@@ -1,7 +1,7 @@
 <?php
 /* SIMPLE SEARCH */
 //Initialising some generic values
-$cpu_tdpmin=0.01; $gpu_powermin=0.00; $display_hresmin=0.01; $hdd_capmin=0.01; $war_yearsmin=0.01; $acum_capmin=0.01; $wnet_ratemin=0.00; $sist_pricemax=1; $odd_speedmin=0.01; $hdd_capmin = 1; $hdd_capmax = 3024; $mem_capmin=0.01; $mdb_ratemin=0.01; $chassis_weightmin=0.01; $wnet_speedmin=150;
+$cpu_tdpmin=0.01; $gpu_powermin=0.00; $display_hresmin=0.01; $hdd_capmin=0.01; $war_yearsmin=0.01; $acum_capmin=0.01; $wnet_ratemin=0.00; $sist_pricemax=1; $odd_speedmin=0.01; $hdd_capmin = 1; $hdd_capmax = 1900; $mem_capmin=0.01; $mdb_ratemin=0.01; $chassis_weightmin=0.01; $wnet_speedmin=150;
 $diffsearch=0;
 $batlife_min=0;
 $batlife_max=1000;

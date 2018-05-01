@@ -12,7 +12,7 @@ while(isset($result[$i][0]))
 $bdgmin=$result[$i-2][0]*0.9;
 $bdgmax=$result[$i-1][0]*1.1;
 $browse_by = $_GET['browse_by']; $producer="";
-$model_minclass=0; $model_maxclass=99;
+$model_minclass=0; $model_maxclass=99; $totalcapmax=2048; $memcapmax=32;
 switch ($browse_by) 
 {
 	case "prod":

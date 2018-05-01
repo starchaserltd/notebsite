@@ -3,7 +3,6 @@ require_once("confsearchfunc.php");
 require_once("../etc/con_sdb.php");
 
 $cons=dbs_connect();
-
 if($browse_by)
 {
 	//IF BROWSING WE HAVE A SIMPLER QUERY	
@@ -15,7 +14,7 @@ if($browse_by)
 		$conds[$v] = $v . " IN (" . implode(",", array_keys($comp_lists[$v])) . ")";
 	} 
 	if ($nr_hdd == 2) { $conds["shdd"] = "shdd > 0"; }
-	$conds["capacity"] = "(capacity > " . $totalcapmin . " )";
+	$conds["capacity"] = "(capacity BETWEEN " . $totalcapmin . " AND 2048 )";
 }
 elseif ($issimple || $isadvanced || $isquiz)
 {
