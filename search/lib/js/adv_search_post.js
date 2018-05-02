@@ -834,14 +834,28 @@ function setrecommended()
 	return;
 }
 
+function warranty_2year() { if(document.getElementById('years').noUiSlider.get()[0]<2) { document.getElementById('years').noUiSlider.set([2,]); } }
+function warranty_1year() { if(document.getElementById('years').noUiSlider.get()[0]==2) { document.getElementById('years').noUiSlider.set([1,]); } }
+
 $('#Regions_name_id').on("select2:select", function(e){ 
    if(triggerchange($('#Regions_name_id'),"Europe",0))
-   { if(document.getElementById('years').noUiSlider.get()[0]<2) { document.getElementById('years').noUiSlider.set([2,]); } }
+   { warranty_2year(); }
 });
 
 $('#Regions_name_id').on("select2:unselect", function(e){ 
    if(triggerchange($('#Regions_name_id'),"Europe",0))
-   { if(document.getElementById('years').noUiSlider.get()[0]<2) { document.getElementById('years').noUiSlider.set([2,]); } }
+   {  warranty_2year(); }
    else
-   { if(document.getElementById('years').noUiSlider.get()[0]==2) { document.getElementById('years').noUiSlider.set([1,]); } }
+   {  warranty_1year(); }
 });
+
+function change_region(currency)
+{
+	switch(currency)
+	{		
+		case "EUR": { $("#Regions_name_id").empty().append('<option value="Europe">Europe</option>').val('Europe').trigger('change'); warranty_2year();  break; }
+		case "GBP": { $("#Regions_name_id").empty().append('<option value="Europe">Europe</option>').val('Europe').trigger('change'); warranty_2year(); break; }
+		case "USD": { $("#Regions_name_id").empty().append('<option value="United States">United States</option>').val('United States').trigger('change'); warranty_1year(); break; }
+		default: { break; }
+	}
+}

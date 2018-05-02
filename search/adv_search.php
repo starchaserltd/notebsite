@@ -42,7 +42,7 @@
 								<span style="font-size:16px; font-weight:bold;">Budget:</span>
 								<span style="margin-left: 3px;" id="2"><input type="tel" name="bdgminadv" id="bdgminadv" value="<?php echo round(floatval($bdgmin)*floatval($basevalue)); ?>" size="1" maxlength="5" onchange="checkminadv()" class="budget">  -
 								<input type="tel" name="bdgmaxadv" id="bdgmaxadv" value="<?php echo round(floatval($bdgmax)*floatval($basevalue)); ?>" size="1" maxlength="5" onchange="checkmaxadv()"class="budget" ></span>						
-								<select name ="exchadv" id="currencyadv" onchange="sliderrangeadv(this); this.oldvalue = this.value;">
+								<select name ="exchadv" id="currencyadv" onchange="sliderrangeadv(this); this.oldvalue = this.value; change_region(this.value);">
 									<?php echo $var_currency; //this variable comes from lib/currency.php ?>
 								</select>
 							</div>
