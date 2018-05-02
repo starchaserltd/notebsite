@@ -16,9 +16,9 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 				<button type="button" <?php $nosearch=0; $search_ref=str_replace("/advanced_search","/adv_search",$absolute_url[0],$nosearch); if(!($nosearch)){ $search_ref=str_replace("/search.php?","/adv_search.php?",$absolute_url[0]);} $text='onmousedown="OpenPage('."'".$search_ref; foreach($sortby as $sort) {} $text.="',event)".'"'; echo $text ?> class="btn btn-result" style="margin-right:24px;border-radius:1px !important; height:25px; padding:2px 15px;"> <a style="text-decoration:none;color:white">Refine results</a></button>
 			</div>
 <?php		
-			include_once("proc/confsearch.php"); /* WHERE THE REAL SEARCH IS DONE! */
-			if($count > 0)
-			{ ?>
+		include_once("proc/confsearch.php"); /* WHERE THE REAL SEARCH IS DONE! */
+		if($count > 0)
+		{ ?>
 			<div class="col-md-6 col-sm-6 col-xs-12 col-lg-6" style="padding:0px">
 				<div class="btn-group">		
 					<div class="btn-group" style="float:right;width:auto!important;margin-left:3px">
@@ -159,11 +159,10 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 			mysqli_close($cons);
 		}
 		else
-		{ echo "</div></div></div>";
-	//<br><span style="font-size: 20px"> Website under maintenance, we will be back!</span>
+		{  echo "</div></div>";
 	?>
 <div class="col-md-8 col-md-offset-2 " style="border:1px solid #ddd; background-color:#f6f6f6; border-radius:5px;margin-top:20px; text-align:center; font-weight:bold;padding:10px;">
-	<span style="margin-top:2px;"> No results found for your criteria and budget <?php echo "(".$exchsign."".round($budgetmin*$exch)." - ".$exchsign."".round($budgetmax*$exch).")"; ?>.<br> Try different search options. <br></span>
+	<span style="margin-top:2px;"> No results found for your parameters and budget <?php echo "(".$exchsign."".round($budgetmin*$exch)." - ".$exchsign."".round($budgetmax*$exch).")"; ?>.<br> Try different search options. <br></span>
 </div>
 <?php
 		}
