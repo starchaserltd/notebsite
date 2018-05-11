@@ -30,7 +30,7 @@ button.close {padding:2px 7px 0px 10px!important}
 .btn.active, .btn:active { box-shadow:none!important;}
 .btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {outline:none!important}
 </style>
-<div class="container-fluid headerback" style="margin-right:0px;padding-right: 0px;">
+<div class="container-fluid headerback" style="margin-right:0px;padding-right: 0px; padding-left: 0px;">
 
 <?php
 if($nonexistent)
@@ -41,11 +41,11 @@ if($nonexistent)
 else
 { 
 ?>
-	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="font-size:16px; color:#575757;">
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-8 col-xl-offset-2 col-lg-offset-0" style="font-size:16px; color:#575757;">
 		<h2 class="h4 strong modelHeader">
 <?php
 		$_SESSION['model'] = $idmodel; $model_data=show_vars('model.prod, families.fam, families.subfam, families.showsubfam, model.model,model.submodel,model.regions,model.keywords', 'notebro_db.MODEL model JOIN notebro_db.FAMILIES families ON model.idfam=families.id',$idmodel); $mprod=$model_data["prod"]; if(isset($model_data["subfam"])&&$model_data["showsubfam"]!=0){ $model_data["subfam"]=" ".$model_data["subfam"]; } else { $model_data["subfam"]=""; } $mfam=$model_data["fam"].$model_data["subfam"];  $mmodel=$model_data["model"];  $msubmodel=$model_data["submodel"]; 
-		$mregion_id=intval(explode(",",$model_data['regions'])[0]); if($mregion_id!=1){ $mregion="(".show_vars("disp","REGIONS",$mregion_id).")"; } else { $mregion=""; } if(isset($model_data["keywords"])&&$model_data["keywords"]!=""&&$model_data["keywords"]!=NULL&&$model_data["keywords"]!=" ") { $keywords=str_replace(",","+",$model_data["keywords"]); } else { switch($mprod) { case "Dell": {$keywords=$mprod."+".$mfam."+".$mmodel; break; } case "Lenovo": {$keywords=$mprod."+".$mfam."+".$mmodel; break; } case "HP": {$keywords=$mprod."+".$mfam."+".$mmodel; break; } default: {$keywords=$mprod."+".$mmodel; } } }
+		$mregion_id=intval(explode(",",$model_data['regions'])[0]); if($mregion_id!=1){ $mregion="(".show_vars("disp","REGIONS",$mregion_id).")"; $buy_regions=$model_data['regions']; } else { $mregion=""; $buy_regions=0; }
 ?>
 				
 <?php	
@@ -68,84 +68,127 @@ else
 <?php
 		show_vars('img_1,img_2,img_3,img_4','MODEL',$idmodel);
 		$imglist=$show_vars;
-?> 
-		<div class="col-md-8 col-sm-12 col-xs-12 col-lg-7 " style="margin-top:25px;display:flex;flex-wrap:wrap;">
-<?php	if(isset($imglist["img_1"]))
-		{ ?>
-			<div class="col-lg-5 col-md-4 col-sm-4 col-xs-8 col-xs-offset-2 col-sm-offset-0 firstImageModel" style="align-self:center"><a href="res/img/models/<?php echo $imglist["img_1"];?>" data-lightbox="slider"><img class="pics" style="width:100%; height:auto;" src="res/img/models/<?php echo $imglist["img_1"];?>" alt="<?php $mmodel ?>"></a></div>
-<?php 	}
-		if($imglist["img_2"])
-		{ ?>
-			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-4" style="align-self:center"><a href="res/img/models/<?php echo $imglist["img_2"];?>" data-lightbox="slider" data-lightbox="slider"><img class="pics" style="width:100%; height:auto;" src="res/img/models/<?php echo $imglist["img_2"];?>" alt="<?php $mmodel ?>"></a></div>
-<?php 	}
-		if($imglist["img_3"])
-		{ ?>
-			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-4" style="align-self:center"><a href="res/img/models/<?php echo $imglist["img_3"];?>" data-lightbox="slider" data-lightbox="slider"><img class="pics" style="width:100%; height:auto;" src="res/img/models/<?php echo $imglist["img_3"];?>" alt="<?php $mmodel ?>"></a></div>
-<?php 	} 
-		if($imglist["img_4"])
-		{ ?>	
-			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-4" style="align-self:center"><a href="res/img/models/<?php echo $imglist["img_4"];?>" data-lightbox="slider" data-lightbox="slider"><img class="pics" style="width:100%; height:auto;" src="res/img/models/<?php echo $imglist["img_4"];?>" alt="<?php $mmodel ?>" data-lightbox="slider"></a></div>
-<?php 	} ?>
+?> 		<div class="row">
+				<div class="col-lg-12 col-xl-8 col-xl-offset-2 col-lg-offset-0 modelImageContainer">
+		<?php	if(isset($imglist["img_1"]))
+				{ ?>
+				<div class="row" style="display:flex;flex-wrap:wrap;">
+						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 firstImageModel" style="align-self:center"><a href="res/img/models/<?php echo $imglist["img_1"];?>" data-lightbox="slider"><img class="pics" style="width:100%; height:auto;" src="res/img/models/<?php echo $imglist["img_1"];?>" alt="<?php $mmodel ?>"></a></div>
+		<?php 	}
+				if($imglist["img_2"])
+				{ ?>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-4" style="align-self:center"><a href="res/img/models/<?php echo $imglist["img_2"];?>" data-lightbox="slider" data-lightbox="slider"><img class="pics" style="width:100%; height:auto;" src="res/img/models/<?php echo $imglist["img_2"];?>" alt="<?php $mmodel ?>"></a></div>
+		<?php 	}
+				if($imglist["img_3"])
+				{ ?>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-4" style="align-self:center"><a href="res/img/models/<?php echo $imglist["img_3"];?>" data-lightbox="slider" data-lightbox="slider"><img class="pics" style="width:100%; height:auto;" src="res/img/models/<?php echo $imglist["img_3"];?>" alt="<?php $mmodel ?>"></a></div>
+		<?php 	} 
+				if($imglist["img_4"])
+				{ ?>	
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-4" style="align-self:center"><a href="res/img/models/<?php echo $imglist["img_4"];?>" data-lightbox="slider" data-lightbox="slider"><img class="pics" style="width:100%; height:auto;" src="res/img/models/<?php echo $imglist["img_4"];?>" alt="<?php $mmodel ?>" data-lightbox="slider"></a></div>
+		<?php 	} ?>
+					<div  class="officialSiteContainer rating">	
+						<div class="officialSite" style="padding:0px;">
+							<p style="color:black;text-decoration:none; font-weight:bold">Official Site:</p>
+						</div>
+						<div class="officialSite" style="padding:0 0 0 5px;">
+							<?php $imgprod=mysqli_fetch_array(mysqli_query($con,"SELECT pic,pic2 FROM notebro_site.brands WHERE brand='".$mprod."'")); show_vars('link,link2', 'MODEL',$idmodel );?>
+							<a href="<?php echo $show_vars["link"].'" target="blank"><img src=res/'.$imgprod["pic"].' class="logoheightof" alt="Product consumer page">'; ?></a>
+							<?php if(isset($show_vars["link2"]) && $show_vars["link2"]){ ?><a href="<?php echo $show_vars["link2"].'" target="blank"><img src=res/'.$imgprod["pic2"].' class="logoheightof" style="margin-left:2px" alt="Product business page">'; ?></a> <?php } ?>
+						</div>
+				</div>	
+			</div>			
 		</div> 
-		<div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 ptop" style="margin-top:25px; line-height:10px; padding:0px;">
-			<div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
-				<p style="text-align:center;"><span><b>Laptop Rating: </b></span><span  class="labelblue"><span id="notebro_rate" style="font-size:16px; color:#285F8F; margin-left:4px;"></span><span style="font-size:16px; color:#285F8F;"> / 100</span></span></p>
-			</div>
-			<div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
-				<p style="padding-top:4px;text-align:center;"><span style=""><b>Price Range: </b></span><span  class="labelblue"><span style="color:#285F8F; font-size:15px; margin-left:4px;"><?php echo " "; echo showcurrency($exch); ?></span><span id="config_price1" style="font-size:16px; color:#285F8F; margin-left:2px;"></span> - <span id="config_price2" style="font-size:16px; color:#285F8F;"></span></span></p>
-			</div>
-			<div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
-				<p style="padding-top:4px;text-align:center;"><span style=""><b>Battery life: </b></span><span  class="labelblue"><span id="bat_life1" style="font-size:16px; color:#285F8F; margin-left:4px;"></span> - <span id="bat_life2" style="font-size:16px; color:#285F8F;"></span><span style="color:#285F8F;"> <?php echo " h"; ?></span></span></p>
-			</div>	
-			<div class="col-md-12 col-sm-12 col-xs-12 btn" style="padding:0px;margin-top:2px;">
-				<div class="btn addtocpmp" id="addcompare" ><a style="text-decoration:none;">Add to compare</a></div>				
-			</div>
-			<div class="col-md-12 col-sm-12 col-xs-12 config" style="padding: 0px;">
-				<div class="dropdown">
-					<button id="dLabel" class="btn addtocpmp showConfigOption" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Configure for
-						<span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu configDropdown" aria-labelledby="dLabel">
-						<li class="configOptions" <?php if(!isset($best_low["best_value"])||(isset($best_low["best_value"])&&$best_low["best_value"]=="")){ echo 'style="display:none;"'; } ?> onmousedown="OpenPage('<?php echo "model/model.php?conf=".$best_low["best_value"]."_".$idmodel."&ex=USD"; ?>',event)";>Best Value</li>
-						<li class="configOptions" <?php if(!isset($best_low["best_performance"])||(isset($best_low["best_performance"])&&$best_low["best_performance"]=="")){ echo 'style="display:none;"'; } ?> onmousedown="OpenPage('<?php echo "model/model.php?conf=".$best_low["best_performance"]."_".$idmodel."&ex=USD"; ?>',event)";>Max Performance</li>
-						<li class="configOptions" <?php if(!isset($best_low["lowest_price"])||(isset($best_low["lowest_price"])&&$best_low["lowest_price"]=="")){ echo 'style="display:none;"'; } ?> onmousedown="OpenPage('<?php echo "model/model.php?conf=".$best_low["lowest_price"]."_".$idmodel."&ex=USD"; ?>',event)";>Lowest Price</li>						
-					</ul>
+		</div>	<!-- row-->	
+		<div class="row">
+			<div class="col-lg-12 ptop col-xl-8 col-xl-offset-2 col-lg-offset-0">
+				<div class="ratingContainer">
+						<div class="rating" style="padding: 0px;">
+							<p style="text-align:center;"><span><b>Rating: </b></span><span  class="labelblue"><span id="notebro_rate" style="margin-left:4px;"></span><span> / 100</span></span></p>
+						</div>
+						<div class="rating" style="padding: 0px;">
+							<p style="text-align:center;"><span style=""><b>Price: </b></span><span  class="labelblue"><span style="margin-left:4px;"><?php echo " "; echo showcurrency($exch); ?></span><span id="config_price1" style="margin-left:2px;"></span> - <span id="config_price2"></span></span></p>
+						</div>
+						<div  class=" rating" style="padding: 0px;">
+							<p style="text-align:center;"><span style=""><b>Battery: </b></span><span  class="labelblue"><span id="bat_life1" style="margin-left:4px;"></span> - <span id="bat_life2"></span><span> <?php echo " h"; ?></span></span></p>
+						</div>	
+				</div>				
+				<div class="buy">
+					<div class="dropdown">
+						<button id="dLabel" class="btn addtocpmp buyBtn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Buy
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="dLabel">											
+								<?php
+									$excluded_sellers=array();
+									if($buy_regions==0){ $region_sel=""; }else{ $region_sel=", (SELECT `notebro_buy`.`SELLERS`.`region` FROM `notebro_buy`.`SELLERS` WHERE `notebro_buy`.`PRICES`.`seller`=`notebro_buy`.`SELLERS`.id AND `notebro_buy`.`SELLERS`.`region` IN (".$buy_regions.") LIMIT 1) as region"; }
+									$sql="SELECT `notebro_buy`.`PRICES`.`seller`,`notebro_buy`.`PRICES`.`link`,`notebro_buy`.`PRICES`.`price`,(SELECT `notebro_buy`.`SELLERS`.`logo` FROM `notebro_buy`.`SELLERS` WHERE `notebro_buy`.`PRICES`.`seller`=`notebro_buy`.`SELLERS`.id LIMIT 1) as logo,(SELECT `notebro_buy`.`SELLERS`.`exchrate` FROM `notebro_buy`.`SELLERS` WHERE `notebro_buy`.`PRICES`.`seller`=`notebro_buy`.`SELLERS`.id AND `notebro_buy`.`SELLERS`.`exchrate` IN (".$lang.") LIMIT 1) as exch_test,(SELECT `notebro_site`.`exchrate`.`sign` FROM `notebro_site`.`exchrate` WHERE `notebro_site`.`exchrate`.`id`=(SELECT `notebro_buy`.`SELLERS`.`exchrate` FROM `notebro_buy`.`SELLERS` WHERE `notebro_buy`.`PRICES`.`seller`=`notebro_buy`.`SELLERS`.id LIMIT 1) LIMIT 1) as exch".$region_sel." FROM `notebro_buy`.`PRICES` WHERE `notebro_buy`.`PRICES`.`model_id`=$idmodel";
+									// var_dump($sql);
+									$result=mysqli_query($con,$sql);
+									if($result && mysqli_num_rows($result)>0)
+									{
+										while($row=mysqli_fetch_assoc($result))
+										{
+											if($row["exch_test"]!==NULL&&((isset($row["region"])&&$row["region"]!==NULL)||(!isset($row["region"]))))
+											{
+												echo '<li></span><a href="'.$row["link"].'" target="blank"><span><span style="font-size: 12px;display:block;" class="searchLink">from </span><span style="font-weight: bold; font-size: 14px;" class="searchLink">'.$row["exch"].$row["price"].'</span></span><span class="buyProducerImg"> <img src="res/img/logo/'.$row["logo"].'" class="logoheight" alt="other seller"/></span></a></li>';
+												$excluded_sellers[]=$row["seller"];
+											}
+										}
+									}
+									if(count($excluded_sellers)>0){ $excluded_sellers="AND id NOT IN (".implode(",",$excluded_sellers).")"; } else { $excluded_sellers=""; }
+									if($buy_regions==3&&$lang!=1&&$lang!=3){$lang=1;}
+									if($buy_regions==0){ $result=mysqli_query($con,"SELECT `notebro_buy`.`SELLERS`.`name` FROM `notebro_buy`.`SELLERS` WHERE `exchrate` IN (".$lang.") AND id IN (2,3,4,5,6,7,8,9,10)' ".$excluded_sellers." ORDER BY priority DESC"); }
+									else { $result=mysqli_query($con,"SELECT `notebro_buy`.`SELLERS`.`name` FROM `notebro_buy`.`SELLERS` WHERE `region` IN (".$buy_regions.") AND id IN (2,3,4,5,6,7,8,9,10)' AND `exchrate` IN (".$lang.") ".$excluded_sellers." ORDER BY priority DESC" ); }
+									if(!($result && mysqli_num_rows($result)>0)){  $result=mysqli_query($con,"SELECT `notebro_buy`.`SELLERS`.`name` FROM `notebro_buy`.`SELLERS` WHERE `region` IN (".$buy_regions.") AND id IN (2,3,4,5,6,7,8,9,10) ".$excluded_sellers." ORDER BY priority DESC"); }
+									if(!($result && mysqli_num_rows($result)>0))  {$result=mysqli_query($con,"SELECT `notebro_buy`.`SELLERS`.`name` FROM `notebro_buy`.`SELLERS` WHERE `region` IN (1,2) AND id IN (2,3,4,5,6,7,8,9,10) ".$excluded_sellers." ORDER BY priority DESC"); }
+									$sellers=array(); while($row=mysqli_fetch_assoc($result)){ $sellers[]=$row["name"]; }
+									$_GET["model_id"]=$idmodel; $_GET["seller"]=$sellers; $_GET["keys"]=0;
+									include("lib/php/buy_links.php");
+									foreach($return as $el)
+									{
+										echo '<li><a href="'.$el["link"].'" target="blank"><span style="font-weight: bold; font-size: 14px;" class="searchLink">Search</span> <img src="res/img/logo/'.$el["seller_logo"].'" class="logoheight" alt="other seller"/></a></li>';
+									}
+								?>			
+						</ul>
+					</div><!-- Dropdown end div-->		
+					<div class="btn addtocpmp" id="addcompare" >
+						<a style="text-decoration:none;">Add to compare</a>
+					</div><!-- addtocpmp-->	
+					<div class="dropdown config">
+						<button id="dLabel" class="btn addtocpmp showConfigOption" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Configure for
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu configDropdown" aria-labelledby="dLabel">
+							<li class="configOptions" <?php if(!isset($best_low["best_value"])||(isset($best_low["best_value"])&&$best_low["best_value"]=="")){ echo 'style="display:none;"'; } ?> onmousedown="OpenPage('<?php echo "model/model.php?conf=".$best_low["best_value"]."_".$idmodel."&ex=USD"; ?>',event)";>Best Value</li>
+							<li class="configOptions" <?php if(!isset($best_low["best_performance"])||(isset($best_low["best_performance"])&&$best_low["best_performance"]=="")){ echo 'style="display:none;"'; } ?> onmousedown="OpenPage('<?php echo "model/model.php?conf=".$best_low["best_performance"]."_".$idmodel."&ex=USD"; ?>',event)";>Max Performance</li>
+							<li class="configOptions" <?php if(!isset($best_low["lowest_price"])||(isset($best_low["lowest_price"])&&$best_low["lowest_price"]=="")){ echo 'style="display:none;"'; } ?> onmousedown="OpenPage('<?php echo "model/model.php?conf=".$best_low["lowest_price"]."_".$idmodel."&ex=USD"; ?>',event)";>Lowest Price</li>						
+						</ul>
+					</div><!-- End Configuration div-->	
 				</div>
 			</div>
-		</div>
+		</div>	<!-- row-->		
 		<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" style="padding:0px" >
-			<div class="col-md-5 col-sm-6 col-xs-12 col-lg-5" style="margin-top:15px; padding:0px;">
+			<!-- <div class="col-md-5 col-sm-6 col-xs-12 col-lg-5" style="margin-top:15px; padding:0px;">
 				<a style="font-weight:bold; color:black;text-decoration:none; cursor:pointer;" onclick="scrolltoid('leave_comment');">Leave a comment !</a>
-				<br>
-				<div style="display:flex; margin-top:5px">	
-				<div style="padding:0px; display:flex; align-items:center"><a style="color:black;text-decoration:none; font-weight:bold">Official Site:</a></div>
-				<div class="col-md-7 col-lg-8" style="padding:0 0 0 5px;"><?php $imgprod=mysqli_fetch_array(mysqli_query($con,"SELECT pic,pic2 FROM notebro_site.brands WHERE brand='".$mprod."'")); show_vars('link,link2', 'MODEL',$idmodel );?>
-					<a href="<?php echo $show_vars["link"].'" target="blank"><img src=res/'.$imgprod["pic"].' class="logoheightof" alt="Product consumer page">'; ?></a>
-					<?php if(isset($show_vars["link2"]) && $show_vars["link2"]){ ?><a href="<?php echo $show_vars["link2"].'" target="blank"><img src=res/'.$imgprod["pic2"].' class="logoheightof" style="margin-left:2px" alt="Product business page">'; ?></a> <?php } ?></div>
-				</div>	
-			</div>
+				<br>				
+			</div> -->
 			<div class="col-md-7 col-sm-6 col-xs-12 col-lg-7" style="margin-top:10px; padding:0px;">     		
 			<!-- seller list -->
 				<!--<ul class="list-inline" style="list-style:none;">
 					<li><span class="sellerlist">Seller list <span class="caret" style="font-size:12px; margin-left:5px"></span> </span></li>
 				
-				</ul> -->
-				<ul class="list-inline" style="list-style:none;">
-					<li><p style="margin-bottom:0px"><b>Search to buy:</b></p></li>					
-					<li><a id="amazon_link" href="" target="blank"><img src="res/img/logo/amazonlogo.png" class="logoheight" style="padding-top:2px;" alt="Amazon link"/> </a> </li> 
-					<li><a id="compareeu_link" href="" target="blank"><img src="res/img/logo/skinflintlogo.png" class="logoheight" alt="Compare.eu link"/> </a> </li>
-					<li><a id="google_link" href="" target="blank"><img src="res/img/logo/googlelogo.jpg" class="logoheight" alt="Google link"/></a></li>
-				</ul>						
+				</ul> -->					
 			</div>
-		</div>
-		<div class="clearfix"></div>
-		<h3 class="h4" style="margin-top: 15px;">Specifications:</h3>
+		</div>		
+		<!-- <h3 class="h4" style="margin-top: 15px;">Specifications:</h3> -->
 		<!-- start specs -->
-		<div class="col-md-12 col-sm-12 col-xs-12" style="background-color:white; font-family:arial;padding:0px;text-align:left;margin-right: -15px;margin-left: -15px;">
+		<div class="col-md-12 col-sm-12 col-xs-12" style="background-color:white; font-family:arial;padding:0px;text-align:left;">
 			<div class="col-md-4 col-sm-6 col-lg-4 col-xs-12 btn" style="text-align:left;padding-top:0px">
 				<div>
-					<span class="toggler compmod" data-hide="all" style="color:black;background-color:#FFD466;padding:2px 20px;font-weight:normal">Show all details</span>
+					<span class="toggler compmod showDetailsButton" data-hide="all" style="color:black;padding:2px 20px;font-weight:normal"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span><span class="showDetails"> Show all details</span><span class="showLessDetails"> Show less details</span></span>
 						<!-- We take great effort to assure component compatibility for each configuration. If you think we made a mistake, please contact us. -->
 				</div>
 			</div>
@@ -154,7 +197,7 @@ else
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 				<!-- CPU -->
 				<div class="row modelwidht">
-					<div class="col-md-12 titlucomp toolinfo text-center" data-toolid="0" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-load="1" data-original-title="data-loading..."><strong><span class="toolinfo1">Processor</span></strong></div>
+					<div class="col-md-12 titlucomp toolinfo text-center" data-toolid="0" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-load="1" data-original-title="data-loading..."><strong><span class="toolinfo1 headerComponents">Processor</span></strong></div>
 				</div>
 				<div class="row modelwidht">	
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">	
@@ -206,17 +249,15 @@ else
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows toolinfo" data-toolid="5" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1">Rating:</span></div>
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="5" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1"><b><span  class="labelblue-s"><span id="cpu_rating" ></span> / 100</span></b></span></div>							
 						</div>	
-						<div class="row col-md-12 col-xs-12 col-sm-12 col-lg-12">
-							<div style="background-color:#FFD466;  text-align:center; border-radius:3px; ">
-								<a  class="toggler" data-hide="cpu" style="text-decoration:none; color:black;margin-top: 10px;display: block;">Show more details</a>
-							</div>
+						<div class="expandContainer">							
+								<a  class="toggler" data-hide="cpu" style="text-decoration:none; color:black;margin-top: 10px;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>							
 						</div>								
 					</div>		
 				</div>	
 				<br>
 				<!-- Video Card -->
 				<div class="row titlucomp toolinfo modelwidht" data-toolid="20" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
-					<div class="col-md-12 text-center"><strong><span class="toolinfo1">Video card</span></strong></div>
+					<div class="col-md-12 text-center"><strong><span class="toolinfo1 headerComponents">Video card</span></strong></div>
 				</div>
 				<div class="row modelwidht">						
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">	
@@ -276,17 +317,15 @@ else
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows toolinfo" data-toolid="30" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1">Rating:</span></div>
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="30" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1"><b><span  class="labelblue-s"><span id="gpu_rating"></span> / 100</span></b></span></div>
 						</div>		
-						<div class="row col-md-12 col-xs-12 col-sm-12 col-lg-12">
-							<div  style="background-color:#FFD466;  text-align:center; border-radius:3px;">
-								<a  class="toggler" data-hide="gpu" style="text-decoration:none; color:black;margin-top: 10px;display: block;">Show more details</a>
-							</div>
+						<div class="expandContainer">							
+								<a  class="toggler" data-hide="gpu" style="text-decoration:none; color:black;margin-top: 10px;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>							
 						</div>
 					</div>																
 				</div>
 				<br>	
 				<!-- Display -->
 				<div class="row titlucomp toolinfo modelwidht" data-toolid="42" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
-					<div class="col-md-12 text-center"><strong><span class="toolinfo1 ">Display</span></strong></div>
+					<div class="col-md-12 text-center"><strong><span class="toolinfo1 headerComponents">Display</span></strong></div>
 				</div>
 				<div class="row modelwidht">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -326,17 +365,15 @@ else
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows toolinfo" data-toolid="48" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1">Rating:</span></div>
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="48" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1"><span id="display_rating"></span> / 100</span></div>
 						</div>
-						<div class="row col-md-12 col-xs-12 col-sm-12 col-lg-12">
-							<div style="background-color:#FFD466;  text-align:center; border-radius:3px;">
-								<a  class="toggler" data-hide="dis" style="text-decoration:none; color:black;margin-top: 10px;display: block;">Show more details</a>
-							</div>
+						<div class="expandContainer">							
+								<a  class="toggler" data-hide="dis" style="text-decoration:none; color:black;margin-top: 10px;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>							
 						</div>
 					</div>								
 				</div>
 				<br>
 				<!-- Storage -->
 				<div class="row titlucomp modelwidht">
-					<div class="col-md-12 text-center"><strong>Storage</strong></div>
+					<div class="col-md-12 text-center"><strong><span class="headerComponents">Storage</span></strong></div>
 				</div>
 				<div class="row modelwidht">						
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -364,10 +401,8 @@ else
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Miscellaneous:</div>
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows" id ="hdd_misc"></div>
 						</div>
-						<div class="row col-md-12 col-xs-12 col-sm-12 col-lg-12">
-							<div style="background-color:#FFD466;  text-align:center; border-radius:3px;">
-								<a class="toggler" data-hide="sto" style="text-decoration:none; color:black;margin-top: 10px;display: block;">Show more details</a>
-							</div>
+						<div class="expandContainer">							
+								<a class="toggler" data-hide="sto" style="text-decoration:none; color:black;margin-top: 10px;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>							
 						</div>
 					</div>					
 				</div>
@@ -379,7 +414,7 @@ else
 					<br>
 					<!-- Secondary Storage (if exists) -->						
 					<div class="row titlucomp modelwidht">
-						<div class="col-md-12 text-center"><strong>Secondary Storage</strong></div>
+						<div class="col-md-12 text-center"><strong><span class="headerComponents">Secondary Storage</span></strong></div>
 					</div>
 					<div class="row modelwidht">						
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -403,10 +438,8 @@ else
 								<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Write Speed:</div>
 								<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows" ><span id ="shdd_writes"></span> MB/s</div>
 							</div>
-							<div class="row col-md-12 col-xs-12 col-sm-12 col-lg-12">
-								<div style="background-color:#FFD466;  text-align:center; border-radius:3px;">
-									<a class="toggler" data-hide="sto1" style="text-decoration:none; color:black;margin-top: 10px;display: block;">Show more details</a>
-								</div>
+							<div class="expandContainer">								
+									<a class="toggler" data-hide="sto1" style="text-decoration:none; color:black;margin-top: 10px;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>								
 							</div>
 						</div>	
 					</div>		
@@ -414,7 +447,7 @@ else
 				<br>
 				<!-- Motherboard -->	
 				<div class="row titlucomp toolinfo modelwidht" data-toolid="53" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
-					<div class="col-md-12 text-center"><strong><span class="toolinfo1">Motherboard</span></strong></div>
+					<div class="col-md-12 text-center"><strong><span class="toolinfo1 headerComponents">Motherboard</span></strong></div>
 				</div>
 				<div class="row modelwidht">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -450,10 +483,8 @@ else
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Miscellaneous:</div>
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows" id = "mdb_misc"></div>
 						</div>
-						<div class="row col-md-12 col-xs-12 col-sm-12 col-lg-12">
-							<div style="background-color:#FFD466;  text-align:center; border-radius:3px;">
-								<a  class="toggler" data-hide="mdb" style="text-decoration:none; color:black;margin-top: 10px;display: block;">Show more details</a>
-							</div>
+						<div class="expandContainer">							
+								<a  class="toggler" data-hide="mdb" style="text-decoration:none; color:black;margin-top: 10px;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>							
 						</div>	
 					</div>					
 				</div>
@@ -462,7 +493,7 @@ else
 			<!-- START SECOND HALF OF MODEL -->
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">				
 				<div class="row titlucomp toolinfo modelwidht" data-toolid="59" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
-					<div class="col-md-12 text-center"><strong><span class="toolinfo1">Memory</span></strong></div>
+					<div class="col-md-12 text-center"><strong><span class="toolinfo1 headerComponents">Memory</span></strong></div>
 				</div>
 				<div class="row modelwidht">						
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -486,17 +517,15 @@ else
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Miscellaneous:</div>
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows" id = "mem_misc"></div>
 						</div>
-						<div class="row col-md-12 col-xs-12 col-sm-12 col-lg-12">
-							<div style="background-color:#FFD466;  text-align:center; border-radius:3px;">
-								<a  class="toggler" data-hide="mem" style="text-decoration:none; color:black;margin-top: 10px;display: block;">Show more details</a>
-							</div>
+						<div class="expandContainer">							
+								<a  class="toggler" data-hide="mem" style="text-decoration:none; color:black;margin-top: 10px;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>							
 						</div>												
 					</div>					
 				</div>	
 				<br>
 				<!--Optical Drive (if exists) -->		
 				<div class="row titlucomp toolinfo modelwidht" data-toolid="64" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
-					<div class="col-md-12 text-center"><strong><span class="toolinfo1">Optical drive</span></strong></div>
+					<div class="col-md-12 text-center"><strong><span class="toolinfo1 headerComponents">Optical drive</span></strong></div>
 				</div>
 				<div class="row modelwidht">					
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -514,10 +543,8 @@ else
 								<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Miscellaneous:</div>
 								<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows" id = "odd_misc"></div>
 							</div>
-							<div class="row col-md-12 col-xs-12 col-sm-12 col-lg-12">
-								<div style="background-color:#FFD466;  text-align:center; border-radius:3px;">
-									<a class="toggler" data-hide="odd" style="text-decoration:none; color:black;margin-top: 10px;display: block;">Show more details</a>
-								</div>
+							<div class="expandContainer">								
+									<a class="toggler" data-hide="odd" style="text-decoration:none; color:black;margin-top: 10px;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>								
 							</div>	
 <?php					} ?>		
 					</div>			
@@ -525,7 +552,7 @@ else
 				<br>
 				<!-- Battery -->	
 				<div class="row titlucomp modelwidht">
-					<div class="col-md-12 text-center"><strong>Battery</strong></div>
+					<div class="col-md-12 text-center"><strong><span class="headerComponents">Battery</span></strong></div>
 				</div>
 				<div class="row modelwidht">					
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -554,10 +581,8 @@ else
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows" id = "acum_misc"></div>
 						</div>
 						
-						<div class="row col-md-12 col-xs-12 col-sm-12 col-lg-12">
-							<div style="background-color:#FFD466;  text-align:center; border-radius:3px;">
-								<a class="toggler" data-hide="acu" style="text-decoration:none; color:black;margin-top: 10px;display: block;">Show more details</a>
-							</div>
+						<div class="expandContainer">							
+								<a class="toggler" data-hide="acu" style="text-decoration:none; color:black;margin-top: 10px;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>							
 						</div>
 									
 				</div>
@@ -565,7 +590,7 @@ else
 				<br>
 				<!-- Chassis -->	
 				<div class="row titlucomp modelwidht" data-toolid="69" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center"><strong><span class="toolinfo1">Chassis</span></strong></div>
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center"><strong><span class="toolinfo1 headerComponents">Chassis</span></strong></div>
 				</div>
 				<div class="row modelwidht">					
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -630,17 +655,15 @@ else
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Miscellaneous:</div>
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows" id = "chassis_misc"></div>
 						</div>
-						<div class="row col-md-12 col-xs-12 col-sm-12 col-lg-12">
-							<div style="background-color:#FFD466;  text-align:center; border-radius:3px;">
-								<a class="toggler" data-hide="cha" style="text-decoration:none; color:black;margin-top: 10px;display: block;">Show more details</a>
-							</div>
+						<div class="expandContainer">						
+								<a class="toggler" data-hide="cha" style="text-decoration:none; color:black;margin-top: 10px;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>							
 						</div>
 					</div>							
 				</div>
 				<br>
 				<!-- Wireless card -->	
 				<div class="row titlucomp toolinfo modelwidht" data-toolid="71" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
-					<div class="col-md-12 text-center"><strong><span class="toolinfo1">Wireless card</span></strong> </div>
+					<div class="col-md-12 text-center"><strong><span class="toolinfo1 headerComponents">Wireless card</span></strong> </div>
 				</div>
 				<div class="row modelwidht">				
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -664,17 +687,15 @@ else
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Miscellaneous:</div>
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows" id = "wnet_misc"></div>
 						</div>
-						<div class="row col-md-12 col-xs-12 col-sm-12 col-lg-12">
-							<div style="background-color:#FFD466;  text-align:center; border-radius:3px;">
-								<a class="toggler" data-hide="wnet" style="text-decoration:none; color:black;margin-top: 10px;display: block;">Show more details</a>
-							</div>
+						<div class="expandContainer">							
+								<a class="toggler" data-hide="wnet" style="text-decoration:none; color:black;margin-top: 10px;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>							
 						</div>		
 					</div>				
 				</div>
 				<br>
 				<!-- Warranty -->			
 				<div class="row modelwidht">
-					<div class="col-md-12 titlucomp text-center"><strong>Warranty</strong></div>
+					<div class="col-md-12 titlucomp text-center"><strong><span class="headerComponents">Warranty</span></strong></div>
 				</div>
 				<div class="row modelwidht">					
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -691,7 +712,7 @@ else
 				<br>
 				<!-- Operating System -->	
 				<div class="row toolinfo modelwidht" data-toolid="75" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
-					<div class="col-md-12 titlucomp text-center"><strong><span class="toolinfo1">Operating System</span></strong></div>
+					<div class="col-md-12 titlucomp text-center"><strong><span class="toolinfo1 headerComponents">Operating System</span></strong></div>
 				</div>
 				<div class="row modelwidht">					
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -707,7 +728,7 @@ else
 				if(!($msctext==""))
 				{ ?>
 					<div class="row modelwidht">
-						<div class="col-md-12 titlucomp text-center"><strong>Miscellaneous</strong></div>
+						<div class="col-md-12 titlucomp text-center"><strong><span class="headerComponents">Miscellaneous</span></strong></div>
 					</div>
 					<div class="row modelwidht">					
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -785,5 +806,5 @@ else
 <?php  
 } } ?>
 </div>
-<link rel="stylesheet" href="model/lib/css/model.css?v=20" type="text/css"/>
+<link rel="stylesheet" href="model/lib/css/model.css?v=59 type="text/css"/>
 <?php include_once("../etc/scripts_pages.php"); ?>

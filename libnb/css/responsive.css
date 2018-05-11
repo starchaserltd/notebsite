@@ -535,39 +535,3 @@ div.searchresultdesc a {
 	}
 
 }
-
-/* model - rating zone padding */
-@media screen and (min-width:2201px) {
-	.ptop {
-		padding-top: 55px !important;
-	}
-
-}
-
-@media screen and (min-width:1801px) and (max-width:2200px) {
-	.ptop {
-		padding-top: 30px !important;
-	}
-
-}
-
-@media screen and (min-width:1440px) and (max-width:1800px) {
-	.ptop {
-		padding-top: 20px !important;
-	}
-
-}
-
-/*nu cred ca il voi mai folosi - face parte din a-ul poze din result */
-
-/*
-.searchresult3{
-color: #000;
-    text-decoration: none;    
-    width: auto;     
-    align-items: center;
-margin:0 auto;
-}
-*/
-
-/* searchresultitle for the name div*/

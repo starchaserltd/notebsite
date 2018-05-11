@@ -5,40 +5,12 @@
 	line-height: 1.3;
 }
 
-@media screen and (min-width:405px) and (max-width:1000px) {
-	.logoheightof {
-		height: 23px !important;
-	}
-
-}
-
-@media screen and (max-width:404px) {
-	.logoheightof {
-		height: 18px !important
-	}
-
-}
-
-@media screen and (min-width:405px) and (max-width:1000px) {
-	.logoheight {
-		height: 20px !important;
-	}
-
-}
-
-@media screen and (max-width:404px) {
-	.logoheight {
-		height: 15px !important
-	}
-
-}
-
 .logoheight {
 	height: 25px;
 }
 
 .logoheightof {
-	height: 25px;
+	height: 25px;	
 }
 
 .sellerlist {
@@ -50,6 +22,7 @@
 	font-size: 18px;
 	font-weight: bold;
 }
+
 
 /**Specific Model CSS **/
 .modal-body {
@@ -69,15 +42,38 @@
 	border-bottom: none
 }
 
-@media screen and (min-width:1800px) {
-	.modelwidht {
-		width: 100% !important;
-	}
-
+.officialSite {
+	text-align: left;
+	display: inline-block;
 }
 
+.ptop {	
+	line-height: 10px;
+	padding: 0px;
+	padding-right: 0px;
+	padding-left: 0px;	
+	top:0;
+	background: #fff;
+	z-index: 9;	
+	text-align: center;	
+}
+
+.ptop.affix {
+	width: 100%;
+	left: 0;
+	right: 0;
+	margin-left: 0;
+}
+
+.buy>div:nth-of-type(1), .buy>div:nth-of-type(2) {
+	margin-right: 10px;
+} 
+
 .pics {
-	cursor: pointer
+	cursor: pointer;
+	max-width:120px;
+	display: block;
+	margin:0 auto;
 }
 
 .rows.gpuhdd form select {
@@ -132,8 +128,7 @@ div.ListElem:hover {
 	align-items: center;
 }
 
-.config {
-	margin-top: 5px;
+.config {	
 	text-align: center;
 }
 
@@ -183,17 +178,264 @@ div.ListElem:hover {
 		display: inline-block;
 }
 
-@media (max-width: 991px) {
-	.modelContainer {
-		padding-right: 0 !important;
+.rating p {
+	line-height: 24px;
+	font-size: 12px;
+}
+
+.buy .dropdown-menu {
+	margin-left: 10px;	
+	text-transform: capitalize;	
+}
+
+.buy li {
+	line-height: 38px;
+}
+
+.config .configDropdown li {
+	line-height: 20px;
+}
+
+.buy {	  
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;    
+    float: left;
+    width: 100%;
+    text-align: center;
+}
+
+.buy .btn {
+	min-width: 150px;
+}
+
+.officialSiteContainer {
+	margin-top: 10px;
+	margin-left:15px;
+	position: absolute;
+	bottom: -7px;
+	left: 33.33333%;
+}
+
+.rating  {
+	margin-right: 10px;
+	display: inline-block;
+}
+
+.modelContainer .dropdown-menu>li>a {
+	display: inline-block;
+	padding: 5px;
+}
+
+.buy .buyBtn {
+	min-width: 168px;
+}
+
+.modelContainer .buy .dropdown-menu {
+	padding: 5px;
+}
+
+.firstImageModel img {
+	max-width: 300px;
+}
+
+.modelImageContainer {
+    margin-top:25px;
+}
+
+.ptop.affix .addtocpmp {
+	padding: 2px 3px;
+
+}
+
+.ptop.affix .config .addtocpmp {
+	padding:2px 8px;
+}
+
+.ptop.affix .buy .btn {
+	font-size: 11px;
+}
+
+.affix .ratingContainer {
+	padding-top: 5px;
+}
+
+.headerComponents {
+	display: block;
+	background-color: #ffd466;
+	margin-bottom: 10px;
+}
+
+.toggler {
+	display: inline-block;			
+	text-align: center;
+}
+
+
+.glyphicon-chevron-down.resize:before {
+	content: "\e113";
+}
+
+.toggler.compmod {	
+	float: left;
+	background-color: #fff;
+}
+
+.expandContainer {
+	text-align: center;
+}
+
+.toggler .glyphicon-chevron-down {	
+    text-align: center;
+    color: #f7c851;
+    padding: 0 100px;
+}
+
+.showLessDetails  {
+	display: none;
+}
+
+.toggler.compmod .glyphicon-chevron-down{
+	padding: 0;
+}
+
+
+
+.showDetailsButton.show .showLessDetails  {
+	display: inline-block;
+	padding-left: 5px;	
+}
+
+
+.showDetailsButton.show .showDetails {
+	display: none;
+}
+
+.buy .dropdown-menu>li>a {
+	display: flex;
+}
+
+.buy .buyProducerImg {
+    align-self: center;
+    width: 100%;
+    text-align: center;
+}
+
+@keyframes blueButton {
+ 0% {
+ 	background-color: #285f8f;
+ 	color: #fff;
+ }
+ 100% {
+ 	background-color: #fff;
+ 	color:#285f8f;
+ }
+}
+
+.searchLink {
+	margin-right: 5px;
+}
+
+.labelblue.blueAnimation {
+	animation: blueButton 1s ease-in;
+}
+
+.searchLink:nth-of-type(2) .logoheight {
+	margin-top: -30%;
+	margin-left: 5px;
+}
+
+.searchLink .logoheight {
+	margin-top: 0;
+}
+
+/*Responsive media */
+
+@media(min-width:1240px ) {
+ .affix .ratingContainer {
+    float: left;
+    width: 50%;
+    padding-left: 15px;
+    padding-top: 6px;
+    text-align: right;
+  }
+
+  .affix .buy {	   
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;    
+    float: right;
+    width: 50%;
+    text-align: left;
+  }
+
+  .affix.ptop {
+  	text-align: left;
+  	margin-left: -5%;
+  }
+}
+
+@media(max-width:1440px ) {
+	.buy .btn {
+	  font-size: 13px;
 	}
 
-	#disqus_thread {
-		padding-right: 15px;
+	.pics {
+  	  max-width: 60px;
+  	}
+}
+
+@media screen and (min-width:1800px) {
+	.modelwidht {
+		width: 100% !important;
 	}
 }
 
-@media (max-width: 767px) {
+@media screen and (min-width:405px) and (max-width:1000px) {
+	.logoheightof {
+		height: 23px !important;
+	}
+
+}
+
+@media screen and (max-width:404px) {
+	.logoheightof {
+		height: 18px !important
+	}
+
+}
+
+@media screen and (min-width:405px) and (max-width:1000px) {
+	.logoheight {
+		height: 20px !important;
+	}
+
+}
+
+@media screen and (max-width:404px) {
+	.logoheight {
+		height: 15px !important
+	}
+
+}
+
+
+@media (max-width: 991px) {
+	#disqus_thread {
+		padding-right: 15px;
+	}
+
+	.modelImageContainer {
+    	margin-top:0;
+	}
+
+	.officialSiteContainer {
+		display: none;
+	}
+
+}
+
+@media (max-width: 768px) {
 	.config {
 		text-align: center;
 	}
@@ -201,5 +443,92 @@ div.ListElem:hover {
 	.modelContainer form select {
 		max-width: 160px!important;
 	}
+
+	.officialSite {
+		text-align: center;
+	}
+
+	.ptop.affix {
+		top:28px;
+	}
 }
 
+@media(max-width: 425px) {
+	.ptop {
+		display: flex;
+		flex-direction: column;
+		padding-top: 20px;
+	}
+
+	.rating {
+		text-align: center;
+	}
+
+	.firstImageModel img {
+		max-width: 240px;
+	}
+
+	.firstImageModel img {
+		display: block;
+		margin:0 auto;
+	}
+
+	.officialSiteContainer {
+		position: relative;
+		left: 0;
+		width: 100%;
+		margin-bottom: 10px;
+	}
+
+	.ptop {
+		padding-top: 0;
+	}
+
+	.buy>div:nth-of-type(1), .buy>div:nth-of-type(2) {
+		margin-right: 2px;
+	}
+
+	.searchLink {
+		display: none;
+	}
+
+	.buy li {
+		min-width: 20px;
+	}	
+
+	.labelblue {
+		font-size: 12px;		
+	}
+
+	.ratingContainer .rating {
+		font-size: 12px;
+		margin:0;
+	}
+
+	.ptop.col-xl-8 {
+		padding: 0;
+		margin-top: 10px;
+	}
+
+	.buy .btn {
+		font-size: 12px;
+		min-width: 120px;
+	}
+
+	.buy .dropdown-menu li {
+		line-height: 15px;
+	}
+
+	.buy .buyBtn {
+		min-width: 106px;
+	}
+
+	.ptop.affix {
+		padding-top: 18px;
+		top:0;
+	}
+
+	.rating p {
+		margin:0;
+	}
+}

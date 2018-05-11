@@ -1,27 +1,4 @@
-var googlelink={};
-var compeulink={};
-var amazonlink={};
-googlelink["first"]="https://www.google.com/search?q=";
-compeulink["first"]="https://geizhals.eu/?cat=nb&asuch=";
-compeulink["second"]="&asd=on&bpmax=&v=e&hloc=at&hloc=de&hloc=pl&hloc=uk&hloc=eu&plz=&dist=&filter=update";
-mmodel=mmodel.replace(/non-touch/i,""); mmodel=mmodel.replace(/touch/i,""); mmodel=mmodel.replace(/t? \([0-9]+(st|nd|rd|th) gen\)/i,"");
-switch(exchsign)
-{ 
-	case '$':
-	amazonlink["first"]="https://www.amazon.com/s/ref=sr_nr_p_n_condition-type_0?fst=as%3Aoff&rh=n%3A172282%2Cn%3A541966%2Cn%3A13896617011%2Cn%3A565108%2Ck%3A%2Cp_n_condition-type%3A2224371011&field-keywords=";
-	amazonlink["second"]="&rh=n%3A565108%2Ck%3A&_encoding=UTF8&linkCode=ur2&linkId=7b666b0d3bbe094faceac6d381ba9eb0&camp=1789&creative=9325";
-	break;
-	case '€':
-	amazonlink["first"]="https://www.amazon.de/s/?_encoding=UTF8&camp=1638&creative=6742&field-keywords=";
-	amazonlink["second"]="&linkCode=ur2&site-redirect=de&url=node%3D427957031";
-	break;
-	case '£':
-	amazonlink["first"]="https://www.amazon.co.uk/s/?_encoding=UTF8&camp=1634&creative=6738&fst=as%3Aoff&keywords=";
-	amazonlink["second"]="&linkCode=ur2&qid=1490875668&rh=n%3A340831031%2Cn%3A429886031%2Ck%3A%2Cp_n_condition-type%3A12319067031&rnid=12319066031";
-	break;
-}
-googlelink["cpu"]=""; googlelink["gpu"]=""; googlelink["mem"]=""; googlelink["resolution"]=""; googlelink["sist"]="";
-var gocomp=1;
+var gocomp=1; var old_rate=""; var old_price=""; var old_bat="";
 var cpu = {}; var cpu_price_old=0; var cpu_price_new=0; var cpu_err_new=0; var cpu_err_old=0; var cpu_rate_new=0; var cpu_rate_old=0; var cpu_gpu=0; var cpu_bat_new=0; var cpu_bat_old=0; cpu["clocks"]=""; var success=false;
 function showCPU(str) 
 {
@@ -48,9 +25,6 @@ function showCPU(str)
 				document.getElementById('cpu_misc').innerHTML = cpumisc(cpu["msc"]);
 				document.getElementById('cpu_rating').innerHTML = cpu["rating"];
 				document.getElementById('cpu_class').innerHTML = cpu["class"];
-						
-				googlelink["cpu"]=cpu["model"];
-				makelinks();
 				
 				cpu_rate_old = cpu_rate_new;
 				cpu_rate_new = cpu["confrate"];
@@ -60,6 +34,7 @@ function showCPU(str)
 				cpu_bat_old = cpu_bat_new;
 				cpu_bat_new = cpu["bat"];
 				config_batlife=config_batlife-cpu_bat_old+cpu_bat_new;
+				if(cpu_bat_old!=cpu_bat_new){ bat_animation(); }
 				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
 				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
 				cpu_gpu=parseInt(cpu["gpu"]);
@@ -135,15 +110,10 @@ function showGPU(str)
 				gpu_bat_new = gpu["bat"];
 				if(mdb["optimus"] && gpu_bat_new>3){ gpu_bat_new=3; }
 				config_batlife=config_batlife-gpu_bat_old+gpu_bat_new;
+				if(gpu_bat_old!=gpu_bat_new){ bat_animation(); }
 				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
 				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
-			
-				if(gpu["typegpu"]>0)
-				{ googlelink["gpu"]=gpu["model"]; }
-				else
-				{ googlelink["gpu"]=""; }
-					
-				makelinks();
+
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/gpu.php?q="+str,true);
@@ -186,10 +156,9 @@ function showDISPLAY(str)
 				display_bat_old = display_bat_new;
 				display_bat_new = display["bat"];
 				config_batlife=config_batlife-display_bat_old+display_bat_new;
+				if(display_bat_old!=display_bat_new){ bat_animation(); }
 				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
 				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
-				googlelink["resolution"]=display["hres"]+"x"+display["vres"];
-				makelinks();
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/display.php?q="+str,true);
@@ -227,6 +196,7 @@ function showHDD(str)
 				hdd_bat_old = hdd_bat_new;
 				hdd_bat_new = hdd["bat"];
 				config_batlife=config_batlife-hdd_bat_old+hdd_bat_new;
+				if(hdd_bat_old!=hdd_bat_new){ bat_animation(); }
 				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
 				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
 				
@@ -283,6 +253,7 @@ function showSHDD(str)
 					shdd_bat_old = shdd_bat_new;
 					shdd_bat_new = shdd["bat"];
 					config_batlife=config_batlife-shdd_bat_old+shdd_bat_new;
+					if(shdd_bat_old!=shdd_bat_new){ bat_animation(); }
 					document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
 					document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);						
 				}
@@ -317,6 +288,7 @@ function showMDB(str)
 				if(mdb["optimus"])
 				{
 					gpu_bat_old = gpu_bat_new;	gpu_bat_new = 3; config_batlife=config_batlife-gpu_bat_old+gpu_bat_new;
+					if(gpu_bat_old!=gpu_bat_new){ bat_animation(); }
 					document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
 					document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
 				}
@@ -357,9 +329,6 @@ function showMEM(str)
 	
 				config_rate = config_rate-mem_rate_old+mem_rate_new;
 				document.getElementById('notebro_rate').innerHTML=(Math.round(config_rate * 10) / 10).toFixed(1);
-				
-				googlelink["mem"]=mem["cap"]+"GB";
-				makelinks();
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/mem.php?q="+str,true);
@@ -423,7 +392,7 @@ function showACUM(str)
 				acum_rate_new = acum["confrate"];
 				config_rate = config_rate-acum_rate_old+acum_rate_new;
 				document.getElementById('notebro_rate').innerHTML=(Math.round(config_rate * 10) / 10).toFixed(1);
-				
+				if(acum_rate_old!=acum_rate_new){ bat_animation(); }
 				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
 				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
 			}
@@ -556,9 +525,7 @@ function showSIST(str)
 				sist = JSON.parse(xmlhttp.responseText);
 				if(sist["vers"]==0){sist["vers"]="";}
 				if(sist["sist"].localeCompare("No OS")!=0)
-				{ document.getElementById('sist_title').innerHTML = ", "+sist["sist"]+" "+sist["vers"]+" "+sist["type"]; googlelink["sist"]=sist["sist"]; }
-				else
-				{ googlelink["sist"]=""; }
+				{ document.getElementById('sist_title').innerHTML = ", "+sist["sist"]+" "+sist["vers"]+" "+sist["type"]; }
 
 				sist_rate_old = sist_rate_new;
 				sist_rate_new = sist["confrate"];
@@ -582,7 +549,6 @@ function showSIST(str)
 									script.innerHTML = JSON.stringify(schemaData);
 									document.querySelector('.footer-distributed').appendChild(script);
 								})(document);
-				makelinks();
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/sist.php?q="+str,true);
@@ -699,6 +665,7 @@ function getconf(comp,id,exactconf)
 						case "SIST":
 						{ showSIST(id); break; } 
 					}
+					document.getElementsByClassName("labelblue")[0].classList.add('blueAnimation'); document.getElementsByClassName("labelblue")[1].classList.add('blueAnimation'); setTimeout(function () { document.getElementsByClassName("labelblue")[0].classList.remove('blueAnimation'); document.getElementsByClassName("labelblue")[1].classList.remove('blueAnimation'); }, 1000);
 				}
 				else
 				{
@@ -840,25 +807,6 @@ function hourminutes(str)
 	return hours+":"+zero+minutes;
 }
 
-function makelinks()
-{
-
-	hotlinkpart1=keywords+"+"+googlelink["cpu"]+"+"+googlelink["mem"];
-	if(mprod.localeCompare("Apple")==0)	{ hotlinkpart1=keywords+"+"+cpu["clocks"].slice(0, -1)+"GHz"+"+"+googlelink["mem"]; }
-	document.getElementById('amazon_link').href=amazonlink["first"]+hotlinkpart1+amazonlink["second"];
-	document.getElementById('compareeu_link').href=compeulink["first"]+keywords+"+"+googlelink["mem"]+compeulink["second"];
-
-	if(mprod.localeCompare("Apple")==0)	{ document.getElementById('compareeu_link').href=compeulink["first"]+keywords+"+"+googlelink["cpu"]+"+"+googlelink["mem"]+compeulink["second"]; }
-	if(mprod.localeCompare("Razer")==0)	{ document.getElementById('compareeu_link').href=compeulink["first"]+keywords+"+"+compeulink["second"]; }
-	if(mprod.localeCompare("Clevo")==0)	{ document.getElementById('compareeu_link').href=compeulink["first"]+"Schenker"+"+"+googlelink["mem"]+compeulink["second"]; }
-	
-	hotlinkpart1=hotlinkpart1+"+"+googlelink["gpu"].replace(" ","+");
-	hotlinkpart1=hotlinkpart1.replace("++","+");
-	hotlink=countrybuy+"+"+hotlinkpart1+'+'+googlelink["resolution"]+'+'+googlelink["sist"];
-	hotlink=hotlink.replace("++","+"); hotlink=hotlink.replace('+""+','+');
-	document.getElementById('google_link').href=googlelink["first"]+hotlink;
-}
-
 function set_best_low(confid,array_values)
 {
 	function set_active_confopt(key)
@@ -894,3 +842,5 @@ function set_best_low(confid,array_values)
 	}
 	if(i) { set_active_confopt(-1); }
 }
+
+function bat_animation(){ document.getElementsByClassName("labelblue")[2].classList.add('blueAnimation'); setTimeout(function () { document.getElementsByClassName("labelblue")[2].classList.remove('blueAnimation');  }, 1000); }

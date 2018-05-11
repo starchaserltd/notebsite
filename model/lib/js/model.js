@@ -1,5 +1,6 @@
 var cleantips = 1;
 var allshow = 0;
+$(document).ready(function(){
 
 $('#addcompare').click(function(e)
 {
@@ -23,10 +24,10 @@ $(".toggler").click(function(e){
 		{
 			$('.hide'+$(this).attr('data-hide')).slideUp(500);
 			$this=$('.toggler');
-			allshow=0; $this.text("Show more details"); $(this).text("Show all details");
+			allshow=0; $('.glyphicon-chevron-down').removeClass('resize');
 		}
 		else
-		{  $('.hide'+$(this).attr('data-hide')).slideDown(500);	$this=$('.toggler'); allshow=1; $this.text("Show less details"); $(this).text("Hide all details"); }	
+		{  $('.hide'+$(this).attr('data-hide')).slideDown(500);	$this=$('.toggler'); allshow=1; $('.glyphicon-chevron-down').addClass('resize'); }	
 	}
 	else
 	{
@@ -87,4 +88,23 @@ $('#addcompare').on('click', function() {
 	$('.compareDropdown').css('display', 'block');
 	$('.compareDropdown ul li').addClass('open');
 	$('.compareDropdown ul li ul').slideDown();
+});
+
+//Laptop rating, price range, battery life affix
+ if ($(window).width() >= 375) {
+ 	$(".ptop").affix({
+        offset: { 
+            top: $(".modelImageContainer").outerHeight(true) + $(".modelHeader").outerHeight(true) + 170
+        }
+    });
+	}
+
+//change icon for resize information model
+	$('.glyphicon-chevron-down').on('click', function() {
+			$(this).toggleClass('resize');
+	});	
+
+	$('.showDetailsButton').on('click', function() {
+		$(this).toggleClass('show');
+	});
 });
