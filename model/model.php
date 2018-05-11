@@ -589,7 +589,7 @@ else
 				</div>		
 				<br>
 				<!-- Chassis -->	
-				<div class="row titlucomp modelwidht" data-toolid="69" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
+				<div class="row titlucomp toolinfo modelwidht" data-toolid="69" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center"><strong><span class="toolinfo1 headerComponents">Chassis</span></strong></div>
 				</div>
 				<div class="row modelwidht">					
