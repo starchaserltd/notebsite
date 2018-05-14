@@ -186,6 +186,7 @@ function showHDD(str)
 				document.getElementById('hdd_writes').innerHTML = hdd["writes"];
 				document.getElementById('hdd_rpm').innerHTML = hdd["rpm"];
 				document.getElementById('hdd_misc').innerHTML = hdd["msc"];
+				if(hdd["model"].indexOf("RAID")>=0){ hdd["type"]="RAID"; }
 				document.getElementById('hdd_title').innerHTML = hdd["cap"]+"GB "+hdd["type"];
 
 				hdd_rate_old = hdd_rate_new;
