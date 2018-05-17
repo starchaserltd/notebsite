@@ -239,7 +239,7 @@ $(document).ready(function() {
 					}
 				}
 			}
-			xmlhttp.open("GET","http://86.123.134.36/notebro/libnb/php/checkref.php?ref="+newref[1],true);
+			xmlhttp.open("GET","libnb/php/checkref.php?ref="+newref[1],true);
 			xmlhttp.send();
 		}
 		else
