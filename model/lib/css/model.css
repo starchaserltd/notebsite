@@ -288,7 +288,7 @@ div.ListElem:hover {
 .toggler .glyphicon-chevron-down {	
     text-align: center;
     color: #f7c851;
-    padding: 0 100px;
+    padding: 10px 100px;
 }
 
 .showLessDetails  {

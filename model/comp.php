@@ -51,11 +51,16 @@ else
 						<tr class="hideCPU" style="display: none;"></tr>
 						<tr></tr>
 						<tr></tr>
+						<tr class="arrowShowMore">
+							<td>
+								<div class="col-sm-12 col-md-12 col-xs-6 shcomp">
+									<a class="toggler" data-hide="CPU" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
+								</div>		
+							</td>
+						</tr>
 					</tbody>
 				</table>
-			<div class="col-sm-12 col-md-12 col-xs-6 shcomp" style="  max-width:250px;">
-				<a class="toggler" data-hide="CPU" style="text-decoration:none; color:black; cursor:pointer;">Show more details</a>
-			</div>		
+		
 				<!-- GPU -->
 				<div class="col-sm-12 col-md-12 titlucomp">Video Card</div>				
 				<table id="GPU_table" class="table-xtra-condensed table tble">
@@ -74,11 +79,15 @@ else
 						<tr class="hideGPU" style="display: none;"></tr>
 						<tr></tr>
 						<tr></tr>
+						<tr class="arrowShowMore">
+							<td>
+								<div class="col-sm-12 col-md-12 col-xs-6 shcomp"  >
+									<a class="toggler" data-hide="GPU" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
+								</div>
+							</td>
+						</tr>
 					</tbody>
-				</table>
-				<div class="col-sm-12 col-md-12 col-xs-6 shcomp" style="  max-width:250px;">
-					<a class="toggler" data-hide="GPU" style="text-decoration:none; color:black; cursor:pointer;">Show more details</a>
-				</div>
+				</table>				
 				<!-- Display  -->
 				<div class="col-sm-12 col-md-12 titlucomp ">Display</div>				
 				<table id="DISPLAY_table" class="table-xtra-condensed table tble">
@@ -90,11 +99,16 @@ else
 						<tr class="hideDISPLAY" style="display: none;"></tr>
 						<tr></tr>
 						<tr class="hideDISPLAY" style="display: none;"></tr>
+						<tr class="arrowShowMore">
+							<td>
+								<div class="col-sm-12 col-md-12 col-xs-6 shcomp" style="">
+									<a class="toggler" data-hide="DISPLAY" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
+								</div>
+							</td>
+						</tr>
 					</tbody>
 				</table>
-				<div class="col-sm-12 col-md-12 col-xs-6 shcomp" style="  max-width:250px;">
-					<a class="toggler" data-hide="DISPLAY" style="text-decoration:none; color:black; cursor:pointer;">Show more details</a>
-				</div>
+				
 				<!-- Storage -->
 				<table id="title_STORAGE" style="border: none; width:100%; border-top: 0px;">
 					<tbody>
@@ -109,11 +123,15 @@ else
 						<tr></tr>
 						<tr class="hideSTORAGE" style="display: none;"></tr>
 						<tr class="hideSTORAGE" style="display: none;"></tr>
+						<tr class="arrowShowMore">
+							<td>
+								<div class="col-sm-12 col-md-12 col-xs-6 shcomp" style="">
+									<a class="toggler" data-hide="STORAGE" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
+								</div>
+							</td>
+						</tr>
 					</tbody>
-				</table>
-				<div class="col-sm-12 col-md-12 col-xs-6 shcomp" style="  max-width:250px;">
-					<a class="toggler" data-hide="STORAGE" style="text-decoration:none; color:black; cursor:pointer;">Show more details</a>
-				</div>
+				</table>				
 				<!-- Secondary Storage -->
 				<div class="col-sm-12 col-md-12 titlucomp" id="title_SS">Secondary Storage</div>				
 				<table id="SSTORAGE_table" class="table-xtra-condensed table tble">
@@ -123,11 +141,15 @@ else
 						<tr></tr>
 						<tr class="hideSSTORAGE" style="display: none;"></tr>
 						<tr class="hideSSTORAGE" style="display: none;"></tr>
+						<tr class="arrowShowMore">
+							<td>
+								<div class="col-sm-12 col-md-12 col-xs-6 shcomp"   id="toggle_SS">
+									<a class="toggler" data-hide="SSTORAGE" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
+								</div>
+							</td>
+						</tr>
 					</tbody>
 				</table>
-				<div class="col-sm-12 col-md-12 col-xs-6 shcomp" style="  max-width:250px;" id="toggle_SS">
-					<a class="toggler" data-hide="SSTORAGE" style="text-decoration:none; color:black; cursor:pointer;">Show more details</a>
-				</div>
 				<!-- Motherboard -->
 				<div class="col-sm-12 col-md-12 titlucomp">Motherboard</div>				
 				<table id="MDB_table" class="table-xtra-condensed table tble">
@@ -138,11 +160,15 @@ else
 						<tr></tr>
 						<tr class="hideMDB" style="display: none;"></tr>
 						<tr></tr>
+						<tr class="arrowShowMore">
+							<td>
+								<div class="col-sm-12 col-md-12 col-xs-6 shcomp" style="">
+									<a class="toggler" data-hide="MDB" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
+								</div>
+							</td>
+						</tr>
 					</tbody>
-				</table>
-				<div class="col-sm-12 col-md-12 col-xs-6 shcomp" style="  max-width:250px;">
-					<a class="toggler" data-hide="MDB" style="text-decoration:none; color:black; cursor:pointer;">Show more details</a>
-				</div>
+				</table>				
 				<!-- Memory -->
 				<div class="col-sm-12 col-md-12 titlucomp">Memory</div>				
 				<table id="MEM_table" class="table-xtra-condensed table tble">
@@ -152,11 +178,15 @@ else
 						<tr></tr>
 						<tr class="hideMEM" style="display: none;"></tr>
 						<tr class="hideMEM" style="display: none;"></tr>
+						<tr class="arrowShowMore">
+							<td>
+								<div class="col-sm-12 col-md-12 col-xs-6 shcomp"  >
+									<a class="toggler" data-hide="MEM" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
+								</div>
+							</td>
+						</tr>
 					</tbody>
-				</table>
-				<div class="col-sm-12 col-md-12 col-xs-6 shcomp" style="  max-width:250px;">
-					<a class="toggler" data-hide="MEM" style="text-decoration:none; color:black; cursor:pointer;">Show more details</a>
-				</div>
+				</table>				
 				<!-- ODD -->
 				<table id="title_ODD" style="border: 0; width:100%;">
 					<tbody>
@@ -168,11 +198,15 @@ else
 						<tr class=""></tr>
 						<tr class="hideODD" style="display: none;"></tr>
 						<tr class="hideODD" style="display: none;"></tr>
+						<tr class="arrowShowMore">
+							<td>
+								<div class="col-sm-12 col-md-12 col-xs-6 shcomp"   id="toggle_ODD">
+									<a class="toggler" data-hide="ODD" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
+								</div>
+							</td>
+						</tr>
 					</tbody>
 				</table>
-				<div class="col-sm-12 col-md-12 col-xs-6 shcomp" style="  max-width:250px;" id="toggle_ODD">
-					<a class="toggler" data-hide="ODD" style="text-decoration:none; color:black; cursor:pointer;">Show more details</a>
-				</div>
 				<!-- Battery -->
 				<div class="col-sm-12 col-md-12 titlucomp" id="title_BAT">Battery</div>				
 				<table id="ACUM_table" class="table-xtra-condensed table tble">
@@ -181,11 +215,15 @@ else
 						<tr></tr>
 						<tr class="hideACUM" style="display: none;"></tr>
 						<tr class="hideACUM" style="display: none;"></tr>
+						<tr class="arrowShowMore">
+							<td>
+								<div class="col-sm-12 col-md-12 col-xs-6 shcomp"  >
+									<a class="toggler" data-hide="ACUM" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
+								</div>
+							</td>
+						</tr>
 					</tbody>
-				</table>
-				<div class="col-sm-12 col-md-12 col-xs-6 shcomp" style="  max-width:250px;">
-					<a class="toggler" data-hide="ACUM" style="text-decoration:none; color:black; cursor:pointer;">Show more details</a>
-				</div>
+				</table>				
 				<!-- CHASSIS -->
 				<div class="col-sm-12 col-md-12 titlucomp">Chassis</div>				
 				<table id="CHASSIS_table" class="table-xtra-condensed table tble">
@@ -202,12 +240,16 @@ else
 						<tr class="hideCHASSIS" style="display: none;"></tr>
 						<tr class="hideCHASSIS" style="display: none;"></tr>
 						<tr></tr>
-						<tr class="hideCHASSIS" style="display: none;"></tr>							
+						<tr class="hideCHASSIS" style="display: none;"></tr>		
+						<tr class="arrowShowMore">
+							<td>
+								<div class="col-sm-12 col-md-12 col-xs-6 shcomp"  >
+									<a class="toggler" data-hide="CHASSIS" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
+								</div>
+							</td>
+						</tr>
 					</tbody>
-				</table>
-				<div class="col-sm-12 col-md-12 col-xs-6 shcomp" style="  max-width:250px;">
-					<a class="toggler" data-hide="CHASSIS" style="text-decoration:none; color:black; cursor:pointer;">Show more details</a>
-				</div>
+				</table>				
 				<!-- WNET  -->
 				<table id="title_WNET" style="border: 0; width:100%;">
 						<tbody>
@@ -221,11 +263,15 @@ else
 						<tr></tr>
 						<tr class="hideWNET" style="display: none;"></tr>
 						<tr class="hideWNET" style="display: none;"></tr>	
+						<tr class="arrowShowMore">
+							<td>
+								<div class="col-sm-12 col-md-12 col-xs-6 shcomp"  >
+									<a class="toggler" data-hide="WNET" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
+								</div>
+							</td>
+						</tr>
 					</tbody>
-				</table>
-				<div class="col-sm-12 col-md-12 col-xs-6 shcomp" style="  max-width:250px;">
-					<a class="toggler" data-hide="WNET" style="text-decoration:none; color:black; cursor:pointer;">Show more details</a>
-				</div>
+				</table>				
 				<!-- Waranty -->
 				<div class="col-sm-12 col-md-12 titlucomp">Warranty</div>
 				<table id="WARA_table" class="table-xtra-condensed table tble">

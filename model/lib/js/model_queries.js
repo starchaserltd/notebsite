@@ -844,4 +844,29 @@ function set_best_low(confid,array_values)
 	if(i) { set_active_confopt(-1); }
 }
 
+function get_buy_list(el)
+{
+	//el.dataset.target
+	//el.dataset.idmodel
+	//el.dataset.buyregions
+	//el.dataset.lang
+	
+	if (el.dataset.target === "")	{ return; }
+	else 
+	{
+		if (window.XMLHttpRequest)	{ var	xmlhttp = new XMLHttpRequest(); }
+		
+		xmlhttp.onreadystatechange = function() 
+		{
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+			{
+				document.getElementById(el.dataset.target).innerHTML = xmlhttp.responseText;
+			}
+		}
+		xmlhttp.open("POST","model/lib/php/buy_list.php",true);
+		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xmlhttp.send('idmodel='+el.dataset.idmodel+'&buyregions='+el.dataset.buyregions+'&lang='+el.dataset.lang+'&usertag='+el.dataset.usertag);
+	}
+}
+
 function bat_animation(){ document.getElementsByClassName("labelblue")[2].classList.add('blueAnimation'); setTimeout(function () { document.getElementsByClassName("labelblue")[2].classList.remove('blueAnimation');  }, 1000); }

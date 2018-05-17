@@ -361,35 +361,32 @@ foreach ($maxminvalues as $key => $value)
 {
 	if($value[0]!=$value[1])
 	{
-		foreach($value[0] as $val){ echo 'document.getElementById("'.$key.$val.'").className = "labelblue-s"; '; }
-		foreach($value[1] as $val){ echo 'document.getElementById("'.$key.$val.'").className = "labelred-s"; '; }
+		foreach($value[0] as $val){ echo '$(document).ready(function(){ document.getElementById("'.$key.$val.'").className = "labelblue-s"; });'; }
+		foreach($value[1] as $val){ echo '$(document).ready(function(){ document.getElementById("'.$key.$val.'").className = "labelred-s"; });'; }
 	}
 }
 
 if($delshdd)
 {
-	echo 'mytbl = document.getElementById("SSTORAGE_table");
+	echo '$(document).ready(function(){  mytbl = document.getElementById("SSTORAGE_table");
 	mytbl.parentNode.removeChild(mytbl);
 	mytbl = document.getElementById("title_SS");
-	mytbl.parentNode.removeChild(mytbl);
-	mytbl = document.getElementById("toggle_SS");
-	mytbl.parentNode.removeChild(mytbl); ';
+	mytbl.parentNode.removeChild(mytbl); });';
 }
 
 if($delodd)
 {
-	echo 'mytbl = document.getElementById("ODD_table");
+	echo '$(document).ready(function(){mytbl = document.getElementById("ODD_table");
 	mytbl.parentNode.removeChild(mytbl);
 	mytbl = document.getElementById("title_BAT");
 	mytbl.parentNode.removeChild(mytbl);
-	mytbl = document.getElementById("toggle_ODD");
-	mytbl.parentNode.removeChild(mytbl);
 	mytbl = document.getElementById("title_ODAC");
-	mytbl.innerHTML = "Battery"; ';
+	mytbl.innerHTML = "Battery"; });';
 }
 
 //var_dump($maxminvalues);
 ?>
+$(document).ready(function(){
 var nrrcomp=document.getElementsByClassName("addtocpmp").length;
 for(var i = 0; i < nrrcomp; i++)
 {
@@ -427,3 +424,4 @@ if(confstoremove[0]!=="")
 
 var stateObj = { no: "empty" }; setTimeout(function(){ gocomp=1;}, 10);
 history.replaceState(stateObj,document.title,currentPage);
+});

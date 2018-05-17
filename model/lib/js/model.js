@@ -97,7 +97,7 @@ $('#addcompare').on('click', function() {
             top: $(".modelImageContainer").outerHeight(true) + $(".modelHeader").outerHeight(true) + 170
         }
     });
-	}
+}
 
 //change icon for resize information model
 	$('.glyphicon-chevron-down').on('click', function() {

@@ -1983,6 +1983,24 @@ table#comparelist td.text-center.comparecell3 {
 }
 
 
+.white .helpimg {    
+    background-image:  url(/../res/img/helpus.svg);
+}
+
+.white .blue {
+    background-color: #fff;
+}
+
+.addrev.selected {
+    background-color: #fff;
+    color: #000;
+}
+
+#usermenu:hover .helpimg {
+	background-image: url(/../res/img/helpus_blue.png);
+	transition: all 0.5s ease;
+}
+
 /*Responsive media design */
 
 @media (min-width: 1980px) {

@@ -2,7 +2,7 @@
 $return=array(); $key=0;
 if(isset($_GET["model_id"])&&isset($_GET["seller"]))
 {
-	if($keys) { require_once("../../../etc/con_db.php"); } else { require_once("../etc/con_db.php"); }
+	if(isset($keys) && $keys) { require_once("../../../etc/con_db.php"); } else { }
 	$model_id=intval($_GET["model_id"]); if($model_id!==0){$model_cond=" WHERE id=".$model_id;}else{$model_cond="";}
 	if(isset($_GET["keys"])){$show_keys=intval($_GET["keys"]);}else{$show_keys=0;}
 	$seller=array();

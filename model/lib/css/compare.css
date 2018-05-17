@@ -52,8 +52,7 @@
     font-size: 16px;
 }
 
-.shcomp {
-    background-color: #ffe5aa;
+.shcomp {    
     text-align: center;
     border-radius: 3px;
     font-size: 14px;
@@ -69,6 +68,28 @@
 .colored {
     background-color: #fff7e5;
 }
+
+.glyphicon-chevron-down.resize:before {
+    content: "\e113";
+}
+
+.toggler .glyphicon-chevron-down {  
+    text-align: center;
+    color: #f7c851;
+    padding: 10px 50px;
+    display: block;
+    text-align: center;
+    font-size: 16px;
+}
+
+.arrowShowMore.colored {
+    background-color: #fff!important;
+}
+
+.arrowShowMore  > td {
+    border-top:none!important;
+}
+
 
 @media (max-width: 550px) {
 

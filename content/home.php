@@ -1,11 +1,11 @@
 <?php
 require_once("../etc/conf.php");
-
+/*
 if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_name) ==FALSE) 
 {	$actual_link = "$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 	header("Location: ".$port_type."://".str_replace(($site_name."/"),($site_name."/?"),$actual_link)."");
 	die();
-}
+}*/
 $rootpath = realpath($_SERVER["DOCUMENT_ROOT"]).$root_mod;
 require_once($rootpath.$admin_address.'/wp/wp-blog-header.php');
 require_once("../etc/con_db.php");

@@ -1,5 +1,8 @@
-function addcolumn(data,tableid,valign)
-{ $("#"+tableid).find('tr').each(function(index){$(this).append('<td ' + valign + ' class="col-md-2 col-xs-2 col-sm-2 rows compare1">'+data[index]+'</td>')});}
+function addcolumn(data,tableid,valign) {
+ $("#"+tableid).find('tr').each(function(index){
+ 	if(data[index] != null ) { $(this).append('<td ' + valign + ' class="col-md-2 col-xs-2 col-sm-2 rows compare1">'+data[index]+'</td>') }	
+ 	});	
+}
 
 function stripeme(tableid)
 { $("#"+tableid+" tr:visible").each(function(index){$(this).toggleClass("colored",!(index&1))}); }
@@ -7,17 +10,12 @@ function stripeme(tableid)
 //FUNCTION FOR SHOW/HIDE ROWS
 $(".toggler").click(function(e){
 	e.preventDefault();
-		var data_hide = $(this).attr('data-hide');
-        $('.hide'+data_hide).fadeToggle(500,function () { stripeme(data_hide+"_table"); });
-		$this=$(this);
-		if($this.text().toLowerCase().indexOf("more") > -1)
-		{ $this.text("Show less details"); }
-		else
-		{
-			if($this.text().toLowerCase().indexOf("less") > -1)
-			{ $this.text("Show more details"); }
-		}
-	});
+	var data_hide = $(this).attr('data-hide');
+	$('.hide'+data_hide).fadeToggle(500,function () { stripeme(data_hide+"_table"); });
+});
+
+//Function for show more arrows
+$('.glyphicon-chevron-down').on('click', function() { $(this).toggleClass('resize'); });	
 	
 /* HEADER */
 var array_var=["","","","","",""];
@@ -65,6 +63,4 @@ addcolumn(array_var,"WARA_table",'style="vertical-align:middle"');
 var array_var=["Software"];
 addcolumn(array_var,"OS_table",'style="vertical-align:middle"');
 
-$(document).ready(function(){
-	actbtn("");
-});
+$(document).ready(function(){ actbtn(""); });

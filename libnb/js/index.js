@@ -9,7 +9,7 @@ var disqusloaded = 1;
 var urlold = "";
 var hh = 1;
 var ismobile = 0
-var currentPage = window.location.href;
+var currentPage = window.location.href; var ref=null;
 
 function locationHashChanged() {
     if (trigger) {
@@ -61,7 +61,6 @@ setInterval(function() {
 
 function urlrequest(url, e, dontpush) {
     trigger = 0;
-
     $('#loadingNB').show();
     $.get(url, function(response) {
         var urltitle = /([^\/]*).php/g.exec(url);
@@ -81,7 +80,8 @@ function urlrequest(url, e, dontpush) {
 
 //Function for main content area
 function OpenPage(url, e, dontpush) {
-    url = decodeURIComponent(decodeURIComponent(url.replace("% ", "%25%20").replace("%%20", "%25%20")).replace("% ", "%25%20").replace("%%20", "%25%20"));
+	if(url.indexOf("ref=")<0){ if(ref!=null&&ref!="") { if(url.indexOf("?")>=0){ url=url+"&ref="+ref;}else { url=url+"?ref="+ref; } } }
+	url = decodeURIComponent(decodeURIComponent(url.replace("% ", "%25%20").replace("%%20", "%25%20")).replace("% ", "%25%20").replace("%%20", "%25%20"));
     //DEPENDING ON WHAT BUTTON WAS PRESSED WE DO DIFFERENT THINGS
     var e = e || window.event;
     var btnCode;
@@ -208,9 +208,49 @@ $(document).ready(function() {
         var urlParts = window.location.href.split('?');
         var currentpage = urlParts.slice(1).join('?');
     }
-    first = 1;
-    OpenPage(currentpage);
-
+	
+	var newref=currentpage.match(/(?:[?]|[&]|^)ref=((?:[^&]|$)+)/m);
+	if(newref!==null)
+	{
+		var qmark=newref[0].indexOf("?");
+		if(qmark>=0&&qmark<5)
+		{ currentpage=currentpage.replace(newref[0],"?"); }
+		else
+		{ currentpage=currentpage.replace(newref[0],""); }
+		
+		if(ref!=newref[1])
+		{
+			if (window.XMLHttpRequest)	{ var	xmlhttp = new XMLHttpRequest(); }
+			xmlhttp.onreadystatechange = function() 
+			{
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+				{
+					if(parseInt(xmlhttp.responseText)==1)
+					{ ref=newref[1]; if(qmark>=0&&qmark<5) { currentpage=currentpage+"ref="+ref; }else{ currentpage=currentpage+"&ref="+ref; } }
+					else
+					{ ref=null; }
+					first = 1; OpenPage(currentpage);
+				}
+				else
+				{
+					if (xmlhttp.readyState == 4 && xmlhttp.status != 200) 
+					{
+						first = 1; OpenPage(currentpage);
+					}
+				}
+			}
+			xmlhttp.open("GET","http://86.123.134.36/notebro/libnb/php/checkref.php?ref="+newref[1],true);
+			xmlhttp.send();
+		}
+		else
+		{
+			first = 1; OpenPage(currentpage);
+		}
+	}
+	else
+	{
+		first = 1; OpenPage(currentpage);
+	}
 
     /* HERE we have the script for quick model search */
 
@@ -488,3 +528,22 @@ function listrange(list_comp)
 // Only enable if the document has a long scroll bar
 // Note the window height + offset
 if ( ($(window).height() + 100) < $(document).height() ) { $('#top-link-block').removeClass('hidden').affix({ offset: {top:100} }); }
+//Usermenu activate
+$('.addrev').click(function() {
+	$('#usermenu').addClass('white');
+	$(this).toggleClass('selected');
+	if($(this).siblings().hasClass('selected')) {
+		$(this).siblings().removeClass('selected');
+	}
+});
+//Deactivate api buton when click on other menu buttons
+
+$('.btn-sus').click(function() {
+   $('#usermenu').removeClass('white');
+   $('.addrev').removeClass('selected');
+});
+
+$('.logonb').click(function() {
+   $('#usermenu').removeClass('white');
+   $('.addrev').removeClass('selected');
+});
