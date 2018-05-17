@@ -7,8 +7,9 @@ $('#submitformid').click(function(e)
 	trigger=0;
 	$.get('search/search.php', $("#advform").serialize(), function(data) {
 		url = "search/search.php" + "?" + $("#advform").serialize();
-		history.pushState(null, "NoteBrother", "?" + url);
+		if(url.indexOf("ref=")<0){ url=url+"&ref="+ref; }
 		currentpage = url;
+		history.pushState(null, "NoteBrother", "?" + url);
 		if($('#content').html(data)){ $('#loadingNB').hide(); }
 	});
 });
