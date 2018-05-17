@@ -538,6 +538,7 @@ function submit_the_quiz()
             { disable_items[j]=key2+"=no"; j++; glue_string="&"; }
         }
     }
+	if(ref!=null&&ref!="") { quiz_submit[i++]="ref="+ref; }
 	var neworigstring=location.href.split("?quizsearch=1")[0]+"?quizsearch=1&"+quiz_submit.join("&")+glue_string+disable_items.join("&");
 	history.replaceState({back : neworigstring}, 'NoteBrother' + ' quiz submit', neworigstring); currentPage = neworigstring;
     location.href=siteroot+"?search/search.php?quizsearch=1&"+quiz_submit.join("&");

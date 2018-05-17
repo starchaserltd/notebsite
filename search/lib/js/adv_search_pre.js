@@ -7,7 +7,7 @@ $('#submitformid').click(function(e)
 	trigger=0;
 	$.get('search/search.php', $("#advform").serialize(), function(data) {
 		url = "search/search.php" + "?" + $("#advform").serialize();
-		if(url.indexOf("ref=")<0){ url=url+"&ref="+ref; }
+		if(url.indexOf("ref=")<0){ if(ref!=null&&ref!="") { url=url+"&ref="+ref; } }
 		currentpage = url;
 		history.pushState(null, "NoteBrother", "?" + url);
 		if($('#content').html(data)){ $('#loadingNB').hide(); }

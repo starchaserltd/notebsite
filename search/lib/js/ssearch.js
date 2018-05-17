@@ -262,7 +262,7 @@ $("#s_search_btn").on("mousedown",function(e) {
 	trigger = 0;
 	$.get('search/search.php', $("#s_search").serialize(), function(data) {
 		url = "search/search.php" + "?" + $("#s_search").serialize();
-		if(url.indexOf("ref=")<0){ url=url+"&ref="+ref; } currentpage = url;
+		if(url.indexOf("ref=")<0){ if(ref!=null&&ref!="") { url=url+"&ref="+ref; } } currentpage = url;
 		if ($('#content').html(data)) { $('#loadingNB').hide(); }
 		history.pushState({}, 'NoteBrother', "?" + url);
 	});
