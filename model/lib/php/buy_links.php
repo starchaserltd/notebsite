@@ -459,7 +459,7 @@ if(isset($_GET["model_id"])&&isset($_GET["seller"]))
 			
 			$keys=$key_proc($row["model"],$row["id"],$row["submodel"]);
 			$return[$key]["model_id"]=$row["id"];
-			$return[$key]["link"]=$link_gen($row["prod"],$keys);
+			$return[$key]["link"]=$link_gen($row["prod"],$keys); $return[$key]["seller_name"]=$seller;
 			if($show_keys==1) { $return[$key]["keys"]=valid_keys($keys,$row["prod"],$row["fam"],$cond);} else { $return[$key]["seller_logo"]=$seller_info["logo"]; $return[$key]["seller_exchsign"]=$seller_info["exchsign"]; }
 			$key++;
 		}

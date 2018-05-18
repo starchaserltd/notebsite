@@ -233,6 +233,8 @@ div.ListElem:hover {
 
 .modelContainer .buy .dropdown-menu {
 	padding: 5px;
+	min-height: 100px;
+
 }
 
 .firstImageModel img {
@@ -337,7 +339,7 @@ div.ListElem:hover {
 }
 
 .labelblue.blueAnimation {
-	animation: blueButton 1s ease-in;
+	animation: blueButton 0.7s ease-in;
 }
 
 .searchLink:nth-of-type(2) .logoheight {
@@ -348,6 +350,49 @@ div.ListElem:hover {
 .searchLink .logoheight {
 	margin-top: 0;
 }
+
+/* Loading for buton */
+
+.loader {
+  border: 7px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 7px solid #285f8f;
+  width: 30px;
+  height: 30px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  position: absolute;
+  top:50%;
+  left: 50%;
+  margin-top:-15px;
+  margin-left:-15px;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+.hide-loader {
+  display:none;
+}
+
+.loaderContainer {
+	position: absolute;
+	top:0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	background-color: rgba(27, 28, 29, 0.6);
+}
+
 
 /*Responsive media */
 
@@ -388,6 +433,12 @@ div.ListElem:hover {
 @media screen and (min-width:1800px) {
 	.modelwidht {
 		width: 100% !important;
+	}
+}
+
+@media(min-width:440px ) {
+	.modelContainer .buy .dropdown-menu {
+		min-width: 148px!important;
 	}
 }
 

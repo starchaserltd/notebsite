@@ -115,11 +115,14 @@ else
 				</div>				
 				<div class="buy">
 					<div class="dropdown">
-						<button id="dLabel" class="btn addtocpmp buyBtn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-tag="<?php if(isset($usertag)&&$usertag!=""){ echo $usertag; } else { echo "";} ?>" data-target="buylist-0" data-idmodel="<?php echo $idmodel; ?>" data-idmodel="<?php echo $idmodel; ?>" data-buyregions="<?php echo $buy_regions; ?>" data-lang="<?php echo $lang; ?>" onclick="get_buy_list(this);">
+						<button id="dLabel" class="btn addtocpmp buyBtn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-ref="<?php if(isset($usertag)&&$usertag!=""){ echo $usertag; } else { echo "";} ?>" data-target="buylist-0" data-idmodel="<?php echo $idmodel; ?>" data-idmodel="<?php echo $idmodel; ?>" data-buyregions="<?php echo $buy_regions; ?>" data-lang="<?php echo $lang; ?>" onclick="get_buy_list(this);">
 							<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Buy
 							<span class="caret"></span>
 						</button>
 						<ul class="dropdown-menu" aria-labelledby="dLabel" id="buylist-0">
+							<li class="loaderContainer">
+								<span class="loader"></span>
+							</li>
 						</ul>
 					</div><!-- Dropdown end div-->		
 					<div class="btn addtocpmp" id="addcompare" >
@@ -775,5 +778,5 @@ else
 <?php  
 } } ?>
 </div>
-<link rel="stylesheet" href="model/lib/css/model.css?v=60 type="text/css"/>
+<link rel="stylesheet" href="model/lib/css/model.css?v=63 type="text/css"/>
 <?php include_once("../etc/scripts_pages.php"); ?>

@@ -66,7 +66,7 @@ $published_posts = $count_posts->publish;
 			<p class="topLaptopsDate hidden-xs visible-md visible-sm visible-lg"><?php echo date('M Y',$topshead["HomeStudent"]["maxdate"]); ?></p>
 			<?php foreach ($tops['HomeStudent'] as $el) { ?>			
 			<div class="row">
-				<a href="javascript:void(0)" onmousedown="OpenPage('<?php echo "model/model.php?conf=".$el["id"]."&ex=USD"; ?>',event)";?>
+				<a href="javascript:void(0)" onmousedown="OpenPage('<?php echo "model/model.php?conf=".$el["id"]."&ex=USD"; ?>',event)">
 					<div class="col-xs-12 imgTopLaptop">
 						<img  class="img-responsive " src="<?php echo $el["img"]; ?>" alt="imgStudent"/>
 						<p class="topLaptopsName"><?php echo $el["name"]; ?> <br/> <span class="pretTopLaptops"><?php echo $el["price"]; ?>$</span></p>
@@ -82,7 +82,7 @@ $published_posts = $count_posts->publish;
 			<p class="topLaptopsDate hidden-xs visible-md visible-sm visible-lg"><?php echo date('M Y',$topshead["Gaming"]["maxdate"]); ?></p>
 			<?php foreach ($tops['Gaming'] as $el) { ?>				
 			<div class="row">
-				<a href="javascript:void(0)" onmousedown="OpenPage('<?php echo "model/model.php?conf=".$el["id"]."&ex=USD"; ?>',event)";?>
+				<a href="javascript:void(0)" onmousedown="OpenPage('<?php echo "model/model.php?conf=".$el["id"]."&ex=USD"; ?>',event)">
 					<div class="col-xs-12 imgTopLaptop">
 						<img  class="img-responsive " src="<?php echo $el["img"]; ?>" alt="imgGaming"/>
 						<p class="topLaptopsName"><?php echo $el["name"]; ?> <br/> <span class="pretTopLaptops"><?php echo $el["price"]; ?>$</span></p>							 
@@ -98,7 +98,7 @@ $published_posts = $count_posts->publish;
 			<p class="topLaptopsDate hidden-xs visible-md visible-sm visible-lg"><?php echo date('M Y',$topshead["Business"]["maxdate"]); ?></p>
 			<?php foreach ($tops['Business'] as $el) { ?>				
 			<div class="row">
-				<a href="javascript:void(0)" onmousedown="OpenPage('<?php echo "model/model.php?conf=".$el["id"]."&ex=USD"; ?>',event)";?>
+				<a href="javascript:void(0)" onmousedown="OpenPage('<?php echo "model/model.php?conf=".$el["id"]."&ex=USD"; ?>',event)">
 					<div class="col-xs-12 imgTopLaptop">
 						<img  class="img-responsive " src="<?php echo $el["img"]; ?>" alt="imgBusiness"/>
 						<p class="topLaptopsName"><?php echo $el["name"]; ?> <br/> <span class="pretTopLaptops"><?php echo $el["price"]; ?>$</span></p>							 

@@ -74,9 +74,9 @@ for($x = 0; $x <= $nrconf; $x++)
 	$maxminvalues=bluered(floatval($rate_conf_rate),$maxminvalues,$x,"rating",0);
 	$maxminvalues=bluered(floatval($price_conf_price),$maxminvalues,$x,"price",1);
 	$maxminvalues=bluered(floatval($batlife_conf_batlife),$maxminvalues,$x,"batlife",0);
-	$model_title='<a href="?model/model.php'."?conf=".$confid.'"><span class="tbltitle">'.$resu['prod']." ".$resu['fam']." ".$resu['model'].$resu['mdbname']." ".$resu['submodel'].$resu['region'].'</span></a>';
+	$model_title='<a href="javascript:void(0)" onmousedown="OpenPage('."\'model/model.php?conf=".$confid."\'".',event)"><span class="tbltitle">'.$resu['prod']." ".$resu['fam']." ".$resu['model'].$resu['mdbname']." ".$resu['submodel'].$resu['region'].'</span></a>';
 	$vars=array(
-		'<a style="align-items:center; margin:0 auto" href="?model/model.php'."?conf=".$confid.'">'.'<img src="res/img/models/thumb/t_'.$img.'.jpg" class="img-responsive comparejpg" alt="Image for '.$resu['model'].'"></a>',
+		'<a style="align-items:center; margin:0 auto" href="javascript:void(0)" onmousedown="OpenPage('."\'model/model.php?conf=".$confid."\'".',event)"><img src="res/img/models/thumb/t_'.$img.'.jpg" class="img-responsive comparejpg" alt="Image for '.$resu['model'].'"></a>',
 		$model_title,
 		'<span class="col-sm-12 col-md-12 col-xs-12 col-lg-12 nopding"><span style="color:black; font-weight:bold;">Rating: </span><br class="brk"><span id="rating'.$x.'">'.round($rate_conf_rate/100,1)." / 100</span></span>",
 		'<span class="col-sm-12 col-md-12 col-xs-12 col-lg-12 nopding" style="color:black;"><span style="color:black; font-weight:bold;">Price: </span><br class="brk"><span id="price'.$x.'">'.$exchsign." ".round(($price_conf_price-$err_conf_err/2)*$exch,0)." - ".round(($price_conf_price+$err_conf_err/2)*$exch,0)."</span></span>",

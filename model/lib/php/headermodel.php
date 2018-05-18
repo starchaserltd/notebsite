@@ -37,6 +37,7 @@ if(isset($_GET['model_id']) && $_GET['model_id']!="NaN")
 	mysqli_close($cons);
 }
 if(isset($idmodel) && $idmodel){  $conf=$id[0]."_".$idmodel; } // for a model
+$usertag=""; if($conf){ if(isset($_GET["ref"])&&$_GET["ref"]!=""){ $usertag=mysqli_real_escape_string($con,filter_var($_GET["ref"], FILTER_SANITIZE_STRING)); } }
 ?>
 <script>
 var istime=0; var exch = <?php echo $exch; ?>; var lang = <?php echo $lang; ?>; var countrybuy="<?php echo $country; ?>"; var excode="<?php echo $exchcode; ?>";  var config_rate=0;

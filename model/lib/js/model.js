@@ -107,4 +107,5 @@ $('#addcompare').on('click', function() {
 	$('.showDetailsButton').on('click', function() {
 		$(this).toggleClass('show');
 	});
+	
 });

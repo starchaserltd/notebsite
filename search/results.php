@@ -18,7 +18,9 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 <?php		
 		include_once("proc/confsearch.php"); /* WHERE THE REAL SEARCH IS DONE! */
 		if($count > 0)
-		{ ?>
+		{ 
+			$usertag=""; if(isset($_GET["ref"])&&$_GET["ref"]!=""){ $usertag=mysqli_real_escape_string($con,filter_var($_GET["ref"], FILTER_SANITIZE_STRING)); }
+			?>
 			<div class="col-md-6 col-sm-6 col-xs-12 col-lg-6" style="padding:0px">
 				<div class="btn-group">		
 					<div class="btn-group" style="float:right;width:auto!important;margin-left:3px">

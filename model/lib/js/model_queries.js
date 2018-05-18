@@ -627,14 +627,16 @@ function getconf(comp,id,exactconf)
 					
 					var stateObj = { no: "empty" }; setTimeout(function(){ gocomp=1;}, 10);
 					//conf=(\d*)(\&|$)
+					var addref=""; if(ref!=null&&ref!="") { addref="&ref="+ref; }
 					if(currentPage.match(/(conf=)(\d+)(.*)/i)!==null)
 					{ 
 						history.replaceState(stateObj, confdata["cid"], currentPage.replace(/(conf=)(\d+)(.*)/i,"$1"+confdata["cid"]+"$3"));
+						if(currentPage.indexOf("ref=")<0){ if(ref!=null&&ref!="") { currentPage=currentPage+"&ref="+ref; } }
 						if(currentPage.match(/(ex=)(.*)/i)===null)
 						{ history.replaceState(stateObj, confdata["cid"]+" "+excode, currentPage+"&ex="+excode); }
 					}
 					else
-					{ history.replaceState(stateObj, confdata["cid"], "?model/model.php?conf="+confdata["cid"]+"_"+mid+"&ex="+excode); }	
+					{ history.replaceState(stateObj, confdata["cid"], "?model/model.php?conf="+confdata["cid"]+"_"+mid+"&ex="+excode+addref); }	
 					currentPage = window.location.href;
 					set_best_low(confdata["cid"],best_low);
 					switch(comp)
@@ -846,11 +848,6 @@ function set_best_low(confid,array_values)
 
 function get_buy_list(el)
 {
-	//el.dataset.target
-	//el.dataset.idmodel
-	//el.dataset.buyregions
-	//el.dataset.lang
-	
 	if (el.dataset.target === "")	{ return; }
 	else 
 	{
@@ -865,7 +862,7 @@ function get_buy_list(el)
 		}
 		xmlhttp.open("POST","model/lib/php/buy_list.php",true);
 		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		xmlhttp.send('idmodel='+el.dataset.idmodel+'&buyregions='+el.dataset.buyregions+'&lang='+el.dataset.lang+'&usertag='+el.dataset.usertag);
+		xmlhttp.send('idmodel='+el.dataset.idmodel+'&buyregions='+el.dataset.buyregions+'&lang='+el.dataset.lang+'&usertag='+el.dataset.ref);
 	}
 }
 
