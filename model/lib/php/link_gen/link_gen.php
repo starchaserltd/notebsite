@@ -2,7 +2,7 @@
 function amazon_com_link($prod,$keys)
 {
 	$rank="sort=price-asc-rank";
-	return "https://www.amazon.com/s/rh=n:13896617011,p_89:".$prod.",p_n_condition-type:2224371011&keywords=+".$keys."&ie=UTF8&".$rank."&low-price=150'";
+	return "https://www.amazon.com/s/rh=n:13896617011,p_89:".$prod.",p_n_condition-type:2224371011&keywords=+".$keys."&ie=UTF8&".$rank."&low-price=150";
 }
 
 function google_com_link($prod,$keys)
