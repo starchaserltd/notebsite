@@ -259,8 +259,8 @@ $('#s_prod_id').select2({
 $("#s_search_btn").on("mousedown",function(e) {
 	scrolltoid('content');
 	$('#loadingNB').show();
-	trigger = 0;
-	$.get('search/search.php', $("#s_search").serialize(), function(data) {
+	trigger = 0; var addref=""; if(ref!=null&&ref!="") { addref="?ref="+ref; }
+	$.get('search/search.php'+addref, $("#s_search").serialize(), function(data) {
 		url = "search/search.php" + "?" + $("#s_search").serialize();
 		if(url.indexOf("ref=")<0){ if(ref!=null&&ref!="") { url=url+"&ref="+ref; } } currentpage = url;
 		if ($('#content').html(data)) { $('#loadingNB').hide(); }

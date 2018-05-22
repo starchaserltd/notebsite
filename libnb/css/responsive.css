@@ -86,6 +86,15 @@
 
 }
 
+@media screen and (max-width:320px) {
+	.searchresult {
+		height: 505px !important;
+		padding-left: 0px !important;
+		padding-right: 0px !important;
+	}
+
+}
+
 /* searchresultJPG for pictures div */
 .searchresultJPG {
 	text-align: center;
@@ -324,7 +333,7 @@ div.searchresultitlu  p {
 
 @media screen and (min-width:1501px) and (max-width:1600px) {
 	.searchresultdesc {
-		height: 200px !important;
+		height: 215px !important;
 		font-size: 13.2px;
 		padding-left: 15% !important;
 	}
@@ -342,7 +351,7 @@ div.searchresultitlu  p {
 
 @media screen and (min-width:1301px) and (max-width:1399px) {
 	.searchresultdesc {
-		height: 155px !important;
+		height: 168px !important;
 		font-size: 10.5px;
 		padding-left: 13% !important;
 	}
@@ -387,7 +396,7 @@ div.searchresultitlu  p {
 
 @media screen and (min-width:501px) and (max-width:768px) {
 	.searchresultdesc {
-		height: 160px !important;
+		height: 168px !important;
 		font-size: 10.5px;
 		padding-left: 20% !important;
 	}

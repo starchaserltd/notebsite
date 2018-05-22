@@ -227,7 +227,7 @@ div.ListElem:hover {
 	padding: 5px;
 }
 
-.buy .buyBtn {
+.buy .dropdown .buyBtn {
 	min-width: 168px;
 }
 

@@ -2,7 +2,7 @@
 function amazon_com_link($prod,$keys)
 {
 	$rank="sort=price-asc-rank";
-	return "https://www.amazon.com/s/rh=n:13896617011,p_89:".$prod.",p_n_condition-type:2224371011&keywords=+".$keys."&ie=UTF8&".$rank."&low-price=150";
+	return "https://www.amazon.com/gp/search?rh=n:13896617011,p_89:".$prod.",p_n_condition-type:2224371011&keywords=+".$keys."&ie=UTF8&".$rank."&low-price=150";
 }
 
 function google_com_link($prod,$keys)
@@ -23,13 +23,13 @@ function google_uk_link($prod,$keys)
 function amazon_uk_link($prod,$keys)
 {
 	$rank="sort=price-asc-rank";
-	return "https://www.amazon.co.uk/s/?fst=as:off&rh=n:429886031,p_89:".$prod.",p_n_condition-type:12319067031&keywords=+".$keys."&ie=UTF8&".$rank."&low-price=100";
+	return "https://www.amazon.co.uk/gp/search?fst=as:off&rh=n:429886031,p_89:".$prod.",p_n_condition-type:12319067031&keywords=+".$keys."&ie=UTF8&".$rank."&low-price=100";
 }
 
 function amazon_de_link($prod,$keys)
 {
 	$rank="relevancerank";
-	return "https://www.amazon.de/s/gp/search/?fst=as:off&rh=n:427957031,p_n_condition-type:776950031,p_89:".$prod."&keywords=".$keys."&ie=UTF8&low-price=100&".$rank;
+	return "https://www.amazon.de/gp/search/?fst=as:off&rh=n:427957031,p_n_condition-type:776950031,p_89:".$prod."&keywords=".$keys."&ie=UTF8&low-price=100&".$rank;
 }
 
 function compare_eu_link($prod,$keys)
