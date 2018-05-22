@@ -13,8 +13,8 @@ require_once("lib/php/func_article.php");
 if(isset($_SESSION['lang'])) { $lang=$_SESSION['lang']; } else { $lang=0; }
 
 $absolute_url = full_url( $_SERVER );
-$ad=explode("/review.php?", $absolute_url); //var_dump($ad);
-$ad[1]=$wp_address."wp/article.php/review".$ad[1];
+$ad=explode("/review.php?", $absolute_url);
+$ad[1]=preg_replace("/\/&[azAZ]?.*($)/","/",$wp_address."wp/article.php/review".$ad[1]);
 $echoid = url_to_postid($ad[1]); //echo $echoid;
 $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($echoid) )); //var_dump($url);
 $nrtabs=0;

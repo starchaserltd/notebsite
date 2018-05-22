@@ -12,9 +12,9 @@ require_once("lib/php/func_article.php");
 
 if(isset($_SESSION['lang'])) { $lang=$_SESSION['lang']; } else { $lang=0; }
 $absolute_url = full_url( $_SERVER );
-$ad=explode("/article.php?", $absolute_url); //var_dump($ad);
-$ad[1]=$wp_address."wp/article.php/article".$ad[1];
-$echoid = url_to_postid($ad[1]); //echo $echoid;
+$ad=explode("/article.php?", $absolute_url);
+$ad[1]=preg_replace("/\/&[azAZ]?.*($)/","/",$wp_address."wp/article.php/article".$ad[1]);
+$echoid = url_to_postid($ad[1]); //echo $echoid; 
 
 ?>
 <script type="text/javascript">
