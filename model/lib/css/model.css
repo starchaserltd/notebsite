@@ -504,7 +504,7 @@ div.ListElem:hover {
 	}
 }
 
-@media(max-width: 425px) {
+@media(max-width: 470px) {
 	.ptop {
 		display: flex;
 		flex-direction: column;
@@ -581,5 +581,9 @@ div.ListElem:hover {
 
 	.rating p {
 		margin:0;
+	}
+
+	.buy .dropdown .buyBtn {
+		min-width: 105px;
 	}
 }
