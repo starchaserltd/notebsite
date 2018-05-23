@@ -2212,6 +2212,10 @@ table#comparelist td.text-center.comparecell3 {
     border-color: #575757;
 }
 
+.searchLink {
+    text-transform: capitalize;
+}
+
 
 
 
@@ -2684,15 +2688,7 @@ table#comparelist td.text-center.comparecell3 {
     .config .addtocpmp {
         min-width: 135px;
     }
-
-    .logoheightof {
-        height: 22px!important;
-    }
-
-    .logoheight {
-        height: 20px!important;
-    }
-
+   
     .findLaptop {
         margin-left: 34px;
     }

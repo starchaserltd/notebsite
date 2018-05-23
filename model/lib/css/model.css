@@ -539,10 +539,6 @@ div.ListElem:hover {
 		margin-right: 2px;
 	}
 
-	.searchLink {
-		display: none;
-	}
-
 	.buy li {
 		min-width: 20px;
 	}	
