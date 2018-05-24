@@ -469,7 +469,7 @@ if(isset($_GET['memtype']))
 { array_walk($_GET['memtype'],'clean_string'); $mem_type = $_GET['memtype']; }
 
 /* *** Optical Drive *** */
-if($_GET['oddtype']!="Any/None" && stripos($_GET['oddtype'],"Any")===FALSE)
+if(isset($_GET['oddtype'])&&$_GET['oddtype']!="Any/None" && !(stripos($_GET['oddtype'],"Any")!==FALSE&&$_GET['oddtype']!="Any optical drive"))
 { array_walk($_GET['oddtype'],'clean_string'); $odd_type = $_GET['oddtype']; }
 
 /* *** ACUM *** */
