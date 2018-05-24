@@ -22,12 +22,13 @@ function standard_key_proc($keys,$idmodel,$submodel)
 		if(stripos($gpu_name,"geforce")!==FALSE) { $gpu_name=str_ireplace("geforce","",$gpu_name); }
 		if(stripos($gpu_name,"quadro")!==FALSE) { $gpu_name=str_ireplace("quadro","",$gpu_name); }
 		if(stripos($gpu_name,"pro ")!==FALSE) { $gpu_name=str_ireplace("pro ","",$gpu_name); }
-		if(stripos($gpu_name,"Vega M ")!==FALSE) { $gpu_name=NULL;  }
+		if(stripos($gpu_name,"Vega M ")!==FALSE) { $gpu_name="vega";  }
 		if(stripos($gpu_name,"max-q")!==FALSE) { $gpu_name=str_ireplace("max-q","",$gpu_name); }
 		if($gpu_name){ $keys.="+".trim($gpu_name); }
 	}	else {$gpu_name=NULL;}
 	
 	if(stripos($submodel,"Celeron")!==FALSE) { $keys.="+Celeron"; }
+	if(stripos($submodel,"vega")!==FALSE) { $keys.="+vega";  }
 	if(stripos($submodel,"AMD")!==FALSE&&stripos($submodel,"GPU")===FALSE) { $keys.="+AMD"; }
 	$matches=array(); if(preg_match("/[0-99]th/",$submodel,$matches)){  $keys.="+".$matches[0]; }
 	if(stripos($submodel,"QHD")!==FALSE) {  $keys.="+QHD"; }
