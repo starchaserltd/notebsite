@@ -68,7 +68,7 @@
 				<hr style="height:10px; width=:5px;">
 				<div style="font-size:16px; font-weight:bold;padding-bottom:5px;">Processor</div>	
 				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hiddenOptions">
 						<div>Producer</div>
 						<select id="CPU_prod_id" name="CPU_prod_id[]" data-lcom='CPU_model' data-lfield="cpu_prod" data-lcom2='CPU_socket' data-lfield2="prop" multiple="multiple">
 							<?php if(isset($droplists[11])) { echo $droplists[11]; } ?>
@@ -77,11 +77,7 @@
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						<div>Model</div>
 						<select class="multisearch js-example-responsive" id="CPU_model_id" name="CPU_model_id[]" data-lcom='none' data-lfield="none" data-placeholder="Processor Models" data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
-					</div>
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-						<div>Other features</div>
-						<select class="multisearch js-example-responsive" id="CPU_msc_id" name = "CPU_msc_id[]" data-lcom='CPU_model' data-lfield="cpu_misc" data-placeholder="Ex. Intel Core i7, Hyper-threading " data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
-					</div>
+					</div>					
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">		
 						<div style="margin-top:5px">
 							<span style="font-size:13.5px;">Nr. of cores:</span>
@@ -90,17 +86,15 @@
 						<div class="advspace" id="nrcores"></div>
 						<input type="hidden" name="nrcoresmin" id="nrcoresmin" value="<?php echo $cpucoremin; ?>" data-lcom='CPU_model' data-lfield="cpu_coremin">
 						<input type="hidden" name="nrcoresmax" id="nrcoresmax" value="<?php echo $cpucoremax; ?>" data-lcom='CPU_model' data-lfield="cpu_coremax">	
-					</div>
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-						<div class="advspace1">
-						<span style="font-size:13.5px;">Launch date:</span>
-						<span id="launchdateval"><?php echo $cpumindate; ?> - <?php echo $cpumaxdate; ?></span>
-						</div>	  
-						<div class="advspace" id="launchdate"></div>
-						<input type="hidden" name="launchdatemin" id="launchdatemin" value="<?php echo $cpumindate; ?>" data-lcom='CPU_model' data-lfield="cpu_ldmin" data-lcom2='CPU_socket' data-lfield2="sockmin">	
-						<input type="hidden" name="launchdatemax" id="launchdatemax" value="<?php echo $cpumaxdate; ?>" data-lcom='CPU_model' data-lfield="cpu_ldmax" data-lcom2='CPU_socket' data-lfield2="sockmax">			
-					</div>
-					
+					</div>					
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hiddenOptions">
+						<div class="advspace1">Socket</div>
+						<select class="multisearch js-example-responsive" id="CPU_socket_id" name="CPU_socket_id[]" data-lcom='CPU_model' data-lfield="cpu_socket" data-placeholder="Processor Sockets" data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width: 100%;"></select>
+					</div>		
+					<div style="margin-top: 10px;" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<div>Other features</div>
+						<select class="multisearch js-example-responsive" id="CPU_msc_id" name = "CPU_msc_id[]" data-lcom='CPU_model' data-lfield="cpu_misc" data-placeholder="Ex. Intel Core i7, Hyper-threading " data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
+					</div>						
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top:10px">
@@ -112,7 +106,7 @@
 						<input type="hidden" name="cputdpmin" id="cputdpmin" value="<?php echo $cputdpmin; ?>" data-lcom='CPU_model' data-lfield="cpu_tdpmin" >	 
 						<input type="hidden" name="cputdpmax" id="cputdpmax" value="<?php echo $cputdpmax; ?>" data-lcom='CPU_model' data-lfield="cpu_tdpmax" >				
 					</div>
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hiddenOptions">
 						<div class="advspace1">
 							<span style="font-size:13.5px;">Boost speed:</span>
 							<span id="cpufreqval"><?php echo $cpufreqmin; ?> - <?php echo $cpufreqmax; ?></span><span> GHz</span>
@@ -121,7 +115,7 @@
 						<input type="hidden" name="cpufreqmin" id="cpufreqmin" value="<?php echo $cpufreqmin; ?>" data-lcom='CPU_model' data-lfield="cpu_turbomin" >	 
 						<input type="hidden" name="cpufreqmax" id="cpufreqmax" value="<?php echo $cpufreqmax; ?>" data-lcom='CPU_model' data-lfield="cpu_turbomax" >			
 					</div>					
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hiddenOptions">
 						<div class="advspace1">
 							<span style="font-size:13.5px;">Lithography:</span> 
 							<span id="cputechval"><?php echo $cputechmax; ?> - <?php echo $cputechmin; ?></span><span> nm</span>
@@ -129,12 +123,19 @@
 						<div class="advspace" id="cputech"></div>
 						<input type="hidden" name="cputechmin" id="cputechmin" value="<?php echo $cputechmax; ?>" data-lcom='CPU_model' data-lfield="cpu_techmax" data-lcom2='CPU_socket' data-lfield2="socktechmax">	 
 						<input type="hidden" name="cputechmax" id="cputechmax" value="<?php echo $cputechmin; ?>" data-lcom='CPU_model' data-lfield="cpu_techmin" data-lcom2='CPU_socket' data-lfield2="socktechmin">			
-					</div>
+					</div>		
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-						<div class="advspace1">Socket</div>
-						<select class="multisearch js-example-responsive" id="CPU_socket_id" name="CPU_socket_id[]" data-lcom='CPU_model' data-lfield="cpu_socket" data-placeholder="Processor Sockets" data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width: 100%;"></select>
-					</div>
-					
+						<div class="advspace1">
+						<span style="font-size:13.5px;">Launch date:</span>
+						<span id="launchdateval"><?php echo $cpumindate; ?> - <?php echo $cpumaxdate; ?></span>
+						</div>	  
+						<div class="advspace" id="launchdate"></div>
+						<input type="hidden" name="launchdatemin" id="launchdatemin" value="<?php echo $cpumindate; ?>" data-lcom='CPU_model' data-lfield="cpu_ldmin" data-lcom2='CPU_socket' data-lfield2="sockmin">	
+						<input type="hidden" name="launchdatemax" id="launchdatemax" value="<?php echo $cpumaxdate; ?>" data-lcom='CPU_model' data-lfield="cpu_ldmax" data-lcom2='CPU_socket' data-lfield2="sockmax">
+					</div>			
+				</div>
+				<div class="col-xs-12 toggleHiddenButtons" aria-hidden="true">
+					<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
 				</div>
 			</div>
 			
@@ -163,7 +164,7 @@
 						<option value="4" <?php echo $gputypesel[4] ?>>High-end</option>
 						</select>	
 					</div>
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hiddenOptionsGpu">
 						<div>Producer</div>
 						<select id="GPU_prod_id" name="GPU_prod_id[]" data-lcom='GPU_model' data-lfield="gpu_prod" data-lcom2='GPU_arch' data-lfield2="prop" multiple="multiple">
 						<?php if(isset($droplists[12])) { echo $droplists[12]; } ?>
@@ -172,7 +173,7 @@
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">	
 						<div>Graphics card model</div>
 						<select class="multisearch js-example-responsive" id="GPU_model_id" name="GPU_model_id[]"  data-lcom='none' data-lfield="gpu_prod" data-placeholder="Graphics Card Models" data-initvalue="GPU Integrated" multiple="multiple" data-ajax--url="search/lib/func/list.php" style="width:100%;"></select>
-					</div>					
+					</div>
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						<div style="margin-top:5px;"><span style="margin-top:5px; font-size:13.5px; margin-bottom:2px;">
 							Video memory:</span>  <span id="gpumemval"><?php echo $gpumemmin; ?> - <?php echo $gpumemmax; ?> MB</span>
@@ -180,7 +181,22 @@
 						<div style="margin-top:5px;" id="gpumem"></div>
 						<input type="hidden" name="gpumemmin" id="gpumemmin" value="<?php echo $gpumemmin; ?>">
 						<input type="hidden" name="gpumemmax" id="gpumemmax" value="<?php echo $gpumemmax; ?>">		
+					</div>	
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hiddenOptionsGpu">	
+						<div>Architecture</div>
+						<select class="multisearch js-example-responsive" name="GPU_arch_id[]" id="GPU_arch_id" data-lcom='GPU_model' data-lfield="gpu_arch" data-placeholder="Ex. GCN 1.3, Pascal" data-initvalue="GPU Integrated" multiple="multiple" data-ajax--url="search/lib/func/list.php" style="width:100%;"></select>
 					</div>
+				</div>	
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">		
+
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hiddenOptionsGpu">
+						<div style="margin-top:11px;"><span style="margin-top:11px; font-size:13.5px; margin-bottom:2px;">
+							Memory bus width:</span>  <span id="gpubusval"><?php echo $gpumembusmin; ?> - <?php echo $gpumembusmax; ?> bit</span>
+						</div>	  
+						<div style="margin-top:5px;" id="gpubus"></div>
+						<input type="hidden" name="gpubusmin" id="gpubusmin" value="<?php echo $gpumembusmin; ?>">
+						<input type="hidden" name="gpubusmax" id="gpubusmax" value="<?php echo $gpumembusmax; ?>">		
+					</div>												
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						<div style="margin-top:10px;"><span style="margin-top:5px; font-size:13.5px; margin-bottom:2px;">
 							Launch date:</span>  <span id="gpulaunchdateval"><?php echo $gpumindate; ?> - <?php echo $gpumaxdate; ?></span>
@@ -189,8 +205,6 @@
 						<input type="hidden" name="gpulaunchdatemin" id="gpulaunchdatemin" value="<?php echo $gpumindate; ?>" data-lcom='GPU_model' data-lfield="gpu_ldmin" >
 						<input type="hidden" name="gpulaunchdatemax" id="gpulaunchdatemax" value="<?php echo $gpumaxdate; ?>" data-lcom='GPU_model' data-lfield="gpu_ldmax" >
 					</div>
-				</div>	
-				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">					
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						<div style="margin-top:10px;"><span style="font-size:13.5px;">
 							Power consumption (TDP):</span>  <span id="gpupowerval"><?php echo $gpupowermin; ?> - <?php echo $gpupowermax; ?> W</span>
@@ -198,24 +212,15 @@
 						<div style="margin-top:5px;" id="gpupower"></div>
 						<input type="hidden" name="gpupowermin" id="gpupowermin" value="<?php echo $gpupowermin; ?>">
 						<input type="hidden" name="gpupowermax" id="gpupowermax" value="<?php echo $gpupowermax; ?>">
-					</div>
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-						<div style="margin-top:11px;"><span style="margin-top:11px; font-size:13.5px; margin-bottom:2px;">
-							Memory bus width:</span>  <span id="gpubusval"><?php echo $gpumembusmin; ?> - <?php echo $gpumembusmax; ?> bit</span>
-						</div>	  
-						<div style="margin-top:5px;" id="gpubus"></div>
-						<input type="hidden" name="gpubusmin" id="gpubusmin" value="<?php echo $gpumembusmin; ?>">
-						<input type="hidden" name="gpubusmax" id="gpubusmax" value="<?php echo $gpumembusmax; ?>">		
-					</div>	
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top:12px">		
+					</div>					
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hiddenOptionsGpu" style="margin-top:12px">		
 						<div>Other features</div>
 						<select class="multisearch js-example-responsive" id="GPU_msc_id" name="GPU_msc_id[]" data-lcom='none' data-lfield="gpu_misc" data-placeholder="Ex. Optimus, Crossfire" data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
-					</div>					
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">	
-						<div>Architecture</div>
-						<select class="multisearch js-example-responsive" name="GPU_arch_id[]" id="GPU_arch_id" data-lcom='GPU_model' data-lfield="gpu_arch" data-placeholder="Ex. GCN 1.3, Pascal" data-initvalue="GPU Integrated" multiple="multiple" data-ajax--url="search/lib/func/list.php" style="width:100%;"></select>
 					</div>
-				</div>				
+				</div>		
+				<div class="col-xs-12 toggleHiddenButtonsGpu" aria-hidden="true">
+					<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+				</div>		
 			</div>
 		
 			<!-- DISPLAY -->
@@ -234,11 +239,7 @@
 						<div style="margin-top:5px;" id="verres"></div>
 						<input type="hidden" name="verresmin" id="verresmin" value="<?php echo $displayvresmin; ?>" data-lcom='DISPLAY_resol' data-lfield="vresmin">	
 						<input type="hidden" name="verresmax" id="verresmax" value="<?php echo $displayvresmax; ?>" data-lcom='DISPLAY_resol' data-lfield="vresmax">				
-					</div>
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
-						<div style="margin-top:12px;">Other features</div>
-						<select class="multisearch js-example-responsive" name="DISPLAY_msc_id[]" id="DISPLAY_msc_id" data-lcom="none" data-lfield="none" data-placeholder="Ex. LED TN, 120Hz, G-Sync, 80% sRGB" data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
-					</div>		
+					</div>					
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						<div class="checkbox" style="float:right;">
 							<input type="checkbox" name="touchscreen"  id="touchscreen" class="css-checkbox sme" style="margin-left:0px;" <?php echo $tcheck; ?>/>
@@ -248,25 +249,32 @@
 							<label for="nontouchscreen" class="css-label sme depressed" style="font-weight:normal;min-height:16px;">No Touchscreen</label>
 						</div>
 					</div>
-				</div>	
-				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hiddenOptionsDisplay">
 						<div>Surface type</div>			
 						<select id="surface" name="surface[]" multiple="multiple">
 							<?php if(isset($droplists[56])) { echo $droplists[56]; } ?>
 						</select>
 					</div>	
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				</div>	
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+						<div style="margin-top:12px;">Other features</div>
+						<select class="multisearch js-example-responsive" name="DISPLAY_msc_id[]" id="DISPLAY_msc_id" data-lcom="none" data-lfield="none" data-placeholder="Ex. LED TN, 120Hz, G-Sync, 80% sRGB" data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
+					</div>							
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hiddenOptionsDisplay">
 						<div>Ratio</div>			
 						<select id="DISPLAY_ratio_id" name="DISPLAY_ratio[]" data-lcom='DISPLAY_resol' data-lfield="prop" multiple="multiple">
 							<?php if(isset($droplists[8])){ echo $droplists[8]; } ?>
 						</select>
 					</div>					
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hiddenOptionsDisplay">
 						<div>Resolutions</div>
 						<select class="multisearch js-example-responsive" name="DISPLAY_resol_id[]" id="DISPLAY_resol_id" data-lcom="none" data-lfield="none" data-placeholder="Ex. 3200x1800" data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
 					</div>					
 				</div>
+				<div class="col-xs-12 toggleHiddenButtonsDisplay" aria-hidden="true">
+					<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+				</div>		
 			</div>	
 			
 			<!-- STORAGE -->
@@ -278,26 +286,9 @@
 						<div style="margin-top:10px"><span style="font-size:13.5px;">Total Capacity:</span>  <span id="capacityval"><?php echo $totalcapmin; ?> - <?php echo $totalcapmax; ?> GB</span></div>	  
 						<div style="margin-top:5px;" id="capacity"></div>
 						<input type="hidden" name="capacitymin" id="capacitymin" value="<?php echo $totalcapmin; ?>">	
-						<input type="hidden" name="capacitymax" id="capacitymax" value="<?php echo $totalcapmax; ?>">				
-					</div>
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top:8px;">						
-						<div>Type</div>			
-						<select id="typehdd" name="typehdd[]" multiple="multiple">
-							<?php if(isset($droplists[54])) { echo $droplists[54]; } ?>
-						</select>
-					</div>
-				</div>	
-				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-						<div>min RPM (for HDD option)</div>			
-						<select id="rpm" name="rpm">
-							<option value="">Any</option>
-							<?php if(isset($droplists[55])){ echo $droplists[55]; } ?>
-						</select>
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">		
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">			
+						<input type="hidden" name="capacitymax" id="capacitymax" value="<?php echo $totalcapmax; ?>">	
+					</div>					
+					<div style="margin-top: 10px;" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hiddenOptionsStorage">		
 						<div>Seconday storage</div>
 						<select id="nrhdd" name="nrhdd">
 							<option value="1">Optional</option>
@@ -305,7 +296,25 @@
 							<option value="3" <?php echo $nrhddselect2;?> >Ignore</option>
 						</select>
 					</div>
-				</div>
+				</div>	
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hiddenOptionsStorage">
+						<div>min RPM (for HDD option)</div>			
+						<select id="rpm" name="rpm">
+							<option value="">Any</option>
+							<?php if(isset($droplists[55])){ echo $droplists[55]; } ?>
+						</select>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top:8px;">						
+						<div>Type</div>			
+						<select id="typehdd" name="typehdd[]" multiple="multiple">
+							<?php if(isset($droplists[54])) { echo $droplists[54]; } ?>
+						</select>
+					</div>					
+				</div>	
+				<div class="col-xs-12 toggleHiddenButtonsStorage" aria-hidden="true">
+					<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+				</div>				
 			</div>
 				
 			<!-- MDB -->
@@ -316,14 +325,8 @@
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						<div>Ports</div>
 						<select class="multisearch js-example-responsive" id="MDB_port_id" name ="MDB_port_id[]" data-lcom='none' data-lfield="none" data-placeholder="Ex. 2 X USB 3.0, Thunderbolt" data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
-					</div>
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-						<div>Video ports</div>
-						<select class="multisearch js-example-responsive" id="MDB_vport_id" name="MDB_vport_id[]" data-lcom='none' data-lfield="none" data-placeholder="Ex. 1 X HDMI, 1 X VGA" data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					</div>	
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hiddenOptionsMdb">
 						<div>Minimum number of memory slots:</div>			
 						<select id="mdbslots" name="mdbslots">
 							<option value="4" <?php echo $mdbslotsel4;?>>4</option>
@@ -332,8 +335,14 @@
 							<option value="1" <?php echo $mdbslotsel1;?>>1</option>
 							<option value="0" <?php echo $mdbslotsel0;?>>Soldered</option>
 						</select>
-					</div>	
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">			
+					</div>					
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<div>Video ports</div>
+						<select class="multisearch js-example-responsive" id="MDB_vport_id" name="MDB_vport_id[]" data-lcom='none' data-lfield="none" data-placeholder="Ex. 1 X HDMI, 1 X VGA" data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
+					</div>					
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hiddenOptionsMdb">			
 						<div>WWAN</div>			
 						<select id="mdbwwan" name="mdbwwan">
 							<option value="1"<?php echo $mdbwwansel1;?> >None</option>
@@ -341,7 +350,10 @@
 							<option value="2" <?php echo $mdbwwansel2;?> >Required</option>
 						</select>
 					</div>
-				</div>	
+				</div>
+				<div class="col-xs-12 toggleHiddenButtonsMdb" aria-hidden="true">
+					<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+				</div>					
 			</div>
 
 			<!-- MEMORY -->
@@ -357,7 +369,7 @@
 						<input type="hidden" name="rammin" id="rammin" value="<?php echo $memcapmin; ?>">	
 						<input type="hidden" name="rammax" id="rammax" value="<?php echo $memcapmax; ?>">				
 					</div>
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hiddenOptionsMemory">
 						<div style="margin-top:10px;"><span style="margin-top:5px; font-size:13.5px; margin-bottom:2px;">
 							Speed:</span>  <span id="freqval"><?php echo $memfreqmin; ?> - <?php echo $memfreqmax; ?> MHz</span>
 						</div>	  
@@ -367,13 +379,16 @@
 					</div>
 				</div>
 				<div class="col-xs-12 col-md-6 col-md-6 col-lg-6" >
-					<div class="col-md-12 col-sm-12">
+					<div class="col-md-12 col-sm-12 hiddenOptionsMemory">
 						<div>Type</div>			
 						<select id="memtype" name="memtype[]" multiple>
 							<?php if(isset($droplists[53])) { echo $droplists[53]; } ?>
 						</select>
 					</div>
 				</div>
+				<div class="col-xs-12 toggleHiddenButtonsMemory" aria-hidden="true">
+					<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+				</div>			
 			</div>
 				
 			<!-- BATTERY -->
@@ -423,24 +438,8 @@
 						<div style="margin-top:3px; margin-bottom:5px;" id="thickness"></div>
 						<input type="hidden" name="thicmin" id="thicmin" value="<?php echo $chassisthicmin; ?>">
 						<input type="hidden" name="thicmax" id="thicmax" value="<?php echo $chassisthicmax; ?>">	
-					</div>	
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-						<div>Made of</div>			
-						<select id="material" name="material[]" multiple>
-							<?php if(isset($droplists[26])) { echo $droplists[26]; } ?>
-						</select>
-					</div>
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">	
-						<div class="checkbox" style="float:right;">
-							<input type="checkbox" name="twoinone-yes"  id="twoinone-yes" class="css-checkbox sme" style="margin-left:0px;" <?php echo $twoinone_check; ?>/>
-							<label for="twoinone-yes" class="css-label sme depressed" style="font-weight:normal;min-height:16px;">Convertible (2-in-1)</label>
-							&nbsp; <input type="checkbox" name="twoinone-no"  id="twoinone-no" class="css-checkbox sme" style="margin-left:0px;" <?php echo $classiclap_check; ?>/>
-							<label for="twoinone-no" class="css-label sme depressed" style="font-weight:normal;min-height:16px;">Classic Laptop</label>
-						</div>
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					</div>		
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hiddenOptionsChassis">
 						<div style="margin-top:5px;"><span style="margin-top:0px; font-size:13.5px; margin-bottom:2px;">
 							Width:</span>  <span id="widthval">
 							<?php $feetwidthmin = $chassiswidthmin*0.393701; echo number_format($chassiswidthmin/10,1); ?> - <?php echo number_format($chassiswidthmax/10,1)." cm / ";  $feetwidthmax = $chassiswidthmax*0.393701; echo number_format($feetwidthmin/10,2)." - ".number_format($feetwidthmax/10,2)." inch"; ?></span>
@@ -449,31 +448,50 @@
 						<input type="hidden" name="widthmin" id="widthmin" value="<?php echo $chassiswidthmin; ?>">	
 						<input type="hidden" name="widthmax" id="widthmax" value="<?php echo $chassiswidthmax; ?>">				
 					</div>	
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hiddenOptionsChassis">
 						<div style="margin-top:10px;"><span style="margin-top:5px; font-size:13.5px; margin-bottom:2px;">
 							Depth:</span>  <span id="depthval">
 							<?php $feetdepthmin = $chassisdepthmin*0.393701; echo number_format($chassisdepthmin/10,1); ?> - <?php echo number_format($chassisdepthmax/10,1)." cm / ";  $feetdepthmax = $chassisdepthmax*0.393701; echo number_format($feetdepthmin/10,2)." - ".number_format($feetdepthmax/10,2)." inch"; ?></span>
 						</div>	  
 						<div style="margin-top:3px;" id="depth"></div>
 						<input type="hidden" name="depthmin" id="depthmin" value="<?php echo $chassisdepthmin; ?>">	
-						<input type="hidden" name="depthmax" id="depthmax" value="<?php echo $chassisdepthmax; ?>">				
-					</div>
+						<input type="hidden" name="depthmax" id="depthmax" value="<?php echo $chassisdepthmax; ?>">	
+					</div>		
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">	
+						<div class="checkbox" style="float:right;">
+							<input type="checkbox" name="twoinone-yes"  id="twoinone-yes" class="css-checkbox sme" style="margin-left:0px;" <?php echo $twoinone_check; ?>/>
+							<label for="twoinone-yes" class="css-label sme depressed" style="font-weight:normal;min-height:16px;">Convertible (2-in-1)</label>
+							&nbsp; <input type="checkbox" name="twoinone-no"  id="twoinone-no" class="css-checkbox sme" style="margin-left:0px;" <?php echo $classiclap_check; ?>/>
+							<label for="twoinone-no" class="css-label sme depressed" style="font-weight:normal;min-height:16px;">Classic Laptop</label>
+						</div>
+					</div>						
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<div>Made of</div>			
+						<select id="material" name="material[]" multiple>
+							<?php if(isset($droplists[26])) { echo $droplists[26]; } ?>
+						</select>
+					</div>					
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hiddenOptionsChassis">	
 						<div style="margin-top:10px;"><span style="margin-top:5px; font-size:13.5px; margin-bottom:2px;">
 							Webcam:</span>  <span id="webval">
 							<?php echo $chassiswebmin; ?> - <?php echo $chassiswebmax." MP";?></span>
-						</div>	  
-					</div>	
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">	
+						</div>	 
 						<div style="margin-top:3px;" id="web"></div>
 						<input type="hidden" name="webmin" id="webmin" value="<?php echo $chassiswebmin; ?>">	
-						<input type="hidden" name="webmax" id="webmax" value="<?php echo $chassiswebmax; ?>">				
+						<input type="hidden" name="webmax" id="webmax" value="<?php echo $chassiswebmax; ?>"> 
+					</div>	
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">											
 						<div  style="margin-top:10px;">
 							<div>Other features</div>
 							<select class="multisearch js-example-responsive" id="CHASSIS_stuff_id" name="CHASSIS_stuff_id[]" data-lcom='none' data-lfield="none" data-placeholder="Ex. Stylus, Fingerprint reader, Spill resistant" data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
 						</div>
 					</div>
 				</div>
+				<div class="col-xs-12 toggleHiddenButtonsChassis" aria-hidden="true">
+					<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+				</div>		
 			</div>
 			
 			<!-- WIRELESS -->
@@ -481,7 +499,7 @@
 				<hr style="height:5px; width=:50px;">
 				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" style="padding:10px 0px 0px 0px;">
 					<div style="font-size:16px; font-weight:bold;padding-bottom:5px;">Wireless card</div>
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hiddenOptionWirrOpt" >
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 							<div>Minimum transfer speed (Mbps)</div>			
 							<select id="wnetspeed" name="wnetspeed">
@@ -498,7 +516,7 @@
 				<!-- Optical Drive -->
 				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" style="padding:10px 0px 0px 0px;">		
 					<div style="font-size:16px; font-weight:bold;padding-bottom:5px;">Optical drive</div>
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hiddenOptionWirrOpt">
 						<div class="col-md-12 col-sm-12">	
 							<div>Type</div>			
 							<select id="oddtype" name="oddtype">
@@ -507,6 +525,9 @@
 						</div>
 					</div>
 				</div>
+				<div class="col-xs-12 toggleHiddenButtonsWirrOpt" aria-hidden="true">
+					<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+				</div>		
 			</div>
 			
 			<!-- OS -->

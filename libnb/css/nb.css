@@ -2214,11 +2214,29 @@ table#comparelist td.text-center.comparecell3 {
 
 .searchLink {
     text-transform: capitalize;
+} 
+
+.hiddenOptionsChassis, .hiddenOptionsStorage, .hiddenOptionsGpu, .hiddenOptions, .hiddenOptionsDisplay, .hiddenOptionsMdb, .hiddenOptionsMemory, .hiddenOptionWirrOpt {
+    display: none;
+}
+
+.toggleHiddenButtons .glyphicon-chevron-down.arrowUp:before, .toggleHiddenButtonsChassis .glyphicon-chevron-down.arrowUp:before, .toggleHiddenButtonsGpu .glyphicon-chevron-down.arrowUp:before, .toggleHiddenButtonsDisplay .glyphicon-chevron-down.arrowUp:before, .toggleHiddenButtonsStorage .glyphicon-chevron-down.arrowUp:before, .toggleHiddenButtonsMdb .glyphicon-chevron-down.arrowUp:before, .toggleHiddenButtonsMemory .glyphicon-chevron-down.arrowUp:before, .toggleHiddenButtonsWirrOpt .glyphicon-chevron-down.arrowUp:before  {
+    content: "\e113";
+}
+
+.toggleHiddenButtonsGpu .glyphicon-chevron-down, .toggleHiddenButtons .glyphicon-chevron-down, .toggleHiddenButtonsDisplay .glyphicon-chevron-down, .toggleHiddenButtonsChassis .glyphicon-chevron-down, .toggleHiddenButtonsStorage .glyphicon-chevron-down,   .toggleHiddenButtonsMdb .glyphicon-chevron-down,    .toggleHiddenButtonsMemory .glyphicon-chevron-down , .toggleHiddenButtonsWirrOpt .glyphicon-chevron-down {
+    color: #fed565;
+    min-width: 180px;
+    cursor: pointer;
+    font-size: 18px;
 }
 
 
-
-
+.toggleHiddenButtonsChassis, .toggleHiddenButtons, .toggleHiddenButtonsGpu, .toggleHiddenButtonsDisplay, .toggleHiddenButtonsStorage, .toggleHiddenButtonsMdb, .toggleHiddenButtonsMemory, .toggleHiddenButtonsWirrOpt  {
+    margin-top: 15px;
+    text-align: center;    
+}
+ 
 /*Responsive media design */
 
 @media (min-width: 1980px) {
@@ -2229,6 +2247,11 @@ table#comparelist td.text-center.comparecell3 {
     .officialSite a img {
         margin-top: 0;
     }
+    .toggleHiddenButtonsChassis .glyphicon-chevron-down, .toggleHiddenButtonsDisplay .glyphicon-chevron-down, .toggleHiddenButtonsGpu .glyphicon-chevron-down, .toggleHiddenButtons .glyphicon-chevron-down {
+        font-size: 22px;
+    }
+
+
 }
 
 
