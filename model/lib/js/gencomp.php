@@ -75,13 +75,15 @@ for($x = 0; $x <= $nrconf; $x++)
 	$maxminvalues=bluered(floatval($price_conf_price),$maxminvalues,$x,"price",1);
 	$maxminvalues=bluered(floatval($batlife_conf_batlife),$maxminvalues,$x,"batlife",0);
 	$model_title='<a href="javascript:void(0)" onmousedown="OpenPage('."\'model/model.php?conf=".$confid."\'".',event)"><span class="tbltitle">'.$resu['prod']." ".$resu['fam']." ".$resu['model'].$resu['mdbname']." ".$resu['submodel'].$resu['region'].'</span></a>';
+	$buytext='<div class="buy resultsShopBtn"><div class="dropdown"><button id="dLabel" class="btn buyBtn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-ref="'; 
+	if(isset($usertag)&&$usertag!=""){ $buytext=$buytext.$usertag; } else { $buytext=$buytext.'';} $buytext=$buytext.'" data-target="buylist-'.$x.'" data-idmodel="'.$conf_model.'" data-idmodel="'.$conf_model.'" data-buyregions="'.$buy_regions.'" data-lang="'.$lang.'" onclick="get_buy_list(this);"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><span class="caret"></span></button><ul class="dropdown-menu" aria-labelledby="dLabel" id="buylist-'.$x.'"><li class="loaderContainer"><span class="loader"></span></li></ul></div></div>';
 	$vars=array(
 		'<a style="align-items:center; margin:0 auto" href="javascript:void(0)" onmousedown="OpenPage('."\'model/model.php?conf=".$confid."\'".',event)"><img src="res/img/models/thumb/t_'.$img.'.jpg" class="img-responsive comparejpg" alt="Image for '.$resu['model'].'"></a>',
 		$model_title,
 		'<span class="col-sm-12 col-md-12 col-xs-12 col-lg-12 nopding"><span style="color:black; font-weight:bold;">Rating: </span><br class="brk"><span id="rating'.$x.'">'.round($rate_conf_rate/100,1)." / 100</span></span>",
 		'<span class="col-sm-12 col-md-12 col-xs-12 col-lg-12 nopding" style="color:black;"><span style="color:black; font-weight:bold;">Price: </span><br class="brk"><span id="price'.$x.'">'.$exchsign." ".round(($price_conf_price-$err_conf_err/2)*$exch,0)." - ".round(($price_conf_price+$err_conf_err/2)*$exch,0)."</span></span>",
 		'<span class="col-sm-12 col-md-12 col-xs-12 col-lg-12 nopding" style="color:black;"><span style="color:black; font-weight:bold;">Battery:  </span><br class="brk"><span id="batlife'.$x.'">'.round(($batlife_conf_batlife*0.95),1)." - ".round(($batlife_conf_batlife*1.02),1)." h</span></span>",
-		'<button style="padding:2px 0px" class="addtocpmp" onclick="removecomp('."-+-".$confid ."-+-".',1)"><a>Remove</a></button>'
+		'<button style="padding:2px 0px" class="addtocpmp" onclick="removecomp('."-+-".$confid ."-+-".',1)"><a>Remove</a></button>'.$buytext
 	);
 
 	$danvar=implode("','",$vars);

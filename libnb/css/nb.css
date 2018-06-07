@@ -2236,6 +2236,30 @@ table#comparelist td.text-center.comparecell3 {
     margin-top: 15px;
     text-align: center;    
 }
+
+.compContainer .addtocpmp>a {
+    padding: 0px 15px;
+}
+
+.compContainer .resultsShopBtn.buy {
+    display: inline-block;
+    max-width: 50px
+}
+
+.compContainer .addtocpmp {
+    min-width: 125px;
+    display:inline-block;
+}
+
+
+
+.compContainer .resultsShopBtn .buyBtn {
+    width: 100%;
+}
+
+.compare1 {
+    text-align: center;
+}
  
 /*Responsive media design */
 
@@ -2252,6 +2276,12 @@ table#comparelist td.text-center.comparecell3 {
     }
 
 
+}
+
+@media (max-width: 1600px) {
+    .buy .buyBtn {
+        min-width: 48px;
+    }
 }
 
 
@@ -2302,6 +2332,11 @@ table#comparelist td.text-center.comparecell3 {
      .labelblue {
         font-size: 12px;
     }
+
+     .compContainer .addtocpmp {
+        min-width: 100px;
+    }
+
 }
 
 @media(min-width:991px) and (max-width: 1200px) {
@@ -2622,7 +2657,36 @@ table#comparelist td.text-center.comparecell3 {
 
     .navbar-collapse {
         order: 1;
-    }        
+    }  
+
+    .compContainer .resultsShopBtn.buy {
+        width: 100%;
+        float: none;
+    }
+
+    .compContainer .addtocpmp {
+        width: 100%;
+        float: none;
+        max-width: 76px;
+    }
+
+      .buy .buyBtn {
+        min-width: 30px;
+    }
+
+    .compContainer .addtocpmp {
+        min-width: 70px;
+    }
+
+    .addtocpmp>a {
+        font-size: 12px;
+    }
+
+    .toggler .glyphicon-chevron-down {
+        padding: 10px 30px;
+    }
+
+
 }
 
 @media(max-width:450px) {
@@ -2752,6 +2816,8 @@ table#comparelist td.text-center.comparecell3 {
     .resultsShopBtn .dropdown-menu {
         left: 0;
     }
+
+
 }
 
 @media(max-width:1200px) {

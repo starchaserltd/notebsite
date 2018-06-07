@@ -55,7 +55,6 @@ if($nrgetconfs>0){ $addtojava.="} $('.compareDropdown').css('display', 'block');
 if(count($_SESSION['toalert'])>0){ $addtojava.=' alert("We are sorry, but the following laptop configurations no longer exist: \n'.implode("\\n",$_SESSION['toalert']).'");'; }
 $addtojava.=" </script>";
 echo $addtojava;
-
 if($nrgetconfs==1) { $_SESSION['toalert'][]=$getconfs[0]; unset($getconfs[0]); }
 
 /* GETTING INFORMATION FROM SESSION */
@@ -89,6 +88,7 @@ if($nrgetconfs<2)
 	}
 }
 $nrconf--;
+$usertag=""; if($nrconf>1){ if(isset($_GET["ref"])&&$_GET["ref"]!=""){ $usertag=mysqli_real_escape_string($con,filter_var($_GET["ref"], FILTER_SANITIZE_STRING)); } }
 mysqli_close($cons); mysqli_close($con);
 
 $_SESSION['java_nrconf']=$nrconf; $_SESSION['java_nrgetconfs']=$nrgetconfs; $_SESSION['java_getconfs']=$getconfs; $_SESSION['java_session_idconf']=$session_idconf;

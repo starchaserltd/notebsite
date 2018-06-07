@@ -53,7 +53,7 @@ else
 						<tr></tr>
 						<tr class="arrowShowMore">
 							<td>
-								<div class="col-sm-12 col-md-12 col-xs-6 shcomp">
+								<div class="col-sm-12 col-md-12 col-xs-12 shcomp">
 									<a class="toggler" data-hide="CPU" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
 								</div>		
 							</td>
@@ -81,7 +81,7 @@ else
 						<tr></tr>
 						<tr class="arrowShowMore">
 							<td>
-								<div class="col-sm-12 col-md-12 col-xs-6 shcomp"  >
+								<div class="col-sm-12 col-md-12 col-xs-12 shcomp"  >
 									<a class="toggler" data-hide="GPU" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
 								</div>
 							</td>
@@ -101,7 +101,7 @@ else
 						<tr class="hideDISPLAY" style="display: none;"></tr>
 						<tr class="arrowShowMore">
 							<td>
-								<div class="col-sm-12 col-md-12 col-xs-6 shcomp" style="">
+								<div class="col-sm-12 col-md-12 col-xs-12 shcomp" style="">
 									<a class="toggler" data-hide="DISPLAY" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
 								</div>
 							</td>
@@ -125,7 +125,7 @@ else
 						<tr class="hideSTORAGE" style="display: none;"></tr>
 						<tr class="arrowShowMore">
 							<td>
-								<div class="col-sm-12 col-md-12 col-xs-6 shcomp" style="">
+								<div class="col-sm-12 col-md-12 col-xs-12 shcomp" style="">
 									<a class="toggler" data-hide="STORAGE" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
 								</div>
 							</td>
@@ -143,7 +143,7 @@ else
 						<tr class="hideSSTORAGE" style="display: none;"></tr>
 						<tr class="arrowShowMore">
 							<td>
-								<div class="col-sm-12 col-md-12 col-xs-6 shcomp"   id="toggle_SS">
+								<div class="col-sm-12 col-md-12 col-xs-12 shcomp"   id="toggle_SS">
 									<a class="toggler" data-hide="SSTORAGE" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
 								</div>
 							</td>
@@ -162,7 +162,7 @@ else
 						<tr></tr>
 						<tr class="arrowShowMore">
 							<td>
-								<div class="col-sm-12 col-md-12 col-xs-6 shcomp" style="">
+								<div class="col-sm-12 col-md-12 col-xs-12 shcomp" style="">
 									<a class="toggler" data-hide="MDB" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
 								</div>
 							</td>
@@ -180,7 +180,7 @@ else
 						<tr class="hideMEM" style="display: none;"></tr>
 						<tr class="arrowShowMore">
 							<td>
-								<div class="col-sm-12 col-md-12 col-xs-6 shcomp"  >
+								<div class="col-sm-12 col-md-12 col-xs-12 shcomp"  >
 									<a class="toggler" data-hide="MEM" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
 								</div>
 							</td>
@@ -200,7 +200,7 @@ else
 						<tr class="hideODD" style="display: none;"></tr>
 						<tr class="arrowShowMore">
 							<td>
-								<div class="col-sm-12 col-md-12 col-xs-6 shcomp"   id="toggle_ODD">
+								<div class="col-sm-12 col-md-12 col-xs-12 shcomp"   id="toggle_ODD">
 									<a class="toggler" data-hide="ODD" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
 								</div>
 							</td>
@@ -217,7 +217,7 @@ else
 						<tr class="hideACUM" style="display: none;"></tr>
 						<tr class="arrowShowMore">
 							<td>
-								<div class="col-sm-12 col-md-12 col-xs-6 shcomp"  >
+								<div class="col-sm-12 col-md-12 col-xs-12 shcomp"  >
 									<a class="toggler" data-hide="ACUM" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
 								</div>
 							</td>
@@ -243,7 +243,7 @@ else
 						<tr class="hideCHASSIS" style="display: none;"></tr>		
 						<tr class="arrowShowMore">
 							<td>
-								<div class="col-sm-12 col-md-12 col-xs-6 shcomp"  >
+								<div class="col-sm-12 col-md-12 col-xs-12 shcomp"  >
 									<a class="toggler" data-hide="CHASSIS" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
 								</div>
 							</td>
@@ -265,7 +265,7 @@ else
 						<tr class="hideWNET" style="display: none;"></tr>	
 						<tr class="arrowShowMore">
 							<td>
-								<div class="col-sm-12 col-md-12 col-xs-6 shcomp"  >
+								<div class="col-sm-12 col-md-12 col-xs-12 shcomp"  >
 									<a class="toggler" data-hide="WNET" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
 								</div>
 							</td>

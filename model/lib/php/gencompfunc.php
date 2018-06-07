@@ -7,7 +7,7 @@ function show($tab, $id)
 	{ $sel2 = "SELECT * FROM $tab WHERE id = $id LIMIT 1"; }
 
 	$rea = mysqli_query($GLOBALS['con'], $sel2); 
-	global $resu;
+	global $resu; global $buy_regions;
 	$resu = mysqli_fetch_array($rea);
 
 	$resu['msc']=str_replace(",", ", ",$resu['msc']);
@@ -255,7 +255,7 @@ function show($tab, $id)
 	
 		case stripos($tab,'MODEL')!==FALSE:
 		{	if(intval($resu["showsubfam"])==1) { $resu["fam"]=$resu["fam"]." ".$resu["subfam"]; }
-			$mregion_id=intval(explode(",",$resu['regions'])[0]); if($mregion_id!=1){ $sel2 = "SELECT disp FROM REGIONS WHERE id = $mregion_id"; $rea = mysqli_query($GLOBALS['con'], $sel2); $resu1 = mysqli_fetch_array($rea); $resu["region"]="(".$resu1["disp"].")"; } else { $resu["region"]=""; } 
+			$mregion_id=explode(",",$resu['regions']); if(array_search("1",$mregion_id)===FALSE){ $sel2 = "SELECT disp FROM REGIONS WHERE id = ".intval($mregion_id[0]); $rea = mysqli_query($GLOBALS['con'], $sel2); $resu1 = mysqli_fetch_array($rea); $resu["region"]="(".$resu1["disp"].")"; $buy_regions=$resu['regions'];  } else { $resu["region"]=""; $buy_regions=0; }
 			$id=$GLOBALS["mdb_conf_mdb"];
 			$sel2 = "SELECT submodel FROM MDB WHERE id = $id"; 
 			$rea = mysqli_query($GLOBALS['con'], $sel2); 
