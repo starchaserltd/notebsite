@@ -88,9 +88,9 @@ if($nrgetconfs<2)
 	}
 }
 $nrconf--;
-$usertag=""; if($nrconf>1){ if(isset($_GET["ref"])&&$_GET["ref"]!=""){ $usertag=mysqli_real_escape_string($con,filter_var($_GET["ref"], FILTER_SANITIZE_STRING)); } }
+$usertag=""; if(isset($_GET["ref"])&&$_GET["ref"]!=""){ $usertag=mysqli_real_escape_string($con,filter_var($_GET["ref"], FILTER_SANITIZE_STRING)); }
 mysqli_close($cons); mysqli_close($con);
 
-$_SESSION['java_nrconf']=$nrconf; $_SESSION['java_nrgetconfs']=$nrgetconfs; $_SESSION['java_getconfs']=$getconfs; $_SESSION['java_session_idconf']=$session_idconf;
+$_SESSION['java_nrconf']=$nrconf; $_SESSION['java_nrgetconfs']=$nrgetconfs; $_SESSION['java_getconfs']=$getconfs; $_SESSION['java_session_idconf']=$session_idconf; $_SESSION['java_usertag']=$usertag;
 //DONE PROCESSING
 ?>
