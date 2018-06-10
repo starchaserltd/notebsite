@@ -24,7 +24,6 @@ $(".multisearch").each(function()
 				list: names[1],
 				keys: params.term,
 			}
-			
 			if(window[names[0]+"_"+names[1]])
 			queryParameters=$.extend(queryParameters, window[names[0]+"_"+names[1]])
 			return queryParameters;

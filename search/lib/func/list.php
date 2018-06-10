@@ -9,6 +9,7 @@ $select = clean_string(filter_input(INPUT_POST,'list',FILTER_SANITIZE_ENCODED));
 $keys = clean_string(filter_input(INPUT_POST,'keys',FILTER_SANITIZE_ENCODED));
 
 //HERE I TAKE PROP AND CLEAN IT
+
 foreach ( array_slice($_POST,2) as $param_name => $param_val) 
 {
 	switch(gettype($param_val))
@@ -16,7 +17,7 @@ foreach ( array_slice($_POST,2) as $param_name => $param_val)
 		case "string":
 		{ ${$param_name} = clean_string(filter_var($param_val, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH)); break; }
 		case "array":
-		{ array_walk(${$param_name},"clean_string"); break; }
+		{ array_walk($param_val,"clean_string"); ${$param_name}=$param_val; break; }
 		case "integer":
 		{ ${$param_name} = intval(filter_var($param_val, FILTER_SANITIZE_NUMBER_INT)); break; }
 		case "float":
