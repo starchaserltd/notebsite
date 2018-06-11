@@ -1,5 +1,4 @@
 // Function for advanced search
-var istime=0;
 $('#submitformid').click(function(e)
 {
 	e.preventDefault();
@@ -65,3 +64,5 @@ $('.toggleHiddenButtonsStorage .glyphicon-chevron-down').click(function() { $('.
 $('.toggleHiddenButtonsMdb .glyphicon-chevron-down').click(function() { $('.hiddenOptions').toggle('slow'); $(this).toggleClass('arrowUp'); });
 $('.toggleHiddenButtonsMemory .glyphicon-chevron-down').click(function() { $('.hiddenOptions').toggle('slow'); $(this).toggleClass('arrowUp'); });
 $('.toggleHiddenButtonsWirrOpt .glyphicon-chevron-down').click(function() { $('.hiddenOptions').toggle('slow'); $(this).toggleClass('arrowUp'); });
+
+setTimeout(function(){ istime=1; },1200);
