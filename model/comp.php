@@ -53,14 +53,11 @@ else
 						<tr></tr>
 						<tr class="arrowShowMore">
 							<td>
-								<div class="col-sm-12 col-md-12 col-xs-12 shcomp">
-									<a class="toggler" data-hide="CPU" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
-								</div>		
+								<div class="col-sm-12 col-md-12 col-xs-12 shcomp"><a class="toggler toolinfo" data-toolid="100" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="top" data-original-title="data-loading..." data-hide="CPU" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a></div>		
 							</td>
 						</tr>
 					</tbody>
 				</table>
-		
 				<!-- GPU -->
 				<div class="col-sm-12 col-md-12 titlucomp">Video Card</div>				
 				<table id="GPU_table" class="table-xtra-condensed table tble">
@@ -81,13 +78,11 @@ else
 						<tr></tr>
 						<tr class="arrowShowMore">
 							<td>
-								<div class="col-sm-12 col-md-12 col-xs-12 shcomp"  >
-									<a class="toggler" data-hide="GPU" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
-								</div>
+								<div class="col-sm-12 col-md-12 col-xs-12 shcomp"><a class="toggler toolinfo" data-toolid="100" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="top" data-original-title="data-loading..." data-hide="GPU" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a></div>	
 							</td>
 						</tr>
 					</tbody>
-				</table>				
+				</table>
 				<!-- Display  -->
 				<div class="col-sm-12 col-md-12 titlucomp ">Display</div>				
 				<table id="DISPLAY_table" class="table-xtra-condensed table tble">
@@ -101,14 +96,11 @@ else
 						<tr class="hideDISPLAY" style="display: none;"></tr>
 						<tr class="arrowShowMore">
 							<td>
-								<div class="col-sm-12 col-md-12 col-xs-12 shcomp" style="">
-									<a class="toggler" data-hide="DISPLAY" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
-								</div>
+								<div class="col-sm-12 col-md-12 col-xs-12 shcomp"><a class="toggler toolinfo" data-toolid="100" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="top" data-original-title="data-loading..." data-hide="DISPLAY" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a></div>	
 							</td>
 						</tr>
 					</tbody>
 				</table>
-				
 				<!-- Storage -->
 				<table id="title_STORAGE" style="border: none; width:100%; border-top: 0px;">
 					<tbody>
@@ -125,13 +117,11 @@ else
 						<tr class="hideSTORAGE" style="display: none;"></tr>
 						<tr class="arrowShowMore">
 							<td>
-								<div class="col-sm-12 col-md-12 col-xs-12 shcomp" style="">
-									<a class="toggler" data-hide="STORAGE" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
-								</div>
+								<div class="col-sm-12 col-md-12 col-xs-12 shcomp"><a class="toggler toolinfo" data-toolid="100" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="top" data-original-title="data-loading..." data-hide="STORAGE" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a></div>	
 							</td>
 						</tr>
 					</tbody>
-				</table>				
+				</table>
 				<!-- Secondary Storage -->
 				<div class="col-sm-12 col-md-12 titlucomp" id="title_SS">Secondary Storage</div>				
 				<table id="SSTORAGE_table" class="table-xtra-condensed table tble">
@@ -143,9 +133,7 @@ else
 						<tr class="hideSSTORAGE" style="display: none;"></tr>
 						<tr class="arrowShowMore">
 							<td>
-								<div class="col-sm-12 col-md-12 col-xs-12 shcomp"   id="toggle_SS">
-									<a class="toggler" data-hide="SSTORAGE" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
-								</div>
+								<div class="col-sm-12 col-md-12 col-xs-12 shcomp"><a class="toggler toolinfo" data-toolid="100" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="top" data-original-title="data-loading..." data-hide="SSTORAGE" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a></div>	
 							</td>
 						</tr>
 					</tbody>
@@ -162,13 +150,11 @@ else
 						<tr></tr>
 						<tr class="arrowShowMore">
 							<td>
-								<div class="col-sm-12 col-md-12 col-xs-12 shcomp" style="">
-									<a class="toggler" data-hide="MDB" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
-								</div>
+								<div class="col-sm-12 col-md-12 col-xs-12 shcomp"><a class="toggler toolinfo" data-toolid="100" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="top" data-original-title="data-loading..." data-hide="MDB" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a></div>	
 							</td>
 						</tr>
 					</tbody>
-				</table>				
+				</table>
 				<!-- Memory -->
 				<div class="col-sm-12 col-md-12 titlucomp">Memory</div>				
 				<table id="MEM_table" class="table-xtra-condensed table tble">
@@ -180,13 +166,11 @@ else
 						<tr class="hideMEM" style="display: none;"></tr>
 						<tr class="arrowShowMore">
 							<td>
-								<div class="col-sm-12 col-md-12 col-xs-12 shcomp"  >
-									<a class="toggler" data-hide="MEM" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
-								</div>
+								<div class="col-sm-12 col-md-12 col-xs-12 shcomp"><a class="toggler toolinfo" data-toolid="100" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="top" data-original-title="data-loading..." data-hide="MEM" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a></div>	
 							</td>
 						</tr>
 					</tbody>
-				</table>				
+				</table>
 				<!-- ODD -->
 				<table id="title_ODD" style="border: 0; width:100%;">
 					<tbody>
@@ -200,9 +184,7 @@ else
 						<tr class="hideODD" style="display: none;"></tr>
 						<tr class="arrowShowMore">
 							<td>
-								<div class="col-sm-12 col-md-12 col-xs-12 shcomp"   id="toggle_ODD">
-									<a class="toggler" data-hide="ODD" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
-								</div>
+								<div class="col-sm-12 col-md-12 col-xs-12 shcomp"><a class="toggler toolinfo" data-toolid="100" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="top" data-original-title="data-loading..." data-hide="ODD" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a></div>	
 							</td>
 						</tr>
 					</tbody>
@@ -217,13 +199,11 @@ else
 						<tr class="hideACUM" style="display: none;"></tr>
 						<tr class="arrowShowMore">
 							<td>
-								<div class="col-sm-12 col-md-12 col-xs-12 shcomp"  >
-									<a class="toggler" data-hide="ACUM" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
-								</div>
+								<div class="col-sm-12 col-md-12 col-xs-12 shcomp"><a class="toggler toolinfo" data-toolid="100" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="top" data-original-title="data-loading..." data-hide="ACUM" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a></div>	
 							</td>
 						</tr>
 					</tbody>
-				</table>				
+				</table>
 				<!-- CHASSIS -->
 				<div class="col-sm-12 col-md-12 titlucomp">Chassis</div>				
 				<table id="CHASSIS_table" class="table-xtra-condensed table tble">
@@ -243,13 +223,11 @@ else
 						<tr class="hideCHASSIS" style="display: none;"></tr>		
 						<tr class="arrowShowMore">
 							<td>
-								<div class="col-sm-12 col-md-12 col-xs-12 shcomp"  >
-									<a class="toggler" data-hide="CHASSIS" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
-								</div>
+								<div class="col-sm-12 col-md-12 col-xs-12 shcomp"><a class="toggler toolinfo" data-toolid="100" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="top" data-original-title="data-loading..." data-hide="CHASSIS" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a></div>	
 							</td>
 						</tr>
 					</tbody>
-				</table>				
+				</table>
 				<!-- WNET  -->
 				<table id="title_WNET" style="border: 0; width:100%;">
 						<tbody>
@@ -265,13 +243,11 @@ else
 						<tr class="hideWNET" style="display: none;"></tr>	
 						<tr class="arrowShowMore">
 							<td>
-								<div class="col-sm-12 col-md-12 col-xs-12 shcomp"  >
-									<a class="toggler" data-hide="WNET" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
-								</div>
+								<div class="col-sm-12 col-md-12 col-xs-12 shcomp"><a class="toggler toolinfo" data-toolid="100" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="top" data-original-title="data-loading..." data-hide="WNET" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a></div>	
 							</td>
 						</tr>
 					</tbody>
-				</table>				
+				</table>
 				<!-- Waranty -->
 				<div class="col-sm-12 col-md-12 titlucomp">Warranty</div>
 				<table id="WARA_table" class="table-xtra-condensed table tble">

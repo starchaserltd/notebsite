@@ -14,6 +14,8 @@ $(".toggler").click(function(e){
 	$('.hide'+data_hide).fadeToggle(500,function () { stripeme(data_hide+"_table"); });
 });
 
+setTimeout(function(){ istime=1; },1500);
+
 //Function for show more arrows
 $('.glyphicon-chevron-down').on('click', function() { $(this).toggleClass('resize'); });	
 	

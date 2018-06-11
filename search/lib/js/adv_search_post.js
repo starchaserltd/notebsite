@@ -859,3 +859,4 @@ function change_region(currency)
 		default: { break; }
 	}
 }
+var istime=0; setTimeout(function(){ istime=1; },1200);

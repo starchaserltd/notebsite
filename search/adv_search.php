@@ -15,6 +15,7 @@
 	<script>
 		$.getScript("search/lib/js/tokenlist.js").done(function(){ $.getScript("search/lib/js/adv_search_post.js"); });
 		$.getScript("search/lib/js/adv_search_pre.js");
+		var lang=<?php echo $_SESSION['lang'];?>;
 		var basevalueoldadv=currency_val[<?php echo '"'.$basevalue.'"'; ?>];
 		var minbudgetnomenadv=<?php echo $minconfigprice; ?>;
 		var maxbudgetnomenadv=<?php echo $maxconfigprice; ?>;
@@ -122,7 +123,7 @@
 						</div>	  
 						<div class="advspace" id="cputech"></div>
 						<input type="hidden" name="cputechmin" id="cputechmin" value="<?php echo $cputechmax; ?>" data-lcom='CPU_model' data-lfield="cpu_techmax" data-lcom2='CPU_socket' data-lfield2="socktechmax">	 
-						<input type="hidden" name="cputechmax" id="cputechmax" value="<?php echo $cputechmin; ?>" data-lcom='CPU_model' data-lfield="cpu_techmin" data-lcom2='CPU_socket' data-lfield2="socktechmin">			
+						<input type="hidden" name="cputechmax" id="cputechmax" value="<?php echo $cputechmin; ?>" data-lcom='CPU_model' data-lfield="cpu_techmin" data-lcom2='CPU_socket' data-lfield2="socktechmin">		
 					</div>		
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						<div class="advspace1">
@@ -134,7 +135,7 @@
 						<input type="hidden" name="launchdatemax" id="launchdatemax" value="<?php echo $cpumaxdate; ?>" data-lcom='CPU_model' data-lfield="cpu_ldmax" data-lcom2='CPU_socket' data-lfield2="sockmax">
 					</div>			
 				</div>
-				<div class="col-xs-12 toggleHiddenButtons" aria-hidden="true">
+				<div class="col-xs-12 toggleHiddenButtons toolinfo" data-toolid="101" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="top" data-original-title="data-loading..." aria-hidden="true">
 					<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
 				</div>
 			</div>
@@ -218,7 +219,7 @@
 						<select class="multisearch js-example-responsive" id="GPU_msc_id" name="GPU_msc_id[]" data-lcom='none' data-lfield="gpu_misc" data-placeholder="Ex. Optimus, Crossfire" data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
 					</div>
 				</div>		
-				<div class="col-xs-12 toggleHiddenButtonsGpu" aria-hidden="true">
+				<div class="col-xs-12 toggleHiddenButtonsGpu toolinfo" data-toolid="101" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="top" data-original-title="data-loading..." aria-hidden="true">
 					<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
 				</div>		
 			</div>
@@ -272,7 +273,7 @@
 						<select class="multisearch js-example-responsive" name="DISPLAY_resol_id[]" id="DISPLAY_resol_id" data-lcom="none" data-lfield="none" data-placeholder="Ex. 3200x1800" data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
 					</div>					
 				</div>
-				<div class="col-xs-12 toggleHiddenButtonsDisplay" aria-hidden="true">
+				<div class="col-xs-12 toggleHiddenButtonsDisplay toolinfo" data-toolid="101" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="top" data-original-title="data-loading..." aria-hidden="true">
 					<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
 				</div>		
 			</div>	
@@ -312,7 +313,7 @@
 						</select>
 					</div>					
 				</div>	
-				<div class="col-xs-12 toggleHiddenButtonsStorage" aria-hidden="true">
+				<div class="col-xs-12 toggleHiddenButtonsStorage toolinfo" data-toolid="101" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="top" data-original-title="data-loading..." aria-hidden="true">
 					<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
 				</div>				
 			</div>
@@ -351,7 +352,7 @@
 						</select>
 					</div>
 				</div>
-				<div class="col-xs-12 toggleHiddenButtonsMdb" aria-hidden="true">
+				<div class="col-xs-12 toggleHiddenButtonsMdb toolinfo" data-toolid="101" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="top" data-original-title="data-loading..." aria-hidden="true">
 					<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
 				</div>					
 			</div>
@@ -386,7 +387,7 @@
 						</select>
 					</div>
 				</div>
-				<div class="col-xs-12 toggleHiddenButtonsMemory" aria-hidden="true">
+				<div class="col-xs-12 toggleHiddenButtonsMemory toolinfo" data-toolid="101" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="top" data-original-title="data-loading..." aria-hidden="true">
 					<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
 				</div>			
 			</div>
@@ -489,7 +490,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-xs-12 toggleHiddenButtonsChassis" aria-hidden="true">
+				<div class="col-xs-12 toggleHiddenButtonsChassis toolinfo" data-toolid="101" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="top" data-original-title="data-loading..." aria-hidden="true">
 					<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
 				</div>		
 			</div>
@@ -525,7 +526,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-xs-12 toggleHiddenButtonsWirrOpt" aria-hidden="true">
+				<div class="col-xs-12 toggleHiddenButtonsWirrOpt toolinfo" data-toolid="101" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="top" data-original-title="data-loading..." aria-hidden="true">
 					<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
 				</div>		
 			</div>

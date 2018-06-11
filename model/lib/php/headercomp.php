@@ -53,7 +53,7 @@ for($i=0;$i<10;$i++)
 }
 if($nrgetconfs>0){ $addtojava.="} $('.compareDropdown').css('display', 'block'); });"; } else { $addtojava.="} });"; }
 if(count($_SESSION['toalert'])>0){ $addtojava.=' alert("We are sorry, but the following laptop configurations no longer exist: \n'.implode("\\n",$_SESSION['toalert']).'");'; }
-$addtojava.=" </script>";
+$addtojava.=" var istime=0; </script>";
 echo $addtojava;
 if($nrgetconfs==1) { $_SESSION['toalert'][]=$getconfs[0]; unset($getconfs[0]); }
 

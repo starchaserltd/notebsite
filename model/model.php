@@ -147,21 +147,14 @@ else
 				<a style="font-weight:bold; color:black;text-decoration:none; cursor:pointer;" onclick="scrolltoid('leave_comment');">Leave a comment !</a>
 				<br>				
 			</div> -->
-			<div class="col-md-7 col-sm-6 col-xs-12 col-lg-7" style="margin-top:10px; padding:0px;">     		
-			<!-- seller list -->
-				<!--<ul class="list-inline" style="list-style:none;">
-					<li><span class="sellerlist">Seller list <span class="caret" style="font-size:12px; margin-left:5px"></span> </span></li>
-				
-				</ul> -->					
-			</div>
+			<div class="col-md-7 col-sm-6 col-xs-12 col-lg-7" style="margin-top:10px; padding:0px;"></div>
 		</div>		
-		<!-- <h3 class="h4" style="margin-top: 15px;">Specifications:</h3> -->
 		<!-- start specs -->
 		<div class="col-md-12 col-sm-12 col-xs-12" style="background-color:white; font-family:arial;padding:0px;text-align:left;">
 			<div class="col-md-4 col-sm-6 col-lg-4 col-xs-12 btn" style="text-align:left;padding-top:0px">
 				<div>
 					<span class="toggler compmod showDetailsButton" data-hide="all" style="color:black;padding:2px 20px;font-weight:normal"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span><span class="showDetails"> Show all</span><span class="showLessDetails"> Show less</span></span>
-						<!-- We take great effort to assure component compatibility for each configuration. If you think we made a mistake, please contact us. -->
+					<!-- We take great effort to assure component compatibility for each configuration. If you think we made a mistake, please contact us. -->
 				</div>
 			</div>
 			<br><br>
@@ -221,10 +214,10 @@ else
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows toolinfo" data-toolid="5" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1">Rating:</span></div>
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="5" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1"><b><span  class="labelblue-s"><span id="cpu_rating" ></span> / 100</span></b></span></div>							
 						</div>	
-						<div class="expandContainer">							
-								<a  class="toggler" data-hide="cpu" style="text-decoration:none; color:black;margin-top: 10px;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>							
-						</div>								
-					</div>		
+						<div class="expandContainer">
+							<a class="toggler toolinfo" data-hide="cpu" data-toolid="100" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="top" data-original-title="data-loading..." style="text-decoration:none; color:black;margin-top: 10px;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>					
+						</div>
+					</div>
 				</div>	
 				<br>
 				<!-- Video Card -->
@@ -289,10 +282,10 @@ else
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows toolinfo" data-toolid="30" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1">Rating:</span></div>
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="30" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1"><b><span  class="labelblue-s"><span id="gpu_rating"></span> / 100</span></b></span></div>
 						</div>		
-						<div class="expandContainer">							
-								<a  class="toggler" data-hide="gpu" style="text-decoration:none; color:black;margin-top: 10px;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>							
+						<div class="expandContainer">
+							<a class="toggler toolinfo" data-hide="gpu" data-toolid="100" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="top" data-original-title="data-loading..." style="text-decoration:none; color:black;margin-top: 10px;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>					
 						</div>
-					</div>																
+					</div>															
 				</div>
 				<br>	
 				<!-- Display -->
@@ -315,7 +308,7 @@ else
 						</div>
 						<div class="row detaliicomp">
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows toolinfo" data-toolid="45" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1">Resolution:</span></div>
-							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="45" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1"><span  class="labelblue-s"><span id="display_hres"></span> x <span id="display_vres"></span> pixels</span></span></div>					
+							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="45" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1"><span  class="labelblue-s"><span id="display_hres"></span> x <span id="display_vres"></span> pixels</span></span></div>
 						</div>
 						<div class="row detaliicomp">
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows toolinfo" data-toolid="46" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1">Surface type:</span></div>
@@ -337,10 +330,10 @@ else
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows toolinfo" data-toolid="48" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1">Rating:</span></div>
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="48" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1"><span id="display_rating"></span> / 100</span></div>
 						</div>
-						<div class="expandContainer">							
-								<a  class="toggler" data-hide="dis" style="text-decoration:none; color:black;margin-top: 10px;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>							
+						<div class="expandContainer">
+							<a class="toggler toolinfo" data-hide="dis" data-toolid="100" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="top" data-original-title="data-loading..." style="text-decoration:none; color:black;margin-top: 10px;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>					
 						</div>
-					</div>								
+					</div>
 				</div>
 				<br>
 				<!-- Storage -->
@@ -373,10 +366,10 @@ else
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Miscellaneous:</div>
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows" id ="hdd_misc"></div>
 						</div>
-						<div class="expandContainer">							
-								<a class="toggler" data-hide="sto" style="text-decoration:none; color:black;margin-top: 10px;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>							
+						<div class="expandContainer">
+							<a class="toggler toolinfo" data-hide="sto" data-toolid="100" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="top" data-original-title="data-loading..." style="text-decoration:none; color:black;margin-top: 10px;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>					
 						</div>
-					</div>					
+					</div>
 				</div>
 <?php
 				$shddtext=show_shdd($modelshdd); 
@@ -410,10 +403,10 @@ else
 								<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Write Speed:</div>
 								<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows" ><span id ="shdd_writes"></span> MB/s</div>
 							</div>
-							<div class="expandContainer">								
-									<a class="toggler" data-hide="sto1" style="text-decoration:none; color:black;margin-top: 10px;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>								
+							<div class="expandContainer">
+								<a class="toggler toolinfo" data-hide="sto1" data-toolid="100" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="top" data-original-title="data-loading..." style="text-decoration:none; color:black;margin-top: 10px;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>					
 							</div>
-						</div>	
+						</div>
 					</div>		
 <?php			} ?>
 				<br>
@@ -455,10 +448,10 @@ else
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Miscellaneous:</div>
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows" id = "mdb_misc"></div>
 						</div>
-						<div class="expandContainer">							
-								<a  class="toggler" data-hide="mdb" style="text-decoration:none; color:black;margin-top: 10px;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>							
-						</div>	
-					</div>					
+						<div class="expandContainer">
+							<a class="toggler toolinfo" data-hide="mdb" data-toolid="100" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="top" data-original-title="data-loading..." style="text-decoration:none; color:black;margin-top: 10px;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>					
+						</div>
+					</div>
 				</div>
 			</div>
 			<!-- END FIRST HALF OF MODEL -->
@@ -489,11 +482,11 @@ else
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Miscellaneous:</div>
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows" id = "mem_misc"></div>
 						</div>
-						<div class="expandContainer">							
-								<a  class="toggler" data-hide="mem" style="text-decoration:none; color:black;margin-top: 10px;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>							
-						</div>												
-					</div>					
-				</div>	
+						<div class="expandContainer">
+							<a class="toggler toolinfo" data-hide="mem" data-toolid="100" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="top" data-original-title="data-loading..." style="text-decoration:none; color:black;margin-top: 10px;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>					
+						</div>
+					</div>
+				</div>
 				<br>
 				<!--Optical Drive (if exists) -->		
 				<div class="row titlucomp toolinfo modelwidht" data-toolid="64" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
@@ -515,10 +508,10 @@ else
 								<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Miscellaneous:</div>
 								<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows" id = "odd_misc"></div>
 							</div>
-							<div class="expandContainer">								
-									<a class="toggler" data-hide="odd" style="text-decoration:none; color:black;margin-top: 10px;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>								
-							</div>	
-<?php					} ?>		
+							<div class="expandContainer">
+								<a class="toggler toolinfo" data-hide="odd" data-toolid="100" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="top" data-original-title="data-loading..." style="text-decoration:none; color:black;margin-top: 10px;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>					
+							</div>
+<?php					} ?>
 					</div>			
 				</div>	
 				<br>
@@ -552,13 +545,11 @@ else
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Miscellaneous:</div>
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows" id = "acum_misc"></div>
 						</div>
-						
-						<div class="expandContainer">							
-								<a class="toggler" data-hide="acu" style="text-decoration:none; color:black;margin-top: 10px;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>							
+						<div class="expandContainer">
+							<a class="toggler toolinfo" data-hide="acu" data-toolid="100" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="top" data-original-title="data-loading..." style="text-decoration:none; color:black;margin-top: 10px;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>					
 						</div>
-									
+					</div>
 				</div>
-				</div>		
 				<br>
 				<!-- Chassis -->	
 				<div class="row titlucomp toolinfo modelwidht" data-toolid="69" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
@@ -627,10 +618,10 @@ else
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Miscellaneous:</div>
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows" id = "chassis_misc"></div>
 						</div>
-						<div class="expandContainer">						
-								<a class="toggler" data-hide="cha" style="text-decoration:none; color:black;margin-top: 10px;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>							
+						<div class="expandContainer">
+							<a class="toggler toolinfo" data-hide="cha" data-toolid="100" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="top" data-original-title="data-loading..." style="text-decoration:none; color:black;margin-top: 10px;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>					
 						</div>
-					</div>							
+					</div>
 				</div>
 				<br>
 				<!-- Wireless card -->	
@@ -659,10 +650,10 @@ else
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Miscellaneous:</div>
 							<div class="col-md-7 col-xs-7 col-sm-7 col-lg-7 rows" id = "wnet_misc"></div>
 						</div>
-						<div class="expandContainer">							
-								<a class="toggler" data-hide="wnet" style="text-decoration:none; color:black;margin-top: 10px;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>							
-						</div>		
-					</div>				
+						<div class="expandContainer">
+							<a class="toggler toolinfo" data-hide="wnet" data-toolid="100" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="top" data-original-title="data-loading..." style="text-decoration:none; color:black;margin-top: 10px;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>					
+						</div>
+					</div>
 				</div>
 				<br>
 				<!-- Warranty -->			

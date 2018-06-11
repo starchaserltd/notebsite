@@ -427,3 +427,4 @@ if(confstoremove[0]!=="")
 var stateObj = { no: "empty" }; setTimeout(function(){ gocomp=1;}, 10);
 history.replaceState(stateObj,document.title,currentPage);
 });
+var lang = <?php echo $lang; ?>;

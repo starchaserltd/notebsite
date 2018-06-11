@@ -57,42 +57,11 @@ function checkmaxadv()
 { document.getElementById('budgetadv').noUiSlider.set([null,document.getElementById('bdgmaxadv').value]); }
 
 //toggle more options for adv_search
-  $('.toggleHiddenButtons .glyphicon-chevron-down').click(function() {
-        $('.hiddenOptions').toggle('slow'); 
-        $(this).toggleClass('arrowUp');      
- });
-
- $('.toggleHiddenButtonsGpu .glyphicon-chevron-down').click(function() {
-        $('.hiddenOptionsGpu').toggle('slow'); 
-        $(this).toggleClass('arrowUp');      
- });
-
-  $('.toggleHiddenButtonsDisplay .glyphicon-chevron-down').click(function() {
-        $('.hiddenOptionsDisplay').toggle('slow'); 
-        $(this).toggleClass('arrowUp');      
- });
-
-    $('.toggleHiddenButtonsChassis .glyphicon-chevron-down').click(function() {
-        $('.hiddenOptionsChassis').toggle('slow'); 
-        $(this).toggleClass('arrowUp');      
- });
-
-     $('.toggleHiddenButtonsStorage .glyphicon-chevron-down').click(function() {
-        $('.hiddenOptionsStorage').toggle('slow'); 
-        $(this).toggleClass('arrowUp');      
- });
-
-    $('.toggleHiddenButtonsMdb .glyphicon-chevron-down').click(function() {
-        $('.hiddenOptionsMdb').toggle('slow'); 
-        $(this).toggleClass('arrowUp');      
- });
-
-       $('.toggleHiddenButtonsMemory .glyphicon-chevron-down').click(function() {
-        $('.hiddenOptionsMemory').toggle('slow'); 
-        $(this).toggleClass('arrowUp');      
- });
-
-       $('.toggleHiddenButtonsWirrOpt .glyphicon-chevron-down').click(function() {
-        $('.hiddenOptionWirrOpt').toggle('slow'); 
-        $(this).toggleClass('arrowUp');      
- });
+$('.toggleHiddenButtons .glyphicon-chevron-down').click(function() { $('.hiddenOptions').toggle('slow'); $(this).toggleClass('arrowUp'); });
+$('.toggleHiddenButtonsGpu .glyphicon-chevron-down').click(function() { $('.hiddenOptions').toggle('slow'); $(this).toggleClass('arrowUp'); });;
+$('.toggleHiddenButtonsDisplay .glyphicon-chevron-down').click(function() { $('.hiddenOptions').toggle('slow'); $(this).toggleClass('arrowUp'); });
+$('.toggleHiddenButtonsChassis .glyphicon-chevron-down').click(function() { $('.hiddenOptions').toggle('slow'); $(this).toggleClass('arrowUp'); });
+$('.toggleHiddenButtonsStorage .glyphicon-chevron-down').click(function() { $('.hiddenOptions').toggle('slow'); $(this).toggleClass('arrowUp'); });
+$('.toggleHiddenButtonsMdb .glyphicon-chevron-down').click(function() { $('.hiddenOptions').toggle('slow'); $(this).toggleClass('arrowUp'); });
+$('.toggleHiddenButtonsMemory .glyphicon-chevron-down').click(function() { $('.hiddenOptions').toggle('slow'); $(this).toggleClass('arrowUp'); });
+$('.toggleHiddenButtonsWirrOpt .glyphicon-chevron-down').click(function() { $('.hiddenOptions').toggle('slow'); $(this).toggleClass('arrowUp'); });
