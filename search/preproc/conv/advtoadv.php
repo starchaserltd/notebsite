@@ -34,10 +34,11 @@
 	if(is_string($_GET['exchadv']))
 	{
 		$excode=$_GET['exchadv'];
-		$sel2 = "SELECT convr FROM notebro_site.exchrate WHERE code='".$excode."'";
+		$sel2 = "SELECT convr,id FROM notebro_site.exchrate WHERE code='".$excode."'";
 		$result = mysqli_query($con,$sel2);
 		$value=mysqli_fetch_array($result);
 		$exch=floatval($value[0]);
+		$lang=$value[1]; $_SESSION['lang']=$lang;
 	}
 
 	if(isset($_GET['bdgminadv'])) $bdgmin = floatval($_GET['bdgminadv'])/$exch;

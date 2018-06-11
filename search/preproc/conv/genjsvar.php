@@ -36,6 +36,7 @@ displaysizeminset=setminuplimit(displaysizeminset,list_displaysize);
 <?php if(isset($chassisstuff)){ ?>$('#CHASSIS_stuff_id').append('<?php echo $chassisstuff; ?>'); <?php } ?>
 <?php echo "waryearsminset=".$waryearsmin.";"; echo "waryearsmaxset=".$waryearsmax.";"; ?>
 <?php echo "displayvresminset=".$displayvresmin.";"; echo "displayvresmaxset=".$displayvresmax.";"; ?>
+<?php echo "lang=".$lang.";"; ?>
 displayvresminset=setminuplimit(displayvresminset,list_verres);
 function setminuplimit(minval,val_list){for (var val in val_list){ var val2=parseFloat(val_list[val]); if(val2>=minval){ return val2; break;} } }
 </script>

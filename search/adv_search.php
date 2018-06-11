@@ -15,7 +15,6 @@
 	<script>
 		var istime=0; $.getScript("search/lib/js/tokenlist.js").done(function(){ $.getScript("search/lib/js/adv_search_post.js"); });
 		$.getScript("search/lib/js/adv_search_pre.js");
-		//var lang=<?php echo $_SESSION['lang'];?>;
 		var basevalueoldadv=currency_val[<?php echo '"'.$basevalue.'"'; ?>];
 		var minbudgetnomenadv=<?php echo $minconfigprice; ?>;
 		var maxbudgetnomenadv=<?php echo $maxconfigprice; ?>;
