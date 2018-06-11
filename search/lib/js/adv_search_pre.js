@@ -58,7 +58,7 @@ function checkmaxadv()
 
 //toggle more options for adv_search
 $('.toggleHiddenButtons .glyphicon-chevron-down').click(function() { $('.hiddenOptions').toggle('slow'); $(this).toggleClass('arrowUp'); });
-$('.toggleHiddenButtonsGpu .glyphicon-chevron-down').click(function() { $('.hiddenOptions').toggle('slow'); $(this).toggleClass('arrowUp'); });;
+$('.toggleHiddenButtonsGpu .glyphicon-chevron-down').click(function() { $('.hiddenOptions').toggle('slow'); $(this).toggleClass('arrowUp'); });
 $('.toggleHiddenButtonsDisplay .glyphicon-chevron-down').click(function() { $('.hiddenOptions').toggle('slow'); $(this).toggleClass('arrowUp'); });
 $('.toggleHiddenButtonsChassis .glyphicon-chevron-down').click(function() { $('.hiddenOptions').toggle('slow'); $(this).toggleClass('arrowUp'); });
 $('.toggleHiddenButtonsStorage .glyphicon-chevron-down').click(function() { $('.hiddenOptions').toggle('slow'); $(this).toggleClass('arrowUp'); });
