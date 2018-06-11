@@ -1,5 +1,5 @@
 // Function for advanced search
-
+var istime=0;
 $('#submitformid').click(function(e)
 {
 	e.preventDefault();
