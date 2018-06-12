@@ -55,14 +55,4 @@ function checkminadv()
 function checkmaxadv()
 { document.getElementById('budgetadv').noUiSlider.set([null,document.getElementById('bdgmaxadv').value]); }
 
-//toggle more options for adv_search
-$('.toggleHiddenButtons .glyphicon-chevron-down').click(function() { $('.hiddenOptions').toggle('slow'); $(this).toggleClass('arrowUp'); });
-$('.toggleHiddenButtonsGpu .glyphicon-chevron-down').click(function() { $('.hiddenOptions').toggle('slow'); $(this).toggleClass('arrowUp'); });
-$('.toggleHiddenButtonsDisplay .glyphicon-chevron-down').click(function() { $('.hiddenOptions').toggle('slow'); $(this).toggleClass('arrowUp'); });
-$('.toggleHiddenButtonsChassis .glyphicon-chevron-down').click(function() { $('.hiddenOptions').toggle('slow'); $(this).toggleClass('arrowUp'); });
-$('.toggleHiddenButtonsStorage .glyphicon-chevron-down').click(function() { $('.hiddenOptions').toggle('slow'); $(this).toggleClass('arrowUp'); });
-$('.toggleHiddenButtonsMdb .glyphicon-chevron-down').click(function() { $('.hiddenOptions').toggle('slow'); $(this).toggleClass('arrowUp'); });
-$('.toggleHiddenButtonsMemory .glyphicon-chevron-down').click(function() { $('.hiddenOptions').toggle('slow'); $(this).toggleClass('arrowUp'); });
-$('.toggleHiddenButtonsWirrOpt .glyphicon-chevron-down').click(function() { $('.hiddenOptions').toggle('slow'); $(this).toggleClass('arrowUp'); });
-
 setTimeout(function(){ istime=1; },1200);
