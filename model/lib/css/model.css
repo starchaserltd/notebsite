@@ -74,6 +74,7 @@
 	max-width:120px;
 	display: block;
 	margin:0 auto;
+	padding-bottom: 15px;
 }
 
 .rows.gpuhdd form select {
