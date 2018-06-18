@@ -2260,6 +2260,22 @@ table#comparelist td.text-center.comparecell3 {
 .compare1 {
     text-align: center;
 }
+
+.readMoreArticles {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.readMoreArticles a{
+    color: #0000ff;
+    font-weight: bold;   
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.readMoreArticles a:hover {
+    text-decoration: none;
+}
  
 /*Responsive media design */
 

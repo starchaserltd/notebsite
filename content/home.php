@@ -156,6 +156,7 @@ $published_posts = $count_posts->publish;
 	<?php 	} 
 		} 
 	} ?>	
+	<div class="readMoreArticles col-lg-9 col-sm-8 col-xs-9 col-lg-offset-3 col-sm-offset-4 col-xs-offset-3"><a onmousedown="OpenPage('content/articles.php');">Read More Articles</a></div>
 	</article>
 	<div class="col-xs-12 mobileShowMoreArticles"><span>Show All Articles</span></div>	
 	<script type="application/ld+json">	
