@@ -2287,7 +2287,7 @@ table#comparelist td.text-center.comparecell3 {
     .officialSite a img {
         margin-top: 0;
     }
-    .toggleHiddenButtonsChassis .glyphicon-chevron-down, .toggleHiddenButtonsDisplay .glyphicon-chevron-down, .toggleHiddenButtonsGpu .glyphicon-chevron-down, .toggleHiddenButtons .glyphicon-chevron-down {
+    .toggleHiddenButtonsGpu .glyphicon-chevron-down, .toggleHiddenButtons .glyphicon-chevron-down, .toggleHiddenButtonsDisplay .glyphicon-chevron-down, .toggleHiddenButtonsChassis .glyphicon-chevron-down, .toggleHiddenButtonsStorage .glyphicon-chevron-down,   .toggleHiddenButtonsMdb .glyphicon-chevron-down,    .toggleHiddenButtonsMemory .glyphicon-chevron-down , .toggleHiddenButtonsWirrOpt .glyphicon-chevron-down  {
         font-size: 22px;
     }
 
