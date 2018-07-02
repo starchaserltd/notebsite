@@ -91,6 +91,8 @@
 }
 
 
+
+
 @media (max-width: 550px) {
 
     .compContainer {
@@ -107,4 +109,7 @@
     .tbltitle {
         font-weight: normal;
     }
+    td.compare1:last-of-type .resultsShopBtn .dropdown-menu {
+	left: -128px;
+	}
 }
