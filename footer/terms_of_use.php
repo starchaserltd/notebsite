@@ -77,11 +77,11 @@ if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_n
 	<p style="font-size:18px"><b>9. Payment and Taxes</b></p>
 	<p>Noteb accepts Paypal and Credit/Debit Cards as payment methods.</p>
 	<p><b>Payment Flow</b><br>
-	- A person or entity may request by email to <img src="res/img/starofficeemail.png" width="135" height="20"> a referral tag or Noteb partner account. Similarly, a user may request an API key by email to <img src="res/img/starofficeemail.png" width="135" height="20"> .<br>
+	<span class="contactEmail">- A person or entity may request by email to </span>  <span class="contactEmail">a referral tag or Noteb partner account. Similarly, a user may request an API key by email to </span> .<br>
 	- Noteb, at its own discretion, may decide to provide, ignore or deny the requested service or access to its services to the requesting party.<br>
 	- If Noteb decides to provide the requested services, it will send an email to the requesting party with the conditions under which these services will be provided.<br>
 	- If the requesting party agrees to the service conditions, Noteb will draft a contract in accordance with the agreed conditions and send it to the requesting party.<br>
-	- The requesting party is expected to print the contract, sign it and then email a scanned copy to <img src="res/img/starofficeemail.png" width="135" height="20"> . <br>
+	<span class="contactEmail">- The requesting party is expected to print the contract, sign it and then email a scanned copy to </span> . <br>
 	- If the contract specifies certain service fees, then these fees must be paid to Noteb within 7 days of their due date specified in the contract. Any payment delay or refusal will be considered a cancellation of the contract and subsequent services.<br>
 	- Noteb may provide a referral tag, partner account or API key, free or charge for a limited period and only under certain conditions, which will be expressly specified in the contract. Upon expiration of this period, continued access to these services will be conditioned by new or different contract terms, which may include a service fee.
 	</p>
@@ -103,7 +103,7 @@ if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_n
 	- post, upload, publish, submit or transmit any Content that: (i) infringes, misappropriates or violates a third party's patent, copyright, trademark, trade secret, moral rights or other intellectual property rights, or rights of publicity or privacy; (ii) violates, or encourages any conduct that would violate, any applicable law or regulation or would give rise to civil liability; (iii) is fraudulent, false, misleading (directly or by omission or failure to update information) or deceptive; (iv) is defamatory, obscene, pornographic, vulgar or offensive; (v) promotes discrimination, bigotry, racism, hatred, harassment or harm against any individual or group; (vi) is violent or threatening or promotes violence or actions that are threatening to any other person; or (vii) promotes illegal or harmful activities or substances.<br>
 	Noteb has the right to investigate and prosecute violations of any of the above to the fullest extent of the law.
 	<br><br><b>Unauthorized Users</b><br>
-	If you learn that a user is not authorized to have a referral tag, partner account or API key or is otherwise violating this Agreement, we encourage you to contact Noteb at <img src="res/img/starofficeemail.png" width="135" height="20"> with a description of the unauthorized activity. We may, in our sole discretion, determine whether and how to investigate or take action in respect of any such report. You agree you will not, without the prior written consent of Noteb.com, accuse any person or entity of being unauthorized or of violating this Agreement.
+	<span class="contactEmail">If you learn that a user is not authorized to have a referral tag, partner account or API key or is otherwise violating this Agreement, we encourage you to contact Noteb at </span>  with a description of the unauthorized activity. We may, in our sole discretion, determine whether and how to investigate or take action in respect of any such report. You agree you will not, without the prior written consent of Noteb.com, accuse any person or entity of being unauthorized or of violating this Agreement.
 	</p>
 	<br>
 	<p style="font-size:18px"><b>11. User Content</b></p>
