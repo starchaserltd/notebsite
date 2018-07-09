@@ -2276,6 +2276,12 @@ table#comparelist td.text-center.comparecell3 {
 .readMoreArticles a:hover {
     text-decoration: none;
 }
+
+.contactEmail:after {
+    content: "office@starchaser.ro";
+    font-weight: bold;
+    font-size: 14px;
+}
  
 /*Responsive media design */
 
