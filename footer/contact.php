@@ -14,7 +14,7 @@ if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_n
 	 240151<br>
 	 Romania<br>
 	 </p>
-	<p class='contactEmail'>For any inquires, complaints or suggestions please contact us via email at: </p>
+	<p>For any inquires, complaints or suggestions please contact us via email at: <span class='contactEmail' onclick='mail_to("office");'></span></p>
 	</div>
 	<script type="text/javascript">
 	 $(document).ready(function(){

@@ -301,6 +301,12 @@ $(document).ready(function() {
 
     //Append Compare to FirstContainer
     if ($(window).width() < 768) { $(".compareDropdown").appendTo($(".firstContainer")); }
+
+    //toggle more options for adv_search
+    $('.toggleHiddenButtons').click(function() {
+        $('.hiddenOptions').toggleClass('show');   
+        console.log("clicked");
+    });
 });
 
 //THE SORT BY RESULTS BUTTONS 
@@ -547,6 +553,8 @@ $('.logonb').click(function() {
    $('#usermenu').removeClass('white');
    $('.addrev').removeClass('selected');
 });
+
+function mail_to(email){ window.location.href = "mailto:"+email+"@starchaser.ro"; }
 
 function get_buy_list(el)
 {
