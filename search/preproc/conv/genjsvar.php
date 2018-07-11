@@ -1,7 +1,7 @@
 <script>
 <?php if(isset($producer)){ ?>$('#Producer_prod_id').append('<?php echo $producer; ?>'); <?php } ?>
 <?php if(isset($family)){ ?>$('#Family_fam_id').append('<?php echo $family; ?>'); <?php } ?>
-<?php if(isset($regions)){ ?>$('#Regions_name_id').append('<?php echo $regions; ?>'); <?php } ?> // new line REGIONS
+<?php if(isset($regions)){ ?>$('#Regions_name_id').append('<?php echo $regions; ?>'); <?php } ?>
 <?php if(isset($cpumodel)){ ?>$('#CPU_model_id').append('<?php echo $cpumodel; ?>'); <?php } ?>
 <?php if(isset($cpusocket)){ ?>$('#CPU_socket_id').append('<?php echo $cpusocket; ?>'); <?php } ?>
 <?php if(isset($cpumindate)){ echo "cpumindateset=".$cpumindate.";"; } if(isset($cpumaxdate)){  echo "cpumaxdateset=".$cpumaxdate.";"; } ?>

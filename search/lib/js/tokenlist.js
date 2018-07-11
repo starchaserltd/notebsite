@@ -76,7 +76,6 @@ function more(id)
 function filtersearch(id,filter,type)
 {
 	$element=$('#'+id);
-	//console.log(id);
 	el_id=$element.attr('data-lcom');
 	field=$element.attr('data-lfield');
 	
@@ -139,3 +138,5 @@ function filtersearch(id,filter,type)
 		}
 	}	
 }
+
+function reset_select2_vars() { $(".multisearch").each( function () { var data=$(this).data(); if(window[data["lcom"]]!==undefined && window[data["lcom"]][data["lfield"]]!==undefined){ window[data["lcom"]][data["lfield"]]=[]; } if(window[data["lcom2"]]!==undefined && window[data["lcom2"]][data["lfield2"]]!==undefined){ window[data["lcom2"]][data["lfield2"]]=[]; } }); }
