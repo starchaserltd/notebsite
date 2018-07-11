@@ -6,14 +6,14 @@ var firstcompare = 1;
 var nocomperrormess = 0;
 var previousurl = "";
 var disqusloaded = 1;
-var urlold = "";
+var urlold = ""; var searchurl="";
 var hh = 1;
 var ismobile = 0
 var currentPage = window.location.href; var ref=null;
 
-function locationHashChanged() {
-    if (trigger) {
-        var urlParts = window.location.href.split('?');
+function locationHashChanged(pagetopen) {
+    if (trigger){
+        var urlParts = pagetopen.split('?');
         var first = 0;
         var currentpage = "";
         if (urlParts[1] == "undefined") {
@@ -42,8 +42,8 @@ function locationHashChanged() {
 
 setInterval(function() {
     if (currentPage !== window.location.href) {
-        currentPage = window.location.href;
-        locationHashChanged();
+		currentPage = window.location.href;
+        locationHashChanged(set_adv_search(currentPage,siteroot+"?"));
     }
 	
     if ($(window).width() < 992) {
@@ -80,6 +80,7 @@ function urlrequest(url, e, dontpush) {
 
 //Function for main content area
 function OpenPage(url, e, dontpush) {
+	url=set_adv_search(url,"");
 	if(url.indexOf("ref=")<0){ if(ref!=null&&ref!="") { if(url.indexOf("?")>=0){ url=url+"&ref="+ref;}else { url=url+"?ref="+ref; } } }
 	url = decodeURIComponent(decodeURIComponent(url.replace("% ", "%25%20").replace("%%20", "%25%20")).replace("% ", "%25%20").replace("%%20", "%25%20"));
     //DEPENDING ON WHAT BUTTON WAS PRESSED WE DO DIFFERENT THINGS
@@ -160,43 +161,6 @@ $(document).ready(function() {
         OpenPage(url, 1, 0);
     });
 
-
-    //Function for advanced search form  
-    $(".advsearch").click(function() {
-        scrolltoid('content');
-        var urlParts = window.location.href.split('?');
-        var first = 0;
-        var currentpage = "";
-
-        if (urlParts[1] == "undefined") {
-            var currentpage = "search/adv_search.php";
-        } else {
-            for (var key in urlParts) {
-                value = urlParts[key];
-
-                if (first) {
-
-                    if (first > 1)
-                        currentpage = currentpage + "?" + value;
-                    else {
-                        currentpage = currentpage + value;
-                        first++;
-                    }
-                } else {
-                    first++;
-                }
-            }
-        }
-
-        remnant = currentpage.split("search.php?");
-
-        if (remnant[1]) {
-            d = "search/adv_search.php?" + remnant[1];
-        } else {
-            d = "search/adv_search.php?";
-        }
-        OpenPage(d);
-    });
 
 	if(history.state!==null && history.state["back"]!==undefined){ window.location.href=history.state["back"]; }
    
@@ -305,7 +269,6 @@ $(document).ready(function() {
     //toggle more options for adv_search
     $('.toggleHiddenButtons').click(function() {
         $('.hiddenOptions').toggleClass('show');   
-        console.log("clicked");
     });
 });
 
@@ -575,3 +538,6 @@ function get_buy_list(el)
 		xmlhttp.send('idmodel='+el.dataset.idmodel+'&buyregions='+el.dataset.buyregions+'&lang='+el.dataset.lang+'&usertag='+el.dataset.ref);
 	}
 }
+
+function set_adv_search(pagetoopen,headpart)
+{ if(pagetoopen.indexOf("adv_search.php")>=0 && searchurl.indexOf("advsearch=1")>=0 && pagetoopen.indexOf("advsearch=1")<0) { if(pagetoopen.indexOf("reset=1")<0){ pagetoopen=headpart+"search/adv_search.php?"+searchurl; }else{pagetoopen=headpart+"search/adv_search.php"; } } return pagetoopen; }

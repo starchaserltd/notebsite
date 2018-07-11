@@ -27,7 +27,7 @@
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="background-color:white; font-family:arial; padding:0px;">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<a onclick="scrolltoid('submitformid');" style="cursor:pointer; font-size:14px; float:right; margin-top:20px; margin-left:10px; padding:0px 25px 0px 25px; border-radius:2px; background-color:#49505a; color:#fff; text-decoration:none;">Go to bottom<i class="glyphicon glyphicon-arrow-down" style="font-size:12px"></i></a>
-				<a onclick="OpenPage('search/adv_search.php',event);" style="cursor:pointer;  font-size:14px; float:right; margin-top:20px; padding:0px 25px 0px 25px; border-radius:2px; background-color:#49505a; color:#fff; text-decoration:none;margin-left: 10px;" id="gototop">Reset</a>
+				<a onclick="OpenPage('search/adv_search.php?reset=1',event);" style="cursor:pointer;  font-size:14px; float:right; margin-top:20px; padding:0px 25px 0px 25px; border-radius:2px; background-color:#49505a; color:#fff; text-decoration:none;margin-left: 10px;" id="gototop">Reset</a>
 				<a onclick="setrecommended();" style="cursor:pointer;  font-size:14px; float:right; margin-top:20px; padding:0px 25px 0px 25px; border-radius:2px; background-color:#49505a; color:#fff; text-decoration:none;">Set recommended filters</a>
 				</div>					
 				

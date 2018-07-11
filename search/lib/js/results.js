@@ -14,4 +14,5 @@ $(document).ready(function() {
 	
 	document.title = 'Noteb - Search results';
    	$('meta[name=description]').attr('content', "Search results.");
+	if(currentPage.indexOf("advsearch=1")>=0 && currentPage.indexOf("?search/search.php")>=0){ searchurl=currentPage.replace(siteroot+"?search/search.php?",""); }
 });

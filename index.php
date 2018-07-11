@@ -34,7 +34,7 @@ require_once("etc/conf.php");
 				<div class="col-md-10 col-xs-12 col-sm-12" style="padding:0px; float:left; position:relative;">
 					<div class="btn-group-justified btn-group siteMenu">
 						<h1 class="btn blue logonb lognb"  onmousedown="OpenPage('content/home.php',event);">Looking for a laptop? Search, compare or use our quiz to find the laptop for you with Noteb search engine.</h1>
-						<a class="btn btn-sus blue advsearch" >SEARCH</a>
+						<a class="btn btn-sus blue" onmousedown="OpenPage('search/adv_search.php',event);">SEARCH</a>
 						<a class="btn btn-sus blue" onmousedown="OpenPage('content/articles.php',event);">ARTICLES</a>
 						<a class="btn btn-sus blue" onmousedown="OpenPage('content/reviews.php',event);">REVIEWS</a>
 					</div>
