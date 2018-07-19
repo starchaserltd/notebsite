@@ -353,7 +353,11 @@ foreach($chassis_ports as $key => $x)
 		$chassis_addpi["SD card reader"][]="4-in-1 card reader";
 		$chassis_addpi["SD card reader"][]="5-in-1 card reader";
 		$chassis_addpi["SD card reader"][]="6-in-1 card reader";
-		$chassis_addpi["SD card reader"][]="MicroSD card reader";
+		//$chassis_addpi["SD card reader"][]="MicroSD card reader";
+	}
+	if((stripos($x,"MicroSD card reader"))!==FALSE)
+	{
+		$chassis_addpi["SD card reader"][]="SD card reader";
 	}
 	
 	if(stripos($x,"USB")!==FALSE)
@@ -558,6 +562,7 @@ foreach($chassis_stuff as $key => $x)
 		$chassis_stuff[]="jbl";
 		$chassis_stuff[]="klipsch";
 		$chassis_stuff[]="sonicmaster";
+		$chassis_stuff[]="dynaudio";
 		$chassis_stuff[]="ungroup";
 	}
 }
