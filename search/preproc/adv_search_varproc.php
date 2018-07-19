@@ -1,7 +1,7 @@
 <?php
 //some variable initialisation
 $cpu_tdpmin = 0.01; $gpu_powermin = 0; $gpu_maxmemmin = 1; //$hdd_capmin = $totalcapmin;
-$war_yearsmin = 0.01; $acum_capmin = 0.01; $sist_pricemax = 1; $remove_sd=0;
+$war_yearsmin = 0.01; $acum_capmin = 0.01; $sist_pricemax = 1; $remove_sd=0; $remove_msd=0;
 $odd_speedmin = 0; $mem_capmin = 1; $mdb_ratemin = 0; $chassis_weightmin = 0.01; $addmsc=array(); $regions_name = array(); $display_srgb = 0; $chassis_addpi=array(); $regions=array(); $war_typewar=array(); $chassis_addpi=array();
 $isadvanced = 1; 
 
@@ -347,14 +347,15 @@ foreach($chassis_ports as $key => $x)
 	{ $addmsc["SmartCard"][]="SmartCard"; }
 	
 	if((stripos($x,"MicroSD card reader"))!==FALSE)
-	{ $chassis_addpi["MicroSD card reader"][]="SD card reader"; $remove_sd=1;}
+	{ 
+		$remove_sd=1;
+		if($remove_msd){ unset($chassis_ports[$key]); $chassis_addpi["SD card reader"][]="MicroSD card reader"; }
+	}
 
-	if((stripos($x,"SD card reader"))!==FALSE)
+	if((strcasecmp($x,"SD card reader"))==0)
 	{
-		if($remove_sd)
-		{
-			unset($chassis_ports[$key]);
-		}
+		$remove_msd=1;
+		if($remove_sd){ unset($chassis_ports[$key]); $chassis_addpi["MicroSD card reader"][]="SD card reader"; }
 		else
 		{
 			$chassis_addpi["SD card reader"][]="2-in-1 card reader";
