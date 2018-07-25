@@ -11,19 +11,19 @@ if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_n
 	<br>
 	<p style="font-size:16px"><b>There are 5 types of search:</b></p>
 	<p class="howtop" onclick="$('html,body').animate({scrollTop:0},'slow'); close_quick_search(); close_browse(); OpenPage('search/adv_search.php',event); return false;"><b>Full Search</b><br>
-	<img src="../res/img/howto/adv_search.PNG" width="833" height="300">
+	<img src="../res/img/howto/adv_search.PNG" width="833" height="300" alt="noteb.com advanced search">
 	</p>
 	<p class="howtop" onclick="$('html,body').animate({scrollTop:0},'slow'); close_browse(); if(document.getElementById('SearchParameters').style.display=='none') { $('.SearchParameters').toggle('slow'); $('.leftMenuFilters').toggleClass('rotate'); } return false;"><b>Quick Search</b><br>
-	<img src="../res/img/howto/quick_search.png" width="328" height="300">
+	<img src="../res/img/howto/quick_search.png" width="328" height="300" alt="noteb.com quick search">
 	</p>
-	<p class="howtop" onclick="$('html,body').animate({scrollTop:0},'slow'); close_quick_search(); close_browse();  OpenPage('content/home.php',event); return false;"><b>Quiz Search</b><br>
+	<p class="howtop" onclick="$('html,body').animate({scrollTop:0},'slow'); close_quick_search(); close_browse();  OpenPage('content/home.php',event); return false;" alt="noteb.com quiz search"><b>Quiz Search</b><br>
 	<img src="../res/img/howto/quiz_search.png" width="507" height="250">
 	</p>
-	<p class="howtop" onclick="$('html,body').animate({scrollTop:0},'slow'); close_quick_search(); close_browse(); return false;"><b>Model Search</b><br>
+	<p class="howtop" onclick="$('html,body').animate({scrollTop:0},'slow'); close_quick_search(); close_browse(); return false;" alt="noteb.com model search"><b>Model Search</b><br>
 	<img src="../res/img/howto/model_search.PNG" width="265" height="200">
 	</p>
 	<p class="howtop" onclick="$('html,body').animate({scrollTop:0},'slow'); close_quick_search(); if(($('li.open')[0])==undefined) { document.getElementById('browse_menu').click(); } return false;"><b>Browse</b><br>
-	<img src="../res/img/howto/browse_search.png" width="450" height="250">
+	<img src="../res/img/howto/browse_search.png" width="450" height="250" alt="noteb.com browse search">
 	</p>
 	<br>
 	<p><b>How do use the budget range?</b></p>
