@@ -171,7 +171,7 @@ require_once("etc/conf.php");
 			</span><!-- /top-link-block -->
 			<div class="howToUse" id="howToUse">
 				<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-				<p><span class="tutorialClick hiddenMobile" onclick="remove_popup(); OpenPage('footer/howto.php',event);">If you are new to Noteb.com <span>click here</span> for a short tutorial.</span><span class="tutorialClick displayMobile"  onclick="remove_popup(); OpenPage('footer/howto.php',event);">How to use Noteb.</p>
+				<p><span class="tutorialClick hiddenMobile" onclick="OpenPage('footer/howto.php',event);">If you are new to Noteb.com <span>click here</span> for a short tutorial.</span><span class="tutorialClick displayMobile"  onclick="OpenPage('footer/howto.php',event);">How to use Noteb.</p>
 			</div>
 			<!-- end main content -->
 			<!--left promotional space-->
