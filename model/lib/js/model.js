@@ -13,7 +13,8 @@ $('#addcompare').click(function(e)
 	else
 	{
 		window.setTimeout($('#addcompare').click(), 100);
-	}
+	}	
+	$("#howToUse").css('display', 'none');
 });
  
 $(".toggler").click(function(e){

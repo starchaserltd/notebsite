@@ -258,6 +258,7 @@ $('#s_prod_id').select2({
 //Function for form submissions left menu   
 $("#s_search_btn").on("mousedown",function(e) {
 	scrolltoid('content');
+	$("#howToUse").css('display', 'none');
 	$('#loadingNB').show();
 	trigger = 0; var addref=""; if(ref!=null&&ref!="") { addref="?ref="+ref; }
 	$.get('search/search.php'+addref, $("#s_search").serialize(), function(data) {

@@ -9,7 +9,8 @@ $(document).ready(function() {
 		$('.compareDropdown').css('display', 'block');
 	    $('.compareDropdown ul li').addClass('open');
 	    $('.compareDropdown ul li ul').slideDown();	    
-	    $('.navbar-collapse').slideDown("slow");
+	    $('.navbar-collapse').slideDown("slow");	 
+	    $("#howToUse").css('display', 'none');   
 	});
 	
 	document.title = 'Noteb - Search results';

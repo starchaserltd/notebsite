@@ -78,7 +78,7 @@ require_once("etc/conf.php");
 				<nav class="navbar-collapse" role="navigation">	
 					<div class="col-md-12 col-xs-12 col-sm-12 blue cssmenu" style="padding:0px">
 						<ul >
-						   <li  class='has-sub'><a >Browse laptops</a>
+						   <li class='has-sub'><a id="browse_menu">Browse laptops</a>
 								<ul>
 									<li class='has-sub'><a >By brand</a>
 										<ul>
@@ -169,6 +169,10 @@ require_once("etc/conf.php");
 					<i class="glyphicon glyphicon-chevron-up"></i><span class="backTop">Back to Top</span>
 				</a>
 			</span><!-- /top-link-block -->
+			<div class="howToUse" id="howToUse">
+				<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+				<p><span class="tutorialClick hiddenMobile" onclick="remove_popup(); OpenPage('footer/howto.php',event);">If you are new to Noteb.com <span>click here</span> for a short tutorial.</span><span class="tutorialClick displayMobile"  onclick="remove_popup(); OpenPage('footer/howto.php',event);">How to use Noteb.</p>
+			</div>
 			<!-- end main content -->
 			<!--left promotional space-->
 			<div class="col-md-2 hidden-xs hidden-sm" style="float: right; position: relative"><!-- <img src="someimage.png" class="img-responsive"> --></div>

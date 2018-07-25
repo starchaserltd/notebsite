@@ -2280,6 +2280,84 @@ table#comparelist td.text-center.comparecell3 {
     cursor: pointer;
 }
  
+
+.howToUse {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 220px;
+    border-radius: 15px 15px 0 0;
+    background-color: #285f8f;
+    color: #fff;
+    padding:30px 15px 5px 15px;
+    text-align:center;
+    animation: howtouse 1s ease 1.5s 1 forwards;
+    transform: translateX(100%);
+    z-index: 98;
+    display: none;
+    opacity: 0;
+}
+
+.home .howToUse {
+    display: block;
+} 
+
+.howToUse .tutorialClick span {
+	font-weight: bold;	
+}
+
+.howToUse a {
+    color: #000;
+
+}
+
+.tutorialClick {
+    cursor: pointer;       
+}
+
+.tutorialClick:hover {
+    text-decoration: underline;
+}
+
+.howToUse .glyphicon-remove {
+    position: absolute;
+    color: #fff;
+    right: 10px;
+    top:10px; 
+    cursor: pointer;   
+}
+
+
+.howToUseNone {
+   animation: howtouseNone ease 1s 1 forwards;
+}
+
+.displayMobile {
+	display: none;
+}
+
+@keyframes howtouse {
+    0% {
+        transform: translateX(100%);        
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);      
+        opacity: 1;  
+    }
+}
+
+@keyframes howtouseNone {
+    0% {
+        transform: translateX(0%);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(100%);      
+        opacity: 0;          
+    }
+}
+
 /*Responsive media design */
 
 @media (min-width: 1980px) {
@@ -2709,6 +2787,22 @@ table#comparelist td.text-center.comparecell3 {
 }
 
 @media(max-width:450px) {
+	.displayMobile {
+		display: block;
+	}
+
+	.hiddenMobile {
+		display: none;
+	}
+
+	.howToUse {
+		width: 120px;
+		z-index:98;
+		padding: 25px 5px 5px 5px;
+		font-size: 12px;
+
+	}
+
     .socialButton a.btn.btn-social span {
         border: none;
         text-align: center;
