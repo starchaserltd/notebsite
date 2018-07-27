@@ -554,7 +554,16 @@ foreach($chassis_stuff as $key => $x)
 	
 	if((stripos($x,"keyboard"))!==FALSE)
 	{ $chassis_stuff[$key]=str_ireplace(" keyboard","",$x); }
-	
+
+	if((stripos($x,"spill resistant"))!==FALSE)
+	{
+		unset($chassis_stuff[$key]);
+		$chassis_stuff[]="group";
+		$chassis_stuff[]="spill resistant";
+		$chassis_stuff[]="sealed";
+		$chassis_stuff[]="ungroup";
+	}
+
 	if((stripos($x,"legacy ports"))!==FALSE)
 	{ $chassis_stuff[$key]=str_ireplace(" ports","",$x); }
 	
