@@ -545,6 +545,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			{	if($cadratemin<60) { $cadratemin=60; } if($cadratemax<200) { $cadratemax=200; }  if ($gameratemin<1000) { $gameratemin=1000; } if($gameratemax<200) { $gameratemax=200; }   if($quiz_mingputype<3) { $quiz_mingputype=3; } $to_search["gpu"]=1; }
 
 			if($to_search["gpu"]) {	$gpu_typelist=array_unique($gpu_typelist); for($i=0;$i<=$quiz_mingputype;$i++) { array_diff($gpu_typelist,array(strval($i))); } }
+			foreach($gpu_typelist as $key=>$el){ if(intval($el)<0){ unset($gpu_typelist[$key]);}}
 			
 			if($cadratemin!==0)
 			{	
