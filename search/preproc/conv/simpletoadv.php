@@ -1,7 +1,6 @@
 <?php
-
 	$valuetype[11]=array();
-	$hdd_type = array(); $displayhresmin = "1";	$displayhresmax = "99999"; 	$displayvresmin = "1"; 	$displayvresmax = "99999"; 	$mdbslotsel0 = "selected";	
+	$hdd_type = array(); $displayhresmin = "1";	$displayhresmax = "99999"; 	$displayvresmin = "1"; 	$displayvresmax = "99999"; 	$mdbslotsel0 = 'selected="selected"';
 	$sel="SELECT name,type FROM notebro_site.nomen WHERE type=25"; $result = mysqli_query($con, $sel); $lvaluetype[25]=array(); $valuetype[51]=[150];
 	while($rand = mysqli_fetch_assoc($result)) { $valuetype[intval($rand["type"])][]=$rand["name"]; } mysqli_free_result($result);
 	
@@ -22,9 +21,9 @@
 			$chassisthicmin=18;
 			$chassisthicmax=40;
 			$hdd_type=["HDD","SSD","SSHD"];
-			$mdbwwansel1 = "selected";
 			$gputype=1;
-			$gputypesel[0]="selected";
+			$mdbwwan = 1;
+			$gputypesel[0]='selected="selected"';
 			$valuetype[25]=array_diff($valuetype[25],["No OS","Android 6"]);
 			break;
 		case "2":		//ultraportable
@@ -32,12 +31,11 @@
 			$cputdpmin = 0;
 			$cputdpmax = 25;
 			$mdbwwan = 0;
-			$mdbwwansel0 = "selected";
 			$chassisweightmax=2.1;
 			$chassisthicmax = 23;
 			$valuetype[54]=["EMMC","SSD"];
 			$valuetype[25]=array_diff($valuetype[25],["No OS","Android 6"]);
-			$gputype=1; $gputypesel[0]="selected"; $gputypesel[2]="selected";
+			$gputype=1; $gputypesel[0]='selected="selected"'; $gputypesel[2]='selected="selected"';
 			break;
 		case "3":		//business
 			$model_minclass=1; $model_maxclass=4;
@@ -45,10 +43,9 @@
 			$cputdpmax = 45;
 			$gpupowermax=30;
 			$mdbwwan = 0;
-			$mdbwwansel0 = "selected";
 			$chassisweightmax=3;
 			$chassisthicmax=40;
-			$gputype=1; $gputypesel[0]="selected"; $gputypesel[3]="selected";	
+			$gputype=1; $gputypesel[0]='selected="selected"'; $gputypesel[3]='selected="selected"';	
 			$valuetype[54]=["HDD","SSD","SSHD"]; 
 			$valuetype[25]=array_diff($valuetype[25],["Chrome OS 1","Android 6","No OS"]);
 			break;
@@ -57,7 +54,6 @@
 			$cputdpmin = 15;
 			$cputdpmax = 300;
 			$mdbwwan = 1;
-			$mdbwwansel1 = "selected";
 			$chassisthicmin = 10;
 			$valuetype[54]=["HDD","SSD","SSHD"]; 
 			$valuetype[25]= ["Windows 10 Pro","Windows 10 Home","Windows 10 S"]; 
@@ -69,9 +65,8 @@
 			$gpupowermin=30;
 			$chassisthicmin = 10;
 			$valuetype[54]=["SSD","SSHD"];
-			$gputype = 1; $gputypesel[3] = "selected";
+			$gputype = 1; $gputypesel[3] = 'selected="selected"';
 			$mdbwwan = 0;
-			$mdbwwansel0 = "selected";
 			$valuetype[25]= ["Windows 10 Pro","Windows 10 Home"]; 	 
 			break;
 			
@@ -79,7 +74,6 @@
 			$model_minclass=-1; $model_maxclass=-1;
 			$valuetype[25]=array_diff($valuetype[25],["No OS"]);
 			$mdbwwan = 0;
-			$mdbwwansel0 = "selected";
 			break;
 	}
 	
@@ -230,7 +224,7 @@ if(isset($_GET['graphics']))
 					$gpupowermin = 20;
 					$gpumemmin = 1024;
 					$gputype=1;
-					$gputypesel[1]="selected";
+					$gputypesel[1]='selected="selected"';
 				}
 				else if (($_GET['type'])==5) //PROFESIONAL
 				{
@@ -239,14 +233,14 @@ if(isset($_GET['graphics']))
 					$result=mysqli_query($con, "SELECT model FROM notebro_db.GPU WHERE rating<=30 AND typegpu=3 AND power>=25");
 					while($row=mysqli_fetch_row($result)) { $gpumodel.='<option selected="selected">'.$row[0].'</option>'; } mysqli_free_result($result);
 					$gputype=1;
-					$gputypesel[3]="selected";
+					$gputypesel[3]='selected="selected"';
 				}
 				else //ALL
 				{
 					$gpupowermax = 50;
 					$gputype=1;
-					$gputypesel[3]="selected";
-					$gputypesel[0]="selected";
+					$gputypesel[3]='selected="selected"';
+					$gputypesel[0]='selected="selected"';
 				}
 				break;
 			}
@@ -257,7 +251,7 @@ if(isset($_GET['graphics']))
 				{
 					$gpumemmin = 2048;
 					$gputype=1;
-					$gputypesel[2]="selected";
+					$gputypesel[2]='selected="selected"';
 				}
 				else if (($_GET['type'])==5) //PROFESIONAL
 				{
@@ -265,15 +259,15 @@ if(isset($_GET['graphics']))
 					$result=mysqli_query($con, "SELECT model FROM notebro_db.GPU WHERE rating<=50 AND rating>=25 AND typegpu=3 AND power>=25");
 					while($row=mysqli_fetch_row($result)) { $gpumodel.='<option selected="selected">'.$row[0].'</option>'; } mysqli_free_result($result);
 					$gputype=1;
-					$gputypesel[3]="selected";
+					$gputypesel[3]='selected="selected"';
 				}
 				else //ALL
 				{
 					$gpupowermin = 55;
 					$gpupowermax = 80;
 					$gputype=1;
-					$gputypesel[3]="selected";
-					$gputypesel[2]="selected";
+					$gputypesel[3]='selected="selected"';
+					$gputypesel[2]='selected="selected"';
 				}
 				break;
 			}
@@ -283,7 +277,7 @@ if(isset($_GET['graphics']))
 				if (($_GET['type'])==4) //GAMING
 				{
 					$gputype=1;
-					$gputypesel[4]="selected";
+					$gputypesel[4]='selected="selected"';
 				}
 				else if (($_GET['type'])==5) //PROFESIONAL
 				{
@@ -291,20 +285,25 @@ if(isset($_GET['graphics']))
 					$result=mysqli_query($con, "SELECT model FROM notebro_db.GPU WHERE rating>=50 AND typegpu=3 AND power>=25");
 					while($row=mysqli_fetch_row($result)) { $gpumodel.='<option selected="selected">'.$row[0].'</option>'; } mysqli_free_result($result);
 					$gputype=1;
-					$gputypesel[3]="selected";
+					$gputypesel[3]='selected="selected"';
 				}
 				else //ALL
 				{
 					$gpupowermin = 69;
 					$gputype=1;
-					$gputypesel[3]="selected";
-					$gputypesel[4]="selected";
+					$gputypesel[3]='selected="selected"';
+					$gputypesel[4]='selected="selected"';
 				}
 				break;
 			}
 		}
 	}
 }
+
+$mdbwwansel0 = '';	
+if ($mdbwwan ==1) {	$mdbwwansel1 = 'selected="selected"'; }
+else if ($mdbwwan == 2) {	$mdbwwansel2 = 'selected="selected"'; }
+else {	$mdbwwansel0 = 'selected="selected"'; }
 
 //regional search
 if(isset($_GET['region_type']))
@@ -342,9 +341,8 @@ $totalcapmax=$hddcapmax;
 $family="";
 if ($model_minclass <= 0 && $model_maxclass>=3) 
 {
-	$family.='<option selected="selected">All business families</option>';
-	$family.='<option selected="selected">All consumer families</option>';
+	$family='';
 }
-else if ($model_minclass>=1 && $model_maxclass>=3) {$family.='<option selected="selected">All business families</option>';}
-else if ($model_minclass>=0 && $model_maxclass<=1) {$family.='<option selected="selected">All consumer families</option>';}
+elseif ($model_minclass>=1 && $model_maxclass>=3) {$family.='<option selected="selected">All business families</option>';}
+elseif ($model_minclass>=0 && $model_maxclass<=1) {$family.='<option selected="selected">All consumer families</option>';}
 ?>

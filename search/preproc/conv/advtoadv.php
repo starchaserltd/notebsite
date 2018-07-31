@@ -126,16 +126,19 @@
 	
 	$mdbslots = $_GET['mdbslots'];
 	
-	if ($mdbslots == 1) {$mdbslotsel1 = "selected";}
-	else if ($mdbslots == 2) {$mdbslotsel2 = "selected";}
-		else if ($mdbslots ==3) {$mdbslotsel3 = "selected";}
-			else if ($mdbslots == 4) {$mdbslotsel4 = "selected";}
-				else {$mdbslotsel0 = "selected";}
-				
-	$mdbwwan = $_GET['mdbwwan'];
-		if ($mdbwwan ==1) {$mdbwwansel1 = "selected";}
-			else if ($mdbwwan == 2) {$mdbwwansel2 = "selected";}
-				else {$mdbwwansel0 = "selected";}
+	if ($mdbslots == 1) {$mdbslotsel1 = 'selected="selected"';}
+	else if ($mdbslots == 2) {$mdbslotsel2 = 'selected="selected"';}
+		else if ($mdbslots ==3) {$mdbslotsel3 = 'selected="selected"';}
+			else if ($mdbslots == 4) {$mdbslotsel4 = 'selected="selected"';}
+				else {$mdbslotsel0 = 'selected="selected"';}
+	
+	if(isset($_GET['mdbwwan']))
+	{
+		$mdbwwansel0=""; $mdbwwan = $_GET['mdbwwan'];
+			if ($mdbwwan ==1) {$mdbwwansel1 = 'selected="selected"';}
+				else if ($mdbwwan == 2) {$mdbwwansel2 = 'selected="selected"';}
+					else {$mdbwwansel0 = 'selected="selected"';}
+	}
 	//MDB_vport_id
 	if(isset($_GET['MDB_vport_id']))
 	{	foreach ($_GET['MDB_vport_id'] as $element)

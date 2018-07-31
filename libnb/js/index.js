@@ -546,6 +546,6 @@ function get_buy_list(el)
 }
 
 function set_adv_search(pagetoopen,headpart)
-{ if(pagetoopen.indexOf("adv_search.php")>=0 && searchurl.indexOf("advsearch=1")>=0 && pagetoopen.indexOf("advsearch=1")<0) { if(pagetoopen.indexOf("reset=1")<0){ pagetoopen=headpart+"search/adv_search.php?"+searchurl; }else{pagetoopen=headpart+"search/adv_search.php"; searchurl=""; } } return pagetoopen; }
+{ if(pagetoopen.indexOf("adv_search.php")>=0 && searchurl.indexOf("advsearch=1")>=0 && pagetoopen.indexOf("advsearch=1")<0) { if(pagetoopen.indexOf("s_memmin")<0&&pagetoopen.indexOf("quizsearch")<0&&pagetoopen.indexOf("browse_by")<0){ if(pagetoopen.indexOf("reset=1")<0){ pagetoopen=headpart+"search/adv_search.php?"+searchurl; }else{pagetoopen=headpart+"search/adv_search.php"; searchurl=""; } } } return pagetoopen; }
 
 function remove_popup() { $("#howToUse").addClass("howToUseNone"); var timeout=setTimeout(function() { $("#howToUse").css('display', 'none'); }, 1500); }

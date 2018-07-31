@@ -1,5 +1,4 @@
 <?php
-
 if(isset($_GET['sort_by'])) { $sort_by = clean_string($_GET['sort_by']); }
 if(isset($_GET['browse_by'])) { $browse_by = clean_string($_GET['browse_by']); }
 $to_search["model"]=1; $totalcapmin=0; $set_j_ssearch="";  $mem_capmax=32;

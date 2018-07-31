@@ -5,7 +5,7 @@
 $cpu_tdpmin = 0.01; $gpu_powermin = 0; $gpu_maxmemmin = 1; //$hdd_capmin = $totalcapmin;
 $war_yearsmin = 0.01; $acum_capmin = 0.01; $wnet_ratemin = 0.01; $sist_pricemax = 1;
 $odd_speedmin = 0; $mem_capmin = 1; $mdb_ratemin = 0; $chassis_weightmin = 0.01; $addmsc=array(); $regions_name = array(); $display_srgb = 0; $chassis_addpi=array(); $regions=array(); $war_typewar=array();
-$totalcapmax = 8192; 
+$totalcapmax = 8192; $mdb_wwan=0;
 $mdbslots = 0;
 
 $isquiz = 1;
@@ -595,13 +595,12 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 		
 		case 'mdb' :
 		{	
-			if ((isset($_GET['casual']) && $_GET['casual']==1)||(isset($_GET['content']) && $_GET['content']==1)||(isset($_GET['gaming']) && $_GET['gaming']==1)||(isset($_GET['coding']) && $_GET['coding']==1))
+			if ((isset($_GET['casual']) && $_GET['casual']==1)||(isset($_GET['gaming']) && $_GET['gaming']==1))
 			{	$mdb_wwan=1; }
 			
-			if ((isset($_GET['business']) && $_GET['business']==1)||(isset($_GET['cad3d']) && $_GET['cad3d']==1))
+			if ((isset($_GET['business']) && $_GET['business']==1)||(isset($_GET['cad3d']) && $_GET['cad3d']==1)||(isset($_GET['content']) && $_GET['content']==1)||(isset($_GET['coding']) && $_GET['coding']==1))
 			{	$mdb_wwan=0; }
-            
-			break ;	
+            break ;	
 		}	
 		case 'chassis' :
 		{

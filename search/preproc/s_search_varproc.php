@@ -5,7 +5,7 @@ $cpu_tdpmin=0.01; $gpu_powermin=0.00; $display_hresmin=0.01; $hdd_capmin=0.01; $
 $diffsearch=0;
 $batlife_min=0;
 $batlife_max=1000;
-$mdb_wwan = 1;
+$mdb_wwan = 0;
 
 // BUDGET val min and max
 if(isset($_GET['bdgmin'])) { $budgetmin = (floatval($_GET['bdgmin'])/$exch)-1; }

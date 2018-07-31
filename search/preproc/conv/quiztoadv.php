@@ -509,17 +509,17 @@ if (isset($_GET['odd']) && $_GET['odd']==1)
 }
 		
 // MDB Conditions
-if ((isset($_GET['casual']) && $_GET['casual']==1)||(isset($_GET['content']) && $_GET['content']==1)||(isset($_GET['gaming']) && $_GET['gaming']==1)||(isset($_GET['coding']) && $_GET['coding']==1))
+if ((isset($_GET['casual']) && $_GET['casual']==1)||(isset($_GET['gaming']) && $_GET['gaming']==1))
 {	$mdb_wwan=1; }
             
-if ((isset($_GET['business']) && $_GET['business']==1)||(isset($_GET['cad3d']) && $_GET['cad3d']==1))
+if ((isset($_GET['business']) && $_GET['business']==1)||(isset($_GET['cad3d']) && $_GET['cad3d']==1)||(isset($_GET['content']) && $_GET['content']==1)||(isset($_GET['coding']) && $_GET['coding']==1))
 {	$mdb_wwan=0; }
 			
 $mdbwwan = $mdb_wwan;
-			
-if ($mdbwwan ==1) {	$mdbwwansel1 = "selected"; }
-else if ($mdbwwan == 2) {	$mdbwwansel2 = "selected"; }
-else {	$mdbwwansel0 = "selected"; }
+$mdbwwansel0 = '';	
+if ($mdbwwan ==1) {	$mdbwwansel1 = 'selected="selected"'; }
+else if ($mdbwwan == 2) {	$mdbwwansel2 = 'selected="selected"'; }
+else {	$mdbwwansel0 = 'selected="selected"'; }
 
 // CHASSIS Conditions
 $chassisweightmax=999999; $chassisthicmax=999999;
