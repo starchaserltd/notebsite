@@ -296,7 +296,7 @@ switch ($q)
 					foreach ($prop as $x){ $y.=" (prop='$x') OR"; }
 					$y=substr($y, 0, -3);
 				}	
-				$sel="SELECT id, name FROM notebro_site.nomen WHERE type=69 AND name LIKE $dis_res".$y." ORDER BY name ASC";
+				$sel="(SELECT id, name FROM notebro_site.nomen WHERE type=69 AND name LIKE $dis_res".$y." AND name NOT LIKE '%keyboard%' AND name NOT LIKE '%speaker%' AND name NOT LIKE '%subwoof%' ORDER BY name ASC) UNION (SELECT id, name FROM notebro_site.nomen WHERE type=69 AND name LIKE $dis_res".$y." AND name LIKE '%keyboard%' ORDER BY name ASC) UNION (SELECT id, name FROM notebro_site.nomen WHERE type=69 AND name LIKE $dis_res".$y." AND (name LIKE '%speaker%' OR name LIKE '%subwoof%')  ORDER BY name ASC)";
 				$result = mysqli_query($con, $sel);
 				$list = array();
 				while($rand = mysqli_fetch_row($result)) 
