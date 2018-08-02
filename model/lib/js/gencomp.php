@@ -287,7 +287,7 @@ for($x = 0; $x <= $nrconf; $x++)
 <?php
 	show('CHASSIS',$chassis_conf_chassis);
 	$maxminvalues=bluered(floatval($resu['weight']),$maxminvalues,$x,"weight",1);
-	if(intval($resu['web'])!=0){$resu['web'].=" MP";}
+	if(floatval($resu['web'])>0.05){$resu['web'].=" MP";}
 	$vars=array(
 		$resu['pi'],
 		$resu['vi'],
