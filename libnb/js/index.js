@@ -162,9 +162,7 @@ $(document).ready(function() {
     });
 
     //Function for hidding learning message
-    if($(".compareDropdown").hasClass('howToUseNone')) {
-        $("#howToUse").css('display', 'none');
-    }
+     if($(".compareDropdown").css('display') === 'block' ) {$("#howToUse").css('display', 'none');}
 	
 	$( "#howToUse .glyphicon-remove" ).click(function(event) { remove_popup(); });
 
