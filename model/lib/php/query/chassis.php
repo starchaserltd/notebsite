@@ -26,7 +26,7 @@ if($q>=0)
 
 		if(!$rows[0]['msc']) { $rows[0]['msc']="-"; }
 		if(!$rows[0]['pi']) { $rows[0]['pi']="-"; }
-		if(!$rows[0]['vi']) { $rows[0]['vi']="-"; }
+		if(!$rows[0]['vi']) { if(stripos($rows[0]['pi'],"thunderbolt")!==FALSE) { $rows[0]['vi']="1 X mDP (Thunderbolt)"; } else { $rows[0]['vi']="-"; } }else { if(stripos($rows[0]['pi'],"thunderbolt")!==FALSE&&stripos($rows[0]['vi'],"DP")===FALSE) { $rows[0]['vi'].=", 1 X mDP (Thunderbolt)"; } }
 		if(!$rows[0]['color']) { $rows[0]['color']="-"; }
 		if(!$rows[0]['web']) { $rows[0]['web']="None"; }
 		if(!$rows[0]['touch']) { $rows[0]['touch']="Standard"; }
