@@ -79,7 +79,7 @@ function getdetails($id)
 	$item = mysqli_fetch_array($result);
 	
 	global $img; global $prod; global $fam; global $submodel; global $model; global $t_img; global $region_m_id; global $buy_regions;
-	
+	$img=""; $prod=""; $fam=""; $submodel=""; $model=""; $t_img=""; $region_m_id=""; $buy_regions="";
 	$img=$item['img_1'];
 	$t_imgpart=explode(".",$img);
 	$t_img="t_".$t_imgpart[0].".jpg";
