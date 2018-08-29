@@ -1,7 +1,7 @@
 //Initialization
 var trigger = 1;
 var z = 0;
-var first = 1;
+var first = 1; var cleanurl=20;
 var firstcompare = 1;
 var nocomperrormess = 0;
 var previousurl = "";
@@ -41,7 +41,18 @@ function locationHashChanged(pagetopen) {
 }
 
 setInterval(function() {
-    if (currentPage !== window.location.href) {
+	
+	if(cleanurl>19 && window.location.href.indexOf("search")!==-1 && currentPage.indexOf("search")!==-1)
+	{
+		url_s=window.location.href;
+		var urltitle = /([^\/]*).php/g.exec(url_s);
+        urltitle = urltitle[1];
+		history.replaceState({}, 'NoteBrother' + ' ' + urltitle, url_s.replace("%20%20","%20").replace(")","\%29").replace("(","\%28"));
+		currentPage=currentPage.replace("%20%20","%20").replace(")","\%29").replace("(","\%28");
+	}
+	if(cleanurl>0){cleanurl--;}else{cleanurl=20;}
+	
+	if (currentPage !== window.location.href) {
 		currentPage = window.location.href;
         locationHashChanged(set_adv_search(currentPage,siteroot+"?"));
     }
