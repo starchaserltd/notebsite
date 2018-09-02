@@ -276,6 +276,36 @@ if($api_key!==""&&$api_key!==NULL)
 						{ $response->code=28; $response->message.=" No valid configuration id provided."; }
 						break;
 					}
+					case "get_exchange_rates":
+					{
+						$response->code=26; $response->message="Valid method.";$response->daily_hits_left=$hits_left;
+						$abort=0; $object_addr=$response->result;
+						if(isset($param['exchange_code'])&&$param['exchange_code']!==NULL&&$param['exchange_code']!=="")
+						{
+							$param['exchange_code']=mysqli_real_escape_string($con,$param['exchange_code']);
+							$get_code=" WHERE code='".$param['exchange_code']."'";
+							$result=mysqli_query($con,"SELECT code FROM `notebro_site`.`exchrate`".$get_code." LIMIT 1");
+							if(!($result && mysqli_num_rows($result)>0)){ $get_code="";  $response->message.=" Invalid exchange_code, retrieving full list."; }
+						}
+						else { $get_code=""; }
+
+						$result=mysqli_query($con,"SELECT code,convr,sign FROM `notebro_site`.`exchrate`".$get_code);
+						if($result && mysqli_num_rows($result)>0)
+						{
+							$i=0;
+							while($row=mysqli_fetch_assoc($result))
+							{
+								$response->result->{$i}=new stdClass(); $object_addr=$response->result->{$i};
+								$object_addr->exchange_code=$row["code"];
+								$object_addr->exchange_rate=$row["convr"];
+								$object_addr->exchange_sign=$row["sign"];
+								$i++;
+							}
+						}
+						else
+						{ $response->code=29; $response->message.=" Database is inaccessible."; }
+						break;
+					}
 					default:
 					{
 						$response->code=12; $response->message="Unknown method provided."; $response->daily_hits_left=$hits_left;
