@@ -397,16 +397,16 @@ if (isset($_GET['mmomedium']) && $_GET['mmomedium']==1)
 {	if($gpupowermin<36) { $gpupowermin = 36; } if($gpupowermax<69) { $gpupowermax = 69; } if($model_maxclass>1 && $gpupowermax<500) { $gpupowermax=500; } if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2"); $to_search["gpu"]=1; }
 								
 if (isset($_GET['mmohigh']) && $_GET['mmohigh']==1 ) 
-{	if($gpupowermin<59) { $gpupowermin = 59; } $to_search["gpu"]=1; if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","4"); $gpu_ldmin=gmdate("Y-01-01",time()-31536000*1.5 ); } 
+{	if($gpupowermin<59) { $gpupowermin = 59; } $to_search["gpu"]=1; if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","4"); $gpu_ldmin=gmdate("Y-01-01",time()-31536000*2 ); } 
 							
 if (isset($_GET['3dgameslow']) && $_GET['3dgameslow']==1) 
-{	if($gpupowermin<30) { $gpupowermin = 30; } if($gpupowermax<69) { $gpupowermax = 69; } $to_search["gpu"]=1; if($quiz_mingputype<2) { $quiz_mingputype=1; } array_push($gpu_typelist,"1","2"); $gpu_ldmin=gmdate("Y-01-01",time()-31536000*2 ); $gpu_arch=["Maxwell","Pascal","GCN 1.2","GCN 1.3"];  }
+{	if($gpupowermin<30) { $gpupowermin = 30; } if($gpupowermax<69) { $gpupowermax = 69; } $to_search["gpu"]=1; if($quiz_mingputype<2) { $quiz_mingputype=1; } array_push($gpu_typelist,"1","2"); $gpu_ldmin=gmdate("Y-01-01",time()-31536000*2.5 ); $gpu_arch=["Maxwell","Pascal","GCN 1.2","GCN 1.3"];  }
 														
 if (isset($_GET['3dgamesmedium']) && $_GET['3dgamesmedium']==1) 
-{	if($gpupowermin<59) { $gpupowermin = 59; } $to_search["gpu"]=1; if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","4");  $gpu_ldmin=gmdate("Y-01-01",time()-31536000*1.5 ); }
+{	if($gpupowermin<59) { $gpupowermin = 59; } $to_search["gpu"]=1; if($quiz_mingputype<2) { $quiz_mingputype=2; } array_push($gpu_typelist,"2","4");  $gpu_ldmin=gmdate("Y-01-01",time()-31536000*2 ); }
 												
 if (isset($_GET['3dgameshigh']) && $_GET['3dgameshigh']==1) 
-{	$gpu_typelist[] = 4; $to_search["gpu"]=1; if($quiz_mingputype<4) { $quiz_mingputype=4; } array_push($gpu_typelist,"4");  $gpu_ldmin=gmdate("Y-m-d",time()-31536000*1.5 ); }
+{	$gpu_typelist[] = 4; $to_search["gpu"]=1; if($quiz_mingputype<4) { $quiz_mingputype=4; } array_push($gpu_typelist,"4");  $gpu_ldmin=gmdate("Y-m-d",time()-31536000*2 ); }
 $gpudate = explode("-",$gpu_ldmin);
 $gpumindate = $gpudate[0]; 
 
