@@ -615,6 +615,7 @@ function getconf(comp,id,exactconf)
 					confdata["cerr"]=parseInt(confdata["cerr"]);
 					document.getElementById('config_price1').innerHTML=parseInt((confdata["cprice"]-confdata["cerr"]/2)*exch);
 					document.getElementById('config_price2').innerHTML=parseInt((confdata["cprice"]+confdata["cerr"]/2)*exch);
+					document.getElementById('dLabel').setAttribute('data-price',confdata["cprice"]);
 					
 					if(confdata["changes"]!==undefined) 
 					{

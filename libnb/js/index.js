@@ -550,7 +550,7 @@ function get_buy_list(el)
 		}
 		xmlhttp.open("POST","model/lib/php/buy_list.php",true);
 		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		xmlhttp.send('idmodel='+el.dataset.idmodel+'&buyregions='+el.dataset.buyregions+'&lang='+el.dataset.lang+'&usertag='+el.dataset.ref);
+		xmlhttp.send('idmodel='+el.dataset.idmodel+'&buyregions='+el.dataset.buyregions+'&lang='+el.dataset.lang+'&usertag='+el.dataset.ref+'&price='+el.dataset.price);
 	}
 }
 

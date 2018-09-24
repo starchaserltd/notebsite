@@ -93,10 +93,10 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 						</ul>
 					</a>
 				</div>
-				<div class="searchprice"><?php echo ""; echo $exchsign; echo " "; echo showprice(('notebro_temp.'.$temp_table."_".$rand['model']), $rand['id'], $exch );?></div>
+				<div class="searchprice"><?php echo ""; echo $exchsign; echo " "; $conf_price=showprice(('notebro_temp.'.$temp_table."_".$rand['model']), $rand['id'], $exch );?></div>
 				<div class="buy resultsShopBtn col-lg-6 col-md-5 col-sm-6 col-xs-6 col-xxs-12">
 					<div class="dropdown">
-						<div id="dLabel" class="btn buyBtn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-ref="<?php if(isset($usertag)&&$usertag!=""){ echo $usertag; } else { echo "";} ?>" data-target="buylist-<?php echo $i;?>" data-idmodel="<?php echo $rand['model']; ?>" data-buyregions="<?php ?>" data-lang="<?php echo $value["id"]; ?>" onclick="get_buy_list(this);">
+						<div id="dLabel" class="btn buyBtn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-ref="<?php if(isset($usertag)&&$usertag!=""){ echo $usertag; } else { echo "";} ?>" data-target="buylist-<?php echo $i;?>" data-price="<?php echo $conf_price; ?>" data-idmodel="<?php echo $rand['model']; ?>" data-buyregions="<?php ?>" data-lang="<?php echo $value["id"]; ?>" onclick="get_buy_list(this);">
 							<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><span class="resultsBuyText"> Buy</span>
 							<span class="caret"></span>
 						</div>

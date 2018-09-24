@@ -115,7 +115,7 @@ else
 				</div>				
 				<div class="buy">
 					<div class="dropdown">
-						<button id="dLabel" class="btn addtocpmp buyBtn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-ref="<?php if(isset($usertag)&&$usertag!=""){ echo $usertag; } else { echo "";} ?>" data-target="buylist-0" data-idmodel="<?php echo $idmodel; ?>" data-idmodel="<?php echo $idmodel; ?>" data-buyregions="<?php echo $buy_regions; ?>" data-lang="<?php echo $lang; ?>" onclick="get_buy_list(this);">
+						<button id="dLabel" class="btn addtocpmp buyBtn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-ref="<?php if(isset($usertag)&&$usertag!=""){ echo $usertag; } else { echo "";} ?>" data-target="buylist-0" data-price="0" data-idmodel="<?php echo $idmodel; ?>" data-idmodel="<?php echo $idmodel; ?>" data-buyregions="<?php echo $buy_regions; ?>" data-lang="<?php echo $lang; ?>" onclick="get_buy_list(this);">
 							<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Buy
 							<span class="caret"></span>
 						</button>

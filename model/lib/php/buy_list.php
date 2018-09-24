@@ -6,8 +6,8 @@
 		foreach($somestring as $key=>$el){ $somestring[$key]=intval($el); }
 		return implode(",",$somestring);
 	}
-	$idmodel=intval($_POST["idmodel"]); $buy_regions=intsanitize($_POST["buyregions"]); $lang=intsanitize($_POST["lang"]); $usertag=mysqli_real_escape_string($con,filter_var($_POST["usertag"], FILTER_SANITIZE_STRING));
-
+	$idmodel=intval($_POST["idmodel"]); $buy_regions=intsanitize($_POST["buyregions"]); $lang=intsanitize($_POST["lang"]); $price=intsanitize($_POST["price"]); $usertag=mysqli_real_escape_string($con,filter_var($_POST["usertag"], FILTER_SANITIZE_STRING));
+	
 	$tags=array(); $ref_only=0;
 	if(isset($usertag)&&$usertag!="")
 	{
