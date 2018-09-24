@@ -95,7 +95,7 @@ function showprice($tab, $id, $exc)
 	$result = mysqli_query($GLOBALS['cons'], "SELECT price,err FROM ".$tab." WHERE id = '".$id."'"); 
 	$item = mysqli_fetch_array($result);
 	echo intval(($item['price']-($item['err']/2))*$exc)." - ".intval(($item['price']+($item['err']/2))*$exc);
-	return $item['price'];
+	return intval($item['price']);
 }
 
 function showbat($tab, $id, $exc)
