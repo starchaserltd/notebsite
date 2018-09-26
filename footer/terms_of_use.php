@@ -155,5 +155,5 @@ if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_n
 	<p style="font-size:18px"><b>15. Contacts</b></p>
 	<p>For any other information, please use the NOTEB contact page to contact us.</p>
 	</div>
-	<script type="text/javascript">$(document).ready(function(){ actbtn("HOME"); }); </script>
+	<script type="text/javascript">$(document).ready(function(){ actbtn("HOME"); document.title="Noteb - Terms"; }); </script>
 	<?php include_once("../etc/scripts_pages.php"); ?>

@@ -19,6 +19,7 @@ if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_n
 	<script type="text/javascript">
 	 $(document).ready(function(){
 	  actbtn("HOME");
+	  document.title="Noteb - Contact";
 	 });
 	 </script>
 	 <?php include_once("../etc/scripts_pages.php"); ?>

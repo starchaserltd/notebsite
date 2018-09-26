@@ -20,6 +20,7 @@ while($row = mysqli_fetch_array($results))
 <script type="text/javascript">
 $(document).ready(function(){
 	actbtn("SEARCH");
+	document.title="Noteb - Browser laptop brands";
 });
 </script>
 <?php include_once("../etc/scripts_pages.php"); ?>

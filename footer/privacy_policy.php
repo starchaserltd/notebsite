@@ -95,5 +95,5 @@ if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_n
 	<p><b>Consent</b></p>
 	<p>By using our site, you consent to our online Privacy Policy.</p>
 	</div>
-	<script type="text/javascript">$(document).ready(function(){ actbtn("HOME"); }); </script>
+	<script type="text/javascript">$(document).ready(function(){ actbtn("HOME"); document.title="Noteb - Privacy"; }); </script>
 	<?php include_once("../etc/scripts_pages.php"); ?>

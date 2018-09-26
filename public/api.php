@@ -43,6 +43,7 @@ if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_n
 	 <script type="text/javascript">
 	 $(document).ready(function(){
 	  actbtn("USER");
+	  document.title="Noteb - API";
 	 });
 	 </script>
 

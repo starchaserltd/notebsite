@@ -1,6 +1,7 @@
 $(document).ready(function()
 {
 	actbtn("USER");
+	document.title="Noteb - Add reviews";
     $(".modelsearch").each(function(){
 	var query_address=siteroot+"/search/lib/func/m_search.php";
 	var $this = $(this);
@@ -97,7 +98,7 @@ $("#ireviews_form_btn").click(function () {
 	$('#loadingNB').show();
 	trigger=0;
 	$.post('public/ireviews.php', $("#ireviews_form").serialize(), function(data) {
-		url = "public/ireviews.php";
+		url = "public/ireviews.php"; if(url.indexOf("ref=")<0){ if(ref!=null&&ref!="") { url=url+"&ref="+ref; } }
 		if($('#content').html(data)){ $('#loadingNB').hide();}
 		history.pushState({}, 'NoteBrother', "?" + url);
 	});

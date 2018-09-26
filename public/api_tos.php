@@ -117,6 +117,7 @@ Romania<br>
 	 <script type="text/javascript">
 	 $(document).ready(function(){
 	  actbtn("USER");
+	  document.title="Noteb - API Terms";
 	 });
 	 </script>
 

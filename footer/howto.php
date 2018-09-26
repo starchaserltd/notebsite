@@ -45,6 +45,7 @@ if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_n
 	 <script type="text/javascript">
 	 $(document).ready(function(){
 	  actbtn("HOME");
+	  document.title="Noteb - How to use";
 	 });
 	 
 	 function close_quick_search(){ if(document.getElementById("SearchParameters").style.display!="none") { $('.SearchParameters').toggle('slow'); $('.leftMenuFilters').toggleClass('rotate'); } }
