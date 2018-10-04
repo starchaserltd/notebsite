@@ -286,7 +286,7 @@ function showMDB(str)
 				document.getElementById('mdb_hdd').innerHTML = mdb["hdd"];
 				document.getElementById('mdb_misc').innerHTML = mdb["msc"];
 				
-				if(mdb["optimus"])
+				if(mdb["optimus"]&&gpu_bat_new>3)
 				{
 					gpu_bat_old = gpu_bat_new;	gpu_bat_new = 3; config_batlife=config_batlife-gpu_bat_old+gpu_bat_new;
 					if(gpu_bat_old!=gpu_bat_new){ bat_animation(); }
