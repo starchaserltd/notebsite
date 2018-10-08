@@ -1,8 +1,10 @@
 <?php
 	if(isset($_GET['Regions']))
-	{	foreach ($_GET['Regions'] as $element)
+	{	$regions="";
+		foreach ($_GET['Regions'] as $element)
 		{	$regions.='<option selected="selected">'.$element.'</option>'; }
 	}
+
 	if(isset($_GET['Family_fam']))
 	
 	{
