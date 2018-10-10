@@ -32,36 +32,16 @@ if($q>=0)
 		
 		switch (true)
 		{
-			case ((in_array($rows[0]['tdp'],range(0,15))) && ($rows[0]['price'])>=200):
-				$rows[0]['class']="Ultrabook";
-				break;
-			case ((in_array($rows[0]['tdp'],range(0,10))) && ($rows[0]['price'])<200):
-				$rows[0]['class']="Netbook/Tablet";
-				break;
-			case ((in_array($rows[0]['tdp'],range(15,30))) && ($rows[0]['price'])>=200):
-				$rows[0]['class']="Mainstream";
-				break;
-			case ((in_array($rows[0]['tdp'],range(10,30))) && ($rows[0]['price'])<200):
-				$rows[0]['class']="Value";
-				break;
-			case ((in_array($rows[0]['tdp'],range(30,40))) && ($rows[0]['price'])<200):
-				$rows[0]['class']="Value";
-				break;
-			case ((in_array($rows[0]['tdp'],range(30,40))) && ($rows[0]['price'])>=200):
-				$rows[0]['class']="Mainstream";
-				break;
-			case ((in_array($rows[0]['tdp'],range(40,60))) && ($rows[0]['price'])<200):
-				$rows[0]['class']="Value";
-				break;
-			case ((in_array($rows[0]['tdp'],range(40,60))) && ($rows[0]['price'])>=200):
-				$rows[0]['class']="High Performance";
-				break;
-			case (in_array($rows[0]['tdp'],range(60,150))):
-				$rows[0]['class']="Desktop";
-				break;
-			default:
-				$rows[0]['class']="Undefined";
-				break;
+			case ((in_array($rows[0]['tdp'],range(0,15))) && ($rows[0]['price'])>=200): { $rows[0]['class']="Ultrabook"; break; }
+			case ((in_array($rows[0]['tdp'],range(0,10))) && ($rows[0]['price'])<200):	{ $rows[0]['class']="Netbook/Tablet"; break; }
+			case ((in_array($rows[0]['tdp'],range(10,30))) && ($rows[0]['price'])<200):	{ $rows[0]['class']="Value"; break; }
+			case ((in_array($rows[0]['tdp'],range(30,40))) && ($rows[0]['price'])<200):	{ $rows[0]['class']="Value"; break; }
+			case ((in_array($rows[0]['tdp'],range(40,60))) && ($rows[0]['price'])<200): { $rows[0]['class']="Value"; break; }
+			case ((in_array($rows[0]['tdp'],range(15,30))) && ($rows[0]['price'])>=200):{ $rows[0]['class']="Mainstream"; break; }
+			case ((in_array($rows[0]['tdp'],range(30,40))) && ($rows[0]['price'])>=200):{ $rows[0]['class']="Mainstream"; break; }
+			case ((in_array($rows[0]['tdp'],range(40,60))) && ($rows[0]['price'])>=200):{ $rows[0]['class']="High performance"; break; }
+			case (in_array($rows[0]['tdp'],range(60,150))):								{ $rows[0]['class']="Desktop";	break; }
+			default: 																	{ $rows[0]['class']="Undefined"; break; }
 		}
 	}
 	

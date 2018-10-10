@@ -37,27 +37,13 @@ if($q>=0)
 			
 		switch (true)
 		{
-			case ($rows[0]['power']<10):
-				$rows[0]['class']="Basic/Integrated";
-				break;
-			case ($rows[0]['power']>=10 && $rows[0]['power']<20):
-				$rows[0]['class']="Basic/Multimedia";
-				break;
-			case ($rows[0]['power']>=20 && $rows[0]['power']<40):
-				$rows[0]['class']="Budget/Casual Gaming";
-				break;
-			case ($rows[0]['power']>=40 && $rows[0]['power']<70):
-				$rows[0]['class']="Midrange";
-				break;
-			case ($rows[0]['power']>=70 && $rows[0]['power']<105):
-				$rows[0]['class']="Highend";
-				break;
-			case ($rows[0]['power']>=105 && $rows[0]['power']<500):
-				$rows[0]['class']="Desktop";
-				break;
-			default:
-				$rows[0]['class']="Undefined";
-				break;
+			case ($rows[0]['power']<10): 						   { $rows[0]['class']="Basic/Integrated"; break; }
+			case ($rows[0]['power']>=10 && $rows[0]['power']<=25): { $rows[0]['class']="Basic/Multimedia"; break; }
+			case ($rows[0]['power']>25 && $rows[0]['power']<45):   { $rows[0]['class']="Budget/Casual Gaming"; break; }
+			case ($rows[0]['power']>=45 && $rows[0]['power']<70):  { $rows[0]['class']="Midrange"; break; }
+			case ($rows[0]['power']>=70 && $rows[0]['power']<90):  { $rows[0]['class']="Highend"; break; }
+			case ($rows[0]['power']>=90 && $rows[0]['power']<500): { $rows[0]['class']="Desktop"; break; }
+			default: 											   { $rows[0]['class']="Undefined"; break; }
 		}
 		
 		switch ($rows[0]['sharem'])

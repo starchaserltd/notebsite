@@ -26,45 +26,16 @@ function show($tab, $id)
 			
 			switch (true)
 			{
-				case ((in_array($resu['tdp'],range(0,15))) && ($resu['price'])>=200):
-					$resu['class']="Ultrabook";
-				break;
-			
-				case ((in_array($resu['tdp'],range(0,10))) && ($resu['price'])<200):
-					$resu['class']="Netbook/Tablet";
-				break;
-			
-				case ((in_array($resu['tdp'],range(15,30))) && ($resu['price'])>=200):
-					$resu['class']="Mainstream";
-				break;
-			
-				case ((in_array($resu['tdp'],range(10,30))) && ($resu['price'])<200):
-					$resu['class']="Value";
-				break;
-			
-				case ((in_array($resu['tdp'],range(30,40))) && ($resu['price'])<200):
-					$resu['class']="Value";
-				break;
-
-				case ((in_array($resu['tdp'],range(30,40))) && ($resu['price'])>=200):
-					$resu['class']="Mainstream";
-				break;
-			
-				case ((in_array($resu['tdp'],range(40,60))) && ($resu['price'])<200):
-					$resu['class']="Value";
-				break;
-			
-				case ((in_array($resu['tdp'],range(40,60))) && ($resu['price'])>=200):
-					$resu['class']="High Performance";
-				break;
-		
-				case (in_array($resu['tdp'],range(60,150))):
-					$resu['class']="Desktop";
-				break;
-		
-				default:
-					$resu['class']="Undefined";
-				break;
+				case ((in_array($resu['tdp'],range(0,15))) && ($resu['price'])>=200): {	$resu['class']="Ultrabook"; break; }
+				case ((in_array($resu['tdp'],range(0,10))) && ($resu['price'])<200):  { $resu['class']="Netbook/Tablet"; break; }
+				case ((in_array($resu['tdp'],range(10,30))) && ($resu['price'])<200): { $resu['class']="Value"; break; }
+				case ((in_array($resu['tdp'],range(30,40))) && ($resu['price'])<200): { $resu['class']="Value"; break; }
+				case ((in_array($resu['tdp'],range(40,60))) && ($resu['price'])<200): { $resu['class']="Value"; break; }
+				case ((in_array($resu['tdp'],range(15,30))) && ($resu['price'])>=200):{	$resu['class']="Mainstream"; break; }
+				case ((in_array($resu['tdp'],range(30,40))) && ($resu['price'])>=200):{ $resu['class']="Mainstream"; break; }
+				case ((in_array($resu['tdp'],range(40,60))) && ($resu['price'])>=200):{ $resu['class']="High performance"; break; }
+				case (in_array($resu['tdp'],range(60,150))):						  { $resu['class']="Desktop"; break; }
+				default: 															  { $resu['class']="Undefined"; break; }
 			}
 			break;
 		}
@@ -89,27 +60,13 @@ function show($tab, $id)
 	
 			switch (true)
 			{
-				case ($resu['power']<10):
-					$class="Basic/Integrated";
-					break;
-				case ($resu['power']>=10 && $resu['power']<=20):
-					$class="Basic/Multimedia";
-					break;
-				case ($resu['power']>20 && $resu['power']<40):
-					$class="Budget/Casual Gaming";
-					break;
-				case ($resu['power']>=40 && $resu['power']<70):
-					$class="Midrange";
-					break;
-				case ($resu['power']>=70 && $resu['power']<105):
-					$class="Highend";
-					break;
-				case ($resu['power']>=105 && $resu['power']<500):
-					$class="Desktop";
-					break;
-				default:
-					$resu['class']="Undefined";
-					break;
+				case ($resu['power']<10): {	$class="Basic/Integrated"; break; }
+				case ($resu['power']>=10 && $resu['power']<=25): { $class="Basic/Multimedia"; break; }
+				case ($resu['power']>25 && $resu['power']<45):   { $class="Budget/Casual Gaming"; break; }
+				case ($resu['power']>=45 && $resu['power']<70):  { $class="Midrange"; break; }
+				case ($resu['power']>=70 && $resu['power']<90):  { $class="Highend"; break; }
+				case ($resu['power']>=90 && $resu['power']<500): {	$class="Desktop"; break; }
+				default: 										 { $resu['class']="Undefined"; break; }
 			}
 			$resu['gpuclass']=$class;
 			break;
