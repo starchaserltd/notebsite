@@ -10,7 +10,7 @@ if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_n
 	<p style="font-size:18px"><b>Noteb API - General information</b></p>
 	<p>Noteb gives free limited access to its laptop database to anyone willing to develop or enhanced third party applications or websites based on the information provided here.<br><br>
 	<p style="font-size:18px"><b>Access</b></p>
-	In order to access the Noteb API, it is necessary to have an API key. For testing purposes, in the API documentation there is a public API key with very limited usability. However, if you are serious about developing with the Noteb API, we advise to contact us at <img src="res/img/starofficeemail.png" width="149" height="20"> and request an individual unique API key.
+	In order to access the Noteb API, it is necessary to have an API key. For testing purposes, in the API documentation there is a public API key with very limited usability. However, if you are serious about developing with the Noteb API, we advise to contact us at <span class='contactEmail' onclick='mail_to("office");'></span> and request an individual unique API key.
 	<br><br>
 	<p style="font-size:18px"><b>Usage conditions</b></p>
 	 The legal conditions governing the usage of the Noteb API are the Noteb API Terms of Service Agreement. <b>By using the Noteb API, you agree to <a href="https://<?php echo $site_name;?>/?public/api_tos.php">Noteb API Terms of Service Agreement</a>.</b>
