@@ -9,7 +9,7 @@
 	require_once("../etc/session.php");
 	require_once("../etc/con_db.php");
 	require_once("preproc/adv_setvar.php");
-	include ("lib/php/currency.php");
+	require_once("lib/php/currency.php");
 
 	?>
 	<script>

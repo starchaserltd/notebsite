@@ -4,6 +4,7 @@ $sel="SELECT name FROM notebro_site.nomen WHERE type=16 OR type=21 OR type=31 OR
 mysqli_multi_query($con, $sel);
 $result=mysqli_use_result($con);
 $rand = mysqli_fetch_all($result);
+$reset=0; if(isset($_GET['reset'])!==FALSE){$reset=intval($_GET['reset']);}
 $cpufreqmaxi=floatval($rand[0][0]); $cputdpmindb=floatval($rand[1][0]); $dispsizemindb=floatval($rand[2][0]); $memcapmindb=floatval($rand[3][0]); $gpumaxdatei=intval($rand[4][0]);
 $display_hresmax = "200000";
 $display_vresmax = "200000";

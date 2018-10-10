@@ -6,8 +6,7 @@ mysqli_select_db($con,"notebro_site");
 
 $sel2 = "SELECT code,convr,sign FROM exchrate";
 $result = mysqli_query($con,$sel2);
-
-if(empty($_SESSION['exchcode'])) { $excode="USD"; } else { $excode=$_SESSION['exchcode']; }
+if(empty($_SESSION['exchcode'])||$reset){ $excode="USD"; } else { $excode=$_SESSION['exchcode']; }
 $var_currency=""; $i=0;
 
 while ($row=mysqli_fetch_row($result))
