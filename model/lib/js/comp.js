@@ -14,6 +14,21 @@ $(".toggler").click(function(e){
 	$('.hide'+data_hide).fadeToggle(500,function () { stripeme(data_hide+"_table"); });
 });
 
+var set_showall="hide";
+function showall_comp()
+{
+	var el = document.querySelectorAll(".toggler");
+	for (var i = 0; i < el.length; i++)
+	{
+		if (el[i].childNodes[0].classList.contains('resize')&&set_showall=="show")
+		{ el[i].childNodes[0].click(); }
+		
+		if (!el[i].childNodes[0].classList.contains('resize')&&set_showall=="hide")
+		{ el[i].childNodes[0].click(); }
+	}
+	if(set_showall=="hide"){ set_showall="show";}else{if(set_showall=="show"){ set_showall="hide";}}
+}
+
 setTimeout(function(){ istime=1; },1500);
 
 //Function for show more arrows
