@@ -39,10 +39,10 @@ if($q>=0)
 		{
 			case ($rows[0]['power']<10): 						   { $rows[0]['class']="Basic/Integrated"; break; }
 			case ($rows[0]['power']>=10 && $rows[0]['power']<=25): { $rows[0]['class']="Basic/Multimedia"; break; }
-			case ($rows[0]['power']>25 && $rows[0]['power']<45):   { $rows[0]['class']="Budget/Casual Gaming"; break; }
-			case ($rows[0]['power']>=45 && $rows[0]['power']<70):  { $rows[0]['class']="Midrange"; break; }
-			case ($rows[0]['power']>=70 && $rows[0]['power']<90):  { $rows[0]['class']="Highend"; break; }
-			case ($rows[0]['power']>=90 && $rows[0]['power']<500): { $rows[0]['class']="Desktop"; break; }
+			case ($rows[0]['power']>25 && $rows[0]['power']<45):   { $rows[0]['class']="Budget/Casual gaming"; break; }
+			case ($rows[0]['power']>=45 && $rows[0]['power']<70):  { $rows[0]['class']="Low mid-range"; break; }
+			case ($rows[0]['power']>=70 && $rows[0]['power']<90):  { $rows[0]['class']="Mid-range"; break; }
+			case ($rows[0]['power']>=90 && $rows[0]['power']<500): { $rows[0]['class']="High-end"; break; }
 			default: 											   { $rows[0]['class']="Undefined"; break; }
 		}
 		
