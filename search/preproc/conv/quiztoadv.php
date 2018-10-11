@@ -36,7 +36,7 @@ if (isset($_GET['casual']) && $_GET['casual']==1)
 {	if($model_minclass>0) { $model_minclass=0; }  if($model_maxclass<2){ $model_maxclass=1; } } 
 
 if (isset($_GET['content']) && $_GET['content']==1)
-{	if($model_minclass>0) { $model_minclass=0; }  if($model_maxclass<2){ $model_maxclass=1; } } 
+{	if($model_minclass>0) { $model_minclass=0; }  if($model_maxclass<3){ $model_maxclass=3; } if (isset($_GET['gaming']) && $_GET['gaming']==1) {$model_maxclass=2;} } 
 
 if (isset($_GET['coding']) && $_GET['coding']==1)
 {	if($model_minclass>0) { $model_minclass=0; }  if($model_maxclass<3){ $model_maxclass=3; } } 
