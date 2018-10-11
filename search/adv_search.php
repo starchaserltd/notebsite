@@ -74,10 +74,10 @@
 							<?php if(isset($droplists[11])) { echo $droplists[11]; } ?>
 						</select>
 					</div>
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-						<div>Model</div>
-						<select class="multisearch js-example-responsive" id="CPU_model_id" name="CPU_model_id[]" data-lcom='none' data-lfield="none" data-placeholder="Processor Models" data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
-					</div>					
+					<div style="margin-top: 10px;" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<div>Features</div>
+						<select class="multisearch js-example-responsive" id="CPU_msc_id" name = "CPU_msc_id[]" data-lcom='CPU_model' data-lfield="cpu_misc" data-placeholder="Ex. Intel Core i7, Hyper-threading " data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
+					</div>	
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">		
 						<div style="margin-top:5px">
 							<span style="font-size:13.5px;">Nr. of cores:</span>
@@ -90,11 +90,11 @@
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hiddenOptions">
 						<div class="advspace1">Socket</div>
 						<select class="multisearch js-example-responsive" id="CPU_socket_id" name="CPU_socket_id[]" data-lcom='CPU_model' data-lfield="cpu_socket" data-placeholder="Processor Sockets" data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width: 100%;"></select>
-					</div>		
-					<div style="margin-top: 10px;" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-						<div>Other features</div>
-						<select class="multisearch js-example-responsive" id="CPU_msc_id" name = "CPU_msc_id[]" data-lcom='CPU_model' data-lfield="cpu_misc" data-placeholder="Ex. Intel Core i7, Hyper-threading " data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
-					</div>						
+					</div>							
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<div style="margin-top: 5px;">Model</div>
+						<select class="multisearch js-example-responsive" id="CPU_model_id" name="CPU_model_id[]" data-lcom='none' data-lfield="none" data-placeholder="Processor Models" data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
+					</div>										
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top:10px">

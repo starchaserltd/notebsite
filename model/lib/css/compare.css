@@ -90,6 +90,36 @@
     border-top:none!important;
 }
 
+.compContainer .toggler .glyphicon-chevron-down {
+    text-align: left;
+    padding: 0 5px 0 0;
+    display: inline;    
+}
+
+.compContainer .switchButton .showLessDetails {
+    text-align: left;
+}
+
+.compContainer .glyphicon-chevron-down  {
+    color: #f7c851;
+}
+
+.compContainer .switchButton.glyphicon-chevron-down:before {
+    content: "\e113";
+}
+
+.compContainer .toggler {
+    text-align: left;
+}
+
+.compContainer .showDetailsButton {
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.zIndex {
+    z-index: -1;
+}
 
 
 

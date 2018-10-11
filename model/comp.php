@@ -21,7 +21,7 @@ if($nrconf < 1 && $nrgetconfs <1) //nrconf is from headercomp.php
 else
 {
 ?>
-<link rel="stylesheet" href="model/lib/css/compare.css" type="text/css" />
+<link rel="stylesheet" href="model/lib/css/compare.css?v=3" type="text/css" />
 
 	<!-- TABLE HEADER -->
 	<div class="compContainer">
@@ -36,6 +36,9 @@ else
 				</tbody>
 			</table>
 			<!-- CPU -->
+			<div>
+					<span class="showDetailsButton"  style="color:black;padding:2px 20px;font-weight:normal" onclick="showall_comp();"><span class="zIndex glyphicon glyphicon-chevron-down" aria-hidden="true"></span><span class="showDetails"> Show all</span><span class="showLessDetails"> Show less</span></span>					
+			</div>
 			<div class="col-sm-12 col-md-12 titlucomp">Processor</div>			
 				<table id="CPU_table" class="table-xtra-condensed table tble ">
 					<tbody>

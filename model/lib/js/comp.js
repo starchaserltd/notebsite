@@ -33,6 +33,11 @@ setTimeout(function(){ istime=1; },1500);
 
 //Function for show more arrows
 $('.glyphicon-chevron-down').on('click', function() { $(this).toggleClass('resize'); });	
+//Function for show LessDetails button
+$('.showDetailsButton').on('click', function() {
+		$(this).toggleClass('show');
+		$('.glyphicon-chevron-down').toggleClass('switchButton');
+});
 	
 /* HEADER */
 var array_var=["","","","","",""];

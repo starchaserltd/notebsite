@@ -75,6 +75,7 @@
 	display: block;
 	margin:0 auto;
 	padding-bottom: 15px;
+	padding-top: 15px;
 }
 
 .rows.gpuhdd form select {
@@ -243,7 +244,7 @@ div.ListElem:hover {
 }
 
 .modelImageContainer {
-    margin-top:25px;
+    margin-top:0;
 }
 
 .ptop.affix .addtocpmp {
@@ -427,7 +428,7 @@ div.ListElem:hover {
 	}
 
 	.pics {
-  	  max-width: 60px;
+  	  max-width: 80px;
   	}
 }
 
