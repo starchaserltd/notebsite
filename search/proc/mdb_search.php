@@ -111,12 +111,29 @@ function search_mdb ($prod, $model, $ramcap, $gpu, $chip, $socket, $interface, $
 	//ADD interfaces to the filter
 	$i=0;
 	if(gettype($interface)!="array") { $interface=(array)$interface; }
+	$group=0;
 	foreach($interface as $x)
 	{
+		if(!strcmp($x,"group")){$group=1; $ii=0; continue;}
+		if(!strcmp($x,"ungroup")){$group=0; if($ii){ $sel_mdb.=" ) ";  } continue;}
 		if($i)
-		{ $sel_mdb.=" AND "; }
+		{  
+			if(!$group)
+			{ $sel_mdb.=" AND ";}
+			else
+			{ 	if($ii)
+				{ $sel_mdb.=" OR "; }
+				else
+				{ $sel_mdb.=" AND ( "; $ii++; }
+			}
+		}
 		else
-		{ $sel_mdb.=" AND ( "; }
+		{
+			if(!$group)
+			{ $sel_mdb.=" AND ( "; }
+			else
+			{ $sel_mdb.=" AND ( ( "; $ii++; }
+		}
 		
 		$sel_mdb.="FIND_IN_SET('";
 		$sel_mdb.=$x;

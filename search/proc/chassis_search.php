@@ -296,7 +296,7 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 	if(gettype($special_misc)!="array") { $special_misc=(array)$special_misc; }
 	if($special_misc)
 	{
-				$group=0;
+		$group=0;
 		foreach($special_misc as $x)
 		{
 			if(!strcmp($x,"group")){$group=1; $ii=0; continue;}
