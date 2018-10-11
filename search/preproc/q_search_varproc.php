@@ -577,7 +577,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 					}
 				}
 			}
-			if(!$to_search["gpu"]) { if($quiz_mingputype<1) { $quiz_mingputype=0; } array_push($gpu_typelist,"0","1"); if($model_maxclass>=2) { $gpu_powermax=36; }; $to_search["gpu"]=1; } 
+			if(!$to_search["gpu"]) { if($quiz_mingputype<1) { $quiz_mingputype=0; } array_push($gpu_typelist,"0","1"); if($model_maxclass>=2) { $gpu_powermax=36;  array_push($gpu_typelist,"3"); } $to_search["gpu"]=1; } 
 			$gpu_typelist=array_unique($gpu_typelist);
 			break ;
 		}

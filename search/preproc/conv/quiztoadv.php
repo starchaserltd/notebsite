@@ -497,7 +497,7 @@ if($cadratemin!==0)
 	}
 }
 
-if(!$to_search["gpu"]) { if($quiz_mingputype<1) { $quiz_mingputype=0; } array_push($gpu_typelist,"0","1"); if($model_maxclass>=2) { $gpupowermax=36; }; $to_search["gpu"]=1; } 
+if(!$to_search["gpu"]) { if($quiz_mingputype<1) { $quiz_mingputype=0; } array_push($gpu_typelist,"0","1"); if($model_maxclass>=2) { $gpupowermax=36; array_push($gpu_typelist,"2"); } $to_search["gpu"]=1; } 
 $gpu_typelist=array_unique($gpu_typelist);
 foreach($gpu_typelist as $key=>$el){ if(intval($el)<0){ unset($gpu_typelist[$key]);}}
 
