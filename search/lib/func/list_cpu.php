@@ -200,7 +200,7 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 	if(gettype($misc)!="array") { $misc=(array)$misc; }
 	foreach($misc as $x)
 	{
-		if(stripos($x,"Intel Core i")===FALSE && stripos($x,"Ryzen")===FALSE )
+		if(stripos($x,"Intel Core i")===FALSE && stripos($x,"Ryzen")===FALSE && stripos($x,"Intel Xeon")===FALSE)
 		{
 			if($i)
 			{ $sel_cpu.=" AND "; }
@@ -235,14 +235,14 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 	if(gettype($misc)!="array") { $misc=(array)$misc; }
 	foreach($misc as $x)
 	{
-		if(stripos($x,"Intel Core i")!==FALSE)
+		if(stripos($x,"Intel Core i")!==FALSE || stripos($x,"Intel Xeon")!==FALSE)
 		{
 			if($i)
 			{ $sel_cpu.=" OR "; }
 			else
 			{ $sel_cpu.=" AND ("; }
 			
-			$x=str_ireplace("Intel Core ","",$x);
+			if(stripos($x,"Xeon")!==FALSE){$x="Xeon";}else{$x=str_ireplace("Intel Core ","",$x);}
 			if(stripos($x,"/")!==FALSE)
 			{ $x=explode("/",$x); $sel_cpu.="(model LIKE '%".$x[0]."%' OR model LIKE '%".$x[1]."%')"; }
 			else
@@ -295,7 +295,6 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 	$sel_cpu.=" ORDER BY rating DESC";
 	
 	// DO THE SEARCH
-	error_log($sel_cpu);
 
 	$result = mysqli_query($GLOBALS['con'], "$sel_cpu");
 	$cpu_return = array();

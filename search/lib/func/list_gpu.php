@@ -311,7 +311,6 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 	$sel_gpu.=" ORDER BY rating DESC";
 	
 	// DO THE SEARCH
-	#error_log( $sel_gpu );
 	$result = mysqli_query($GLOBALS['con'], "$sel_gpu");
 	$gpu_return = array();
 	while($rand = mysqli_fetch_array($result)) 

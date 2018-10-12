@@ -1,5 +1,5 @@
 <?php
-function normal_rating($x){ $x*=10; error_log($x);  return(((1.25/1000000*pow($x,2))+1.305*$x+(-4.3/100000000000*pow($x,3)))/10); }
+function normal_rating($x){ $x*=10; return(((1.25/1000000*pow($x,2))+1.305*$x+(-4.3/100000000000*pow($x,3)))/10); }
 function show($tab, $id)
 {
 	if(stripos($tab,"JOIN")!==FALSE)

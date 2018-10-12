@@ -202,7 +202,7 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 	if(gettype($misc)!="array") { $misc=(array)$misc; }
 	foreach($misc as $x)
 	{
-		if(stripos($x,"Intel Core i")===FALSE && stripos($x,"Ryzen")===FALSE )
+		if(stripos($x,"Intel Core i")===FALSE && stripos($x,"Ryzen")===FALSE && stripos($x,"Intel Xeon")===FALSE)
 		{
 			if($i)
 			{ $sel_cpu.=" AND "; }
