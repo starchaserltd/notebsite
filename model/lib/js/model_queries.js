@@ -29,7 +29,7 @@ function showCPU(str)
 				cpu_rate_old = cpu_rate_new;
 				cpu_rate_new = cpu["confrate"];
 				config_rate = config_rate-cpu_rate_old+cpu_rate_new;
-				document.getElementById('notebro_rate').innerHTML=(Math.round(config_rate * 10) / 10).toFixed(1);
+				document.getElementById('notebro_rate').innerHTML=(Math.round(normal_rating(config_rate) * 10) / 10).toFixed(1);
 				
 				cpu_bat_old = cpu_bat_new;
 				cpu_bat_new = cpu["bat"];
@@ -104,7 +104,7 @@ function showGPU(str)
 				gpu_rate_old = gpu_rate_new;
 				gpu_rate_new = gpu["confrate"];				
 				config_rate = config_rate-gpu_rate_old+gpu_rate_new;
-				document.getElementById('notebro_rate').innerHTML=(Math.round(config_rate * 10) / 10).toFixed(1);
+				document.getElementById('notebro_rate').innerHTML=(Math.round(normal_rating(config_rate) * 10) / 10).toFixed(1);
 						
 				gpu_bat_old = gpu_bat_new;
 				gpu_bat_new = gpu["bat"];
@@ -151,7 +151,7 @@ function showDISPLAY(str)
 				display_rate_old = display_rate_new;
 				display_rate_new = display["confrate"];		
 				config_rate = config_rate-display_rate_old+display_rate_new;
-				document.getElementById('notebro_rate').innerHTML=(Math.round(config_rate * 10) / 10).toFixed(1);
+				document.getElementById('notebro_rate').innerHTML=(Math.round(normal_rating(config_rate) * 10) / 10).toFixed(1);
 				
 				display_bat_old = display_bat_new;
 				display_bat_new = display["bat"];
@@ -192,7 +192,7 @@ function showHDD(str)
 				hdd_rate_old = hdd_rate_new;
 				hdd_rate_new = hdd["confrate"];				
 				config_rate = config_rate-hdd_rate_old+hdd_rate_new;
-				document.getElementById('notebro_rate').innerHTML=(Math.round(config_rate * 10) / 10).toFixed(1);
+				document.getElementById('notebro_rate').innerHTML=(Math.round(normal_rating(config_rate) * 10) / 10).toFixed(1);
 		
 				hdd_bat_old = hdd_bat_new;
 				hdd_bat_new = hdd["bat"];
@@ -249,7 +249,7 @@ function showSHDD(str)
 					shdd_rate_old = shdd_rate_new;
 					shdd_rate_new = shdd["confrate"];					
 					config_rate = config_rate-shdd_rate_old+shdd_rate_new;
-					document.getElementById('notebro_rate').innerHTML=(Math.round(config_rate * 10) / 10).toFixed(1);
+					document.getElementById('notebro_rate').innerHTML=(Math.round(normal_rating(config_rate) * 10) / 10).toFixed(1);
 					
 					shdd_bat_old = shdd_bat_new;
 					shdd_bat_new = shdd["bat"];
@@ -297,7 +297,7 @@ function showMDB(str)
 				mdb_rate_new = mdb["confrate"];
 				
 				config_rate = config_rate-mdb_rate_old+mdb_rate_new;
-				document.getElementById('notebro_rate').innerHTML=(Math.round(config_rate * 10) / 10).toFixed(1);
+				document.getElementById('notebro_rate').innerHTML=(Math.round(normal_rating(config_rate) * 10) / 10).toFixed(1);
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/mdb.php?q="+str,true);
@@ -329,7 +329,7 @@ function showMEM(str)
 				mem_rate_new = mem["confrate"];
 	
 				config_rate = config_rate-mem_rate_old+mem_rate_new;
-				document.getElementById('notebro_rate').innerHTML=(Math.round(config_rate * 10) / 10).toFixed(1);
+				document.getElementById('notebro_rate').innerHTML=(Math.round(normal_rating(config_rate) * 10) / 10).toFixed(1);
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/mem.php?q="+str,true);
@@ -358,7 +358,7 @@ function showODD(str)
 				odd_rate_new = odd["confrate"];
 
 				config_rate = config_rate-odd_rate_old+odd_rate_new;
-				document.getElementById('notebro_rate').innerHTML=(Math.round(config_rate * 10) / 10).toFixed(1);
+				document.getElementById('notebro_rate').innerHTML=(Math.round(normal_rating(config_rate) * 10) / 10).toFixed(1);
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/odd.php?q="+str,true);
@@ -392,7 +392,7 @@ function showACUM(str)
 				acum_rate_old = acum_rate_new;
 				acum_rate_new = acum["confrate"];
 				config_rate = config_rate-acum_rate_old+acum_rate_new;
-				document.getElementById('notebro_rate').innerHTML=(Math.round(config_rate * 10) / 10).toFixed(1);
+				document.getElementById('notebro_rate').innerHTML=(Math.round(normal_rating(config_rate) * 10) / 10).toFixed(1);
 				if(acum_rate_old!=acum_rate_new){ bat_animation(); }
 				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
 				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
@@ -446,7 +446,7 @@ function showCHASSIS(str)
 				chassis_rate_new = chassis["confrate"];
 				
 				config_rate = config_rate-chassis_rate_old+chassis_rate_new;
-				document.getElementById('notebro_rate').innerHTML=(Math.round(config_rate * 10) / 10).toFixed(1);
+				document.getElementById('notebro_rate').innerHTML=(Math.round(normal_rating(config_rate) * 10) / 10).toFixed(1);
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/chassis.php?q="+str,true);
@@ -476,7 +476,7 @@ function showWNET(str)
 				wnet_rate_new = wnet["confrate"];
 			
 				config_rate = config_rate-wnet_rate_old+wnet_rate_new;
-				document.getElementById('notebro_rate').innerHTML=(Math.round(config_rate * 10) / 10).toFixed(1);
+				document.getElementById('notebro_rate').innerHTML=(Math.round(normal_rating(config_rate) * 10) / 10).toFixed(1);
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/wnet.php?q="+str,true);
@@ -503,7 +503,7 @@ function showWAR(str)
 				war_rate_new = war["confrate"];
 
 				config_rate = config_rate-war_rate_old+war_rate_new;
-				document.getElementById('notebro_rate').innerHTML=(Math.round(config_rate * 10) / 10).toFixed(1);
+				document.getElementById('notebro_rate').innerHTML=(Math.round(normal_rating(config_rate) * 10) / 10).toFixed(1);
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/war.php?q="+str,true);
@@ -532,14 +532,14 @@ function showSIST(str)
 				sist_rate_new = sist["confrate"];
 
 				config_rate = config_rate-sist_rate_old+sist_rate_new;
-				document.getElementById('notebro_rate').innerHTML=(Math.round(config_rate * 10) / 10).toFixed(1);
+				document.getElementById('notebro_rate').innerHTML=(Math.round(normal_rating(config_rate) * 10) / 10).toFixed(1);
 				window.onload =  (function(){
 							var schemaData = {
 		 							 "@context": "http://schema.org",
 		  							 "@type": "Website",   
 		     						 "aggregateRating": {
 		     						 "@type": "AggregateRating",
-		     						 "ratingValue":  config_rate,
+		     						 "ratingValue":  normal_rating(config_rate),
 		    						 "bestRating": "100",
 		     						 "worstRating": "1",
 	     							 "ratingCount": cpu_rate_new + 3
@@ -847,4 +847,5 @@ function set_best_low(confid,array_values)
 	if(i) { set_active_confopt(-1); }
 }
 
+function normal_rating(x){ x=x*1000; return (((1.25/1000000*Math.pow(x,2))+1.305*x+(-4.3/100000000000*Math.pow(x,3)))/1000); }
 function bat_animation(){ document.getElementsByClassName("labelblue")[2].classList.add('blueAnimation'); setTimeout(function () { document.getElementsByClassName("labelblue")[2].classList.remove('blueAnimation');  }, 1000); }

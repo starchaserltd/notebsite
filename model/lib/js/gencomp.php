@@ -60,10 +60,10 @@ for($x = 0; $x <= $nrconf; $x++)
 	$wnet_conf_wnet = $row['wnet'];
 	$war_conf_war = $row['war'];
 	$sist_conf_sist = $row['sist'];
-	$rate_conf_rate = $row['rating'];
-	$price_conf_price = $row['price'];
+	$rate_conf_rate = normal_rating(floatval($row['rating']));
+	$price_conf_price = floatval($row['price']);
 	$err_conf_err = $row['err'];
-	$batlife_conf_batlife = $row['batlife'];
+	$batlife_conf_batlife = floatval($row['batlife']);
 ?>
 	<!-- HEADER CSS -->
 <?php 
@@ -71,9 +71,9 @@ for($x = 0; $x <= $nrconf; $x++)
 	
 	preg_match('/(.*)\.(jpg|png)/', $resu["img_1"],$img);
 	$img=$img[1];
-	$maxminvalues=bluered(floatval($rate_conf_rate),$maxminvalues,$x,"rating",0);
-	$maxminvalues=bluered(floatval($price_conf_price),$maxminvalues,$x,"price",1);
-	$maxminvalues=bluered(floatval($batlife_conf_batlife),$maxminvalues,$x,"batlife",0);
+	$maxminvalues=bluered($rate_conf_rate,$maxminvalues,$x,"rating",0);
+	$maxminvalues=bluered($price_conf_price,$maxminvalues,$x,"price",1);
+	$maxminvalues=bluered($batlife_conf_batlife,$maxminvalues,$x,"batlife",0);
 	$model_title='<a href="javascript:void(0)" onmousedown="OpenPage('."\'model/model.php?conf=".$confid."\'".',event)"><span class="tbltitle">'.$resu['prod']." ".$resu['fam']." ".$resu['model'].$resu['mdbname']." ".$resu['submodel'].$resu['region'].'</span></a>';
 	$buytext='<div class="buy resultsShopBtn"><div class="dropdown"><button id="dLabel" class="btn buyBtn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-ref="';
 	if(isset($_SESSION['java_usertag'])&&$_SESSION['java_usertag']!=""){ $buytext=$buytext.$_SESSION['java_usertag']; } else { $buytext=$buytext.'';} $buytext=$buytext.'" data-target="buylist-'.$x.'" data-idmodel="'.$conf_model.'" data-idmodel="'.$conf_model.'" data-buyregions="'.$buy_regions.'" data-lang="'.$lang.'" onclick="get_buy_list(this);"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><span class="caret"></span></button><ul class="dropdown-menu" aria-labelledby="dLabel" id="buylist-'.$x.'"><li class="loaderContainer"><span class="loader"></span></li></ul></div></div>';

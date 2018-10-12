@@ -1,4 +1,5 @@
 <?php
+function normal_rating($x){ $x*=10; error_log($x);  return(((1.25/1000000*pow($x,2))+1.305*$x+(-4.3/100000000000*pow($x,3)))/10); }
 function show($tab, $id)
 {
 	if(stripos($tab,"JOIN")!==FALSE)
@@ -12,8 +13,7 @@ function show($tab, $id)
 
 	$resu['msc']=str_replace(",", ", ",$resu['msc']);
 
-	if(isset($resu['rating']))
-	{ $resu['rating']=round($resu['rating'],1)." / 100"; }
+	if(isset($resu['rating'])){ $resu['rating']=round(floatval($resu['rating']),1)." / 100";}
 	
 	switch($tab)
 	{
@@ -131,28 +131,17 @@ function show($tab, $id)
 			if(is_numeric($resu['vers']))
 			{
 				if(floatval($resu['vers'])!=0)
-				{
-					$resu['vers']=floatval($resu['vers']);
-				}
+				{ $resu['vers']=floatval($resu['vers']); }
 				else
-				{
-					$resu['vers']="";
-				}
+				{ $resu['vers']=""; }
 			}
 			break;
 		}
 
 		case 'HDD':
 		{
-			if($resu['cap'])
-			{
-				//if ($resu['cap'] <= 40) {$resu['cap'] = $resu['cap']." TB";}
-				//	else {$resu['cap'] = $resu['cap']." GB";}
-			}
-			else
-			{
-				$resu['cap']="-";
-			}
+			if(!isset($resu['cap']) && !$resu['cap'])
+			{ $resu['cap']="-"; }
 		
 			if($resu['rpm']=="0" || $resu["rpm"]=="")
 			{ $resu['rpm']="-"; }
@@ -161,9 +150,6 @@ function show($tab, $id)
 
 		case 'SHDD':
 		{
-			//if ($resu['cap'] <= 40) {$resu['cap'] = $resu['cap']." TB";}
-			//	else {$resu['cap'] = $resu['cap']." GB";}
-		
 			if($resu['rpm']=="0" || $resu["rpm"]=="")
 			{	$resu['rpm']="-"; }
 			break;
