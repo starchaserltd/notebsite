@@ -92,7 +92,7 @@ require_once("etc/conf.php"); ?>
 				</div>
 			</div>
 					
-			<?php include ("lib/php/currency.php");?>
+			<?php $reset=0; include ("lib/php/currency.php");?>
 			<script type="text/javascript">
 				<?php echo $jscurrency; //these variables come from lib/currency.php ?>
 				var basevalueold=currency_val[<?php echo '"'.$basevalue.'"'; ?>];

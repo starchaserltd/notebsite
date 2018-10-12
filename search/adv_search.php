@@ -1,6 +1,5 @@
 <?php
 	require_once("../etc/conf.php");
-
 	if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_name) ==FALSE) 
 	{	$actual_link = "$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 		header("Location: ".$port_type."://".str_replace($site_name."/",$site_name."/?",$actual_link)."");

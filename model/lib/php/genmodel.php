@@ -243,11 +243,10 @@ function show_hdd ($model)
 function show_shdd ($model)
 {
 	$text="";	
-	$list=explode(',',$model);
+	$list=explode(',',$model); sort($list);
 	$nrel=count($list);
 
-	if(!(in_array("0",$list,true)))
-	{ array_unshift($list,"0"); }
+	if($nrel<1){ $list=array("0"); $nrel=1; }
 	
 	$text='<form><SELECT name="SHDD" onchange="getconf('."'".'SHDD'."'".',this.value)">';
 	foreach($list as $key=>$id)
@@ -281,7 +280,7 @@ function show_shdd ($model)
 	
 	if($nrel==1 &&  !(strcmp($row["model"],"N/A")))
 	{ $text=""; }
-return $text;
+	return $text;
 }
 
 /* MAKE MDB */
