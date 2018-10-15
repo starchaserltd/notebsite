@@ -21,7 +21,6 @@ if($q>=0)
 		
 		$rows[] = $r;
 		$rows[0]['msc']=str_replace(",", ", ",$rows[0]['msc']);
-
 		if(!$rows[0]['msc']) { $rows[0]['msc']="-"; }
 		
 		switch ($rows[0]['touch'])

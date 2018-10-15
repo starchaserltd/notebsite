@@ -160,6 +160,7 @@ function show($tab, $id)
 			if ($resu['touch'] == 1) {$resu['touch'] = "YES";}
 			else {$resu['touch'] = "NO";}
 			if(intval($resu['sRGB'])>0){ $resu['msc'].=", ".$resu['sRGB']."% sRGB"; }
+			if(intval($resu['lum'])>0){ $resu['msc'].=", ".$resu['lum']." nits"; }
 			break;
 		}
 	

@@ -145,7 +145,8 @@ function showDISPLAY(str)
 				document.getElementById('display_backt').innerHTML = display["backt"];
 				document.getElementById('display_touch').innerHTML = display["touch"];
 				document.getElementById('display_misc').innerHTML = display["msc"];
-				if( parseInt(display["sRGB"]) > 0) { document.getElementById('display_misc').innerHTML = document.getElementById('display_misc').innerHTML + ', <span class="toolinfo" data-toolid=86 data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="top" data-original-title="Loading..."><span class="toolinfo1">'+ display["sRGB"] + "% sRGB </span></span>";  } 
+				if( parseInt(display["sRGB"]) > 0) { document.getElementById('display_misc').innerHTML = document.getElementById('display_misc').innerHTML + ', <span class="toolinfo" data-toolid=86 data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="top" data-original-title="Loading..."><span class="toolinfo1">'+ display["sRGB"] + "% sRGB</span></span>";  }
+				if( parseInt(display["lum"]) > 0) { document.getElementById('display_misc').innerHTML = document.getElementById('display_misc').innerHTML + ', <span class="toolinfo" data-toolid=87 data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="top" data-original-title="Loading..."><span class="toolinfo1">'+ display["lum"] + " nits</span></span>";  } 
 				document.getElementById('display_rating').innerHTML = display["rating"];
 			
 				display_rate_old = display_rate_new;
