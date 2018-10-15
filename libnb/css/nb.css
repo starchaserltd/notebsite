@@ -337,7 +337,7 @@
 }
 
 .btn.active.logonb {
-    background-image: url(/../res/img/logo/logo_white.png);
+    background-image: url(/../res/img/logo/noteb_logo.svg);
     -webkit-text-fill-color: transparent;
     color: transparent !important;
     background-position: center center;
@@ -347,7 +347,7 @@
 }
 
 .btn.logonb {
-    background-image: url(/../res/img/logo/logo_white.png);
+    background-image: url(/../res/img/logo/noteb_logo_white.svg);
     -webkit-text-fill-color: transparent;
     color: transparent !important;
     background-position: center center;
@@ -358,7 +358,7 @@
 }
 
 .btn.logonb:hover {
-    background-image: url(/../res/img/logo/logo_white.png);
+    background-image: url(/../res/img/logo/noteb_logo_white.svg);
     -webkit-text-fill-color: transparent !important;
     color: transparent !important;
     background-position: center center;
