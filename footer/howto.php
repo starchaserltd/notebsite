@@ -32,7 +32,7 @@ if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_n
 	<p><b>What is the Noteb Rating?</b></p>
 	Our rating evaluates the characteristic of every laptop component currently available on the market on scale from 1 to 100, where 100 is the best available on the market and 1 is the worse.
 	<br>
-	This rating can be very useful when comparing laptop processors or laptop video card. For these components a higher rating means better performance.
+	This rating can be very useful when comparing laptop processors or laptop video cards. For these components a higher rating means better performance.
 	<br><br>
 	No laptop can achieve a rating of 100% simply because in a laptop everything is a trade-off. For instance, a high performance processor will necessarily sacrifice portability and battery life. Still there are laptops with low performance and poor battery life, which get a low rating from Noteb and there are laptops which provide good performance and very good battery life which get a much higher rating. 
 	Be advised that a higher rating will most certainly imply a higher price.
