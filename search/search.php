@@ -23,8 +23,7 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 	if(isset($_GET['advsearch'])) { $isadvanced=intval($_GET['advsearch']); }
 	if(isset($_GET['s_memmin'])) { $issimple=intval($_GET['s_memmin']); }
 	
-	if(isset($_GET['sort_by'])){ $sort_by=clean_string($_GET['sort_by']); }
-	else { $sort_by="value"; }
+	if(isset($_GET['sort_by'])){$sort_by=clean_string($_GET['sort_by']);}else{$sort_by="value";}
 	$name_button=""; $performance_button=""; $value_button=""; $price_button="";
 	//SET PARAMETERS FOR ORDERING
 	switch($sort_by) 

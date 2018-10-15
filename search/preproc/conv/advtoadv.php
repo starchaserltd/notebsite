@@ -6,7 +6,6 @@
 	}
 
 	if(isset($_GET['Family_fam']))
-	
 	{
 		foreach ($_GET['Family_fam'] as $element)
 		{	if ($element =="All business families")	{$model_minclass=1;$model_maxclass =3;$model_advclass=1;} 
@@ -208,6 +207,7 @@
 		$totalcapmin=$hddcapmin;
 		$hddcapmin=0;
 	}
-	else { $totalcapmin=0; }	
+	else { $totalcapmin=0; }
 	
+	if(isset($_GET['sort_by'])){$sort_by=clean_string($_GET['sort_by']);}
 ?>

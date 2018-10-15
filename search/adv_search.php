@@ -570,8 +570,8 @@
 					<input type="submit" id="submitformid" class="btn submitbutton" value="Submit" onclick="scrolltoid('gototop');">
 				</nav>
 			</div>
-
 		</div>
+		<input type="hidden" name="sort_by" value="<?php echo $sort_by;?>">
 	</form>	
 	<?php if($gputype==1){ echo '<script>$(document).ready(function(){ $("#r-no").click(); });</script>'; }?>
 	<?php include_once("../etc/scripts_pages.php"); ?>
