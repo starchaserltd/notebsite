@@ -1,5 +1,5 @@
 <?php
-$idmodel=''; $conf=''; $nonexistent=1;
+$idmodel=''; $conf=''; $nonexistent=1; $lang=-1;
 if(isset($_GET['ex']))
 {
 	$exchcode=strtoupper(clean_string($_GET["ex"])); $_SESSION['exchcode']=$exchcode;
@@ -9,14 +9,14 @@ if(isset($_GET['ex']))
 		if($row["code"]==$exchcode)
 		{
 			$country=$row["buy"];
-			$lang=$row["id"]; $_SESSION['lang']=$lang;
+			$lang=intval($row["id"]); $_SESSION['lang']=$lang;
 			$exch=floatval($row["convr"]); $_SESSION['exch']=$exch;
 			$exchsign=$row["sign"]; $_SESSION['exchsign']=$exchsign;
 			break;
 		}
 	}
 }
-else 
+if($lang<0) 
 { 
 	if(isset($_SESSION['lang'])) { $lang=$_SESSION['lang']; } else { $lang=0; }
 	$country=mysqli_fetch_array(mysqli_query($con,"SELECT buy FROM notebro_site.exchrate WHERE id=$lang")); $country=$country["buy"];
