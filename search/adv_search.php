@@ -9,8 +9,7 @@
 	require_once("../etc/con_db.php");
 	require_once("preproc/adv_setvar.php");
 	require_once("lib/php/currency.php");
-
-	?>
+?>
 	<script>
 		var istime=0; $.getScript("search/lib/js/tokenlist.js").done(function(){ $.getScript("search/lib/js/adv_search_post.js"); });
 		$.getScript("search/lib/js/adv_search_pre.js");

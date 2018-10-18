@@ -8,7 +8,7 @@ var previousurl = "";
 var disqusloaded = 1;
 var urlold = ""; var searchurl="";
 var hh = 1;
-var ismobile = 0
+var ismobile = 0; var global_sort_search="value"; var global_sort_browse="value";
 var currentPage = window.location.href; var ref=null;
 
 function locationHashChanged(pagetopen) {
@@ -40,8 +40,8 @@ function locationHashChanged(pagetopen) {
     trigger = 1;
 }
 
-setInterval(function() {
-	
+setInterval(function()
+{
 	if(cleanurl>19 && window.location.href.indexOf("search")!==-1 && currentPage.indexOf("search")!==-1)
 	{
 		url_s=window.location.href;
@@ -52,21 +52,19 @@ setInterval(function() {
 	}
 	if(cleanurl>0){cleanurl--;}else{cleanurl=20;}
 	
-	if (currentPage !== window.location.href) {
+	if (currentPage !== window.location.href)
+	{
 		currentPage = window.location.href;
         locationHashChanged(set_adv_search(currentPage,siteroot+"?"));
     }
 	
-    if ($(window).width() < 992) {
-        if (ismobile != 1) {
-            ismobile = 1;
-            state_ssearch(1);
-        }
-    } else {
-        if (ismobile != 0) {
-            ismobile = 0;
-            state_ssearch(0);
-        }
+    if ($(window).width() < 992)
+	{
+        if (ismobile != 1) { ismobile = 1; state_ssearch(1); }
+    }
+	else
+	{
+		if (ismobile != 0) { ismobile = 0; state_ssearch(0); }
     }
 }, 50);
 
@@ -88,10 +86,10 @@ function urlrequest(url, e, dontpush) {
     });
 }
 
-
 //Function for main content area
 function OpenPage(url, e, dontpush) {
 	url=set_adv_search(url,"");
+	if(url.indexOf("search.php")>0&&url.indexOf("sort_by")<0&&url.indexOf("adv_search")<0){if(url.indexOf("browse_by")>0){url=url+"&sort_by="+global_sort_browse;}else{url=url+"&sort_by="+global_sort_search;}}
 	if(url.indexOf("ref=")<0){ if(ref!=null&&ref!="") { if(url.indexOf("?")>=0){ url=url+"&ref="+ref;}else { url=url+"?ref="+ref; } } }
 	url = decodeURIComponent(decodeURIComponent(url.replace("% ", "%25%20").replace("%%20", "%25%20")).replace("% ", "%25%20").replace("%%20", "%25%20"));
     //DEPENDING ON WHAT BUTTON WAS PRESSED WE DO DIFFERENT THINGS
@@ -115,31 +113,22 @@ function OpenPage(url, e, dontpush) {
     }
 
     if (go == 1 || go == 2) {
-        //	document.getElementById("sharefb").href="https://www.facebook.com/sharer/sharer.php?u="+siteroot+"/?"+url;
-    }
-
-    if (go == 1) {
-        urlrequest(url, e, dontpush);
-    }
-
+		//	document.getElementById("sharefb").href="https://www.facebook.com/sharer/sharer.php?u="+siteroot+"/?"+url;
+		}
+    if (go == 1) { urlrequest(url, e, dontpush); }
     if (go == 2) { window.open(siteroot + "?" + url, "_blank"); }
 }
 
 //Function for toolbox area
 function OpenPageMenu(url) 
 {
-    $.get(url, function(response) {
-        $('#leftmenu').html(response);
-    });
+    $.get(url, function(response) { $('#leftmenu').html(response); });
 }
-
 
 //Function for toolbox area
 function OpenQuiz(url)
 {
-    $.get(url, function(response) {
-        $('#quiz').html(response);
-    });
+    $.get(url, function(response) { $('#quiz').html(response); });
 }
 
 $(document).ready(function() {
@@ -282,52 +271,48 @@ $(document).ready(function() {
     if ($(window).width() < 768) { $(".compareDropdown").appendTo($(".firstContainer")); }
 
     //toggle more options for adv_search
-    $('.toggleHiddenButtons').click(function() {
-        $('.hiddenOptions').toggleClass('show');   
-    });
+    $('.toggleHiddenButtons').click(function() { $('.hiddenOptions').toggleClass('show'); });
 });
 
 //THE SORT BY RESULTS BUTTONS 
 
-function sortresults(sortby) {
+function sortresults(sortby)
+{
 
     var urlParts = window.location.href.split('?');
     var first = 0;
     var currentpage = "";
 
-    if (urlParts[1] == "undefined") {
-        var currentpage = 'content/home.php';
-    } else {
-        for (var key in urlParts) {
-            value = urlParts[key];
-            if (first) {
-
-                if (first > 1)
-                    currentpage = currentpage + "?" + value;
-                else {
-                    currentpage = currentpage + value;
-                    first++;
-                }
-            } else {
-                first++;
+    if (urlParts[1] == "undefined"){ var currentpage = 'content/home.php'; }
+	else
+	{
+		for (var key in urlParts)
+		{
+			value = urlParts[key];
+            if (first)
+			{ 
+				if (first > 1) { currentpage = currentpage + "?" + value; }
+				else { currentpage = currentpage + value; first++; }
             }
+			else { first++; }
         }
     }
 
     var newcurrentpage = currentpage.split('&sort_by');
     ifexchange = /(exchange=(.*?))($|&)/.exec(newcurrentpage[1]);
 
-    if ((newcurrentpage[0].indexOf("/search.php?") > -1) || (newcurrentpage[0].indexOf("/search.php?") > -1)) {
-
-        if (ifexchange != null) {
-            newpage = newcurrentpage[0] + "&exchange=" + ifexchange[2] + "&sort_by=" + sortby;
-        } else { newpage = newcurrentpage[0] + "&sort_by=" + sortby; }
-
-    } else {
-        if (ifexchange != null) { newpage = "search/search.php?exchange=" + ifexchange[2] + "&sort_by=" + sortby; } else { newpage = "search/search.php?exchange=1" + "&sort_by=" + sortby; }
+    if ((newcurrentpage[0].indexOf("/search.php?") > -1) || (newcurrentpage[0].indexOf("/search.php?") > -1))
+	{
+		if (ifexchange != null) { newpage = newcurrentpage[0] + "&exchange=" + ifexchange[2] + "&sort_by=" + sortby; }
+		else { newpage = newcurrentpage[0] + "&sort_by=" + sortby; }
+    } 
+	else 
+	{
+		if (ifexchange != null) { newpage = "search/search.php?exchange=" + ifexchange[2] + "&sort_by=" + sortby; } else { newpage = "search/search.php?exchange=1" + "&sort_by=" + sortby; }
     }
-
-    return newpage;
+	if (newpage.indexOf("browse_by") > -1){ global_sort_browse=sortby; }else{ if (newpage.indexOf("search") > -1) { global_sort_search=sortby; } }
+    
+	return newpage;
 }
 
 
@@ -555,6 +540,6 @@ function get_buy_list(el)
 }
 
 function set_adv_search(pagetoopen,headpart)
-{ if(pagetoopen.indexOf("adv_search.php")>=0 && searchurl.indexOf("advsearch=1")>=0 && pagetoopen.indexOf("advsearch=1")<0) { if(pagetoopen.indexOf("s_memmin")<0&&pagetoopen.indexOf("quizsearch")<0&&pagetoopen.indexOf("browse_by")<0){ if(pagetoopen.indexOf("reset=1")<0){ pagetoopen=headpart+"search/adv_search.php?"+searchurl; }else{pagetoopen=headpart+"search/adv_search.php"; searchurl=""; } } } return pagetoopen; }
+{ if(pagetoopen.indexOf("adv_search.php")>=0 && searchurl.indexOf("advsearch=1")>=0 && pagetoopen.indexOf("advsearch=1")<0) { if(pagetoopen.indexOf("s_memmin")<0&&pagetoopen.indexOf("quizsearch")<0&&pagetoopen.indexOf("browse_by")<0){if(pagetoopen.indexOf("reset=1")<0){ pagetoopen=headpart+"search/adv_search.php?"+searchurl; }else{pagetoopen=headpart+"search/adv_search.php"; searchurl=""; } } } return pagetoopen; }
 
 function remove_popup() { $("#howToUse").addClass("howToUseNone"); var timeout=setTimeout(function() { $("#howToUse").css('display', 'none'); }, 1500); }

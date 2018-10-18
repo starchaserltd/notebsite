@@ -5,6 +5,7 @@ mysqli_multi_query($con, $sel);
 $result=mysqli_use_result($con);
 $rand = mysqli_fetch_all($result);
 if(isset($_GET['reset'])){$reset=intval($_GET['reset']);}
+if(isset($_GET['sort_by'])){$sort_by=clean_string($_GET['sort_by']);}
 $cpufreqmaxi=floatval($rand[0][0]); $cputdpmindb=floatval($rand[1][0]); $dispsizemindb=floatval($rand[2][0]); $memcapmindb=floatval($rand[3][0]); $gpumaxdatei=intval($rand[4][0]);
 $display_hresmax = "200000";
 $display_vresmax = "200000";
@@ -46,6 +47,8 @@ else
 	else { $totalcapmin=0; }
 	
 	$mdbslotsel0 = "selected";
+	if(empty($_SESSION['exchcode'])||$reset){ $excode="USD"; } else { $excode=$_SESSION['exchcode']; }
+	if($excode=="EUR"||$excode=="GBP"){ $regions='<option selected="selected">Europe</option>';}
 }
 
 /*******************************************************************/	

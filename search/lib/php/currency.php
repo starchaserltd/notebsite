@@ -29,7 +29,6 @@ while ($row=mysqli_fetch_row($result))
 	if($row[0]==71)
 	{ $maxconfigprice=($row[1]+10); }
 }
-
 mysqli_free_result($result);
 mysqli_close ($con);
- ?>
+?>

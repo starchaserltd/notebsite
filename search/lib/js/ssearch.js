@@ -260,9 +260,10 @@ $("#s_search_btn").on("mousedown",function(e) {
 	scrolltoid('content');
 	$("#howToUse").css('display', 'none');
 	$('#loadingNB').show();
-	trigger = 0; var addref=""; if(ref!=null&&ref!="") { addref="?ref="+ref; }
+	trigger = 0; var addref="?sort_by="+global_sort_search; if(ref!=null&&ref!="") { addref=addref+"&ref="+ref; }
 	$.get('search/search.php'+addref, $("#s_search").serialize(), function(data) {
 		url = "search/search.php" + "?" + $("#s_search").serialize();
+		if(url.indexOf("sort_by=")<0){ url=url+"&sort_by="+global_sort_search; }
 		if(url.indexOf("ref=")<0){ if(ref!=null&&ref!="") { url=url+"&ref="+ref; } } currentpage = url;
 		if ($('#content').html(data)) { $('#loadingNB').hide(); }
 		history.pushState({}, 'NoteBrother', "?" + url);

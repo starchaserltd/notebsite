@@ -693,7 +693,7 @@ foreach ($chassis_vports as $element)
 {	$mdbvport.='<option selected="selected">'.$element.'</option>'; }
 
 foreach ($regions_name as $element)
-{	$regions.='<option selected="selected">'.$element.'</option>';	}
+{	$regions='<option selected="selected">'.$element.'</option>'; }
 
 foreach ($gpu_typelist as $element)
 {	
