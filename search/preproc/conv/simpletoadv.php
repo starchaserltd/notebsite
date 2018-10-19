@@ -317,7 +317,7 @@ if(isset($_GET['region_type']))
 	}
 }
 
-if(is_string($_GET['exchange']))
+if(isset($_GET['exchange'])&&is_string($_GET['exchange']))
 {
 	$excode=clean_string($_GET['exchange']);
 	$sel2 = "SELECT convr FROM notebro_site.exchrate WHERE code='".$excode."'";
