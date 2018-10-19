@@ -34,7 +34,7 @@
 	
 	if(isset($_GET['exchadv'])&&is_string($_GET['exchadv']))
 	{
-		$excode=clean_string($_GET['exchange']);
+		$excode=clean_string($_GET['exchadv']);
 		$sel2 = "SELECT convr,id FROM notebro_site.exchrate WHERE code='".$excode."'";
 		$result = mysqli_query($con,$sel2);
 		$value=mysqli_fetch_array($result);
