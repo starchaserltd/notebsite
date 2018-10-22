@@ -40,14 +40,13 @@ while($rand = mysqli_fetch_row($result))
 		$mdb_submodel=mysqli_fetch_row($result2);
 		if($mdb_submodel){ $mdb_submodel=" ".$mdb_submodel[0];}
 	}
-	
-	if(strlen($rand[2])>6 && !preg_match("/\(.*\)/",$rand[2])){ $rand[2]=substr($rand[2],0,6)."."; } 
+	if(strlen($rand[2])>6 && !preg_match("/\(.*\)/",$rand[2])){ if(isset($rand[2][7])){ if($rand[2][6]!=' '){  if($rand[2][5]!=' '){$rand[2]=substr($rand[2],0,6).".";}else{$rand[2]=substr($rand[2],0,5)."";}}else{$rand[2]=substr($rand[2],0,6)."";} } } 
 	$regions=array(); $regions=explode(",",$rand[3]); $show_reg=1;  $region=array(); $region["disp"]="";
 	foreach($regions as $el) { if(intval($el)===1 || intval($el)===0 ) { $show_reg=0; } }
 	if($show_reg) { $sel_r="SELECT disp FROM notebro_db.REGIONS WHERE id=".$regions[0]." LIMIT 1"; $result_r = mysqli_query($con, $sel_r); $region=mysqli_fetch_array($result_r); $region["disp"]="(".$region["disp"].")"; }
 	//SENDING THE RESULTS
-	if(!isset($m_search_included)){ $list[]=["id"=>intval($rand[0]),"model"=>strval($rand[4]." ".$rand[2].$mdb_submodel.$region["disp"])]; }
-	else { $list[]=["id"=>intval($rand[0]),"noteb_name"=>strval($rand[4]." ".$rand[2].$mdb_submodel.$region["disp"]),"submodel"=>strval($rand[2]),"mdb_submodel"=>strval($mdb_submodel),"region"=>strval($region["disp"]),"name"=>strval($rand[4])]; }
+	if(!isset($m_search_included)){ $pre_name=strval($rand[4]." ".$rand[2].$mdb_submodel); if(substr($pre_name,-1)!=" "&&isset($region["disp"])&&$region["disp"]!=""){ $pre_name.=" "; } $list[]=["id"=>intval($rand[0]),"model"=>strval($pre_name.$region["disp"])]; }
+	else { $pre_name=strval($rand[4]." ".$rand[2].$mdb_submodel); if(substr($pre_name,-1)!=" "&&isset($region["disp"])&&$region["disp"]!=""){ $pre_name.=" "; } $list[]=["id"=>intval($rand[0]),"noteb_name"=>strval($pre_name.$region["disp"]),"submodel"=>strval($rand[2]),"mdb_submodel"=>strval($mdb_submodel),"region"=>strval($region["disp"]),"name"=>strval($rand[4])]; }
 }
 mysqli_free_result($result);			
 //SUPPLYING RESULTS				
