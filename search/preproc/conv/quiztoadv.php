@@ -545,7 +545,7 @@ if (isset($_GET['bag']) && $_GET['bag']==1)
 }
 
 if (isset($_GET['metal']) && $_GET['metal']==1 ) 
-{	$chassis_made[] = "Metal"; 	$chassis_made[] = "Aluminium"; 	$chassis_made[] = "Lithium";  $chassis_made[] = "Carbon"; $chassis_made[] = "Magnesium"; $chassis_made[] = "Glass fiber"; $chassis_made[] = "Shock-absorbing ultra-polymer";}		
+{	$chassis_made[] = "Metal"; 	$chassis_made[] = "Aluminium"; $chassis_made[] = "Hard plastic"; $chassis_made[] = "Lithium";  $chassis_made[] = "Carbon"; $chassis_made[] = "Magnesium"; $chassis_made[] = "Glass fiber"; $chassis_made[] = "Shock-absorbing ultra-polymer";}		
 
 if (isset($_GET['media']) && $_GET['media']==1) 
 { $chassis_vports[] = "Any video port"; } 
