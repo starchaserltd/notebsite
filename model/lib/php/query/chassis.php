@@ -21,6 +21,7 @@ if($q>=0)
 		$rows[0]['made']=str_replace(",", ", ",$rows[0]['made']);
 		$rows[0]['msc']=str_replace(",", ", ",$rows[0]['msc']);
 		$rows[0]['pi']=str_replace(",", ", ",$rows[0]['pi']);
+		$rows[0]['keyboard']=str_replace(",", ", ",$rows[0]['keyboard']);
 		$rows[0]['vi']=str_replace(",", ", ",$rows[0]['vi']);
 		$rows[0]['color']=str_replace(",", ", ",$rows[0]['color']);
 
