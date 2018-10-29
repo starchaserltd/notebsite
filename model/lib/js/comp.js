@@ -91,5 +91,7 @@ addcolumn(array_var,"WARA_table",'style="vertical-align:middle"');
 /* Operating System */
 var array_var=["Software"];
 addcolumn(array_var,"OS_table",'style="vertical-align:middle"');
+var array_var=["Miscellaneous"];
+addcolumn(array_var,"MSC_table",'style="vertical-align:middle"');
 
 $(document).ready(function(){ actbtn(""); });

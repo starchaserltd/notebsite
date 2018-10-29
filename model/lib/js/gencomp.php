@@ -38,7 +38,7 @@ else
 	if(isset($_SESSION['exch'])){ $exch=$_SESSION['exch']; } else { $exch=1; }
 } 
 
-$delshdd=1; $delodd=1; $maxminvalues=(object)[];
+$delshdd=1; $delodd=1; $maxminvalues=(object)[]; $delmsc=1;
 $nrconf= $_SESSION['java_nrconf']; $nrgetconfs=$_SESSION['java_nrgetconfs']; $getconfs=$_SESSION['java_getconfs']; $session_idconf=$_SESSION['java_session_idconf'];
 if($nrgetconfs>0) { $nrconf=$nrgetconfs-1; }
 for($x = 0; $x <= $nrconf; $x++) 
@@ -74,7 +74,7 @@ for($x = 0; $x <= $nrconf; $x++)
 	$maxminvalues=bluered($rate_conf_rate,$maxminvalues,$x,"rating",0);
 	$maxminvalues=bluered($price_conf_price,$maxminvalues,$x,"price",1);
 	$maxminvalues=bluered($batlife_conf_batlife,$maxminvalues,$x,"batlife",0);
-	$model_title='<a href="javascript:void(0)" onmousedown="OpenPage('."\'model/model.php?conf=".$confid."\'".',event)"><span class="tbltitle">'.$resu['prod']." ".$resu['fam']." ".$resu['model'].$resu['mdbname']." ".$resu['submodel'].$resu['region'].'</span></a>';
+	$model_title='<a href="javascript:void(0)" onmousedown="OpenPage('."\'model/model.php?conf=".$confid."\'".',event)"><span class="tbltitle">'.$resu['prod']." ".$resu['fam']." ".$resu['model'].$resu['mdbname']." ".$resu['submodel'].$resu['region'].'</span></a>'; $model_msc=$resu['msc'];
 	$buytext='<div class="buy resultsShopBtn"><div class="dropdown"><button id="dLabel" class="btn buyBtn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-ref="';
 	if(isset($_SESSION['java_usertag'])&&$_SESSION['java_usertag']!=""){ $buytext=$buytext.$_SESSION['java_usertag']; } else { $buytext=$buytext.'';} $buytext=$buytext.'" data-target="buylist-'.$x.'" data-idmodel="'.$conf_model.'" data-idmodel="'.$conf_model.'" data-buyregions="'.$buy_regions.'" data-lang="'.$lang.'" onclick="get_buy_list(this);"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><span class="caret"></span></button><ul class="dropdown-menu" aria-labelledby="dLabel" id="buylist-'.$x.'"><li class="loaderContainer"><span class="loader"></span></li></ul></div></div>';
 	$vars=array(
@@ -350,7 +350,14 @@ for($x = 0; $x <= $nrconf; $x++)
 	$danvar="'".$danvar."'";
 ?>
 	var array_var=[<?php echo $danvar; ?>];
-	addcolumn(array_var,"OS_table",""); 
+	addcolumn(array_var,"OS_table","");
+	<!-- Model Miscellaneous -->
+<?php
+	if($model_msc!="") { $delmsc=0;}
+	$danvar="'<b>".$model_msc."</b>'";
+?>
+	var array_var=[<?php echo $danvar; ?>];
+	addcolumn(array_var,"MSC_table",""); 
 <?php
 }
 
@@ -380,8 +387,15 @@ if($delodd)
 	mytbl.parentNode.removeChild(mytbl);
 	mytbl = document.getElementById("title_BAT");
 	mytbl.parentNode.removeChild(mytbl);
-	mytbl = document.getElementById("title_ODAC");
-	mytbl.innerHTML = "Battery"; });';
+	document.getElementById("title_ODD").innerHTML = "Battery"; });';
+}
+
+if($delmsc)
+{
+	echo '$(document).ready(function(){mytbl = document.getElementById("MSC_table");
+	mytbl.parentNode.removeChild(mytbl);
+	mytbl = document.getElementById("title_MSC");
+	mytbl.parentNode.removeChild(mytbl); });';
 }
 
 //var_dump($maxminvalues);

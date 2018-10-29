@@ -174,7 +174,8 @@ else
 				</tr>
 			</tbody>
 		</table>
-		<!-- ODD -->				
+		<!-- ODD -->
+		<div class="col-sm-12 col-md-12 titlucomp" id="title_ODD">Optical drive</div>			
 		<table id="ODD_table" class="table-xtra-condensed table tble">
 			<tbody>
 				<tr class=""></tr>
@@ -226,7 +227,8 @@ else
 				</tr>
 			</tbody>
 		</table>
-		<!-- WNET  -->			
+		<!-- WNET  -->
+		<div class="col-sm-12 col-md-12 titlucomp">Wireless</div>			
 		<table id="WNET_table" class="table-xtra-condensed table tble">
 			<tbody>
 				<tr class=""></tr>
@@ -254,6 +256,13 @@ else
 		<table id="OS_table" class="table-xtra-condensed table tble">
 			<tbody>
 				<tr class=""></tr>
+			</tbody>
+		</table>
+		<!-- Model Miscellaneous -->
+		<div class="col-sm-12 col-md-12 titlucomp" id="title_MSC">Other information</div>
+		<table id="MSC_table" class="table-xtra-condensed table tble">
+			<tbody>
+				<tr class="colored"></tr>
 			</tbody>
 		</table>
 	</div>
