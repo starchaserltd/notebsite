@@ -259,7 +259,7 @@ else
 			</tbody>
 		</table>
 		<!-- Model Miscellaneous -->
-		<div class="col-sm-12 col-md-12 titlucomp" id="title_MSC">Other information</div>
+		<div class="col-sm-12 col-md-12 titlucomp" id="title_MSC">Other</div>
 		<table id="MSC_table" class="table-xtra-condensed table tble">
 			<tbody>
 				<tr class="colored"></tr>
