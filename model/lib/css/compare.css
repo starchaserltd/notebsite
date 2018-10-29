@@ -27,6 +27,53 @@
     width: 55%;
 }   
 
+
+.modelName.affix {
+    background-color: #575757;
+    top:0;
+    padding-right: 10px;
+    padding-left:10px;
+    width:66.26666667%;
+    z-index: 9;
+    display: flex;
+}
+
+.modelName.affix .tbltitle {
+    color: #fff;    
+}
+
+#title_MODEL {    
+    flex-wrap: wrap;
+    overflow-y: scroll;
+}
+
+.titleModel {
+    visibility: hidden;
+    position: absolute;    
+}
+
+.titleModel.affix {
+    background-color: #575757;
+    top:32px;   
+    z-index: 9;    
+    color: #fff;
+    margin-left: -4px;
+    display: flex;    
+    visibility: visible;
+}
+
+.titleModel.affix .tbltitle {
+    color: #fff;
+}
+
+
+
+@media(min-width: 1980px) {
+    .modelName.affix .tbltitle {
+        font-size: 18px;
+    }
+}
+
 /* resize title */
 @media screen and (max-width: 425px){.titlucomp {font-size: 14px!important;}}
 
@@ -122,6 +169,16 @@
 }
 
 
+@media(max-width: 992px) {
+    .modelName.affix {
+        width: 100%;
+        top:32px;
+        margin-left: -4px;
+        font-size: 14px;
+        font-weight: bold;
+    }
+}
+
 
 @media (max-width: 550px) {
 
@@ -142,4 +199,37 @@
     td.compare1:last-of-type .resultsShopBtn .dropdown-menu {
 	left: -128px;
 	}
+
+    #title_MODEL {    
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    }
+
+    .titleModel {
+        visibility: hidden;
+        position: absolute;    
+    }
+
+    .titleModel.affix {
+        background-color: #575757;
+        top:32px;   
+        z-index: 9;    
+        color: #fff;
+        margin-left: -4px;
+        display: flex;    
+        visibility: visible;
+    }
+
+    .titleModel.affix .tbltitle {
+        color: #fff;
+        font-size: 12px;
+    }
+
+}
+
+
+@media(max-width: 425px) {
+     .modelName.affix .tbltitle {
+        font-size: 12px;
+     }
 }

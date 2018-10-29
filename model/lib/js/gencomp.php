@@ -91,6 +91,7 @@ for($x = 0; $x <= $nrconf; $x++)
 ?>
 	var array_var=[<?php echo $danvar; ?>];
 	document.title = document.title + <?php if($x>0) { echo "' vs '";} else { echo "' '"; } ?> + '<?php echo $resu['prod']." ".$resu['fam']." ".$resu['model']; ?> '; excode='<?php echo  $exchcode ?>';
+	addcolumn(<?php echo "['".$model_title."']"; ?>,"title_MODEL",'style="border-top: 0px;"');
 	addcolumn(array_var,"HEADER_table",""); 
 	<!-- CPU -->
 <?php 
@@ -184,7 +185,6 @@ for($x = 0; $x <= $nrconf; $x++)
 	$danvar=implode("','",$vars);
 	$danvar="'".$danvar."'";
 ?>
-	addcolumn(<?php echo "['".$model_title."']"; ?>,"title_STORAGE",'style="border-top: 0px;"'); 
 	var array_var=[<?php echo $danvar; ?>];
 	addcolumn(array_var,"STORAGE_table",""); 
 	<!-- Secondary Storage -->
@@ -265,7 +265,6 @@ for($x = 0; $x <= $nrconf; $x++)
 	$danvar=implode("','",$vars);
 	$danvar="'".$danvar."'";
 ?>
-	addcolumn(<?php echo "['".$model_title."']"; ?>,"title_ODD",'style="border-top: 0px;"'); 
 	var array_var=[<?php echo $danvar; ?>];
 	addcolumn(array_var,"ODD_table",""); 
 	<!--Acumulator-->
@@ -324,7 +323,6 @@ for($x = 0; $x <= $nrconf; $x++)
 	$danvar=implode("','",$vars);
 	$danvar="'".$danvar."'";
 ?>
-	addcolumn(<?php echo "['".$model_title."']"; ?>,"title_WNET",'style="border-top: 0px;"'); 
 	var array_var=[<?php echo $danvar; ?>];
 	addcolumn(array_var,"WNET_table",""); 
 	<!--Warranty-->

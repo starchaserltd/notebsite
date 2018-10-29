@@ -38,7 +38,14 @@ $('.showDetailsButton').on('click', function() {
 		$(this).toggleClass('show');
 		$('.glyphicon-chevron-down').toggleClass('switchButton');
 });
-	
+
+//Affix top Laptop model 
+if ($(window).width() > 520) { $(".modelName").affix({ offset: { top: 150 }}); }
+//Affix mobile
+if ($(window).width() < 520) { $("#title_MODEL").affix({ offset: { top: 150 }}); }
+//Scroll affix mobile
+$('.linked').scroll(function(){ $('.linked').scrollLeft($(this).scrollLeft()); });
+
 /* HEADER */
 var array_var=["","","","","",""];
 addcolumn(array_var,"HEADER_table",'style="vertical-align:middle"');
