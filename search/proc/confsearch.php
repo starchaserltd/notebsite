@@ -42,7 +42,6 @@ $queries = array();
 foreach($comp_lists["model"] as $m)
 {
 	$model = $m["id"];
-	if($browse_by&&in_array(0,$comp_lists[$m["id"]]["regions"])){ $conds["price"]="(price > -2)"; }
 	$conds_model = $conds;
 	
 	if($conds_model)
