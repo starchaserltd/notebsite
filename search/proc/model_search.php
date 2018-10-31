@@ -118,7 +118,7 @@ function search_model ($mmodel,$prodmodel,$fammodel,$msc,$regions,$minclass,$max
 	// DO THE SEARCH
 	# echo "Query to select the MODELS:";
 	# echo "<br>";
-	 echo "<pre>" . $sel_model . "</pre>";
+	# echo "<pre>" . $sel_model . "</pre>";
 	
 	$result = mysqli_query($GLOBALS['con'], "$sel_model");
 	$model_return = array();
