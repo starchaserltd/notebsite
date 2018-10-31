@@ -15,7 +15,7 @@ if($browse_by)
 	} 
 	if ($nr_hdd == 2) { $conds["shdd"] = "shdd > 0"; }
 	$conds["capacity"] = "(capacity BETWEEN " . $totalcapmin . " AND 2048 )";
-	$conds["price"] = "(price > -2)";
+	$conds["price"] = "price > -2";
 }
 elseif ($issimple || $isadvanced || $isquiz)
 {
