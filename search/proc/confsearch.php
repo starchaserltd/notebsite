@@ -2,12 +2,10 @@
 require_once("confsearchfunc.php");
 require_once("../etc/con_sdb.php");
 
-$cons=dbs_connect();
+$cons=dbs_connect(); $conds = array(); $conds["price"]="(price > 0)";
 if($browse_by)
 {
 	//IF BROWSING WE HAVE A SIMPLER QUERY	
-	$conds = array();
-
 	foreach ($filtercomp as $v)
 	{
 		if (!$to_search[$v]) { continue; }
@@ -15,13 +13,10 @@ if($browse_by)
 	} 
 	if ($nr_hdd == 2) { $conds["shdd"] = "shdd > 0"; }
 	$conds["capacity"] = "(capacity BETWEEN " . $totalcapmin . " AND 2048 )";
-	$conds["price"] = "(price > 0)";
 }
 elseif ($issimple || $isadvanced || $isquiz)
 {
 	//IF WE ARE SEARCHING, THINGS GET A TAD MORE COMPLICATED
-	$conds = array();
-	
 	foreach (array("cpu", "display", "gpu", "acum", "war", "hdd", "wnet", "sist", "odd", "mem", "mdb", "chassis") as $v) 
 	{
 		if (!$to_search[$v]) { continue; }
@@ -47,6 +42,7 @@ $queries = array();
 foreach($comp_lists["model"] as $m)
 {
 	$model = $m["id"];
+	if($browse_by&&in_array(0,$comp_lists[$m["id"]]["regions"])){ $conds["price"]="(price > -2)"; }
 	$conds_model = $conds;
 	
 	if($conds_model)

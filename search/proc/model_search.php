@@ -4,7 +4,7 @@
 
 function search_model ($mmodel,$prodmodel,$fammodel,$msc,$regions,$minclass,$maxclass,$advclass)
 {
-	$sel_model="SELECT id FROM notebro_db.MODEL WHERE 1=1";
+	$sel_model="SELECT id,regions FROM notebro_db.MODEL WHERE 1=1";
 
 	// Add models to filter
 	$i=0;
@@ -117,15 +117,15 @@ function search_model ($mmodel,$prodmodel,$fammodel,$msc,$regions,$minclass,$max
 	
 	// DO THE SEARCH
 	# echo "Query to select the MODELS:";
-    # echo "<br>";
-	# echo "<pre>" . $sel_model . "</pre>";
+	# echo "<br>";
+	 echo "<pre>" . $sel_model . "</pre>";
 	
 	$result = mysqli_query($GLOBALS['con'], "$sel_model");
 	$model_return = array();
 	
 	while($rand = mysqli_fetch_array($result)) 
 	{
-		$model_return[intval($rand[0])]=array("id"=>intval($rand[0]));
+		$model_return[intval($rand[0])]=array("id"=>intval($rand[0]),"regions"=>array_map('intval',explode(",",$rand[1])));
 	}
 		mysqli_free_result($result);
 		return($model_return);
