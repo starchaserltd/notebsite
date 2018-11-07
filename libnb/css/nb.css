@@ -2358,6 +2358,7 @@ table#comparelist td.text-center.comparecell3 {
     }
 }
 
+
 /*Responsive media design */
 
 @media (min-width: 1980px) {
@@ -2855,6 +2856,7 @@ table#comparelist td.text-center.comparecell3 {
     	-webkit-box-ordinal-group:6;
     	-ms-flex-order:5;
     	order:5;
+    	margin-top:30px;
     }
 
     .searchDetails {
