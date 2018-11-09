@@ -320,6 +320,6 @@ if($api_key!==""&&$api_key!==NULL)
 	else { $response->code=0; $response->message="Unknown API key."; }
 }
 else { $response->code=0; $response->message="No valid API key provided."; }
-
+echo header('Content-type: text/html; charset=UTF-8');
 echo json_encode($response);		
 ?>
