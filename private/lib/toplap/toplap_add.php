@@ -1,4 +1,4 @@
-<form action="toplap_valid.php" method="post">
+<form action="lib/toplap/toplap_valid.php" method="post">
 	<div class="title"><p><b>Add Top laptops</b></p></div>
 	<div style="margin-left:30px;">
 		<span style="display: inline-block;">Type</span>

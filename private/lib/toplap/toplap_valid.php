@@ -26,11 +26,11 @@ if (isset($_POST['action']) && $id)
 if (isset($_POST['type']) && isset($_POST['conf_id']))
 { 
 	if(stripos($_POST['conf_id'],"_")!==FALSE){ $_POST['conf_id']=explode("_",$_POST['conf_id'])[0]; }
-	$model = mysqli_fetch_row(mysqli_query($scon,"SELECT model FROM notebro_temp.all_conf WHERE  id =".$_POST['conf_id']."")); //echo $lastid[0]; 
+	$model = mysqli_fetch_row(mysqli_query($cons,"SELECT model FROM notebro_temp.all_conf WHERE  id =".$_POST['conf_id']."")); //echo $lastid[0]; 
 	if($model==NULL) { echo "Counldn't find this config!<br><br>"; }
 	else
 	{
-		$allconfids = mysqli_fetch_row(mysqli_query($scon,"SELECT * FROM notebro_temp.all_conf_".$model[0]." WHERE id=".$_POST['conf_id'])); //echo $allconfids[1]; 
+		$allconfids = mysqli_fetch_row(mysqli_query($cons,"SELECT * FROM notebro_temp.all_conf_".$model[0]." WHERE id=".$_POST['conf_id'])); //echo $allconfids[1]; 
 		$name = mysqli_fetch_row(mysqli_query($con,"SELECT model,submodel,idfam,prod,img_1 FROM notebro_db.MODEL WHERE  id =".$model[0]."")); //print_r($name);
 		$fam =  mysqli_fetch_row(mysqli_query($con,"SELECT fam,(SELECT subfam FROM notebro_db.FAMILIES WHERE id =".$name[2]." AND showsubfam=1) as subfam FROM notebro_db.FAMILIES WHERE  id =".$name[2].""));
 		if(isset($fam[1]) && $fam[1]!==NULL){ $fams = $fam[0]." ".$fam[1]; } else { $fams = $fam[0]; }	
