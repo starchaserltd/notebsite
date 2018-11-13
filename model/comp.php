@@ -100,8 +100,8 @@ else
 				<tr></tr>
 				<tr></tr>
 				<tr class="hideDISPLAY" style="display: none;"></tr>
-				<tr></tr>
-				<tr class="hideDISPLAY" style="display: none;"></tr>
+				<tr></tr>				
+				<tr class="hideDISPLAY" style="display: none;"></tr>				
 				<tr class="arrowShowMore">
 					<td>
 						<div class="col-sm-12 col-md-12 col-xs-12 shcomp"><a class="toggler toolinfo" data-toolid="100" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="top" data-original-title="data-loading..." data-hide="DISPLAY" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a></div>	
@@ -109,7 +109,8 @@ else
 				</tr>
 			</tbody>
 		</table>
-		<!-- Storage -->				
+		<!-- Storage -->	
+		<div class="col-sm-12 col-md-12 titlucomp ">Storage</div>				
 		<table id="STORAGE_table" class="table-xtra-condensed table tble">
 			<tbody>
 				<tr class=""></tr>
