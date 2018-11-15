@@ -7,14 +7,15 @@ if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_n
 }
 ?>
 	<div style="margin-top:75px; margin-left:50px;">
-	 <p><b>This website (noteb.com) and all its subdomains are fully owned by <a href="http://www.starchaser.ro">Starchaser S.R.L.</a></b></p>
-	 <p><b>Headquarters: </b><br>
-	 Regina Maria nr. 7<br>
-	 Ramnicu Valcea, Valcea<br>
-	 240151<br>
-	 Romania<br>
-	 </p>
-	<p>For any inquires, complaints or suggestions please contact us via email at: <span class='contactEmail' onclick='mail_to("office");'></span></p>
+		<p>For any inquires, complaints or suggestions please contact us via email at: <span class='contactEmail' onclick='mail_to("office");'></span></p>
+		<br>
+		<p><b>This website (noteb.com) and all its subdomains are fully owned by <a href="http://www.starchaser.ro">Starchaser S.R.L.</a></b></p>
+		<p><b>Headquarters: </b><br>
+			Regina Maria nr. 7<br>
+			Ramnicu Valcea, Valcea<br>
+			240151<br>
+			Romania<br>
+		</p>
 	</div>
 	<script type="text/javascript">
 	 $(document).ready(function(){
