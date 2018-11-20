@@ -57,7 +57,7 @@ $current_type="Business";
 				if(stripos($site_name,"noteb.com")!==FALSE)
 				{
 					require_once("../etc/con_sdb.php"); 
-					$result=mysqli_query($cons,"SELECT * FROM notebro_temp.best_low_opt WHERE id_model=".$model_id." LIMIT 1");
+					$result=mysqli_query($cons,"SELECT * FROM notebro_temp.best_low_opt WHERE id_model=".$row[3]." LIMIT 1");
 					if($result && mysqli_num_rows($result)>0)
 					{
 						$row=mysqli_fetch_assoc($result);

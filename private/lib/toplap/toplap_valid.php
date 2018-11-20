@@ -95,7 +95,6 @@ if (isset($_POST['type']) && isset($_POST['conf_id']))
 		if(!isset($price_min)){ $price_min='DEFAULT';} if(!isset($price_max)){ $price_max='DEFAULT';} if(!isset($price_range)){ $price_range='DEFAULT';}
 		
 		$query = "INSERT INTO notebro_site.top_laptops (id, type, ord, m_id, c_id, img, name, cpu, display, mem, hdd, shdd, gpu, wnet, odd, mdb, chassis, acum, warranty, sist, price, valid, min_price, max_price,price_range) values (".$ids.",'".$types."',".$ord.",".$m_id.",'".$c_id."_".$m_id."','".$img."','".$names."',".$cpu.",".$display.",".$mem.",".$hdd.",".$shdd.",".$gpu.",".$wnet.",".$odd.",".$mdb.",".$chassis.",".$acum.",".$war.",".$sist.",".$price.",1,".$price_min.",".$price_max.",".$price_range.")"; 
-		var_dump($query);
 		if (mysqli_query($rcon,$query))
 		{
 			echo '<meta http-equiv="refresh" content="0;URL=..\\..\\toplap.php?selected='.$types.'">';
