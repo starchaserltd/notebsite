@@ -313,6 +313,7 @@ if($api_key!==""&&$api_key!==NULL)
 						if(isset($param['model_id'])&&$param['model_id']!==NULL&&$param['model_id']!=="")
 						{
 							$model_id=intval($param['model_id']);
+							require_once("../etc/con_sdb.php");
 							$result=mysqli_query($cons,"SELECT * FROM notebro_temp.best_low_opt WHERE id_model=".$model_id." LIMIT 1");
 
 							if(!($result && mysqli_num_rows($result)>0)){$response->code=29; $response->message.=" Invalid model id or database is inaccesible, aborting."; }
