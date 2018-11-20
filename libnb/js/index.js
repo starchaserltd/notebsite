@@ -55,7 +55,7 @@ setInterval(function()
 	if (currentPage !== window.location.href)
 	{
 		currentPage = window.location.href;
-        locationHashChanged(set_adv_search(currentPage,siteroot+"?"));
+        locationHashChanged(set_adv_search(currentPage,siteroot+"?",1));
     }
 	
     if ($(window).width() < 992)
@@ -88,7 +88,7 @@ function urlrequest(url, e, dontpush) {
 
 //Function for main content area
 function OpenPage(url, e, dontpush) {
-	url=set_adv_search(url,"");
+	url=set_adv_search(url,"",0);
 	if(url.indexOf("search.php")>0&&url.indexOf("sort_by")<0&&url.indexOf("adv_search")<0){if(url.indexOf("browse_by")>0){url=url+"&sort_by="+global_sort_browse;}else{url=url+"&sort_by="+global_sort_search;}}
 	if(url.indexOf("ref=")<0){ if(ref!=null&&ref!="") { if(url.indexOf("?")>=0){ url=url+"&ref="+ref;}else { url=url+"?ref="+ref; } } }
 	url = decodeURIComponent(decodeURIComponent(url.replace("% ", "%25%20").replace("%%20", "%25%20")).replace("% ", "%25%20").replace("%%20", "%25%20"));
@@ -539,7 +539,7 @@ function get_buy_list(el)
 	}
 }
 
-function set_adv_search(pagetoopen,headpart)
-{ if(pagetoopen.indexOf("adv_search.php")>=0 && searchurl.indexOf("advsearch=1")>=0 && pagetoopen.indexOf("advsearch=1")<0) { if(pagetoopen.indexOf("s_memmin")<0&&pagetoopen.indexOf("quizsearch")<0&&pagetoopen.indexOf("browse_by")<0){ if(pagetoopen.indexOf("reset=1")<0){ pagetoopen=headpart+"search/adv_search.php?"+searchurl;}else{pagetoopen=headpart+"search/adv_search.php?reset=1"; searchurl=""; } } } return pagetoopen; }
+function set_adv_search(pagetoopen,headpart,back)
+{ if(pagetoopen.indexOf("adv_search.php")>=0 && searchurl.indexOf("advsearch=1")>=0 && pagetoopen.indexOf("advsearch=1")<0) { if(pagetoopen.indexOf("s_memmin")<0&&pagetoopen.indexOf("quizsearch")<0&&pagetoopen.indexOf("browse_by")<0){ if(pagetoopen.indexOf("reset=1")<0||back){ pagetoopen=headpart+"search/adv_search.php?"+searchurl;}else{pagetoopen=headpart+"search/adv_search.php?reset=1"; searchurl="";}}} return pagetoopen; }
 
 function remove_popup() { $("#howToUse").addClass("howToUseNone"); var timeout=setTimeout(function() { $("#howToUse").css('display', 'none'); }, 1500); }
