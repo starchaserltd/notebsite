@@ -13,13 +13,15 @@ require_once("../etc/con_rdb.php");
 require_once("../etc/con_db.php");
 require_once("../libnb/php/api_access.php");
 $selected=array();
+$current_type="Business";
 
-	$sql = "SELECT * FROM notebro_site.top_laptops WHERE 1=1 ORDER BY type,price";
+	$sql = "SELECT * FROM notebro_site.top_laptops WHERE 1=1 ORDER BY type,ord ASC,price";
 	if ($results=mysqli_query($con,$sql))
 	{
-		echo "<div style='float: left;'><br><span style='font-weight:bold;'>Top laptops</span><br><br><table style='background-color:white;'><tr><th>Id</th><th>Name</th><th>Type</th><th>Top Price</th><th>Valid</th><th colspan=1>Controls</th><th>Noteb price</th></tr>";
+		echo "<div style='float: left;'><br><span style='font-weight:bold;'>Top laptops</span><br><br><table style='background-color:white;'><tr><th>Id</th><th>Order</th><th>Name</th><th>Type</th><th>Top Price</th><th>Valid</th><th colspan=1>Controls</th><th>Noteb price</th></tr>";
 		while ($row=mysqli_fetch_row($results))
 		{
+			if($current_type!==$row[1]){$current_type=$row[1]; echo "<tr><td colspan=8></tr>"; }
 			$conf = explode("_",$row[4]);
 			
 			$pricegood = mysqli_fetch_row(mysqli_query($rcon,"SELECT realprice,id from notebro_prices.pricing_all_conf where id = '".$conf[0]."'"));
@@ -34,7 +36,8 @@ $selected=array();
 			
 			?><form method="post" action="lib/toplap/toplap_valid.php"><?php
 			echo "<tr><td>&nbsp&nbsp" . $row[0]."&nbsp&nbsp</td><td>&nbsp&nbsp";?>
-			
+			<input type="text"  autocomplete="off" spellcheck="false" maxlength="4" size="3" name="order" value = "<?php echo $row[2];?>"> 
+			<?php echo "&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp&nbsp";?>
 			<input type="text"  autocomplete="off" spellcheck="false" maxlength="40" size="30" name="name" value = "<?php echo $row[6];?>"> 
 			<?php echo "&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp&nbsp";?>
 			<input type="text"  autocomplete="off" spellcheck="false" maxlength="35" size="10" name="typenew" value = "<?php echo $row[1];?>"> 

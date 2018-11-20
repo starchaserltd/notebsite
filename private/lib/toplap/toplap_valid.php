@@ -2,11 +2,15 @@
 require_once("../../../etc/con_rdb.php");
 require_once("../../../etc/con_db.php");
 require_once("../../../etc/con_sdb.php");
+require_once("../../../etc/conf.php");
 mysqli_select_db($rcon,"notebro_site");
-if(isset($_POST['id'])){ $id = $_POST['id'];}
+function clean($x){ return mysqli_real_escape_string($GLOBALS['con'],clean_string($x));}
+
+if(isset($_POST['id'])){ $id = intval($_POST['id']);}
 
 if (isset($_POST['action']) && $id) 
 { 
+	$_POST['action']=clean($_POST['action']);
 	if ($_POST['action'] == 'Delete')
 	{
 		$sql = "DELETE FROM notebro_site.top_laptops WHERE id=".$id.""; 
@@ -16,7 +20,7 @@ if (isset($_POST['action']) && $id)
 	}
 	if ($_POST['action'] == 'Update')
 	{
-		$sql = "UPDATE notebro_site.top_laptops SET type = '".$_POST['typenew']."',name = '".$_POST['name']."', price = ".$_POST['price']." WHERE id=".$id.""; //echo $sql;
+		$sql = "UPDATE notebro_site.top_laptops SET type = '".clean($_POST['typenew'])."',ord = '".intval($_POST['order'])."',name = '".clean($_POST['name'])."', price = ".intval($_POST['price'])." WHERE id=".$id.""; //echo $sql;
 		if ($rcon->query($sql) === TRUE){ echo "Record updated successfully"; } 
 				else { echo "Error updating record: " . mysqli_error($rcon); }
 		echo "<meta http-equiv=\"refresh\" content=\"0;URL=..\\..\\toplap.php\">";
@@ -25,6 +29,7 @@ if (isset($_POST['action']) && $id)
 
 if (isset($_POST['type']) && isset($_POST['conf_id']))
 { 
+	$_POST['conf_id']=clean($_POST['conf_id']);
 	if(stripos($_POST['conf_id'],"_")!==FALSE){ $_POST['conf_id']=explode("_",$_POST['conf_id'])[0]; }
 	$model = mysqli_fetch_row(mysqli_query($cons,"SELECT model FROM notebro_temp.all_conf WHERE  id =".$_POST['conf_id']."")); //echo $lastid[0]; 
 	if($model==NULL) { echo "Counldn't find this config!<br><br>"; }
@@ -36,8 +41,8 @@ if (isset($_POST['type']) && isset($_POST['conf_id']))
 		if(isset($fam[1]) && $fam[1]!==NULL){ $fams = $fam[0]." ".$fam[1]; } else { $fams = $fam[0]; }	
 		
 		$ids = 0;
-		$types = $_POST['type']; $selected[$types]="selected";
-		$ord = 1;
+		$types = clean($_POST['type']); $selected[$types]="selected";
+		$ord = intval($_POST['order']);
 		$m_id = $model[0];
 		$c_id = $_POST['conf_id'];
 		$img = "res/img/models/".$name[4];
@@ -55,7 +60,7 @@ if (isset($_POST['type']) && isset($_POST['conf_id']))
 		$acum = $allconfids[12];
 		$war = $allconfids[13];
 		$sist = $allconfids[14];
-		$price = $_POST['price'];
+		$price = intval($_POST['price']);
 		$valid = 1;
 		
 		if ($ord ==''){$ord = 'DEFAULT';} else {$ord = $ord;}
