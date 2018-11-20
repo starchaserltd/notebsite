@@ -306,6 +306,43 @@ if($api_key!==""&&$api_key!==NULL)
 						{ $response->code=29; $response->message.=" Database is inaccessible."; }
 						break;
 					}
+					case "get_optimal_configs":
+					{
+						$response->code=26; $response->message="Valid method.";$response->daily_hits_left=$hits_left;
+						$abort=0; $object_addr=$response->result;
+						if(isset($param['model_id'])&&$param['model_id']!==NULL&&$param['model_id']!=="")
+						{
+							$model_id=intval($param['model_id']);
+							$result=mysqli_query($cons,"SELECT * FROM notebro_temp.best_low_opt WHERE id_model=".$model_id." LIMIT 1");
+
+							if(!($result && mysqli_num_rows($result)>0)){$response->code=29; $response->message.=" Invalid model id or database is inaccesible, aborting."; }
+							else
+							{
+								while($row=mysqli_fetch_assoc($result))
+								{
+									$response->result->{$i}=new stdClass(); $object_addr=$response->result->{$i};
+									$query="SELECT price FROM notebro_temp.all_conf_".$model_id." WHERE id=".$row['lowest_price'];
+									$result_sdb=mysqli_query($cons,$query);
+									if($result_sdb && mysqli_num_rows($result_sdb)>0){ $row_sdb=mysqli_fetch_assoc($result_sdb); $object_addr->lowest_price_id=$row['lowest_price']; $object_addr->lowest_price=$row_sdb['price'];}
+									else
+									{ $response->code=30; $response->message.=" Unable to retrieve data for ".'lowest price id'; }
+									$query="SELECT price FROM notebro_temp.all_conf_".$model_id." WHERE id=".$row['best_performance'];
+									$result_sdb=mysqli_query($cons,$query);
+									if($result_sdb && mysqli_num_rows($result_sdb)>0){ $row_sdb=mysqli_fetch_assoc($result_sdb); $object_addr->best_performance_id=$row['best_performance']; $object_addr->best_performance=$row_sdb['price'];}
+									else
+									{ $response->code=30; $response->message.=" Unable to retrieve data for ".'best performance id'; }
+									$query="SELECT price FROM notebro_temp.all_conf_".$model_id." WHERE id=".$row['best_value'];
+									$result_sdb=mysqli_query($cons,$query);
+									if($result_sdb && mysqli_num_rows($result_sdb)>0){ $row_sdb=mysqli_fetch_assoc($result_sdb); $object_addr->best_value_id=$row['best_value']; $object_addr->best_value=$row_sdb['price'];}
+									else
+									{ $response->code=30; $response->message.=" Unable to retrieve data for ".'best value id'; }
+								}
+							}
+						}
+						else
+						{ $response->code=28; $response->message.=" No valid configuration id provided."; }
+						break;
+					}
 					default:
 					{
 						$response->code=12; $response->message="Unknown method provided."; $response->daily_hits_left=$hits_left;
@@ -320,6 +357,5 @@ if($api_key!==""&&$api_key!==NULL)
 	else { $response->code=0; $response->message="Unknown API key."; }
 }
 else { $response->code=0; $response->message="No valid API key provided."; }
-echo header('Content-type: text/html; charset=UTF-8');
 echo json_encode($response);		
 ?>
