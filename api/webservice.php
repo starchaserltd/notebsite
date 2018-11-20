@@ -321,7 +321,7 @@ if($api_key!==""&&$api_key!==NULL)
 							{
 								while($row=mysqli_fetch_assoc($result))
 								{
-									$response->result->{$i}=new stdClass(); $object_addr=$response->result->{$i};
+									$response->result=new stdClass(); $object_addr=$response->result;
 									$query="SELECT price FROM notebro_temp.all_conf_".$model_id." WHERE id=".$row['lowest_price'];
 									$result_sdb=mysqli_query($cons,$query);
 									if($result_sdb && mysqli_num_rows($result_sdb)>0){ $row_sdb=mysqli_fetch_assoc($result_sdb); $object_addr->lowest_price_id=$row['lowest_price']; $object_addr->lowest_price=$row_sdb['price'];}
