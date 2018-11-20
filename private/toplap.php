@@ -62,7 +62,6 @@ $current_type="Business";
 					{
 						$row=mysqli_fetch_assoc($result);
 						$lowest_price=intval(directPrice($row["lowest_price"],$cons));
-						var_dump(directPrice($row["best_performance"],$cons));
 						$best_performance_price=intval(directPrice($row["best_performance"],$cons));
 					}
 				}
