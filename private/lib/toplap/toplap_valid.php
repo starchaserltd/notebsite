@@ -71,7 +71,7 @@ if (isset($_POST['type']) && isset($_POST['conf_id']))
 		{
 			if(stripos($site_name,"noteb.com")!==FALSE)
 			{
-				require_once("../etc/con_sdb.php"); 
+				require_once("../../../etc/con_sdb.php"); 
 				$result=mysqli_query($cons,"SELECT * FROM notebro_temp.best_low_opt WHERE id_model=".$m_id." LIMIT 1");
 				if($result && mysqli_num_rows($result)>0)
 				{
