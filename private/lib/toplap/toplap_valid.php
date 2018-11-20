@@ -69,6 +69,7 @@ if (isset($_POST['type']) && isset($_POST['conf_id']))
 		if(isset($_POST['price_range'])&&$_POST['price_range']!==''&&$_POST['price_range']!=NULL){ $price_range=intval($_POST['price_range']); }
 		if($price_range)
 		{
+			require_once("../../../libnb/php/api_access.php");
 			if(stripos($site_name,"noteb.com")!==FALSE)
 			{
 				require_once("../../../etc/con_sdb.php"); 
@@ -82,7 +83,6 @@ if (isset($_POST['type']) && isset($_POST['conf_id']))
 			}
 			else
 			{			
-				require_once("../../../libnb/php/api_access.php");
 				$data="apikey=BHB675VG15n23j4gAz&method=get_optimal_configs&param[model_id]=".$m_id;
 				$prldata=json_decode(httpPost($url,$data), true);
 				if(isset($prldata['result'][$m_id])){if(intval($prldata['result'][$m_id]['lowest_price'])!=0){$price_min=intval($prldata['result'][$m_id]['lowest_price']);}else{$price_min='DEFAULT';} if(intval($prldata['result'][$m_id]['lowest_price'])!=0){$price_max=intval($prldata['result'][$m_id]['best_performance']);}else{$price_max='DEFAULT';} }
