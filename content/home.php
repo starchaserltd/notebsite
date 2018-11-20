@@ -59,7 +59,7 @@ $published_posts = $count_posts->publish;
 	<div class="clearfix"></div>
 	
 	<!-- Top 10 laptops area -->
-	<?php $query=mysqli_query($con,"SELECT * FROM notebro_site.top_laptops where valid=1 order by type,ord ASC,price"); $tops=array(); $topshead=array(); while ($row=mysqli_fetch_assoc($query)) { $tops[$row['type']][$row['id']] = array('id' => $row['c_id'],'img' => $row['img'], 'name' => $row['name'], 'price' => $row['price']); if(isset($topshead[$row['type']]["count"])) { $topshead[$row['type']]["count"]++; } else {$topshead[$row['type']]["count"]=1; } $topdate= strtotime($row["date"]); if(isset($topshead[$row['type']]["maxdate"])){ if($topshead[$row['type']]["maxdate"] < $topdate) { $topshead[$row['type']]["maxdate"]=$topdate; } } else { $topshead[$row['type']]["maxdate"]=$topdate; } } ?>
+	<?php $query=mysqli_query($con,"SELECT * FROM notebro_site.top_laptops where valid=1 order by type,ord ASC,price"); $tops=array(); $topshead=array(); while ($row=mysqli_fetch_assoc($query)) { $tops[$row['type']][$row['id']] = array('id' => $row['c_id'],'img' => $row['img'], 'name' => $row['name'], 'price' => $row['price'], 'min_price' => $row['min_price'], 'max_price' => $row['max_price'], 'price_range' => intval($row['price_range'])); if(isset($topshead[$row['type']]["count"])) { $topshead[$row['type']]["count"]++; } else {$topshead[$row['type']]["count"]=1; } $topdate= strtotime($row["date"]); if(isset($topshead[$row['type']]["maxdate"])){ if($topshead[$row['type']]["maxdate"] < $topdate) { $topshead[$row['type']]["maxdate"]=$topdate; } } else { $topshead[$row['type']]["maxdate"]=$topdate; } } ?>
 	<section class="row topLaptops">
 		<div class="col-lg-4 col-md-4 col-sm-4  col-xs-12 studentTopLaptops">
 			<h2 class="h2TopLaptopsStudent">Top <?php echo $topshead["HomeStudent"]["count"]; ?> Home & Student <span class="topLaptopsDate visible-xs hidden-md hidden-sm hidden-lg"><?php echo date('M Y',$topshead["HomeStudent"]["maxdate"]); ?></span></h2>
@@ -69,7 +69,7 @@ $published_posts = $count_posts->publish;
 				<a href="javascript:void(0)" onmousedown="OpenPage('<?php echo "model/model.php?conf=".$el["id"]."&ex=USD"; ?>',event)">
 					<div class="col-xs-12 imgTopLaptop">
 						<img  class="img-responsive " src="<?php echo $el["img"]; ?>" alt="imgStudent"/>
-						<p class="topLaptopsName"><?php echo $el["name"]; ?> <br/> <span class="pretTopLaptops"><?php echo $el["price"]; ?>$</span></p>
+						<p class="topLaptopsName"><?php echo $el["name"]; ?> <br/> <span class="pretTopLaptops"><?php if($el["price_range"]==0){ echo $el["price"]."$</span></p>"; }else{ echo $el["min_price"]."$ - ".$el["max_price"]."$</span></p>";} ?>
 					</div>	
 				</a>					
 			</div>											
@@ -85,7 +85,7 @@ $published_posts = $count_posts->publish;
 				<a href="javascript:void(0)" onmousedown="OpenPage('<?php echo "model/model.php?conf=".$el["id"]."&ex=USD"; ?>',event)">
 					<div class="col-xs-12 imgTopLaptop">
 						<img  class="img-responsive " src="<?php echo $el["img"]; ?>" alt="imgGaming"/>
-						<p class="topLaptopsName"><?php echo $el["name"]; ?> <br/> <span class="pretTopLaptops"><?php echo $el["price"]; ?>$</span></p>							 
+						<p class="topLaptopsName"><?php echo $el["name"]; ?> <br/> <span class="pretTopLaptops"><?php if($el["price_range"]==0){ echo $el["price"]."$</span></p>"; }else{ echo $el["min_price"]."$ - ".$el["max_price"]."$</span></p>";} ?>					 
 					</div>							
 				</a>
 			</div>											
@@ -101,7 +101,7 @@ $published_posts = $count_posts->publish;
 				<a href="javascript:void(0)" onmousedown="OpenPage('<?php echo "model/model.php?conf=".$el["id"]."&ex=USD"; ?>',event)">
 					<div class="col-xs-12 imgTopLaptop">
 						<img  class="img-responsive " src="<?php echo $el["img"]; ?>" alt="imgBusiness"/>
-						<p class="topLaptopsName"><?php echo $el["name"]; ?> <br/> <span class="pretTopLaptops"><?php echo $el["price"]; ?>$</span></p>							 
+						<p class="topLaptopsName"><?php echo $el["name"]; ?> <br/> <span class="pretTopLaptops"><?php if($el["price_range"]==0){ echo $el["price"]."$</span></p>"; }else{ echo $el["min_price"]."$ - ".$el["max_price"]."$</span></p>";} ?>						 
 					</div>
 				</a>
 			</div>											

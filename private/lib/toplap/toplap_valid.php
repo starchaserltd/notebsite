@@ -6,7 +6,10 @@ require_once("../../../etc/conf.php");
 mysqli_select_db($rcon,"notebro_site");
 function clean($x){ return mysqli_real_escape_string($GLOBALS['con'],clean_string($x));}
 
-if(isset($_POST['id'])){ $id = intval($_POST['id']);}
+if(isset($_POST['id'])){ $id = intval($_POST['id']);} $price_range=0;
+if(isset($_POST['order'])&&$_POST['order']!=NULL&&$_POST['order']!=''){$_POST['order']=intval($_POST['order']);}else{$_POST['order']="DEFAULT";}
+if(isset($_POST['price_min'])&&$_POST['price_min']!=NULL&&$_POST['price_min']!=''){$price_min=intval($_POST['price_min']); if($price_min!=0){$price_range=1;}}else{$price_min='DEFAULT';}
+if(isset($_POST['price_max'])&&$_POST['price_max']!=NULL&&$_POST['price_max']!=''){$price_max=intval($_POST['price_max']);}else{$price_max='DEFAULT';}
 
 if (isset($_POST['action']) && $id) 
 { 
@@ -20,7 +23,7 @@ if (isset($_POST['action']) && $id)
 	}
 	if ($_POST['action'] == 'Update')
 	{
-		$sql = "UPDATE notebro_site.top_laptops SET type = '".clean($_POST['typenew'])."',ord = '".intval($_POST['order'])."',name = '".clean($_POST['name'])."', price = ".intval($_POST['price'])." WHERE id=".$id.""; //echo $sql;
+		$sql = "UPDATE notebro_site.top_laptops SET type = '".clean($_POST['typenew'])."',ord = ".$_POST['order'].",name = '".clean($_POST['name'])."', price = ".intval($_POST['price']).", min_price = ".$price_min.", max_price = ".$price_max.", price_range = ".$price_range." WHERE id=".$id.""; //echo $sql;
 		if ($rcon->query($sql) === TRUE){ echo "Record updated successfully"; } 
 				else { echo "Error updating record: " . mysqli_error($rcon); }
 		echo "<meta http-equiv=\"refresh\" content=\"0;URL=..\\..\\toplap.php\">";
@@ -42,7 +45,7 @@ if (isset($_POST['type']) && isset($_POST['conf_id']))
 		
 		$ids = 0;
 		$types = clean($_POST['type']); $selected[$types]="selected";
-		$ord = intval($_POST['order']);
+		$ord = $_POST['order'];
 		$m_id = $model[0];
 		$c_id = $_POST['conf_id'];
 		$img = "res/img/models/".$name[4];
@@ -60,13 +63,37 @@ if (isset($_POST['type']) && isset($_POST['conf_id']))
 		$acum = $allconfids[12];
 		$war = $allconfids[13];
 		$sist = $allconfids[14];
-		$price = intval($_POST['price']);
+		if(isset($_POST['price'])&&$_POST['price']!=''&&$_POST['price']!=NULL&&$_POST['price']!='0'){$price = intval($_POST['price']);}else{ $_POST['price_range']=1; }
 		$valid = 1;
+
+		if(isset($_POST['price_range'])&&$_POST['price_range']!==''&&$_POST['price_range']!=NULL){ $price_range=intval($_POST['price_range']); }
+		if($price_range)
+		{
+			if(stripos($site_name,"noteb.com")!==FALSE)
+			{
+				require_once("../etc/con_sdb.php"); 
+				$result=mysqli_query($cons,"SELECT * FROM notebro_temp.best_low_opt WHERE id_model=".$m_id." LIMIT 1");
+				if($result && mysqli_num_rows($result)>0)
+				{
+					$row=mysqli_fetch_assoc($result);
+					$price_min=intval(directPrice($row["lowest_price"],$cons));
+					$price_max=intval(directPrice($row["best_performance"],$cons));
+				}
+			}
+			else
+			{			
+				require_once("../../../libnb/php/api_access.php");
+				$data="apikey=BHB675VG15n23j4gAz&method=get_optimal_configs&param[model_id]=".$m_id;
+				$prldata=json_decode(httpPost($url,$data), true);
+				if(isset($prldata['result'][$m_id])){if(intval($prldata['result'][$m_id]['lowest_price'])!=0){$price_min=intval($prldata['result'][$m_id]['lowest_price']);}else{$price_min='DEFAULT';} if(intval($prldata['result'][$m_id]['lowest_price'])!=0){$price_max=intval($prldata['result'][$m_id]['best_performance']);}else{$price_max='DEFAULT';} }
+			}
+		}
 		
 		if ($ord ==''){$ord = 'DEFAULT';} else {$ord = $ord;}
+		if(!isset($price_min)){ $price_min='DEFAULT';} if(!isset($price_max)){ $price_max='DEFAULT';} if(!isset($price_range)){ $price_range='DEFAULT';}
 		
-		$query = "INSERT INTO notebro_site.top_laptops (id, type, ord, m_id, c_id, img, name, cpu, display, mem, hdd, shdd, gpu, wnet, odd, mdb, chassis, acum, warranty, sist, price, valid) values (".$ids.",'".$types."',".$ord.",".$m_id.",'".$c_id."_".$m_id."','".$img."','".$names."',".$cpu.",".$display.",".$mem.",".$hdd.",".$shdd.",".$gpu.",".$wnet.",".$odd.",".$mdb.",".$chassis.",".$acum.",".$war.",".$sist.",".$price.",".$valid.")"; 
-
+		$query = "INSERT INTO notebro_site.top_laptops (id, type, ord, m_id, c_id, img, name, cpu, display, mem, hdd, shdd, gpu, wnet, odd, mdb, chassis, acum, warranty, sist, price, valid, min_price, max_price,price_range) values (".$ids.",'".$types."',".$ord.",".$m_id.",'".$c_id."_".$m_id."','".$img."','".$names."',".$cpu.",".$display.",".$mem.",".$hdd.",".$shdd.",".$gpu.",".$wnet.",".$odd.",".$mdb.",".$chassis.",".$acum.",".$war.",".$sist.",".$price.",1,".$price_min.",".$price_max.",".$price_range.")"; 
+		
 		if (mysqli_query($rcon,$query))
 		{
 			echo '<meta http-equiv="refresh" content="0;URL=..\\..\\toplap.php?selected='.$types.'">';
