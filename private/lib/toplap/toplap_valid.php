@@ -63,7 +63,7 @@ if (isset($_POST['type']) && isset($_POST['conf_id']))
 		$acum = $allconfids[12];
 		$war = $allconfids[13];
 		$sist = $allconfids[14];
-		if(isset($_POST['price'])&&$_POST['price']!=''&&$_POST['price']!=NULL&&$_POST['price']!='0'){$price = intval($_POST['price']);}else{ $_POST['price_range']=1; }
+		if(isset($_POST['price'])&&$_POST['price']!=''&&$_POST['price']!=NULL&&$_POST['price']!='0'){$price = intval($_POST['price']);}else{ $price=0; $_POST['price_range']=1; }
 		$valid = 1;
 
 		if(isset($_POST['price_range'])&&$_POST['price_range']!==''&&$_POST['price_range']!=NULL){ $price_range=intval($_POST['price_range']); }
@@ -79,6 +79,7 @@ if (isset($_POST['type']) && isset($_POST['conf_id']))
 					$row=mysqli_fetch_assoc($result);
 					$price_min=intval(directPrice($row["lowest_price"],$cons));
 					$price_max=intval(directPrice($row["best_performance"],$cons));
+					if($price==0){$price=intval(directPrice($c_id,$cons));}
 				}
 			}
 			else
@@ -86,6 +87,7 @@ if (isset($_POST['type']) && isset($_POST['conf_id']))
 				$data="apikey=BHB675VG15n23j4gAz&method=get_optimal_configs&param[model_id]=".$m_id;
 				$prldata=json_decode(httpPost($url,$data), true);
 				if(isset($prldata['result'][$m_id])){if(intval($prldata['result'][$m_id]['lowest_price'])!=0){$price_min=intval($prldata['result'][$m_id]['lowest_price']);}else{$price_min='DEFAULT';} if(intval($prldata['result'][$m_id]['lowest_price'])!=0){$price_max=intval($prldata['result'][$m_id]['best_performance']);}else{$price_max='DEFAULT';} }
+				if($price==0){ $data="apikey=BHB675VG15n23j4gAz&method=get_conf_info&param[conf_id]=".$c_id; $prldata=json_decode(httpPost($url,$data), true); if(isset($prldata['result']['config_price'])){$price=intval($prldata['result']['config_price']);}else{$price=0;}}
 			}
 		}
 		
