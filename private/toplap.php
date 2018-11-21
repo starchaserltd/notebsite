@@ -18,7 +18,7 @@ $current_type="Business";
 	$sql = "SELECT * FROM notebro_site.top_laptops WHERE 1=1 ORDER BY type,ord ASC,price";
 	if ($results=mysqli_query($con,$sql))
 	{
-		echo "<div style='float: left;'><br><span style='font-weight:bold;'>Top laptops</span><br><br><table style='background-color:white;'><tr><th>Id</th><th>Order</th><th>Name</th><th>Type</th><th>Top Price</th><th>Top price min</th><th>Top price max</th><th>Valid</th><th colspan=1>Controls</th><th>Noteb price</th><th>Noteb price min</th><th>Noteb price max</th></tr>";
+		echo "<div style='float: left;'><br><span style='font-weight:bold;'>Top laptops</span><br><br><table style='background-color:white;'><tr><th>Id</th><th>Order</th><th>Name</th><th>Type</th><th>Config_id</th><th>Top Price</th><th>Top price min</th><th>Top price max</th><th>Valid</th><th colspan=1>Controls</th><th>Noteb price</th><th>Noteb price min</th><th>Noteb price max</th></tr>";
 		while ($row=mysqli_fetch_row($results))
 		{
 			if($current_type!==$row[1]){$current_type=$row[1]; echo "<tr><td colspan=8></tr>"; }
@@ -41,15 +41,18 @@ $current_type="Business";
 			<?php echo "&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp&nbsp";?>
 			<input type="text"  autocomplete="off" spellcheck="false" maxlength="35" size="10" name="typenew" value = "<?php echo $row[1];?>"> 
 			<?php echo "&nbsp&nbsp&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp&nbsp";?>
+			<input type="text"  autocomplete="off" spellcheck="false" maxlength="35" size="15" name="conf_id" value = "<?php echo $row[4];?>"> 
+			<?php echo "&nbsp&nbsp&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp&nbsp";?>
 			<input type="text"  autocomplete="off" spellcheck="false" maxlength="20" size="4" name="price" value = "<?php echo $row[21];?>">
 			<?php echo "&nbsp&nbsp&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp&nbsp";?>
 			<input type="text"  autocomplete="off" spellcheck="false" maxlength="20" size="4" name="price_min" value = "<?php echo $row[23];?>">
 			<?php echo "&nbsp&nbsp&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp&nbsp";?>
 			<input type="text"  autocomplete="off" spellcheck="false" maxlength="20" size="4" name="price_max" value = "<?php echo $row[24];?>">
 			<?php echo "&nbsp&nbsp&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp&nbsp".$row[22]."&nbsp&nbsp&nbsp&nbsp</td><td>"; $selected[$row[1]]=""; ?>
-				<input type="hidden" name="id" value="<?php echo $row[0]; ?>"/>
-				<input type="submit" class="button2"  name="action" onclick="if(!confirm('Are you sure to update this line')){return false;}"value="Update"/>
-				<input type="submit" class="button2"  name="action" onclick="if(!confirm('Are you trying to delete this laptop<?php echo " ".$row[6]." from top ".$row[1];  ?>')){return false;}" value="Delete"/>
+			<input type="hidden" name="conf_id2" value="<?php echo $row[4]; ?>"/>
+			<input type="hidden" name="id" value="<?php echo $row[0]; ?>"/>
+			<input type="submit" class="button2"  name="action" onclick="if(!confirm('Are you sure to update this line')){return false;}"value="Update"/>
+			<input type="submit" class="button2"  name="action" onclick="if(!confirm('Are you trying to delete this laptop<?php echo " ".$row[6]." from top ".$row[1];  ?>')){return false;}" value="Delete"/>
 			<?php echo "</td></form><td>".$pricegood[0]."</td>"; ?>
 			<?php 
 			if(intval($row[25]))

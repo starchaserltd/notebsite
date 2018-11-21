@@ -21,13 +21,15 @@ if (isset($_POST['action']) && $id)
 		else { echo "Error deleting record: " . $rcon->error; }
 		echo "<meta http-equiv=\"refresh\" content=\"0;URL=..\\..\\toplap.php\">";
 	}
-	if ($_POST['action'] == 'Update')
+	if ($_POST['action'] == 'Update' && (isset($_POST['conf_id'])&&(clean($_POST['conf_id'])==clean($_POST['conf_id2']))))
 	{
 		$sql = "UPDATE notebro_site.top_laptops SET type = '".clean($_POST['typenew'])."',ord = ".$_POST['order'].",name = '".clean($_POST['name'])."', price = ".intval($_POST['price']).", min_price = ".$price_min.", max_price = ".$price_max.", price_range = ".$price_range." WHERE id=".$id.""; //echo $sql;
 		if ($rcon->query($sql) === TRUE){ echo "Record updated successfully"; } 
 				else { echo "Error updating record: " . mysqli_error($rcon); }
 		echo "<meta http-equiv=\"refresh\" content=\"0;URL=..\\..\\toplap.php\">";
 	}
+	else
+	{ if ($_POST['action'] == 'Update'){ $_POST['type']=$_POST['typenew']; } }
 }
 
 if (isset($_POST['type']) && isset($_POST['conf_id']))
@@ -66,28 +68,38 @@ if (isset($_POST['type']) && isset($_POST['conf_id']))
 		if(isset($_POST['price'])&&$_POST['price']!=''&&$_POST['price']!=NULL&&$_POST['price']!='0'){$price = intval($_POST['price']);}else{ $price=0; $_POST['price_range']=1; }
 		$valid = 1;
 
-		if(isset($_POST['price_range'])&&$_POST['price_range']!==''&&$_POST['price_range']!=NULL){ $price_range=intval($_POST['price_range']); }
-		if($price_range)
+		if (isset($_POST['action']) && $id && $_POST['action'] == 'Update')
 		{
-			require_once("../../../libnb/php/api_access.php");
-			if(stripos($site_name,"noteb.com")!==FALSE)
+			$sql = "UPDATE notebro_site.top_laptops SET type = '".clean($_POST['typenew'])."',ord = ".$_POST['order'].",name = '".clean($_POST['name'])."', price = ".intval($_POST['price']).", min_price = ".$price_min.", max_price = ".$price_max.", price_range = ".$price_range.", m_id='".$m_id."'".", c_id='".$c_id."'".", m_id='".$m_id."'".", img='".$img."'".", cpu='".$cpu."'".", display='".$display."'".", mem='".$mem."'".", hdd='".$hdd."'".", shdd='".$shdd."'".", gpu='".$gpu."'".", wnet='".$wnet."'".", odd='".$odd."'".", mdb='".$mdb."'".", chassis='".$chassis."'".", acum='".$acum."'".", warranty='".$war."'".", sist='".$sist."'"." WHERE id=".$id.""; //echo $sql;
+			if ($rcon->query($sql) === TRUE){ echo "Record updated successfully"; } 
+			else { echo "Error updating record: " . mysqli_error($rcon); }
+			echo "<meta http-equiv=\"refresh\" content=\"0;URL=..\\..\\toplap.php\">";
+		}			
+		else
+		{
+			if(isset($_POST['price_range'])&&$_POST['price_range']!==''&&$_POST['price_range']!=NULL){ $price_range=intval($_POST['price_range']); }
+			if($price_range)
 			{
-				require_once("../../../etc/con_sdb.php"); 
-				$result=mysqli_query($cons,"SELECT * FROM notebro_temp.best_low_opt WHERE id_model=".$m_id." LIMIT 1");
-				if($result && mysqli_num_rows($result)>0)
+				require_once("../../../libnb/php/api_access.php");
+				if(stripos($site_name,"noteb.com")!==FALSE)
 				{
-					$row=mysqli_fetch_assoc($result);
-					$price_min=intval(directPrice($row["lowest_price"],$cons));
-					$price_max=intval(directPrice($row["best_performance"],$cons));
-					if($price==0){$price=intval(directPrice($c_id,$cons));}
+					require_once("../../../etc/con_sdb.php"); 
+					$result=mysqli_query($cons,"SELECT * FROM notebro_temp.best_low_opt WHERE id_model=".$m_id." LIMIT 1");
+					if($result && mysqli_num_rows($result)>0)
+					{
+						$row=mysqli_fetch_assoc($result);
+						$price_min=intval(directPrice($row["lowest_price"],$cons));
+						$price_max=intval(directPrice($row["best_performance"],$cons));
+						if($price==0){$price=intval(directPrice($c_id,$cons));}
+					}
 				}
-			}
-			else
-			{			
-				$data="apikey=BHB675VG15n23j4gAz&method=get_optimal_configs&param[model_id]=".$m_id;
-				$prldata=json_decode(httpPost($url,$data), true);
-				if(isset($prldata['result'][$m_id])){if(intval($prldata['result'][$m_id]['lowest_price'])!=0){$price_min=intval($prldata['result'][$m_id]['lowest_price']);}else{$price_min='DEFAULT';} if(intval($prldata['result'][$m_id]['lowest_price'])!=0){$price_max=intval($prldata['result'][$m_id]['best_performance']);}else{$price_max='DEFAULT';} }
-				if($price==0){ $data="apikey=BHB675VG15n23j4gAz&method=get_conf_info&param[conf_id]=".$c_id; $prldata=json_decode(httpPost($url,$data), true); if(isset($prldata['result']['config_price'])){$price=intval($prldata['result']['config_price']);}else{$price=0;}}
+				else
+				{			
+					$data="apikey=BHB675VG15n23j4gAz&method=get_optimal_configs&param[model_id]=".$m_id;
+					$prldata=json_decode(httpPost($url,$data), true);
+					if(isset($prldata['result'][$m_id])){if(intval($prldata['result'][$m_id]['lowest_price'])!=0){$price_min=intval($prldata['result'][$m_id]['lowest_price']);}else{$price_min='DEFAULT';} if(intval($prldata['result'][$m_id]['lowest_price'])!=0){$price_max=intval($prldata['result'][$m_id]['best_performance']);}else{$price_max='DEFAULT';} }
+					if($price==0){ $data="apikey=BHB675VG15n23j4gAz&method=get_conf_info&param[conf_id]=".$c_id; $prldata=json_decode(httpPost($url,$data), true); if(isset($prldata['result']['config_price'])){$price=intval($prldata['result']['config_price']);}else{$price=0;}}
+				}
 			}
 		}
 		
