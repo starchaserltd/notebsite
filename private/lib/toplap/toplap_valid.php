@@ -101,21 +101,21 @@ if (isset($_POST['type']) && isset($_POST['conf_id']))
 					if($price==0){ $data="apikey=BHB675VG15n23j4gAz&method=get_conf_info&param[conf_id]=".$c_id; $prldata=json_decode(httpPost($url,$data), true); if(isset($prldata['result']['config_price'])){$price=intval($prldata['result']['config_price']);}else{$price=0;}}
 				}
 			}
-		}
-		
-		if ($ord ==''){$ord = 'DEFAULT';} else {$ord = $ord;}
-		if(!isset($price_min)){ $price_min='DEFAULT';} if(!isset($price_max)){ $price_max='DEFAULT';} if(!isset($price_range)){ $price_range='DEFAULT';}
-		
-		$query = "INSERT INTO notebro_site.top_laptops (id, type, ord, m_id, c_id, img, name, cpu, display, mem, hdd, shdd, gpu, wnet, odd, mdb, chassis, acum, warranty, sist, price, valid, min_price, max_price,price_range) values (".$ids.",'".$types."',".$ord.",".$m_id.",'".$c_id."_".$m_id."','".$img."','".$names."',".$cpu.",".$display.",".$mem.",".$hdd.",".$shdd.",".$gpu.",".$wnet.",".$odd.",".$mdb.",".$chassis.",".$acum.",".$war.",".$sist.",".$price.",1,".$price_min.",".$price_max.",".$price_range.")"; 
-		if (mysqli_query($rcon,$query))
-		{
-			echo '<meta http-equiv="refresh" content="0;URL=..\\..\\toplap.php?selected='.$types.'">';
-			echo "<script type='text/javascript'>alert('Record has been successfully introduced')</script>";
-		}
-		else
-		{
-			echo '<meta http-equiv="refresh" content="0;URL=..\\..\\toplap.php?selected='.$types.'">';
-			echo "<script> type='text/javascript'>alert(\"ERROR: Could not able to execute " . mysqli_error($con)."\")</script>";
+			if ($ord ==''){$ord = 'DEFAULT';} else {$ord = $ord;}
+			if(!isset($price_min)){ $price_min='DEFAULT';} if(!isset($price_max)){ $price_max='DEFAULT';} if(!isset($price_range)){ $price_range='DEFAULT';}
+			
+			$query = "INSERT INTO notebro_site.top_laptops (id, type, ord, m_id, c_id, img, name, cpu, display, mem, hdd, shdd, gpu, wnet, odd, mdb, chassis, acum, warranty, sist, price, valid, min_price, max_price,price_range) values (".$ids.",'".$types."',".$ord.",".$m_id.",'".$c_id."_".$m_id."','".$img."','".$names."',".$cpu.",".$display.",".$mem.",".$hdd.",".$shdd.",".$gpu.",".$wnet.",".$odd.",".$mdb.",".$chassis.",".$acum.",".$war.",".$sist.",".$price.",1,".$price_min.",".$price_max.",".$price_range.")"; 
+			
+			if (mysqli_query($rcon,$query))
+			{
+				echo '<meta http-equiv="refresh" content="0;URL=..\\..\\toplap.php?selected='.$types.'">';
+				echo "<script type='text/javascript'>alert('Record has been successfully introduced')</script>";
+			}
+			else
+			{
+				echo '<meta http-equiv="refresh" content="0;URL=..\\..\\toplap.php?selected='.$types.'">';
+				echo "<script> type='text/javascript'>alert(\"ERROR: Could not able to execute " . mysqli_error($con)."\")</script>";
+			}
 		}
 	}
 }
