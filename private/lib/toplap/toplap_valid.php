@@ -70,7 +70,7 @@ if (isset($_POST['type']) && isset($_POST['conf_id']))
 
 		if (isset($_POST['action']) && $id && $_POST['action'] == 'Update')
 		{
-			$sql = "UPDATE notebro_site.top_laptops SET type = '".clean($_POST['typenew'])."',ord = ".$_POST['order'].",name = '".clean($_POST['name'])."', price = ".intval($_POST['price']).", min_price = ".$price_min.", max_price = ".$price_max.", price_range = ".$price_range.", m_id='".$m_id."'".", c_id='".$c_id."'".", m_id='".$m_id."'".", img='".$img."'".", cpu='".$cpu."'".", display='".$display."'".", mem='".$mem."'".", hdd='".$hdd."'".", shdd='".$shdd."'".", gpu='".$gpu."'".", wnet='".$wnet."'".", odd='".$odd."'".", mdb='".$mdb."'".", chassis='".$chassis."'".", acum='".$acum."'".", warranty='".$war."'".", sist='".$sist."'"." WHERE id=".$id.""; //echo $sql;
+			$sql = "UPDATE notebro_site.top_laptops SET type = '".clean($_POST['typenew'])."',ord = ".$_POST['order'].",name = '".clean($_POST['name'])."', price = ".intval($_POST['price']).", min_price = ".$price_min.", max_price = ".$price_max.", price_range = ".$price_range.", m_id='".$m_id."'".", c_id='".$c_id."_".$m_id."'".", m_id='".$m_id."'".", img='".$img."'".", cpu='".$cpu."'".", display='".$display."'".", mem='".$mem."'".", hdd='".$hdd."'".", shdd='".$shdd."'".", gpu='".$gpu."'".", wnet='".$wnet."'".", odd='".$odd."'".", mdb='".$mdb."'".", chassis='".$chassis."'".", acum='".$acum."'".", warranty='".$war."'".", sist='".$sist."'"." WHERE id=".$id.""; //echo $sql;
 			if ($rcon->query($sql) === TRUE){ echo "Record updated successfully"; } 
 			else { echo "Error updating record: " . mysqli_error($rcon); }
 			echo "<meta http-equiv=\"refresh\" content=\"0;URL=..\\..\\toplap.php\">";
