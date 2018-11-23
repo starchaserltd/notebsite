@@ -56,7 +56,9 @@ $(function() {
         $('.modal').modal('hide');
         $( ".modal-backdrop" ).remove();
         $( ".in" ).remove();
-    });	   
+    });	
+
+
 
 /*DISQUE CODE*/
 /**
@@ -109,4 +111,39 @@ $('#addcompare').on('click', function() {
 		$(this).toggleClass('show');
 	});
 	
+
+//Add text indent on GPU select
+		if($('#GPU option:contains(GTX):selected').length > 0) {
+			$('#GPU').css('transform', 'translateX(-108px)');
+		} else if($('#GPU option:contains(Quadro):selected').length > 0 ) {
+			$('#GPU').css('transform', 'translateX(-102px)');
+		} else if($('#GPU option:contains(Radeon):selected').length > 0) {
+			$('#GPU').css('transform', 'translateX(-115px)');
+		} else if($('#GPU option:contains(FirePro):selected').length > 0 ) {
+			$('#GPU').css('transform', 'translateX(-86px)');
+		} else if($('#GPU option:contains(Integrated):selected').length > 0 ) {
+			$('#GPU').css({'transform': 'translateX(0)', 'min-width': '135px'});
+			$('.gpuhddd form').css('border-left', '0');
+		}
+
+		$('#GPU').change(function() {
+		  if($('#GPU option:contains(GTX):selected').length > 0) {
+				$(this).css({'transform': 'translateX(-108px)', 'min-width': '235px'});
+				$('.gpuhddd form').css('border-left', '1px solid');
+			} else if($('#GPU option:contains(Quadro):selected').length > 0 ) {
+				$(this).css({'transform': 'translateX(-102px)', 'min-width': '235px'});
+				$('.gpuhddd form').css('border-left', '1px solid');
+			} else if($('#GPU option:contains(Radeon):selected').length > 0) {
+				$(this).css({'transform': 'translateX(-115px)', 'min-width': '235px'});
+				$('.gpuhddd form').css('border-left', '1px solid');
+			} else if($('#GPU option:contains(FirePro):selected').length > 0 ) {
+				$(this).css({'transform': 'translateX(-86px)', 'min-width': '235px'});
+				$('.gpuhddd form').css('border-left', '1px solid');
+			} else if($('#GPU option:contains(Integrated):selected').length > 0 ) {
+				$(this).css({'transform': 'translateX(0)', 'min-width': '135px'});
+				$('.gpuhddd form').css('border-left', '0');
+			}
+		});
+	
+
 });

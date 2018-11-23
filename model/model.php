@@ -150,8 +150,8 @@ else
 			<div class="col-md-7 col-sm-6 col-xs-12 col-lg-7" style="margin-top:10px; padding:0px;"></div>
 		</div>		
 		<!-- start specs -->
-		<div class="col-md-12 col-sm-12 col-xs-12" style="background-color:white; font-family:arial;padding:0px;text-align:left;">
-			<div class="col-md-4 col-sm-6 col-lg-4 col-xs-12 btn" style="text-align:left;padding-top:0px">
+		<div class="row" style="background-color:white; font-family:arial;padding:0px;text-align:left;">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 btn" style="text-align:left;padding-top:0px">
 				<div>
 					<span class="toggler compmod showDetailsButton" data-hide="all" style="color:black;padding:2px 20px;font-weight:normal"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span><span class="showDetails"> Show all</span><span class="showLessDetails"> Show less</span></span>
 					<!-- We take great effort to assure component compatibility for each configuration. If you think we made a mistake, please contact us. -->
@@ -769,5 +769,5 @@ else
 <?php  
 } } ?>
 </div>
-<link rel="stylesheet" href="model/lib/css/model.css?v=70" type="text/css"/>
+<link rel="stylesheet" href="model/lib/css/model.css?v=74" type="text/css"/>
 <?php include_once("../etc/scripts_pages.php"); ?>

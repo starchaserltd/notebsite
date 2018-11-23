@@ -83,10 +83,6 @@
 	margin-left: -10px
 }
 
-.rows.gpuhddd form select {
-	max-width: 240px;	
-}
-
 /** Review list **/
 div.ListElem a {
 	color: black !important;
@@ -395,6 +391,17 @@ div.ListElem:hover {
 	background-color: rgba(27, 28, 29, 0.6);
 }
 
+ .gpuhddd form {
+	border-left:1px solid;
+	overflow-x: hidden;
+ }
+ .rows.gpuhddd form select {
+ 	min-width: 235px;
+ 	max-width: 100%;
+ }
+
+
+
 
 /*Responsive media */
 
@@ -494,7 +501,7 @@ div.ListElem:hover {
 	}
 
 	.modelContainer form select {
-		max-width: 160px!important;
+		max-width: 100%;
 	}
 
 	.officialSite {
