@@ -677,6 +677,7 @@ else
 				<div class="row toolinfo modelwidht" data-toolid="75" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
 					<div class="col-md-12 titlucomp text-center"><strong><span class="toolinfo1 headerComponents">Operating System</span></strong></div>
 				</div>
+
 				<div class="row modelwidht">					
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="row detaliicomp">
@@ -709,7 +710,7 @@ else
 		<!-- end specs -->
 		<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
 			<p class="disclaimernb"><strong> Disclaimer.</strong> We can not guarantee that the information on this page is 100% correct. <a href="<?php echo $web_address; ?>?footer/contact.php">Submit correction.</a></p>
-		</div>
+		</div><span style="color: #FFFFFF; position: fixed; display: hidden;" id="hiddenDiv" class="hiddenDiv">empty</span>
 <?php
 	include("lib/php/db_reviews.php");
 	
@@ -769,5 +770,5 @@ else
 <?php  
 } } ?>
 </div>
-<link rel="stylesheet" href="model/lib/css/model.css?v=74" type="text/css"/>
+<link rel="stylesheet" href="model/lib/css/model.css?v=75" type="text/css"/>
 <?php include_once("../etc/scripts_pages.php"); ?>
