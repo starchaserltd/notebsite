@@ -21,9 +21,7 @@ require_once("lib/php/headermodel.php");
 require_once("lib/php/genmodel.php");
 ?>
 <style>
-.modal-header {
-    padding:0px!important;
-    border-bottom: none!important;}
+.modal-header { padding:0px!important; border-bottom: none!important;}
 button.close {padding:2px 7px 0px 10px!important}
 .modal-header .close {margin-top:0px!important;}
 .modal-body {padding:0px 15px 15px 15px!important;}
@@ -224,7 +222,7 @@ else
 				<div class="row titlucomp toolinfo modelwidht" data-toolid="20" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading...">
 					<div class="col-md-12 text-center"><strong><span class="toolinfo1 headerComponents">Video card</span></strong></div>
 				</div>
-				<div class="row modelwidht">						
+				<div class="row modelwidht">				
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">	
 						<div class="row detaliicomp">					
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows">Model:</div>
@@ -710,7 +708,7 @@ else
 		<!-- end specs -->
 		<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
 			<p class="disclaimernb"><strong> Disclaimer.</strong> We can not guarantee that the information on this page is 100% correct. <a href="<?php echo $web_address; ?>?footer/contact.php">Submit correction.</a></p>
-		</div><span style="color: #FFFFFF; position: fixed; display: hidden;" id="hiddenDiv" class="hiddenDiv">empty</span>
+			</div><span style="color:#FFFFFF; position:fixed; top:-100; left:0; max-width:500px; display:hidden;" id="hiddenDiv" class="hiddenDiv"></span>
 <?php
 	include("lib/php/db_reviews.php");
 	
@@ -756,19 +754,8 @@ else
 
  <script><?php include("lib/php/genjsmodel.php"); ?></script>
  <script>$.getScript("model/lib/js/model.js");</script>
- <script>
- $( document ).ready(function() {
-    lightbox.option({
-      'resizeDuration': 200,
-      'fadeDuration' : 200,
-      'imageFadeDuration':200     
-    });
-
-    $('meta[name=description]').attr('content', mprod + ' ' + mfamily + ' ' + mmodel);
-});
-</script>
 <?php  
 } } ?>
 </div>
-<link rel="stylesheet" href="model/lib/css/model.css?v=75" type="text/css"/>
+<link rel="stylesheet" href="model/lib/css/model.css?v=78" type="text/css"/>
 <?php include_once("../etc/scripts_pages.php"); ?>

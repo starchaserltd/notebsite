@@ -1,27 +1,32 @@
 var cleantips = 1;
-var allshow = 0;
-$(document).ready(function () {  
-//Add text indent on GPU select
+var allshow = 0; gpu_pixel_offset=0; var gpu_select_open=1;
+
 function gpu_right_align()
 {
-	var el=$('#GPU option:selected');
-	var el_text=$('#GPU option:selected').text();
-	var nrchar=char_indent(el_text,15);
+	if ($(window).width() >= 425)
+	{ var maxtext=22; var maxwidth=170; var borderpx=0; }
+	else
+	{ var maxtext=16; var maxwidth=128; var borderpx=1; }
+	
+	var borderpx=1;
+	var el=$('#GPU option:selected'); var el_text=$('#GPU option:selected').text();
+	gpu_pixel_offset=char_indent(el_text,maxtext); if(gpu_pixel_offset<=0){ borderpx=0; }
+
 	if(el_text.length>0)
 	{
 		if(el_text.indexOf("Integrated")>=0)
 		{
-			$('#GPU').css({'transform': 'translateX(0)', 'min-width': '135px'});
+			$('#GPU').css({'transform': 'translateX(0)', 'width': maxwidth+'px'}); gpu_pixel_offset=0;
 			$('.gpuhddd form').css('border-left', '0');
 		}
 		else
 		{
-			$('#GPU').css({'transform': 'translateX(-'+parseInt(nrchar)+'px)', 'min-width': '235px'});
-			$('.gpuhddd form').css('border-left', '1px solid');
-		}
-	}
+			$('#GPU').css({'transform': 'translateX(-'+parseInt(gpu_pixel_offset)+'px)', 'width': (maxwidth+parseInt(gpu_pixel_offset))+'px'});
+			$('.gpuhddd form').css('border-left', borderpx+'px solid');
+		}	
+	} 
 }
-
+	
 function char_indent(str,maxlength)
 {
 	x=str.split(' '); var short_length=0;
@@ -36,8 +41,9 @@ function char_indent(str,maxlength)
 	return pixels;
 }
 
-$(document).ready(function()
-{
+$(document).ready(function() 
+{  
+	//Add text indent on GPU select
 	$('#addcompare').click(function(e)
 	{
 		if(gocomp)
@@ -90,13 +96,12 @@ $(document).ready(function()
 	});
 	
 	$(window).on('popstate', function()
-	{
-		$('.modal').modal('hide');
-		$( ".modal-backdrop" ).remove();
-		$( ".in" ).remove();
-	});	
-
+	{ $('.modal').modal('hide'); $( ".modal-backdrop" ).remove(); $( ".in" ).remove(); });
+	
+	lightbox.option({ 'resizeDuration': 200, 'fadeDuration' : 200, 'imageFadeDuration':200 });
+    $('meta[name=description]').attr('content', mprod + ' ' + mfamily + ' ' + mmodel);
 	gpu_right_align();
+
 	/*DISQUE CODE*/
 	/**
 	* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
@@ -121,26 +126,24 @@ $(document).ready(function()
 			});
 		}
 	})();
-});
 
+	//Open add to compare when you add a laptop
+	$('#addcompare').on('click', function()
+	{
+		$('.compareDropdown').css('display', 'block');
+		$('.compareDropdown ul li').addClass('open');
+		$('.compareDropdown ul li ul').slideDown();
+	});
 
-//Open add to compare when you add a laptop
-$('#addcompare').on('click', function()
-{
-	$('.compareDropdown').css('display', 'block');
-	$('.compareDropdown ul li').addClass('open');
-	$('.compareDropdown ul li ul').slideDown();
-});
+	//Laptop rating, price range, battery life affix
+	// if ($(window).width() >= 375) { $(".ptop").affix({ offset: { top: $(".modelImageContainer").outerHeight(true) + $(".modelHeader").outerHeight(true) + 170 }});}
 
-//Laptop rating, price range, battery life affix
-// if ($(window).width() >= 375) { $(".ptop").affix({ offset: { top: $(".modelImageContainer").outerHeight(true) + $(".modelHeader").outerHeight(true) + 170 }});}
+	//change icon for resize information model
+	$('.glyphicon-chevron-down').on('click', function() { $(this).toggleClass('resize'); });	
+	$('.showDetailsButton').on('click', function() { $(this).toggleClass('show'); });
+	$('#GPU').change(function() { gpu_right_align(); });
 
-//change icon for resize information model
-$('.glyphicon-chevron-down').on('click', function() { $(this).toggleClass('resize'); });	
-$('.showDetailsButton').on('click', function() { $(this).toggleClass('show'); });
-$('#GPU').change(function() { gpu_right_align(); });
-
-//Affix Bootstrap 4
+	//Affix Bootstrap 4
 	if ($(window).width() >= 375)
 	{
 		var top = $('.ptop').offset().top;

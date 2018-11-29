@@ -118,7 +118,7 @@ function show_cpu ($model)
 			if($id!=$GLOBALS['idcpu'])
 			{ echo "<option value=".$id." data-gpu='".$row["gpu"]."' >".$row["prod"]." ".$row["model"]."</option>"; }
 			else
-			{ echo "<option value=".$id." SELECTED data-gpu='".$row["gpu"]."' >".$row["prod"]." ".$row["model"]."</option>"; }
+			{ echo "<option value=".$id." selected='selected' data-gpu='".$row["gpu"]."' >".$row["prod"]." ".$row["model"]."</option>"; }
 		}
 		echo "</SELECT></form>";
 	}
@@ -156,7 +156,7 @@ function show_gpu ($model)
 			if($id!=$GLOBALS['idgpu'])
 			{ $int_gpu.="<option value=".$id.">".$row["prod"]." ".$row["model"]."</option>"; }
 			else
-			{ $int_gpu.="<option value=".$id." SELECTED >".$row["prod"]." ".$row["model"]."</option>"; $a=1;}
+			{ $int_gpu.="<option value=".$id." selected='selected'>".$row["prod"]." ".$row["model"]."</option>"; $a=1;}
 	
 			if($b)
 			{ $gpulist=$id; $b=0; }
@@ -169,7 +169,7 @@ function show_gpu ($model)
 	{
 		$int_gpu=$int_gpu."<option value='-1' ";
 		if(!$a)
-		{ $int_gpu=$int_gpu."SELECTED"; }
+		{ $int_gpu=$int_gpu."selected='selected'"; }
 		$int_gpu=$int_gpu." >CPU Integrated</option>";
 	}
 	
@@ -198,7 +198,7 @@ function show_display ($model)
 			if($id!=$GLOBALS['iddisplay'])
 			{ echo "<option value=".$id.">".$prodm." ".$row["model"].$touch."</option>"; }
 			else
-			{ echo "<option value=".$id." SELECTED >".$prodm." ".$row["model"].$touch."</option>"; }
+			{ echo "<option value=".$id." selected='selected'>".$prodm." ".$row["model"].$touch."</option>"; }
 		
 		}
 		echo "</SELECT></form>";
@@ -234,7 +234,7 @@ function show_hdd ($model)
 		if($id!=$GLOBALS['idhdd'])
 		{ echo "<option value=".$id.">".$extra." ".$row["model"]." - ".$row["cap"]."GB".$rpm."</option>"; }
 		else
-		{ echo "<option value=".$id." SELECTED >".$extra." ".$row["model"]." - ".$row["cap"]."GB".$rpm."</option>"; }
+		{ echo "<option value=".$id." selected='selected'>".$extra." ".$row["model"]." - ".$row["cap"]."GB".$rpm."</option>"; }
 	}
 	echo "</SELECT></form>";
 }
@@ -266,14 +266,14 @@ function show_shdd ($model)
 			if($id!=$GLOBALS['idshdd'])
 			{ $text.="<option value=".$id.">".$row["cap"]."GB".$rpm."</option>"; }
 			else
-			{ $text.="<option value=".$id." SELECTED >".$row["cap"]."GB".$rpm."</option>"; }
+			{ $text.="<option value=".$id." selected='selected'>".$row["cap"]."GB".$rpm."</option>"; }
 		}
 		else
 		{
 			if($id!=$GLOBALS['idshdd'])
 			{ $text.="<option value="."0".">"."None"."</option>"; }
 			else
-			{ $text.="<option value="."0"." SELECTED >"."None"."</option>"; }	
+			{ $text.="<option value="."0"." selected='selected'>"."None"."</option>"; }	
 		}
 	}
 	$text.="</SELECT></form>";
@@ -299,7 +299,7 @@ function show_mdb ($model)
 			if($id!=$GLOBALS['idmdb'])
 			{ echo "<option value=".$id.">".$row["submodel"]."</option>"; }
 			else
-			{ echo "<option value=".$id." SELECTED >".$row["submodel"]."</option>"; }
+			{ echo "<option value=".$id." selected='selected'>".$row["submodel"]."</option>"; }
 		}
 		echo "</SELECT></form>";
 	}
@@ -331,7 +331,7 @@ function show_mem ($model)
 			if($id!=$GLOBALS['idmem'])
 			{ echo "<option value=".$id.">".$extra." ".$row["prod"]." - ".$row["cap"]." GB </option>"; }
 			else
-			{ echo "<option value=".$id." SELECTED >".$extra." ".$row["prod"]." - ".$row["cap"]." GB </option>"; }
+			{ echo "<option value=".$id." selected='selected'>".$extra." ".$row["prod"]." - ".$row["cap"]." GB </option>"; }
 		}
 		echo "</SELECT></form>";
 	}
@@ -366,7 +366,7 @@ function show_odd ($model)
 			if($id!=$GLOBALS['idodd']) 
 			{ echo "<option value=".$id.">".$row["type"]."</option>"; }
 			else
-			{ echo "<option value=".$id." SELECTED >".$row["type"]."</option>"; }
+			{ echo "<option value=".$id." selected='selected'>".$row["type"]."</option>"; }
 		}
 		echo "</SELECT></form>";
 	}
@@ -405,7 +405,7 @@ function show_acum ($model)
 			if($id!=$GLOBALS['idacum'])
 			{ echo "<option value=".$id.">".$row["cap"]." WHr</option>"; }
 			else
-			{ echo "<option value=".$id." SELECTED >".$row["cap"]." Whr</option>"; }
+			{ echo "<option value=".$id." selected='selected'>".$row["cap"]." Whr</option>"; }
 		}
 		echo "</SELECT></form>";
 	}
@@ -439,7 +439,7 @@ function show_chassis ($model)
 			if($id!=$GLOBALS['idchassis'])
 			{ $chassistext.="<option value=".$id.">".$row["submodel"]."</option>"; }
 			else
-			{ $chassistext.="<option value=".$id." SELECTED >".$row["submodel"]."</option>"; }
+			{ $chassistext.="<option value=".$id." selected='selected'>".$row["submodel"]."</option>"; }
 		}
 		$chassistext.="</SELECT></form>";
 	}
@@ -474,7 +474,7 @@ function show_wnet ($model)
 			if($id!=$GLOBALS['idwnet'])
 			{ echo "<option value=".$id.">".$row["prod"]." ".$row["model"]."</option>"; }
 			else
-			{ echo "<option value=".$id." SELECTED >".$row["prod"]." ".$row["model"]."</option>"; }
+			{ echo "<option value=".$id." selected='selected'>".$row["prod"]." ".$row["model"]."</option>"; }
 		}
 		echo "</SELECT></form>";
 	}
@@ -506,7 +506,7 @@ function show_war ($model)
 			if($id!=$GLOBALS['idwar'])
 			{ echo "<option value=".$id.">".$row["years"]." - ".$row["prod"]."</option>"; }
 			else
-			{ echo "<option value=".$id." SELECTED >".$row["years"]." - ".$row["prod"]."</option>"; }
+			{ echo "<option value=".$id." selected='selected'>".$row["years"]." - ".$row["prod"]."</option>"; }
 		}
 		echo "</SELECT></form>";
 	}
@@ -541,7 +541,7 @@ function show_sist ($model)
 			if($id!=$GLOBALS['idsist'])
 			{ echo "<option value=".$id.">".$row["sist"]." ".$row["vers"]." ".$row["type"]."</option>"; }
 			else
-			{ echo "<option value=".$id." SELECTED >".$row["sist"]." ".$row["vers"]." ".$row["type"]."</option>"; }
+			{ echo "<option value=".$id." selected='selected'>".$row["sist"]." ".$row["vers"]." ".$row["type"]."</option>"; }
 		}
 		echo "</SELECT></form>";
 	}
