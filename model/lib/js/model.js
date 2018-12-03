@@ -1,16 +1,16 @@
 var cleantips = 1;
-var allshow = 0; gpu_pixel_offset=0; var gpu_select_open=1;
+var allshow = 0; var gpu_pixel_offset=0; var maxwidth=0; var gpu_select_open=1;
 
 function gpu_right_align()
 {
 	if ($(window).width() >= 425)
-	{ var maxtext=22; var maxwidth=170; var borderpx=0; }
+	{ var maxtext=22;  maxwidth=170; var borderpx=0; }
 	else
-	{ var maxtext=16; var maxwidth=128; var borderpx=1; }
+	{ var maxtext=16;  maxwidth=128; var borderpx=1; }
 	
 	var borderpx=1;
 	var el=$('#GPU option:selected'); var el_text=$('#GPU option:selected').text();
-	gpu_pixel_offset=char_indent(el_text,maxtext); if(gpu_pixel_offset<=0){ borderpx=0; }
+	gpu_pixel_offset=parseInt(char_indent(el_text,maxtext)); if(gpu_pixel_offset<=0){ borderpx=0; }
 
 	if(el_text.length>0)
 	{
@@ -21,15 +21,15 @@ function gpu_right_align()
 		}
 		else
 		{
-			$('#GPU').css({'transform': 'translateX(-'+parseInt(gpu_pixel_offset)+'px)', 'width': (maxwidth+parseInt(gpu_pixel_offset))+'px'});
+			$('#GPU').css({'transform': 'translateX(-'+gpu_pixel_offset+'px)', 'width': (maxwidth+gpu_pixel_offset)+'px'});
 			$('.gpuhddd form').css('border-left', borderpx+'px solid');
 		}	
 	} 
 }
-	
+
 function char_indent(str,maxlength)
 {
-	x=str.split(' '); var short_length=0;
+	x=str.split(' '); var short_length=0; var fudge=1;
 	for(var i=x.length-1;i>=0;i--)
 	{
 		short_length+=x[i].length+1;
@@ -37,10 +37,25 @@ function char_indent(str,maxlength)
 	}
 	var el=document.getElementById("hiddenDiv");
 	el.style.display="inline"; str="T"+str; el.innerHTML=str.substr(0,str.length-short_length);
-	var pixels=el.offsetWidth*1; el.style.display="none";
+	var isSafari=window.safari!==undefined; if(isSafari){ var zoom=(window.outerWidth-8)/window.innerWidth; if(zoom>=0.92&&zoom<=1.1){fudge=0.85;}}
+	var pixels=(el.offsetWidth)*fudge; el.style.display="none";
 	return pixels;
 }
 
+var open = false;  var mousedown = false;
+function isOpen()
+{
+	if(open){ $('#GPU').css({'transform': 'translateX(0px)', 'width': maxwidth+'px'}); }
+	else{ setTimeout(function(){ $('#GPU').css({'transform': 'translateX(-'+gpu_pixel_offset+'px)', 'width': (maxwidth+gpu_pixel_offset)+'px'}); }, 100); }
+}
+
+$('select[id$="GPU"]')
+	.mousedown( function(){ mousedown=true; open = !open; isOpen(); })
+	.click( function(){ if(!mousedown) { open = !open; isOpen(); } else{ mousedown=false; }})
+	.blur(function() { if(open){ open = !open; isOpen(); }})
+$(document).keyup(function(e){ if (e.keyCode == 27) { if(open){ open = !open; isOpen(); }}});
+   
+   
 $(document).ready(function() 
 {  
 	//Add text indent on GPU select
