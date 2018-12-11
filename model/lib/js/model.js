@@ -10,7 +10,6 @@ function gpu_right_align()
 	
 	var borderpx=1;
 	var el=$('#GPU option:selected'); var el_text=$('#GPU option:selected').text();
-	gpu_pixel_offset=parseInt(char_indent(el_text,maxtext)); if(gpu_pixel_offset<=0){ borderpx=0; }
 
 	if(el_text.length>0)
 	{
@@ -21,6 +20,7 @@ function gpu_right_align()
 		}
 		else
 		{
+			gpu_pixel_offset=parseInt(char_indent(el_text,maxtext)); if(gpu_pixel_offset<=0){ borderpx=0; }
 			$('#GPU').css({'transform': 'translateX(-'+gpu_pixel_offset+'px)', 'width': (maxwidth+gpu_pixel_offset)+'px'});
 			$('.gpuhddd form').css('border-left', borderpx+'px solid');
 		}	
@@ -35,6 +35,7 @@ function char_indent(str,maxlength)
 		short_length+=x[i].length+1;
 		if(short_length>=maxlength){ short_length-=(x[i].length+1); }
 	}
+
 	var el=document.getElementById("hiddenDiv");
 	el.style.display="inline"; str="T"+str; el.innerHTML=str.substr(0,str.length-short_length);
 	var isSafari=window.safari!==undefined; if(isSafari){ var zoom=(window.outerWidth-8)/window.innerWidth; if(zoom>=0.92&&zoom<=1.1){fudge=0.85;}}
@@ -42,18 +43,18 @@ function char_indent(str,maxlength)
 	return pixels;
 }
 
-var open = false;  var mousedown = false;
+var comp_open=false;  var mousedown=false;
 function isOpen()
 {
-	if(open){ $('#GPU').css({'transform': 'translateX(0px)', 'width': maxwidth+'px'}); }
+	if(comp_open){ $('#GPU').css({'transform': 'translateX(0px)', 'width': maxwidth+'px'}); }
 	else{ setTimeout(function(){ $('#GPU').css({'transform': 'translateX(-'+gpu_pixel_offset+'px)', 'width': (maxwidth+gpu_pixel_offset)+'px'}); }, 100); }
 }
 
 $('select[id$="GPU"]')
-	.mousedown( function(){ mousedown=true; open = !open; isOpen(); })
-	.click( function(){ if(!mousedown) { open = !open; isOpen(); } else{ mousedown=false; }})
-	.blur(function() { if(open){ open = !open; isOpen(); }})
-$(document).keyup(function(e){ if (e.keyCode == 27) { if(open){ open = !open; isOpen(); }}});
+	.mousedown( function(){ mousedown=true; comp_open=!comp_open; isOpen(); })
+	.click( function(){ if(!mousedown) { comp_open=!comp_open; isOpen(); } else{ mousedown=false; }})
+	.blur(function() { if(comp_open){ ocomp_open=!comp_open; isOpen(); }})
+$(document).keyup(function(e){ if (e.keyCode == 27) { if(comp_open){ comp_open=!comp_open; isOpen(); }}});
    
    
 $(document).ready(function() 

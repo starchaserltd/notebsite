@@ -116,7 +116,7 @@ function OpenPage(url, e, dontpush) {
 		//	document.getElementById("sharefb").href="https://www.facebook.com/sharer/sharer.php?u="+siteroot+"/?"+url;
 		}
     if (go == 1) { urlrequest(url, e, dontpush); }
-    if (go == 2) { window.open(siteroot + "?" + url, "_blank"); }
+    if (go == 2) { wopen =window.open(siteroot + "?" + url, "_blank"); if (wopen==null||typeof(wopen)=='undefined'){alert("Turn off your pop-up blocker!");} }
 }
 
 //Function for toolbox area
@@ -496,7 +496,7 @@ function listrange(list_comp)
 
 // Only enable if the document has a long scroll bar
 // Note the window height + offset
-if ( ($(window).height() + 100) < $(document).height() ) { $('#top-link-block').removeClass('hidden').affix({ offset: {top:100} }); }
+// if ( ($(window).height() + 100) < $(document).height() ) { $('#top-link-block').removeClass('hidden').affix({ offset: {top:100} }); }
 //Usermenu activate
 $('.addrev').click(function() {
 	$('#usermenu').addClass('white');
