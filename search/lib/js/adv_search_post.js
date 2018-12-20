@@ -810,7 +810,7 @@ function setrecommended()
 	var t = parseFloat(currency_val[$('#currencyadv').val()]);
 	var x = Math.round(550*t);	var y = Math.round(1100*t);
 	document.getElementById('budgetadv').noUiSlider.set([x,y]); $('#bdgminadv').val(roundlimitadv(x)); $('#bdgmaxadv').val(roundlimitadv(y));	
-	document.getElementById('display').noUiSlider.set([13.1,15.6]);  document.getElementById('verres').noUiSlider.set([1080,99999]);
+	document.getElementById('display').noUiSlider.set([13.1,16.1]);  document.getElementById('verres').noUiSlider.set([1080,99999]);
 	var i=0; el=$('#DISPLAY_msc_id'); texttoapp='<option selected="selected">LED IPS</option><option selected="selected">LED IPS PenTile</option><option selected="selected">LED TN WVA</option><option selected="selected">OLED</option>';
 	while( el.select2("val")[i]!==undefined)
 	{

@@ -203,19 +203,19 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			{	if($display_sizemin<14) { $display_sizemin =14; }	if($display_sizemax>24) { $display_sizemax =24; } }
 		
 			if (isset($_GET['bed']) && $_GET['bed']==1) 
-			{	if($display_sizemin<13) { $display_sizemin =13; }	if($display_sizemax>16) { $display_sizemax =16; } }
+			{	if($display_sizemin<13) { $display_sizemin =13; }	if($display_sizemax>16.2) { $display_sizemax =16.2; } }
 								
 			if (isset($_GET['house']) && $_GET['house']==1) 
-			{	if($display_sizemin<13) { $display_sizemin =13; }	if($display_sizemax>16) { $display_sizemax =16; } }
+			{	if($display_sizemin<13) { $display_sizemin =13; }	if($display_sizemax>16.2) { $display_sizemax =16.2; } }
 													
 			if (isset($_GET['lap'])	&& $_GET['lap']==1 ) 
 			{ 
 				if($display_sizemin<10) { $display_sizemin =10; }	if($display_sizemax>14) { $display_sizemax =14; } 
-				if((isset($_GET['oldgamesmedium']) && $_GET['oldgamesmedium']==1) || (isset($_GET['oldgameshigh']) && $_GET['oldgameshigh']==1) || (isset($_GET['mmomedium']) && $_GET['mmomedium']==1) || (isset($_GET['mmohigh']) && $_GET['mmohigh']==1 ) || (isset($_GET['3dgameslow']) && $_GET['3dgameslow']==1) || (isset($_GET['3dgamesmedium']) && $_GET['3dgamesmedium']==1) || (isset($_GET['3dgameshigh']) && $_GET['3dgameshigh']==1) || (isset($_GET['autocadmedium']) && $_GET['autocadmedium']==1) || (isset($_GET['autocadheavy']) && $_GET['autocadheavy']==1) || (isset($_GET['swlight']) && $_GET['swlight']==1) || (isset($_GET['swmedium']) && $_GET['swmedium']==1) ||  (isset($_GET['swheavy']) && $_GET['swheavy']==1) || (isset($_GET['3dsmaxlight']) && $_GET['3dsmaxlight']==1) || (isset($_GET['3dsmaxmedium']) && $_GET['3dsmaxmedium']==1) || (isset($_GET['3dsmaxheavy']) && $_GET['3dsmaxheavy']==1) || (isset($_GET['catialight']) && $_GET['catialight']==1) || (isset($_GET['catiamedium']) && $_GET['catiamedium']==1) || (isset($_GET['catiaheavy']) && $_GET['catiaheavy']==1) || (isset($_GET['rhinolight']) && $_GET['rhinolight']==1) || (isset($_GET['rhinomedium']) && $_GET['rhinomedium']==1) || (isset($_GET['rhinoheavy']) && $_GET['rhinoheavy']==1) || (isset($_GET['cadolight']) && $_GET['cadolight']==1) || (isset($_GET['cadomedium']) && $_GET['cadomedium']==1) || (isset($_GET['cadoheavy']) && $_GET['cadoheavy']==1)) { if($display_sizemax<16) { $display_sizemax =16; } }
+				if((isset($_GET['oldgamesmedium']) && $_GET['oldgamesmedium']==1) || (isset($_GET['oldgameshigh']) && $_GET['oldgameshigh']==1) || (isset($_GET['mmomedium']) && $_GET['mmomedium']==1) || (isset($_GET['mmohigh']) && $_GET['mmohigh']==1 ) || (isset($_GET['3dgameslow']) && $_GET['3dgameslow']==1) || (isset($_GET['3dgamesmedium']) && $_GET['3dgamesmedium']==1) || (isset($_GET['3dgameshigh']) && $_GET['3dgameshigh']==1) || (isset($_GET['autocadmedium']) && $_GET['autocadmedium']==1) || (isset($_GET['autocadheavy']) && $_GET['autocadheavy']==1) || (isset($_GET['swlight']) && $_GET['swlight']==1) || (isset($_GET['swmedium']) && $_GET['swmedium']==1) ||  (isset($_GET['swheavy']) && $_GET['swheavy']==1) || (isset($_GET['3dsmaxlight']) && $_GET['3dsmaxlight']==1) || (isset($_GET['3dsmaxmedium']) && $_GET['3dsmaxmedium']==1) || (isset($_GET['3dsmaxheavy']) && $_GET['3dsmaxheavy']==1) || (isset($_GET['catialight']) && $_GET['catialight']==1) || (isset($_GET['catiamedium']) && $_GET['catiamedium']==1) || (isset($_GET['catiaheavy']) && $_GET['catiaheavy']==1) || (isset($_GET['rhinolight']) && $_GET['rhinolight']==1) || (isset($_GET['rhinomedium']) && $_GET['rhinomedium']==1) || (isset($_GET['rhinoheavy']) && $_GET['rhinoheavy']==1) || (isset($_GET['cadolight']) && $_GET['cadolight']==1) || (isset($_GET['cadomedium']) && $_GET['cadomedium']==1) || (isset($_GET['cadoheavy']) && $_GET['cadoheavy']==1)) { if($display_sizemax<16.2) { $display_sizemax =16.2; } }
 			}
 								
 			if (isset($_GET['bag']) && $_GET['bag']==1) 
-			{	if($display_sizemin<13) { $display_sizemin =13; }	if($display_sizemax>16) { $display_sizemax =16; } }
+			{	if($display_sizemin<13) { $display_sizemin =13; }	if($display_sizemax>16.2) { $display_sizemax =16.2; } }
 								
 			if (isset($_GET['60srgb']) && $_GET['60srgb'] ==1) 
 			{	$display_backt = ["LED IPS","LED IPS PenTile","OLED"]; }
@@ -246,7 +246,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			{	if($display_sizemin>13) { $display_sizemin =13; }	if($display_sizemax<14) { $display_sizemax =14; } }
 		
 			if (isset($_GET['dispmedium'])	&& $_GET['dispmedium']==1 ) 
-			{	if($display_sizemin>14) { $display_sizemin =14; }	if($display_sizemax<16) { $display_sizemax =16; } }
+			{	if($display_sizemin>14) { $display_sizemin =14; }	if($display_sizemax<16.2) { $display_sizemax =16.2; } }
 
 			if (isset($_GET['displarge'])	&& $_GET['displarge']==1 ) 
 			{	if($display_sizemin>17) { $display_sizemin =17; }	if($display_sizemax<24) { $display_sizemax =24; } }
