@@ -1,8 +1,7 @@
 <?php
 require_once("etc/conf.php"); ?>
 <script>$.getScript("search/lib/js/ssearch.js");</script>
-<div class="row">
-	<div class="col-md-12 col-sm-12 col-xs-12">	
+	<div class="col-md-12 col-sm-12 col-xs-12" style="padding:0 5px;">	
 		<form  action="javascript:void(0);" method="post" id="s_search">
 			<div style="font-size:14px; font-weight:bold;margin-top:5px">Producer</div>			
 			<select class="xxtest" id="s_prod_id" name ="s_prod[]" data-placeholder="Ex. Apple, Dell" multiple="multiple" style="width: 100%;"></select>
@@ -84,8 +83,7 @@ require_once("etc/conf.php"); ?>
 				<option value="3">High-end</option>
 			</select>
 				
-			<div class="row margin">
-				<div class="col-md-6 col-sm-6 col-xs-6" style="margin-top:10px;font-weight:bold;padding:0">Available in</div>	
+			<div><div class="col-md-6 col-sm-6 col-xs-6" style="margin-top:10px;font-weight:bold;padding:0">Available in</div>	
 				<div class="col-md-6 col-sm-6 col-xs-6" style="padding:0; margin-top:15px;">
 					<select id="region_type" name="region_type[]">
 						<option value="1">USA</option>
@@ -104,7 +102,7 @@ require_once("etc/conf.php"); ?>
 			<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style="padding:0px">	
 				<div>
 					<span style="margin-top:30px;font-weight:bold; margin-bottom:2px;">Budget:<br></span>						
-					<div class="row margin">
+					<div>
 						<div class="col-md-8 col-xs-6 col-sm-6 col-lg-7" style="padding:0px" >
 						<div id="2"><input type="tel" name="bdgmin" id="bdgmin" value="300" size="1" maxlength="5" onchange="checkmin();"  onkeydown="if (event.keyCode == 13) { checkmin(); return false; }" class="budget"> - 
 						<input type="tel" name="bdgmax" id="bdgmax" value="2000" size="1" maxlength="5" onchange="checkmax();" onkeydown="if (event.keyCode == 13) { checkmax(); return false; }" class="budget" ></div> 
@@ -123,4 +121,4 @@ require_once("etc/conf.php"); ?>
 			<input type="submit" id="s_search_btn" class="btn blue bsub" style="margin-top:10px;margin-bottom: 10px; padding:5px 25px 5px 25px; border-radius:1px; color:#fff; width:100%;" value="Search">
 		</form>	
 	</div>
-</div><!-- Row end -->
+	
