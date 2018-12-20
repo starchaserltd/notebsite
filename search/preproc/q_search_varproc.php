@@ -552,7 +552,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			if($cadratemin!==0)
 			{	
 				$addgaming="";
-				if (isset($_GET['gaming']) && $_GET['gaming']==1) { if($gpu_powermax<1){$gpu_powermax=999999;} $addgaming=" AND (power>=".$ ." AND power<=".$gpu_powermax.")"; }
+				if (isset($_GET['gaming']) && $_GET['gaming']==1) { if($gpu_powermax<1){$gpu_powermax=999999;} $addgaming=" AND (power>=".$gpu_powermin." AND power<=".$gpu_powermax.")"; }
 				$query = "SELECT DISTINCT model FROM notebro_db.GPU WHERE (rating>=".$cadratemin." AND rating<=".$cadratemax." AND typegpu=3) OR (rating>=".$gameratemin." AND rating<=".$gameratemax.$addgaming." AND typegpu IN (".implode(",",$gpu_typelist)."))";
 				$result = mysqli_query($GLOBALS['con'],$query);
 				array_push($gpu_typelist,"3");
