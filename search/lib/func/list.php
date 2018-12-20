@@ -186,7 +186,7 @@ switch ($q)
 					$y=substr($y, 0, -3);;
 				}
 				$y.=" AND prop!='INTEL'";
-				$sel="SELECT id, name FROM notebro_site.nomen WHERE type=3 AND name LIKE $gpu_arch".$y;
+				$sel="SELECT id, name FROM notebro_site.nomen WHERE type=3 AND name LIKE $gpu_arch".$y." ORDER by name asc";
 				$result = mysqli_query($con, $sel);
 				$list = array();
 				while($rand = mysqli_fetch_row($result)) 
