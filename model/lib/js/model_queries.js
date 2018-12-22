@@ -610,11 +610,11 @@ function getconf(comp,id,exactconf)
 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
 			{
 				confdata = JSON.parse(xmlhttp.responseText);
-				console.log(confdata);
+				//console.log(confdata);
 				confdata["cprice"]=parseInt(confdata["cprice"]); if(confdata["cprice"]>0){ success=true; }
 				if(success || go)
 				{
-					if(parseInt(mid)!=parseInt(confdata["cmodel"])){ mid=confdata["cmodel"]; /*issue title updates, buy with multiple configs*/}
+					//if(parseInt(mid)!=parseInt(confdata["cmodel"])){ mid=confdata["cmodel"]; /*issue title updates, buy with multiple configs*/}
 					confdata["cerr"]=parseInt(confdata["cerr"]);
 					document.getElementById('config_price1').innerHTML=parseInt((confdata["cprice"]-confdata["cerr"]/2)*exch);
 					document.getElementById('config_price2').innerHTML=parseInt((confdata["cprice"]+confdata["cerr"]/2)*exch);
