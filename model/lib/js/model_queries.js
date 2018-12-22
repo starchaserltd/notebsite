@@ -610,9 +610,11 @@ function getconf(comp,id,exactconf)
 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
 			{
 				confdata = JSON.parse(xmlhttp.responseText);
+				console.log(confdata);
 				confdata["cprice"]=parseInt(confdata["cprice"]); if(confdata["cprice"]>0){ success=true; }
 				if(success || go)
 				{
+					if(parseInt(mid)!=parseInt(confdata["cmodel"])){ mid=confdata["cmodel"]; /*issue title updates, buy with multiple configs*/}
 					confdata["cerr"]=parseInt(confdata["cerr"]);
 					document.getElementById('config_price1').innerHTML=parseInt((confdata["cprice"]-confdata["cerr"]/2)*exch);
 					document.getElementById('config_price2').innerHTML=parseInt((confdata["cprice"]+confdata["cerr"]/2)*exch);
@@ -622,17 +624,16 @@ function getconf(comp,id,exactconf)
 					{
 						for (var key in confdata["changes"])
 						{
-							if(key!=="txt") {	window['show'+key](confdata["changes"][key]); setselectedcomp(key,confdata["changes"][key]); }
+							if(key!=="txt") { window['show'+key](confdata["changes"][key]); setselectedcomp(key,confdata["changes"][key]); if(key=="GPU"){ gpu_right_align();} }
 							else { alert("This component is only available in combination with a different "+confdata["changes"][key]+"."); }
 						}
 					}
 					
 					var stateObj = { no: "empty" }; setTimeout(function(){ gocomp=1;}, 10);
-					//conf=(\d*)(\&|$)
 					var addref=""; if(ref!=null&&ref!="") { addref="&ref="+ref; }
 					if(currentPage.match(/(conf=)(\d+)(.*)/i)!==null)
 					{ 
-						history.replaceState(stateObj, confdata["cid"], currentPage.replace(/(conf=)(\d+)(.*)/i,"$1"+confdata["cid"]+"$3"));
+						history.replaceState(stateObj, confdata["cid"], currentPage.replace(/(conf=)(\d+)(\_\d+)(.*)/i,"$1"+confdata["cid"]+"_"+mid+"$4"));
 						if(currentPage.indexOf("ref=")<0){ if(ref!=null&&ref!="") { currentPage=currentPage+"&ref="+ref; } }
 						if(currentPage.match(/(ex=)(.*)/i)===null)
 						{ history.replaceState(stateObj, confdata["cid"]+" "+excode, currentPage+"&ex="+excode); }
@@ -689,7 +690,7 @@ function getconf(comp,id,exactconf)
 							case "SHDD":
 							{ setselectedcomp("SHDD",prev_id); break; } 
 							case "GPU":
-							{ setselectedcomp("GPU",prev_id); break; } 
+							{ setselectedcomp("GPU",prev_id); gpu_right_align(); break; } 
 							case "WNET":
 							{ setselectedcomp("WNET",prev_id); break; } 
 							case "ODD":
@@ -711,11 +712,11 @@ function getconf(comp,id,exactconf)
 			}			
 		}
 	}
-	xmlhttp.open("GET","model/lib/php/query/getconf.php?c="+mid+"-"+cpu_id+"-"+display_id+"-"+mem_id+"-"+hdd_id+"-"+shdd_id+"-"+gpu_id+"-"+wnet_id+"-"+odd_id+"-"+mdb_id+"-"+chassis_id+"-"+acum_id+"-"+war_id+"-"+sist_id+"&cf="+config_rate+"&comp="+comp,true);
+	xmlhttp.open("GET","model/lib/php/query/getconf.php?c="+mid+"-"+cpu_id+"-"+display_id+"-"+mem_id+"-"+hdd_id+"-"+shdd_id+"-"+gpu_id+"-"+wnet_id+"-"+odd_id+"-"+mdb_id+"-"+chassis_id+"-"+acum_id+"-"+war_id+"-"+sist_id+"&cf="+config_rate+"&comp="+comp+"&ex="+excode,true);
 	xmlhttp.send();
 }
 
-function setselectedcomp(comp, value)
+function setselectedcomp(comp,value)
 {
 	comp=document.getElementsByName(comp)[0];
 	for ( var i = 0; i < comp.options.length; i++ )

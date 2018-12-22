@@ -55,52 +55,65 @@ $('select[id$="GPU"]')
 	.click( function(){ if(!mousedown) { comp_open=!comp_open; isOpen(); } else{ mousedown=false; }})
 	.blur(function() { if(comp_open){ ocomp_open=!comp_open; isOpen(); }})
 $(document).keyup(function(e){ if (e.keyCode == 27) { if(comp_open){ comp_open=!comp_open; isOpen(); }}});
-   
-   
+
+//Open add to compare when you add a laptop
+$('#addcompare').on('click', function()
+{
+	$('.compareDropdown').css('display', 'block');
+	$('.compareDropdown ul li').addClass('open');
+	$('.compareDropdown ul li ul').slideDown();
+});
+
+//Add text indent on GPU select
+$('#addcompare').click(function(e)
+{
+	if(gocomp)
+	{		
+		e.preventDefault();
+		e.stopPropagation();
+		addcompare();
+	}
+	else
+	{
+		window.setTimeout($('#addcompare').click(), 100);
+	}	
+	$("#howToUse").css('display', 'none');
+});
+ 
+$(".toggler").click(function(e){
+	e.preventDefault();
+	if($(this).attr('data-hide')=="all")
+	{
+		if(allshow)
+		{
+			$('.hide'+$(this).attr('data-hide')).slideUp(500);
+			$this=$('.toggler');
+			allshow=0; $('.glyphicon-chevron-down').removeClass('resize');
+		}
+		else
+		{  $('.hide'+$(this).attr('data-hide')).slideDown(500);	$this=$('.toggler'); allshow=1; $('.glyphicon-chevron-down').addClass('resize'); }	
+	}
+	else
+	{
+		$('.hide'+$(this).attr('data-hide')).slideToggle(500);
+		$this=$(this);
+		if($this.text().toLowerCase().indexOf("more") > -1)
+		{ $this.text("Show less details"); }
+		else
+		{ 
+			if($this.text().toLowerCase().indexOf("less") > -1)
+			{ $this.text("Show more details"); }
+		}
+	}
+});
+
+//change icon for resize information model
+$('.glyphicon-chevron-down').on('click', function() { $(this).toggleClass('resize'); });	
+$('.showDetailsButton').on('click', function() { $(this).toggleClass('show'); });
+$('#GPU').change(function() { gpu_right_align(); });
+
 $(document).ready(function() 
 {  
-	//Add text indent on GPU select
-	$('#addcompare').click(function(e)
-	{
-		if(gocomp)
-		{		
-			e.preventDefault();
-			e.stopPropagation();
-			addcompare();
-		}
-		else
-		{
-			window.setTimeout($('#addcompare').click(), 100);
-		}	
-		$("#howToUse").css('display', 'none');
-	});
-	 
-	$(".toggler").click(function(e){
-		e.preventDefault();
-		if($(this).attr('data-hide')=="all")
-		{
-			if(allshow)
-			{
-				$('.hide'+$(this).attr('data-hide')).slideUp(500);
-				$this=$('.toggler');
-				allshow=0; $('.glyphicon-chevron-down').removeClass('resize');
-			}
-			else
-			{  $('.hide'+$(this).attr('data-hide')).slideDown(500);	$this=$('.toggler'); allshow=1; $('.glyphicon-chevron-down').addClass('resize'); }	
-		}
-		else
-		{
-			$('.hide'+$(this).attr('data-hide')).slideToggle(500);
-			$this=$(this);
-			if($this.text().toLowerCase().indexOf("more") > -1)
-			{ $this.text("Show less details"); }
-			else
-			{ 
-				if($this.text().toLowerCase().indexOf("less") > -1)
-				{ $this.text("Show more details"); }
-			}
-		}
-	});
 	
 	$(function()
 	{
@@ -118,7 +131,22 @@ $(document).ready(function()
     $('meta[name=description]').attr('content', mprod + ' ' + mfamily + ' ' + mmodel);
 	gpu_right_align();
 
-	/*DISQUE CODE*/
+	//Laptop rating, price range, battery life affix
+	// if ($(window).width() >= 375) { $(".ptop").affix({ offset: { top: $(".modelImageContainer").outerHeight(true) + $(".modelHeader").outerHeight(true) + 170 }});}
+
+	//Affix Bootstrap 4
+	if ($(window).width() >= 375)
+	{
+		var top = $('.ptop').offset().top;
+		$(window).scroll(function (event)
+		{
+			var y = $(this).scrollTop();
+			if (y >= top) { $('.ptop').addClass('affix'); }
+			else { $('.ptop').removeClass('affix'); }
+		});
+	}
+ 
+ 	/*DISQUE CODE*/
 	/**
 	* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
 	* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
@@ -142,33 +170,4 @@ $(document).ready(function()
 			});
 		}
 	})();
-
-	//Open add to compare when you add a laptop
-	$('#addcompare').on('click', function()
-	{
-		$('.compareDropdown').css('display', 'block');
-		$('.compareDropdown ul li').addClass('open');
-		$('.compareDropdown ul li ul').slideDown();
-	});
-
-	//Laptop rating, price range, battery life affix
-	// if ($(window).width() >= 375) { $(".ptop").affix({ offset: { top: $(".modelImageContainer").outerHeight(true) + $(".modelHeader").outerHeight(true) + 170 }});}
-
-	//change icon for resize information model
-	$('.glyphicon-chevron-down').on('click', function() { $(this).toggleClass('resize'); });	
-	$('.showDetailsButton').on('click', function() { $(this).toggleClass('show'); });
-	$('#GPU').change(function() { gpu_right_align(); });
-
-	//Affix Bootstrap 4
-	if ($(window).width() >= 375)
-	{
-		var top = $('.ptop').offset().top;
-		$(window).scroll(function (event)
-		{
-			var y = $(this).scrollTop();
-			if (y >= top) { $('.ptop').addClass('affix'); }
-			else { $('.ptop').removeClass('affix'); }
-		});
-	}
- 
 });
