@@ -53,7 +53,7 @@ function isOpen()
 $('select[id$="GPU"]')
 	.mousedown( function(){ mousedown=true; comp_open=!comp_open; isOpen(); })
 	.click( function(){ if(!mousedown) { comp_open=!comp_open; isOpen(); } else{ mousedown=false; }})
-	.blur(function() { if(comp_open){ ocomp_open=!comp_open; isOpen(); }})
+	.blur(function() { if(comp_open){ comp_open=!comp_open; isOpen(); }})
 $(document).keyup(function(e){ if (e.keyCode == 27) { if(comp_open){ comp_open=!comp_open; isOpen(); }}});
 
 //Open add to compare when you add a laptop
@@ -113,8 +113,7 @@ $('.showDetailsButton').on('click', function() { $(this).toggleClass('show'); })
 $('#GPU').change(function() { gpu_right_align(); });
 
 $(document).ready(function() 
-{  
-	
+{
 	$(function()
 	{
 		$('.pics').on('click', function() 
