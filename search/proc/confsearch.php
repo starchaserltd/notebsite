@@ -46,11 +46,11 @@ foreach($comp_lists["model"] as $m)
 	
 	if($conds_model)
     { 
-		$query_search = "SELECT * FROM notebro_temp.all_conf_".$model." WHERE " . implode(" AND ", $conds_model) . " " . $orderby . " LIMIT 1"; 
+		$query_search = "SELECT * FROM `notebro_temp`.`all_conf_".$model."` WHERE " . implode(" AND ", $conds_model) . " " . $orderby . " LIMIT 1"; 
 	}
     else
 	{ 
-		$query_search = "SELECT * FROM notebro_temp.all_conf_".$model." " . $orderby . " LIMIT 1";
+		$query_search = "SELECT * FROM `notebro_temp`.`all_conf_".$model."` " . $orderby . " LIMIT 1";
 	}
 	/* DEBUGGING CODE */
 	# echo "<pre>" . var_dump($query_search) . "</pre>";
@@ -58,7 +58,7 @@ foreach($comp_lists["model"] as $m)
 	# echo "<pre>"; var_dump($query_search); echo "<br>"; echo "</pre>";
 	$result=mysqli_query($cons, $query_search);
 	
-	if($result)
+	if($result&&mysqli_num_rows($result)>0)
 	{ 
 		$result = mysqli_fetch_assoc($result); 
 
@@ -66,6 +66,14 @@ foreach($comp_lists["model"] as $m)
 	# array_push($queries, array(
 	#	"query" => $query_search,
 	#	"time" => $time_end_query - $time_start_query));
+		$query_search_pmodel="SELECT `pmodel` FROM `notebro_temp`.`m_map_table` WHERE `notebro_temp`.`m_map_table`.`model_id`=".$model." LIMIT 1";
+		$result_pmodel=mysqli_query($cons,$query_search_pmodel);
+		if($result_pmodel&&mysqli_num_rows($result_pmodel)>0)
+		{ $result_pmodel=mysqli_fetch_assoc($result_pmodel);}
+		else
+		{ $result_pmodel["pmodel"]=$model; }
+		$result["pmodel"]=$result_pmodel["pmodel"];
+		
 		if (!is_null($result)) { $results[] = $result; }
 	}
 }
@@ -94,6 +102,6 @@ usort($queries, function ($p, $q) {
      echo "<br>";
 */
 	mysqli_close($cons);
-    $sort_func($results);
+    $sort_func($results); del_duplicate_pmodel($results);
     $count = count($results);
 ?>

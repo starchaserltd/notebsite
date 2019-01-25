@@ -539,7 +539,7 @@ function submit_the_quiz()
         }
     }
 	if(ref!=null&&ref!="") { quiz_submit[i++]="ref="+ref; }
-	var neworigstring=location.href.split("?quizsearch=1")[0]+"?quizsearch=1&"+quiz_submit.join("&")+glue_string+disable_items.join("&");
+	var neworigstring=location.href.split(/[&|?]quizsearch=1/m)[0].replace("ref="+ref,"")+"?quizsearch=1&"+quiz_submit.join("&")+glue_string+disable_items.join("&"); neworigstring=neworigstring.replace("??","?");
 	history.replaceState({back : neworigstring}, 'NoteBrother' + ' quiz submit', neworigstring); currentPage = neworigstring;
     location.href=siteroot+"?search/search.php?quizsearch=1&"+quiz_submit.join("&");
     return "Quiz submission!";

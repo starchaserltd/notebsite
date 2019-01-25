@@ -34,8 +34,6 @@
 	display: flex;
 	align-self: center;
 	justify-content: center;
-	padding-right: 1px !important;
-	padding-left: 1px !important
 }
 
 
@@ -45,9 +43,7 @@ div.latest3 a {
 }
 
 .latest4 {
-	padding-left: 1px !important;
-	padding-right: 1px !important;
-	min-width: 220px
+	min-width: 220px;
 }
 
 div.latest4 a {
@@ -145,15 +141,12 @@ div.latest4 a {
 	}
 
 	.gamingTopLaptops.showMoreTop, .businessTopLaptops.showMoreTop, .ultrabooksTopLaptops.showMoreTop, .studentTopLaptops.showMoreTop {
-		max-height: 220px;
+		max-height: 800px;
 		transition: max-height 0.4s ease;
 		margin-bottom: 30px;		
 	}
 
-	.gamingTopLaptops.showMoreTop.showAllLaptops, .businessTopLaptops.showMoreTop.showAllLaptops, .ultrabooksTopLaptops.showMoreTop.showAllLaptops, .studentTopLaptops.showMoreTop.showAllLaptops {
-		max-height: 800px;
-		transition: max-height 0.4s ease;				
-	}
+	
 
 	.showMore span {
 		display: none;
@@ -222,17 +215,7 @@ div.latest4 a {
 		-ms-transform: rotate(45deg);
 		-o-transform: rotate(45deg);
 		transform: rotate(45deg);
-	}
-
-	.topLaptops .row:nth-child(6) {
-		opacity: 0.3;
-		transition: opacity 0.4s ease;
-	}
-
-	.topLaptops .showAllLaptops .row:nth-child(6) {
-		opacity: 1;
-		transition: opacity 0.4s ease;
-	}
+	}	
 
 	.topLaptopsDate {
 		text-align: left;

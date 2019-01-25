@@ -665,15 +665,10 @@ if(isset($_GET['yearsmin']) && ($_GET['yearsmin']))
 if(isset($_GET['yearsmax']) && ($_GET['yearsmax'])) 
 { $war_yearsmax = intval($_GET['yearsmax']); }
 
-$war_typewar[1] = "1"; $war_typewar[2] = "2";
+$war_typewar=[1=>"1",2=>"2",3=>"3",4=>"4"];
 
 if (isset($_GET['premiumadv']))
-{ $war_typewar[2] = "2"; $war_typewar[1]=-1; }
-if (isset($_GET['premiumadvadp']))
-{ 
-	if($war_typewar[2]=="2"){ $war_typewar[4] = "4"; $war_typewar[1]=-1; $war_typewar[2]=-1; } 
-	else { $war_typewar[3]="3"; $war_typewar[4] = "4"; $war_typewar[1]=-1; $war_typewar[2]=-1;  }
-}
+{ $war_typewar=[1=>-1,2=>"2",4=>"4"];}
 
 if($hdd_capmin)
 {

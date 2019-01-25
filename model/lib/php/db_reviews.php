@@ -1,7 +1,7 @@
 <?php
 if(!isset($nb_reviews)) { $nb_reviews=array(); } if(!isset($int_reviews)) { $int_reviews=array(); } if(!isset($nr_nb_reviews)) { $nr_nb_reviews=0; } if(!isset($nr_int_reviews)) { $nr_int_reviews=0; } 
 
-$query=mysqli_query($con,"SELECT * FROM notebro_db.REVIEWS WHERE valid=1 AND model_id = '".$idmodel."'");
+$query=mysqli_query($con,"SELECT * FROM notebro_db.REVIEWS WHERE valid=1 AND (model_id='".$idmodel."' OR model_id='".$p_model."')");
 while($review=mysqli_fetch_array($query))
 {
 	if(intval($review["notebreview"])>0)

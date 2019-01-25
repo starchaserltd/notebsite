@@ -67,27 +67,35 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 			break;
 		}
 	}
-
-	if((isset($_GET['exchange']) && is_string($_GET['exchange']))||(isset($_GET['exchadv']) && is_string($_GET['exchadv'])))
+	
+	/*GET exchange rate list*/
+	$sel2="SELECT id,convr,code,sign,ROUND(convr,5) as rconvr,regions as region,(SELECT GROUP_CONCAT(regions) as regions FROM notebro_site.exchrate) as regions FROM notebro_site.exchrate";
+	$result = mysqli_query($con,$sel2); $exchange_list=new stdClass();$region_ex=array(); $region_ex[0]="USD"; $always_model_region=false;
+	while($row=mysqli_fetch_assoc($result))
 	{
-		if(isset($_GET['exchange'])){ $excode=strtoupper(clean_string($_GET['exchange'])); }
-		if(isset($_GET['exchadv'])){ $excode=strtoupper(clean_string($_GET['exchadv'])); }
-		$sel2 = "SELECT convr,code,sign, ROUND( convr, 5 ),id FROM notebro_site.exchrate WHERE code='".$excode."' LIMIT 1";
-	}
-	else
-	{
-		$sel2 = "SELECT convr,code,sign, ROUND( convr, 5 ),id FROM notebro_site.exchrate WHERE code='USD' LIMIT 1";
+		foreach(explode(",",$row["region"]) as $el){ $el=intval($el); if(!isset($region_ex[$el])){$region_ex[$el]=$row["code"];}}
+		$exchange_list->{$row["code"]}=array("id"=>$row["id"],"convr"=>floatval($row["rconvr"]),"sign"=>$row["sign"],"region"=>$row["region"],"regions"=>$row["regions"]); 
 	}
 	
-	$result = mysqli_query($con,$sel2);
-	$value=mysqli_fetch_array($result);
-	$exch=floatval($value[0]);
+	if((isset($_GET['exchange']) && is_string($_GET['exchange']))||(isset($_GET['exchadv']) && is_string($_GET['exchadv'])))
+	{
+		if(isset($_GET['exchadv'])){ $exchcode=strtoupper(clean_string($_GET['exchadv'])); }
+		elseif(isset($_GET['exchange'])){ $exchcode=strtoupper(clean_string($_GET['exchange'])); }
+		$regional_type="region";
+	}
+	else
+	{ if(isset($_SESSION['exchcode'])){ $exchcode=$_SESSION['exchcode']; if(isset($_SESSION['regional_type'])){$regional_type=$_SESSION['regional_type'];}else{$regional_type="regions"; $always_model_region=true;} }else{$exchcode="USD"; $regional_type="regions"; $always_model_region=true;} }
+	$value=$exchange_list->{$exchcode};
+	
+	$exch=$value["convr"];
 	$exchsign=$value["sign"];
-	$exchcode=$value["code"];
+	$search_regions_array=array_unique(explode(",",$value[$regional_type]));
+	$search_regions=implode(",",$search_regions_array);
+	$_SESSION['regional_type']=$regional_type;
 	$_SESSION['exchcode']=$exchcode;
 	$_SESSION['exch']=$exch;
 	$_SESSION['exchsign']=$value["sign"];
-	$_SESSION['lang']=$value["id"];
+	$_SESSION['lang']=$value["id"]; $exch_id=$value["id"]; 
 	include_once("../etc/scripts_pages.php");
 	if($underwork==0)
 	{

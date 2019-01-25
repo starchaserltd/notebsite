@@ -7,16 +7,18 @@ require_once("../../../etc/conf.php");
 require_once("../../../etc/con_db.php");
 require_once("../../../etc/con_sdb.php");
 require_once("../php/gencompfunc.php");
-
+$buy_regions=array();
 if(isset($_SESSION['excomp']))
 {
 	$exchcode=$_SESSION['excomp']; $_SESSION['exchcode']=$exchcode;
 	$query=mysqli_query($con,"SELECT * FROM notebro_site.exchrate");
 
-	while( $row=mysqli_fetch_assoc($query))
+	while($row=mysqli_fetch_assoc($query))
 	{
+		$buy_regions=array_merge($buy_regions,explode(",",$row["regions"]));
 		if($row["code"]==$exchcode)
 		{
+			$buy_regions=$row["regions"];
 			$lang=$row["id"]; $_SESSION['lang']=$lang;
 			$exch=floatval($row["convr"]); $_SESSION['exch']=$exch;
 			$exchsign=$row["sign"]; $_SESSION['exchsign']=$exchsign;
@@ -26,12 +28,14 @@ if(isset($_SESSION['excomp']))
 	
 	if(!isset($exch))
 	{
-		$lang=0; $exchcode="USD"; $exchsign="$"; $exch=1;
+		$lang=0; $exchcode="USD"; $exchsign="$"; $exch=1; $buy_regions=implode(",",array_unique($buy_regions));
 		$_SESSION['lang']=$lang;  $_SESSION['exch']=$exch; $_SESSION['exchsign']=$exchsign; $_SESSION['exchcode']=$exchcode;
 	}
 }
 else 
 { 
+	$query=mysqli_query($con,"SELECT GROUP_CONCAT(regions) as regions FROM notebro_site.exchrate LIMIT 1");
+	$row=mysqli_fetch_assoc($query); $buy_regions=implode(",",array_unique(explode($row["regions"])));
 	if(isset($_SESSION['lang'])) { $lang=$_SESSION['lang']; } else { $lang=0; }
 	if(isset($_SESSION['exchcode'])){ $exchcode=$_SESSION['exchcode']; } else {$exchcode="USD";} 
 	if(isset($_SESSION['exchsign'])){ $exchsign=$_SESSION['exchsign']; } else {$exchsign="$";} 
@@ -68,7 +72,6 @@ for($x = 0; $x <= $nrconf; $x++)
 	<!-- HEADER CSS -->
 <?php 
 	show('notebro_db.MODEL model JOIN notebro_db.FAMILIES families on model.idfam=families.id',$conf_model ); 
-	
 	preg_match('/(.*)\.(jpg|png)/', $resu["img_1"],$img);
 	$img=$img[1];
 	$maxminvalues=bluered($rate_conf_rate,$maxminvalues,$x,"rating",0);
@@ -76,9 +79,9 @@ for($x = 0; $x <= $nrconf; $x++)
 	$maxminvalues=bluered($batlife_conf_batlife,$maxminvalues,$x,"batlife",0);
 	$model_title='<a href="javascript:void(0)" onmousedown="OpenPage('."\'model/model.php?conf=".$confid."\'".',event)"><span class="tbltitle">'.$resu['prod']." ".$resu['fam']." ".$resu['model'].$resu['mdbname']." ".$resu['submodel'].$resu['region'].'</span></a>'; $model_msc=$resu['msc'];
 	$buytext='<div class="buy resultsShopBtn"><div class="dropdown"><button id="dLabel" class="btn buyBtn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-ref="';
-	if(isset($_SESSION['java_usertag'])&&$_SESSION['java_usertag']!=""){ $buytext=$buytext.$_SESSION['java_usertag']; } else { $buytext=$buytext.'';} $buytext=$buytext.'" data-target="buylist-'.$x.'" data-idmodel="'.$conf_model.'" data-idmodel="'.$conf_model.'" data-buyregions="'.$buy_regions.'" data-lang="'.$lang.'" onclick="get_buy_list(this);"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><span class="caret"></span></button><ul class="dropdown-menu" aria-labelledby="dLabel" id="buylist-'.$x.'"><li class="loaderContainer"><span class="loader"></span></li></ul></div></div>';
+	if(isset($_SESSION['java_usertag'])&&$_SESSION['java_usertag']!=""){ $buytext=$buytext.$_SESSION['java_usertag']; } else { $buytext=$buytext.'';} $buytext=$buytext.'" data-target="buylist-'.$x.'" data-idmodel="'.$conf_model.'" data-buyregions="'.$buy_regions.'" data-lang="'.$lang.'" data-cpu="'.$cpu_conf_cpu.'" data-gpu="'.$gpu_conf_gpu.'" data-iddisplay="'.$disp_conf_display.'" data-pmodel="'.$resu["p_model"].'" onclick="get_buy_list(this);"><i class="fas fa-shopping-cart"></i><i class="fas fa-caret-down"></i></button><ul class="dropdown-menu" aria-labelledby="dLabel" id="buylist-'.$x.'"><li class="loaderContainer"><span class="loader"></span></li></ul></div></div>';
 	$vars=array(
-		'<a style="align-items:center; margin:0 auto" href="javascript:void(0)" onmousedown="OpenPage('."\'model/model.php?conf=".$confid."\'".',event)"><img src="res/img/models/thumb/t_'.$img.'.jpg" class="img-responsive comparejpg" alt="Image for '.$resu['model'].'"></a>',
+		'<a style="align-items:center; margin:0 auto" href="javascript:void(0)" onmousedown="OpenPage('."\'model/model.php?conf=".$confid."\'".',event)"><img src="res/img/models/thumb/t_'.$img.'.jpg" class="img-responsive img-fluid comparejpg" alt="Image for '.$resu['model'].'"></a>',
 		$model_title,
 		'<span class="col-sm-12 col-md-12 col-xs-12 col-lg-12 nopding"><span style="color:black; font-weight:bold;">Rating: </span><br class="brk"><span id="rating'.$x.'">'.round($rate_conf_rate/100,1)." / 100</span></span>",
 		'<span class="col-sm-12 col-md-12 col-xs-12 col-lg-12 nopding" style="color:black;"><span style="color:black; font-weight:bold;">Price: </span><br class="brk"><span id="price'.$x.'">'.$exchsign." ".round(($price_conf_price-$err_conf_err/2)*$exch,0)." - ".round(($price_conf_price+$err_conf_err/2)*$exch,0)."</span></span>",

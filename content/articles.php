@@ -47,7 +47,9 @@ $published_posts = $category->category_count;
 	<div class="row headerback" style="margin-top:5px;margin-right:0px; margin-left:0px;padding-right:0px; background-color:white;">
 	<article style="display: -webkit-box;    display: -ms-flexbox;    display: flex;    -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;-ms-flex-direction: row; flex-direction: row; -ms-flex-wrap: wrap;
-        flex-wrap: wrap;">
+        flex-wrap: wrap;" class="col-xs-12">
+        <div class="row displayFlex">
+
 <?php
 	
 	for ($x = 0; $x <= 7; $x++) 
@@ -61,31 +63,32 @@ $published_posts = $category->category_count;
 
 			if ($categorie == "Article" && $recent_posts[$x]["ID"]){
 ?>  
-		<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 displayFlex">
-			<div class="col-lg-5 col-md-4 col-sm-4 col-xs-12 centerImgFlex">	
-				<a onmousedown="OpenPage('<?php  echo $ad=str_replace($wpsite."/article.php/article/","content/article.php?/",get_permalink($recent_posts[$x]["ID"])); ?>',event);" style="cursor: pointer;" >
-					<img style="display:block; margin:15px auto;" src="<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[$x]["ID"]) )); echo $url;?>" class="img-responsive" alt="Article featured image">
-				</a>
-			</div>
-			<div class="col-md-8 col-sm-8 col-xs-12 col-lg-6" style="font-size:20px; min-width: 170px;">
-				<a onmousedown="OpenPage('<?php  echo $ad=str_replace($wpsite."/article.php/article/","content/article.php?/",get_permalink($recent_posts[$x]["ID"])); ?>',event);" style=" font-weight:bold;color:#000; text-decoration:none; cursor: pointer;">
-				<?php echo $recent_posts[$x]["post_title"];?>
-				</a>
-				<p style="font-style:italic;font-size:14px;"><?php echo "by "; echo get_userdata($recent_posts[$x]["post_author"])->display_name; echo " - "; echo date( 'd M Y', strtotime( $recent_posts[$x]["post_date"]));?></p>	
-			</div>
-			<div class="col-md-12 col-sm-12 col-xs-12 review">
-				<p>
-				<?php echo nobrackets(wp_trim_words($recent_posts[$x]["post_content"], 35, ' ....')); echo "<br>"; ?> 
-				</p>
-			<!--sfarsit descriere -->
-				<a onmousedown="OpenPage('<?php  echo $ad=str_replace($wpsite."/article.php/article/","content/article.php?/",get_permalink($recent_posts[$x]["ID"])); ?>',event);" style="cursor: pointer;" ><?php echo "Read more"; ?></a>
-			</div>						
-		</div>
-		
+		<div class="col-xs-12 col-lg-6 col-sm-6">
+			<div class="row">
+				<div class="col-lg-5 col-md-4 col-sm-6 col-xs-12 centerImgFlex">	
+					<a onmousedown="OpenPage('<?php  echo $ad=str_replace($wpsite."/article.php/article/","content/article.php?/",get_permalink($recent_posts[$x]["ID"])); ?>',event);" style="cursor: pointer;" >
+						<img style="display:block; margin:15px auto;" src="<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[$x]["ID"]) )); echo $url;?>" class="img-responsive img-fluid" alt="Article featured image">
+					</a>
+				</div>
+				<div class="col-md-8 col-sm-6 col-xs-12 col-lg-7" style="font-size:20px; min-width: 170px;">
+					<a onmousedown="OpenPage('<?php  echo $ad=str_replace($wpsite."/article.php/article/","content/article.php?/",get_permalink($recent_posts[$x]["ID"])); ?>',event);" style=" font-weight:bold;color:#000; text-decoration:none; cursor: pointer;">
+					<?php echo $recent_posts[$x]["post_title"];?>
+					</a>
+					<p style="font-style:italic;font-size:14px;"><?php echo "by "; echo get_userdata($recent_posts[$x]["post_author"])->display_name; echo " - "; echo date( 'd M Y', strtotime( $recent_posts[$x]["post_date"]));?></p>	
+				</div>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 review">
+					<p>
+					<?php echo nobrackets(wp_trim_words($recent_posts[$x]["post_content"], 35, ' ....')); echo "<br>"; ?> 
+					</p>
+				<!--sfarsit descriere -->
+					<a onmousedown="OpenPage('<?php  echo $ad=str_replace($wpsite."/article.php/article/","content/article.php?/",get_permalink($recent_posts[$x]["ID"])); ?>',event);" style="cursor: pointer;" ><?php echo "Read more"; ?></a>
+				</div>		
+			</div>				
+		 </div>		
 	<?php }else {} 
 		} 
 	}?>		
-							
+		</div>					
 	<?php
 		//PAGINATION CODE START
 		function get_post_count($cat) {
@@ -110,16 +113,16 @@ $published_posts = $category->category_count;
 	?>
 		<div class="col-md-12">
 			<ul class="pagination" style="float:right;">
-			<li><a onmousedown="OpenPage('content/articles.php?page=1',event);" style="cursor: pointer; color:#000;" >&lt;&lt;</a></li>
-			<li><a onmousedown="OpenPage('content/articles.php?page=<?php  $newpage=$page-1; if($newpage<1) {$newpage=1; } echo $newpage;?>',event);" style="color:#000; cursor: pointer;">&lt;</a></li>
+			<li class="page-item"><a class="page-link" onmousedown="OpenPage('content/articles.php?page=1',event);" style="cursor: pointer; color:#000;" >&lt;&lt;</a></li>
+			<li class="page-item"><a class="page-link"  onmousedown="OpenPage('content/articles.php?page=<?php  $newpage=$page-1; if($newpage<1) {$newpage=1; } echo $newpage;?>',event);" style="color:#000; cursor: pointer;">&lt;</a></li>
 	<?php		
 		if($count<5)
 		{  
 			for($i=1;$i<=$count;$i++)
 			{
-				if($i == $page) { echo '<li><a onmousedown="OpenPage('."'".'content/articles.php?page='.$i."'".',event);" style="color:#000; cursor: pointer;"><b>'.$i.'</b></a></li>'; }
+				if($i == $page) { echo '<li  class="page-item"><a class="page-link" onmousedown="OpenPage('."'".'content/articles.php?page='.$i."'".',event);" style="color:#000; cursor: pointer;"><b>'.$i.'</b></a></li>'; }
 					else 
-				{ echo '<li><a onmousedown="OpenPage('."'".'content/articles.php?page='.$i."'".',event);" style="color:#000; cursor: pointer;">'.$i.'</a></li>'; }
+				{ echo '<li class="page-item"><a class="page-link" onmousedown="OpenPage('."'".'content/articles.php?page='.$i."'".',event);" style="color:#000; cursor: pointer;">'.$i.'</a></li>'; }
 			}
 		}
 		else
@@ -135,15 +138,15 @@ $published_posts = $category->category_count;
 	
 			for($i=$min;$i<=$limit;$i++)
 			{ 
-				if($i == $page) { echo '<li><a onmousedown="OpenPage('."'".'content/articles.php?page='.$i."'".',event);" style="color:#000; cursor: pointer;"><b>'.$i.'</b></a></li>'; }
+				if($i == $page) { echo '<li  class="page-item"><a class="page-link" onmousedown="OpenPage('."'".'content/articles.php?page='.$i."'".',event);" style="color:#000; cursor: pointer;"><b>'.$i.'</b></a></li>'; }
 				else 
-				{ echo '<li><a onmousedown="OpenPage('."'".'content/articles.php?page='.$i."'".',event);" style="color:#000; cursor: pointer;">'.$i.'</a></li>'; }
+				{ echo '<li  class="page-item"><a class="page-link" onmousedown="OpenPage('."'".'content/articles.php?page='.$i."'".',event);" style="color:#000; cursor: pointer;">'.$i.'</a></li>'; }
 			}
 	
 		}
 	?>			
-			<li><a onmousedown="OpenPage('content/articles.php?page=<?php  $newpage=$page+11; if($newpage>$count) {$newpage=$count; } echo $newpage;?>',event);"  style="color:#000; cursor: pointer;">></a></li>
-			<li><a onmousedown="OpenPage('content/articles.php?page=<?php echo $count; ?>',event);" style="color:#000; cursor: pointer;" >>></a></li>
+			<li  class="page-item"><a class="page-link" onmousedown="OpenPage('content/articles.php?page=<?php  $newpage=$page+11; if($newpage>$count) {$newpage=$count; } echo $newpage;?>',event);"  style="color:#000; cursor: pointer;">></a></li>
+			<li  class="page-item"><a class="page-link" onmousedown="OpenPage('content/articles.php?page=<?php echo $count; ?>',event);" style="color:#000; cursor: pointer;" >>></a></li>
 			</ul>
 		</div>
 	<?php //PAGINATION CODE END ?>
@@ -156,5 +159,5 @@ $published_posts = $category->category_count;
 		$('meta[name=description]').attr('content', "Laptop articles. Video cards: features and gimmicks (2016), System memory: the basics.");
 	});
 </script>
-<link rel="stylesheet" href="content/lib/css/article.css?v=0.2" type="text/css" />
+<link rel="stylesheet" href="content/lib/css/article.css?v=0.5" type="text/css" />
 <?php include_once("../etc/scripts_pages.php"); ?>

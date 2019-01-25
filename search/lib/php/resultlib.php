@@ -75,17 +75,17 @@ function showsist($col, $tab, $id)
 
 function getdetails($id)
 {
-	$result = mysqli_query($GLOBALS['con'], "SELECT model.img_1,model.prod, families.fam, families.subfam, families.showsubfam, model.model,model.submodel,model.regions FROM notebro_db.MODEL model JOIN notebro_db.FAMILIES families on model.idfam=families.id WHERE model.id = '".$id."'"); 
+	$result = mysqli_query($GLOBALS['con'], "SELECT model.img_1,model.prod, families.fam, families.subfam, families.showsubfam, model.model,model.submodel,model.regions,model.p_model FROM notebro_db.MODEL model JOIN notebro_db.FAMILIES families on model.idfam=families.id WHERE model.id = '".$id."'"); 
 	$item = mysqli_fetch_array($result);
 	
-	global $img; global $prod; global $fam; global $submodel; global $model; global $t_img; global $region_m_id; global $buy_regions;
+	global $img; global $prod; global $fam; global $submodel; global $model; global $t_img; global $region_m_id; global $buy_regions; global $p_model;
 	$img=""; $prod=""; $fam=""; $submodel=""; $model=""; $t_img=""; $region_m_id=""; $buy_regions="";
 	$img=$item['img_1'];
 	$t_imgpart=explode(".",$img);
 	$t_img="t_".$t_imgpart[0].".jpg";
 	$prod=$item['prod'];
 	if(intval($item['showsubfam'])==1){ $fam=$item['fam']." ".$item['subfam']; } else {  $fam=$item['fam']; }
-	$model=$item['model']; $buy_regions=$item['regions'];
+	$model=$item['model']; $p_model=$item['p_model'];
 	$region_m_id=intval(explode(",",$item['regions'])[0]);
 	if(isset($item['submodel'])){ $submodel=$item['submodel']; if(strlen($submodel)>6 && !preg_match("/\(.*\)/",$submodel) && stripos($prod,"apple")===FALSE){ $submodel=substr($submodel,0,6)."."; } } 
 }

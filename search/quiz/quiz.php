@@ -33,119 +33,127 @@
 	<div class="mainquiz" id="mainquiz">
 		<div class="row qtable" align="center" id="icontable">
 			<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" id="quizr1" style="display: block;">
-				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
-					<div class="iconel" id="opt1"  onclick="">
-						<div id="opt1img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="option1">
-							<svg id="opt1chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
-							<img class="img-responsive ieCheckmark" src="<?php echo $quiz_css_addr.'res/img/icons/checkmark.svg';?>" alt="checkmark"/>
-						</div>											
-						<span class="icontext" id="opt1txt"><br></span>
-					</div>
-				</div>
-				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
-					<div class="iconel" id="opt2"  onclick="">
-						<div id="opt2img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="option2">
-							<svg id="opt2chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
-							<img class="img-responsive ieCheckmark" src="<?php echo $quiz_css_addr.'res/img/icons/checkmark.svg';?>" alt="checkmark"/>
+				<div class="row">
+					<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4 col-4">
+						<div class="iconel" id="opt1"  onclick="">
+							<div id="opt1img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="option1">
+								<svg id="opt1chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+								<img class="img-responsive ieCheckmark" src="<?php echo $quiz_css_addr.'res/img/icons/checkmark.svg';?>" alt="checkmark"/>
+							</div>											
+							<span class="icontext" id="opt1txt"><br></span>
 						</div>
-						<span class="icontext"  id="opt2txt"><br></span>						
 					</div>
-				</div>
-				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
-					<div class="iconel" id="opt3" style="" onclick="">
-						<div id="opt3img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="option3">
-							<svg id="opt3chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
-							<img class="img-responsive ieCheckmark" src="<?php echo $quiz_css_addr.'res/img/icons/checkmark.svg';?>" alt="checkmark"/>
+					<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4 col-4">
+						<div class="iconel" id="opt2"  onclick="">
+							<div id="opt2img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="option2">
+								<svg id="opt2chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+								<img class="img-responsive ieCheckmark" src="<?php echo $quiz_css_addr.'res/img/icons/checkmark.svg';?>" alt="checkmark"/>
+							</div>
+							<span class="icontext"  id="opt2txt"><br></span>						
 						</div>
-						<span class="icontext" id="opt3txt"><br></span>						
 					</div>
-				</div>
+					<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4 col-4">
+						<div class="iconel" id="opt3" style="" onclick="">
+							<div id="opt3img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="option3">
+								<svg id="opt3chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+								<img class="img-responsive ieCheckmark" src="<?php echo $quiz_css_addr.'res/img/icons/checkmark.svg';?>" alt="checkmark"/>
+							</div>
+							<span class="icontext" id="opt3txt"><br></span>						
+						</div>
+					</div>
+				</div><!-- end row-->			
 			</div>
 			<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" id="quizr2" style="display: none;">
-				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
-					<div class="iconel" id="opt4"  onclick="">
-						<div id="opt4img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="option4">
-							<svg id="opt4chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
-							<img class="img-responsive ieCheckmark" src="<?php echo $quiz_css_addr.'res/img/icons/checkmark.svg';?>" alt="checkmark"/>
+				<div class="row">
+					<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4 col-4">
+						<div class="iconel" id="opt4"  onclick="">
+							<div id="opt4img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="option4">
+								<svg id="opt4chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+								<img class="img-responsive ieCheckmark" src="<?php echo $quiz_css_addr.'res/img/icons/checkmark.svg';?>" alt="checkmark"/>
+							</div>
+							<span class="icontext"  id="opt4txt"><br></span>						
 						</div>
-						<span class="icontext"  id="opt4txt"><br></span>						
 					</div>
-				</div>
-				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
-					<div class="iconel" id="opt5" onclick="">
-						<div id="opt5img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="option5">
-							<svg id="opt5chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
-							<img class="img-responsive ieCheckmark" src="<?php echo $quiz_css_addr.'res/img/icons/checkmark.svg';?>" alt="checkmark"/>
+					<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4 col-4">
+						<div class="iconel" id="opt5" onclick="">
+							<div id="opt5img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="option5">
+								<svg id="opt5chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+								<img class="img-responsive ieCheckmark" src="<?php echo $quiz_css_addr.'res/img/icons/checkmark.svg';?>" alt="checkmark"/>
+							</div>
+							<span class="icontext" id="opt5txt"><br></span>						
 						</div>
-						<span class="icontext" id="opt5txt"><br></span>						
 					</div>
-				</div>
-				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
-					<div class="iconel" id="opt6" style="" onclick="">
-						<div id="opt6img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="option6">
-							<svg id="opt6chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
-							<img class="img-responsive ieCheckmark" src="<?php echo $quiz_css_addr.'res/img/icons/checkmark.svg';?>" alt="checkmark"/>
+					<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4 col-4">
+						<div class="iconel" id="opt6" style="" onclick="">
+							<div id="opt6img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="option6">
+								<svg id="opt6chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+								<img class="img-responsive ieCheckmark" src="<?php echo $quiz_css_addr.'res/img/icons/checkmark.svg';?>" alt="checkmark"/>
+							</div>
+							<span class="icontext" id="opt6txt"><br></span>						
 						</div>
-						<span class="icontext" id="opt6txt"><br></span>						
 					</div>
-				</div>
+				</div><!-- end row-->			
 			</div>
 		</div>
 		<div id="quiz_noresults" style="display: none;"><div style="font-size:14pt;"><p class="noresultsFirstParagraph"><strong>Oups!</strong> Looks like there are currently no laptops on the market<br> with your selected features!</p><br><br><p class="noresultsSecondParagraph">Try to <strong>change or remove</strong> some of your selected options before returning to this step.</p></div></div>
 		<div id="extraopt" class="shadow hidel">
 		<div class="row" align="center" id="icontable">
 			<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" style="display: block; border-top:8px solid; border-color: transparent;">
-				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
-					<div class="extraiconel" id="extraopt1"  onclick="">
-						<div id="extraopt1img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="extraoption1">
-							<svg id="extraopt1chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
-							<img class="img-responsive ieCheckmark" src="<?php echo $quiz_css_addr.'res/img/icons/checkmark.svg';?>" alt="checkmark"/>
+				<div class="row">
+					<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4 col-4">
+						<div class="extraiconel" id="extraopt1"  onclick="">
+							<div id="extraopt1img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="extraoption1">
+								<svg id="extraopt1chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+								<img class="img-responsive ieCheckmark" src="<?php echo $quiz_css_addr.'res/img/icons/checkmark.svg';?>" alt="checkmark"/>
+							</div>
+							<span class="icontext" id="extraopt1txt"><br></span>						
 						</div>
-						<span class="icontext" id="extraopt1txt"><br></span>						
 					</div>
-				</div>
-				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
-					<div class="extraiconel" id="extraopt2"  onclick="">
-						<div id="extraopt2img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="extraoption2"><svg id="extraopt2chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
-							<img class="img-responsive ieCheckmark" src="<?php echo $quiz_css_addr.'res/img/icons/checkmark.svg';?>" alt="checkmark"/>
-						</div>						
-						<span class="icontext"  id="extraopt2txt"><br></span>						
-					</div>
-				</div>
-				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
-					<div class="extraiconel" id="extraopt3" style="" onclick="">
-						<div id="extraopt3img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="extraoption3"><svg id="extraopt3chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
-							<img class="img-responsive ieCheckmark" src="<?php echo $quiz_css_addr.'res/img/icons/checkmark.svg';?>" alt="checkmark"/>
+					<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4 col-4">
+						<div class="extraiconel" id="extraopt2"  onclick="">
+							<div id="extraopt2img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="extraoption2"><svg id="extraopt2chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+								<img class="img-responsive ieCheckmark" src="<?php echo $quiz_css_addr.'res/img/icons/checkmark.svg';?>" alt="checkmark"/>
+							</div>						
+							<span class="icontext"  id="extraopt2txt"><br></span>						
 						</div>
-						<span class="icontext" id="extraopt3txt"><br></span>						
 					</div>
-				</div>
+					<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4 col-4">
+						<div class="extraiconel" id="extraopt3" style="" onclick="">
+							<div id="extraopt3img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="extraoption3"><svg id="extraopt3chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+								<img class="img-responsive ieCheckmark" src="<?php echo $quiz_css_addr.'res/img/icons/checkmark.svg';?>" alt="checkmark"/>
+							</div>
+							<span class="icontext" id="extraopt3txt"><br></span>						
+						</div>
+					</div>
+				</div><!-- end row-->				
 			</div>
 			<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" style="display: block;">
-				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
-					<div class="extraiconel" id="extraopt4"  onclick="">
-						<div id="extraopt4img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="extraoption4"><svg id="extraopt4chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
-							<img class="img-responsive ieCheckmark" src="<?php echo $quiz_css_addr.'res/img/icons/checkmark.svg';?>" alt="checkmark"/>
+				<div class="row">
+					<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4 col-4">
+						<div class="extraiconel" id="extraopt4"  onclick="">
+							<div id="extraopt4img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="extraoption4"><svg id="extraopt4chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+								<img class="img-responsive ieCheckmark" src="<?php echo $quiz_css_addr.'res/img/icons/checkmark.svg';?>" alt="checkmark"/>
+							</div>
+							<span class="icontext"  id="extraopt4txt"><br></span>						
 						</div>
-						<span class="icontext"  id="extraopt4txt"><br></span>						
 					</div>
-				</div>
-				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
-					<div class="extraiconel" id="extraopt5"  onclick="">
-						<div id="extraopt5img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="extraoption5"><svg id="extraopt5chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
-							<img class="img-responsive ieCheckmark" src="<?php echo $quiz_css_addr.'res/img/icons/checkmark.svg';?>" alt="checkmark"/>
+					<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4 col-4">
+						<div class="extraiconel" id="extraopt5"  onclick="">
+							<div id="extraopt5img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="extraoption5"><svg id="extraopt5chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+								<img class="img-responsive ieCheckmark" src="<?php echo $quiz_css_addr.'res/img/icons/checkmark.svg';?>" alt="checkmark"/>
+							</div>
+							<span class="icontext" id="extraopt5txt"><br></span>						
 						</div>
-						<span class="icontext" id="extraopt5txt"><br></span>						
 					</div>
-				</div>
-				<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">
-					<div class="extraiconel" id="extraopt6"  onclick="">
-						<div id="extraopt6img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="extraoption6"><svg id="extraopt6chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
-							<img class="img-responsive ieCheckmark" src="<?php echo $quiz_css_addr.'res/img/icons/checkmark.svg';?>" alt="checkmark"/>
+					<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4 col-4">
+						<div class="extraiconel" id="extraopt6"  onclick="">
+							<div id="extraopt6img" class="iconcircle hoverblue" style="padding: 13px;"><img class="img-responsive iconimg" src="" alt="extraoption6"><svg id="extraopt6chk" class="checkmark" style="" viewBox="0 0 52 52"><circle class="checkmark__circle" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+								<img class="img-responsive ieCheckmark" src="<?php echo $quiz_css_addr.'res/img/icons/checkmark.svg';?>" alt="checkmark"/>
+							</div>
+							<span class="icontext" id="extraopt6txt"><br></span>						
 						</div>
-						<span class="icontext" id="extraopt6txt"><br></span>						
 					</div>
-				</div>
+				</div>	<!-- end row-->		
 			</div>
 		</div>
 		<div class="column">
@@ -155,9 +163,9 @@
 		</div>
 	</div>
 	<div class="footer_quiz">
-		<span class="glyphicon glyphicon-arrow-left arrows1" onclick="makePage(currentp-1);"></span>
+		<span class="glyphicon glyphicon-arrow-left fas fa-arrow-left arrows1" onclick="makePage(currentp-1);"></span>
 		<span class="nrcircle nrcircleactive"></span><span class="nrcircle"></span><span class="nrcircle"></span><span class="nrcircle"></span><span class="nrcircle"></span></span><span class="nrcircle"></span>
-		<span class="glyphicon glyphicon-arrow-right arrows #quiza" style="display:none;" onclick="makePage(currentp+1);">			
+		<span class="glyphicon glyphicon-arrow-right fas fa-arrow-right arrows #quiza" style="display:none;" onclick="makePage(currentp+1);">			
 			<span class="next-text">
 				<p><span>Next</span><span class="hidden-xs visible-sm visible-md visible-lg">Question</span></p>	
 				<span class="nextTextTail"></span>		

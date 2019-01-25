@@ -12,8 +12,9 @@ require_once("etc/conf.php");
 		<meta name="keywords" content="find,cheap,best,laptop,notebook,gaming,ultraportable,business">
 		<meta name="author" content="Starchaser">	
 		<!-- JavaScript libraries -->   
-		<script type="text/javascript" src="lib/js/jquery.min.js"></script> 		
-		<script type="text/javascript" src="lib/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="lib/js/jquery.min.js"></script> 	
+		<script src="lib/js/popper.min.js"></script>	
+		<script src="lib/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="lib/js/select2.min.js"></script>
 		<script type="text/javascript" src="lib/js/classList.min.js"></script>
 		<!-- Bootstrap Mutliselect JavaScript -->
@@ -27,53 +28,58 @@ require_once("etc/conf.php");
 		</style>
 	</head>
 	<body>
-	<div class="container-fluid headerback" style="height:100%;">
-		<div class="row containerContentIndex" style="height:100%;">
+	<div class="container-fluid headerback">
+		<div class="row containerContentIndex">
 			<!-- upper buttons desktop -->
-			<div class="navigation">	
-				<div class="col-md-10 col-xs-12 col-sm-12" style="padding:0px; float:left; position:relative;">
-					<div class="btn-group-justified btn-group siteMenu">
-						<h1 class="btn blue logonb lognb"  onmousedown="OpenPage('content/home.php',event);">Looking for a laptop? Search, compare or use our quiz to find the laptop for you with Noteb search engine.</h1>
-						<a class="btn btn-sus blue" onmousedown="OpenPage('search/adv_search.php',event);">SEARCH</a>
-						<a class="btn btn-sus blue" onmousedown="OpenPage('content/articles.php',event);">ARTICLES</a>
-						<a class="btn btn-sus blue" onmousedown="OpenPage('content/reviews.php',event);">REVIEWS</a>
-					</div>
-				</div>		
-				<!-- right area -->
-				<div class="col-md-2 col-lg-2" style="padding:0px"><!-- min-height:134px;-->
-					<div class="hidden-sm hidden-xs col-md-12 col-lg-12" style="padding:0px;">			
-						<div id="usermenu" class="btn-group dropdown">
-							<button disabled class="blue dropbtn helpus"><span class="helpimg">Review</span></button>
-							<div class="dropdown-content">
-								<a class="addrev" onmousedown="OpenPage('public/ireviews.php',event);">Add laptop review</a>
-								<a class="addrev" onmousedown="OpenPage('public/api.php',event);">API</a>
+			<div class="navigation col-lg-12 col-sm-12 col-md-12 col-xs-12">	
+				<div class="row">
+					<div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" style="padding:0px; float:left; position:relative;">
+						<div class="btn-group-justified btn-group siteMenu d-flex justify-content-around">
+							<h1 class="btn blue logonb lognb menuItems"  onmousedown="OpenPage('content/home.php',event);">Looking for a laptop? Search, compare or use our quiz to find the laptop for you with Noteb search engine.</h1>
+							<a class="btn btn-sus blue menuItems" onmousedown="OpenPage('search/adv_search.php',event);">SEARCH</a>
+							<a class="btn btn-sus blue menuItems" onmousedown="OpenPage('content/articles.php',event);">ARTICLES</a>
+							<a class="btn btn-sus blue menuItems" onmousedown="OpenPage('content/reviews.php',event);">REVIEWS</a>
+							<div class="d-md-block d-none menuItems" style="padding:0px;">			
+								<div id="usermenu" class="btn-group dropdown">
+									<button disabled class="blue dropbtn helpus"><span class="helpimg">Review</span></button>
+									<div class="dropdown-content">
+										<a class="addrev" onmousedown="OpenPage('public/ireviews.php',event);">Add laptop review</a>
+										<a class="addrev" onmousedown="OpenPage('public/api.php',event);">API</a>
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
+					</div>	
+					<div class="col-md-2 col-lg-2 col-sm-2 col-xs-12" style="padding:0px"><!-- min-height:134px;-->
+						
+					</div>	
 				</div>
+				
+				<!-- right area -->
+			
 			</div>
 
 			<!-- left area -->	
 			<script type="text/javascript" src="libnb/js/compjsf.js" ></script><!-- compare list functions -->		
-			<div class="col-md-2 col-xs-12 col-sm-12 firstContainer">		
-				<div class="col-md-12 col-xs-12 cod-sm-12 col-lg-12 searchDetailsFirstContainer" style="padding:5px">
-						<form action="javascript:void(0);" method="post" id="modelfind" style="text-align: -webkit-center;">		
-							<select class="modelsearch js-example-responsive" id="model_id" name ="model_id" data-placeholder="Search a laptop model" data-initvalue="search for a model"  style="width: 100%; margin:5px 0px 10px 0px; border-radius:1px;"> 
-							</select>
-						</form>
-				</div>
+			<div class="col-lg-2 col-md-3 col-xs-12 col-sm-12 firstContainer">		
+				<div class="row">
+					<div class="col-md-12 col-xs-12 cod-sm-12 col-lg-12 searchDetailsFirstContainer">
+							<form action="javascript:void(0);" method="post" id="modelfind" style="text-align: -webkit-center;">		
+								<select class="modelsearch js-example-responsive" id="model_id" name ="model_id" data-placeholder="Search a laptop model" data-initvalue="search for a model"  style="width: 100%; margin:5px 0px 10px 0px; border-radius:1px;"> 
+								</select>
+							</form>
+					</div>
+				
 				<!-- left area -->
 				
 				<!-- simple search -->		
-				<div class="clearfix"></div>
-				<div class="navbar-header">
-					<span class="navbar-brand">Menu</span>
-					<button type="button" class="navbar-toggle navbarToggleMenu">
-						  <span class="sr-only">Menu</span>
-						  <span class="icon-bar"></span>
-						  <span class="icon-bar"></span>
-						  <span class="icon-bar"></span>			      
-					</button>
+				
+				<div class="navbar-header col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<span class="navbar-brand">Menu<i class="fas fa-bars"></i></span>							
+						</div>
+					</div>					
 				</div>
 				<nav class="navbar-collapse" role="navigation">	
 					<div class="col-md-12 col-xs-12 col-sm-12 blue cssmenu" style="padding:0px">
@@ -125,33 +131,33 @@ require_once("etc/conf.php");
 					 </div>					
 					<div class="col-md-12 col-xs-12 col-sm-12 blue cssmenu compareDropdown" style="padding:0px">
 						<ul>				
-							<li class='has-sub'><a >Compare</a>
+							<li class='has-sub'><a style="color: #fff;">Compare</a>
 								<ul style="background-color: white;">
-									<li>
-										<table class="table" id="comparelist" style="margin-bottom:2px;">
-											<tbody>
-												<tr id="toptrcomp"><td colspan="1" style="text-align:center; background:#FFF; font-weight:600"></td></tr>
-												<!-- GENERATING COMPARE LIST FROM SESSION -->
-												<?php include("libnb/php/complist.php"); ?>
-											</tbody>
-										</table>
-									</li>
+									<table class="table" id="comparelist" style="margin-bottom:2px;">
+										<tbody>
+											<tr id="toptrcomp"><td colspan="1" style="text-align:center; background:#FFF; font-weight:600"></td></tr>
+											<!-- GENERATING COMPARE LIST FROM SESSION -->
+											<?php include("libnb/php/complist.php"); ?>
+										</tbody>
+									</table>
 								</ul>								
 							</li>
 						</ul>
 					</div>	
 				</nav>
-				<!-- end left menu--> 					
+				<!-- end left menu--> 		
+				</div>			
 			</div>
+		
 			<!-- end left area-->
 			
 			<!-- main content -->
-			<div class="col-md-8 col-sm-12 col-xs-12 container" style="border-left:1px solid #ddd;padding:3px;" id="content">
+			<div class="col-md-7 col-sm-12 col-xs-12 col-lg-8" style="border-left:1px solid #ddd;" id="content">
 				Loading main content.... Please wait.<br>
 				This website requires modern browsers, it will not work on IE 9.0 or earlier.	
 			</div>
 			<!-- loading animation -->
-			<div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12 loadingdiv" id="loadingNB">
+			<div class="col-md-7 offset-md-2 col-sm-12 col-xs-12 loadingdiv col-lg-8" id="loadingNB">
 				<div class="loadingdivsec"  id="loadingNoteB">
 					<div id="loadingNoteB_1" class="loadingNoteB"></div>
 					<div id="loadingNoteB_2" class="loadingNoteB"></div>
@@ -164,14 +170,14 @@ require_once("etc/conf.php");
 				</div>
 			</div>
 			<!-- Back to Top Button -->
-			<span id="top-link-block" class="hidden">
-				<a href="#top" style="color:#fff; text-decoration:none;" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
-					<i class="glyphicon glyphicon-chevron-up"></i><span class="backTop">Back to Top</span>
+			<span id="back-to-top">
+				<a href="#top" style="color:#fff; text-decoration:none; z-index: 99;" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+					<i class="glyphicon glyphicon-chevron-up fas fa-angle-up"></i><span class="backTop">Back to Top</span>				
 				</a>
 			</span><!-- /top-link-block -->
 			<div class="howToUse" id="howToUse">
-				<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-				<p><span class="tutorialClick hiddenMobile" onclick="OpenPage('footer/howto.php',event);">If you are new to Noteb.com <span>click here</span> for a short tutorial.</span><span class="tutorialClick displayMobile"  onclick="OpenPage('footer/howto.php',event);">How to use Noteb.</p>
+				<span class="glyphicon glyphicon-remove fas fa-times" aria-hidden="true"></span>							
+				<p><span class="tutorialClick hiddenMobile" onclick="OpenPage('footer/howto.php',event);">If you are new to Noteb.com <span>click here</span> for a short tutorial.</span><span class="tutorialClick displayMobile"  onclick="OpenPage('footer/howto.php',event);">How to use Noteb.</span></p>
 			</div>
 			<!-- end main content -->
 			<!--left promotional space-->
@@ -184,8 +190,8 @@ require_once("etc/conf.php");
 		<!-- end footer-->
 			
 		<!-- CSS FOR INDEX -->
-		<link rel="stylesheet" href="lib/css/bootstrap.min.css" type="text/css" />
-		<link rel="stylesheet" href="lib/css/bootstrap-theme.min.css" type="text/css" />
+		<link rel="stylesheet" href="lib/css/bootstrap.min.css" crossorigin="anonymous">
+		<link rel="stylesheet" href="lib/fonts/fontawesome/css/all.min.css" crossorigin="anonymous">
 		<link rel="stylesheet" href="lib/css/select2.min.css" type="text/css" /> 
 		<link rel="stylesheet" href="lib/css/bootstrap-multiselect.css" type="text/css" />
 		<!-- for multiselect forms -->  
@@ -202,7 +208,6 @@ require_once("etc/conf.php");
 		<link rel="stylesheet" href="libnb/css/loading.css" type="text/css" />	
 		<!--Lightbox css	-->
 		<link rel="stylesheet" href="lib/css/lightbox.min.css" type="text/css"/>
-
 		<!-- Custom Theme JavaScript -->
 		<script><?php echo 'var siteroot = "'.$web_address.'";'; ?></script>
 		<script type="text/javascript" src="libnb/js/tooltip.js" async></script>

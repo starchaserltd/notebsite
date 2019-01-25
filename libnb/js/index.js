@@ -9,7 +9,7 @@ var disqusloaded = 1;
 var urlold = ""; var searchurl="";
 var hh = 1;
 var ismobile = 0; var global_sort_search="value"; var global_sort_browse="value";
-var currentPage = window.location.href; var ref=null;
+var currentPage = window.location.href; var ref=null; var all_requests=[]; var model_label_animation=function(){}; var model_bat_animation=function(){};
 
 function locationHashChanged(pagetopen) {
     if (trigger){
@@ -88,6 +88,7 @@ function urlrequest(url, e, dontpush) {
 
 //Function for main content area
 function OpenPage(url, e, dontpush) {
+	for(var i in all_requests){ all_requests[i].abort();} all_requests=[]; clearTimeout(model_label_animation);
 	url=set_adv_search(url,"",0);
 	if(url.indexOf("search.php")>0&&url.indexOf("sort_by")<0&&url.indexOf("adv_search")<0){if(url.indexOf("browse_by")>0){url=url+"&sort_by="+global_sort_browse;}else{url=url+"&sort_by="+global_sort_search;}}
 	if(url.indexOf("ref=")<0){ if(ref!=null&&ref!="") { if(url.indexOf("?")>=0){ url=url+"&ref="+ref;}else { url=url+"?ref="+ref; } } }
@@ -169,10 +170,10 @@ $(document).ready(function() {
 	if(history.state!==null && history.state["back"]!==undefined){ window.location.href=history.state["back"]; }
    
    //Load main content area
-   if (!(window.location.href.split('?')[1])) 
-   {
-     currentpage = "content/home.php";
-    } else {
+	if (!(window.location.href.split('?')[1])) 
+	{ currentpage = "content/home.php"; }
+	else
+	{
         var urlParts = window.location.href.split('?');
         var currentpage = urlParts.slice(1).join('?');
     }
@@ -521,25 +522,54 @@ function mail_to(email){ window.location.href = "mailto:"+email+"@starchaser.ro"
 
 function get_buy_list(el)
 {
-	if (el.dataset.target === "")	{ return; }
-	else 
+	setTimeout(function()
 	{
-		if (window.XMLHttpRequest)	{ var	xmlhttp = new XMLHttpRequest(); }
-		
-		xmlhttp.onreadystatechange = function() 
-		{
-			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+		if(el.getAttribute("aria-expanded")==="true")
+		{		
+			if (el.dataset.target === "")	{ return; }
+			else 
 			{
-				document.getElementById(el.dataset.target).innerHTML = xmlhttp.responseText;
+				if (window.XMLHttpRequest)	{ var	xmlhttp = new XMLHttpRequest(); }
+				
+				xmlhttp.onreadystatechange = function() 
+				{
+					if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+					{
+						document.getElementById(el.dataset.target).innerHTML = xmlhttp.responseText;
+					}
+				}
+				xmlhttp.open("POST","model/lib/php/buy_list.php",true);
+				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				xmlhttp.send('idmodel='+el.dataset.idmodel+'&buyregions='+el.dataset.buyregions+'&lang='+el.dataset.lang+'&usertag='+el.dataset.ref+'&price='+el.dataset.price+'&cpu='+el.dataset.cpu+'&gpu='+el.dataset.gpu+'&display='+el.dataset.iddisplay+'&pmodel='+el.dataset.pmodel);
 			}
 		}
-		xmlhttp.open("POST","model/lib/php/buy_list.php",true);
-		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		xmlhttp.send('idmodel='+el.dataset.idmodel+'&buyregions='+el.dataset.buyregions+'&lang='+el.dataset.lang+'&usertag='+el.dataset.ref+'&price='+el.dataset.price);
-	}
+	},5);
 }
 
 function set_adv_search(pagetoopen,headpart,back)
 { if(pagetoopen.indexOf("adv_search.php")>=0 && searchurl.indexOf("advsearch=1")>=0 && pagetoopen.indexOf("advsearch=1")<0) { if(pagetoopen.indexOf("s_memmin")<0&&pagetoopen.indexOf("quizsearch")<0&&pagetoopen.indexOf("browse_by")<0){ if(pagetoopen.indexOf("reset=1")<0||back){ pagetoopen=headpart+"search/adv_search.php?"+searchurl;}else{pagetoopen=headpart+"search/adv_search.php?reset=1"; searchurl="";}}} return pagetoopen; }
 
 function remove_popup() { $("#howToUse").addClass("howToUseNone"); var timeout=setTimeout(function() { $("#howToUse").css('display', 'none'); }, 1500); }
+
+//back top function
+if ($('#back-to-top').length) {
+    var scrollTrigger = 100, // px
+        backToTop = function () {
+            var scrollTop = $(window).scrollTop();
+            if (scrollTop > scrollTrigger) {
+                $('#back-to-top').addClass('show');
+            } else {
+                $('#back-to-top').removeClass('show');
+            }
+        };
+    backToTop();
+    $(window).on('scroll', function () {
+        backToTop();
+    });
+    $('#back-to-top').on('click', function (e) {
+        e.preventDefault();
+        $('html,body').animate({
+            scrollTop: 0
+        }, 700);
+    });
+}

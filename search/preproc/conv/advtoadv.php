@@ -195,7 +195,6 @@
 
 	if(isset($_GET['bluetooth']) && $_GET['bluetooth'] == "on") {$btcheck = "checked"; $wnet_bluetooth = "1";} else {$wnet_bluetooth = "2";}
 	if(isset($_GET['premiumadv']) && $_GET['premiumadv'] == "on") {$nbdcheck = "checked"; $war_typewar = "1";} else {$war_typewar = "2";}
-	if(isset($_GET['premiumadvadp']) && $_GET['premiumadvadp'] == "on") {$nbdcheckadp = "checked"; $war_typewar = "3";} else { }
 	if(isset($_GET['touchscreen']) && $_GET['touchscreen'] == "on") {$tcheck = "checked";}
 	if(isset($_GET['nontouchscreen']) && $_GET['nontouchscreen'] == "on") {$ntcheck = "checked";} 
 

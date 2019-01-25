@@ -2,47 +2,81 @@
 /* SELECT CONFIG IDs */
 $afismodel=0;
 
-if($conf) 
+if(!$components_found)
 {
-	require_once("../etc/con_sdb.php");
-	$t=table($conf); $conf=$t[0];
-	$sel3="SELECT * FROM notebro_temp.all_conf_".$t[1]." WHERE id=".$t[0]." LIMIT 1";
-	$cons=dbs_connect();
-	$result = mysqli_query($cons, $sel3);
-	if($result && mysqli_num_rows($result)>0)
+	if($conf) 
 	{
-		$row = mysqli_fetch_array($result);
-		$idcpu=$row["cpu"]; 
-		$iddisplay=$row["display"];
-		$idmem=$row["mem"];
-		$idhdd=$row["hdd"];
-		$idshdd=$row["shdd"];
-		$idgpu=$row["gpu"];
-		$idwnet=$row["wnet"];
-		$idodd=$row["odd"];
-		$idmdb=$row["mdb"];
-		$idchassis=$row["chassis"];
-		$idacum=$row["acum"];
-		$idwar=$row["war"];
-		$idsist=$row["sist"];
-		$idmodel=$row["model"];
+		require_once("../etc/con_sdb.php");
+		$t=table($conf); $conf=$t[0];
+		$change_model_region=true;
+		foreach(get_regions_model($con,$t[1]) as $val){if(($val=="0")||($val=="1")||in_array($val,$ex_regions)){$change_model_region=false;} }
+		$sel3="SELECT * FROM notebro_temp.all_conf_".$t[1]." WHERE id=".$t[0]." LIMIT 1";
+		$cons=dbs_connect();
+		$result=mysqli_query($cons,$sel3);
+		if($result && mysqli_num_rows($result)>0)
+		{
+			$row = mysqli_fetch_array($result);
+			$idcpu=$row["cpu"]; 
+			$iddisplay=$row["display"];
+			$idmem=$row["mem"];
+			$idhdd=$row["hdd"];
+			$idshdd=$row["shdd"];
+			$idgpu=$row["gpu"];
+			$idwnet=$row["wnet"];
+			$idodd=$row["odd"];
+			$idmdb=$row["mdb"];
+			$idchassis=$row["chassis"];
+			$idacum=$row["acum"];
+			$idwar=$row["war"];
+			$idsist=$row["sist"];
+			$idmodel=$row["model"];
+			$cf=intval($row["rating"]);
+
+			if(in_array($idwar,$ex_war)||$change_model_region)
+			{
+				$conf=array(); $conf[0]=$idmodel; $conf[1]=$idcpu; $conf[2]=$iddisplay; $conf[3]=$idmem; $conf[4]=$idhdd; $conf[5]=$idshdd; $conf[6]=$idgpu; $conf[7]=$idwnet; $conf[8]=$idodd; $conf[9]=$idmdb; $conf[10]=$idchassis; $conf[11]=$idacum; $conf[12]=implode(",",$ex_war); $conf[13]=$idsist; if($conf[12]==""||$conf[12]==null){$conf[12]="-1000";}
+				$include_getconf=true; $conf_only_search=true; if($change_model_region){$conf_only_search=false;} $warnotin=" NOT"; $excode=$exchcode; $comp="1=1";
+				require_once("lib/php/query/getconf.php");
+				$idcpu=$rows["all"]["cpu"]; 
+				$iddisplay=$rows["all"]["display"];
+				$idmem=$rows["all"]["mem"];
+				$idhdd=$rows["all"]["hdd"];
+				$idshdd=$rows["all"]["shdd"];
+				$idgpu=$rows["all"]["gpu"];
+				$idwnet=$rows["all"]["wnet"];
+				$idodd=$rows["all"]["odd"];
+				$idmdb=$rows["all"]["mdb"];
+				$idchassis=$rows["all"]["chassis"];
+				$idacum=$rows["all"]["acum"];
+				$idwar=$rows["all"]["war"];
+				$idsist=$rows["all"]["sist"];
+				$idmodel=$rows["cmodel"];
+				$conf=$rows["cid"];
+			}
+			if($result){ mysqli_free_result($result); }
+		}
+		mysqli_close($cons);
+	} 
+	else 
+	{	
+		$afismodel=1;
+		if($model)
+		{ $idmodel=$model; }
+		else	
+		{ $idmodel=$conf; }
 	}
-	mysqli_close($cons);
-} 
-else 
-{	
-	$afismodel=1;
-	if($model)
-	{ $idmodel=$model; }
-	else	
-	{ $idmodel=$conf; }
 }
 
 /* SELECT MODEL IDs */
 if($idmodel)
 {
-	$sel3="SELECT * FROM notebro_db.MODEL WHERE id=$idmodel LIMIT 1"; 
-	$result = mysqli_query($con, $sel3) ;
+	$p_model=$idmodel; $sel3="SELECT `notebro_db`.`MODEL`.`p_model`,`notebro_db`.`MODEL`.`regions` FROM `notebro_db`.`MODEL` WHERE `id`=$idmodel LIMIT 1";
+	$result=mysqli_query($con,$sel3); $change_model_region=false; if($result->num_rows){$row=mysqli_fetch_assoc($result); $p_model=intval($row["p_model"]); $change_model_region=true; foreach(explode(",",$row["regions"])	as $val){ if(($val=="0")||($val=="1")||in_array($val,$ex_regions)){ $change_model_region=false;} if(!isset($model_ex)){ $model_ex=$region_ex[intval($val)][0];} } unset($row); }
+	?>
+	<script>var model_ex="<?php if($change_model_region){ echo $model_ex; $exch=floatval($exchange_list->{$model_ex}["convr"]); $selected_ex=$model_ex;} else{ echo $exchcode; $selected_ex=$exchcode; } ?>";  var exch=<?php echo $exch; ?>; </script>
+	<?php
+	$sel3="SELECT `model`.*,GROUP_CONCAT(`model`.`cpu`) as `gcpu`,GROUP_CONCAT(`model`.`display`) as `gdisplay`,GROUP_CONCAT(`model`.`mem`) as `gmem`,GROUP_CONCAT(`model`.`hdd`) as `ghdd`,GROUP_CONCAT(`model`.`shdd`) as `gshdd`,GROUP_CONCAT(`model`.`gpu`) as `ggpu`,GROUP_CONCAT(`model`.`wnet`) as `gwnet`,GROUP_CONCAT(`model`.`odd`) as `godd`,GROUP_CONCAT(`model`.`mdb`) as `gmdb`,GROUP_CONCAT(`model`.`chassis`) as `gchassis`,GROUP_CONCAT(`model`.`acum`) as `gacum`,GROUP_CONCAT(`model`.`warranty`) as `gwarranty`,GROUP_CONCAT(`model`.`sist`) as `gsist`,GROUP_CONCAT(CONCAT(`comments`.`type`,'+++',`comments`.`comment`)) as `gcomments` FROM `notebro_db`.`MODEL` model LEFT JOIN `notebro_db`.`COMMENTS` comments  ON `model`.`p_model`=`comments`.`model` WHERE `model`.`p_model`=$p_model LIMIT 1";
+	$result=mysqli_query($con,$sel3);
 
 	if($result->num_rows)
 	{
@@ -50,62 +84,70 @@ if($idmodel)
 		$onetime=1;
 		$row = mysqli_fetch_array($result);
 
-		$modelcpu=$row["cpu"]; 
-		$modeldisplay=$row["display"];
-		$modelmem=$row["mem"];
-		$modelhdd=$row["hdd"];
-		$modelshdd=$row["shdd"];
-		$modelgpu=$row["gpu"];
-		$modelwnet=$row["wnet"];
-		$modelodd=$row["odd"];
-		$modelmdb=$row["mdb"];
-		$modelchassis=$row["chassis"];
-		$modelacum=$row["acum"];
-		$modelwar=$row["warranty"];
-		$modelsist=$row["sist"];
+		$modelcpu=array_unique(explode(",",$row["gcpu"])); 
+		$modeldisplay=array_unique(explode(",",$row["gdisplay"]));
+		$modelmem=array_unique(explode(",",$row["gmem"]));
+		$modelhdd=array_unique(explode(",",$row["ghdd"]));
+		$modelshdd=array_unique(explode(",",$row["gshdd"]));
+		$modelgpu=array_unique(explode(",",$row["ggpu"]));
+		$modelwnet=array_unique(explode(",",$row["gwnet"]));
+		$modelodd=array_unique(explode(",",$row["godd"]));
+		$modelmdb=array_unique(explode(",",$row["gmdb"]));
+		$modelchassis=array_unique(explode(",",$row["gchassis"]));
+		$modelacum=array_unique(explode(",",$row["gacum"]));
+		$modelwar=array_unique(explode(",",$row["gwarranty"]));
+		$modelsist=array_unique(explode(",",$row["gsist"]));
+		$modelcomments=array_unique(explode(",",$row["gcomments"]));
 		$modelprod=$row["prod"];
 			
 		if($afismodel)
 		{
-			$idcpu=current(array_slice(explode(',',$modelcpu),0,1));
-			$iddisplay=current(array_slice(explode(',',$modeldisplay),0,1));
-			$idmem=current(array_slice(explode(',',$modelmem),0,1));
-			$idhdd=current(array_slice(explode(',',$modelhdd),0,1));
-			$idshdd=current(array_slice(explode(',',$modelshdd),0,1));
-			$idgpu=current(array_slice(explode(',',$modelgpu),0,1));
-			$idwnet=current(array_slice(explode(',',$modelwnet),0,1));
-			$idodd=current(array_slice(explode(',',$modelodd),0,1));
-			$idmdb=current(array_slice(explode(',',$modelmdb),0,1));
-			$idchassis=current(array_slice(explode(',',$modelchassis),0,1));
-			$idacum=current(array_slice(explode(',',$modelacum),0,1));
-			$idwar=current(array_slice(explode(',',$modelwar),0,1));
-			$idsist=current(array_slice(explode(',',$modelsist),0,1));
+			$idcpu=current(array_slice($modelcpu,0,1));
+			$iddisplay=current(array_slice($modeldisplay,0,1));
+			$idmem=current(array_slice($modelmem,0,1));
+			$idhdd=current(array_slice($modelhdd,0,1));
+			$idshdd=current(array_slice($modelshdd,0,1));
+			$idgpu=current(array_slice($modelgpu,0,1));
+			$idwnet=current(array_slice($modelwnet,0,1));
+			$idodd=current(array_slice($modelodd,0,1));
+			$idmdb=current(array_slice($modelmdb,0,1));
+			$idchassis=current(array_slice($modelchassis,0,1));
+			$idacum=current(array_slice($modelacum,0,1));
+			$idwar=current(array_slice($modelwar,0,1));
+			$idsist=current(array_slice($modelsist,0,1));
 		}
 	}
+
 	require_once("../etc/con_sdb.php"); $cons=dbs_connect();
+	
+	$sel3="SELECT * FROM notebro_temp.m_map_table WHERE model_id=".$idmodel." LIMIT 1";
+	$row=mysqli_fetch_array(mysqli_query($cons,$sel3));
+	$model_ex_list=array();
+	foreach($row as $key=>$el){ if($key!="model_id"&&$key!="pmodel"&&$el!=NULL&&$el!=""){ if(isset($region_ex[$key])){ $model_ex_list=array_merge($model_ex_list,$region_ex[$key]);} } }
+	$model_ex_list=array_unique($model_ex_list);
+
 	$sql="SELECT * FROM `notebro_temp`.`best_low_opt` WHERE id_model=$idmodel";
 	$best_low=mysqli_fetch_assoc(mysqli_query($cons,$sql));
 	if($best_low["lowest_price"]==$best_low["best_value"]) { $best_low["lowest_price"]=""; }
 	if($best_low["lowest_price"]==$best_low["best_performance"]) { $best_low["lowest_price"]=""; }
 	if($best_low["best_value"]==$best_low["best_performance"]) { $best_low["best_performance"]=""; }
+	mysqli_close($cons);
 }
 
-function showcurrency($exc)
+function get_regions_model($con,$idmodel)
 {
-	$exc_2=round($exc,5);
-	$result = mysqli_query($GLOBALS['con'], "SELECT code, sign, ROUND( convr, 5 ) rounded FROM notebro_site.exchrate HAVING rounded = $exc_2");
-	if($result && $item = mysqli_fetch_array($result))
-	{ return $item['sign']; }
+	$sql="SELECT `regions` FROM `notebro_db`.`MODEL` WHERE `id`=".$idmodel." LIMIT 1";
+	$result=mysqli_query($con,$sql);
+	if($result && mysqli_num_rows($result)>0)
+	{ return explode(",",mysqli_fetch_assoc($result)["regions"]);}
 	else
-	{ $exc_2=round($exc,5,PHP_ROUND_HALF_DOWN); $result = mysqli_query($GLOBALS['con'], "SELECT code, sign, ROUND( convr, 5 ) rounded FROM notebro_site.exchrate HAVING rounded = $exc_2"); $item = mysqli_fetch_array($result); return $item['sign']; }
+	{ return array(); }
 }
 
 /* MAKE CPU */
-function show_cpu ($model)
-{
-	$list=explode(',',$model);
-	
-	if (count($list) > 1)
+function show_cpu($list)
+{	
+	if(count($list)>1)
 	{
 		echo '<form><SELECT name="CPU" onchange="getconf('."'".'CPU'."'".',this.value)">';
 		foreach($list as $key=>$id)
@@ -136,11 +178,10 @@ function show_cpu ($model)
 }
 
 /* MAKE GPU */
-function show_gpu ($model)
+function show_gpu($list)
 {
 	$a=0; 
 	$b=1;
-	$list=explode(',',$model);
 	$havecpuint=0;
 	echo '<form><SELECT id="GPU" name="GPU" onchange="getconf('."'".'GPU'."'".',this.value)">';
 
@@ -179,10 +220,9 @@ function show_gpu ($model)
 }
 
 /* MAKE DISPLAY */
-function show_display ($model)
+function show_display($list)
 {
-	$list=explode(',',$model);
-	if (count($list) > 1) 
+	if(count($list)>1) 
 	{
 		echo '<form><SELECT name="DISPLAY" onchange="getconf('."'".'DISPLAY'."'".',this.value)">';
 		foreach($list as $key=>$id)
@@ -216,10 +256,8 @@ function show_display ($model)
 }
 
 /* MAKE HDD */
-function show_hdd ($model)
+function show_hdd ($list)
 {
-	$list=explode(',',$model);
-
 	echo '<form><SELECT name="HDD" onchange="getconf('."'".'HDD'."'".',this.value)">';
 	foreach($list as $key=>$id)
 	{
@@ -240,12 +278,10 @@ function show_hdd ($model)
 }
 
 /* MAKE SHDD */
-function show_shdd ($model)
+function show_shdd ($list)
 {
 	$text="";	
-	$list=explode(',',$model); sort($list);
-	$nrel=count($list);
-
+	sort($list); $nrel=count($list);
 	if($nrel<1){ $list=array("0"); $nrel=1; }
 	
 	$text='<form><SELECT name="SHDD" onchange="getconf('."'".'SHDD'."'".',this.value)">';
@@ -284,10 +320,9 @@ function show_shdd ($model)
 }
 
 /* MAKE MDB */
-function show_mdb ($model)
+function show_mdb($list)
 {
-	$list=explode(',',$model);
-	if (count($list) > 1)
+	if(count($list)>1)
 	{
 		echo '<form><SELECT name="MDB" onchange="getconf('."'".'MDB'."'".',this.value)">';
 		foreach($list as $key=>$id)
@@ -316,10 +351,9 @@ function show_mdb ($model)
 }
 
 /* MAKE MEM */
-function show_mem ($model)
+function show_mem($list)
 {
-	$list=explode(',',$model);
-	if (count($list) > 1) 
+	if(count($list)>1) 
 	{
 		echo '<form><SELECT name="MEM" onchange="getconf('."'".'MEM'."'".',this.value)">';
 		foreach($list as $key=>$id)
@@ -348,13 +382,12 @@ function show_mem ($model)
 }
 
 /* MAKE ODD */
-function show_odd ($model)
+function show_odd($list)
 {
 	$x=1;
-	$list=explode(',',$model);
 	$nrel=count($list);
 	
-	if (count($list) > 1) 
+	if(count($list)>1) 
 	{
 		echo '<form><SELECT name="ODD" onchange="getconf('."'".'ODD'."'".',this.value)">';
 		foreach($list as $key=>$id)
@@ -389,11 +422,9 @@ function show_odd ($model)
 }
 
 /* MAKE BAT */
-function show_acum ($model)
+function show_acum($list)
 {
-	$list=explode(',',$model);
-	
-	if (count($list) > 1)
+	if(count($list)>1)
 	{
 		echo '<form><SELECT name="ACUM" onchange="getconf('."'".'ACUM'."'".',this.value)">';
 		foreach($list as $key=>$id)
@@ -422,12 +453,11 @@ function show_acum ($model)
 }
 
 /* MAKE CHASSIS */
-function show_chassis ($model)
+function show_chassis($list)
 {
 	$chassistext="";
-	$list=explode(',',$model);
 	
-	if (count($list) > 1)
+	if(count($list)>1)
 	{
 		$chassistext.='<form><SELECT name="CHASSIS" onchange="getconf('."'".'CHASSIS'."'".',this.value)">';
 		foreach($list as $key=>$id)
@@ -457,11 +487,9 @@ function show_chassis ($model)
 }
 
 /* MAKE WNET */
-function show_wnet ($model)
+function show_wnet($list)
 {
-	$list=explode(',',$model);
-	
-	if (count($list) > 1)
+	if(count($list)>1)
 	{
 		echo '<form><SELECT name="WNET" onchange="getconf('."'".'WNET'."'".',this.value)">';
 		
@@ -491,10 +519,9 @@ function show_wnet ($model)
 }
 
 /* MAKE WAR */
-function show_war ($model)
+function show_war($list)
 {
-	$list=explode(',',$model);
-	if (count($list) > 1)
+	if(count($list)>1)
 	{
 		echo '<form><SELECT name="WAR" onchange="getconf('."'".'WAR'."'".',this.value)">';
 		foreach($list as $key=>$id)
@@ -523,10 +550,9 @@ function show_war ($model)
 }
 
 /* MAKE SIST */
-function show_sist ($model)
+function show_sist($list)
 {
-	$list=explode(',',$model);
-	if (count($list) > 1)
+	if(count($list)>1)
 	{
 		echo '<form><SELECT name="SIST" onchange="getconf('."'".'SIST'."'".',this.value)">';
 		foreach($list as $key=>$id)
@@ -560,16 +586,18 @@ function show_sist ($model)
 	}
 }
 
+require_once("query/show_msc.php");
+
 /* SELECT AND SHOW VARIOUS ELEMENTS */
 function show_vars($col, $tab, $id)
 {
 	if(stripos($tab,"JOIN")!==FALSE)
-	{ $sel2 = "SELECT $col FROM $tab WHERE model.id = $id LIMIT 1"; }
+	{ $sel2="SELECT $col FROM $tab WHERE model.id = $id LIMIT 1"; }
 	else
-	{ $sel2 = "SELECT $col FROM $tab WHERE id = $id LIMIT 1"; }
+	{ $sel2="SELECT $col FROM $tab WHERE id = $id LIMIT 1"; }
 
-	$rea = mysqli_query($GLOBALS['con'], $sel2);
-	$resu = mysqli_fetch_array($rea);
+	$rea=mysqli_query($GLOBALS['con'], $sel2);
+	$resu=mysqli_fetch_array($rea);
 	
 	global $show_vars;
 	$show_vars=$resu;

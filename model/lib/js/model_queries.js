@@ -37,6 +37,7 @@ function showCPU(str)
 				if(cpu_bat_old!=cpu_bat_new){ bat_animation(); }
 				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
 				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
+				document.getElementById('dLabel').setAttribute("data-cpu",str);
 				cpu_gpu=parseInt(cpu["gpu"]);
 
 				if($("#GPU").val()==-1)
@@ -49,7 +50,7 @@ function showCPU(str)
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/cpu.php?q="+str,true);
-		xmlhttp.send();
+		xmlhttp.send(); all_requests.push(xmlhttp);
 	}
 }
 	
@@ -113,11 +114,11 @@ function showGPU(str)
 				if(gpu_bat_old!=gpu_bat_new){ bat_animation(); }
 				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
 				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
-
+				document.getElementById('dLabel').setAttribute("data-gpu",str); 
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/gpu.php?q="+str,true);
-		xmlhttp.send();
+		xmlhttp.send(); all_requests.push(xmlhttp);
 		gpu_previous=str;
 	}
 }
@@ -160,10 +161,11 @@ function showDISPLAY(str)
 				if(display_bat_old!=display_bat_new){ bat_animation(); }
 				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
 				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
+				document.getElementById('dLabel').setAttribute("data-iddisplay",str);
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/display.php?q="+str,true);
-		xmlhttp.send();
+		xmlhttp.send(); all_requests.push(xmlhttp);
 	}
 }
 	
@@ -208,7 +210,7 @@ function showHDD(str)
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/hdd.php?q="+str,true);
-		xmlhttp.send();
+		xmlhttp.send(); all_requests.push(xmlhttp);
 	}
 }
 	
@@ -262,7 +264,7 @@ function showSHDD(str)
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/shdd.php?q="+str,true);
-		xmlhttp.send();
+		xmlhttp.send(); all_requests.push(xmlhttp);
 	}
 }
 
@@ -302,7 +304,7 @@ function showMDB(str)
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/mdb.php?q="+str,true);
-		xmlhttp.send();
+		xmlhttp.send(); all_requests.push(xmlhttp);
 	}
 }
 
@@ -334,7 +336,7 @@ function showMEM(str)
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/mem.php?q="+str,true);
-		xmlhttp.send();
+		xmlhttp.send(); all_requests.push(xmlhttp);
 	}
 }
 
@@ -363,7 +365,7 @@ function showODD(str)
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/odd.php?q="+str,true);
-		xmlhttp.send();
+		xmlhttp.send(); all_requests.push(xmlhttp);
 	}
 }
 
@@ -400,7 +402,7 @@ function showACUM(str)
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/acum.php?q="+str,true);
-		xmlhttp.send();
+		xmlhttp.send(); all_requests.push(xmlhttp);
 	}
 }
 
@@ -451,7 +453,7 @@ function showCHASSIS(str)
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/chassis.php?q="+str,true);
-		xmlhttp.send();
+		xmlhttp.send(); all_requests.push(xmlhttp);
 	}
 }
 
@@ -481,7 +483,7 @@ function showWNET(str)
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/wnet.php?q="+str,true);
-		xmlhttp.send();
+		xmlhttp.send(); all_requests.push(xmlhttp);
 	}
 }
 	
@@ -508,7 +510,7 @@ function showWAR(str)
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/war.php?q="+str,true);
-		xmlhttp.send();
+		xmlhttp.send(); all_requests.push(xmlhttp);
 	}
 }
 
@@ -554,14 +556,14 @@ function showSIST(str)
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/sist.php?q="+str,true);
-		xmlhttp.send();
+		xmlhttp.send(); all_requests.push(xmlhttp);
 	}
 }
 
 function getconf(comp,id,exactconf) 
 {
 	gocomp=0;
-	var cpu_id=cpu["id"]; var display_id=display["id"]; var mem_id=mem["id"]; var hdd_id=hdd["id"];  var shdd_id=shdd["id"]; var gpu_id=gpu["id"]; var wnet_id=wnet["id"]; var odd_id=odd["id"]; var mdb_id=mdb["id"]; var chassis_id=chassis["id"]; var acum_id=acum["id"]; var war_id=war["id"]; var sist_id=sist["id"]; var confdata = {}; var success=false; var go=false; var mdb_hdd=0;
+	var cpu_id=cpu["id"]; var display_id=display["id"]; var mem_id=mem["id"]; var hdd_id=hdd["id"];  var shdd_id=shdd["id"]; var gpu_id=gpu["id"]; var wnet_id=wnet["id"]; var odd_id=odd["id"]; var mdb_id=mdb["id"]; var chassis_id=chassis["id"]; var acum_id=acum["id"]; var war_id=war["id"]; var sist_id=sist["id"]; var confdata = {}; var success=false; var go=false; var mdb_hdd=0; var new_exchcode=excode; new_exch_rate=exch;
 	switch(comp)
 	{
 		case "CPU":
@@ -590,6 +592,8 @@ function getconf(comp,id,exactconf)
 		{ prev_id=war_id; war_id=id; if(war["id"]===undefined) { go=true; }  break; }
 		case "SIST":
 		{ prev_id=sist_id; sist_id=id; if(sist["id"]===undefined) { go=true; }  break; }
+		case "EXCH":
+		{ new_exchcode=id[0]; new_exch_rate=id[1]; go=true; break; }
 	}
 	
 	if(exactconf!==undefined) { cpu_id=exactconf[0]; display_id=exactconf[1]; mem_id=exactconf[2]; hdd_id=exactconf[3]; shdd_id=exactconf[4]; gpu_id=exactconf[5]; wnet_id=exactconf[6]; odd_id=exactconf[7]; mdb_id=exactconf[8]; chassis_id=exactconf[9]; acum_id=exactconf[10]; war_id=exactconf[11]; sist_id=exactconf[12]; go=true; }
@@ -610,12 +614,25 @@ function getconf(comp,id,exactconf)
 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
 			{
 				confdata = JSON.parse(xmlhttp.responseText);
-				//console.log(confdata);
 				confdata["cprice"]=parseInt(confdata["cprice"]); if(confdata["cprice"]>0){ success=true; }
 				if(success || go)
 				{
-					//if(parseInt(mid)!=parseInt(confdata["cmodel"])){ mid=confdata["cmodel"]; /*issue title updates, buy with multiple configs*/}
+					if(parseInt(mid)!=parseInt(confdata["cmodel"]))
+					{
+						
+						update_model_info(confdata["cmodel"]);
+						if(confdata["newregion"]!==undefined&&confdata["newregion"])
+						{
+							if(confdata["mregion_id"].indexOf("1")<0&&confdata["mregion_id"].indexOf("0")<0)
+							{ change_exch(confdata["exch"]);}
+							else
+							{ change_exch(excode); }
+						}
+						/*change currency, best low_perfom_value*/
+					}
+					mid=confdata["cmodel"];
 					confdata["cerr"]=parseInt(confdata["cerr"]);
+					if(new_exchcode!=excode){excode=new_exchcode; exch=new_exch_rate;}
 					document.getElementById('config_price1').innerHTML=parseInt((confdata["cprice"]-confdata["cerr"]/2)*exch);
 					document.getElementById('config_price2').innerHTML=parseInt((confdata["cprice"]+confdata["cerr"]/2)*exch);
 					document.getElementById('dLabel').setAttribute('data-price',parseInt(confdata["cprice"]));
@@ -671,7 +688,7 @@ function getconf(comp,id,exactconf)
 						case "SIST":
 						{ showSIST(id); break; } 
 					}
-					document.getElementsByClassName("labelblue")[0].classList.add('blueAnimation'); document.getElementsByClassName("labelblue")[1].classList.add('blueAnimation'); setTimeout(function () { document.getElementsByClassName("labelblue")[0].classList.remove('blueAnimation'); document.getElementsByClassName("labelblue")[1].classList.remove('blueAnimation'); }, 1000);
+					document.getElementsByClassName("labelblue")[0].classList.add('blueAnimation'); document.getElementsByClassName("labelblue")[1].classList.add('blueAnimation'); model_label_animation=setTimeout(function () {document.getElementsByClassName("labelblue")[0].classList.remove('blueAnimation'); document.getElementsByClassName("labelblue")[1].classList.remove('blueAnimation'); }, 1000);
 				}
 				else
 				{
@@ -712,8 +729,35 @@ function getconf(comp,id,exactconf)
 			}			
 		}
 	}
-	xmlhttp.open("GET","model/lib/php/query/getconf.php?c="+mid+"-"+cpu_id+"-"+display_id+"-"+mem_id+"-"+hdd_id+"-"+shdd_id+"-"+gpu_id+"-"+wnet_id+"-"+odd_id+"-"+mdb_id+"-"+chassis_id+"-"+acum_id+"-"+war_id+"-"+sist_id+"&cf="+config_rate+"&comp="+comp+"&ex="+excode,true);
-	xmlhttp.send();
+	xmlhttp.open("GET","model/lib/php/query/getconf.php?c="+mid+"-"+cpu_id+"-"+display_id+"-"+mem_id+"-"+hdd_id+"-"+shdd_id+"-"+gpu_id+"-"+wnet_id+"-"+odd_id+"-"+mdb_id+"-"+chassis_id+"-"+acum_id+"-"+war_id+"-"+sist_id+"&cf="+config_rate+"&comp="+comp+"&ex="+new_exchcode,true);
+	xmlhttp.send(); all_requests.push(xmlhttp);
+}
+
+function update_model_info(model_id) 
+{
+	if (model_id === ""){ return; }
+	else 
+	{
+		if (window.XMLHttpRequest)	{ var xmlhttp = new XMLHttpRequest(); }
+		
+		xmlhttp.onreadystatechange = function() 
+		{
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+			{
+				new_model_data=JSON.parse(xmlhttp.responseText);
+				mprod=new_model_data["prod"]; mfamily=new_model_data["fam"]+new_model_data["subfam"]; msubmodel=new_model_data["submodel"];
+				keywords=new_model_data["keywords"]; mmodel=new_model_data["model"];
+				exchsign=new_model_data["region"];
+				document.getElementById('model_title').innerHTML=mprod+" "+mfamily+" "+mmodel+" "+msubmodel+new_model_data["region"];
+				document.getElementById('model_msc').innerHTML=new_model_data["msc"];
+				document.getElementById('dLabel').setAttribute("data-buyregions",new_model_data["regions"]);
+				document.getElementById('dLabel').setAttribute("data-idmodel",model_id); 
+				set_model_info();
+			}
+		}
+		xmlhttp.open("GET","model/lib/php/query/model.php?id="+model_id,true);
+		xmlhttp.send(); all_requests.push(xmlhttp);
+	}
 }
 
 function setselectedcomp(comp,value)
@@ -850,4 +894,6 @@ function set_best_low(confid,array_values)
 }
 
 function normal_rating(x){ x=x*1000; return (((1.25/1000000*Math.pow(x,2))+1.305*x+(-4.3/100000000000*Math.pow(x,3)))/1000); }
-function bat_animation(){ document.getElementsByClassName("labelblue")[2].classList.add('blueAnimation'); setTimeout(function () { document.getElementsByClassName("labelblue")[2].classList.remove('blueAnimation');  }, 1000); }
+function bat_animation(){ document.getElementsByClassName("labelblue")[2].classList.add('blueAnimation'); setTimeout(function () { var el=document.getElementsByClassName("labelblue")[2]; if(el!='undefined'&&el!=null){ el.classList.remove('blueAnimation');} }, 1000); }
+function change_exch(new_exchcode){ for(var key in document.getElementById("m_currency").options){ if(document.getElementById("m_currency").options[key].value==new_exchcode){document.getElementById("m_currency").selectedIndex=key;}}}
+function change_m_currency(el){ var selected=(el||el.options[el.selectedIndex]); getconf('EXCH',[selected.value,parseFloat(el.options[el.selectedIndex].getAttribute("data-exch"))]); }

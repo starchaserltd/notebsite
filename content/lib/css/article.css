@@ -7,17 +7,14 @@
 }
 
 @media (max-width: 1200px) {
-	.displayFlex {
-		display: block;
-		min-height: auto!important;
+	.displayFlex {		
+		
 		margin-bottom: 15px;
 	}
 	.displayFlex:first-of-type {
 		margin-top: 30px;
 	}
-	.displayFlex img {
-		max-width: 180px;
-	}
+	
 }
 
 .centerImgFlex {

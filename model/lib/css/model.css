@@ -93,8 +93,9 @@ div.ListElem:hover {
 
 .ListBox {
 	overflow-y: auto;
-	height: 100px;
+	height: 130px;
 	border-bottom: 1px solid rgba(201, 201, 201, 0.47);
+	margin-bottom: 20px;
 }
 
 .ListTitle {
@@ -173,6 +174,7 @@ div.ListElem:hover {
 		font-size: 20px;
 		margin-bottom: 5px;
 		display: inline-block;
+		color: #000;
 }
 
 .rating p {
@@ -186,7 +188,7 @@ div.ListElem:hover {
 }
 
 .buy li {
-	line-height: 38px;
+	line-height: 20px;
 }
 
 .config .configDropdown li {
@@ -216,7 +218,41 @@ div.ListElem:hover {
 
 .rating  {
 	margin-right: 10px;
-	display: inline-block;
+	display: inline-block;	
+}
+
+.rating .input-group {
+	position: absolute;
+	top: -6px;
+	left: 55px;
+	width: 42px;
+	color:#fff;
+	margin-top: -1px;
+}
+
+.rating.currency {	
+	position: relative;
+	padding-left: 20px;
+}
+
+.rating.currency .custom-select{
+	padding: 0 5px;        
+    background-color: #285f8f;
+    line-height: 18px;
+    margin-top: 1px;    
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+	border-top-right-radius: .25rem;
+	border-bottom-right-radius: .25rem;
+}
+
+.rating.currency select {
+	height: 22px;
+	color: #fff;
+	background: #fff url("../../../lib/fonts/fontawesome/svgs/solid/caret-down-white.svg") no-repeat right .75rem center;
+	background-size: 12px;
+	background-position: 75% 50%;
+
 }
 
 .modelContainer .dropdown-menu>li>a {
@@ -406,7 +442,36 @@ div.ListElem:hover {
 		}
 } 
 
+@-moz-document url-prefix() {
+  @media(max-width: 1440px) {
+  	.rating .input-group {
+  		margin-top: -1px;
+  	}
+  }
+}
+
+@supports (-ms-ime-align: auto) {
+  .rating.currency select {
+        height: 22px;
+  }
+
+  .rating.currency .custom-select {
+  	margin-top: 1px;
+  }
+}
+
 /*Responsive media */
+
+@media(min-width: 1440px) {
+	.rating.currency select {
+		height: 25px;
+		
+	}
+
+	.rating.currency .custom-select {
+		margin-top: -2px;
+	}
+}
 
 @media(min-width:1240px ) {
  .affix .ratingContainer {
@@ -559,6 +624,10 @@ div.ListElem:hover {
 		font-size: 12px;		
 	}
 
+	.affix .ratingContainer {
+		margin: 0 -10px;
+	}
+
 	.ratingContainer .rating {
 		font-size: 12px;
 		margin:0;
@@ -583,8 +652,8 @@ div.ListElem:hover {
 	}
 
 	.ptop.affix {
-		padding-top: 18px;
-		top:0;
+		padding-top: 0px;
+		top:31px;
 	}
 
 	.rating p {

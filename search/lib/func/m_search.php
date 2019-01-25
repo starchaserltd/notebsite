@@ -1,5 +1,5 @@
 <?php
-if(!isset($relativepath)){ $relativepath="../../../"; }
+if(!isset($relativepath)){ $relativepath="../../../"; $p_model_only=true; }else{$p_model_only=false;}
 if(!isset($close_con)) { $close_con=1; }
 require_once($relativepath."etc/session.php");
 require_once($relativepath."etc/con_db.php");
@@ -18,8 +18,8 @@ foreach($keysparts as $el)
 	$conditions.="REGEXP_REPLACE(CONCAT(prod,' ',IFNULL((SELECT fam FROM `notebro_db`.`FAMILIES` WHERE id=idfam),''),' ',IFNULL((SELECT subfam FROM `notebro_db`.`FAMILIES` WHERE id=idfam and showsubfam=1),''),' ',model),'[[:space:]]+', ' ') LIKE '%".$el."%' AND ";
 }
 $conditions=substr($conditions, 0, -5);
-if(isset($id_set) && $id_set)
-{ $conditions.="AND id IN ($id_set)"; }
+if(isset($id_set) && $id_set){ $conditions.="AND id IN ($id_set)"; }
+if($p_model_only){ $conditions.=" AND `p_model`=`id`"; }
 
 // CONSTRUCTING THE SEARCH QUERY
 $sel="SELECT id,mdb,submodel,regions,REGEXP_REPLACE(CONCAT(prod,' ',IFNULL((SELECT fam FROM `notebro_db`.`FAMILIES` WHERE id=idfam),''),' ',IFNULL((SELECT subfam FROM `notebro_db`.`FAMILIES` WHERE id=idfam and showsubfam=1),''),' ',model),'[[:space:]]+', ' ') as name from `notebro_db`.`MODEL` WHERE ".$conditions;
@@ -45,7 +45,7 @@ while($rand = mysqli_fetch_row($result))
 	foreach($regions as $el) { if(intval($el)===1 || intval($el)===0 ) { $show_reg=0; } }
 	if($show_reg) { $sel_r="SELECT disp FROM notebro_db.REGIONS WHERE id=".$regions[0]." LIMIT 1"; $result_r = mysqli_query($con, $sel_r); $region=mysqli_fetch_array($result_r); $region["disp"]="(".$region["disp"].")"; }
 	//SENDING THE RESULTS
-	if(!isset($m_search_included)){ $pre_name=strval($rand[4]." ".$rand[2].$mdb_submodel); if(substr($pre_name,-1)!=" "&&isset($region["disp"])&&$region["disp"]!=""){ $pre_name.=" "; } $list[]=["id"=>intval($rand[0]),"model"=>strval($pre_name.$region["disp"])]; }
+	if(!isset($m_search_included)){ $rand[2]=""; $region["disp"]=""; $pre_name=strval($rand[4]." ".$rand[2].$mdb_submodel); if(substr($pre_name,-1)!=" "&&isset($region["disp"])&&$region["disp"]!=""){ $pre_name.=" "; } $list[]=["id"=>intval($rand[0]),"model"=>strval($pre_name.$region["disp"])]; }
 	else { $pre_name=strval($rand[4]." ".$rand[2].$mdb_submodel); if(substr($pre_name,-1)!=" "&&isset($region["disp"])&&$region["disp"]!=""){ $pre_name.=" "; } $list[]=["id"=>intval($rand[0]),"noteb_name"=>strval($pre_name.$region["disp"]),"submodel"=>strval($rand[2]),"mdb_submodel"=>strval($mdb_submodel),"region"=>strval($region["disp"]),"name"=>strval($rand[4])]; }
 }
 mysqli_free_result($result);			

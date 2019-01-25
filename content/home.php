@@ -43,16 +43,16 @@ $category = get_category(2);
 $count_posts = wp_count_posts();//echo $count_posts;
 $published_posts = $count_posts->publish;	
 ?>
-<link rel="stylesheet" href="content/lib/css/home.css?v=0.34" type="text/css"/>
-<script>$.getScript("content/lib/js/home.js?v=0.1");document.title = "Noteb - Search, Compare and Find the Best Laptop for You";$(document).ready(function(){
+<link rel="stylesheet" href="content/lib/css/home.css?v=0.40" type="text/css"/>
+<script>$.getScript("content/lib/js/home.js?v=0.2");document.title = "Noteb - Search, Compare and Find the Best Laptop for You";$(document).ready(function(){
     $('meta[name=description]').attr('content', "Looking for a laptop? Search, Compare or even take a Quiz with Noteb.com to find the perfect laptop for your work, home or suggest one to your friends from over 6.000.000 configurations derived from over 900 models.");
     $('head').append('<link rel="alternate" hreflang="en-US" href="https://noteb.com" />');
 });</script>
 	
 	<!-- Noteb Quiz -->
-	<link rel="stylesheet" href="search/quiz/lib/css/quiz.css?v=0.27" type="text/css"/>
-	<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 quizDisplay" style="padding:0px;">
-		<div id="quiz" class="col-md-12 col-lg-12 col-xs-12 col-sm-12" style="position:relative;"></div>	
+	<link rel="stylesheet" href="search/quiz/lib/css/quiz.css?v=0.29" type="text/css"/>
+	<div class="col-md-12 col-lg-12 col-12 col-sm-12 quizDisplay" style="padding:0px;">
+		<div id="quiz" class="col-md-12 col-lg-12 col-12 col-sm-12" style="position:relative;"></div>	
 	</div>			
 
 	<!-- Noteb Quiz end -->
@@ -61,59 +61,58 @@ $published_posts = $count_posts->publish;
 	<!-- Top 10 laptops area -->
 	<?php $query=mysqli_query($con,"SELECT * FROM notebro_site.top_laptops where valid=1 order by type,ord ASC,price"); $tops=array(); $topshead=array(); while ($row=mysqli_fetch_assoc($query)) { $tops[$row['type']][$row['id']] = array('id' => $row['c_id'],'img' => $row['img'], 'name' => $row['name'], 'price' => $row['price'], 'min_price' => $row['min_price'], 'max_price' => $row['max_price'], 'price_range' => intval($row['price_range'])); if(isset($topshead[$row['type']]["count"])) { $topshead[$row['type']]["count"]++; } else {$topshead[$row['type']]["count"]=1; } $topdate= strtotime($row["date"]); if(isset($topshead[$row['type']]["maxdate"])){ if($topshead[$row['type']]["maxdate"] < $topdate) { $topshead[$row['type']]["maxdate"]=$topdate; } } else { $topshead[$row['type']]["maxdate"]=$topdate; } } ?>
 	<section class="row topLaptops">
-		<div class="col-lg-4 col-md-4 col-sm-4  col-xs-12 studentTopLaptops">
-			<h2 class="h2TopLaptopsStudent">Top <?php echo $topshead["HomeStudent"]["count"]; ?> Home & Student <span class="topLaptopsDate visible-xs hidden-md hidden-sm hidden-lg"><?php echo date('M Y',$topshead["HomeStudent"]["maxdate"]); ?></span></h2>
-			<p class="topLaptopsDate hidden-xs visible-md visible-sm visible-lg"><?php echo date('M Y',$topshead["HomeStudent"]["maxdate"]); ?></p>
+		<div class="col-lg-4 col-md-4 col-12 studentTopLaptops">
+			<h2 class="h2TopLaptopsStudent">Top <?php echo $topshead["HomeStudent"]["count"]; ?> Home & Student <span class="topLaptopsDate d-lg-none d-md-none d-sm-none d-xs-block"><?php echo date('M Y',$topshead["HomeStudent"]["maxdate"]); ?></span></h2>
+			<p class="topLaptopsDate d-lg-block d-md-block d-sm-block d-xs-none"><?php echo date('M Y',$topshead["HomeStudent"]["maxdate"]); ?></p>
 			<?php foreach ($tops['HomeStudent'] as $el) { ?>			
 			<div class="row">
 				<a href="javascript:void(0)" onmousedown="OpenPage('<?php echo "model/model.php?conf=".$el["id"]."&ex=USD"; ?>',event)">
-					<div class="col-xs-12 imgTopLaptop">
-						<img  class="img-responsive " src="<?php echo $el["img"]; ?>" alt="imgStudent"/>
+					<div class="col-12 imgTopLaptop">
+						<img  class="img-responsive img-fluid " src="<?php echo $el["img"]; ?>" alt="imgStudent"/>
 						<p class="topLaptopsName"><?php echo $el["name"]; ?> <br/> <span class="pretTopLaptops"><?php if($el["price_range"]==0){ echo $el["price"]."$</span></p>"; }else{ echo $el["min_price"]."$ - ".$el["max_price"]."$</span></p>";} ?>
 					</div>	
 				</a>					
 			</div>											
 			<?php } ?>
 		</div>
-		<div class="col-xs-12 mobileShowMoreStudent"><span>Show All</span></div>
 
-		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 gamingTopLaptops">
-			<h2 class="h2TopLaptopsGaming">Top <?php echo $topshead["Gaming"]["count"]; ?> Gaming <span class="topLaptopsDate visible-xs hidden-md hidden-sm hidden-lg"><?php echo date('M Y',$topshead["Gaming"]["maxdate"]); ?></span></h2>
-			<p class="topLaptopsDate hidden-xs visible-md visible-sm visible-lg"><?php echo date('M Y',$topshead["Gaming"]["maxdate"]); ?></p>
+
+		<div class="col-lg-4 col-md-4 col-12 gamingTopLaptops">
+			<h2 class="h2TopLaptopsGaming">Top <?php echo $topshead["Gaming"]["count"]; ?> Gaming <span class="topLaptopsDate d-lg-none d-md-none d-sm-none d-xs-block"><?php echo date('M Y',$topshead["Gaming"]["maxdate"]); ?></span></h2>
+			<p class="topLaptopsDate d-lg-block d-md-block d-sm-block d-xs-none"><?php echo date('M Y',$topshead["Gaming"]["maxdate"]); ?></p>
 			<?php foreach ($tops['Gaming'] as $el) { ?>				
 			<div class="row">
 				<a href="javascript:void(0)" onmousedown="OpenPage('<?php echo "model/model.php?conf=".$el["id"]."&ex=USD"; ?>',event)">
-					<div class="col-xs-12 imgTopLaptop">
-						<img  class="img-responsive " src="<?php echo $el["img"]; ?>" alt="imgGaming"/>
+					<div class="col-12 imgTopLaptop">
+						<img  class="img-responsive img-fluid " src="<?php echo $el["img"]; ?>" alt="imgGaming"/>
 						<p class="topLaptopsName"><?php echo $el["name"]; ?> <br/> <span class="pretTopLaptops"><?php if($el["price_range"]==0){ echo $el["price"]."$</span></p>"; }else{ echo $el["min_price"]."$ - ".$el["max_price"]."$</span></p>";} ?>					 
 					</div>							
 				</a>
 			</div>											
 			<?php } ?>
 		</div>	
-		<div class="col-xs-12 mobileShowMoreGaming"><span>Show All</span></div>
+		
 			
-		<div class="col-lg-4 col-md-4 col-sm-4  col-xs-12 businessTopLaptops">
-			<h2 class="h2TopLaptopsBusiness">Top <?php echo $topshead["Business"]["count"]; ?> Business <span class="topLaptopsDate visible-xs hidden-md hidden-sm hidden-lg"><?php echo date('M Y',$topshead["Business"]["maxdate"]); ?></span></h2>
-			<p class="topLaptopsDate hidden-xs visible-md visible-sm visible-lg"><?php echo date('M Y',$topshead["Business"]["maxdate"]); ?></p>
+		<div class="col-lg-4 col-md-4  col-12 businessTopLaptops">
+			<h2 class="h2TopLaptopsBusiness">Top <?php echo $topshead["Business"]["count"]; ?> Business <span class="topLaptopsDate d-lg-none d-md-none d-sm-none d-xs-block"><?php echo date('M Y',$topshead["Business"]["maxdate"]); ?></span></h2>
+			<p class="topLaptopsDate d-lg-block d-md-block d-sm-block d-xs-none"><?php echo date('M Y',$topshead["Business"]["maxdate"]); ?></p>
 			<?php foreach ($tops['Business'] as $el) { ?>				
 			<div class="row">
 				<a href="javascript:void(0)" onmousedown="OpenPage('<?php echo "model/model.php?conf=".$el["id"]."&ex=USD"; ?>',event)">
-					<div class="col-xs-12 imgTopLaptop">
-						<img  class="img-responsive " src="<?php echo $el["img"]; ?>" alt="imgBusiness"/>
+					<div class="col-12 imgTopLaptop">
+						<img  class="img-responsive img-fluid " src="<?php echo $el["img"]; ?>" alt="imgBusiness"/>
 						<p class="topLaptopsName"><?php echo $el["name"]; ?> <br/> <span class="pretTopLaptops"><?php if($el["price_range"]==0){ echo $el["price"]."$</span></p>"; }else{ echo $el["min_price"]."$ - ".$el["max_price"]."$</span></p>";} ?>						 
 					</div>
 				</a>
 			</div>											
 			<?php } ?>
-		</div>	
-		<div class="col-xs-12 mobileShowMoreBusiness"><span>Show All</span></div>
+		</div>		
 	</section>
 	<div class="showMore"><span class="showMoreSpan">Show All</span></div>
 
 	<!-- articles & reviews -->
 	<article class="articleMobile row"> 
-		<h2 class="h2Articles">Articles</h2>
+		<h2 class="h2Articles col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">Articles</h2>
 	<?php 	
 	$y = 0;
 	for ($y = 0; $y < 10; $y++) { 
@@ -129,28 +128,32 @@ $published_posts = $count_posts->publish;
 			{
 	?>
 				
-		<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 latest2">
-			<div class="col-md-4 col-lg-3 col-sm-4 col-xs-4 latest3">
-				<a onmousedown="OpenPage('<?php echo $linkart;?>',event);" >	
-					<img style="display:block; margin:0 auto;" src="<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[$y]["ID"]) )); echo $url;?>" class="img-responsive" alt="Image">
-				</a>
-			</div>
-			<div class="col-md-8 col-lg-9 col-sm-8 col-xs-9 latest4">
-				<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
-					<?php echo $categorie;?>
-					<br>
-					<a onmousedown="OpenPage('<?php echo $linkart;?>',event);"><?php echo $recent_posts[$y]["post_title"];  ?></a>
-					<br><br>
-					<?php 
-						$review = nobrackets($recent_posts[$y]["post_content"]);
-						echo wp_trim_words($review, 35, ' ....');
-					?>
-					<a class="rmore" onmousedown="OpenPage('<?php echo $linkart;?>',event);"><br><?php echo "Read more";?> </a>
+		<div class="col-md-12 col-lg-12 col-sm-12 col-12 latest2">
+			<div class="row">
+				<div class="col-md-4 col-lg-3 col-sm-4 col-xs-4 latest3">
+					<a onmousedown="OpenPage('<?php echo $linkart;?>',event);" >	
+						<img style="display:block; margin:0 auto;" src="<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[$y]["ID"]) )); echo $url;?>" class="img-responsive img-fluid" alt="Image">
+					</a>
 				</div>
-				<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
-					<?php  echo "<br>"; echo "by "; echo get_userdata($recent_posts[$y]["post_author"])->display_name; echo " - "; echo date( 'd M Y', strtotime( $recent_posts[$y]["post_date"]));?>
+				<div class="col-md-8 col-lg-9 col-sm-8 col-xs-9 latest4">
+					<div class="row">
+						<div class="col-md-12 col-sm-12 col-12 col-lg-12">
+							<?php echo $categorie;?>
+							<br>
+							<a onmousedown="OpenPage('<?php echo $linkart;?>',event);"><?php echo $recent_posts[$y]["post_title"];  ?></a>
+							<br><br>
+							<?php 
+								$review = nobrackets($recent_posts[$y]["post_content"]);
+								echo wp_trim_words($review, 35, ' ....');
+							?>
+							<a class="rmore" onmousedown="OpenPage('<?php echo $linkart;?>',event);"><br><?php echo "Read more";?> </a>
+						</div>
+						<div class="col-md-12 col-sm-12 col-12 col-lg-12">
+							<?php  echo "<br>"; echo "by "; echo get_userdata($recent_posts[$y]["post_author"])->display_name; echo " - "; echo date( 'd M Y', strtotime( $recent_posts[$y]["post_date"]));?>
+						</div>
+					</div>					
 				</div>
-			</div>
+			</div>			
 		</div>	
 
 	<?php 	} 
@@ -158,7 +161,7 @@ $published_posts = $count_posts->publish;
 	} ?>	
 	<div class="readMoreArticles col-lg-9 col-sm-8 col-xs-9 col-lg-offset-3 col-sm-offset-4 col-xs-offset-3"><a onmousedown="OpenPage('content/articles.php');">Read More Articles</a></div>
 	</article>
-	<div class="col-xs-12 mobileShowMoreArticles"><span>Show All Articles</span></div>	
+	
 	<script type="application/ld+json">	
 		{
 		  "@context": "http://schema.org",

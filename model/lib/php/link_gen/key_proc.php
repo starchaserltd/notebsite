@@ -65,7 +65,7 @@ function valid_keys($keys,$prod,$fam,$cond)
 
 function strip_garbage($string)
 {
-	$to_delete=["v1","T-bolt","switch","flip","zephyrus","strix","scar","(",")"," gen","non-touch","education","gaming","2-in-1","special edition","edition","rugged","extreme","FHD","Tobii-805"];
+	$to_delete=["v1","T-bolt","switch","flip","zephyrus","strix","scar","(",")"," gen","non-touch","education","gaming","2-in-1","stealth","special edition","edition","rugged","extreme","FHD","Tobii-805"];
 	foreach($to_delete as $el) { if(stripos($string,$el)!==FALSE){ $string=trim(str_ireplace($el,"",$string)); } }
 	return $string;
 }

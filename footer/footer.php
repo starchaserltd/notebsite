@@ -2,8 +2,7 @@
 		<div class="footer-right">
 			<a style="cursor:pointer" href="https://www.facebook.com/Noteb-162949570886382/"><i class="socicon socicon-facebook"></i></a>
 			<a style="cursor:pointer" href="https://twitter.com/notebcom"><i class="socicon socicon-twitter"></i></a>
-			<a style="cursor:pointer" href="https://www.youtube.com/channel/UC7nnclcN7BZDn_FqKtzwBGQ"><i class="socicon socicon-youtube"></i></a>
-			
+			<a style="cursor:pointer" href="https://www.youtube.com/channel/UC7nnclcN7BZDn_FqKtzwBGQ"><i class="socicon socicon-youtube"></i></a>	
 		</div>
 		<div class="footer-left">
 			<h3 class="footer-links" style="font-size:18px; color:#fff; font-weight:bold;">

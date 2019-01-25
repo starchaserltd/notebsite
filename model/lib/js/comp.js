@@ -1,6 +1,6 @@
 function addcolumn(data,tableid,valign) {
  $("#"+tableid).find('tr').each(function(index){
- 	if(data[index] != null ) { $(this).append('<td ' + valign + ' class="col-md-2 col-xs-2 col-sm-2 rows compare1">'+data[index]+'</td>') }	
+ 	if(data[index] != null ) { $(this).append('<td ' + valign + ' class="rows compare1">'+data[index]+'</td>') }	
  	});	
 }
 
@@ -40,9 +40,9 @@ $('.showDetailsButton').on('click', function() {
 });
 
 //Affix top Laptop model 
-if ($(window).width() > 520) { $(".modelName").affix({ offset: { top: 150 }}); }
+// if ($(window).width() > 520) { $(".modelName").affix({ offset: { top: 150 }}); }
 //Affix mobile
-if ($(window).width() < 520) { $("#title_MODEL").affix({ offset: { top: 150 }}); }
+// if ($(window).width() < 520) { $("#title_MODEL").affix({ offset: { top: 150 }}); }
 //Scroll affix mobile
 $('.linked').scroll(function(){ $('.linked').scrollLeft($(this).scrollLeft()); });
 

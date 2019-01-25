@@ -130,9 +130,6 @@ $(document).ready(function()
     $('meta[name=description]').attr('content', mprod + ' ' + mfamily + ' ' + mmodel);
 	gpu_right_align();
 
-	//Laptop rating, price range, battery life affix
-	// if ($(window).width() >= 375) { $(".ptop").affix({ offset: { top: $(".modelImageContainer").outerHeight(true) + $(".modelHeader").outerHeight(true) + 170 }});}
-
 	//Affix Bootstrap 4
 	if ($(window).width() >= 375)
 	{

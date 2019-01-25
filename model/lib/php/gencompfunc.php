@@ -3,15 +3,13 @@ function normal_rating($x){ $x*=10; return(((1.25/1000000*pow($x,2))+1.305*$x+(-
 function show($tab, $id)
 {
 	if(stripos($tab,"JOIN")!==FALSE)
-	{ $sel2 = "SELECT * FROM $tab WHERE model.id = $id LIMIT 1"; }
+	{ $sel2 = "SELECT * FROM $tab WHERE model.id=$id LIMIT 1"; }
 	else
-	{ $sel2 = "SELECT * FROM $tab WHERE id = $id LIMIT 1"; }
+	{ $sel2 = "SELECT * FROM $tab WHERE id=$id LIMIT 1"; }
 
 	$rea = mysqli_query($GLOBALS['con'], $sel2); 
-	global $resu; global $buy_regions;
+	global $resu; global $buy_regions_model;
 	$resu = mysqli_fetch_array($rea);
-
-	$resu['msc']=str_replace(",", ", ",$resu['msc']);
 
 	if(isset($resu['rating'])){ $resu['rating']=round(floatval($resu['rating']),1)." / 100";}
 	
@@ -199,14 +197,19 @@ function show($tab, $id)
 	
 		case stripos($tab,'MODEL')!==FALSE:
 		{	if(intval($resu["showsubfam"])==1) { $resu["fam"]=$resu["fam"]." ".$resu["subfam"]; }
-			$mregion_id=explode(",",$resu['regions']); if(array_search("1",$mregion_id)===FALSE){ $sel2 = "SELECT disp FROM REGIONS WHERE id = ".intval($mregion_id[0]); $rea = mysqli_query($GLOBALS['con'], $sel2); $resu1 = mysqli_fetch_array($rea); $resu["region"]="(".$resu1["disp"].")"; $buy_regions=$resu['regions'];  } else { $resu["region"]=""; $buy_regions=0; }
-			$id=$GLOBALS["mdb_conf_mdb"];
-			$sel2 = "SELECT submodel FROM MDB WHERE id = $id"; 
+			$mregion_id=explode(",",$resu['regions']); if(array_search("1",$mregion_id)===FALSE){ $sel2 = "SELECT disp FROM REGIONS WHERE id = ".intval($mregion_id[0]); $rea = mysqli_query($GLOBALS['con'], $sel2); $resu1 = mysqli_fetch_array($rea); $resu["region"]="(".$resu1["disp"].")"; $buy_regions_model=$resu['regions'];  } else { $resu["region"]=""; $buy_regions_model=0; }
+			$id_mdb=$GLOBALS["mdb_conf_mdb"];
+			$sel2 = "SELECT submodel FROM MDB WHERE id=".$id_mdb.""; 
 			$rea = mysqli_query($GLOBALS['con'], $sel2); 
 			$resu1 = mysqli_fetch_array($rea);
 			if(!isset($resu['mdbname'])){$resu['mdbname']="";}
 			if(strcasecmp($resu1['submodel'],"Standard")!=0)
 			{ $resu['mdbname']=" ".$resu1['submodel']; }
+			$sel2 = "SELECT submodel FROM MDB WHERE id=".$id_mdb.""; 
+			$rea = mysqli_query($GLOBALS['con'], $sel2);
+			$m_msc=show_msc($id);
+			if(!isset($m_msc["p_model"]["com"])){ $m_msc["p_model"]["com"]=""; }
+			$resu['msc']=preg_replace("/\s+/"," ",str_replace(",", ", ",$m_msc["model_msc"]." ".$m_msc["p_model"]["com"]));
 			break;
 		}
 
@@ -238,4 +241,6 @@ function bluered($value,$maxmin,$x,$field,$rev)
 
 	return $maxmin;
 }
+
+require_once("query/show_msc.php");
 ?>

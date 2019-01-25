@@ -102,7 +102,7 @@ $chassisweightmaxi=$rand[0][31];if(!isset($chassisweightmax)) { $chassisweightma
 $chassisdepthmini=$rand[0][32];if(!isset($chassisdepthmin)) { $chassisdepthmin=$chassisdepthmini;}
 $chassisdepthmaxi=$rand[0][33];if(!isset($chassisdepthmax)) { $chassisdepthmax=$chassisdepthmaxi;}
 $waryearsmini=$rand[0][34];if(!isset($waryearsmin)) { $waryearsmin=$waryearsmini;}
-$waryearsmaxi=$rand[0][35];if(!isset($waryearsmax)) { $waryearsmax=$waryearsmaxi;}
+$waryearsmaxi=intval($rand[0][35]); if($waryearsmaxi>3){$waryearsmaxi=3;} if(!isset($waryearsmax)) { $waryearsmax=$waryearsmaxi;}
 $batlifemini=$rand[0][36]; if(!isset($batlifemin)) { $batlifemin=$batlifemini;}
 $batlifemaxi=$rand[0][37]; if(!isset($batlifemax)) { $batlifemax=$batlifemaxi;}
 $gpupowermini =$rand[0][38]; if(!isset($gpupowermin)) { $gpupowermin=$gpupowermini;} 

@@ -18,6 +18,7 @@
     border-radius: 7px;
     margin-top: -240%;
     margin-left: -7px;
+    top:10px;
 }
 
 .next-text:before {
@@ -460,6 +461,7 @@ _:-ms-lang(x),
     width: 150px;
     cursor: pointer;
     border: 1px solid rgb(40, 95, 143);
+    font-size: 15px;
 }
 
 .submit_quiz:hover {

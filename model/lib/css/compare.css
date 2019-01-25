@@ -135,6 +135,7 @@
 
 .arrowShowMore  > td {
     border-top:none!important;
+    flex-grow: 1;
 }
 
 .compContainer .toggler .glyphicon-chevron-down {
@@ -152,7 +153,7 @@
 }
 
 .compContainer .switchButton.glyphicon-chevron-down:before {
-    content: "\e113";
+    content: "\f106";
 }
 
 .compContainer .toggler {

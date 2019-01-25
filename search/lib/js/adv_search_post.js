@@ -861,9 +861,9 @@ function change_region(currency)
 }
 
 //toggle more options for adv_search
-$('.toggleHiddenButtons .glyphicon-chevron-down').click(function() { $('.hiddenOptions').toggle('slow'); $(this).toggleClass('arrowUp'); });
-$('.toggleHiddenButtonsGpu .glyphicon-chevron-down').click(function() { $('.hiddenOptionsGpu').toggle('slow'); $(this).toggleClass('arrowUp'); });
-$('.toggleHiddenButtonsDisplay .glyphicon-chevron-down').click(function() { $('.hiddenOptionsDisplay').toggle('slow'); $(this).toggleClass('arrowUp'); });
+$('.toggleHiddenButtons .glyphicon-chevron-down').click(function() { $('.hiddenOptions').toggle('slow'); $(this).toggleClass('arrowUp'); $("#CPU_socket_id").trigger("change"); });
+$('.toggleHiddenButtonsGpu .glyphicon-chevron-down').click(function() { $('.hiddenOptionsGpu').toggle('slow'); $(this).toggleClass('arrowUp'); $("#GPU_arch_id,#GPU_msc_id").trigger("change"); });
+$('.toggleHiddenButtonsDisplay .glyphicon-chevron-down').click(function() { $('.hiddenOptionsDisplay').toggle('slow'); $(this).toggleClass('arrowUp'); $("#DISPLAY_resol_id").trigger("change"); });
 $('.toggleHiddenButtonsChassis .glyphicon-chevron-down').click(function() { $('.hiddenOptionsChassis').toggle('slow'); $(this).toggleClass('arrowUp'); });
 $('.toggleHiddenButtonsStorage .glyphicon-chevron-down').click(function() { $('.hiddenOptionsStorage').toggle('slow'); $(this).toggleClass('arrowUp'); });
 $('.toggleHiddenButtonsMdb .glyphicon-chevron-down').click(function() { $('.hiddenOptionsMdb').toggle('slow'); $(this).toggleClass('arrowUp'); });

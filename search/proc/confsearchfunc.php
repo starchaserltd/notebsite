@@ -17,7 +17,18 @@ function sort_func_by_price(&$results) {
     });
 }
 
-function id (&$results) {
-    return;
+function del_duplicate_pmodel(&$results)
+{
+	$compare_array=array(); $i=0;
+	foreach($results as $key=>$val)
+	{
+		if(isset($compare_array[$val["pmodel"]]))
+		{ array_splice($results,$i,1); $i--;}
+		else
+		{ $compare_array[$val["pmodel"]]=1; }
+		$i++;
+	}
 }
+
+function id (&$results) { return; }
 ?>

@@ -23,23 +23,23 @@ if(isset($_GET['s_memmin']))
 /* CONVERTING VARIABLES FROM ADVANCED SEARCH TO ADVANCED SEARCH */	
 /********************************************************************/
 
-else if (isset($_GET['advsearch']))
+elseif (isset($_GET['advsearch']))
 { include ("conv/advtoadv.php"); }
 /*******************************************************************/	
 /* CONVERTING VARIABLES FROM QUIZ TO ADVANCED SEARCH */	
 /*******************************************************************/
 
-else if (isset($_GET['quizsearch']) && $_GET['quizsearch'])
+elseif (isset($_GET['quizsearch']) && $_GET['quizsearch'])
 { include ("conv/quiztoadv.php"); }
 /*******************************************************************/	
 /* CONVERTING VARIABLES FROM BROWSE BY TO ADVANCED SEARCH */	
 /*******************************************************************/
 
-else if (isset($_GET['browse_by']) && $_GET['browse_by'])
+elseif (isset($_GET['browse_by']) && $_GET['browse_by'])
 { include ("conv/browsetoadv.php"); }
-/**** IF WE HAVE NO INCOMING VALUES WE NEED TO SET SOME DEFAULTS ****/
 else
 {
+/**** IF WE HAVE NO INCOMING VALUES WE NEED TO SET SOME DEFAULTS ****/
 	$gputype = 2;
 	$gputypechecked[0]='checked="checked"';
 

@@ -38,7 +38,7 @@ var istime=0;
 		
 			</div>
 			<div class="col-md-8 col-sm-8 col-xs-8 col-lg-8" style="padding-left:0px">
-				<img src="<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($echoid) )); echo $url;?>" class="img-responsive" alt="articleImg">
+				<img src="<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($echoid) )); echo $url;?>" class="img-responsive img-fluid" alt="articleImg">
 			</div>
 			<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 detaliicomp2" style= "font-size:16px; line-height:30px; padding:0px; text-align:justify;">
 				<div>

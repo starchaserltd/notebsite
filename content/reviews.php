@@ -42,7 +42,8 @@ $category = get_category(2);
 $published_posts = $category->category_count;
 ?>
 <script type="text/javascript">var review_metatitle_part="";</script>
-<div class="row container-fluid headerback" style="margin-right:0px;padding-right: 0px;">
+<div class="container-fluid headerback" style="margin-right:0px;padding-right: 0px;">
+  <div class="row">
 	<div class="col-md-12 col-sm-12" style="background-color:white; font-family:arial">
 <?php
 	for ($x = 0; $x <= 7; $x++)
@@ -67,13 +68,16 @@ $published_posts = $category->category_count;
 		</div>
 		<div class="row" style="padding-bottom:5px;">	
 			<!--Review Picture -->
-			<a onmousedown="OpenPage('<?php  echo $ad=str_replace($wpsite."/article.php/review/","content/review.php?/",get_permalink($recent_posts[$x]["ID"])); ?>',event);" style="cursor: pointer;">
-				<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12" style="padding:5px">
-					<img src="<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[$x]["ID"]) )); echo $url;?>" class="img-responsive" alt="Review featured image">
-				</div>
-			</a>
+			<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+				<a onmousedown="OpenPage('<?php  echo $ad=str_replace($wpsite."/article.php/review/","content/review.php?/",get_permalink($recent_posts[$x]["ID"])); ?>',event);" style="cursor: pointer;">
+					
+						<img src="<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[$x]["ID"]) )); echo $url;?>" class="img-responsive img-fluid" alt="Review featured image">
+					
+				</a>
+			</div>
+			
 			<!--Review Description -->
-			<div class="col-lg-10 col-md-9 col-sm-9 col-xs-12 review">
+			<div class="col-lg-7 col-md-9 col-sm-8 col-xs-12 review">
 				<p style="font-style:italic;"><?php echo "by "; echo get_userdata($recent_posts[$x]["post_author"])->display_name; echo " - "; echo date( 'd M Y', strtotime( $recent_posts[$x]["post_date"]));?></p>
 				<p>	<?php 	
 				$test_review = nobrackets($recent_posts[$x]["post_content"]);
@@ -88,6 +92,7 @@ $published_posts = $category->category_count;
 		}
 	} ?>		
 	</div>
+  </div>
 </div>		
 	<?php
 		//PAGINATION CODE START
@@ -114,17 +119,17 @@ $published_posts = $category->category_count;
 
 	<div class="col-md-12">
 		<ul class="pagination" style="float:right;">
-		<li><a onmousedown="OpenPage('content/reviews.php?page=1',event);" style="color:#000; cursor: pointer;" >&lt;&lt;</a></li>
-		<li><a onmousedown="OpenPage('content/reviews.php?page=<?php  $newpage=$page-1; if($newpage<1) {$newpage=1; } echo $newpage;?>',event);"  style="color:#000; cursor: pointer;">&lt;</a></li>
+		<li class="page-item"><a class="page-link" onmousedown="OpenPage('content/reviews.php?page=1',event);" style="color:#000; cursor: pointer;" >&lt;&lt;</a></li>
+		<li class="page-item"><a class="page-link" onmousedown="OpenPage('content/reviews.php?page=<?php  $newpage=$page-1; if($newpage<1) {$newpage=1; } echo $newpage;?>',event);"  style="color:#000; cursor: pointer;">&lt;</a></li>
   
 	<?php		
 		if($count<5)
 		{
 			for($i=1;$i<=$count;$i++)
 			{
-				if($i == $page) { echo '<li><a onmousedown="OpenPage('."'".'content/reviews.php?page='.$i."'".',event);" style="color:#000; cursor: pointer;"><b>'.$i.'</b></a></li>'; } 
+				if($i == $page) { echo '<li class="page-item"><a class="page-link" onmousedown="OpenPage('."'".'content/reviews.php?page='.$i."'".',event);" style="color:#000; cursor: pointer;"><b>'.$i.'</b></a></li>'; } 
 				else 
-				{ echo '<li><a onmousedown="OpenPage('."'".'content/reviews.php?page='.$i."'".',event);" style="color:#000; cursor: pointer;">'.$i.'</a></li>'; }
+				{ echo '<li class="page-item"><a class="page-link" onmousedown="OpenPage('."'".'content/reviews.php?page='.$i."'".',event);" style="color:#000; cursor: pointer;">'.$i.'</a></li>'; }
 			}
 		}
 		else
@@ -140,15 +145,15 @@ $published_posts = $category->category_count;
 			
 			for($i=$min;$i<=$limit;$i++)
 			{ 
-				if($i == $page) { echo '<li><a onmousedown="OpenPage('."'".'content/reviews.php?page='.$i."'".',event);" style="color:#000; cursor: pointer;"><b>'.$i.'</b></a></li>'; }
+				if($i == $page) { echo '<li class="page-item"><a class="page-link" onmousedown="OpenPage('."'".'content/reviews.php?page='.$i."'".',event);" style="color:#000; cursor: pointer;"><b>'.$i.'</b></a></li>'; }
 				else 
-				{ echo '<li><a onmousedown="OpenPage('."'".'content/reviews.php?page='.$i."'".',event);" style="color:#000; cursor: pointer;">'.$i.'</a></li>'; }
+				{ echo '<li class="page-item"><a class="page-link" onmousedown="OpenPage('."'".'content/reviews.php?page='.$i."'".',event);" style="color:#000; cursor: pointer;">'.$i.'</a></li>'; }
 			}
 	
 		}
 	?>			
-		<li><a onmousedown="OpenPage('content/reviews.php?page=<?php  $newpage=$page+11; if($newpage>$count) {$newpage=$count; } echo $newpage;?>',event);"  style="color:#000; cursor: pointer;">></a></li>
-		<li><a onmousedown="OpenPage('content/reviews.php?page=<?php echo $count; ?>',event);" style="color:#000; cursor: pointer;" >>></a></li>
+		<li class="page-item"><a class="page-link"onmousedown="OpenPage('content/reviews.php?page=<?php  $newpage=$page+11; if($newpage>$count) {$newpage=$count; } echo $newpage;?>',event);"  style="color:#000; cursor: pointer;">></a></li>
+		<li class="page-item"><a class="page-link" onmousedown="OpenPage('content/reviews.php?page=<?php echo $count; ?>',event);" style="color:#000; cursor: pointer;" >>></a></li>
 		</ul>
 	</div>
 	<?php //PAGINATION CODE END ?>
@@ -165,7 +170,7 @@ $published_posts = $category->category_count;
 	
 	// Only enable if the document has a long scroll bar
 	// Note the window height + offset
-	if ( ($(window).height() + 100) < $(document).height() ) { $('#top-link-block').removeClass('hidden').affix({ offset: {top:100} }); }
+	// if ( ($(window).height() + 100) < $(document).height() ) { $('#top-link-block').removeClass('hidden').affix({ offset: {top:100} }); }
 </script>
 <link rel="stylesheet" href="content/lib/css/article.css" type="text/css"/>
 <?php include_once("../etc/scripts_pages.php"); ?>
