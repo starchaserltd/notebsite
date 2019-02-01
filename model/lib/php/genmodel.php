@@ -32,7 +32,7 @@ if(!$components_found)
 			$idmodel=$row["model"];
 			$cf=intval($row["rating"]);
 
-			if(in_array($idwar,$ex_war)||$change_model_region)
+			if(in_array($idwar,$ex_war)||$change_model_region||intval($row["price"])<1)
 			{
 				$conf=array(); $conf[0]=$idmodel; $conf[1]=$idcpu; $conf[2]=$iddisplay; $conf[3]=$idmem; $conf[4]=$idhdd; $conf[5]=$idshdd; $conf[6]=$idgpu; $conf[7]=$idwnet; $conf[8]=$idodd; $conf[9]=$idmdb; $conf[10]=$idchassis; $conf[11]=$idacum; $conf[12]=implode(",",$ex_war); $conf[13]=$idsist; if($conf[12]==""||$conf[12]==null){$conf[12]="-1000";}
 				$include_getconf=true; $conf_only_search=true; if($change_model_region){$conf_only_search=false;} $warnotin=" NOT"; $excode=$exchcode; $comp="1=1";

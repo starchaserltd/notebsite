@@ -15,16 +15,16 @@ if($c)
 	if($getall){$all="*,";}else{$all="";}; if(!isset($conf[1])){for($i=1;$i<14;$i++){$conf[$i]="";}}
 	$sql="SELECT ".$all."id,price,err FROM notebro_temp.all_conf_".$conf[0]." WHERE model=".$conf[0]." AND cpu=".$conf[1]." AND display=".$conf[2]." AND mem=".$conf[3]." AND hdd=".$conf[4]." AND shdd=".$conf[5]." AND gpu=".$conf[6]." AND wnet=".$conf[7]." AND odd=".$conf[8]." AND mdb=".$conf[9]." AND chassis=".$conf[10]." AND acum=".$conf[11]." AND war".$warnotin." IN (".$conf[12].") AND sist=".$conf[13]." LIMIT 1";
 	if($comp!="EXCH"){$result = mysqli_query($cons,$sql);}else{$result=FALSE; $rows["cid"]=0;}
-	$retry=0; $exclude_war=array(); $current_region=[0]; $rows["exch"]=$excode; if(!isset($cf)){$cf=-1;} $region=[-1]; $no_avb_search=true; $only_exch_regions=false;
+	$retry=0; $exclude_war=array(); $current_region=[0]; $rows["exch"]=$excode; if(!isset($cf)){$cf=-1;} $region=[-1]; $no_avb_search=true; $only_exch_regions=false; $confdata=array();
 	
 	if($result!==FALSE)
 	{
 		$confdata = mysqli_fetch_array($result);
-		if(intval($confdata[1])>0)
+		if(intval($confdata["price"])>0)
 		{
-			$rows["cid"]=$confdata[0];
-			$rows["cprice"]=$confdata[1];
-			$rows["cerr"]=$confdata[2];
+			$rows["cid"]=$confdata["id"];
+			$rows["cprice"]=$confdata["price"];
+			$rows["cerr"]=$confdata["err"];
 			if($getall){$rows["all"]=$confdata;}
 		}
 		else { $retry=1; }
