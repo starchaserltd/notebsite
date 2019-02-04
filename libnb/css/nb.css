@@ -2239,8 +2239,7 @@ table#comparelist td.text-center.comparecell3 {
     color: #0000ff!important;
     font-weight: bold;   
     font-size: 16px;
-    cursor: pointer;
-    text-decoration: underline!important;
+    cursor: pointer;  
     cursor: pointer;
 }
 
@@ -2498,6 +2497,18 @@ table#comparelist td.text-center.comparecell3 {
 	color: #fff;
 }
 
+.multiselect-container label.checkbox {
+    position: relative;
+    padding: 10px 0 10px 25px!important;
+    line-height: 14px;
+}
+
+.multiselect-container label.checkbox input[type="checkbox"] {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
 /*Responsive media design */
 
 @media (min-width: 1980px) {
@@ -2619,7 +2630,7 @@ table#comparelist td.text-center.comparecell3 {
 
 @media (min-width: 440px) {
     .modelContainer .buy .dropdown-menu {
-       min-width: 148px!important;
+       min-width: 210px!important;
         }
 }
 

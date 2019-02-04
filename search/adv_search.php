@@ -26,7 +26,7 @@
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="background-color:white; font-family:arial;">
 					<div class="row">
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-						<a onclick="scrolltoid('submitformid');" style="cursor:pointer; font-size:14px; float:right; margin-top:20px; margin-left:10px; padding:0px 25px 0px 25px; border-radius:2px; background-color:#49505a; color:#fff; text-decoration:none;">Go to bottom<i class="glyphicon glyphicon-arrow-down" style="font-size:12px"></i></a>
+						<a onclick="scrolltoid('submitformid');" style="cursor:pointer; font-size:14px; float:right; margin-top:20px; margin-left:10px; padding:0px 25px 0px 25px; border-radius:2px; background-color:#49505a; color:#fff; text-decoration:none;">Go to bottom<i class="glyphicon glyphicon-arrow-down fas fa-arrow-down" style="font-size:12px; display:inline-block;margin-left:10px;"></i></a>
 						<a onclick="reset_select2_vars(); OpenPage('search/adv_search.php?reset=1',event);" style="cursor:pointer;  font-size:14px; float:right; margin-top:20px; padding:0px 25px 0px 25px; border-radius:2px; background-color:#49505a; color:#fff; text-decoration:none;margin-left: 10px;" id="gototop">Reset</a>
 						<a onclick="setrecommended();" style="cursor:pointer;  font-size:14px; float:right; margin-top:20px; padding:0px 25px 0px 25px; border-radius:2px; background-color:#49505a; color:#fff; text-decoration:none;">Set recommended filters</a>
 						</div>					
@@ -249,7 +249,7 @@
 							<input type="hidden" name="verresmax" id="verresmax" value="<?php echo $displayvresmax; ?>" data-lcom='DISPLAY_resol' data-lfield="vresmax">				
 						</div>					
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-							<div class="checkbox" style="float:right;">
+							<div class="checkbox" style="text-align: right;">
 								<input type="checkbox" name="touchscreen"  id="touchscreen" class="css-checkbox sme" style="margin-left:0px;" <?php echo $tcheck; ?>/>
 								<label for="touchscreen" class="css-label sme depressed" style="font-weight:normal;min-height:16px;">Touchscreen</label>
 								&nbsp;
@@ -572,7 +572,7 @@
 				<div class="row">
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><hr class=""  style="height:5px;"></div>
 					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6"  style="font-size:16px; font-weight:bold;padding-bottom:5px;">Warranty</div>
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-left: 15px;">
 						<div style="margin-top:5px;"><span style="margin-top:5px; font-size:13.5px; margin-bottom:2px;">
 							Nr of years:</span>  <span id="yearsval"><?php echo $waryearsmin; ?> - <?php echo $waryearsmax; ?></span>
 						</div>	  
