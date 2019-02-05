@@ -78,7 +78,7 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 										echo $prod; echo " ";
 										echo $fam; echo " ";
 										echo $model; echo " ";			
-										echo show('submodel','MDB',$rand['mdb'] );
+										//echo show('submodel','MDB',$rand['mdb'] );
 									?>
 								</p>
 							</a>
