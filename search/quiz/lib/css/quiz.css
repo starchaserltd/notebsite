@@ -16,8 +16,8 @@
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     border-radius: 7px;
-    margin-top: -240%;
-    margin-left: -7px;
+    margin-top: -275%;
+    margin-left: -1px;
     top:10px;
 }
 
@@ -831,8 +831,8 @@ _:-ms-lang(x),
         height: 12px;
     }
     .next-text {
-        margin-top: -111%;
-        margin-left: -6px;
+        margin-top: -164%;
+        margin-left: -1px;
         padding: 5px 14px;
     }
     .next-text p {

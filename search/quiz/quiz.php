@@ -167,7 +167,7 @@
 		<span class="nrcircle nrcircleactive"></span><span class="nrcircle"></span><span class="nrcircle"></span><span class="nrcircle"></span><span class="nrcircle"></span></span><span class="nrcircle"></span>
 		<span class="glyphicon glyphicon-arrow-right fas fa-arrow-right arrows #quiza" style="display:none;" onclick="makePage(currentp+1);">			
 			<span class="next-text">
-				<p><span>Next</span><span class="hidden-xs visible-sm visible-md visible-lg">Question</span></p>	
+				<p><span>Next</span><span class="hidden-xs visible-sm visible-md visible-lg d-none d-sm-block">Question</span></p>	
 				<span class="nextTextTail"></span>		
 			</span>
 		</span>
