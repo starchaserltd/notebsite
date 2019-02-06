@@ -11,35 +11,32 @@ $keys = mysqli_real_escape_string($con,filter_var($_POST["keys"], FILTER_SANITIZ
 
 if(strlen($keys)>2 && $keys[-3]=="%")
 { $keys=substr($keys, 0, -3); }
-$keysparts=explode(" ",$keys); $conditions="";
+$keysparts=explode(" ",$keys); $conditions_model=""; $conditions_altmodel=""; $conditions="";
 
 foreach($keysparts as $el)
 {
-	$conditions.="REGEXP_REPLACE(CONCAT(prod,' ',IFNULL((SELECT fam FROM `notebro_db`.`FAMILIES` WHERE id=idfam),''),' ',IFNULL((SELECT subfam FROM `notebro_db`.`FAMILIES` WHERE id=idfam and showsubfam=1),''),' ',model),'[[:space:]]+', ' ') LIKE '%".$el."%' AND ";
+	$conditions_model.="GEN_NAME(`MODEL`.`id`) LIKE '%".$el."%' AND ";
+	$conditions_altmodel.="`alt_model`.`name` LIKE '%".$el."%' AND ";
 }
-$conditions=substr($conditions, 0, -5);
-if(isset($id_set) && $id_set){ $conditions.="AND id IN ($id_set)"; }
-if($p_model_only){ $conditions.=" AND `p_model`=`id`"; }
+$conditions_model=substr($conditions_model, 0, -5); $conditions_altmodel=substr($conditions_altmodel, 0, -5);
+if(isset($id_set) && $id_set){ $conditions_model.="AND id IN ($id_set)"; }
+if($p_model_only){ $conditions_model.=" AND `p_model`=`id`"; $conditions_altmodel.=" GROUP BY `model`.`p_model`"; }
 
 // CONSTRUCTING THE SEARCH QUERY
-$sel="SELECT id,mdb,submodel,regions,REGEXP_REPLACE(CONCAT(prod,' ',IFNULL((SELECT fam FROM `notebro_db`.`FAMILIES` WHERE id=idfam),''),' ',IFNULL((SELECT subfam FROM `notebro_db`.`FAMILIES` WHERE id=idfam and showsubfam=1),''),' ',model),'[[:space:]]+', ' ') as name from `notebro_db`.`MODEL` WHERE ".$conditions;
+$sel="SELECT `MODEL`.id,`MODEL`.mdb,`MODEL`.`submodel`,`MODEL`.`regions`,GEN_NAME(`MODEL`.`id`) as `name` from `notebro_db`.`MODEL` WHERE ".$conditions_model;
+if(!(isset($id_set) && $id_set))
+{
+	$sel.=" UNION ";
+	$sel.="SELECT `model`.`id`,`model`.`mdb`,`model`.`submodel`,`model`.regions,`alt_model`.`name` FROM `notebro_db`.`MODEL` `model` JOIN `notebro_db`.`ALT` `alt_model` ON (`model`.id=`alt_model`.`model_id`) WHERE ".$conditions_altmodel;
+}
 $i=0;
-
+error_log($sel);
 //DOING THE SEARCH;
 $result = mysqli_query($con, $sel);
 $list = array();
 while($rand = mysqli_fetch_row($result))
 { 
-	$region="";
-	//GETTING MDB SUBMODEL
-	preg_match("/[^,]*/",$rand[1],$id);
-	$sel="SELECT submodel FROM notebro_db.MDB WHERE id=".$id[0]." AND ( submodel NOT LIKE '%submodel%' AND submodel NOT LIKE '%tandard%') LIMIT 1";
-	$result2 = mysqli_query($con, $sel);
-	if($result2)
-	{
-		$mdb_submodel=mysqli_fetch_row($result2);
-		if($mdb_submodel){ $mdb_submodel=" ".$mdb_submodel[0];}
-	}
+	$region=""; $mdb_submodel="";
 	if(strlen($rand[2])>6 && !preg_match("/\(.*\)/",$rand[2])){ if(isset($rand[2][7])){ if($rand[2][6]!=' '){  if($rand[2][5]!=' '){$rand[2]=substr($rand[2],0,6).".";}else{$rand[2]=substr($rand[2],0,5)."";}}else{$rand[2]=substr($rand[2],0,6)."";} } } 
 	$regions=array(); $regions=explode(",",$rand[3]); $show_reg=1;  $region=array(); $region["disp"]="";
 	foreach($regions as $el) { if(intval($el)===1 || intval($el)===0 ) { $show_reg=0; } }
