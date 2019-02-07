@@ -66,13 +66,13 @@ foreach($comp_lists["model"] as $m)
 	# array_push($queries, array(
 	#	"query" => $query_search,
 	#	"time" => $time_end_query - $time_start_query));
-		$query_search_pmodel="SELECT `pmodel` FROM `notebro_temp`.`m_map_table` WHERE `notebro_temp`.`m_map_table`.`model_id`=".$model." LIMIT 1";
+		$query_search_pmodel="SELECT `pmodel`,`show_smodel` FROM `notebro_temp`.`m_map_table` WHERE `notebro_temp`.`m_map_table`.`model_id`=".$model." LIMIT 1";
 		$result_pmodel_r=mysqli_query($cons,$query_search_pmodel);
 		if($result_pmodel_r&&mysqli_num_rows($result_pmodel_r)>0)
 		{ $result_pmodel=mysqli_fetch_assoc($result_pmodel_r);}
 		else
-		{ $result_pmodel["pmodel"]=$model; }
-		$result["pmodel"]=$result_pmodel["pmodel"];
+		{ $result_pmodel["pmodel"]=$model; $result_pmodel["show_smodel"]=0; }
+		$result["pmodel"]=$result_pmodel["pmodel"]; $result["show_smodel"]=intval($result_pmodel["show_smodel"]);
 		
 		if (!is_null($result)) { $results[]=$result; }
 	}

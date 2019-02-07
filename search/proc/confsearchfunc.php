@@ -23,7 +23,7 @@ function del_duplicate_pmodel(&$results)
 	foreach($results as $key=>$val)
 	{
 		if(isset($compare_array[$val["pmodel"]]))
-		{ array_splice($results,$i,1); $i--;}
+		{ if(!$val["show_smodel"]){ array_splice($results,$i,1); $i--;} }
 		else
 		{ $compare_array[$val["pmodel"]]=1; }
 		$i++;

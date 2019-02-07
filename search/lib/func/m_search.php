@@ -20,7 +20,7 @@ foreach($keysparts as $el)
 }
 $conditions_model=substr($conditions_model, 0, -5); $conditions_altmodel=substr($conditions_altmodel, 0, -5);
 if(isset($id_set) && $id_set){ $conditions_model.="AND id IN ($id_set)"; }
-if($p_model_only){ $conditions_model.=" AND `p_model`=`id`"; $conditions_altmodel.=" GROUP BY `model`.`p_model`"; }
+if($p_model_only){ $conditions_model.=" AND (`p_model`=`id` OR `show_smodel`=TRUE)"; $conditions_altmodel.=" GROUP BY `model`.`p_model`"; }
 
 // CONSTRUCTING THE SEARCH QUERY
 $sel="SELECT `MODEL`.id,`MODEL`.mdb,`MODEL`.`submodel`,`MODEL`.`regions`,GEN_NAME(`MODEL`.`id`) as `name` from `notebro_db`.`MODEL` WHERE ".$conditions_model;
