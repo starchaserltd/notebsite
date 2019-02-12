@@ -73,7 +73,7 @@ function removecomplink(idstring)
 			var compinfo = data.split("++");
 			if(compinfo[3]!="0")
 			{
-				elementtext='<tbody><tr id="comprow'+compinfo[3]+'" class="items" style="background:#fff;"><td class="comparecell1"><div class="checkbox" style="margin:0px; width:0px;"><input type="checkbox" onclick="cchecks('+"'"+compinfo[3]+"'"+')" class="css-checkbox sme" id="checkbox'+compinfo[3]+'" '+compinfo[1]+' /><label style="font-weight:normal;min-height:16px;" for="checkbox'+compinfo[3]+'" class="css-label sme depressed"></label></div></td><td class="text-center comparecell3"><a  href="'+siteroot+'?model/model.php?conf='+compinfo[3]+'"><img class="img-responsive" src="res/img/models/thumb/t_'+compinfo[10]+'" alt="'+compinfo[9]+'"></a></td><td class="text-center comparecell2" ><a  href="'+siteroot+'?model/model.php?conf='+compinfo[3]+'" class="comparename">'+compinfo[0]+'<div class="menuhidden">'+compinfo[6]+'", '+compinfo[7]+', '+compinfo[4]+', '+compinfo[5]+', '+compinfo[8]+', '+compinfo[9]+'</div></a></td><td class="text-center" style="width:16px;padding-bottom:2px; padding-top:2px;"><a  style="color:#49505a;font-size:16px;padding:0px;background-color:#fff;" onclick="removecomp('+"'"+compinfo[3]+"'"+',0)"><span class="fas fa-times"></span></a></td></tr></tbody>';
+				elementtext='<tr id="comprow'+compinfo[3]+'" class="items" style="background:#fff;"><td class="comparecell1"><div class="checkbox" style="margin:0px; width:0px;"><input type="checkbox" onclick="cchecks('+"'"+compinfo[3]+"'"+')" class="css-checkbox sme" id="checkbox'+compinfo[3]+'" '+compinfo[1]+' /><label style="font-weight:normal;min-height:16px;" for="checkbox'+compinfo[3]+'" class="css-label sme depressed"></label></div></td><td class="text-center comparecell3"><a  href="'+siteroot+'?model/model.php?conf='+compinfo[3]+'"><img class="img-responsive" src="res/img/models/thumb/t_'+compinfo[10]+'" alt="'+compinfo[9]+'"></a></td><td class="text-center comparecell2" ><a  href="'+siteroot+'?model/model.php?conf='+compinfo[3]+'" class="comparename">'+compinfo[0]+'<div class="menuhidden">'+compinfo[6]+'", '+compinfo[7]+', '+compinfo[4]+', '+compinfo[5]+', '+compinfo[8]+', '+compinfo[9]+'</div></a></td><td class="text-center" style="width:16px;padding-bottom:2px; padding-top:2px;"><a  style="color:#49505a;font-size:16px;padding:0px;background-color:#fff;" onclick="removecomp('+"'"+compinfo[3]+"'"+',0)"><span class="fas fa-times"></span></a></td></tr>';
 				document.getElementById("comparelist").insertAdjacentHTML('beforeend',elementtext);
 				nrcheck=parseInt(compinfo[2]);
 				if(firstcompare!=1)
@@ -132,7 +132,7 @@ function removecomp(nr,uncheck)
 	
 	if(uncheck==0) // delete entry
 	{
-		$('table#comparelist tr#comprow'+nr).parent().remove();
+		$('table#comparelist tr#comprow'+nr).remove();
 		$.ajax({
 			type: "POST",
 			url: "libnb/php/delcomp.php",

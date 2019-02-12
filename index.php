@@ -63,10 +63,10 @@ require_once("etc/conf.php");
 			<div class="col-lg-2 col-md-3 col-xs-12 col-sm-12 firstContainer">		
 				<div class="row">
 					<div class="col-md-12 col-xs-12 cod-sm-12 col-lg-12 searchDetailsFirstContainer">
-							<form action="javascript:void(0);" method="post" id="modelfind" style="text-align: -webkit-center;">		
-								<select class="modelsearch js-example-responsive" id="model_id" name ="model_id" data-placeholder="Search a laptop model" data-initvalue="search for a model"  style="width: 100%; margin:5px 0px 10px 0px; border-radius:1px;"> 
-								</select>
-							</form>
+						<form action="javascript:void(0);" method="post" id="modelfind" style="text-align: -webkit-center;">		
+							<select class="modelsearch js-example-responsive" id="model_id" name ="model_id" data-placeholder="Search a laptop model" data-initvalue="search for a model"  style="width: 100%; margin:5px 0px 10px 0px; border-radius:1px;"> 
+							</select>
+						</form>
 					</div>
 				
 				<!-- left area -->
@@ -126,8 +126,8 @@ require_once("etc/conf.php");
 						</div>			
 					</div>						
 					<div style="text-align:center;">
-					 <button  id="sadvsearch" onmousedown="OpenPage('search/adv_search.php',event);" type="button" class="btn blue leftMenuAdvSearch"><span style="text-decoration:none;color:white;">Advanced search</span></button>
-					 </div>					
+						<button  id="sadvsearch" onmousedown="OpenPage('search/adv_search.php',event);" type="button" class="btn blue leftMenuAdvSearch"><span style="text-decoration:none;color:white;">Advanced search</span></button>
+					</div>					
 					<div class="col-md-12 col-xs-12 col-sm-12 blue cssmenu compareDropdown" style="padding:0px">
 						<ul>				
 							<li class='has-sub'><a style="color: #fff;">Compare</a>
@@ -145,7 +145,7 @@ require_once("etc/conf.php");
 					</div>	
 				</nav>
 				<!-- end left menu--> 		
-				</div>			
+				</div>
 			</div>
 		
 			<!-- end left area-->
