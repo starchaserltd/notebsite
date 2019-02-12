@@ -24,7 +24,7 @@
 			{ $add_models[]=$row[0]; mysqli_free_result($result2); }
 		}
 	}
-	$result2=mysqli_query($con,"SELECT `regions` FROM `notebro_temp`.`ex_map_table` WHERE `ex_id`=".$lang." LIMIT 1");
+	$result2=mysqli_query($cons,"SELECT `regions` FROM `notebro_temp`.`ex_map_table` WHERE `ex_id`=".$lang." LIMIT 1");
 	if($result2&&mysqli_num_rows($result2)>0)
 	{
 		$sql="SELECT GROUP_CONCAT(`ex_id`) as lang_regions FROM `notebro_temp`.`ex_map_table` WHERE 1=1";
@@ -76,7 +76,7 @@
 		}
 	}
 	if(count($excluded_sellers)>0){ $excluded_sellers="AND id NOT IN (".implode(",",$excluded_sellers).")"; } else { $excluded_sellers=""; }
-	var_dump($buy_regions); var_dump($lang);
+
 	if($buy_regions==3&&$lang!=1&&$lang!=3){$lang=1;}
 	if($buy_regions==0){ $result=mysqli_query($con,"SELECT `notebro_buy`.`SELLERS`.`name`,`notebro_buy`.`SELLERS`.`tag_name`,`SELLERS`.`first_tag`  FROM `notebro_buy`.`SELLERS` WHERE `exchrate` IN (".$lang.") AND id IN (2,3,4,5,6,7,8,9,10) ".$excluded_sellers." ORDER BY priority DESC"); }
 	else { $result=mysqli_query($con,"SELECT `notebro_buy`.`SELLERS`.`name`,`notebro_buy`.`SELLERS`.`tag_name`,`SELLERS`.`first_tag` FROM `notebro_buy`.`SELLERS` WHERE `region` IN (".$buy_regions.") AND id IN (2,3,4,5,6,7,8,9,10) AND `exchrate` IN (".$lang.") ".$excluded_sellers." ORDER BY priority DESC" ); }
