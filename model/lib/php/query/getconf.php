@@ -1,10 +1,10 @@
 <?php
-if(!isset($any_conf_search)){$any_conf_search=false;} if(!isset($change_model_region)){$change_model_region=false;}
+if(!isset($any_conf_search)){$any_conf_search=false;} if(!isset($change_model_region)){$change_model_region=false;} if(!isset($try_for_exact_model)){$try_for_exact_model=false;}
 if(isset($include_getconf)){$include_getconf=true; $getall=true; $c=true; if(!isset($conf_only_search)){$conf_only_search=false;} }
 else
 {
 	$include_getconf=false; $conf_only_search=false; $warnotin=""; $getall=false;
-	if(isset($_GET['c'])){ $c=preg_replace('~[\x00\x0A\x0D\x1A\x22\x27\x5C]~u', '\\\$0', filter_var($_GET['c'],FILTER_SANITIZE_STRING)); if(stripos($c,"undefined")===FALSE){ $conf = explode("-",$c);}else{$c=0;} } else {$conf=array(); $c=0;}
+	if(isset($_GET['c'])){ $c=preg_replace('~[\x00\x0A\x0D\x1A\x22\x27\x5C]~u', '\\\$0', filter_var($_GET['c'],FILTER_SANITIZE_STRING)); if(stripos($c,"undefined")===FALSE){ $conf=explode("-",$c);} else {$c=0;} } else {$conf=array(); $c=0;}
 	if(isset($_GET['comp'])){ $comp=preg_replace('~[\x00\x0A\x0D\x1A\x22\x27\x5C]~u', '\\\$0', filter_var($_GET['comp'],FILTER_SANITIZE_STRING)); if(stripos($comp,"undefined")!==FALSE){ $comp=NULL; } }
 	if(isset($_GET['cf'])&&($_GET['cf']!="undefined")){ $cf=floatval($_GET['cf']); } else {$cf=0;} /* config rating */
 	if(isset($_GET['ex'])){ $excode=preg_replace('~[\x00\x0A\x0D\x1A\x22\x27\x5C]~u', '\\\$0', filter_var($_GET['ex'],FILTER_SANITIZE_STRING)); if(stripos($excode,"undefined")!==FALSE){ $excode=NULL; } }
@@ -12,9 +12,10 @@ else
 if($c)
 {
 	$rows=array(); $rows["cmodel"]=$conf[0]; $rows["newregion"]=false; if(!$include_getconf){ require("../../../../etc/con_sdb.php"); require("../../../../etc/session.php");  } 
-	if($getall){$all="*,";}else{$all="";}; if(!isset($conf[1])){for($i=1;$i<14;$i++){$conf[$i]="";}}
+	if($getall){$all="*,";}else{$all="";} if(!isset($conf[1])){for($i=1;$i<14;$i++){if(!isset($conf[$i])){$conf[$i]="";}}}
 	$sql="SELECT ".$all."id,price,model,err FROM notebro_temp.all_conf_".$conf[0]." WHERE model=".$conf[0]." AND cpu=".$conf[1]." AND display=".$conf[2]." AND mem=".$conf[3]." AND hdd=".$conf[4]." AND shdd=".$conf[5]." AND gpu=".$conf[6]." AND wnet=".$conf[7]." AND odd=".$conf[8]." AND mdb=".$conf[9]." AND chassis=".$conf[10]." AND acum=".$conf[11]." AND war".$warnotin." IN (".$conf[12].") AND sist=".$conf[13]." LIMIT 1";
-	if($comp!="EXCH"){$result = mysqli_query($cons,$sql);}else{$result=FALSE; $rows["cid"]=0;}
+	
+	if($comp!="EXCH"){$result=mysqli_query($cons,$sql);}else{$result=FALSE; $rows["cid"]=0;}
 	$retry=0; $exclude_war=array(); $current_region=[0]; $rows["exch"]=$excode; if(!isset($cf)){$cf=-1;} $region=[-1]; $no_avb_search=true; $only_exch_regions=false; $confdata=array();
 
 	if($result!==FALSE)
@@ -109,6 +110,7 @@ if($c)
 					else
 					{ unset($m_map[$key]); }
 				}
+
 				$models_in_region=array();
 				foreach($region as $el)
 				{
@@ -119,8 +121,8 @@ if($c)
 				{
 					if(!$any_conf_search)
 					{ $rows=search_valid_config($models_in_region,$conf[1],$conf[2],$conf[3],$conf[4],$conf[5],$conf[6],$conf[7],$conf[8],$conf[9],$conf[10],$conf[11],$conf[12],$conf[13],$filter,$cf,$region,$exclude_war);}
-					else
-					{$rows=search_any_config($models_in_region,$exclude_war);}
+					else /* First search in the model selected, then in all models in the region*/
+					{ if($try_for_exact_model){ $rows=search_any_config(array($conf[0]),$exclude_war); } if($rows["cid"]==0){ $rows=search_any_config($models_in_region,$exclude_war); } }
 					/*If warranty limitations prevented finding a valid configuration, try to search again without the warranty limitations.*/
 					if($rows["cid"]==0&&$rows["invalid_ex_war"]){if(!$any_conf_search){$rows=search_valid_config($models_in_region,$conf[1],$conf[2],$conf[3],$conf[4],$conf[5],$conf[6],$conf[7],$conf[8],$conf[9],$conf[10],$conf[11],$conf[12],$conf[13],$filter,$cf,$region,array());}else{$rows=search_any_config($models_in_region,array());}}
 				}
@@ -248,7 +250,8 @@ function search_any_config($models,$exclude_war)
 		$sql="";
 		foreach($models as $key=>$model)
 		{ $sql.="(SELECT * FROM `notebro_temp`.`all_conf_".$model."` WHERE model=".$model." ".$filter_complete." AND price>0 ORDER BY value desc LIMIT 1) UNION "; }
-		$sql=substr($sql, 0, -6); $sql.="ORDER BY abs(value) LIMIT 1";;
+		$sql=substr($sql, 0, -6); $sql.="ORDER BY abs(value) LIMIT 1";
+
 		$result = mysqli_query($cons,$sql);
 		if($result!==FALSE&&mysqli_num_rows($result)>0)
 		{

@@ -24,7 +24,7 @@ $country=implode(",",$ex_regions);
 $lang=intval($row["id"]); $_SESSION['lang']=$lang;
 $exch=floatval($row["convr"]); $_SESSION['exch']=$exch;
 $exchsign=$row["sign"]; $_SESSION['exchsign']=$exchsign;
-$ex_war=explode(",",$row["ex_war"]); $_SESSION['ex_war']=$ex_war;
+if($row["ex_war"]&&$row["ex_war"]!=""&&$row["ex_war"]!=NULL){$ex_war=explode(",",$row["ex_war"]);}else{$ex_war=[-1];} $_SESSION['ex_war']=$ex_war;
 
 //CODE FOR THE MODEL SEARCH
 if(isset($_GET['conf']) && $_GET['conf']!="NaN") { $conf = clean_string($_GET['conf']); }
@@ -33,8 +33,9 @@ if(isset($_GET['model_id']) && $_GET['model_id']!="NaN")
 	require_once("../etc/con_sdb.php"); $id=array(); $id[0]=0;
 	$cons=dbs_connect();
 	$idmodel=clean_string($_GET['model_id']);
-	
-	$conf=array(); $conf[0]=$idmodel;
+	if(stripos($idmodel,"_np")!==FALSE){$idmodel=explode("_",$idmodel)[0]; $try_for_exact_model=true;}else{$try_for_exact_model=false;}
+
+	$conf=array(); $conf[0]=$idmodel; if(count($ex_war)>0){$conf[12]=implode(",",$ex_war);}else{$conf[12]="-1";} $warnotin=" NOT";
 	$include_getconf=true; $conf_only_search=false; $excode=$exchcode; $comp="1=1"; $any_conf_search=true;
 	require_once("lib/php/query/getconf.php");
 	if($rows["cid"]!=0)
@@ -48,6 +49,7 @@ if(isset($_GET['model_id']) && $_GET['model_id']!="NaN")
 	{ $sql="SELECT id FROM `notebro_temp`.`all_conf_".$idmodel."` ORDER BY VALUE DESC LIMIT 1"; $result=mysqli_query($cons,$sql); if($result){ $id=mysqli_fetch_row($result); } }
 	mysqli_close($cons);
 }
+
 if(isset($idmodel) && $idmodel){  $conf=$id[0]."_".$idmodel; } // for a model
 $usertag=""; if($conf){ if(isset($_GET["ref"])&&$_GET["ref"]!=""){ $usertag=mysqli_real_escape_string($con,filter_var($_GET["ref"], FILTER_SANITIZE_STRING)); } }
 ?>
