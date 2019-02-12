@@ -96,7 +96,7 @@ if($c)
 					if(($only_exch_regions&&!(in_array($key,$current_ex_region)))&&(strval($key)!="0"))
 					{ unset($m_map[$key]);}
 					elseif((!$no_avb_search)&&(strval($key)=="0")){ unset($m_map[$key]);}
-					elseif((isset($el)&&($el!=NULL)&&($el!="")&&strval($key)!="model_id"))
+					elseif((isset($el)&&($el!=NULL)&&($el!="")&&strval($key)!="model_id"&&strval($key)!="show_smodel"))
 					{
 						 $m_map[$key]=explode(",",$el);
 						 if(!$any_conf_search)
@@ -110,13 +110,11 @@ if($c)
 					{ unset($m_map[$key]); }
 				}
 				$models_in_region=array();
-
 				foreach($region as $el)
 				{
 					if(isset($m_map[$el]))
 					{ $models_in_region=array_merge($models_in_region,$m_map[$el]); unset($m_map[$el]); }
 				}
-				
 				if(count($models_in_region)>0)
 				{
 					if(!$any_conf_search)
@@ -126,6 +124,7 @@ if($c)
 					/*If warranty limitations prevented finding a valid configuration, try to search again without the warranty limitations.*/
 					if($rows["cid"]==0&&$rows["invalid_ex_war"]){if(!$any_conf_search){$rows=search_valid_config($models_in_region,$conf[1],$conf[2],$conf[3],$conf[4],$conf[5],$conf[6],$conf[7],$conf[8],$conf[9],$conf[10],$conf[11],$conf[12],$conf[13],$filter,$cf,$region,array());}else{$rows=search_any_config($models_in_region,array());}}
 				}
+
 				if($rows["cid"]==0)
 				{
 					$exclude_war=array(); $region=array(); $models_in_region=array();
@@ -184,6 +183,7 @@ function search_valid_config($models,$cpu,$display,$mem,$hdd,$shdd,$gpu,$wnet,$o
 		{ $sql.="(SELECT * FROM `notebro_temp`.`all_conf_".$model."` WHERE model=".$model." AND ".$filter.$filter_complete." AND price>0 AND value>=".$cf." ORDER BY value asc LIMIT 1) UNION (SELECT * FROM notebro_temp.all_conf_".$model." WHERE model=".$model." AND ".$filter.$filter_complete." AND price>0 AND value<".$cf." ORDER BY VALUE desc LIMIT 1) UNION "; }
 		$sql=substr($sql, 0, -6); $sql.="ORDER BY abs(value - ".$cf.") LIMIT 1";
 		$result = mysqli_query($cons,$sql);
+		
 		if($result!==FALSE&&mysqli_num_rows($result)>0)
 		{	
 			$confdata=mysqli_fetch_assoc($result);
