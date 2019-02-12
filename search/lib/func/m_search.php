@@ -49,7 +49,7 @@ if((!$result)||($result&&mysqli_num_rows($result)<=0))
 	{
 		$conditions_model=""; $show_submodel=true;
 		foreach($keysparts as $el)
-		{ $conditions_model.="`notebro_db`.GEN_NAME_WSUBMODEL(`MODEL`.`id`) LIKE '%".$el."%'".$reg_sql; }
+		{ $conditions_model.="`notebro_db`.GEN_NAME_WSUBMODEL(`MODEL`.`id`) LIKE '%".$el."%'".$reg_sql." AND "; } $conditions_model=substr($conditions_model, 0, -5);
 		$sel="SELECT `MODEL`.`id`,`MODEL`.`mdb`,`MODEL`.`submodel`,`MODEL`.`regions`,GEN_NAME_WSUBMODEL(`MODEL`.`id`) as `name` FROM `notebro_db`.`MODEL` WHERE ".$conditions_model." ORDER BY `name` ASC";
 		$result=mysqli_query($con,$sel);
 		if(!($result&&mysqli_num_rows($result)>0)&&$reg_sql!="")
