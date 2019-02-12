@@ -15,7 +15,7 @@ if(!$components_found)
 		$result=mysqli_query($cons,$sel3);
 		if($result && mysqli_num_rows($result)>0)
 		{
-			$row = mysqli_fetch_array($result);
+			$row = mysqli_fetch_assoc($result);
 			$idcpu=$row["cpu"]; 
 			$iddisplay=$row["display"];
 			$idmem=$row["mem"];
@@ -37,21 +37,26 @@ if(!$components_found)
 				$conf=array(); $conf[0]=$idmodel; $conf[1]=$idcpu; $conf[2]=$iddisplay; $conf[3]=$idmem; $conf[4]=$idhdd; $conf[5]=$idshdd; $conf[6]=$idgpu; $conf[7]=$idwnet; $conf[8]=$idodd; $conf[9]=$idmdb; $conf[10]=$idchassis; $conf[11]=$idacum; $conf[12]=implode(",",$ex_war); $conf[13]=$idsist; if($conf[12]==""||$conf[12]==null){$conf[12]="-1000";}
 				$include_getconf=true; $conf_only_search=true; if($change_model_region){$conf_only_search=false;} $warnotin=" NOT"; $excode=$exchcode; $comp="1=1";
 				require_once("lib/php/query/getconf.php");
-				$idcpu=$rows["all"]["cpu"]; 
-				$iddisplay=$rows["all"]["display"];
-				$idmem=$rows["all"]["mem"];
-				$idhdd=$rows["all"]["hdd"];
-				$idshdd=$rows["all"]["shdd"];
-				$idgpu=$rows["all"]["gpu"];
-				$idwnet=$rows["all"]["wnet"];
-				$idodd=$rows["all"]["odd"];
-				$idmdb=$rows["all"]["mdb"];
-				$idchassis=$rows["all"]["chassis"];
-				$idacum=$rows["all"]["acum"];
-				$idwar=$rows["all"]["war"];
-				$idsist=$rows["all"]["sist"];
-				$idmodel=$rows["cmodel"];
-				$conf=$rows["cid"];
+				if(isset($rows["cid"])&&intval($rows["cid"])!=NULL)
+				{
+					$idcpu=$rows["all"]["cpu"]; 
+					$iddisplay=$rows["all"]["display"];
+					$idmem=$rows["all"]["mem"];
+					$idhdd=$rows["all"]["hdd"];
+					$idshdd=$rows["all"]["shdd"];
+					$idgpu=$rows["all"]["gpu"];
+					$idwnet=$rows["all"]["wnet"];
+					$idodd=$rows["all"]["odd"];
+					$idmdb=$rows["all"]["mdb"];
+					$idchassis=$rows["all"]["chassis"];
+					$idacum=$rows["all"]["acum"];
+					$idwar=$rows["all"]["war"];
+					$idsist=$rows["all"]["sist"];
+					$idmodel=$rows["cmodel"];
+					$conf=$rows["cid"];
+				}
+				else
+				{ $result=null; }
 			}
 			if($result){ mysqli_free_result($result); }
 		}

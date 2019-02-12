@@ -110,7 +110,7 @@ else
 									foreach($model_ex_list as $val)
 									{
 										$selected=""; if($selected_ex==$val){$selected=' selected="selected"';}
-										echo '<option data-exch="'.$exchange_list->{$val}["convr"].'" value="'.$val.'"'.$selected.'>'.$exchange_list->{$val}["sign"].'</option>';
+										echo '<option data-id="'.$exchange_list->{$val}["id"].'" data-exch="'.$exchange_list->{$val}["convr"].'" value="'.$val.'"'.$selected.'>'.$exchange_list->{$val}["sign"].'</option>';
 									}									
 									?>
 								</select>								 

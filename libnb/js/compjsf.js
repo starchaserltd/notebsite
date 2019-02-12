@@ -1,5 +1,4 @@
 nrcheckchange=-1;
-excode="USD";
 
 function addcomplink(idstring)
 {

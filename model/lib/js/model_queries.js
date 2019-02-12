@@ -619,7 +619,6 @@ function getconf(comp,id,exactconf)
 				{
 					if(parseInt(mid)!=parseInt(confdata["cmodel"]))
 					{
-						
 						update_model_info(confdata["cmodel"]);
 						if(confdata["newregion"]!==undefined&&confdata["newregion"])
 						{
@@ -632,7 +631,7 @@ function getconf(comp,id,exactconf)
 					}
 					mid=confdata["cmodel"];
 					confdata["cerr"]=parseInt(confdata["cerr"]);
-					if(new_excode!=excode){currentPage=currentPage.replace("ex="+excode,"ex="+new_excode); excode=new_excode; exch=new_exch_rate;}
+					if(new_excode!=excode){currentPage=currentPage.replace("ex="+excode,"ex="+new_excode); excode=new_excode; var sel_ex_model=document.getElementById("m_currency"); exch=new_exch_rate; document.getElementById('dLabel').setAttribute("data-lang",sel_ex_model.options[sel_ex_model.selectedIndex].getAttribute("data-id"));}
 					document.getElementById('config_price1').innerHTML=parseInt((confdata["cprice"]-confdata["cerr"]/2)*exch);
 					document.getElementById('config_price2').innerHTML=parseInt((confdata["cprice"]+confdata["cerr"]/2)*exch);
 					document.getElementById('dLabel').setAttribute('data-price',parseInt(confdata["cprice"]));

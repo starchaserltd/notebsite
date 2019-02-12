@@ -18,7 +18,7 @@
 				·
 				<span style="cursor:pointer" onmousedown="OpenPage('footer/terms_of_use.php',event);">Terms of Use</span>
 			</h3>
-			<p><a class="starchaserLink" href="http://www.starchaser.ro/">© 2017-2018 Starchaser S.R.L. </a></p>
+			<p><a class="starchaserLink" href="http://www.starchaser.ro/">© 2017-2019 Starchaser S.R.L. </a></p>
 			</div>
 	</footer>
 <link rel="stylesheet" href="../lib/css/footer-distributed.css" type="text/css" />

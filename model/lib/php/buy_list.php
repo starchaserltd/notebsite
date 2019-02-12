@@ -18,12 +18,25 @@
 	{
 		while($row=mysqli_fetch_row($result))
 		{
-			$sql="SELECT id FROM `notebro_temp`.`all_conf_".$row[0]."` WHERE model=".$row[0]." AND cpu=".$idcpu." AND gpu=".$idgpu." AND display=".$iddisplay." LIMIT 1";
+			$sql="SELECT `id` FROM `notebro_temp`.`all_conf_".$row[0]."` WHERE model=".$row[0]." AND cpu=".$idcpu." AND gpu=".$idgpu." AND display=".$iddisplay." LIMIT 1";
 			$result2=mysqli_query($cons,$sql);
 			if($result2&&mysqli_num_rows($result2)>0)
 			{ $add_models[]=$row[0]; mysqli_free_result($result2); }
 		}
 	}
+	$result2=mysqli_query($con,"SELECT `regions` FROM `notebro_temp`.`ex_map_table` WHERE `ex_id`=".$lang." LIMIT 1");
+	if($result2&&mysqli_num_rows($result2)>0)
+	{
+		$sql="SELECT GROUP_CONCAT(`ex_id`) as lang_regions FROM `notebro_temp`.`ex_map_table` WHERE 1=1";
+		foreach(explode(",",mysqli_fetch_assoc($result2)["regions"]) as $val){ $sql.=" AND FIND_IN_SET($val,`regions`)>0";}
+		mysqli_free_result($result2);
+		$result2=mysqli_query($cons,$sql);
+		if($result2&&mysqli_num_rows($result2)>0)
+		{ $extended_lang=mysqli_fetch_assoc($result2)["lang_regions"]; }
+	}
+	else
+	{ $lang=1; $extended_lang=1; }
+	
 	mysqli_close($cons);
 	$add_models[]=$idmodel;
 
@@ -40,7 +53,7 @@
 	if($ref_only==1&&count($tags)>0){ $included_sellers=" AND seller IN ( SELECT `notebro_buy`.`SELLERS`.`id`  FROM `notebro_buy`.`SELLERS` WHERE "; foreach($tags as $key=>$val){ $included_sellers.=" `notebro_buy`.`SELLERS`.`name`='".$key."' OR"; } $included_sellers=substr($included_sellers, 0, -3).")"; } else { $included_sellers="";}
 		
 	if($buy_regions==0){ $region_sel=""; }else{ $region_sel=", (SELECT `notebro_buy`.`SELLERS`.`region` FROM `notebro_buy`.`SELLERS` WHERE `notebro_buy`.`PRICES`.`seller`=`notebro_buy`.`SELLERS`.id AND `notebro_buy`.`SELLERS`.`region` IN (".$buy_regions.") LIMIT 1) as region"; }
-	$sql="SELECT abs(`notebro_buy`.`PRICES`.`price`-".$price.") as diff, `notebro_buy`.`PRICES`.`seller`,`notebro_buy`.`PRICES`.`link`,`notebro_buy`.`PRICES`.`price`,(SELECT `notebro_buy`.`SELLERS`.`logo` FROM `notebro_buy`.`SELLERS` WHERE `notebro_buy`.`PRICES`.`seller`=`notebro_buy`.`SELLERS`.id LIMIT 1) as logo,(SELECT `notebro_buy`.`SELLERS`.`name` FROM `notebro_buy`.`SELLERS` WHERE `notebro_buy`.`PRICES`.`seller`=`notebro_buy`.`SELLERS`.id LIMIT 1) as seller_name,(SELECT `notebro_buy`.`SELLERS`.`tag_name` FROM `notebro_buy`.`SELLERS` WHERE `notebro_buy`.`PRICES`.`seller`=`notebro_buy`.`SELLERS`.id LIMIT 1) as tag_name,(SELECT `notebro_buy`.`SELLERS`.`first_tag` FROM `notebro_buy`.`SELLERS` WHERE `notebro_buy`.`PRICES`.`seller`=`notebro_buy`.`SELLERS`.id LIMIT 1) as first_tag,(SELECT `notebro_buy`.`SELLERS`.`exchrate` FROM `notebro_buy`.`SELLERS` WHERE `notebro_buy`.`PRICES`.`seller`=`notebro_buy`.`SELLERS`.id AND `notebro_buy`.`SELLERS`.`exchrate` IN (".$lang.") LIMIT 1) as exch_test,(SELECT `notebro_site`.`exchrate`.`sign` FROM `notebro_site`.`exchrate` WHERE `notebro_site`.`exchrate`.`id`=(SELECT `notebro_buy`.`SELLERS`.`exchrate` FROM `notebro_buy`.`SELLERS` WHERE `notebro_buy`.`PRICES`.`seller`=`notebro_buy`.`SELLERS`.id LIMIT 1) LIMIT 1) as exch".$region_sel." FROM `notebro_buy`.`PRICES` WHERE `notebro_buy`.`PRICES`.`model_id` IN (".implode(",",$add_models).")".$included_sellers." ORDER BY diff ASC,`notebro_buy`.`PRICES`.`price`";
+	$sql="SELECT abs(`notebro_buy`.`PRICES`.`price`-".$price.") as diff, `notebro_buy`.`PRICES`.`seller`,`notebro_buy`.`PRICES`.`link`,`notebro_buy`.`PRICES`.`price`,(SELECT `notebro_buy`.`SELLERS`.`logo` FROM `notebro_buy`.`SELLERS` WHERE `notebro_buy`.`PRICES`.`seller`=`notebro_buy`.`SELLERS`.id LIMIT 1) as logo,(SELECT `notebro_buy`.`SELLERS`.`name` FROM `notebro_buy`.`SELLERS` WHERE `notebro_buy`.`PRICES`.`seller`=`notebro_buy`.`SELLERS`.id LIMIT 1) as seller_name,(SELECT `notebro_buy`.`SELLERS`.`tag_name` FROM `notebro_buy`.`SELLERS` WHERE `notebro_buy`.`PRICES`.`seller`=`notebro_buy`.`SELLERS`.id LIMIT 1) as tag_name,(SELECT `notebro_buy`.`SELLERS`.`first_tag` FROM `notebro_buy`.`SELLERS` WHERE `notebro_buy`.`PRICES`.`seller`=`notebro_buy`.`SELLERS`.id LIMIT 1) as first_tag,(SELECT `notebro_buy`.`SELLERS`.`exchrate` FROM `notebro_buy`.`SELLERS` WHERE `notebro_buy`.`PRICES`.`seller`=`notebro_buy`.`SELLERS`.id AND `notebro_buy`.`SELLERS`.`exchrate` IN (".$extended_lang.") LIMIT 1) as exch_test,(SELECT `notebro_site`.`exchrate`.`sign` FROM `notebro_site`.`exchrate` WHERE `notebro_site`.`exchrate`.`id`=(SELECT `notebro_buy`.`SELLERS`.`exchrate` FROM `notebro_buy`.`SELLERS` WHERE `notebro_buy`.`PRICES`.`seller`=`notebro_buy`.`SELLERS`.id LIMIT 1) LIMIT 1) as exch".$region_sel." FROM `notebro_buy`.`PRICES` WHERE `notebro_buy`.`PRICES`.`model_id` IN (".implode(",",$add_models).")".$included_sellers." ORDER BY diff ASC,`notebro_buy`.`PRICES`.`price`";
 	$result=mysqli_query($con,$sql);
 	if($result && mysqli_num_rows($result)>0)
 	{

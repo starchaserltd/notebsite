@@ -246,6 +246,7 @@ $(document).ready(function() {
                         list: $this.attr('field'),
                         q: "model",
                         keys: params.term,
+						ex: excode
                     }
                     return queryParameters;
                 },

@@ -13,10 +13,10 @@ if($c)
 {
 	$rows=array(); $rows["cmodel"]=$conf[0]; $rows["newregion"]=false; if(!$include_getconf){ require("../../../../etc/con_sdb.php"); require("../../../../etc/session.php");  } 
 	if($getall){$all="*,";}else{$all="";}; if(!isset($conf[1])){for($i=1;$i<14;$i++){$conf[$i]="";}}
-	$sql="SELECT ".$all."id,price,err FROM notebro_temp.all_conf_".$conf[0]." WHERE model=".$conf[0]." AND cpu=".$conf[1]." AND display=".$conf[2]." AND mem=".$conf[3]." AND hdd=".$conf[4]." AND shdd=".$conf[5]." AND gpu=".$conf[6]." AND wnet=".$conf[7]." AND odd=".$conf[8]." AND mdb=".$conf[9]." AND chassis=".$conf[10]." AND acum=".$conf[11]." AND war".$warnotin." IN (".$conf[12].") AND sist=".$conf[13]." LIMIT 1";
+	$sql="SELECT ".$all."id,price,model,err FROM notebro_temp.all_conf_".$conf[0]." WHERE model=".$conf[0]." AND cpu=".$conf[1]." AND display=".$conf[2]." AND mem=".$conf[3]." AND hdd=".$conf[4]." AND shdd=".$conf[5]." AND gpu=".$conf[6]." AND wnet=".$conf[7]." AND odd=".$conf[8]." AND mdb=".$conf[9]." AND chassis=".$conf[10]." AND acum=".$conf[11]." AND war".$warnotin." IN (".$conf[12].") AND sist=".$conf[13]." LIMIT 1";
 	if($comp!="EXCH"){$result = mysqli_query($cons,$sql);}else{$result=FALSE; $rows["cid"]=0;}
 	$retry=0; $exclude_war=array(); $current_region=[0]; $rows["exch"]=$excode; if(!isset($cf)){$cf=-1;} $region=[-1]; $no_avb_search=true; $only_exch_regions=false; $confdata=array();
-	
+
 	if($result!==FALSE)
 	{
 		$confdata = mysqli_fetch_array($result);
@@ -30,7 +30,7 @@ if($c)
 		else { $retry=1; }
 	}
 	else { $retry=1; }
-	
+
 	if($retry)
 	{
 		$filter="";
@@ -54,32 +54,34 @@ if($c)
 				case "EXCH": { $filter="1=1"; $change_model_region=true; $only_exch_regions=true; break; }
 				default: { $filter="1=1"; break; }
 			}
-			/*GET regions of interest and warranty limitations based exchange rate.*/
-			$found_excode=false; $ex_regions=array();
-			$ex_result=mysqli_query($cons,"SELECT ex,regions,ex_war FROM `notebro_temp`.`ex_map_table`"); 
-			if($ex_result)
-			{
-				while($row=mysqli_fetch_row($ex_result))
-				{
-					$ex_regions[$row[0]]=explode(",",$row[1]);
-					if($excode==$row[0])
-					{
-						$found_excode=true;
-						if(isset($row[1])&&$row[1]!=NULL&&$row[1]!="")
-						{ $region=$ex_regions[$row[0]]; }
-						else
-						{ $region=[-1]; }
-						$current_ex_region=$region;
-						if(isset($row[2])&&$row[2]!=NULL&&$row[2]!="")
-						{ $exclude_war=explode(",",$row[2]); }
-						else
-						{ $exclude_war=array(); }
-					}
-				}
-				mysqli_free_result($ex_result);
-			}
-			if(!$found_excode){ $region=[-1];  $exclude_war=array();}
 		}
+		
+		/*GET regions of interest and warranty limitations based exchange rate.*/
+		$found_excode=false; $ex_regions=array();
+		$ex_result=mysqli_query($cons,"SELECT ex,regions,ex_war FROM `notebro_temp`.`ex_map_table`"); 
+		if($ex_result)
+		{
+			while($row=mysqli_fetch_row($ex_result))
+			{
+				$ex_regions[$row[0]]=explode(",",$row[1]);
+				if($excode==$row[0])
+				{
+					$found_excode=true;
+					if(isset($row[1])&&$row[1]!=NULL&&$row[1]!="")
+					{ $region=$ex_regions[$row[0]]; }
+					else
+					{ $region=[-1]; }
+					$current_ex_region=$region;
+					if(isset($row[2])&&$row[2]!=NULL&&$row[2]!="")
+					{ $exclude_war=explode(",",$row[2]); }
+					else
+					{ $exclude_war=array(); }
+				}
+			}
+			mysqli_free_result($ex_result);
+		}
+		if(!$found_excode){ $region=[-1];  $exclude_war=array();}
+			
 		/*Do a search only for models in the current currency region.*/
 		if(!$any_conf_search&&!$change_model_region)
 		{ $rows=search_valid_config(array($conf[0]),$conf[1],$conf[2],$conf[3],$conf[4],$conf[5],$conf[6],$conf[7],$conf[8],$conf[9],$conf[10],$conf[11],$conf[12],$conf[13],$filter,$cf,$current_region,$exclude_war); }
@@ -240,13 +242,13 @@ function search_valid_config($models,$cpu,$display,$mem,$hdd,$shdd,$gpu,$wnet,$o
 function search_any_config($models,$exclude_war)
 {
 	$run=1; $war_to_exclude=false; if(count($exclude_war)>0){ $run++; $war_to_exclude=true; $exclude_war="AND war NOT IN (".implode(",",$exclude_war).")";}else{ $exclude_war=""; } 
-	$cons=$GLOBALS['cons']; $confdata=null; $rows["invalid_ex_war"]=false; $osrun=2; $filter_complete=$exclude_war;
+	$cons=$GLOBALS['cons']; $confdata=null; $rows["invalid_ex_war"]=false; $osrun=2; $filter_complete=" AND sist!=999 ".$exclude_war;
 	while($run>0)
 	{
 		$sql="";
 		foreach($models as $key=>$model)
 		{ $sql.="(SELECT * FROM `notebro_temp`.`all_conf_".$model."` WHERE model=".$model." ".$filter_complete." AND price>0 ORDER BY value desc LIMIT 1) UNION "; }
-		$sql=substr($sql, 0, -6); $sql.="ORDER BY abs(value) LIMIT 1";
+		$sql=substr($sql, 0, -6); $sql.="ORDER BY abs(value) LIMIT 1";;
 		$result = mysqli_query($cons,$sql);
 		if($result!==FALSE&&mysqli_num_rows($result)>0)
 		{
@@ -257,18 +259,10 @@ function search_any_config($models,$exclude_war)
 		}
 		else
 		{
-			if($osrun>0)
-			{
-				if($osrun>1)
-				{
-					if(intval($sist)!=999)
-					{ $filter_complet=" AND sist!=999 ".$exclude_war; $run=2; $osrun--;}
-					else{ $filter_complete=" ".$exclude_war; $run=2; $osrun=0;}
-				}
-				else
-				{ $filter_complete=" ".$exclude_war; $run=2; $osrun=0; }
-				if($war_to_exclude){$exclude_war="";}
-			}
+			if($osrun>1)
+			{ $filter_complete=" ".$exclude_war; $run=2; $osrun=1;}
+			else
+			{ if($osrun>0){ $filter_complete=""; $run=2; $osrun=0; } }
 		}
 		$run--;
 	}

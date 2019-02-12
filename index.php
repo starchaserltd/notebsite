@@ -22,6 +22,7 @@ require_once("etc/conf.php");
 		<script type="text/javascript" src="lib/js/nouislider.min.js"></script>
 		<!-- Lightbox js -->
 		<script src="lib/js/lightbox.min.js"></script> 
+		<?php echo "<script>var excode='"; if(isset($_SESSION['exchcode'])){ echo $_SESSION['exchcode'];}else{echo "USD";} echo "';</script>"; ?>
 		<style>
 			btn.active.focus,.btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus
 			 {outline: none!important;outline-offset:initial!important}
@@ -54,9 +55,7 @@ require_once("etc/conf.php");
 						
 					</div>	
 				</div>
-				
 				<!-- right area -->
-			
 			</div>
 
 			<!-- left area -->	
