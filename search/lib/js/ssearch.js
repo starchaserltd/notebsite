@@ -1,4 +1,3 @@
-
 var btnsearch={buttonClass:'btn btn-search yellow', templates:{filterClearBtn: '<span class="input-group-btn"><button class="btn btn-search multiselect-clear-filter yellow" type="button"><i class="glyphicon glyphicon-remove-circle"></i></button></span>'}};
 var btnsearchval={buttonClass:'btn btn-search btn-searchval yellow', templates:{filterClearBtn: '<span class="input-group-btn"><button class="btn btn-search btn-searchval multiselect-clear-filter yellow" type="button"><i class="glyphicon glyphicon-remove-circle"></i></button></span>'}};
 

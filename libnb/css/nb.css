@@ -2473,6 +2473,14 @@ table#comparelist td.text-center.comparecell3 {
     padding: 5px 0 0 0;
 }
 
+.multiselect-container .checkbox {
+	width: 100%;
+}
+
+.multiselect-container .radio {
+	width: 100%;
+}
+
 .searchresult .row {
     margin:0;
 }
