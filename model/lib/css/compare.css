@@ -183,11 +183,16 @@
 
 @media (max-width: 550px) {
 
-    .compContainer {
-        overflow-y: scroll;
+     .compContainer {
+        overflow: auto;
+     }
+
+    .compContainer .row {
+        margin:0;
     }
     .compContainer table td {
-        min-width: 108px;
+        min-width: 130px;
+        max-width: 130px;
     }
 
     .addtocpmp>a {

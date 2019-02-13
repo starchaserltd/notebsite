@@ -40,7 +40,23 @@ $('.showDetailsButton').on('click', function() {
 });
 
 //Affix top Laptop model 
-// if ($(window).width() > 520) { $(".modelName").affix({ offset: { top: 150 }}); }
+if ($(window).width() > 520) {
+	if ($('.modelName').length) {
+	    var scrollTrigger = 150, // px
+	        backToTop = function () {
+	            var scrollTop = $(window).scrollTop();
+	            if (scrollTop > scrollTrigger) {
+	                $('.modelName').addClass('affix');
+	            } else {
+	                $('.modelName').removeClass('affix');
+	            }
+	        };
+	    backToTop();
+	    $(window).on('scroll', function () {
+	        backToTop();
+	    });	   
+	}
+}
 //Affix mobile
 // if ($(window).width() < 520) { $("#title_MODEL").affix({ offset: { top: 150 }}); }
 //Scroll affix mobile

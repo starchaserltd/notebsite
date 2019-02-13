@@ -21,7 +21,7 @@ if($nrconf < 1 && $nrgetconfs <1) //nrconf is from headercomp.php
 else
 {
 ?>
-<link rel="stylesheet" href="model/lib/css/compare.css?v=17" type="text/css" />
+<link rel="stylesheet" href="model/lib/css/compare.css?v=22" type="text/css" />
 
 	<!-- TABLE HEADER -->
 	<div class="compContainer linked">
