@@ -11,7 +11,8 @@ else
 }
 if($c)
 {
-	$rows=array(); $rows["cmodel"]=$conf[0]; $rows["newregion"]=false; if(!$include_getconf){ require("../../../../etc/con_sdb.php"); require("../../../../etc/session.php");  } 
+	$rows=array(); $rows["cmodel"]=$conf[0]; $rows["newregion"]=false; if(!$include_getconf){ require("../../../../etc/con_sdb.php"); require("../../../../etc/session.php"); }
+	require_once("get_best_value.php");
 	if($getall){$all="*,";}else{$all="";} if(!isset($conf[1])){for($i=1;$i<14;$i++){if(!isset($conf[$i])){$conf[$i]="";}}}
 	$sql="SELECT ".$all."id,price,model,err FROM notebro_temp.all_conf_".$conf[0]." WHERE model=".$conf[0]." AND cpu=".$conf[1]." AND display=".$conf[2]." AND mem=".$conf[3]." AND hdd=".$conf[4]." AND shdd=".$conf[5]." AND gpu=".$conf[6]." AND wnet=".$conf[7]." AND odd=".$conf[8]." AND mdb=".$conf[9]." AND chassis=".$conf[10]." AND acum=".$conf[11]." AND war".$warnotin." IN (".$conf[12].") AND sist=".$conf[13]." LIMIT 1";
 	
@@ -166,22 +167,15 @@ if($c)
 			if(array_search("1",$rows["mregion_id"])===FALSE){ foreach($ex_regions as $key=>$el){ foreach($rows["mregion_id"] as $el2){ if(in_array($el2,$el)){if(in_array($el2,$current_ex_region)){$rows["exch"]=$excode;}else{$rows["exch"]=$key;} break 2;}}} if($include_getconf){ $resu=mysqli_fetch_array(mysqli_query($con,"SELECT `disp` FROM `notebro_db`.`REGIONS` WHERE `id`=".$rows["mregion_id"][0]." LIMIT 1")); $rows["mregion"]=$resu["disp"];} $rows["buy_regions"]=$model_data['regions']; } else { $rows["exch"]="USD"; $rows["mregion"]=""; $rows["buy_regions"]=0; }
 			mysqli_free_result($result_model);
 			/* Here we get the best configurations from the temporary database */
-			if(isset($current_ex_region)){$cur_p_region=array_diff($current_ex_region,["0","1"]); $cur_p_region=reset($cur_p_region); if(!(isset($cur_p_region)&&$cur_p_region!=""&&$cur_p_region!=NULL&&$cur_p_region!="0")){$cur_p_region="2";} }else{$cur_p_region="2";}
-			$sql="SELECT * FROM `notebro_temp`.`best_low_opt` WHERE id_model='p_".$model_data["p_model"]."_".$cur_p_region."'";
-			$best_low=mysqli_fetch_assoc(mysqli_query($cons,$sql));
-			if(!(isset($best_low["best_value"])&&$best_low["best_value"]!=""&&$best_low["best_value"]!=NULL))
+			if(isset($rows["cmodel"])&&$rows["cmodel"]!=null&&$rows["cmodel"]!=0&&isset($current_ex_region))
 			{
-				$sql="SELECT * FROM `notebro_temp`.`best_low_opt` WHERE id_model='".$rows["cmodel"]."'";
-				$best_low=mysqli_fetch_assoc(mysqli_query($cons,$sql));
+				$rows["best_low"]=get_best_value($cons,$current_ex_region,$rows["cmodel"]);
 			}
-			if($best_low["lowest_price"]==$best_low["best_value"]) { $best_low["lowest_price"]=""; }
-			if($best_low["lowest_price"]==$best_low["best_performance"]) { $best_low["lowest_price"]=""; }
-			if($best_low["best_value"]==$best_low["best_performance"]) { $best_low["best_performance"]=""; }
-			$rows["best_low"]=$best_low;
 		}
 		else
 		{ $rows["cmodel"]=$GLOBALS["conf"][0]; $rows["submodel"]=null; }
 	}
+	
 	if(!$include_getconf){ mysqli_close($cons); }
 	if($only_exch_regions){$rows["exch"]=$excode; $_SESSION['exchcode']=$rows["exch"]; $_SESSION['exchcode_change']=true;}
 	if(!$include_getconf){ print json_encode($rows);}

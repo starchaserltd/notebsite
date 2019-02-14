@@ -1,4 +1,4 @@
-var gocomp=1; var old_rate=""; var old_price=""; var old_bat="";
+var gocomp=1; var old_rate=""; var old_price=""; var old_bat=""; var best_low_array=["lowest_price","best_value","best_performance"];
 var cpu = {}; var cpu_price_old=0; var cpu_price_new=0; var cpu_err_new=0; var cpu_err_old=0; var cpu_rate_new=0; var cpu_rate_old=0; var cpu_gpu=0; var cpu_bat_new=0; var cpu_bat_old=0; cpu["clocks"]=""; var success=false;
 function showCPU(str) 
 {
@@ -626,15 +626,18 @@ function getconf(comp,id,exactconf)
 							else
 							{ change_exch(excode); }
 						}
-						var best_low_array=["lowest_price","best_value","best_performance"]; for(var key in best_low_array){ var el=document.getElementById(best_low_array[key]+'_id'); if(confdata["best_low"][best_low_array[key]]!==null && confdata["best_low"][best_low_array[key]]!==undefined && confdata["best_low"][best_low_array[key]]!=""){ el.setAttribute('onmousedowne','"OpenPage('+"'"+'model/model.php?conf='+confdata["best_low"][best_low_array[key]]+'&ex='+new_excode+"',event);"+'"'); el.style.display="block";} else { el.style.display="none"; } }
+						for(var key in best_low_array){ var el=document.getElementById(best_low_array[key]+'_id'); if(confdata["best_low"][best_low_array[key]]!==null && confdata["best_low"][best_low_array[key]]!==undefined && confdata["best_low"][best_low_array[key]]!=""){ el.setAttribute('onmousedown','OpenPage('+"'"+'model/model.php?conf='+confdata["best_low"][best_low_array[key]]+'&ex='+excode+"',event);"+''); el.style.display="block";} else { el.style.display="none"; } } 
 					}
 					mid=confdata["cmodel"];
 					confdata["cerr"]=parseInt(confdata["cerr"]);
-					if(new_excode!=excode){currentPage=currentPage.replace("ex="+excode,"ex="+new_excode); excode=new_excode; var sel_ex_model=document.getElementById("m_currency"); exch=new_exch_rate; document.getElementById('dLabel').setAttribute("data-lang",sel_ex_model.options[sel_ex_model.selectedIndex].getAttribute("data-id")); }
+					if(new_excode!=excode)
+					{
+						currentPage=currentPage.replace("ex="+excode,"ex="+new_excode); excode=new_excode; var sel_ex_model=document.getElementById("m_currency"); exch=new_exch_rate; document.getElementById('dLabel').setAttribute("data-lang",sel_ex_model.options[sel_ex_model.selectedIndex].getAttribute("data-id")); 
+					}
+					for(var key in best_low_array){ var el=document.getElementById(best_low_array[key]+'_id'); el.setAttribute('onmousedown',el.getAttribute('onmousedown').replace(/(.*)\&ex=([a-z0-9\-]+)(\&?.*)/i,"$1"+"&ex="+excode+"$3"));}
 					document.getElementById('config_price1').innerHTML=parseInt((confdata["cprice"]-confdata["cerr"]/2)*exch);
 					document.getElementById('config_price2').innerHTML=parseInt((confdata["cprice"]+confdata["cerr"]/2)*exch);
 					document.getElementById('dLabel').setAttribute('data-price',parseInt(confdata["cprice"]));
-					
 					if(confdata["changes"]!==undefined) 
 					{
 						for (var key in confdata["changes"])

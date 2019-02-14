@@ -58,6 +58,11 @@ if(!$components_found)
 				else
 				{ $result=null; }
 			}
+			else
+			{
+				require_once("lib/php/query/get_best_value.php");
+				$best_value=get_best_value($cons,$ex_regions,$idmodel);
+			}
 			if($result){ mysqli_free_result($result); }
 		}
 		mysqli_close($cons);
