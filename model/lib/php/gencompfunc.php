@@ -21,7 +21,7 @@ function show($tab, $id)
 			$resu['ldate'] = date('F Y', strtotime($resu['ldate']));
 			$resu['tdp']=floatval($resu['tdp']);
 			$resu['price']=floatval($resu['price']);
-			
+			$resu['msc']=str_replace(",", ", ",$resu['msc']);
 			switch (true)
 			{
 				case ((in_array($resu['tdp'],range(0,15))) && ($resu['price'])>=200): {	$resu['class']="Ultrabook"; break; }
@@ -67,6 +67,7 @@ function show($tab, $id)
 				default: 										 { $resu['class']="Undefined"; break; }
 			}
 			$resu['gpuclass']=$class;
+			$resu['msc']=str_replace(",", ", ",$resu['msc']);
 			break;
 		}
 	
@@ -78,12 +79,14 @@ function show($tab, $id)
 			if(strcasecmp($resu['netw'],"NONE")==0){$resu['netw']="No";}
 			$resu['interface']=str_replace(",", ", ",$resu['interface']);
 			$resu['hdd']=str_replace(",", ", ",$resu['hdd']);
+			$resu['msc']=str_replace(",", ", ",$resu['msc']);
 			break;
 		}
 	
 		case 'MEM':
 		{
 			$resu['type']=$resu['type']." - ".$resu['freq'];
+			$resu['msc']=str_replace(",", ", ",$resu['msc']);
 			break;
 		}
 
@@ -157,6 +160,7 @@ function show($tab, $id)
 		{
 			if ($resu['touch'] == 1) {$resu['touch'] = "YES";}
 			else {$resu['touch'] = "NO";}
+			$resu['msc']=str_replace(",", ", ",$resu['msc']);
 			if(intval($resu['sRGB'])>0){ $resu['msc'].=", ".$resu['sRGB']."% sRGB"; }
 			if(intval($resu['lum'])>0){ $resu['msc'].=", ".$resu['lum']." nits"; }
 			break;

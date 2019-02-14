@@ -150,22 +150,39 @@ if($c)
 		}
 	}
 	
-	if(!$include_getconf){ mysqli_close($cons); }
 	/* If a new model was selected, we need the new model data */
 	if($conf[0]!=$rows["cmodel"])
-	{
-		if(!$include_getconf){ require_once("../../../../etc/con_db.php"); }
-		$result_model=mysqli_query($con,"SELECT `model`.`prod`, `families`.`fam`, `families`.`subfam`, `families`.`showsubfam`, `model`.`model`,`model`.`submodel`,`model`.`regions`,`model`.`keywords` FROM `notebro_db`.`MODEL` model JOIN `notebro_db`.`FAMILIES` families ON `model`.`idfam`=`families`.`id` WHERE `model`.`id`=".$rows["cmodel"]." LIMIT 1");
+	{	
+		if(!$include_getconf){ require_once("../../../../etc/con_db.php"); $extra_model_sql=""; }else{$extra_model_sql="`model`.`prod`, `families`.`fam`, `families`.`subfam`, `families`.`showsubfam`, `model`.`model`,`model`.`submodel`,`model`.`keywords`,";}
+		$result_model=mysqli_query($con,"SELECT ".$extra_model_sql."`model`.`regions`,`model`.`p_model` FROM `notebro_db`.`MODEL` model JOIN `notebro_db`.`FAMILIES` families ON `model`.`idfam`=`families`.`id` WHERE `model`.`id`=".$rows["cmodel"]." LIMIT 1");
 		if($result_model&&mysqli_num_rows($result_model)>0)
 		{
 			$model_data=mysqli_fetch_array($result_model); $_SESSION['model']=$rows["cmodel"];
-			$rows["mprod"]=$model_data["prod"]; if(isset($model_data["subfam"])&&$model_data["showsubfam"]!=0){ $model_data["subfam"]=" ".$model_data["subfam"]; } else { $model_data["subfam"]=""; } $rows["mfam"]=$model_data["fam"].$model_data["subfam"]; $rows["mmodel"]=$model_data["model"]; $rows["msubmodel"]=$model_data["submodel"]; $rows["mregion_id"]=explode(",",$model_data['regions']); 
-			if(array_search("1",$rows["mregion_id"])===FALSE){ foreach($ex_regions as $key=>$el){ foreach($rows["mregion_id"] as $el2){ if(in_array($el2,$el)){if(in_array($el2,$current_ex_region)){$rows["exch"]=$excode;}else{$rows["exch"]=$key;} break 2;}}} $resu=mysqli_fetch_array(mysqli_query($con,"SELECT `disp` FROM `notebro_db`.`REGIONS` WHERE `id`=".$rows["mregion_id"][0]." LIMIT 1")); $rows["mregion"]=$resu["disp"]; $rows["buy_regions"]=$model_data['regions']; } else { $rows["exch"]="USD"; $rows["mregion"]=""; $rows["buy_regions"]=0; }
+			if($include_getconf)
+			{
+				$rows["mprod"]=$model_data["prod"]; if(isset($model_data["subfam"])&&$model_data["showsubfam"]!=0){ $model_data["subfam"]=" ".$model_data["subfam"]; } else { $model_data["subfam"]=""; } $rows["mfam"]=$model_data["fam"].$model_data["subfam"]; $rows["mmodel"]=$model_data["model"]; $rows["msubmodel"]=$model_data["submodel"];
+			}
+			$rows["mregion_id"]=explode(",",$model_data['regions']); 
+			if(array_search("1",$rows["mregion_id"])===FALSE){ foreach($ex_regions as $key=>$el){ foreach($rows["mregion_id"] as $el2){ if(in_array($el2,$el)){if(in_array($el2,$current_ex_region)){$rows["exch"]=$excode;}else{$rows["exch"]=$key;} break 2;}}} if($include_getconf){ $resu=mysqli_fetch_array(mysqli_query($con,"SELECT `disp` FROM `notebro_db`.`REGIONS` WHERE `id`=".$rows["mregion_id"][0]." LIMIT 1")); $rows["mregion"]=$resu["disp"];} $rows["buy_regions"]=$model_data['regions']; } else { $rows["exch"]="USD"; $rows["mregion"]=""; $rows["buy_regions"]=0; }
 			mysqli_free_result($result_model);
+			/* Here we get the best configurations from the temporary database */
+			if(isset($current_ex_region)){$cur_p_region=array_diff($current_ex_region,["0","1"]); $cur_p_region=reset($cur_p_region); if(!(isset($cur_p_region)&&$cur_p_region!=""&&$cur_p_region!=NULL&&$cur_p_region!="0")){$cur_p_region="2";} }else{$cur_p_region="2";}
+			$sql="SELECT * FROM `notebro_temp`.`best_low_opt` WHERE id_model='p_".$model_data["p_model"]."_".$cur_p_region."'";
+			$best_low=mysqli_fetch_assoc(mysqli_query($cons,$sql));
+			if(!(isset($best_low["best_value"])&&$best_low["best_value"]!=""&&$best_low["best_value"]!=NULL))
+			{
+				$sql="SELECT * FROM `notebro_temp`.`best_low_opt` WHERE id_model='".$rows["cmodel"]."'";
+				$best_low=mysqli_fetch_assoc(mysqli_query($cons,$sql));
+			}
+			if($best_low["lowest_price"]==$best_low["best_value"]) { $best_low["lowest_price"]=""; }
+			if($best_low["lowest_price"]==$best_low["best_performance"]) { $best_low["lowest_price"]=""; }
+			if($best_low["best_value"]==$best_low["best_performance"]) { $best_low["best_performance"]=""; }
+			$rows["best_low"]=$best_low;
 		}
 		else
 		{ $rows["cmodel"]=$GLOBALS["conf"][0]; $rows["submodel"]=null; }
 	}
+	if(!$include_getconf){ mysqli_close($cons); }
 	if($only_exch_regions){$rows["exch"]=$excode; $_SESSION['exchcode']=$rows["exch"]; $_SESSION['exchcode_change']=true;}
 	if(!$include_getconf){ print json_encode($rows);}
 }

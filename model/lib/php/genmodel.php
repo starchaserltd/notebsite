@@ -130,8 +130,10 @@ if($idmodel)
 	$model_ex_list=array();
 	foreach($row as $key=>$el){ if($key!="model_id"&&$key!="pmodel"&&$el!=NULL&&$el!=""){ if(isset($region_ex[$key])){ $model_ex_list=array_merge($model_ex_list,$region_ex[$key]);} } }
 	$model_ex_list=array_unique($model_ex_list);
-
-	$sql="SELECT * FROM `notebro_temp`.`best_low_opt` WHERE id_model=$idmodel";
+	
+	if(isset($ex_regions[0])){$cur_p_region=reset(array_diff($ex_regions,["0","1"]));}else{$cur_p_region="2";}
+	
+	$sql="SELECT * FROM `notebro_temp`.`best_low_opt` WHERE id_model='p_".$p_model."_".$cur_p_region."'";
 	$best_low=mysqli_fetch_assoc(mysqli_query($cons,$sql));
 	if($best_low["lowest_price"]==$best_low["best_value"]) { $best_low["lowest_price"]=""; }
 	if($best_low["lowest_price"]==$best_low["best_performance"]) { $best_low["lowest_price"]=""; }
@@ -227,24 +229,36 @@ function show_gpu($list)
 /* MAKE DISPLAY */
 function show_display($list)
 {
+	function replace_surft_type($target,$backt)
+	{
+		$surface_types=["matte","glossy"]; $backt_types=["IPS","TN WVA","TN","OLED"];
+		foreach($backt_types as $el)
+		{
+			if(stripos($backt,$el)!==FALSE){ foreach($surface_types as $val){ $target=str_ireplace($val,$el,$target); break(2); } }
+		}
+		$target=preg_replace("/([^ ]* )([0-9.]+)(.*)/", "$1$2".'"'."$3", $target);
+		return $target;
+	}
 	if(count($list)>1) 
 	{
 		echo '<form><SELECT name="DISPLAY" onchange="getconf('."'".'DISPLAY'."'".',this.value)">';
-		foreach($list as $key=>$id)
+		$sel="SELECT id,model,touch,backt FROM notebro_db.DISPLAY WHERE id IN (".implode(",",$list).")";
+		$result=mysqli_query($GLOBALS['con'], $sel);
+
+		if($result&&mysqli_num_rows($result)>0)
 		{
-			$sel="SELECT model,touch FROM notebro_db.DISPLAY WHERE id=$id"; //echo $sel;
-			$result = mysqli_query($GLOBALS['con'], $sel);
-			$row = mysqli_fetch_array($result);
+			while($row=mysqli_fetch_array($result))
+			{				
+				$row["model"]=replace_surft_type($row["model"],$row["backt"]);
+				$touch="";
+				if($row["touch"]==1)
+				{ $touch=" T"; }
 	
-			$touch="";
-			if($row["touch"]==1)
-			{ $touch=" T"; }
-	
-			if($id!=$GLOBALS['iddisplay'])
-			{ echo "<option value=".$id.">".$prodm." ".$row["model"].$touch."</option>"; }
-			else
-			{ echo "<option value=".$id." selected='selected'>".$prodm." ".$row["model"].$touch."</option>"; }
-		
+				if($row["id"]!=$GLOBALS['iddisplay'])
+				{ echo "<option value=".$row["id"].">".$prodm." ".$row["model"].$touch."</option>"; }
+				else
+				{ echo "<option value=".$row["id"]." selected='selected'>".$prodm." ".$row["model"].$touch."</option>"; }
+			}
 		}
 		echo "</SELECT></form>";
 	}
@@ -252,9 +266,10 @@ function show_display($list)
 	{
 		foreach($list as $key=>$id)
 		{
-			$sel="SELECT model FROM notebro_db.DISPLAY WHERE id=$id";
+			$sel="SELECT model,backt FROM notebro_db.DISPLAY WHERE id=$id";
 			$result = mysqli_query($GLOBALS['con'], $sel);
 			$row = mysqli_fetch_array($result);
+			$row["model"]=replace_surft_type($row["model"],$row["backt"]);
 			echo $prodm." ".$row["model"];
 		}
 	}
@@ -354,35 +369,34 @@ function show_mdb($list)
 		}
 	}
 }
-
+//<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="21" data-load="1" data-html="true" data-toggle="tooltip" data-delay="{&quot;show&quot;: 600}" data-placement="top" data-original-title="data-loading..."><span class="toolinfo1">Core Speed:</span></div>
 /* MAKE MEM */
 function show_mem($list)
 {
 	if(count($list)>1) 
 	{
 		echo '<form><SELECT name="MEM" onchange="getconf('."'".'MEM'."'".',this.value)">';
-		foreach($list as $key=>$id)
+		$sel="SELECT id,prod,cap,type FROM notebro_db.MEM WHERE id IN (".implode(",",$list).")";
+		$result=mysqli_query($GLOBALS['con'], $sel);
+
+		if($result&&mysqli_num_rows($result)>0)
 		{
-			$sel="SELECT prod,cap FROM notebro_db.MEM WHERE id=$id"; 
-			$result = mysqli_query($GLOBALS['con'], $sel);
-			$row = mysqli_fetch_array($result);
-			
-			if($id!=$GLOBALS['idmem'])
-			{ echo "<option value=".$id.">".$extra." ".$row["prod"]." - ".$row["cap"]." GB </option>"; }
-			else
-			{ echo "<option value=".$id." selected='selected'>".$extra." ".$row["prod"]." - ".$row["cap"]." GB </option>"; }
+			while($row=mysqli_fetch_array($result))
+			{
+				if($row["id"]!=$GLOBALS['idmem'])
+				{ echo "<option value=".$row["id"].">".$extra." ".$row["cap"]." GB ".$row["type"]."</option>"; }
+				else
+				{ echo "<option value=".$row["id"]." selected='selected'>".$extra." ".$row["cap"]." GB ".$row["type"]."</option>"; }
+			}
 		}
 		echo "</SELECT></form>";
 	}
 	else
 	{
-		foreach($list as $key=>$id)
-		{
-			$sel="SELECT prod,cap FROM notebro_db.MEM WHERE id=$id"; //echo $sel;
-			$result = mysqli_query($GLOBALS['con'], $sel);
-			$row = mysqli_fetch_array($result);
-			echo $extra." ".$row["prod"]." - ".$row["cap"]." GB";
-		}
+		$sel="SELECT prod,cap,type FROM notebro_db.MEM WHERE id=".reset($list).""; //echo $sel;
+		$result = mysqli_query($GLOBALS['con'], $sel);
+		$row = mysqli_fetch_array($result);
+		echo $extra." ".$row["cap"]." GB ".$row["type"]."";
 	}
 }
 

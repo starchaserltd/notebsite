@@ -100,7 +100,6 @@ function showGPU(str)
 				document.getElementById('gpu_mem').innerHTML = gpu["maxmem"]+" MB "+gpu["mtype"];
 				document.getElementById('gpu_smem').innerHTML = gpu["sharem"];
 				document.getElementById('gpu_class').innerHTML = gpu["class"];
-				//document.getElementById('gpu_boost').innerHTML = gpu["bspeed"];
 				
 				gpu_rate_old = gpu_rate_new;
 				gpu_rate_new = gpu["confrate"];				
@@ -621,17 +620,16 @@ function getconf(comp,id,exactconf)
 					{
 						update_model_info(confdata["cmodel"]);
 						if(confdata["newregion"]!==undefined&&confdata["newregion"])
-						{
+						{	
 							if(confdata["mregion_id"].indexOf("1")<0&&confdata["mregion_id"].indexOf("0")<0)
 							{ change_exch(confdata["exch"]);}
 							else
 							{ change_exch(excode); }
 						}
-						/*change currency, best low_perfom_value*/
 					}
 					mid=confdata["cmodel"];
 					confdata["cerr"]=parseInt(confdata["cerr"]);
-					if(new_excode!=excode){currentPage=currentPage.replace("ex="+excode,"ex="+new_excode); excode=new_excode; var sel_ex_model=document.getElementById("m_currency"); exch=new_exch_rate; document.getElementById('dLabel').setAttribute("data-lang",sel_ex_model.options[sel_ex_model.selectedIndex].getAttribute("data-id"));}
+					if(new_excode!=excode){currentPage=currentPage.replace("ex="+excode,"ex="+new_excode); excode=new_excode; var sel_ex_model=document.getElementById("m_currency"); exch=new_exch_rate; document.getElementById('dLabel').setAttribute("data-lang",sel_ex_model.options[sel_ex_model.selectedIndex].getAttribute("data-id")); var best_low_array=["lowest_price","best_value","best_performance"]; for(var key in best_low_array){ var el=document.getElementById(best_low_array[key]+'_id'); if(confdata["best_low"][best_low_array[key]]!==null && confdata["best_low"][best_low_array[key]]!==undefined && confdata["best_low"][best_low_array[key]]!=""){ el.setAttribute('onmousedowne','"OpenPage('+"'"+'model/model.php?conf='+confdata["best_low"][best_low_array[key]]+'&ex='+new_excode+"',event);"+'"'); el.style.display="block";} else { el.style.display="none"; } } }
 					document.getElementById('config_price1').innerHTML=parseInt((confdata["cprice"]-confdata["cerr"]/2)*exch);
 					document.getElementById('config_price2').innerHTML=parseInt((confdata["cprice"]+confdata["cerr"]/2)*exch);
 					document.getElementById('dLabel').setAttribute('data-price',parseInt(confdata["cprice"]));
