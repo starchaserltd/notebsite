@@ -142,9 +142,9 @@ else
 							<span class="caret"></span>
 						</button>
 						<ul class="dropdown-menu configDropdown" aria-labelledby="dLabel">
-							<li class="configOptions" id="best_value_id" <?php if(!isset($best_low["best_value"])||(isset($best_low["best_value"])&&$best_low["best_value"]=="")){ echo 'style="display:none;"'; } ?> onmousedown="OpenPage('<?php echo "model/model.php?conf=".$best_low["best_value"]."_".$idmodel."&ex=".$exchcode.""; ?>',event);">Best Value</li>
-							<li class="configOptions" id="best_performance_id" <?php if(!isset($best_low["best_performance"])||(isset($best_low["best_performance"])&&$best_low["best_performance"]=="")){ echo 'style="display:none;"'; } ?> onmousedown="OpenPage('<?php echo "model/model.php?conf=".$best_low["best_performance"]."_".$idmodel."&ex=".$exchcode.""; ?>',event);">Max Performance</li>
-							<li class="configOptions" id="lowest_price_id" <?php if(!isset($best_low["lowest_price"])||(isset($best_low["lowest_price"])&&$best_low["lowest_price"]=="")){ echo 'style="display:none;"'; } ?> onmousedown="OpenPage('<?php echo "model/model.php?conf=".$best_low["lowest_price"]."_".$idmodel."&ex=".$exchcode.""; ?>',event);">Lowest Price</li>						
+							<li class="configOptions" id="best_value_id" <?php if(!isset($best_low["best_value"])||(isset($best_low["best_value"])&&$best_low["best_value"]=="")){ echo 'style="display:none;"'; } ?> onmousedown="OpenPage('<?php echo "model/model.php?conf=".$best_low["best_value"]."&ex=".$exchcode.""; ?>',event);">Best Value</li>
+							<li class="configOptions" id="best_performance_id" <?php if(!isset($best_low["best_performance"])||(isset($best_low["best_performance"])&&$best_low["best_performance"]=="")){ echo 'style="display:none;"'; } ?> onmousedown="OpenPage('<?php echo "model/model.php?conf=".$best_low["best_performance"]."&ex=".$exchcode.""; ?>',event);">Max Performance</li>
+							<li class="configOptions" id="lowest_price_id" <?php if(!isset($best_low["lowest_price"])||(isset($best_low["lowest_price"])&&$best_low["lowest_price"]=="")){ echo 'style="display:none;"'; } ?> onmousedown="OpenPage('<?php echo "model/model.php?conf=".$best_low["lowest_price"]."&ex=".$exchcode.""; ?>',event);">Lowest Price</li>						
 						</ul>
 					</div><!-- End Configuration div-->	
 				</div>
