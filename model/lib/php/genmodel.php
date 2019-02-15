@@ -239,7 +239,7 @@ function show_display($list)
 		$surface_types=["matte","glossy"]; $backt_types=["IPS","TN WVA","TN","OLED"];
 		foreach($backt_types as $el)
 		{
-			if(stripos($backt,$el)!==FALSE){ foreach($surface_types as $val){ $target=str_ireplace($val,$el,$target); break(2); } }
+			if(stripos($backt,$el)!==FALSE){ foreach($surface_types as $val){ if(stripos($target,$val)!==FALSE){ $target=str_ireplace($val,$el,$target); break(2); } } }
 		}
 		$target=preg_replace("/([^ ]* )([0-9.]+)(.*)/", "$1$2".'"'."$3", $target);
 		return $target;
