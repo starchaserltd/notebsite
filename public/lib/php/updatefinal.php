@@ -5,7 +5,7 @@ require_once("../etc/con_db.php");
 
 if ($table == 'REVIEWS')
 {   
-	$sql="SELECT model.id,idfam,prod,model,fam.fam,fam.subfam,fam.showsubfam FROM MODEL model JOIN ( SELECT id,fam,subfam,showsubfam FROM notebro_db.FAMILIES ) fam ON fam.id=model.idfam WHERE model.id IN (".implode(",",$model_id).") LIMIT ".count($model_id);
+	$sql="SELECT `model`.`id`,`idfam`,`prod`,`model`,`fam`.`fam`,`fam`.`subfam`,`fam`.`showsubfam`,`model`.`p_model` FROM MODEL model JOIN ( SELECT id,fam,subfam,showsubfam FROM notebro_db.FAMILIES ) fam ON fam.id=model.idfam WHERE model.id IN (".implode(",",$model_id).") LIMIT ".count($model_id);
 	$query=mysqli_query($con,$sql);
 	$fatal_error=1;	$i=0;
 	while($row=mysqli_fetch_assoc($query))
@@ -53,11 +53,11 @@ if ($table == 'REVIEWS')
 	
 		if ($scor[$i] == 3) 
 		{
-			$query1 = "SELECT model_id,link from REVIEWS WHERE model_id = ".$row["id"]." AND link like '%".$link."%'"; //echo $query1;
+			$query1 = "SELECT model_id,link from REVIEWS WHERE (model_id=".$row["p_model"]." OR model_id IN (SELECT `id` FROM `notebro_db`.`MODEL` WHERE `notebro_db`.`MODEL`.`p_model`=".$row["p_model"].")) AND link like '%".$link."%'"; //echo $query1;
 			$result = mysqli_query($rcon,$query1);
 			if($result && !(mysqli_num_rows($result)>0))
 			{
-				$sql = "insert into REVIEWS (id, model, model_id, site, title, link, notebreview) values ('".$idireviews[0]."','".$model_name[$i]."','".$row["id"]."','".$site."','','".$link."','0')";
+				$sql = "insert into REVIEWS (id, model, model_id, site, title, link, notebreview) values ('".$idireviews[0]."','".$model_name[$i]."','".$row["p_model"]."','".$site."','','".$link."','0')";
 				if(mysqli_query($rcon, $sql))
 				{
 					echo "<meta http-equiv=\"refresh\" content=\"0;URL=?public/ireviews.php\">";
