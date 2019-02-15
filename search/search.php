@@ -95,7 +95,7 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 	$_SESSION['exchcode']=$exchcode;
 	$_SESSION['exch']=$exch;
 	$_SESSION['exchsign']=$value["sign"];
-	$_SESSION['lang']=$value["id"]; $exch_id=$value["id"]; 
+	$_SESSION['lang']=$value["id"]; $exch_id=$value["id"];
 	include_once("../etc/scripts_pages.php");
 	if($underwork==0)
 	{

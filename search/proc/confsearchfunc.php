@@ -23,12 +23,19 @@ function del_duplicate_pmodel(&$results)
 	foreach($results as $key=>$val)
 	{
 		if(isset($compare_array[$val["pmodel"]]))
-		{ if(!$val["show_smodel"]){ array_splice($results,$i,1); $i--;} }
+		{
+			if(!$val["show_smodel"])
+			{
+				if($compare_array[$val["pmodel"]]==-1)
+				{ unset($results[$key]); }
+				else
+				{ unset($results[$compare_array[$val["pmodel"]]]); $compare_array[$val["pmodel"]]=-1; }
+			}
+		}
 		else
-		{ $compare_array[$val["pmodel"]]=1; }
-		$i++;
+		{ if($val["mi_region"]==7){ $compare_array[$val["pmodel"]]=$key; } else { $compare_array[$val["pmodel"]]=-1; } }
 	}
+	$results=array_values($results);
 }
-
 function id (&$results) { return; }
 ?>
