@@ -613,6 +613,7 @@ function getconf(comp,id,exactconf)
 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
 			{
 				confdata = JSON.parse(xmlhttp.responseText);
+				console.log(confdata);
 				confdata["cprice"]=parseInt(confdata["cprice"]); if(confdata["cprice"]>0){ success=true; }
 				if(success || go)
 				{
@@ -626,7 +627,7 @@ function getconf(comp,id,exactconf)
 							else
 							{ change_exch(excode); }
 						}
-						for(var key in best_low_array){ var el=document.getElementById(best_low_array[key]+'_id'); if(confdata["best_low"][best_low_array[key]]!==null && confdata["best_low"][best_low_array[key]]!==undefined && confdata["best_low"][best_low_array[key]]!=""){ el.setAttribute('onmousedown','OpenPage('+"'"+'model/model.php?conf='+confdata["best_low"][best_low_array[key]]+'&ex='+excode+"',event);"+''); el.style.display="block";} else { el.style.display="none"; } } 
+						for(var key in best_low_array){ var el=document.getElementById(best_low_array[key]+'_id'); if(confdata["best_low"][best_low_array[key]]!==null && confdata["best_low"][best_low_array[key]]!==undefined && confdata["best_low"][best_low_array[key]]!=""){ el.setAttribute('onmousedown','OpenPage('+"'"+'model/model.php?conf='+confdata["best_low"][best_low_array[key]]+'&ex='+excode+"',event);"+''); el.style.display="block";} else { el.style.display="none"; } } best_low=confdata["best_low"]; 
 					}
 					mid=confdata["cmodel"];
 					confdata["cerr"]=parseInt(confdata["cerr"]);

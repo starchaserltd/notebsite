@@ -12,7 +12,7 @@ else
 if($c)
 {
 	$rows=array(); $rows["cmodel"]=$conf[0]; $rows["newregion"]=false; if(!$include_getconf){ require("../../../../etc/con_sdb.php"); require("../../../../etc/session.php"); }
-	require_once("get_best_value.php");
+	require_once("get_best_low.php");
 	if($getall){$all="*,";}else{$all="";} if(!isset($conf[1])){for($i=1;$i<14;$i++){if(!isset($conf[$i])){$conf[$i]="";}}}
 	$sql="SELECT ".$all."id,price,model,err FROM notebro_temp.all_conf_".$conf[0]." WHERE model=".$conf[0]." AND cpu=".$conf[1]." AND display=".$conf[2]." AND mem=".$conf[3]." AND hdd=".$conf[4]." AND shdd=".$conf[5]." AND gpu=".$conf[6]." AND wnet=".$conf[7]." AND odd=".$conf[8]." AND mdb=".$conf[9]." AND chassis=".$conf[10]." AND acum=".$conf[11]." AND war".$warnotin." IN (".$conf[12].") AND sist=".$conf[13]." LIMIT 1";
 	
@@ -141,7 +141,7 @@ if($c)
 					{
 						/*If so far we haven not found anything, we try another search for whatever models and regions are left*/
 						if(!$any_conf_search)
-						{ $rows=search_valid_config($models_in_region,$conf[1],$conf[2],$conf[3],$conf[4],$conf[5],$conf[6],$conf[7],$conf[8],$conf[9],$conf[10],$conf[11],$conf[12],$conf[13],$filter,$cf,$region,$exclude_war); }
+						{$rows=search_valid_config($models_in_region,$conf[1],$conf[2],$conf[3],$conf[4],$conf[5],$conf[6],$conf[7],$conf[8],$conf[9],$conf[10],$conf[11],$conf[12],$conf[13],$filter,$cf,$region,$exclude_war); }
 						else
 						{$rows=search_any_config($models_in_region,$exclude_war);}
 					}
@@ -168,9 +168,7 @@ if($c)
 			mysqli_free_result($result_model);
 			/* Here we get the best configurations from the temporary database */
 			if(isset($rows["cmodel"])&&$rows["cmodel"]!=null&&$rows["cmodel"]!=0&&isset($current_ex_region))
-			{
-				$rows["best_low"]=get_best_value($cons,$current_ex_region,$rows["cmodel"]);
-			}
+			{ $rows["best_low"]=get_best_low($cons,$current_ex_region,$rows["cmodel"]); }
 		}
 		else
 		{ $rows["cmodel"]=$GLOBALS["conf"][0]; $rows["submodel"]=null; }

@@ -60,8 +60,8 @@ if(!$components_found)
 			}
 			else
 			{
-				require_once("lib/php/query/get_best_value.php");
-				$best_value=get_best_value($cons,$ex_regions,$idmodel);
+				require_once("lib/php/query/get_best_low.php");
+				$best_low=get_best_low($cons,$ex_regions,$idmodel);
 			}
 			if($result){ mysqli_free_result($result); }
 		}
@@ -136,13 +136,12 @@ if($idmodel)
 	foreach($row as $key=>$el){ if($key!="model_id"&&$key!="pmodel"&&$el!=NULL&&$el!=""){ if(isset($region_ex[$key])){ $model_ex_list=array_merge($model_ex_list,$region_ex[$key]);} } }
 	$model_ex_list=array_unique($model_ex_list);
 	
-	if(isset($ex_regions[0])){$cur_p_region=reset(array_diff($ex_regions,["0","1"]));}else{$cur_p_region="2";}
-	
-	$sql="SELECT * FROM `notebro_temp`.`best_low_opt` WHERE id_model='p_".$p_model."_".$cur_p_region."'";
-	$best_low=mysqli_fetch_assoc(mysqli_query($cons,$sql));
-	if($best_low["lowest_price"]==$best_low["best_value"]) { $best_low["lowest_price"]=""; }
-	if($best_low["lowest_price"]==$best_low["best_performance"]) { $best_low["lowest_price"]=""; }
-	if($best_low["best_value"]==$best_low["best_performance"]) { $best_low["best_performance"]=""; }
+	if(!isset($best_low)||$best_low==NULL)
+	{
+		require_once("lib/php/query/get_best_low.php");
+		$best_low=get_best_low($cons,$ex_regions,$idmodel);
+	}
+
 	mysqli_close($cons);
 }
 
@@ -257,7 +256,7 @@ function show_display($list)
 				$row["model"]=replace_surft_type($row["model"],$row["backt"]);
 				$touch="";
 				if($row["touch"]==1)
-				{ $touch=" T"; }
+				{ $touch=" &#128075;"; }
 	
 				if($row["id"]!=$GLOBALS['iddisplay'])
 				{ echo "<option value=".$row["id"].">".$prodm." ".$row["model"].$touch."</option>"; }
