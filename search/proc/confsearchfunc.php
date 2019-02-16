@@ -29,11 +29,14 @@ function del_duplicate_pmodel(&$results)
 				if($compare_array[$val["pmodel"]]==-1)
 				{ unset($results[$key]); }
 				else
-				{ unset($results[$compare_array[$val["pmodel"]]]); $compare_array[$val["pmodel"]]=-1; }
+				{
+					unset($results[$compare_array[$val["pmodel"]]]);
+					if($val["mi_region"]==0){ $compare_array[$val["pmodel"]]=$key; } else { $compare_array[$val["pmodel"]]=-1; }
+				}
 			}
 		}
 		else
-		{ if($val["mi_region"]==7){ $compare_array[$val["pmodel"]]=$key; } else { $compare_array[$val["pmodel"]]=-1; } }
+		{ if($val["mi_region"]==0){ $compare_array[$val["pmodel"]]=$key; } else { $compare_array[$val["pmodel"]]=-1; } }
 	}
 	$results=array_values($results);
 }

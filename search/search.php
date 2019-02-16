@@ -84,7 +84,7 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 		$regional_type="region";
 	}
 	else
-	{ if(isset($_SESSION['exchcode'])){ $exchcode=$_SESSION['exchcode']; if(isset($_SESSION['regional_type'])){$regional_type=$_SESSION['regional_type'];}else{$regional_type="regions"; $always_model_region=true;} }else{$exchcode="USD"; $regional_type="regions"; $always_model_region=true;} }
+	{ if(isset($_SESSION['exchcode'])){ $exchcode=$_SESSION['exchcode']; if(isset($_SESSION['regional_type'])){$regional_type=$_SESSION['regional_type'];}else{$regional_type="region"; $always_model_region=true;} }else{$exchcode="USD"; $regional_type="region"; $always_model_region=true;} }
 	$value=$exchange_list->{$exchcode};
 	
 	$exch=$value["convr"];

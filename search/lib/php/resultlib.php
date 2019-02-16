@@ -4,7 +4,7 @@
 
 function show($col, $tab, $id)
 {
-	$result = mysqli_query($GLOBALS['con'], "SELECT $col FROM $tab WHERE id = '".$id."'"); 
+	$result = mysqli_query($GLOBALS['con'], "SELECT $col FROM $tab WHERE id = '".$id."' LIMIT 1"); 
 	$item = mysqli_fetch_array($result);
 
 	if(strcasecmp($item[$col],"Standard")==0)
@@ -20,7 +20,7 @@ function showhdd($col, $tab, $id, $shdd)
 {
 	if(intval($shdd)==0)
 	{
-		$result = mysqli_query($GLOBALS['con'], "SELECT $col FROM $tab WHERE id = '".$id."'"); 
+		$result = mysqli_query($GLOBALS['con'], "SELECT $col FROM $tab WHERE id = '".$id."' LIMIT 1"); 
 		$item = mysqli_fetch_array($result);
 		$item['cap,type,rpm']="";
 
@@ -30,12 +30,12 @@ function showhdd($col, $tab, $id, $shdd)
 	}
 	else
 	{
-		$result = mysqli_query($GLOBALS['con'], "SELECT $col FROM HDD WHERE id = '".$id."'"); 
+		$result = mysqli_query($GLOBALS['con'], "SELECT $col FROM HDD WHERE id = '".$id."' LIMIT 1"); 
 		$item = mysqli_fetch_array($result);
 		$item['cap,type,rpm']="";
 		echo $item[$col];
 		mysqli_free_result($result);
-		$result = mysqli_query($GLOBALS['con'], "SELECT $col FROM HDD WHERE id = '".$shdd."'"); 
+		$result = mysqli_query($GLOBALS['con'], "SELECT $col FROM HDD WHERE id = '".$shdd."' LIMIT 1"); 
 		$item2 = mysqli_fetch_array($result);
 		$item2['cap,type,rpm']="";
 		
@@ -45,7 +45,7 @@ function showhdd($col, $tab, $id, $shdd)
 
 function showmem($col, $tab, $id)
 {
-	$result = mysqli_query($GLOBALS['con'], "SELECT $col FROM $tab WHERE id = '".$id."'"); 
+	$result = mysqli_query($GLOBALS['con'], "SELECT $col FROM $tab WHERE id = '".$id."' LIMIT 1"); 
 	$item = mysqli_fetch_array($result);
 	
 	echo $item['cap']." GB ";
@@ -55,7 +55,7 @@ function showmem($col, $tab, $id)
 
 function showsist($col, $tab, $id)
 {
-	$result = mysqli_query($GLOBALS['con'], "SELECT $col FROM $tab WHERE id = '".$id."'"); 
+	$result = mysqli_query($GLOBALS['con'], "SELECT $col FROM $tab WHERE id = '".$id."' LIMIT 1"); 
 	$item = mysqli_fetch_array($result);
 	
 	echo $item['sist']." ";
@@ -75,7 +75,7 @@ function showsist($col, $tab, $id)
 
 function getdetails($id)
 {
-	$result = mysqli_query($GLOBALS['con'], "SELECT model.img_1,model.prod, families.fam, families.subfam, families.showsubfam, model.model,model.submodel,model.regions,model.p_model FROM notebro_db.MODEL model JOIN notebro_db.FAMILIES families on model.idfam=families.id WHERE model.id = '".$id."'"); 
+	$result = mysqli_query($GLOBALS['con'], "SELECT model.img_1,model.prod, families.fam, families.subfam, families.showsubfam, model.model,model.submodel,model.regions,model.p_model FROM notebro_db.MODEL model JOIN notebro_db.FAMILIES families on model.idfam=families.id WHERE model.id = '".$id."' LIMIT 1"); 
 	$item = mysqli_fetch_array($result);
 	
 	global $img; global $prod; global $fam; global $submodel; global $model; global $t_img; global $region_m_id; global $buy_regions; global $p_model;
@@ -90,20 +90,13 @@ function getdetails($id)
 	if(isset($item['submodel'])){ $submodel=$item['submodel']; if(strlen($submodel)>6 && !preg_match("/\(.*\)/",$submodel) && stripos($prod,"apple")===FALSE){ $submodel=substr($submodel,0,6)."."; } } 
 }
  
-function showprice($tab, $id, $exc)
+function showpricebat($tab, $id, $exc)
 { 
-	$result = mysqli_query($GLOBALS['cons'], "SELECT price,err FROM ".$tab." WHERE id = '".$id."'"); 
+	global $conf_price_text; $conf_price="N/A";
+	$result = mysqli_query($GLOBALS['cons'], "SELECT price,err,batlife FROM ".$tab." WHERE id = '".$id."' LIMIT 1"); 
 	$item = mysqli_fetch_array($result);
-	echo intval(($item['price']-($item['err']/2))*$exc)." - ".intval(($item['price']+($item['err']/2))*$exc);
-	return intval($item['price']);
-}
-
-function showbat($tab, $id, $exc)
-{
-	$sel="SELECT batlife FROM ".$tab." WHERE id = '".$id."'";
-	$result = mysqli_query($GLOBALS['cons'], $sel); 
-	$item = mysqli_fetch_array($result);
-	// gmdate('H:i', floor(floatval($item['batlife']*0.96) * 3600));
 	echo "Estimated battery:";?><br class="sres">  <?php echo round($item['batlife']*0.96,1); echo " - "; echo round($item['batlife']*1.03,1); echo " h";
+	$conf_price_text=intval(($item['price']-($item['err']/2))*$exc)." - ".intval(($item['price']+($item['err']/2))*$exc);
+	return intval($item['price']);
 }
 ?>

@@ -61,7 +61,7 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 					{ break; }
 					$rand = $results[$pos];
 					getdetails($rand['model']);
-					$value=array(); $exchcode_model=$exchcode; $exch_model=$exch; $exchsign_model=$exchsign; if(isset($region_ex[$region_m_id])&&(!in_array($region_m_id,$search_regions_array)||$always_model_region)){ $exchcode_model=$region_ex[$region_m_id]; $value=$exchange_list->{$exchcode_model}; $exch_model=$value["convr"]; $exchsign_model=$value["sign"];} 
+					$value=array(); $m_region=""; $exchcode_model=$exchcode; $exch_model=$exch; $exchsign_model=$exchsign; if(isset($region_ex[$region_m_id])&&(!in_array($region_m_id,$search_regions_array)||$always_model_region)){ $exchcode_model=$region_ex[$region_m_id]; $value=$exchange_list->{$exchcode_model}; $exch_model=$value["convr"]; $exchsign_model=$value["sign"]; if(!isset($regions_name[$region_m_id])){$regions_name[$region_m_id]=show('disp','REGIONS',$region_m_id);} $m_region="(".$regions_name[$region_m_id].")";} 
 				?>
 				<div class="col-md-6 col-sm-6 col-lg-3 col-6 col-xs-3" style="" >
 					<div class="searchresult">
@@ -75,9 +75,10 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 							<a onmousedown="OpenPage('model/model.php?conf=<?php echo $rand['id']."_".$rand['model']."&ex=".$exchcode_model;?>',event);">
 								<p>
 									<?php
-										echo $prod; echo " ";
-										echo $fam; echo " ";
-										echo $model; echo " ";			
+										echo $prod." ";
+										echo $fam." ";
+										echo $model;
+										if($m_region!==""){ echo " ".$m_region." "; }										
 										//echo show('submodel','MDB',$rand['mdb'] );
 									?>
 								</p>
@@ -87,33 +88,32 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 							<a onmousedown="OpenPage('model/model.php?conf=<?php echo $rand['id']."_".$rand['model']."&ex=".$exchcode_model;?>',event);">
 								<ul>
 									<li class="resulspace"><?php echo show('size','DISPLAY',$rand['display'] ).'" ('.show('hres','DISPLAY',$rand['display'])."x".show('vres','DISPLAY',$rand['display']).")";?></li>
-									<li class="resulspace"><?php echo show('prod', 'CPU',$rand['cpu'] )." ".show('model', 'CPU',$rand['cpu'] )." (".show('clocks', 'CPU',$rand['cpu'] )." GHz)"?></li>
-									<li class="resulspace"><?php echo show('prod', 'GPU',$rand['gpu'] )." ".show('model', 'GPU',$rand['gpu'] );?></li>
-									<li class="resulspace"><?php echo showmem('cap, type, freq', 'MEM',$rand['mem'] );echo " ";?></li>
+									<li class="resulspace"><?php echo show('prod','CPU',$rand['cpu'] )." ".show('model', 'CPU',$rand['cpu'] )." (".show('clocks', 'CPU',$rand['cpu'] )." GHz)"?></li>
+									<li class="resulspace"><?php echo show('prod','GPU',$rand['gpu'] )." ".show('model', 'GPU',$rand['gpu'] );?></li>
+									<li class="resulspace"><?php echo showmem('cap, type, freq','MEM',$rand['mem'] );echo " ";?></li>
 									<li class="resulspace"><?php echo showhdd('cap,type,rpm','HDD',$rand['hdd'],$rand['shdd']);echo "";?></li>
 									<li class="resulspace"><?php $kgw=show('weight','CHASSIS',$rand['chassis']); echo round(floatval($kgw),2)." Kg / ".round(floatval($kgw*2.20462262),2)." lb";?></li>
-									<li class="resulspace"><?php showsist('sist,vers,type', 'SIST',$rand['sist']);echo " ";?></li>
-									<li class="resulspace"><?php showbat('notebro_temp.all_conf_'.$rand['model'],$rand['id'],0);echo " ";?></li>
+									<li class="resulspace"><?php showsist('sist,vers,type','SIST',$rand['sist']);echo " ";?></li>
+									<li class="resulspace"><?php $conf_price=showpricebat('notebro_temp.all_conf_'.$rand['model'],$rand['id'],$exch_model);echo " ";?></li>
 								</ul>
 							</a>
 						</div>
-						<div class="searchprice"><?php echo ""; echo $exchsign_model; echo " "; $conf_price=showprice(('notebro_temp.'.$temp_table."_".$rand['model']), $rand['id'], $exch_model );?></div>
+						<div class="searchprice"><?php echo ""; echo $exchsign_model." ".$conf_price_text; ?></div>
 						<div class="row">
 							<div class="buy resultsShopBtn col-lg-6 col-md-5 col-sm-6 col-xs-6 col-xxs-12">
 								<div class="dropdown">
-										<div id="dLabel" class="btn buyBtn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-ref="<?php if(isset($usertag)&&$usertag!=""){ echo $usertag; } else { echo "";} ?>" data-target="buylist-<?php echo $i;?>" data-price="<?php echo $conf_price; ?>" data-idmodel="<?php echo $rand['model']; ?>" data-buyregions="<?php echo $search_regions; ?>" data-cpu="<?php echo $rand['cpu']; ?>" data-gpu="<?php echo $rand['gpu']; ?>" data-iddisplay="<?php echo $rand['display']; ?>" data-pmodel="<?php echo $p_model; ?>"  data-lang="<?php echo $exch_id; ?>" onclick="get_buy_list(this);">
+									<div id="dLabel" class="btn buyBtn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-ref="<?php if(isset($usertag)&&$usertag!=""){ echo $usertag; } else { echo "";} ?>" data-target="buylist-<?php echo $i;?>" data-price="<?php echo $conf_price; ?>" data-idmodel="<?php echo $rand['model']; ?>" data-buyregions="<?php echo $search_regions; ?>" data-cpu="<?php echo $rand['cpu']; ?>" data-gpu="<?php echo $rand['gpu']; ?>" data-iddisplay="<?php echo $rand['display']; ?>" data-pmodel="<?php echo $p_model; ?>"  data-lang="<?php echo $exch_id; ?>" onclick="get_buy_list(this);">
 											<span class="fas fa-shopping-cart"></span><span class="resultsBuyText"> Buy</span>
 											<span class="caret"></span>
-										</div>
-										<ul class="dropdown-menu" aria-labelledby="dLabel" id="buylist-<?php echo $i; $i++;?>">
-											<li class="loaderContainer">
-												<span class="loader"></span>
-											</li>
-										</ul>
-									</div><!-- Dropdown end div-->
+									</div>
+									<ul class="dropdown-menu" aria-labelledby="dLabel" id="buylist-<?php echo $i; $i++;?>">
+										<li class="loaderContainer">
+											<span class="loader"></span>
+										</li>
+									</ul>
+								</div><!-- Dropdown end div-->
 							</div>
-							<div class="btn col-xs-6 col-sm-6 col-md-7 addtocpmp col-xxs-12 col-lg-6" onclick="addcompare('<?php echo $rand['id']."_".$rand['model'];?>')">Compare
-							</div>				
+							<div class="btn col-xs-6 col-sm-6 col-md-7 addtocpmp col-xxs-12 col-lg-6" onclick="addcompare('<?php echo $rand['id']."_".$rand['model'];?>')">Compare</div>				
 						</div>						
 					</div>
 				</div>

@@ -72,7 +72,7 @@ foreach($comp_lists["model"] as $m)
 		{ $result_pmodel=mysqli_fetch_assoc($result_pmodel_r);}
 		else
 		{ $result_pmodel["pmodel"]=$model; $result_pmodel["show_smodel"]=0; }
-		$result["pmodel"]=$result_pmodel["pmodel"]; $result["show_smodel"]=intval($result_pmodel["show_smodel"]); $result_pmodel["mi_region"]=7; foreach($search_regions_array as $val){if(isset($result_pmodel[$val])&&$result_pmodel[$val]!=null){ if(in_array($result["model"],explode(",",$result_pmodel[$val]))){ $result_pmodel["mi_region"]=1; } } } $result["mi_region"]=$result_pmodel["mi_region"];
+		$result["pmodel"]=$result_pmodel["pmodel"]; $result["show_smodel"]=intval($result_pmodel["show_smodel"]); $result_pmodel["mi_region"]=0; foreach($search_regions_array as $val){if(isset($result_pmodel[$val])&&$result_pmodel[$val]!=null){ if(in_array($result["model"],explode(",",$result_pmodel[$val]))){ $result_pmodel["mi_region"]=1; } } } $result["mi_region"]=$result_pmodel["mi_region"];
 		
 		if (!is_null($result)) { $results[]=$result; }
 	}
