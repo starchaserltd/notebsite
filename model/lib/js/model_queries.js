@@ -628,14 +628,16 @@ function getconf(comp,id,exactconf)
 							{ change_exch(excode); }
 						}
 						else
-						{ if(confdata["exch"]!=excode){change_exch(confdata["exch"]);}else{ change_exch(excode);} }
-						for(var key in best_low_array){ var el=document.getElementById(best_low_array[key]+'_id'); if(confdata["best_low"][best_low_array[key]]!==null && confdata["best_low"][best_low_array[key]]!==undefined && confdata["best_low"][best_low_array[key]]!=""){ el.setAttribute('onmousedown','OpenPage('+"'"+'model/model.php?conf='+confdata["best_low"][best_low_array[key]]+'&ex='+excode+"',event);"+''); el.style.display="block";} else { el.style.display="none"; } } best_low=confdata["best_low"]; 
+						{ if(confdata["exch"]!=excode){if(confdata["mregion_id"].indexOf("1")<0&&confdata["mregion_id"].indexOf("0")<0){change_exch(confdata["exch"]);}else{change_exch(excode);}}else{ change_exch(excode);} }
 					}
+					
 					mid=confdata["cmodel"];
 					confdata["cerr"]=parseInt(confdata["cerr"]);
 					if(new_excode!=excode)
 					{
-						currentPage=currentPage.replace("ex="+excode,"ex="+new_excode); excode=new_excode; var sel_ex_model=document.getElementById("m_currency"); exch=new_exch_rate; document.getElementById('dLabel').setAttribute("data-lang",sel_ex_model.options[sel_ex_model.selectedIndex].getAttribute("data-id")); 
+						change_exch(new_excode); currentPage=currentPage.replace("ex="+excode,"ex="+new_excode); excode=new_excode; var sel_ex_model=document.getElementById("m_currency"); exch=new_exch_rate; document.getElementById('dLabel').setAttribute("data-lang",sel_ex_model.options[sel_ex_model.selectedIndex].getAttribute("data-id")); 
+						
+						for(var key in best_low_array){ var el=document.getElementById(best_low_array[key]+'_id'); if(confdata["best_low"][best_low_array[key]]!==null && confdata["best_low"][best_low_array[key]]!==undefined && confdata["best_low"][best_low_array[key]]!=""){ el.setAttribute('onmousedown','OpenPage('+"'"+'model/model.php?conf='+confdata["best_low"][best_low_array[key]]+'&ex='+excode+"',event);"+''); el.style.display="block";} else { el.style.display="none"; } } best_low=confdata["best_low"]; 
 					}
 					for(var key in best_low_array){ var el=document.getElementById(best_low_array[key]+'_id'); el.setAttribute('onmousedown',el.getAttribute('onmousedown').replace(/(.*)\&ex=([a-z0-9\-]+)(\&?.*)/i,"$1"+"&ex="+excode+"$3"));}
 					document.getElementById('config_price1').innerHTML=parseInt((confdata["cprice"]-confdata["cerr"]/2)*exch);
@@ -646,7 +648,7 @@ function getconf(comp,id,exactconf)
 						for (var key in confdata["changes"])
 						{
 							if(key!=="txt") { window['show'+key](confdata["changes"][key]); setselectedcomp(key,confdata["changes"][key]); if(key=="GPU"){ gpu_right_align();} }
-							else { alert("This component is only available in combination with a different "+confdata["changes"][key]+"."); }
+							else { if(show_comp_message){ alert("This component is only available in combination with a different "+confdata["changes"][key]+"."); }else{show_comp_message=1;} }
 						}
 					}
 					
@@ -883,7 +885,7 @@ function set_best_low(confid,array_values)
 	var i=1;
 	for (var key in array_values)
 	{
-		if(confid===array_values[key])
+		if(confid===array_values[key].split("_")[0])
 		{
 			switch(key)
 			{

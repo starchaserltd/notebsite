@@ -9,6 +9,7 @@ else
 	if(isset($_GET['cf'])&&($_GET['cf']!="undefined")){ $cf=floatval($_GET['cf']); } else {$cf=0;} /* config rating */
 	if(isset($_GET['ex'])){ $excode=preg_replace('~[\x00\x0A\x0D\x1A\x22\x27\x5C]~u', '\\\$0', filter_var($_GET['ex'],FILTER_SANITIZE_STRING)); if(stripos($excode,"undefined")!==FALSE){ $excode="USD"; } }
 }
+$get_best_low_func=false;
 if($c)
 {
 	$rows=array(); $rows["cmodel"]=$conf[0]; $rows["newregion"]=false; if(!$include_getconf){ require("../../../../etc/con_sdb.php"); require("../../../../etc/session.php"); } $result=FALSE; $rows["cid"]=0;
@@ -168,13 +169,17 @@ if($c)
 			$rows["mregion_id"]=explode(",",$model_data['regions']); 
 			if(array_search("1",$rows["mregion_id"])===FALSE){ foreach($ex_regions as $key=>$el){ foreach($rows["mregion_id"] as $el2){ if(in_array($el2,$el)){if(in_array($el2,$current_ex_region)){$rows["exch"]=$excode;}else{$rows["exch"]=$key;} break 2;}}} if($include_getconf){ $resu=mysqli_fetch_array(mysqli_query($con,"SELECT `disp` FROM `notebro_db`.`REGIONS` WHERE `id`=".$rows["mregion_id"][0]." LIMIT 1")); $rows["mregion"]=$resu["disp"];} $rows["buy_regions"]=$model_data['regions']; } else { $rows["exch"]="USD"; $rows["mregion"]=""; $rows["buy_regions"]=0; }
 			mysqli_free_result($result_model);
-			/* Here we get the best configurations from the temporary database */
-			if(isset($rows["cmodel"])&&$rows["cmodel"]!=null&&$rows["cmodel"]!=0&&isset($current_ex_region))
-			{ $rows["best_low"]=get_best_low($cons,$current_ex_region,$rows["cmodel"]); }
+			$get_best_low_func=true;
 		}
 		else
 		{ $rows["cmodel"]=$GLOBALS["conf"][0]; $rows["submodel"]=null; }
 	}
+	else
+	{ if($change_model_region||$comp=="EXCH"){$get_best_low_func=true;} }
+
+	/* Here we get the best configurations from the temporary database */
+	if($get_best_low_func&&isset($rows["cmodel"])&&$rows["cmodel"]!=null&&$rows["cmodel"]!=0&&isset($current_ex_region))
+	{ $rows["best_low"]=get_best_low($cons,$current_ex_region,$rows["cmodel"]); }
 	
 	if(!$include_getconf){ mysqli_close($cons); }
 	if($only_exch_regions){$rows["exch"]=$excode; $_SESSION['exchcode']=$rows["exch"]; $_SESSION['exchcode_change']=true;}

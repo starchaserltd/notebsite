@@ -54,5 +54,5 @@ if(isset($idmodel) && $idmodel){  $conf=$id[0]."_".$idmodel; } // for a model
 $usertag=""; if($conf){ if(isset($_GET["ref"])&&$_GET["ref"]!=""){ $usertag=mysqli_real_escape_string($con,filter_var($_GET["ref"], FILTER_SANITIZE_STRING)); } }
 ?>
 <script>
-var istime=0; var lang = <?php echo $lang; ?>; var countrybuy="<?php echo $country; ?>"; var excode="<?php echo $exchcode; ?>";  var config_rate=0;
+var istime=0; var show_comp_message=0; var lang = <?php echo $lang; ?>; var countrybuy="<?php echo $country; ?>"; var excode="<?php echo $exchcode; ?>";  var config_rate=0;
 var config_price=0; var config_price1=0; var config_price2=0; var config_err=0; var config_batlife=1; </script>
