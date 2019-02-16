@@ -8,6 +8,7 @@ if(!$components_found)
 	{
 		require_once("../etc/con_sdb.php");
 		$t=table($conf); $conf=$t[0];
+
 		$change_model_region=true;
 		foreach(get_regions_model($con,$t[1]) as $val){if(($val=="0")||($val=="1")||in_array($val,$ex_regions)){$change_model_region=false;} }
 		$sel3="SELECT * FROM notebro_temp.all_conf_".$t[1]." WHERE id=".$t[0]." LIMIT 1";

@@ -7,16 +7,18 @@ else
 	if(isset($_GET['c'])){ $c=preg_replace('~[\x00\x0A\x0D\x1A\x22\x27\x5C]~u', '\\\$0', filter_var($_GET['c'],FILTER_SANITIZE_STRING)); if(stripos($c,"undefined")===FALSE){ $conf=explode("-",$c);} else {$c=0;} } else {$conf=array(); $c=0;}
 	if(isset($_GET['comp'])){ $comp=preg_replace('~[\x00\x0A\x0D\x1A\x22\x27\x5C]~u', '\\\$0', filter_var($_GET['comp'],FILTER_SANITIZE_STRING)); if(stripos($comp,"undefined")!==FALSE){ $comp=NULL; } }
 	if(isset($_GET['cf'])&&($_GET['cf']!="undefined")){ $cf=floatval($_GET['cf']); } else {$cf=0;} /* config rating */
-	if(isset($_GET['ex'])){ $excode=preg_replace('~[\x00\x0A\x0D\x1A\x22\x27\x5C]~u', '\\\$0', filter_var($_GET['ex'],FILTER_SANITIZE_STRING)); if(stripos($excode,"undefined")!==FALSE){ $excode=NULL; } }
+	if(isset($_GET['ex'])){ $excode=preg_replace('~[\x00\x0A\x0D\x1A\x22\x27\x5C]~u', '\\\$0', filter_var($_GET['ex'],FILTER_SANITIZE_STRING)); if(stripos($excode,"undefined")!==FALSE){ $excode="USD"; } }
 }
 if($c)
 {
-	$rows=array(); $rows["cmodel"]=$conf[0]; $rows["newregion"]=false; if(!$include_getconf){ require("../../../../etc/con_sdb.php"); require("../../../../etc/session.php"); }
+	$rows=array(); $rows["cmodel"]=$conf[0]; $rows["newregion"]=false; if(!$include_getconf){ require("../../../../etc/con_sdb.php"); require("../../../../etc/session.php"); } $result=FALSE; $rows["cid"]=0;
 	require_once("get_best_low.php");
+	if(!$change_model_region){ $change_model_region=!model_in_region($cons,$conf[0],$excode); }
 	if($getall){$all="*,";}else{$all="";} if(!isset($conf[1])){for($i=1;$i<14;$i++){if(!isset($conf[$i])){$conf[$i]="";}}}
 	$sql="SELECT ".$all."id,price,model,err FROM notebro_temp.all_conf_".$conf[0]." WHERE model=".$conf[0]." AND cpu=".$conf[1]." AND display=".$conf[2]." AND mem=".$conf[3]." AND hdd=".$conf[4]." AND shdd=".$conf[5]." AND gpu=".$conf[6]." AND wnet=".$conf[7]." AND odd=".$conf[8]." AND mdb=".$conf[9]." AND chassis=".$conf[10]." AND acum=".$conf[11]." AND war".$warnotin." IN (".$conf[12].") AND sist=".$conf[13]." LIMIT 1";
-	
-	if($comp!="EXCH"){$result=mysqli_query($cons,$sql);}else{$result=FALSE; $rows["cid"]=0;}
+
+	//Don't do the primary search when we need to change the region or exchange rate
+	if(!$change_model_region&&$comp!="EXCH"){$result=mysqli_query($cons,$sql);}
 	$retry=0; $exclude_war=array(); $current_region=[0]; $rows["exch"]=$excode; if(!isset($cf)){$cf=-1;} $region=[-1]; $no_avb_search=true; $only_exch_regions=false; $confdata=array();
 
 	if($result!==FALSE)
@@ -101,9 +103,9 @@ if($c)
 					elseif((isset($el)&&($el!=NULL)&&($el!="")&&strval($key)!="model_id"&&strval($key)!="show_smodel"))
 					{
 						 $m_map[$key]=explode(",",$el);
-						 if(!$any_conf_search)
+						 if(!$any_conf_search&&!$change_model_region)
 						 {
-							//DELETE model that was searched by default, does not apply when doing search by model id
+							//DELETE model that was searched by default, does not apply when doing search by model id or when there is a regional change
 							foreach($m_map[$key] as $key2=>$el2)
 							{ if($el2==$conf[0]){$current_region=[$key]; if(!$only_exch_regions){unset($m_map[$key][$key2]);} } }
 						 }

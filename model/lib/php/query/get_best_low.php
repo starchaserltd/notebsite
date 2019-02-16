@@ -18,4 +18,23 @@ function get_best_low($cons,$current_ex_region,$model_id)
 	if($best_low["best_value"]==$best_low["best_performance"]) { $best_low["best_performance"]="";}
 	return $best_low;
 }
+
+function model_in_region($cons,$model_id,$exchcode)
+{
+	$model_in_region=false;
+	$sql="SELECT `regions` FROM `notebro_temp`.`ex_map_table` WHERE `ex`='".$exchcode."' LIMIT 1";
+	$result=mysqli_query($cons,$sql);
+	if($result&&mysqli_num_rows($result)>0)
+	{
+		$columns="IFNULL(`".implode("`,''),IFNULL(`",explode(",",mysqli_fetch_array($result)[0]))."`,'')";
+		$sql="SELECT GROUP_CONCAT(".$columns.") as `result` FROM `notebro_temp`.`m_map_table` WHERE `model_id`='".$model_id."' LIMIT 1";
+		$result=mysqli_query($cons,$sql);
+		if($result&&mysqli_num_rows($result)>0)
+		{
+			if(in_array($model_id,explode(",",mysqli_fetch_array($result)[0])))
+			{ $model_in_region=true; }
+		}
+	}
+	return $model_in_region;
+}
 ?>

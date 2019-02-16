@@ -563,6 +563,7 @@ function getconf(comp,id,exactconf)
 {
 	gocomp=0;
 	var cpu_id=cpu["id"]; var display_id=display["id"]; var mem_id=mem["id"]; var hdd_id=hdd["id"];  var shdd_id=shdd["id"]; var gpu_id=gpu["id"]; var wnet_id=wnet["id"]; var odd_id=odd["id"]; var mdb_id=mdb["id"]; var chassis_id=chassis["id"]; var acum_id=acum["id"]; var war_id=war["id"]; var sist_id=sist["id"]; var confdata = {}; var success=false; var go=false; var mdb_hdd=0; var new_excode=excode; new_exch_rate=exch;
+	
 	switch(comp)
 	{
 		case "CPU":
@@ -613,7 +614,6 @@ function getconf(comp,id,exactconf)
 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
 			{
 				confdata = JSON.parse(xmlhttp.responseText);
-				console.log(confdata);
 				confdata["cprice"]=parseInt(confdata["cprice"]); if(confdata["cprice"]>0){ success=true; }
 				if(success || go)
 				{
@@ -627,6 +627,8 @@ function getconf(comp,id,exactconf)
 							else
 							{ change_exch(excode); }
 						}
+						else
+						{ if(confdata["exch"]!=excode){change_exch(confdata["exch"]);}else{ change_exch(excode);} }
 						for(var key in best_low_array){ var el=document.getElementById(best_low_array[key]+'_id'); if(confdata["best_low"][best_low_array[key]]!==null && confdata["best_low"][best_low_array[key]]!==undefined && confdata["best_low"][best_low_array[key]]!=""){ el.setAttribute('onmousedown','OpenPage('+"'"+'model/model.php?conf='+confdata["best_low"][best_low_array[key]]+'&ex='+excode+"',event);"+''); el.style.display="block";} else { el.style.display="none"; } } best_low=confdata["best_low"]; 
 					}
 					mid=confdata["cmodel"];
@@ -661,6 +663,7 @@ function getconf(comp,id,exactconf)
 					{ history.replaceState(stateObj, confdata["cid"], "?model/model.php?conf="+confdata["cid"]+"_"+mid+"&ex="+excode+addref); }	
 					currentPage = window.location.href;
 					set_best_low(confdata["cid"],best_low);
+
 					switch(comp)
 					{
 						case "CPU":
@@ -690,11 +693,12 @@ function getconf(comp,id,exactconf)
 						case "SIST":
 						{ showSIST(id); break; } 
 					}
+					
 					document.getElementsByClassName("labelblue")[0].classList.add('blueAnimation'); document.getElementsByClassName("labelblue")[1].classList.add('blueAnimation'); model_label_animation=setTimeout(function () {document.getElementsByClassName("labelblue")[0].classList.remove('blueAnimation'); document.getElementsByClassName("labelblue")[1].classList.remove('blueAnimation'); }, 1000);
 				}
 				else
 				{
-					if(document.getElementsByName(comp)[0]!==undefined)
+					if(document.getElementsByName(comp)[0]!==undefined&&comp!==undefined)
 					{
 						switch(comp)
 						{
@@ -765,8 +769,11 @@ function update_model_info(model_id)
 function setselectedcomp(comp,value)
 {
 	comp=document.getElementsByName(comp)[0];
-	for ( var i = 0; i < comp.options.length; i++ )
-	{ if ( comp.options[i].value == value ) { comp.options[i].selected = true; return; } }
+	if(comp!==undefined)
+	{
+		for ( var i = 0; i < comp.options.length; i++ )
+		{ if ( comp.options[i].value == value ) { comp.options[i].selected = true; return; } }
+	}
 }
 
 function cpumisc(str) 
