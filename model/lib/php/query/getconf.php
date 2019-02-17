@@ -62,18 +62,18 @@ if($c)
 		}
 		
 		/*GET regions of interest and warranty limitations based exchange rate.*/
-		$found_excode=false; $ex_regions=array();
+		$found_excode=false; $ex_regions_gc=array();
 		$ex_result=mysqli_query($cons,"SELECT ex,regions,ex_war FROM `notebro_temp`.`ex_map_table`"); 
 		if($ex_result)
 		{
 			while($row=mysqli_fetch_row($ex_result))
 			{
-				$ex_regions[$row[0]]=explode(",",$row[1]);
+				$ex_regions_gc[$row[0]]=explode(",",$row[1]);
 				if($excode==$row[0])
 				{
 					$found_excode=true;
 					if(isset($row[1])&&$row[1]!=NULL&&$row[1]!="")
-					{ $region=$ex_regions[$row[0]]; }
+					{ $region=$ex_regions_gc[$row[0]]; }
 					else
 					{ $region=[-1]; }
 					$current_ex_region=$region;
@@ -153,7 +153,7 @@ if($c)
 			}
 		}
 	}
-	
+
 	/* If a new model was selected, we need the new model data */
 	if($conf[0]!=$rows["cmodel"])
 	{	
@@ -167,7 +167,7 @@ if($c)
 				$rows["mprod"]=$model_data["prod"]; if(isset($model_data["subfam"])&&$model_data["showsubfam"]!=0){ $model_data["subfam"]=" ".$model_data["subfam"]; } else { $model_data["subfam"]=""; } $rows["mfam"]=$model_data["fam"].$model_data["subfam"]; $rows["mmodel"]=$model_data["model"]; $rows["msubmodel"]=$model_data["submodel"];
 			}
 			$rows["mregion_id"]=explode(",",$model_data['regions']); 
-			if(array_search("1",$rows["mregion_id"])===FALSE){ foreach($ex_regions as $key=>$el){ foreach($rows["mregion_id"] as $el2){ if(in_array($el2,$el)){if(in_array($el2,$current_ex_region)){$rows["exch"]=$excode;}else{$rows["exch"]=$key;} break 2;}}} if($include_getconf){ $resu=mysqli_fetch_array(mysqli_query($con,"SELECT `disp` FROM `notebro_db`.`REGIONS` WHERE `id`=".$rows["mregion_id"][0]." LIMIT 1")); $rows["mregion"]=$resu["disp"];} $rows["buy_regions"]=$model_data['regions']; } else { $rows["exch"]="USD"; $rows["mregion"]=""; $rows["buy_regions"]=0; }
+			if(array_search("1",$rows["mregion_id"])===FALSE){ foreach($ex_regions_gc as $key=>$el){ foreach($rows["mregion_id"] as $el2){ if(in_array($el2,$el)){if(in_array($el2,$current_ex_region)){$rows["exch"]=$excode;}else{$rows["exch"]=$key;} break 2;}}} if($include_getconf){ $resu=mysqli_fetch_array(mysqli_query($con,"SELECT `disp` FROM `notebro_db`.`REGIONS` WHERE `id`=".$rows["mregion_id"][0]." LIMIT 1")); $rows["mregion"]=$resu["disp"];} $rows["buy_regions"]=$model_data['regions']; } else { $rows["exch"]="USD"; $rows["mregion"]=""; $rows["buy_regions"]=0; }
 			mysqli_free_result($result_model);
 			$get_best_low_func=true;
 		}

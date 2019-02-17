@@ -34,7 +34,7 @@ if(!$components_found)
 			$cf=intval($row["rating"]);
 			$cprice=floatval($row["price"]);
 			$cperr=floatval($row["err"]);
-			
+
 			if(in_array($idwar,$ex_war)||$change_model_region||intval($row["price"])<1)
 			{
 				$conf=array(); $conf[0]=$idmodel; $conf[1]=$idcpu; $conf[2]=$iddisplay; $conf[3]=$idmem; $conf[4]=$idhdd; $conf[5]=$idshdd; $conf[6]=$idgpu; $conf[7]=$idwnet; $conf[8]=$idodd; $conf[9]=$idmdb; $conf[10]=$idchassis; $conf[11]=$idacum; $conf[12]=implode(",",$ex_war); $conf[13]=$idsist; if($conf[12]==""||$conf[12]==null){$conf[12]="-1000";}
@@ -142,7 +142,8 @@ if($idmodel)
 	foreach($row as $key=>$el){ if($key!="model_id"&&$key!="pmodel"&&$el!=NULL&&$el!=""){ if(isset($region_ex[$key])){ $model_ex_list=array_merge($model_ex_list,$region_ex[$key]);} } }
 	$model_ex_list=array_unique($model_ex_list);
 	
-	if(!isset($best_low)||$best_low==NULL)
+	if(isset($rows["best_low"])){$best_low=$rows["best_low"];}
+	if(!(isset($best_low["best_value"])&&$best_low["best_value"]!=""&&$best_low["best_value"]!=NULL))
 	{
 		require_once("lib/php/query/get_best_low.php");
 		$best_low=get_best_low($cons,$ex_regions,$idmodel);
