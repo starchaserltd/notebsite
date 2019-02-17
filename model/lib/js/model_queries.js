@@ -640,9 +640,8 @@ function getconf(comp,id,exactconf)
 						for(var key in best_low_array){ var el=document.getElementById(best_low_array[key]+'_id'); if(confdata["best_low"][best_low_array[key]]!==null && confdata["best_low"][best_low_array[key]]!==undefined && confdata["best_low"][best_low_array[key]]!=""){ el.setAttribute('onmousedown','OpenPage('+"'"+'model/model.php?conf='+confdata["best_low"][best_low_array[key]]+'&ex='+excode+"',event);"+''); el.style.display="block";} else { el.style.display="none"; } } best_low=confdata["best_low"]; 
 					}
 					for(var key in best_low_array){ var el=document.getElementById(best_low_array[key]+'_id'); el.setAttribute('onmousedown',el.getAttribute('onmousedown').replace(/(.*)\&ex=([a-z0-9\-]+)(\&?.*)/i,"$1"+"&ex="+excode+"$3"));}
-					document.getElementById('config_price1').innerHTML=parseInt((confdata["cprice"]-confdata["cerr"]/2)*exch);
-					document.getElementById('config_price2').innerHTML=parseInt((confdata["cprice"]+confdata["cerr"]/2)*exch);
-					document.getElementById('dLabel').setAttribute('data-price',parseInt(confdata["cprice"]));
+					
+					update_model_price(confdata["cprice"],confdata["cerr"]);
 					if(confdata["changes"]!==undefined) 
 					{
 						for (var key in confdata["changes"])

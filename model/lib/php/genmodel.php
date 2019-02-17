@@ -1,6 +1,6 @@
 <?php
 /* SELECT CONFIG IDs */
-$afismodel=0;
+$afismodel=0; $cprice=0;
 
 if(!$components_found)
 {
@@ -16,7 +16,7 @@ if(!$components_found)
 		$result=mysqli_query($cons,$sel3);
 		if($result && mysqli_num_rows($result)>0)
 		{
-			$row = mysqli_fetch_assoc($result);
+			$row=mysqli_fetch_assoc($result);
 			$idcpu=$row["cpu"]; 
 			$iddisplay=$row["display"];
 			$idmem=$row["mem"];
@@ -32,7 +32,9 @@ if(!$components_found)
 			$idsist=$row["sist"];
 			$idmodel=$row["model"];
 			$cf=intval($row["rating"]);
-
+			$cprice=floatval($row["price"]);
+			$cperr=floatval($row["err"]);
+			
 			if(in_array($idwar,$ex_war)||$change_model_region||intval($row["price"])<1)
 			{
 				$conf=array(); $conf[0]=$idmodel; $conf[1]=$idcpu; $conf[2]=$iddisplay; $conf[3]=$idmem; $conf[4]=$idhdd; $conf[5]=$idshdd; $conf[6]=$idgpu; $conf[7]=$idwnet; $conf[8]=$idodd; $conf[9]=$idmdb; $conf[10]=$idchassis; $conf[11]=$idacum; $conf[12]=implode(",",$ex_war); $conf[13]=$idsist; if($conf[12]==""||$conf[12]==null){$conf[12]="-1000";}
@@ -54,10 +56,13 @@ if(!$components_found)
 					$idwar=$rows["all"]["war"];
 					$idsist=$rows["all"]["sist"];
 					$idmodel=$rows["cmodel"];
+					$cf=intval($rows["all"]["rating"]);
+					$cprice=floatval($rows["all"]["price"]);
+					$cperr=floatval($row["all"]["err"]);
 					$conf=$rows["cid"];
 				}
 				else
-				{ $result=null; }
+				{ $conf=$t[0]; $result=null; }
 			}
 			else
 			{

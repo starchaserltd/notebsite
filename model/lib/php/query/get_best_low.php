@@ -8,9 +8,14 @@ function get_best_low($cons,$current_ex_region,$model_id)
 	$best_low=mysqli_fetch_assoc(mysqli_query($cons,$sql));
 	if(!(isset($best_low["best_value"])&&$best_low["best_value"]!=""&&$best_low["best_value"]!=NULL))
 	{
-		 $model_search=true;
-		$sql="SELECT * FROM `notebro_temp`.`best_low_opt` WHERE id_model LIKE '".$model_id."%'";
+		$model_search=true;
+		$sql="SELECT * FROM `notebro_temp`.`best_low_opt` WHERE id_model LIKE '".$model_id."_".$cur_p_region."'";
 		$best_low=mysqli_fetch_assoc(mysqli_query($cons,$sql));
+		if(!(isset($best_low["best_value"])&&$best_low["best_value"]!=""&&$best_low["best_value"]!=NULL))
+		{
+			$sql="SELECT * FROM `notebro_temp`.`best_low_opt` WHERE id_model LIKE '".$model_id."%'";
+			$best_low=mysqli_fetch_assoc(mysqli_query($cons,$sql));
+		}
 	}
 	if($model_search){ $best_low["lowest_price"].="_".$model_id; $best_low["best_performance"].="_".$model_id; $best_low["best_value"].="_".$model_id; }
 	if($best_low["lowest_price"]==$best_low["best_value"]) { $best_low["lowest_price"]=""; }
