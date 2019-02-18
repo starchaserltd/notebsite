@@ -47,7 +47,7 @@ foreach($comp_lists as $key=>$val)
 	$sql_presearch.=") AND ";
 }
 //$sql_presearch=substr($sql_presearch, 0, -4);
-$sql_presearch.="(`price` BETWEEN " . $budgetmin . " AND " . $budgetmax . ")";
+$sql_presearch.="(`price` < " . $budgetmax . ")";
 $result=mysqli_query($cons,$sql_presearch);
 
 if($result&&mysqli_num_rows($result)>0)
