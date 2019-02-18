@@ -574,3 +574,27 @@ if ($('#back-to-top').length) {
         }, 700);
     });
 }
+
+function get_pos_models(formname)
+{
+	setTimeout(function()
+	{
+		if (formname === ""){ return; }
+		else 
+		{
+			if (window.XMLHttpRequest)	{ var	xmlhttp = new XMLHttpRequest(); }
+			
+			xmlhttp.onreadystatechange = function() 
+			{
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+				{
+					console.log(xmlhttp.responseText.split("+++++")[1]);
+				}
+			}
+
+			xmlhttp.open("GET","search/search.php?presearch=1&"+$(formname).serialize(),true);
+			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xmlhttp.send();
+		}
+	},5);
+}

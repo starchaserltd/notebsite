@@ -133,7 +133,10 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 		{ $mem_capmax=32; include ("preproc/b_search_varproc.php"); }
 		
 		require("proc/search_filters.php");
-		include("results.php");
+		if(!(isset($_GET["presearch"])&&intval($_GET["presearch"])==1))
+		{ include("results.php"); }
+		else
+		{ echo "+++++".count($comp_lists["model"]); }
 		exit();
 	}
 	else

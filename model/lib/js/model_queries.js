@@ -45,7 +45,7 @@ function showCPU(str)
 					if(cpu_gpu)
 					{ showGPU(cpu_gpu);}
 					else
-					{	document.querySelector('#GPU [value="' + gpudet + '"]').selected = true; showGPU(gpudet); }
+					{ showGPU(gpudet); }
 				}		
 			}
 		}
@@ -89,9 +89,9 @@ function showGPU(str)
 				document.getElementById('gpu_shaders').innerHTML = gpu["pipe"];
 				
 				if(gpu["typegpu"]==0)
-				document.getElementById('gpu_misc').innerHTML = gpu["prod"]+" "+gpu["model"]+"<br />"+gpumisc(gpu["msc"]);
+				{ document.getElementById('gpu_misc').innerHTML = gpu["prod"]+" "+gpu["model"]+"<br/>"+gpumisc(gpu["msc"]); document.querySelector('#GPU [value="-1"]').selected = true; }
 				else
-				document.getElementById('gpu_misc').innerHTML = gpumisc(gpu["msc"]);
+				{ document.getElementById('gpu_misc').innerHTML = gpumisc(gpu["msc"]); document.querySelector('#GPU [value="'+str+'"]').selected = true; }
 				
 				document.getElementById('gpu_shadermodel').innerHTML = parseFloat(gpu["shader"]).toFixed(1);
 				document.getElementById('gpu_memspeed').innerHTML = gpu["mspeed"];

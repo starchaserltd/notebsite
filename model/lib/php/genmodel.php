@@ -203,26 +203,29 @@ function show_gpu($list)
 	$havecpuint=0;
 	echo '<form><SELECT id="GPU" name="GPU" onchange="getconf('."'".'GPU'."'".',this.value)">';
 
-	foreach($list as $key=>$id)
+	$sel="SELECT `id`,`prod`,`model`,`typegpu` FROM `notebro_db`.`GPU` WHERE `id` IN (".implode(",",$list).") ORDER BY `typegpu` ASC";
+	$result = mysqli_query($GLOBALS['con'], $sel);
+	if($result&&mysqli_num_rows($result)>0)
 	{
-		$sel="SELECT prod,model,typegpu FROM notebro_db.GPU WHERE id=$id"; 
-		$result = mysqli_query($GLOBALS['con'], $sel);
-		$row = mysqli_fetch_array($result);
-		$gpulist=$id;
-		
-		if($row["typegpu"]>0)
-		{	
-			if($id!=$GLOBALS['idgpu'])
-			{ $int_gpu.="<option value=".$id.">".$row["prod"]." ".$row["model"]."</option>"; }
+		while($row=mysqli_fetch_array($result))
+		{
+			$gpulist=$row["id"];
+			if($row["typegpu"]>0)
+			{	
+				if($row["id"]!=$GLOBALS['idgpu'])
+				{ $int_gpu.="<option value=".$row["id"].">".$row["prod"]." ".$row["model"]."</option>"; }
+				else
+				{ $int_gpu.="<option value=".$row["id"]." selected='selected'>".$row["prod"]." ".$row["model"]."</option>"; $a=1;}
+
+				if($b)
+				{ $gpulist=$row["id"]; $b=0; }
+			}
 			else
-			{ $int_gpu.="<option value=".$id." selected='selected'>".$row["prod"]." ".$row["model"]."</option>"; $a=1;}
-	
-			if($b)
-			{ $gpulist=$id; $b=0; }
+			{ $havecpuint=1;}
 		}
-		else
-		{ $havecpuint=1;}
 	}
+	else
+	{ $havecpuint=1;}
 	
 	if(($int_gpu || $b==1) && $havecpuint)
 	{
