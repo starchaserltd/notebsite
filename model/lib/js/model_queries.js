@@ -64,7 +64,7 @@ function showGPU(str)
 		{
 			alert("This processor does not have an integrated graphics controller, please choose a different processor first!")
 			str=gpu_previous;
-			document.querySelector('#GPU [value="' + str + '"]').selected = true;
+			document.querySelector('#GPU [value="' + str + '"]').selected = true; gpu_right_align();
 		}
 		else { str=cpu_gpu; }
 	}
@@ -92,7 +92,7 @@ function showGPU(str)
 				{ document.getElementById('gpu_misc').innerHTML = gpu["prod"]+" "+gpu["model"]+"<br/>"+gpumisc(gpu["msc"]); document.querySelector('#GPU [value="-1"]').selected = true; }
 				else
 				{ document.getElementById('gpu_misc').innerHTML = gpumisc(gpu["msc"]); document.querySelector('#GPU [value="'+str+'"]').selected = true; }
-				
+				gpu_right_align();
 				document.getElementById('gpu_shadermodel').innerHTML = parseFloat(gpu["shader"]).toFixed(1);
 				document.getElementById('gpu_memspeed').innerHTML = gpu["mspeed"];
 				document.getElementById('gpu_rating').innerHTML = gpu["rating"];
