@@ -132,7 +132,11 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 		else if (isset($_GET['browse_by']) && $_GET['browse_by'])
 		{ $mem_capmax=32; include ("preproc/b_search_varproc.php"); }
 		
+		/* DEBUGGING CODE */
+		#$time_start = microtime(true);
+
 		require("proc/search_filters.php");
+		require("proc/presearch.php");
 		if(!(isset($_GET["presearch"])&&intval($_GET["presearch"])==1))
 		{ include("results.php"); }
 		else

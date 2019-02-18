@@ -93,8 +93,8 @@ usort($queries, function ($p, $q) {
 		echo "<pre>" . $q["query"] . "</pre>";
 		echo "Time elapsed: " . sprintf("%.4f", $q["time"]) . " s<br>";
      }
-
-     $time_end = microtime(true);
+*/
+    /* $time_end = microtime(true);
      $execution_time = ($time_end - $time_start);
 
 	 echo "<hr>";

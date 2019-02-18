@@ -91,7 +91,6 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 		$comp_lists["war"] = search_war ($war_prod, $war_yearsmin, $war_yearsmax, $war_typewar, $war_misc, $war_ratemin, $war_ratemax, $pricemin,$budgetmax);
 	}
 
-
 	if($to_search["sist"])
 	{
 		require_once($root."proc/sist_search.php");
