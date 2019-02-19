@@ -101,7 +101,6 @@ if($idmodel)
 		{
 			$nonexistent=0;
 			$onetime=1;
-			$row=mysqli_fetch_array($result);
 
 			$modelcpu=array_unique(explode(",",$row["gcpu"])); 
 			$modeldisplay=array_unique(explode(",",$row["gdisplay"]));
@@ -135,25 +134,24 @@ if($idmodel)
 				$idwar=current(array_slice($modelwar,0,1));
 				$idsist=current(array_slice($modelsist,0,1));
 			}
+
+			require_once("../etc/con_sdb.php"); $cons=dbs_connect();
+			
+			$sel3="SELECT * FROM notebro_temp.m_map_table WHERE model_id=".$idmodel." LIMIT 1";
+			$row=mysqli_fetch_array(mysqli_query($cons,$sel3));
+			$model_ex_list=array();
+			foreach($row as $key=>$el){ if($key!="model_id"&&$key!="pmodel"&&$el!=NULL&&$el!=""){ if(isset($region_ex[$key])){ $model_ex_list=array_merge($model_ex_list,$region_ex[$key]);} } }
+			$model_ex_list=array_unique($model_ex_list);
+			
+			if(isset($rows["best_low"])){$best_low=$rows["best_low"];}
+			if(!(isset($best_low["best_value"])&&$best_low["best_value"]!=""&&$best_low["best_value"]!=NULL))
+			{
+				require_once("lib/php/query/get_best_low.php");
+				$best_low=get_best_low($cons,$ex_regions,$idmodel);
+			}
+			mysqli_close($cons);
 		}
 	}
-
-	require_once("../etc/con_sdb.php"); $cons=dbs_connect();
-	
-	$sel3="SELECT * FROM notebro_temp.m_map_table WHERE model_id=".$idmodel." LIMIT 1";
-	$row=mysqli_fetch_array(mysqli_query($cons,$sel3));
-	$model_ex_list=array();
-	foreach($row as $key=>$el){ if($key!="model_id"&&$key!="pmodel"&&$el!=NULL&&$el!=""){ if(isset($region_ex[$key])){ $model_ex_list=array_merge($model_ex_list,$region_ex[$key]);} } }
-	$model_ex_list=array_unique($model_ex_list);
-	
-	if(isset($rows["best_low"])){$best_low=$rows["best_low"];}
-	if(!(isset($best_low["best_value"])&&$best_low["best_value"]!=""&&$best_low["best_value"]!=NULL))
-	{
-		require_once("lib/php/query/get_best_low.php");
-		$best_low=get_best_low($cons,$ex_regions,$idmodel);
-	}
-
-	mysqli_close($cons);
 }
 
 function get_regions_model($con,$idmodel)
