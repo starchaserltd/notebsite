@@ -73,10 +73,10 @@ for($x = 0; $x <= $nrconf; $x++)
 <?php 
 	show('notebro_db.MODEL model JOIN notebro_db.FAMILIES families on model.idfam=families.id',$conf_model ); 
 	preg_match('/(.*)\.(jpg|png)/', $resu["img_1"],$img);
-	$img=$img[1];
+	$img=$img[1]; $resu['mdbname']="";
 	$maxminvalues=bluered($rate_conf_rate,$maxminvalues,$x,"rating",0);
 	$maxminvalues=bluered($price_conf_price,$maxminvalues,$x,"price",1);
-	$maxminvalues=bluered($batlife_conf_batlife,$maxminvalues,$x,"batlife",0);
+	$maxminvalues=bluered($batlife_conf_batlife,$maxminvalues,$x,"batlife",0); 
 	$model_title='<a href="javascript:void(0)" onmousedown="OpenPage('."\'model/model.php?conf=".$confid."\'".',event)"><span class="tbltitle">'.$resu['prod']." ".$resu['fam']." ".$resu['model'].$resu['mdbname']." ".$resu['submodel'].$resu['region'].'</span></a>'; $model_msc=$resu['msc'];
 	$buytext='<div class="buy resultsShopBtn"><div class="dropdown"><button id="dLabel" class="btn buyBtn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-ref="';
 	if(isset($_SESSION['java_usertag'])&&$_SESSION['java_usertag']!=""){ $buytext=$buytext.$_SESSION['java_usertag']; } else { $buytext=$buytext.'';} $buytext=$buytext.'" data-target="buylist-'.$x.'" data-idmodel="'.$conf_model.'" data-buyregions="'.$buy_regions.'" data-lang="'.$lang.'" data-cpu="'.$cpu_conf_cpu.'" data-gpu="'.$gpu_conf_gpu.'" data-iddisplay="'.$disp_conf_display.'" data-pmodel="'.$resu["p_model"].'" onclick="get_buy_list(this);"><i class="fas fa-shopping-cart"></i><i class="fas fa-caret-down"></i></button><ul class="dropdown-menu" aria-labelledby="dLabel" id="buylist-'.$x.'"><li class="loaderContainer"><span class="loader"></span></li></ul></div></div>';
