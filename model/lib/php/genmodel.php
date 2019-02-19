@@ -94,43 +94,47 @@ if($idmodel)
 	$sel3="SELECT `model`.*,GROUP_CONCAT(`model`.`cpu`) as `gcpu`,GROUP_CONCAT(`model`.`display`) as `gdisplay`,GROUP_CONCAT(`model`.`mem`) as `gmem`,GROUP_CONCAT(`model`.`hdd`) as `ghdd`,GROUP_CONCAT(`model`.`shdd`) as `gshdd`,GROUP_CONCAT(`model`.`gpu`) as `ggpu`,GROUP_CONCAT(`model`.`wnet`) as `gwnet`,GROUP_CONCAT(`model`.`odd`) as `godd`,GROUP_CONCAT(`model`.`mdb`) as `gmdb`,GROUP_CONCAT(`model`.`chassis`) as `gchassis`,GROUP_CONCAT(`model`.`acum`) as `gacum`,GROUP_CONCAT(`model`.`warranty`) as `gwarranty`,GROUP_CONCAT(`model`.`sist`) as `gsist`,GROUP_CONCAT(CONCAT(`comments`.`type`,'+++',`comments`.`comment`)) as `gcomments` FROM `notebro_db`.`MODEL` model LEFT JOIN `notebro_db`.`COMMENTS` comments  ON `model`.`p_model`=`comments`.`model` WHERE `model`.`p_model`=$p_model LIMIT 1";
 	$result=mysqli_query($con,$sel3);
 
-	if($result->num_rows)
+	if($result&&($result->num_rows)>0)
 	{
-		$nonexistent=0;
-		$onetime=1;
-		$row = mysqli_fetch_array($result);
-
-		$modelcpu=array_unique(explode(",",$row["gcpu"])); 
-		$modeldisplay=array_unique(explode(",",$row["gdisplay"]));
-		$modelmem=array_unique(explode(",",$row["gmem"]));
-		$modelhdd=array_unique(explode(",",$row["ghdd"]));
-		$modelshdd=array_unique(explode(",",$row["gshdd"]));
-		$modelgpu=array_unique(explode(",",$row["ggpu"]));
-		$modelwnet=array_unique(explode(",",$row["gwnet"]));
-		$modelodd=array_unique(explode(",",$row["godd"]));
-		$modelmdb=array_unique(explode(",",$row["gmdb"]));
-		$modelchassis=array_unique(explode(",",$row["gchassis"]));
-		$modelacum=array_unique(explode(",",$row["gacum"]));
-		$modelwar=array_unique(explode(",",$row["gwarranty"]));
-		$modelsist=array_unique(explode(",",$row["gsist"]));
-		$modelcomments=array_unique(explode(",",$row["gcomments"]));
-		$modelprod=$row["prod"];
-			
-		if($afismodel)
+		$row=mysqli_fetch_array($result);
+		if(isset($row[0])&&$row[0]!=NULL)
 		{
-			$idcpu=current(array_slice($modelcpu,0,1));
-			$iddisplay=current(array_slice($modeldisplay,0,1));
-			$idmem=current(array_slice($modelmem,0,1));
-			$idhdd=current(array_slice($modelhdd,0,1));
-			$idshdd=current(array_slice($modelshdd,0,1));
-			$idgpu=current(array_slice($modelgpu,0,1));
-			$idwnet=current(array_slice($modelwnet,0,1));
-			$idodd=current(array_slice($modelodd,0,1));
-			$idmdb=current(array_slice($modelmdb,0,1));
-			$idchassis=current(array_slice($modelchassis,0,1));
-			$idacum=current(array_slice($modelacum,0,1));
-			$idwar=current(array_slice($modelwar,0,1));
-			$idsist=current(array_slice($modelsist,0,1));
+			$nonexistent=0;
+			$onetime=1;
+			$row=mysqli_fetch_array($result);
+
+			$modelcpu=array_unique(explode(",",$row["gcpu"])); 
+			$modeldisplay=array_unique(explode(",",$row["gdisplay"]));
+			$modelmem=array_unique(explode(",",$row["gmem"]));
+			$modelhdd=array_unique(explode(",",$row["ghdd"]));
+			$modelshdd=array_unique(explode(",",$row["gshdd"]));
+			$modelgpu=array_unique(explode(",",$row["ggpu"]));
+			$modelwnet=array_unique(explode(",",$row["gwnet"]));
+			$modelodd=array_unique(explode(",",$row["godd"]));
+			$modelmdb=array_unique(explode(",",$row["gmdb"]));
+			$modelchassis=array_unique(explode(",",$row["gchassis"]));
+			$modelacum=array_unique(explode(",",$row["gacum"]));
+			$modelwar=array_unique(explode(",",$row["gwarranty"]));
+			$modelsist=array_unique(explode(",",$row["gsist"]));
+			$modelcomments=array_unique(explode(",",$row["gcomments"]));
+			$modelprod=$row["prod"];
+				
+			if($afismodel)
+			{
+				$idcpu=current(array_slice($modelcpu,0,1));
+				$iddisplay=current(array_slice($modeldisplay,0,1));
+				$idmem=current(array_slice($modelmem,0,1));
+				$idhdd=current(array_slice($modelhdd,0,1));
+				$idshdd=current(array_slice($modelshdd,0,1));
+				$idgpu=current(array_slice($modelgpu,0,1));
+				$idwnet=current(array_slice($modelwnet,0,1));
+				$idodd=current(array_slice($modelodd,0,1));
+				$idmdb=current(array_slice($modelmdb,0,1));
+				$idchassis=current(array_slice($modelchassis,0,1));
+				$idacum=current(array_slice($modelacum,0,1));
+				$idwar=current(array_slice($modelwar,0,1));
+				$idsist=current(array_slice($modelsist,0,1));
+			}
 		}
 	}
 
