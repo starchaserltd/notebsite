@@ -6,7 +6,7 @@ var firstcompare = 1;
 var nocomperrormess = 0;
 var previousurl = "";
 var disqusloaded = 1;
-var urlold = ""; var searchurl="";
+var urlold = ""; var searchurl=""; var cur_advss="";  var cur_sss=""; var cur_qss="";
 var hh = 1;
 var ismobile = 0; var global_sort_search="value"; var global_sort_browse="value";
 var currentPage = window.location.href; var ref=null; var all_requests=[]; var model_label_animation=function(){}; var model_bat_animation=function(){};
@@ -575,26 +575,38 @@ if ($('#back-to-top').length) {
     });
 }
 
-function get_pos_models(formname)
+function presearch(formname)
 {
-	setTimeout(function()
+	var sstring=$(formname).serialize(); var do_presearch=0;
+	switch(formname)
 	{
-		if (formname === ""){ return; }
-		else 
+		case "#advform": { if(cur_advss!=sstring){cur_advss=sstring; do_presearch=1;} break;}
+		case "#s_search": { if(cur_sss!=sstring){cur_sss=sstring; do_presearch=1;} break;}
+		case "quiz": { if(cur_qss!=sstring){cur_qss=sstring; do_presearch=1;} break;}
+	}
+	
+	if(do_presearch)
+	{
+		/*
+		setTimeout(function()
 		{
-			if (window.XMLHttpRequest)	{ var	xmlhttp = new XMLHttpRequest(); }
-			
-			xmlhttp.onreadystatechange = function() 
+			if (formname === ""){ return; }
+			else 
 			{
-				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+				if (window.XMLHttpRequest)	{ var	xmlhttp = new XMLHttpRequest(); }
+				
+				xmlhttp.onreadystatechange = function() 
 				{
-					console.log(xmlhttp.responseText.split("+++++")[1]);
+					if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+					{
+						//console.log(xmlhttp.responseText.split("+++++")[1]);
+					}
 				}
-			}
 
-			xmlhttp.open("GET","search/search.php?presearch=1&"+$(formname).serialize(),true);
-			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			xmlhttp.send();
-		}
-	},5);
+				xmlhttp.open("GET","search/search.php?presearch=1&"+sstring,true);
+				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				xmlhttp.send();
+			}
+		},5);*/
+	}
 }
