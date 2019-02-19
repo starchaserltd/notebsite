@@ -158,6 +158,11 @@ $(document).ready(function()
 		
 		if(handle==0) {	document.getElementById('bdgmin').value=left; }
 		if(handle==1) {	document.getElementById('bdgmax').value=right; }
+		
+		if(right<500)
+		{ document.getElementById('s_mem').noUiSlider.set([4,null]); document.getElementById('checkboxpre').checked=false; }
+		else
+		{ document.getElementById('s_mem').noUiSlider.set([8,null]); document.getElementById('checkboxpre').checked=true; }
 	});
 	
 	if($('#type').val()=="99"){ $('#graphics').multiselect('enable'); }
