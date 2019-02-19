@@ -137,6 +137,8 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 
 		require("proc/search_filters.php");
 		require("proc/presearch.php");
+		#$time_end = microtime(true);
+		#$execution_time=($time_end-$time_start); echo $execution_time;
 		if(!(isset($_GET["presearch"])&&intval($_GET["presearch"])==1))
 		{ include("results.php"); }
 		else
