@@ -86,6 +86,7 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 	else
 	{ if(isset($_SESSION['exchcode'])){ $exchcode=$_SESSION['exchcode']; if(isset($_SESSION['regional_type'])){$regional_type=$_SESSION['regional_type'];}else{$regional_type="region"; $always_model_region=true;} }else{$exchcode="USD"; $regional_type="region"; $always_model_region=true;} }
 	$value=$exchange_list->{$exchcode};
+	
 	$exch=$value["convr"];
 	$exchsign=$value["sign"];
 	$search_regions_array=array_unique(explode(",",$value[$regional_type]));

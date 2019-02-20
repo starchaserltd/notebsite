@@ -333,11 +333,11 @@
 						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">									
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 								<div>Ports</div>
-								<select class="multisearch js-example-responsive" id="MDB_port_id" name ="MDB_port_id[]" data-lcom='none' data-lfield="none" data-placeholder="Ex. 2 X USB 3.0, Thunderbolt" data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
+								<select onchange="presearch('#advform');" class="multisearch js-example-responsive" id="MDB_port_id" name ="MDB_port_id[]" data-lcom='none' data-lfield="none" data-placeholder="Ex. 2 X USB 3.0, Thunderbolt" data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
 							</div>	
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hiddenOptionsMdb">
 								<div>Minimum number of memory slots:</div>			
-								<select id="mdbslots" name="mdbslots">
+								<select onchange="presearch('#advform');" id="mdbslots" name="mdbslots">
 									<option value="4" <?php echo $mdbslotsel4;?>>4</option>
 									<option value="3" <?php echo $mdbslotsel3;?>>3</option>
 									<option value="2" <?php echo $mdbslotsel2;?>>2</option>
@@ -349,11 +349,11 @@
 						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 								<div>Video ports</div>
-								<select class="multisearch js-example-responsive" id="MDB_vport_id" name="MDB_vport_id[]" data-lcom='none' data-lfield="none" data-placeholder="Ex. 1 X HDMI, 1 X VGA" data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
+								<select onchange="presearch('#advform');" class="multisearch js-example-responsive" id="MDB_vport_id" name="MDB_vport_id[]" data-lcom='none' data-lfield="none" data-placeholder="Ex. 1 X HDMI, 1 X VGA" data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
 							</div>					
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hiddenOptionsMdb">			
 								<div>WWAN</div>			
-								<select id="mdbwwan" name="mdbwwan">
+								<select onchange="presearch('#advform');" id="mdbwwan" name="mdbwwan">
 									<option value="1"<?php echo $mdbwwansel1;?> >None</option>
 									<option value="0"<?php echo $mdbwwansel0;?> >Optional</option>
 									<option value="2" <?php echo $mdbwwansel2;?> >Required</option>
@@ -376,7 +376,7 @@
 								<div style="margin-top:5px;"><span style="margin-top:5px; font-size:13.5px; margin-bottom:2px;">
 									Capacity:</span>  <span id="ramval"><?php echo $memcapmin; ?> - <?php echo $memcapmax; ?> GB</span>
 								</div>	  
-								<div style="margin-top:3px;" id="ram"></div>
+								<div class="advslider" style="margin-top:3px;" id="ram"></div>
 								<input type="hidden" name="rammin" id="rammin" value="<?php echo $memcapmin; ?>">	
 								<input type="hidden" name="rammax" id="rammax" value="<?php echo $memcapmax; ?>">				
 							</div>
@@ -384,7 +384,7 @@
 								<div style="margin-top:10px;"><span style="margin-top:5px; font-size:13.5px; margin-bottom:2px;">
 									Speed:</span>  <span id="freqval"><?php echo $memfreqmin; ?> - <?php echo $memfreqmax; ?> MHz</span>
 								</div>	  
-								<div style="margin-top:3px;" id="freq"></div>
+								<div class="advslider" style="margin-top:3px;" id="freq"></div>
 								<input type="hidden" name="freqmin" id="freqmin" value="<?php echo $memfreqmin; ?>">	
 								<input type="hidden" name="freqmax" id="freqmax" value="<?php echo $memfreqmax; ?>">				
 							</div>
@@ -392,7 +392,7 @@
 						<div class="col-xs-12 col-md-6 col-md-6 col-lg-6" >
 							<div class="col-md-12 col-sm-12 hiddenOptionsMemory">
 								<div>Type</div>			
-								<select id="memtype" name="memtype[]" multiple>
+								<select onchange="presearch('#advform');" id="memtype" name="memtype[]" multiple>
 									<?php if(isset($droplists[53])) { echo $droplists[53]; } ?>
 								</select>
 							</div>
@@ -413,7 +413,7 @@
 								<div style="margin-top:5px;"><span style="margin-top:5px; font-size:13.5px; margin-bottom:2px;">
 									Estimated battery life:</span>  <span id="batlifeval"><?php echo $batlifemin; ?> - <?php echo $batlifemax; ?> h</span>
 								</div>	  
-								<div style="margin-top:3px;" id="batlife"></div>
+								<div class="advslider" style="margin-top:3px;" id="batlife"></div>
 								<input type="hidden" name="batlifemin" id="batlifemin" value="<?php echo $batlifemin; ?>">	
 								<input type="hidden" name="batlifemax" id="batlifemax" value="<?php echo $batlifemax; ?>">				
 							</div>
@@ -423,7 +423,7 @@
 								<div style="margin-top:5px;"><span style="margin-top:5px; font-size:13.5px; margin-bottom:2px;">
 									Capacity:</span>  <span id="acumcapval"><?php echo $acumcapmin; ?> - <?php echo $acumcapmax; ?> WHr</span>
 								</div>	  
-								<div style="margin-top:3px;" id="acumcap"></div>
+								<div class="advslider" style="margin-top:3px;" id="acumcap"></div>
 								<input type="hidden" name="acumcapmin" id="acumcapmin" value="<?php echo $acumcapmin; ?>">	
 								<input type="hidden" name="acumcapmax" id="acumcapmax" value="<?php echo $acumcapmax; ?>">				
 							</div>
@@ -441,7 +441,7 @@
 								<div style="margin-top:5px;"><span style="margin-top:5px; font-size:13.5px; margin-bottom:2px;">
 									Weight:</span>  <span id="weightval"><?php $poundsweightmin =$chassisweightmin*2.2046226218;  echo number_format($chassisweightmin,2); echo " - "; echo number_format($chassisweightmax,2); echo " kg / "; echo number_format($poundsweightmin,2);?> - <?php $poundsweightmax =$chassisweightmax*2.2046226218;  echo number_format($poundsweightmax,2);?> lb</span>
 								</div>							
-								<div style="margin-top:3px;" id="weight"></div>
+								<div class="advslider" style="margin-top:3px;" id="weight"></div>
 								<input type="hidden" name="weightmin" id="weightmin" value="<?php echo $chassisweightmin; ?>">	
 								<input type="hidden" name="weightmax" id="weightmax" value="<?php echo $chassisweightmax; ?>">				
 							</div>	
@@ -450,7 +450,7 @@
 									Thickness:</span>  <span id="thicval">
 									<?php $feetthicmin = $chassisthicmin*0.393701; echo number_format($chassisthicmin/10,1); ?> - <?php echo number_format($chassisthicmax/10,1)." cm / ";  $feetthicmax = $chassisthicmax*0.393701; echo number_format($feetthicmin/10,2)." - ".number_format($feetthicmax/10,2)." inch"; ?></span>
 								</div>	  
-								<div style="margin-top:3px; margin-bottom:5px;" id="thickness"></div>
+								<div class="advslider" style="margin-top:3px; margin-bottom:5px;" id="thickness"></div>
 								<input type="hidden" name="thicmin" id="thicmin" value="<?php echo $chassisthicmin; ?>">
 								<input type="hidden" name="thicmax" id="thicmax" value="<?php echo $chassisthicmax; ?>">	
 							</div>		
@@ -459,7 +459,7 @@
 									Width:</span>  <span id="widthval">
 									<?php $feetwidthmin = $chassiswidthmin*0.393701; echo number_format($chassiswidthmin/10,1); ?> - <?php echo number_format($chassiswidthmax/10,1)." cm / ";  $feetwidthmax = $chassiswidthmax*0.393701; echo number_format($feetwidthmin/10,2)." - ".number_format($feetwidthmax/10,2)." inch"; ?></span>
 								</div>	  
-								<div style="margin-top:3px;" id="width"></div>
+								<div class="advslider" style="margin-top:3px;" id="width"></div>
 								<input type="hidden" name="widthmin" id="widthmin" value="<?php echo $chassiswidthmin; ?>">	
 								<input type="hidden" name="widthmax" id="widthmax" value="<?php echo $chassiswidthmax; ?>">				
 							</div>	
@@ -468,12 +468,12 @@
 									Depth:</span>  <span id="depthval">
 									<?php $feetdepthmin = $chassisdepthmin*0.393701; echo number_format($chassisdepthmin/10,1); ?> - <?php echo number_format($chassisdepthmax/10,1)." cm / ";  $feetdepthmax = $chassisdepthmax*0.393701; echo number_format($feetdepthmin/10,2)." - ".number_format($feetdepthmax/10,2)." inch"; ?></span>
 								</div>	  
-								<div style="margin-top:3px;" id="depth"></div>
+								<div class="advslider" style="margin-top:3px;" id="depth"></div>
 								<input type="hidden" name="depthmin" id="depthmin" value="<?php echo $chassisdepthmin; ?>">	
 								<input type="hidden" name="depthmax" id="depthmax" value="<?php echo $chassisdepthmax; ?>">	
 							</div>		
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">	
-								<div class="checkbox" style="float:right;">
+								<div onchange="presearch('#advform');" class="checkbox" style="float:right;">
 									<input type="checkbox" name="twoinone-yes"  id="twoinone-yes" class="css-checkbox sme" style="margin-left:0px;" <?php echo $twoinone_check; ?>/>
 									<label for="twoinone-yes" class="css-label sme depressed" style="font-weight:normal;min-height:16px;">Convertible (2-in-1)</label>
 									&nbsp; <input type="checkbox" name="twoinone-no"  id="twoinone-no" class="css-checkbox sme" style="margin-left:0px;" <?php echo $classiclap_check; ?>/>
@@ -484,7 +484,7 @@
 						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 								<div>Made of</div>			
-								<select id="material" name="material[]" multiple>
+								<select onchange="presearch('#advform');" id="material" name="material[]" multiple>
 									<?php if(isset($droplists[26])) { echo $droplists[26]; } ?>
 								</select>
 							</div>					
@@ -493,12 +493,12 @@
 									Webcam:</span>  <span id="webval">
 									<?php echo $chassiswebmin; ?> - <?php echo $chassiswebmax." MP";?></span>
 								</div>	 
-								<div style="margin-top:3px;" id="web"></div>
+								<div class="advslider" style="margin-top:3px;" id="web"></div>
 								<input type="hidden" name="webmin" id="webmin" value="<?php echo $chassiswebmin; ?>">	
 								<input type="hidden" name="webmax" id="webmax" value="<?php echo $chassiswebmax; ?>"> 
 							</div>	
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">											
-								<div  style="margin-top:10px;">
+								<div onchange="presearch('#advform');" style="margin-top:10px;">
 									<div>Other features</div>
 									<select class="multisearch js-example-responsive" id="CHASSIS_stuff_id" name="CHASSIS_stuff_id[]" data-lcom='none' data-lfield="none" data-placeholder="Ex. Stylus, Fingerprint reader, Spill resistant" data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
 								</div>
@@ -519,13 +519,9 @@
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hiddenOptionWirrOpt" >
 								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 									<div>Minimum transfer speed (Mbps)</div>			
-									<select id="wnetspeed" name="wnetspeed">
+									<select onchange="presearch('#advform');" id="wnetspeed" name="wnetspeed">
 										<?php if(isset($droplists[51])){ echo $droplists[51]; } ?>
-									</select>
-									<div class="checkbox" style="float:right;">
-										<input type="checkbox" name="bluetooth" class="css-checkbox sme" id="bluetoothadv" style="margin-left:0px;" <?php echo $btcheck; ?> />
-										<label for="bluetoothadv" class="css-label sme depressed" style="font-weight:normal;min-height:16px;">Bluetooth</label>
-									</div>			
+									</select>		
 								</div>
 							</div>
 						</div>
@@ -536,7 +532,7 @@
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hiddenOptionWirrOpt">
 								<div class="col-md-12 col-sm-12">	
 									<div>Type</div>			
-									<select id="oddtype" name="oddtype">
+									<select onchange="presearch('#advform');" id="oddtype" name="oddtype">
 										<?php if(isset($droplists[52])){ echo $droplists[52]; } ?>
 									</select>
 								</div>
@@ -556,7 +552,7 @@
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 								<div>System</div>			
-								<select id="opsist" name="opsist[]" multiple>
+								<select onchange="presearch('#advform');" id="opsist" name="opsist[]" multiple>
 									<?php if(isset($droplists[25])){ echo $droplists[25];} ?>
 								</select>
 							</div>
@@ -573,10 +569,10 @@
 							<div style="margin-top:5px;"><span style="margin-top:5px; font-size:13.5px; margin-bottom:2px;">
 								Nr of years:</span>  <span id="yearsval"><?php echo $waryearsmin; ?> - <?php echo $waryearsmax; ?></span>
 							</div>	  
-							<div style="margin-top:3px;" id="years"></div>
+							<div class="advslider" style="margin-top:3px;" id="years"></div>
 							<input type="hidden" name="yearsmin" id="yearsmin" value="<?php echo $waryearsmin; ?>">	
 							<input type="hidden" name="yearsmax" id="yearsmax" value="<?php echo $waryearsmax; ?>">				
-							<div class="checkbox" style="float:right;">		
+							<div onchange="presearch('#advform');" class="checkbox" style="float:right;">		
 								<input type="checkbox" name="premiumadv" class="css-checkbox sme" id="checkboxadv" style="margin-left:0px;" <?php echo $nbdcheck; ?> />
 								<label for="checkboxadv" class="css-label sme depressed" style="font-weight:normal;min-height:16px;">On-site</label>
 							</div>	

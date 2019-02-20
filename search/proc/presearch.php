@@ -50,10 +50,10 @@ foreach($comp_lists as $key=>$val)
 	if($start_id_model){ $sql_presearch.=" `model_id` IN (".implode(",",$model_id_new).")";}
 	$sql_presearch.=") AND ";
 }
+$sql_presearch.=$shdd_search_cond;
 //$sql_presearch=substr($sql_presearch, 0, -4);
 $sql_presearch.="((`min_price`<".$budgetmax." AND `max_price`>".$budgetmin.") OR `min_price`=0) AND ((`min_batlife`<".$batlife_max." AND `max_batlife`>".$batlife_min.") OR `min_batlife`=0) AND ((`min_cap`<".$hdd_capmax." AND `max_cap`>".$totalcapmin.") OR `min_cap`=0)";
 $result=mysqli_query($cons,$sql_presearch);
-
 if($result&&mysqli_num_rows($result)>0)
 { $valid_ids=explode(",",mysqli_fetch_assoc($result)["ids"]); $valid_ids=array_flip($valid_ids); }
 else
