@@ -188,7 +188,7 @@
 	}
 	
 	if(isset($_GET['surface'])) { $valuetype[56] = $_GET['surface']; }
-	if(isset($_GET['typehdd'])) { $valuetype[54] = $_GET['typehdd']; }
+	if(isset($_GET['typehdd'])) { $valuetype[54] = $_GET['typehdd']; foreach($valuetype[54] as $val){if($val=="HDD"){$show_rpm=1; break;}} }
 	if(isset($_GET['rpm'])) { $valuetype[55] = $_GET['rpm']; }
 	if(isset($_GET['wnetspeed'])) { $valuetype[51] = array($_GET['wnetspeed']); }
 	$wnetspeedmax = 9999999;	

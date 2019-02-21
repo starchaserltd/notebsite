@@ -74,9 +74,7 @@ $('#addcompare').click(function(e)
 		addcompare();
 	}
 	else
-	{
-		window.setTimeout($('#addcompare').click(), 100);
-	}	
+	{ window.setTimeout($('#addcompare').click(), 100); }	
 	$("#howToUse").css('display', 'none');
 });
  
@@ -166,4 +164,5 @@ $(document).ready(function()
 			});
 		}
 	})();
+	setTimeout(function(){ show_comp_message=1; }, 3000);
 });

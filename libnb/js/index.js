@@ -6,9 +6,9 @@ var firstcompare = 1;
 var nocomperrormess = 0;
 var previousurl = "";
 var disqusloaded = 1;
-var urlold = ""; var searchurl=""; var cur_advss="";  var cur_sss=""; var cur_qss="";
+var urlold = ""; var searchurl="";
 var hh = 1;
-var ismobile = 0; var global_sort_search="value"; var global_sort_browse="value";
+var ismobile = 0; var global_sort_search="value"; var global_sort_browse="value"; var pause_presearch=1; var nquiz="";
 var currentPage = window.location.href; var ref=null; var all_requests=[]; var model_label_animation=function(){}; var model_bat_animation=function(){};
 
 function locationHashChanged(pagetopen) {
@@ -573,40 +573,4 @@ if ($('#back-to-top').length) {
             scrollTop: 0
         }, 700);
     });
-}
-
-function presearch(formname)
-{
-	var sstring=$(formname).serialize(); var do_presearch=0;
-	switch(formname)
-	{
-		case "#advform": { if(cur_advss!=sstring){cur_advss=sstring; do_presearch=1;} break;}
-		case "#s_search": { if(cur_sss!=sstring){cur_sss=sstring; do_presearch=1;} break;}
-		case "quiz": { if(cur_qss!=sstring){cur_qss=sstring; do_presearch=1;} break;}
-	}
-	
-	if(do_presearch)
-	{
-		/*
-		setTimeout(function()
-		{
-			if (formname === ""){ return; }
-			else 
-			{
-				if (window.XMLHttpRequest)	{ var	xmlhttp = new XMLHttpRequest(); }
-				
-				xmlhttp.onreadystatechange = function() 
-				{
-					if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
-					{
-						//console.log(xmlhttp.responseText.split("+++++")[1]);
-					}
-				}
-
-				xmlhttp.open("GET","search/search.php?presearch=1&"+sstring,true);
-				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-				xmlhttp.send();
-			}
-		},5);*/
-	}
 }

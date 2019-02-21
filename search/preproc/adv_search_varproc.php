@@ -313,7 +313,7 @@ if(isset($_GET['typehdd']))
 
 // STOR rpm
 if(isset($_GET['rpm']))
-{ $hdd_rpmmax = intval($_GET['rpm']); }
+{ $hdd_rpmmin = intval($_GET['rpm']); }
 
 //STOR nr of hdd		
 if($_GET['nrhdd'])

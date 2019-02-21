@@ -119,6 +119,7 @@ function show($tab, $id)
 			$resu['made']=str_replace(",", ", ",$resu['made']);
 			$resu['color']=str_replace(",", ", ",$resu['color']);
 			$resu['keyboard']=str_replace(",", ", ",$resu['keyboard']);
+			$resu['msc']=str_replace(",", ", ",$resu['msc']);
 			if(!$resu['vi']) { if(stripos($resu['pi'],"thunderbolt")!==FALSE) { $resu['vi']="1 X mDP (Thunderbolt)"; } else { $resu['vi']="-"; } }else { if(stripos($resu['pi'],"thunderbolt")!==FALSE&&stripos($resu['vi'],"DP")===FALSE) { $resu['vi'].=", 1 X mDP (Thunderbolt)"; } }		
 			if(!($resu['pi'])){$resu['pi']="-";}
 			if(!($resu['color'])){$resu['color']="-";}	

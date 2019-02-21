@@ -151,7 +151,7 @@ require_once("etc/conf.php");
 			<!-- end left area-->
 			
 			<!-- main content -->
-			<div class="col-md-7 col-sm-12 col-xs-12 col-lg-8" style="border-left:1px solid #ddd;" id="content">
+			<div class="col-md-7 col-sm-12 col-xs-12 col-lg-8 mainContentDiv" style="border-left:1px solid #ddd;" id="content">
 				Loading main content.... Please wait.<br>
 				This website requires modern browsers, it will not work on IE 9.0 or earlier.	
 			</div>
@@ -211,6 +211,7 @@ require_once("etc/conf.php");
 		<script><?php echo 'var siteroot = "'.$web_address.'";'; ?></script>
 		<script type="text/javascript" src="libnb/js/tooltip.js" async></script>
 		<script type="text/javascript" src="libnb/js/index.js"></script>
+		<script type="text/javascript" src="libnb/js/presearch.js"></script>
 		<script type="text/javascript" src="lib/js/nouislider.min.js"></script>	
 	</body>
 </html>

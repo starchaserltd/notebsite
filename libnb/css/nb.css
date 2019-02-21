@@ -272,14 +272,6 @@ a {
     transition: all 0.3s ease-in;
 }
 
-.advspace {
-    margin-top: 5px;
-}
-
-.advspace1 {
-    margin-top: 12px;
-}
-
 .blue {
     background-color: #285f8f;
 }
@@ -2144,7 +2136,7 @@ table#comparelist td.text-center.comparecell3 {
 .resultsShopBtn  .dropdown-menu {
     left: 8px;
     min-height: 100px;
-    min-width: 150px!important;
+    min-width: 205px!important;
 }
 
 
@@ -2514,7 +2506,7 @@ table#comparelist td.text-center.comparecell3 {
 .multiselect-container label.checkbox input[type="checkbox"] {
     position: absolute;
     left: 10px;
-    top: 10px;
+    top: 11px;
 }
 /* IE 11 Article fix*/
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {

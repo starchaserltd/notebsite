@@ -5,9 +5,9 @@ require_once("etc/conf.php"); ?>
 	<div class="col-md-12 col-sm-12 col-xs-12">	
 		<form  action="javascript:void(0);" method="post" id="s_search">
 			<div style="font-size:14px; font-weight:bold;margin-top:5px">Producer</div>			
-			<select class="xxtest" id="s_prod_id" name ="s_prod[]" data-placeholder="Ex. Apple, Dell" multiple="multiple" style="width: 100%;"></select>
+			<select onchange="presearch('#s_search');" class="xxtest" id="s_prod_id" name ="s_prod[]" data-placeholder="Ex. Apple, Dell" multiple="multiple" style="width: 100%;"></select>
 			<div style="margin-top:10px; font-size:14px;font-weight:bold; margin-bottom:2px;">Laptop type</div>			
-			<select name ="type" id="type">
+			<select onchange="presearch('#s_search');" name ="type" id="type">
 				<option value="99">All</option>
 				<option value="1">Mainstream</option>
 				<option value="2">Ultraportable</option>
@@ -17,7 +17,7 @@ require_once("etc/conf.php"); ?>
 			</select>
 
 			<div style="margin-top:10px; font-size:14px;font-weight:bold; margin-bottom:2px;">Processor type</div>	
-			<select id="cpu_type" name="cpu_type[]" multiple>
+			<select onchange="presearch('#s_search');" id="cpu_type" name="cpu_type[]" multiple>
 				<option value="1" data-name="Intel">Intel any</option>
 				<option value="2" data-name="Core i3">Intel Core i3</option>
 				<option value="3" data-name="Core i5">Intel Core i5</option>
@@ -30,27 +30,23 @@ require_once("etc/conf.php"); ?>
 			</select>				
 						
 			<div style="margin-top:10px;">
-				<span style="font-weight: bold;">
-				Memory size:</span>		<span id="s_memval">2 - 32</span> GB
-			 </div>	
+			<span style="font-weight: bold;">Memory size:</span> <span id="s_memval">2 - 32</span> GB
+			</div>	
 			<div style="padding:0px 15px 0px 10px">					
-				<div style="margin-top:3px;" id="s_mem"></div>
+				<div class="ssearchslider" style="margin-top:3px;" id="s_mem"></div>
 				<input type="hidden" name="s_memmin" id="s_memmin" value="1">	
 				<input type="hidden" name="s_memmax" id="s_memmax" value="2">
 			</div>
 				
 			<div style="margin-top:10px;">
-				<span style="font-weight:bold;">
-				Storage size:</span> 						
-				<br> 
-				<span id="s_hddval">32 - 1000</span> GB
-				<div class="checkbox" style="float:right;margin-top:-2px;margin-right:15%;">
+				<span style="font-weight:bold;">Storage size:</span><br><span id="s_hddval">32 - 1000</span> GB
+				<div onchange="presearch('#s_search');" class="checkbox" style="float:right;margin-top:-2px;margin-right:15%;">
 					<input type="checkbox" name="ssd" class="css-checkbox sme" id="checkboxpre" style="margin-left:0px;" checked />
 					<label for="checkboxpre" class="css-label sme depressed" style="font-weight:normal;min-height:16px;">SSD</label>	
 				</div>
 			</div>	
 			<div style="padding:0px 15px 0px 10px">					
-				<div style="margin-top:8px;" id="s_hdd"></div>
+				<div class="ssearchslider" style="margin-top:8px;" id="s_hdd"></div>
 				<input type="hidden" name="s_hddmin" id="s_hddmin" value="1">	
 				<input type="hidden" name="s_hddmax" id="s_hddmax" value="2">
 			</div>	
@@ -59,13 +55,13 @@ require_once("etc/conf.php"); ?>
 				Display size:</span>  <span id="s_dispsizeval">10.1 - 21</span> inch
 			</div>	
 			<div style="padding:0px 15px 0px 10px">					
-				<div style="margin-top:3px;" id="s_dispsize"></div>
+				<div class="ssearchslider" style="margin-top:3px;" id="s_dispsize"></div>
 				<input type="hidden" name="s_dispsizemin" id="s_dispsizemin" value="1">	
 				<input type="hidden" name="s_dispsizemax" id="s_dispsizemax" value="2">
 			</div>
 			
 			<div style="margin-top:10px; font-size:14px;font-weight:bold; margin-bottom:2px;">Display quality</div>	
-			<select id="display_type" name="display_type[]" multiple>
+			<select onchange="presearch('#s_search');" id="display_type" name="display_type[]" multiple>
 				<option value="1" data-name="IPS" selected="selected">IPS panel</option>
 				<option value="2" data-name="120Hz">120Hz panel</option>
 				<option value="3" data-name="FHD" selected="selected">FHD resolution</option>
@@ -78,7 +74,7 @@ require_once("etc/conf.php"); ?>
 			</select>
 			
 			<div style="margin-top:10px; font-size:14px;font-weight:bold; margin-bottom:2px;">Graphics</div>	
-			<select id="graphics" name="graphics[]">
+			<select onchange="presearch('#s_search');" id="graphics" name="graphics[]">
 				<option value="1">Basic</option>
 				<option value="2">Average</option>
 				<option value="3">High-end</option>
@@ -87,7 +83,7 @@ require_once("etc/conf.php"); ?>
 			<div class="row margin">
 				<div class="col-md-6 col-sm-6 col-xs-6" style="margin-top:10px;font-weight:bold;padding:0">Available in</div>	
 				<div class="col-md-6 col-sm-6 col-xs-6" style="padding:0; margin-top:15px;">
-					<select id="region_type" name="region_type[]">
+					<select onchange="presearch('#s_search');" id="region_type" name="region_type[]">
 						<option value="1">USA</option>
 						<option value="2">Europe</option>
 					</select>

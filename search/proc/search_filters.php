@@ -3,7 +3,7 @@
 if(!defined('ROOT_PATH')){ $root=define('ROOT_PATH', str_ireplace("/search","",dirname(__DIR__))); } $root=ROOT_PATH."/search/";
 if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 {
-    $comp_lists = array();
+    $comp_lists = array(); $shdd_search_cond="";
 
 	/* FILTER BY REGION, MODEL , FMAILY, PRODUCER */
 	if($to_search["regions"])

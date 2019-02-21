@@ -134,15 +134,17 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 		
 		/* DEBUGGING CODE */
 		#$time_start = microtime(true);
-
+		
+		if(!(isset($_GET["presearch"])&&intval($_GET["presearch"])==1)){$show_presearch=1; $presearch_comp_limit=0;}else{$show_presearch=0; $presearch_comp_limit=250;}
+		
 		require("proc/search_filters.php");
 		require("proc/presearch.php");
-		#$time_end = microtime(true);
-		#$execution_time=($time_end-$time_start); echo $execution_time;
-		if(!(isset($_GET["presearch"])&&intval($_GET["presearch"])==1))
+		
+		if($show_presearch)
 		{ include("results.php"); }
 		else
-		{ echo "+++++".count($comp_lists["model"]); }
+		{ echo "+++++".count(array_unique($count_p_models));}
+		
 		exit();
 	}
 	else

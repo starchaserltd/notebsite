@@ -19,7 +19,13 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 	include ("preproc/q_search_varproc.php");
 	
 	ob_start();
+	$budgetmax=2147483647; $budgetmin=0;
+	if(!(isset($_GET["presearch"])&&intval($_GET["presearch"])==1)){$show_presearch=1; $presearch_comp_limit=0; }else{$show_presearch=0; $presearch_comp_limit=250;}
 	require("proc/search_filters.php");
+	require("proc/presearch.php");
+		
+	if(!$show_presearch)
+	{ echo "+++++".count(array_unique($count_p_models)); exit();}
 	ob_get_clean();
 	
 	$conds = array();

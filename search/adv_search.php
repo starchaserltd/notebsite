@@ -36,21 +36,19 @@
 								<div style="font-size:16px; font-weight:bold;">Availability:</div>
 								<select onchange="presearch('#advform');" class="multisearch js-example-responsive" id="Regions_name_id" name = "Regions[]" data-lcom='regions' data-lfield="name" data-placeholder="Ex. USA, Europe" data-initvalue="All" multiple="multiple" data-ajax--url="search/lib/func/list.php" style="width:100%;"></select>
 							</div>
-							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top:5px">
-								<div style="font-size:15px;">						
-									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px; margin-top:5px">							
-										<span style="font-size:16px; font-weight:bold;">Budget:</span>
-										<span style="margin-left: 3px;" id="2"><input type="tel" name="bdgminadv" id="bdgminadv" value="<?php echo round(floatval($bdgmin)*floatval($basevalue)); ?>" size="1" maxlength="5" onchange="checkminadv();" class="budget">  -
-										<input type="tel" name="bdgmaxadv" id="bdgmaxadv" value="<?php echo round(floatval($bdgmax)*floatval($basevalue)); ?>" size="1" maxlength="5" onchange="checkmaxadv();"class="budget" ></span>						
-										<select name ="exchadv" id="currencyadv" onchange="sliderrangeadv(this); this.oldvalue = this.value; change_region(this.value);">
-											<?php echo $var_currency; //this variable comes from lib/currency.php ?>
-										</select>
-									</div>
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top:15px; font-size:15px;">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">							
+									<span style="font-size:16px; font-weight:bold;">Budget:</span>
+									<span style="margin-left: 3px;" id="2"><input type="tel" name="bdgminadv" id="bdgminadv" value="<?php echo round(floatval($bdgmin)*floatval($basevalue)); ?>" size="1" maxlength="5" onchange="checkminadv();" class="budget">  -
+									<input type="tel" name="bdgmaxadv" id="bdgmaxadv" value="<?php echo round(floatval($bdgmax)*floatval($basevalue)); ?>" size="1" maxlength="5" onchange="checkmaxadv();"class="budget" ></span>						
+									<select name ="exchadv" id="currencyadv" onchange="sliderrangeadv(this); this.oldvalue = this.value; change_region(this.value);">
+										<?php echo $var_currency; //this variable comes from lib/currency.php ?>
+									</select>
 								</div>
 							</div>
 							<br>
 							<div class="col-xs-12 col-md-12 col-xs-12">
-								<div style="margin-top:10px;" id="budgetadv"></div>	
+								<div id="budgetadv"></div>	
 							</div>	
 						</div>	
 						<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" onchange="presearch('#advform');">
@@ -85,12 +83,12 @@
 									<span style="font-size:13.5px;">Nr. of cores:</span>
 									<span id="nrcoresval"><?php echo $cpucoremin;?> - <?php echo $cpucoremax; ?></span>
 								</div>	  
-								<div class="advslider advspace" id="nrcores"></div>
+								<div class="advslider" style="margin-top: 5px;" id="nrcores"></div>
 								<input type="hidden" name="nrcoresmin" id="nrcoresmin" value="<?php echo $cpucoremin; ?>" data-lcom='CPU_model' data-lfield="cpu_coremin">
 								<input type="hidden" name="nrcoresmax" id="nrcoresmax" value="<?php echo $cpucoremax; ?>" data-lcom='CPU_model' data-lfield="cpu_coremax">	
 							</div>					
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hiddenOptions">
-								<div class="advspace1">Socket</div>
+								<div style="margin-top: 12px;">Socket</div>
 								<select onchange="presearch('#advform')"; class="multisearch js-example-responsive" id="CPU_socket_id" name="CPU_socket_id[]" data-lcom='CPU_model' data-lfield="cpu_socket" data-placeholder="Processor Sockets" data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width: 100%;"></select>
 							</div>							
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -104,34 +102,34 @@
 									<span style="font-size:13.5px;">Power consumption (TDP):</span>
 									<span id="cputdpval"><?php echo $cputdpmin; ?> - <?php echo $cputdpmax; ?></span><span> W</span>
 								</div>	  
-								<div class="advslider advspace" id="cputdp"></div>
+								<div class="advslider" style="margin-top: 5px;" id="cputdp"></div>
 								<input type="hidden" name="cputdpmin" id="cputdpmin" value="<?php echo $cputdpmin; ?>" data-lcom='CPU_model' data-lfield="cpu_tdpmin" >	 
 								<input type="hidden" name="cputdpmax" id="cputdpmax" value="<?php echo $cputdpmax; ?>" data-lcom='CPU_model' data-lfield="cpu_tdpmax" >				
 							</div>
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hiddenOptions">
-								<div class="advslider advspace1">
+								<div class="advslider" style="margin-top: 12px;">
 									<span style="font-size:13.5px;">Boost speed:</span>
 									<span id="cpufreqval"><?php echo $cpufreqmin; ?> - <?php echo $cpufreqmax; ?></span><span> GHz</span>
 								</div>	  
-								<div class="advslider advspace" id="cpufreq"></div>
+								<div class="advslider" style="margin-top: 5px;" id="cpufreq"></div>
 								<input type="hidden" name="cpufreqmin" id="cpufreqmin" value="<?php echo $cpufreqmin; ?>" data-lcom='CPU_model' data-lfield="cpu_turbomin" >	 
 								<input type="hidden" name="cpufreqmax" id="cpufreqmax" value="<?php echo $cpufreqmax; ?>" data-lcom='CPU_model' data-lfield="cpu_turbomax" >			
 							</div>					
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hiddenOptions">
-								<div class="advslider advspace1">
+								<div class="advslider" style="margin-top: 12px;">
 									<span style="font-size:13.5px;">Lithography:</span> 
 									<span id="cputechval"><?php echo $cputechmax; ?> - <?php echo $cputechmin; ?></span><span> nm</span>
 								</div>	  
-								<div class="advslider dvspace" id="cputech"></div>
+								<div class="advslider" style="margin-top: 5px;" id="cputech"></div>
 								<input type="hidden" name="cputechmin" id="cputechmin" value="<?php echo $cputechmax; ?>" data-lcom='CPU_model' data-lfield="cpu_techmax" data-lcom2='CPU_socket' data-lfield2="socktechmax">	 
 								<input type="hidden" name="cputechmax" id="cputechmax" value="<?php echo $cputechmin; ?>" data-lcom='CPU_model' data-lfield="cpu_techmin" data-lcom2='CPU_socket' data-lfield2="socktechmin">		
 							</div>		
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-								<div class="advslider advspace1">
-								<span style="font-size:13.5px;">Launch date:</span>
-								<span id="launchdateval"><?php echo $cpumindate; ?> - <?php echo $cpumaxdate; ?></span>
+								<div class="advslider" style="margin-top: 12px;">
+									<span style="font-size:13.5px;">Launch date:</span>
+									<span id="launchdateval"><?php echo $cpumindate; ?> - <?php echo $cpumaxdate; ?></span>
 								</div>	  
-								<div class="advslider advspace" id="launchdate"></div>
+								<div class="advslider" style="margin-top: 5px;" id="launchdate"></div>
 								<input type="hidden" name="launchdatemin" id="launchdatemin" value="<?php echo $cpumindate; ?>" data-lcom='CPU_model' data-lfield="cpu_ldmin" data-lcom2='CPU_socket' data-lfield2="sockmin">	
 								<input type="hidden" name="launchdatemax" id="launchdatemax" value="<?php echo $cpumaxdate; ?>" data-lcom='CPU_model' data-lfield="cpu_ldmax" data-lcom2='CPU_socket' data-lfield2="sockmax">
 							</div>			
@@ -179,7 +177,7 @@
 								<select onchange="presearch('#advform');" class="multisearch js-example-responsive" id="GPU_model_id" name="GPU_model_id[]"  data-lcom='none' data-lfield="gpu_prod" data-placeholder="Graphics Card Models" data-initvalue="GPU Integrated" multiple="multiple" data-ajax--url="search/lib/func/list.php" style="width:100%;"></select>
 							</div>
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-								<div style="margin-top:5px;"><span style="margin-top:5px; font-size:13.5px; margin-bottom:2px;">
+								<div style="margin-top:5px;"><span style="font-size:13.5px; margin-bottom:2px;">
 									Video memory:</span>  <span id="gpumemval"><?php echo $gpumemmin; ?> - <?php echo $gpumemmax; ?> MB</span>
 								</div>	  
 								<div class="advslider" style="margin-top:5px;" id="gpumem"></div>
@@ -187,14 +185,14 @@
 								<input type="hidden" name="gpumemmax" id="gpumemmax" value="<?php echo $gpumemmax; ?>">		
 							</div>	
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hiddenOptionsGpu">	
-								<div>Architecture</div>
+								<div style="margin-top:5px;">Architecture</div>
 								<select onchange="presearch('#advform');" class="multisearch js-example-responsive" name="GPU_arch_id[]" id="GPU_arch_id" data-lcom='GPU_model' data-lfield="gpu_arch" data-placeholder="Ex. GCN 1.3, Turing" data-initvalue="GPU Integrated" multiple="multiple" data-ajax--url="search/lib/func/list.php" style="width:100%;"></select>
 							</div>
 						</div>	
 						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">		
 
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hiddenOptionsGpu">
-								<div style="margin-top:11px;"><span style="margin-top:11px; font-size:13.5px; margin-bottom:2px;">
+								<div style="margin-top:10px;"><span style="margin-top:11px; font-size:13.5px; margin-bottom:2px;">
 									Memory bus width:</span>  <span id="gpubusval"><?php echo $gpumembusmin; ?> - <?php echo $gpumembusmax; ?> bit</span>
 								</div>	  
 								<div class="advslider" style="margin-top:5px;" id="gpubus"></div>

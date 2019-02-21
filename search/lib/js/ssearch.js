@@ -159,10 +159,12 @@ $(document).ready(function()
 		if(handle==0) {	document.getElementById('bdgmin').value=left; }
 		if(handle==1) {	document.getElementById('bdgmax').value=right; }
 		
+		pause_presearch=1;
 		if(right<500)
-		{ document.getElementById('s_mem').noUiSlider.set([4,null]); document.getElementById('checkboxpre').checked=false; }
+		{ if(document.getElementById('s_mem').noUiSlider.get()[0]>4) { pause_presearch=0; document.getElementById('s_mem').noUiSlider.set([4,null]); document.getElementById('checkboxpre').checked=false; } }
 		else
-		{ document.getElementById('s_mem').noUiSlider.set([8,null]); document.getElementById('checkboxpre').checked=true; }
+		{ if(document.getElementById('s_mem').noUiSlider.get()[0]<8) { pause_presearch=0; document.getElementById('s_mem').noUiSlider.set([8,null]); document.getElementById('checkboxpre').checked=true; } }
+		setTimeout(function(){ pause_presearch=0; },100);
 	});
 	
 	if($('#type').val()=="99"){ $('#graphics').multiselect('enable'); }
@@ -195,6 +197,10 @@ $(document).ready(function()
 			default: { thislist.multiselect('dataprovider',USloc); sliderrange(thislist2); thislist2.oldvalue=thislist2.value; break; }
 		}
 	});
+	
+	var nouisliders_ssearch=document.getElementsByClassName('ssearchslider');
+	for(var key in nouisliders_ssearch){ if(nouisliders_ssearch[key].noUiSlider!==undefined){ nouisliders_ssearch[key].noUiSlider.on('update', function( values, handle ){presearch("#s_search");});} }
+	pause_presearch=1; setTimeout(function(){ pause_presearch=0; },2500);
 });
 
 /* RECALCULATE SLIDER ON MANUAL INPUT */

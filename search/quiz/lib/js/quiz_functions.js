@@ -408,6 +408,7 @@ function press(option,el,type,extra)
             }
         }
     }
+	presearch("quiz");
 }
 
 function addcheck(el,page)

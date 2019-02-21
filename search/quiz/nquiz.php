@@ -23,5 +23,6 @@ $quiz_css_addr="";
 	</div>
 </body>
 <script type="text/javascript" src="lib/js/nquiz.js"></script>
+<script type="text/javascript" src="../../libnb/js/presearch.js"></script>
 <script type="text/javascript" src="../../lib/js/classList.min.js"></script>
 <?php include_once("../etc/scripts_pages.php"); ?>
