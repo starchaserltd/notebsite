@@ -15,7 +15,7 @@ $odd_type=array(); $odd_prod=array(); $odd_misc=array(); $odd_speedmin=0; $odd_s
 $mem_prod=array(); $mem_capmin=0; $mem_capmax=0; $mem_stan=array(); $mem_freqmin=0; $mem_freqmax=0; $mem_type=array(); $mem_latmin=0; $mem_latmax=0; $mem_voltmin=0; $mem_voltmax=0; $mem_misc=array(); $mem_ratemin=0; $mem_ratemax=0;
 $mdb_prod=array(); $mdb_model=array(); $mdb_ramcap=array(); $mdb_gpu=array(); $mdb_chip=array(); $mdb_socket=array(); $mdb_interface=array(); $mdb_netw=array(); $mdb_hdd=array(); $mdb_misc=array(); $mdb_ratemin=0; $mdb_ratemax=0; $mdb_wwan=0;
 $chassis_prod=array(); $chassis_model=array(); $chassis_thicmin=0; $chassis_thicmax=0; $chassis_depthmin=0; $chassis_depthmax=0; $chassis_widthmin=0; $chassis_widthmax=0; $chassis_color=array(); $chassis_weightmin=0; $chassis_weightmax=0; $chassis_made=array(); $chassis_ports=array(); $chassis_vports=array(); $chassis_webmin=0; $chassis_webmax=0; $chassis_touch=array(); $chassis_twoinone=array(); $chassis_misc=array(); $chassis_stuff=array(); $chassis_ratemin=0; $chassis_ratemax=0; $chassis_extra_stuff=array(); $chassis_addpi=array(); 
-$pricemin=0; $budgetmin=0; $budgetmax=2147483647; $battery_life=0;
+$pricemin=0; $budgetmin=1; $budgetmax=2147483647; $battery_life=0;
 $browse_by=0;
 $sortby=array(); $sort_by="value"; $diffpisearch=0; $diffvisearch=0; $dispregion=0;
 $mdb_list=array(); $mem_list=array(); $shdd_list=array(); $wnet_list=array(); $odd_list=array(); $chassis_list=array(); $regions_id=array(); $regions_name=array();

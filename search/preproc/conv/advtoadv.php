@@ -42,8 +42,8 @@
 		$lang=$value[1]; $_SESSION['lang']=$lang;
 	}
 
-	if(isset($_GET['bdgminadv'])) $bdgmin = floatval($_GET['bdgminadv'])/$exch;
-	if(isset($_GET['bdgmaxadv'])) $bdgmax = floatval($_GET['bdgmaxadv'])/$exch;
+	if(isset($_GET['bdgminadv'])){ $bdgmin = floatval($_GET['bdgminadv'])/$exch; }else{$bdgmin=-10;}
+	if(isset($_GET['bdgmaxadv'])){ $bdgmax = floatval($_GET['bdgmaxadv'])/$exch; }else{$bdgmax=-10;}
 	
 	if(isset($_GET['CPU_prod_id'])) { $valuetype[11] = $_GET['CPU_prod_id']; } // values for CPU producer
 	

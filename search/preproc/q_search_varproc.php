@@ -690,7 +690,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 		
 		case 'budget' :
 		{
-			if($qsearchtype!="p" && $qsearchtype!="b"){ $budgetmin=99999999; $budgetmax=0; }
+			if($qsearchtype!="p" && $qsearchtype!="b"){ $budgetmin=2147483647; $budgetmax=0; }
 			if (isset($_GET['b500']) && $_GET['b500']==1)
 			{	if(isset($budgetmin) && $budgetmin>169) { $budgetmin=169; } if(isset($budgetmax) && $budgetmax<500) { $budgetmax=505; } }
 			
@@ -718,6 +718,8 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 /* some adjustments based on budget*/
 if($qsearchtype!=="p" && $qsearchtype!=="b")
 {
+	if($budgetmin=2147483646){$budgetmin=0;}
+	if($budgetmax=1){$budgetmax=2147483647;}
 	if($budgetmax<1100)
 	{ 
 		if($totalcapmin>200) { $totalcapmin/=2; } 

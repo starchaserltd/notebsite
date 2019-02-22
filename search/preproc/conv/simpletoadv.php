@@ -326,8 +326,8 @@ if(isset($_GET['exchange'])&&is_string($_GET['exchange']))
 	$exch=floatval($value[0]);
 }
 
-if($_GET['bdgmin']) $bdgmin = floatval($_GET['bdgmin'])/$exch;
-if($_GET['bdgmax']) $bdgmax = floatval($_GET['bdgmax'])/$exch;
+if(isset($_GET['bdgmin'])){ $bdgmin = floatval($_GET['bdgmin'])/$exch; }else{$bdgmin=-10;}
+if(isset($_GET['bdgmax'])){ $bdgmax = floatval($_GET['bdgmax'])/$exch; }else{$bdgmax=-10;}
 	
 if($hddcapmin)
 {

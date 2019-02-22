@@ -101,15 +101,16 @@ usort($queries, function ($p, $q) {
      echo "Total time elapsed: " . $execution_time . " s";
      echo "<br>";
 */
-    $count=count($results);
+    $count=count($results); 
 	if($count<1)
 	{
+		//SEARCHING FOR LAPTOPS THAT MATCH EVERYTHING EXCEPT THE BUDGET
 		$sql_presearch=str_ireplace("((`min_price`<".$budgetmax." AND `max_price`>".$budgetmin.") OR `min_price`=0) AND","",str_ireplace("GROUP_CONCAT(CONCAT(`model_id`,'+',`p_model`))","COUNT(DISTINCT `p_model`)",$sql_presearch));
-		$result=mysqli_query($cons,$sql_presearch);
-		if($result&&mysqli_num_rows($result)>0)
-		{ if($row=mysqli_fetch_assoc($result)){ if(isset($row["ids"])&&$row["ids"]){ $presearch_models_nr=intval($row["ids"]); } } }
+		$result_noresult=mysqli_query($cons,$sql_presearch);
+		if($result_noresult&&mysqli_num_rows($result_noresult)>0)
+		{ if($row=mysqli_fetch_assoc($result_noresult)){ if(isset($row["ids"])&&$row["ids"]){ $presearch_models_nr=intval($row["ids"]); } } }
 	}
 	else
-	{ $sort_func($results); del_duplicate_pmodel($results); }
+	{ $sort_func($results); del_duplicate_pmodel($results); $count=count($results); }
 	mysqli_close($cons);
 ?>

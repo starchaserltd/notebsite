@@ -190,11 +190,21 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 	<?php
 	if($presearch_models_nr>0)
 	{
-		echo '<span style="margin-top:2px;">We found <span style="font-size: 12pt;"><b>'.$presearch_models_nr.' laptops</b></span> that match your search criteria, but they are all outside your budget range ('.$exchsign."".round($budgetmin*$exch)." - ".$exchsign."".round($budgetmax*$exch).').<br><br>Try changing your budget.<br></span>';
+		preg_match("/(.search\.php)(.+)/",$_SERVER["REQUEST_URI"],$search_matches); if(isset($search_matches[2])){ $search_string=$search_matches[2];}else{$search_string="";}
+		if ($issimple) 
+		{ $search_string=preg_replace("/.bdgmin=\d+/","",preg_replace("/.bdgmax=\d+/","",$search_string)); }
+		else if ( isset($_GET['advsearch']) && $_GET['advsearch'])
+		{ $search_string=preg_replace("/.bdgminadv=\d+/","",preg_replace("/.bdgmaxadv=\d+/","",$search_string)); }
+		else if ( isset($_GET['quizsearch']) && $_GET['quizsearch'])
+		{ $search_string=preg_replace("/.b\d+=1/","",$search_string); }
+		else
+		{$search_string="";}
+		if($search_string!=""){$search_string="search/search.php".$search_string;}
+		echo '<div style="margin-top:2px;">We found <span style="font-size: 12pt;"><a href="javascript:void(0);" onmousedown="OpenPage('."'".$search_string."'".')"><b>'.$presearch_models_nr.' laptops</b></a></span> that match your search criteria, but they are all outside your budget range ('.$exchsign."".round($budgetmin*$exch)." - ".$exchsign."".round($budgetmax*$exch).').<br><br><a href="javascript:void(0);" onmousedown="OpenPage('."'".$search_string."'".')">You can see here the matches outside your budget.<br></a></div>';
 	}
 	else
 	{
-		echo '<span style="margin-top:2px;">We are sorry we could not find any laptops that match your search criteria.<br><br>The budget is either very low ('.$exchsign."".round($budgetmin*$exch)." - ".$exchsign."".round($budgetmax*$exch).') or there are simply no laptops in our database with your technical requirements.<br><br>Try different search options.</span>';
+		echo '<span style="margin-top:2px;">We are sorry we could not find any laptops that match your search criteria.<br><br>Regardless of budget, there are simply no laptops in our database with your technical requirements.<br><br>Try different search options.</span>';
 	}
 
 	?>

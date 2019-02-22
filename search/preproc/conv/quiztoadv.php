@@ -587,7 +587,7 @@ if (isset($_GET['12hour']) && $_GET['12hour']==1)
 
 //BUDGET Conditions
 if	($qsearchtype!="p" && $qsearchtype!="b")
-{	$budgetmin=99999999; $budgetmax=0; }
+{	$budgetmin=2147483647; $budgetmax=0; }
 
 if (isset($_GET['b500']) && $_GET['b500']==1)
 {	if(isset($budgetmin) && $budgetmin>150) { $budgetmin=150; } if(isset($budgetmax) && $budgetmax<500) { $budgetmax=505; } }
@@ -605,10 +605,10 @@ if (isset($_GET['b2000']) && $_GET['b2000']==1)
 {	if(isset($budgetmin) && $budgetmin>1425) { $budgetmin=1425; } if(isset($budgetmax) && $budgetmax<2170) { $budgetmax=2170; } }
 
 if (isset($_GET['b3000']) && $_GET['b3000']==1)
-{	if(isset($budgetmin) && $budgetmin>1850) { $budgetmin=1850; } if(isset($budgetmax) && $budgetmax<8000) { $budgetmax=99999; } }
+{	if(isset($budgetmin) && $budgetmin>1850) { $budgetmin=1850; } if(isset($budgetmax) && $budgetmax<8000) { $budgetmax=2147483647; } }
 
 if ($qsearchtype!=="p" && $qsearchtype!=="b")
-{
+{	
 	if($budgetmax<1100)
 	{	if($totalcapmin>200) { $totalcapmin/=2; } }
 
@@ -645,6 +645,9 @@ else
 {
 	$sist_sist[]="macOS 10.13"; $sist_sist[]="Chrome OS 1"; 
 }
+
+if($budgetmin==2147483647){$budgetmin=-10;}
+if($budgetmax==0){$budgetmax=-10;}
 
 $sist_sist=array_unique($sist_sist);
 

@@ -139,11 +139,10 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 		
 		require("proc/search_filters.php");
 		require("proc/presearch.php");
-		$presearch_models_nr=count(array_unique($count_p_models));
 		if($show_presearch)
 		{ include("results.php"); }
 		else
-		{ echo "+++++".$presearch_models_nr;}
+		{ echo "+++++".count(array_unique($count_p_models));}
 		
 		exit();
 	}
