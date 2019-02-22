@@ -308,7 +308,7 @@ if (isset($_GET['memxlarge']) && $_GET['memxlarge']==1 && $memcapmin < 64)
 
 // STORAGE Conditions
 $hdd_type=["SSD"];
-if (isset($_GET['3dgameslow']) && $_GET['3dgameslow']==1 && $totalcapmin < 500) 
+if (isset($_GET['3dgameslow']) && $_GET['3dgameslow']==1 && $totalcapmin < 500)
 {	$totalcapmin = 500;	}
 								
 if (isset($_GET['3dgamesmedium']) && $_GET['3dgamesmedium']==1 && $totalcapmin < 500) 
@@ -614,7 +614,7 @@ if ($qsearchtype!=="p" && $qsearchtype!=="b")
 
 	if($budgetmax>800)
 	{
-		$sist_sist[]="macOS 10.13";
+		$sist_sist[]="macOS 10.14";
 		if(count($display_backt)<1) { $display_backt = ["LED IPS","LED IPS PenTile","LED TN WVA","OLED"]; }
 		if($displayvresmin<1080) { $displayvresmin=1080; }
 		if($totalcapmin<179) { $totalcapmin =180; }
@@ -643,7 +643,7 @@ if ($qsearchtype!=="p" && $qsearchtype!=="b")
 }
 else
 {
-	$sist_sist[]="macOS 10.13"; $sist_sist[]="Chrome OS 1"; 
+	$sist_sist[]="macOS 10.14"; $sist_sist[]="Chrome OS 1"; 
 }
 
 if($budgetmin==2147483647){$budgetmin=-10;}
