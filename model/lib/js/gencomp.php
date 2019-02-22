@@ -291,7 +291,7 @@ for($x = 0; $x <= $nrconf; $x++)
 	$maxminvalues=bluered(floatval($resu['weight']),$maxminvalues,$x,"weight",1);
 	if(floatval($resu['web'])>0.05){$resu['web'].=" MP";}
 	$vars=array(
-		$resu['pi'],
+		'<span style="margin: 0px 0px 8px 8px;">'.$resu['pi'].'</span>',
 		$resu['vi'],
 		$resu['web'],
 		$resu['touch'],
