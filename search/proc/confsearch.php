@@ -101,7 +101,15 @@ usort($queries, function ($p, $q) {
      echo "Total time elapsed: " . $execution_time . " s";
      echo "<br>";
 */
+    $count=count($results);
+	if($count<1)
+	{
+		$sql_presearch=str_ireplace("((`min_price`<".$budgetmax." AND `max_price`>".$budgetmin.") OR `min_price`=0) AND","",str_ireplace("GROUP_CONCAT(CONCAT(`model_id`,'+',`p_model`))","COUNT(DISTINCT `p_model`)",$sql_presearch));
+		$result=mysqli_query($cons,$sql_presearch);
+		if($result&&mysqli_num_rows($result)>0)
+		{ if($row=mysqli_fetch_assoc($result)){ if(isset($row["ids"])&&$row["ids"]){ $presearch_models_nr=intval($row["ids"]); } } }
+	}
+	else
+	{ $sort_func($results); del_duplicate_pmodel($results); }
 	mysqli_close($cons);
-    $sort_func($results); del_duplicate_pmodel($results);
-    $count = count($results);
 ?>

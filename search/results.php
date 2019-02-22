@@ -1,5 +1,5 @@
 <?php
-ini_set('max_execution_time', 5);
+ini_set('max_execution_time', 8);
 require_once("lib/php/resultlib.php");
 $temp_table = "all_conf";
 /* GETTING EXCHANGE LIST */
@@ -187,7 +187,17 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 		{  echo "</div></div>";
 	?>
 <div class="col-md-8 col-md-offset-2 " style="border:1px solid #ddd; background-color:#f6f6f6; border-radius:5px;margin-top:20px; text-align:center; font-weight:bold;padding:10px;">
-	<span style="margin-top:2px;"> No results found for your parameters and budget <?php echo "(".$exchsign."".round($budgetmin*$exch)." - ".$exchsign."".round($budgetmax*$exch).")"; ?>.<br> Try different search options. <br></span>
+	<?php
+	if($presearch_models_nr>0)
+	{
+		echo '<span style="margin-top:2px;">We found <span style="font-size: 12pt;"><b>'.$presearch_models_nr.' laptops</b></span> that match your search criteria, but they are all outside your budget range ('.$exchsign."".round($budgetmin*$exch)." - ".$exchsign."".round($budgetmax*$exch).').<br><br>Try changing your budget.<br></span>';
+	}
+	else
+	{
+		echo '<span style="margin-top:2px;">We are sorry we could not find any laptops that match your search criteria.<br><br>The budget is either very low ('.$exchsign."".round($budgetmin*$exch)." - ".$exchsign."".round($budgetmax*$exch).') or there are simply no laptops in our database with your technical requirements.<br><br>Try different search options.</span>';
+	}
+
+	?>
 </div>
 <?php
 		}
