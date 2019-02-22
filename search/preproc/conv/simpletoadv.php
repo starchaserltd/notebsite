@@ -24,7 +24,7 @@
 			$gputype=1;
 			$mdbwwan = 1;
 			$gputypesel[0]='selected="selected"';
-			$valuetype[25]=array_diff($valuetype[25],["No OS","Android 6"]);
+			$valuetype[25]=array_diff($valuetype[25],["No OS","Android 8"]);
 			break;
 		case "2":		//ultraportable
 			$model_minclass=0; $model_maxclass=1;
@@ -34,7 +34,7 @@
 			$chassisweightmax=2.1;
 			$chassisthicmax = 23;
 			$valuetype[54]=["EMMC","SSD"];
-			$valuetype[25]=array_diff($valuetype[25],["No OS","Android 6"]);
+			$valuetype[25]=array_diff($valuetype[25],["No OS","Android 8"]);
 			$gputype=1; $gputypesel[0]='selected="selected"'; $gputypesel[2]='selected="selected"';
 			break;
 		case "3":		//business
@@ -47,7 +47,7 @@
 			$chassisthicmax=40;
 			$gputype=1; $gputypesel[0]='selected="selected"'; $gputypesel[3]='selected="selected"';	
 			$valuetype[54]=["HDD","SSD","SSHD"]; 
-			$valuetype[25]=array_diff($valuetype[25],["Chrome OS 1","Android 6","No OS"]);
+			$valuetype[25]=array_diff($valuetype[25],["Chrome OS 1","Android 8","No OS"]);
 			break;
 		case "4":		// gaming
 			$model_minclass=0; $model_maxclass=1;

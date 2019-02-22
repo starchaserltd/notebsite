@@ -212,7 +212,12 @@ while($rand = mysqli_fetch_assoc($result))
 		{	if(!is_array($valuetype[$rand["type"]]) && !is_string($valuetype[$rand["type"]])){$valuetype[$rand["type"]]=str_split($valuetype[$rand["type"]]);}
 			if(is_array($valuetype[$rand["type"]]) && in_array($rand["name"],$valuetype[$rand["type"]])) { $droplists[$rand["type"]].=" selected "; }
 			else
-			if(($valuetype[$rand["type"]])==$rand["name"]) { $droplists[$rand["type"]].=" selected "; } 
+			{
+				if($rand["type"]!=25) //25 is Operating System
+				{ if(($valuetype[$rand["type"]])==$rand["name"]) { $droplists[$rand["type"]].=" selected "; } }
+				else
+				{ if(is_array($valuetype[$rand["type"]])){ foreach($valuetype[$rand["type"]] as $val) { if(stripos($rand["name"],$val)!==FALSE) { $droplists[$rand["type"]].=" selected "; } } } }
+			}
 		}
 		$droplists[$rand["type"]].='>'.$rand["name"].'</option>';
 }

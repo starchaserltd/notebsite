@@ -56,7 +56,6 @@ if($result&&mysqli_num_rows($result)>0)
 { if($row=mysqli_fetch_assoc($result)){ if(isset($row["ids"])&&$row["ids"]){ $raw_valid_ids=explode(",",$row["ids"]); foreach($raw_valid_ids as $val){ $val_parts=explode("+",$val); $valid_ids[$val_parts[0]]=$val_parts[1]; } } } }
 else
 { $comp_lists["model"]=array(); }
-
 foreach($comp_lists["model"] as $key=>$val)
 { if(!isset($valid_ids[$key])){unset($comp_lists["model"][$key]);}else{$count_p_models[]=$valid_ids[$key];} }
 ?>

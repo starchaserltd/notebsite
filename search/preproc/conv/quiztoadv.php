@@ -614,7 +614,7 @@ if ($qsearchtype!=="p" && $qsearchtype!=="b")
 
 	if($budgetmax>800)
 	{
-		$sist_sist[]="macOS 10.14";
+		$sist_sist[]="macOS";
 		if(count($display_backt)<1) { $display_backt = ["LED IPS","LED IPS PenTile","LED TN WVA","OLED"]; }
 		if($displayvresmin<1080) { $displayvresmin=1080; }
 		if($totalcapmin<179) { $totalcapmin =180; }
@@ -625,7 +625,7 @@ if ($qsearchtype!=="p" && $qsearchtype!=="b")
 	}
 	else
 	{
-		$sist_sist[]="Chrome OS 1";
+		$sist_sist[]="Chrome OS";
 		
 		if($budgetmax>506)
 		{ 
@@ -643,7 +643,7 @@ if ($qsearchtype!=="p" && $qsearchtype!=="b")
 }
 else
 {
-	$sist_sist[]="macOS 10.14"; $sist_sist[]="Chrome OS 1"; 
+	$sist_sist[]="macOS"; $sist_sist[]="Chrome OS"; 
 }
 
 if($budgetmin==2147483647){$budgetmin=-10;}
