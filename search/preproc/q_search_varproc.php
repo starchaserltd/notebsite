@@ -718,8 +718,8 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 /* some adjustments based on budget*/
 if($qsearchtype!=="p" && $qsearchtype!=="b")
 {
-	if($budgetmin=2147483646){$budgetmin=0;}
-	if($budgetmax=1){$budgetmax=2147483647;}
+	if($budgetmin==2147483646){$budgetmin=0;}
+	if($budgetmax==1){$budgetmax=2147483647;}
 	if($budgetmax<1100)
 	{ 
 		if($totalcapmin>200) { $totalcapmin/=2; } 
