@@ -664,7 +664,6 @@ if(isset($_GET['yearsmin']) && ($_GET['yearsmin']))
 { $war_yearsmin = intval($_GET['yearsmin']); }
 if(isset($_GET['yearsmax']) && ($_GET['yearsmax'])) 
 { $war_yearsmax = intval($_GET['yearsmax']); }
-
 $war_typewar=[1=>"1",2=>"2",3=>"3",4=>"4"];
 
 if (isset($_GET['premiumadv']))

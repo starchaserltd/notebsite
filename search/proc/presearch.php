@@ -20,29 +20,36 @@ $sql_presearch="SELECT GROUP_CONCAT(CONCAT(`model_id`,'+',`p_model`)) as `ids` F
 foreach($comp_lists as $key=>$val)
 {
 	$sql_presearch.="("; $empty_cond=0;
-	if(isset($val)&&$val!=NULL&&reset($val)!==NULL)
+	if(isset($val)&&$val!=NULL)
 	{
-		foreach($val as $key2=>$val2)
+		if(is_array($val)&&reset($val)!==NULL)
 		{
-			if($key=="model")
+			foreach($val as $key2=>$val2)
 			{
-				$start_id_model=1;
-				$model_id_new[]=$key2;
-			}
-			else
-			{ 	
-				$start_id_model=0;
-				if(!in_array($key,$ignored_comp))
+				if($key=="model")
 				{
-					$sql_presearch.=" FIND_IN_SET(".$key2.",`".$key."`)>0 OR"; $has_or=1;
+					$start_id_model=1;
+					$model_id_new[]=$key2;
 				}
 				else
-				{ $empty_cond=1; }
+				{ 	
+					$start_id_model=0;
+					if(!in_array($key,$ignored_comp))
+					{
+						$sql_presearch.=" FIND_IN_SET(".$key2.",`".$key."`)>0 OR"; $has_or=1;
+					}
+					else
+					{ $empty_cond=1; }
+				}
 			}
 		}
+		else
+		{ $empty_cond=1; }
 	}
 	else
-	{ $empty_cond=1;}
+	{
+		if(is_array($val)&&reset($val)==NULL){$sql_presearch="SELECT GROUP_CONCAT(CONCAT(`model_id`,'+',`p_model`)) as `ids` FROM `notebro_temp`.`presearch_tbl` WHERE 1=0 "; }
+	}
 
 	if($empty_cond){$sql_presearch.="1=1";}
 	
