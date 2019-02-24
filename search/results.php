@@ -204,7 +204,31 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 	}
 	else
 	{
-		echo '<span style="margin-top:2px;">We are sorry we could not find any laptops that match your search criteria.<br><br>Regardless of budget, there are simply no laptops in our database with your technical requirements.<br><br>Try different search options.</span>';
+		echo '<span style="margin-top:2px;">We are sorry we could not find any laptops that match your search criteria.<br>';
+		$comp_mess=array();
+		foreach($no_comp_search as $val)
+		{
+			switch($val)
+			{
+				case "model":{ echo "<span style='font-size: 12pt'>We could not find any <b>laptop models</b> that match your family and producer specifications.</span>"; break; }
+				case "cpu":{ $comp_mess[]="processors"; break; }
+				case "display":{ $comp_mess[]="displays"; break; }
+				case "mem":{ $comp_mess[]="laptop memories"; break; }
+				case "hdd":{ $comp_mess[]="hard drives"; break; }
+				case "shdd":{ $comp_mess[]="secondary storages";break; }
+				case "gpu":{ $comp_mess[]="video cards"; break; }
+				case "wnet":{ $comp_mess[]="wireless cards"; break; }
+				case "odd":{ $comp_mess[]="optical drives"; break; }
+				case "mdb":{ $comp_mess[]="laptop motherboards"; break; }
+				case "chassis":{ $comp_mess[]="laptop chassis"; break; }
+				case "acum":{ $comp_mess[]="batteries"; break; }
+				case "war":{ $comp_mess[]="warranties"; break; }
+				case "sist":{ $comp_mess[]="operating systems"; break; }
+				default: { break; }
+			}
+		}
+		if(isset($comp_mess[0])){ foreach($comp_mess as $val){ echo "<br><span style='font-size: 12pt'>It seems there are no <b>".$val."</b> that match your search options.</span>"; } }
+		echo '<br><br>Regardless of budget, there are simply no laptops in our database with your technical requirements.<br>Try different search options.</span>';
 	}
 
 	?>

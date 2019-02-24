@@ -5,7 +5,7 @@ if(!(isset($budgetmax)&&$budgetmax>0)){$budgetmax=2147483647;} if(!(isset($budge
 if(!(isset($batlife_max)&&$batlife_max>0)){$batlife_max=2147483647;} if(!(isset($batlife_min))){$batlife_min=0;}
 if(!(isset($hdd_capmax)&&$hdd_capmax>0)){$hdd_capmax=2147483647;} if(!(isset($totalcapmin))){$totalcapmin=0;}
 
-$ignored_comp=array();
+$ignored_comp=array(); $no_comp_search=array();
 $sql_presearch="(SELECT COUNT(id) FROM CHASSIS WHERE valid=1) UNION (SELECT COUNT(id) FROM MDB WHERE valid=1) UNION (SELECT COUNT(id) FROM DISPLAY WHERE valid=1) UNION (SELECT COUNT(id) FROM ACUM WHERE valid=1) UNION (SELECT COUNT(id) FROM CPU WHERE valid=1) UNION (SELECT COUNT(id) FROM GPU WHERE valid=1) UNION (SELECT COUNT(id) FROM MEM WHERE valid=1) UNION (SELECT COUNT(id) FROM WNET WHERE valid=1)";
 $result=mysqli_query($con,$sql_presearch); $row=mysqli_fetch_all($result);
 $list_comps_to_ignore=["chassis","mdb","display","acum","cpu","gpu","mem","wnet"]; $i=0;
@@ -48,7 +48,7 @@ foreach($comp_lists as $key=>$val)
 	}
 	else
 	{
-		if(is_array($val)&&reset($val)==NULL){$sql_presearch="SELECT GROUP_CONCAT(CONCAT(`model_id`,'+',`p_model`)) as `ids` FROM `notebro_temp`.`presearch_tbl` WHERE 1=0 "; }
+		if(is_array($val)&&reset($val)==NULL){$no_comp_search[]=$key; $sql_presearch="SELECT GROUP_CONCAT(CONCAT(`model_id`,'+',`p_model`)) as `ids` FROM `notebro_temp`.`presearch_tbl` WHERE 1=0 "; }
 	}
 
 	if($empty_cond){$sql_presearch.="1=1";}

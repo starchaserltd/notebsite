@@ -301,8 +301,38 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
     # echo "<br>";
 	# echo "<pre>" . $sel_cpu . "</pre>";
 
-	$result = mysqli_query($GLOBALS['con'], "$sel_cpu");
+	$result=mysqli_query($GLOBALS['con'],$sel_cpu);
 	$cpu_return = array();
+	
+	if(!($result&&mysqli_num_rows($result)))
+	{
+		if(isset($model[0]))
+		{
+			if($seltdp>0)
+			{ $sel_cpu="SELECT id,price,rating,err,gpu,tdp FROM notebro_db.CPU WHERE 1=1 AND valid=1"; }
+			else
+			{ $sel_cpu="SELECT id,price,rating,err,gpu FROM notebro_db.CPU WHERE 1=1 AND valid=1"; }
+			
+			$i=0;
+			if(gettype($model)!="array") { $model=(array)$model; }
+			foreach($model as $x)
+			{	
+				if($i)
+				{ $sel_cpu.=" OR "; }
+				else
+				{ $sel_cpu.=" AND ( "; }
+
+				$sel_cpu.="model='";
+				$sel_cpu.=$x;
+				$sel_cpu.="'";
+				$i++;
+			}
+			if($i>0) { $sel_cpu.=" ) "; }
+			$result=mysqli_query($GLOBALS['con'],$sel_cpu);
+		}
+		
+	}
+	
 	while($rand = mysqli_fetch_array($result)) 
 	{ 
 		if($seltdp>0)

@@ -355,8 +355,39 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
     # echo "<br>";
 	# echo "<pre>" . $sel_gpu . "</pre>";
 
-	$result = mysqli_query($GLOBALS['con'], "$sel_gpu");
+	$result=mysqli_query($GLOBALS['con'],$sel_gpu);
 	$gpu_return = array();
+	if(!($result&&mysqli_num_rows($result)))
+	{
+		if(isset($model[0]))
+		{
+			if($seltdp>0)
+			{ $sel_gpu="SELECT id,typegpu,price,rating,err,power FROM notebro_db.GPU WHERE 1=1 AND valid=1"; }
+			else
+			{ $sel_gpu="SELECT id,typegpu,price,rating,err FROM notebro_db.GPU WHERE 1=1 AND valid=1"; }
+		
+			$i=0;
+			if(gettype($model)!="array") { $model=(array)$model; }
+			foreach($model as $x)
+			{
+				if($i)
+				{  
+					$sel_gpu.=" OR ";
+				}
+				else
+				{
+					$sel_gpu.=" AND ( ";
+				}
+
+				$sel_gpu.="model='";
+				$sel_gpu.=$x;
+				$sel_gpu.="'";
+				$i++;
+			}
+			if($i>0) { $sel_gpu.=" ) "; }
+			$result=mysqli_query($GLOBALS['con'],$sel_gpu);
+		}
+	}
 	
 	while($rand = mysqli_fetch_array($result)) 
 	{ 
