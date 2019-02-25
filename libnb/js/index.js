@@ -57,14 +57,14 @@ setInterval(function()
 		currentPage = window.location.href;
         locationHashChanged(set_adv_search(currentPage,siteroot+"?",1));
     }
-	
+
     if ($(window).width() < 992)
 	{
-        if (ismobile != 1) { ismobile = 1; state_ssearch(1); }
+        if (ismobile!=1) { ismobile = 1; state_ssearch(1); }
     }
 	else
 	{
-		if (ismobile != 0) { ismobile = 0; state_ssearch(0); }
+		if (ismobile!=0) { ismobile=0; state_ssearch(0); }
     }
 }, 50);
 
@@ -265,12 +265,10 @@ $(document).ready(function() {
     });
 
     //Make dropdown for search filters
-	$( ".leftMenuFilters" ).click(function() { $( ".SearchParameters" ).toggle("slow"); $( ".leftMenuFilters" ).toggleClass("rotate"); });
 	$(".navbar-header").click(function() { $('.navbar-collapse').slideToggle("slow"); });
-	if ($(window).width() < 768) { $(".quickSearchContainer").appendTo($(".firstContainer")); }
-
-    //Append Compare to FirstContainer
-    if ($(window).width() < 768) { $(".compareDropdown").appendTo($(".firstContainer")); }
+	
+	if ($(window).width()<768) //Append Compare to FirstContainer
+	{ $(".quickSearchContainer").appendTo($(".firstContainer")); $(".compareDropdown").appendTo($(".firstContainer")); }
 
     //toggle more options for adv_search
     $('.toggleHiddenButtons').click(function() { $('.hiddenOptions').toggleClass('show'); });
@@ -447,32 +445,44 @@ function triggerchange(el, seltext, match_type) {
     return found;
 }
 
-function state_ssearch(type) {
-    if (type == 0) {
-        document.getElementsByClassName("btn-title")[0].classList.remove("collapsed");
-        document.getElementsByClassName("btn-title")[0].setAttribute("aria-expanded", "true");        
-    }
+//CLICK FUNCTION FOR QUICK MENU
+$( ".leftMenuFilters" ).click(function()
+{
+	$( ".SearchParameters" ).toggle("slow"); $( ".leftMenuFilters" ).toggleClass("rotate"); 
+	var button_el=document.getElementsByClassName("btn-title")[0];
+	if(button_el.getAttribute("aria-expanded") == "true"){button_el.setAttribute("aria-expanded", "false"); }
+	else if(button_el.getAttribute("aria-expanded") == "false"){button_el.setAttribute("aria-expanded", "true"); document.querySelector(".SearchParameters").style.display = "block"; }
+});
 
-    if (type == 1) {
-        document.getElementsByClassName("btn-title")[0].classList.add("collapsed");
-        document.getElementsByClassName("btn-title")[0].setAttribute("aria-expanded", "false");       
-    }
+function state_ssearch(type)
+{
+    var button_el=document.getElementsByClassName("btn-title")[0];
+	if (type == 0) { button_el.click(); button_el.setAttribute("aria-expanded", "true"); }
+    if (type == 1) { button_el.setAttribute("aria-expanded", "false"); }
 }
 
 function adjust_ssearch(page) {
-    if (page.indexOf("adv_search.php") > -1 || page.indexOf("advsearch=1") > -1) {
+    
+	var button_el=document.getElementsByClassName("btn-title")[0];
+	
+	if(button_el.getAttribute("aria-expanded")==null)
+	{ if ($(window).width() < 992){ ismobile = 1; state_ssearch(1); } else { ismobile = 0; state_ssearch(0); } }
+
+	if (page.indexOf("adv_search.php") > -1 || page.indexOf("advsearch=1") > -1)
+	{
         document.querySelector(".SearchParameters").style.display = "none";
-        document.querySelector(".leftMenuFilters").classList.remove('rotate');
-        if (document.getElementsByClassName("btn-title")[0].getAttribute("aria-expanded") == "true") {
-            if (first) {
-                document.getElementsByClassName("btn-title")[0].classList.add("collapsed");
-                document.getElementsByClassName("btn-title")[0].setAttribute("aria-expanded", "false");                
-            } else { document.getElementsByClassName('btn-title')[0].click(); }
-        }
+        button_el.setAttribute("aria-expanded", "permanentfalse");
     }
-    if (page.indexOf("home.php") > -1) {
-        $('.headerback').addClass('home');        
-    } else {$('.headerback').removeClass('home'); }
+	else
+	{ 	if (page.indexOf("home.php") > -1&& button_el.getAttribute("aria-expanded")=="permanentfalse" &&!ismobile)
+		{ button_el.setAttribute("aria-expanded", "false"); button_el.click(); }
+		else if (button_el.getAttribute("aria-expanded") == "false" && !ismobile) { button_el.click();}
+	}
+
+    if (page.indexOf("home.php") > -1)
+	{ $('.headerback').addClass('home'); }
+	else
+	{$('.headerback').removeClass('home'); }
 }
 
 //THIS FUNCTION IS FOR GENERATING PROPER MAX MIN FOR SLIDERS

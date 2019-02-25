@@ -159,11 +159,18 @@ $(document).ready(function()
 		if(handle==0) {	document.getElementById('bdgmin').value=left; }
 		if(handle==1) {	document.getElementById('bdgmax').value=right; }
 		
+		var mem_el=document.getElementById('s_mem');
 		pause_presearch=1;
 		if(right<500)
-		{ if(document.getElementById('s_mem').noUiSlider.get()[0]>4) { pause_presearch=0; document.getElementById('s_mem').noUiSlider.set([4,null]); document.getElementById('checkboxpre').checked=false; } }
+		{ 
+			if(mem_el.noUiSlider.get()[0]>4) { pause_presearch=0; mem_el.noUiSlider.set([4,null]); document.getElementById('checkboxpre').checked=false; } 
+			if($('#type').val()=="4"&&$('#graphics').val()!="1"){ $('#graphics').multiselect('select',['1']); $('#graphics').multiselect('refresh'); }
+		}
 		else
-		{ if(document.getElementById('s_mem').noUiSlider.get()[0]<8) { pause_presearch=0; document.getElementById('s_mem').noUiSlider.set([8,null]); document.getElementById('checkboxpre').checked=true; } }
+		{
+			if(mem_el.noUiSlider.get()[0]<8) { pause_presearch=0; mem_el.noUiSlider.set([8,null]); document.getElementById('checkboxpre').checked=true; } 
+			if($('#type').val()=="4"&&$('#graphics').val()=="1"){ $('#graphics').multiselect('select',['2']); $('#graphics').multiselect('refresh'); }
+		}
 		setTimeout(function(){ pause_presearch=0; },100);
 	});
 	
@@ -173,7 +180,15 @@ $(document).ready(function()
 	$('#type').on('change', function() 
 	{
 		if($(this).val()=="99" || $(this).val()=="4" || $(this).val()=="5")
-		{ $('#graphics').multiselect('enable'); }
+		{ 
+			$('#graphics').multiselect('enable'); 
+			var budget_values=document.getElementById('budget').noUiSlider.get();
+			var t = parseFloat(currency_val[$('#currency').val()]);
+			if((parseFloat(budget_values[0])/t)<650){ $('#graphics').multiselect('select',['1']); }
+			else { $('#graphics').multiselect('select',['2']); }
+			if((parseFloat(budget_values[1])/t)>2000){ $('#graphics').multiselect('select',['3']); }
+			$('#graphics').multiselect('refresh'); 
+		}
 		else
 		{ $('#graphics').multiselect('disable'); }
 	});
