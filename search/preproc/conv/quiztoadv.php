@@ -36,7 +36,7 @@ if (isset($_GET['casual']) && $_GET['casual']==1)
 {	if($model_minclass>0) { $model_minclass=0; }  if($model_maxclass<2){ $model_maxclass=1; } } 
 
 if (isset($_GET['content']) && $_GET['content']==1)
-{	if($model_minclass>0) { $model_minclass=0; }  if($model_maxclass<3){ $model_maxclass=3; } if (isset($_GET['gaming']) && $_GET['gaming']==1) {$model_maxclass=2;} } 
+{	if($model_minclass>0) { $model_minclass=0; }  if($model_maxclass<3){ $model_maxclass=3; } if (isset($_GET['gaming']) && $_GET['gaming']==1) {$model_maxclass=3;} } 
 
 if (isset($_GET['coding']) && $_GET['coding']==1)
 {	if($model_minclass>0) { $model_minclass=0; }  if($model_maxclass<3){ $model_maxclass=3; } } 
@@ -563,7 +563,7 @@ if(isset($chassis_made) && count($chassis_made)>0) { $chassis_made=array_unique(
 
 // WARRANTY Conditions
 $to_search["war"] = 1;
-$war_typewar=["1","2"];
+$war_typewar=["1","2","3","4"];
 
 // SIST Conditions
 if ((isset($_GET['casual']) && $_GET['casual']==1)||(isset($_GET['content']) && $_GET['content']==1)||(isset($_GET['gaming']) && $_GET['gaming']==1))
@@ -659,7 +659,7 @@ if ($model_minclass <= 0 && $model_maxclass>=3)
 	$family.='<option selected="selected">All consumer families</option>';
 }
 else if (	$model_minclass>=1 && $model_maxclass>=3) {	$family.='<option selected="selected">All business families</option>'; }
-else if (	$model_minclass>=0 && $model_maxclass<=1) {	$family.='<option selected="selected">All consumer families</option>'; }
+else if (	$model_minclass>=0 && $model_maxclass<=2) {	$family.='<option selected="selected">All consumer families</option>'; }
 
 foreach ($gpu_model as $element)
 {	$gpumodel.='<option selected="selected">'.$element.'</option>'; }

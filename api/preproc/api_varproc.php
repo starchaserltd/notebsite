@@ -301,8 +301,8 @@ foreach ($search_array as $v)
 			}
 			if (isset($param['warranty_type'])&& !empty($param['warranty_type']))
 			{
-				if (strcasecmp($param['warranty_type'],"premium")===0) {$war_typewar =array(2,3,4); $to_search["war"] = 1; }
-				elseif (strcasecmp($param['warranty_type'],"standard")===0) {$war_typewar = array(1); $to_search["war"] = 1;  }
+				if (strcasecmp($param['warranty_type'],"premium")===0) {$war_typewar=array(2,3,4); $to_search["war"] = 1; }
+				elseif (strcasecmp($param['warranty_type'],"standard")===0) {$war_typewar=array(1); $to_search["war"] = 1;  }
 				else { $response->code=31; $response->message.=" Unknown warranty type, can only be Standard or Premium."; }
 			}
 			break;	

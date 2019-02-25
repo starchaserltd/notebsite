@@ -667,7 +667,7 @@ if(isset($_GET['yearsmax']) && ($_GET['yearsmax']))
 $war_typewar=[1=>"1",2=>"2",3=>"3",4=>"4"];
 
 if (isset($_GET['premiumadv']))
-{ $war_typewar=[1=>-1,2=>"2",4=>"4"];}
+{ $war_typewar=[2=>"2",4=>"4"];}
 
 if($hdd_capmin)
 {

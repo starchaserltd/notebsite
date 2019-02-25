@@ -100,7 +100,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			
 			if (isset($_GET['content']) && $_GET['content']==1)
 			{	if($model_minclass>0) { $model_minclass=0; }  if($model_maxclass<3){ $model_maxclass=3; } 
-				if (isset($_GET['gaming']) && $_GET['gaming']==1) { $model_maxclass=2; }
+				if (isset($_GET['gaming']) && $_GET['gaming']==1) { $model_maxclass=3; }
 			} 
 		
 			if (isset($_GET['coding']) && $_GET['coding']==1)
@@ -657,7 +657,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 		case 'war' :
 		{   
 			$to_search["war"] = 1;
-			$war_typewar=["1","2"];
+			$war_typewar=["1","2","3","4"];
 			break ;	
 		}
 		
