@@ -640,8 +640,8 @@ function getconf(comp,id,exactconf)
 						for(var key in best_low_array){ var el=document.getElementById(best_low_array[key]+'_id'); if(confdata["best_low"][best_low_array[key]]!==null && confdata["best_low"][best_low_array[key]]!==undefined && confdata["best_low"][best_low_array[key]]!=""){ el.setAttribute('onmousedown','OpenPage('+"'"+'model/model.php?conf='+confdata["best_low"][best_low_array[key]]+'&ex='+excode+"',event);"+''); el.style.display="block";} else { el.style.display="none"; } } best_low=confdata["best_low"]; 
 					}
 					for(var key in best_low_array){ var el=document.getElementById(best_low_array[key]+'_id'); el.setAttribute('onmousedown',el.getAttribute('onmousedown').replace(/(.*)\&ex=([a-z0-9\-]+)(\&?.*)/i,"$1"+"&ex="+excode+"$3"));}
-					
 					update_model_price(confdata["cprice"],confdata["cerr"]);
+					
 					if(confdata["changes"]!==undefined) 
 					{
 						for (var key in confdata["changes"])
@@ -650,19 +650,7 @@ function getconf(comp,id,exactconf)
 							else { if(show_comp_message){ alert("This component is only available in combination with a different "+confdata["changes"][key]+"."); }else{show_comp_message=1;} }
 						}
 					}
-					
-					var stateObj = { no: "empty" }; setTimeout(function(){ gocomp=1;}, 10);
-					var addref=""; if(ref!=null&&ref!="") { addref="&ref="+ref; }
-					if(currentPage.match(/(conf=)(\d+)(.*)/i)!==null)
-					{ 
-						history.replaceState(stateObj, confdata["cid"], currentPage.replace(/(conf=)(\d+)(\_\d+)(.*)/i,"$1"+confdata["cid"]+"_"+mid+"$4"));
-						if(currentPage.indexOf("ref=")<0){ if(ref!=null&&ref!="") { currentPage=currentPage+"&ref="+ref; } }
-						if(currentPage.match(/(ex=)(.*)/i)===null)
-						{ history.replaceState(stateObj, confdata["cid"]+" "+excode, currentPage+"&ex="+excode); }
-					}
-					else
-					{ history.replaceState(stateObj, confdata["cid"], "?model/model.php?conf="+confdata["cid"]+"_"+mid+"&ex="+excode+addref); }	
-					currentPage = window.location.href;
+					update_url(confdata["cid"],mid,excode);
 					set_best_low(confdata["cid"],best_low);
 
 					switch(comp)
@@ -738,6 +726,22 @@ function getconf(comp,id,exactconf)
 	}
 	xmlhttp.open("GET","model/lib/php/query/getconf.php?c="+mid+"-"+cpu_id+"-"+display_id+"-"+mem_id+"-"+hdd_id+"-"+shdd_id+"-"+gpu_id+"-"+wnet_id+"-"+odd_id+"-"+mdb_id+"-"+chassis_id+"-"+acum_id+"-"+war_id+"-"+sist_id+"&cf="+config_rate+"&comp="+comp+"&ex="+new_excode,true);
 	xmlhttp.send(); all_requests.push(xmlhttp);
+}
+
+function update_url(confid,mid,excode)
+{
+	var stateObj = { no: "empty" }; setTimeout(function(){ gocomp=1;}, 10);
+	var addref=""; if(ref!=null&&ref!="") { addref="&ref="+ref; }
+	if(currentPage.match(/(conf=)(\d+)(.*)/i)!==null)
+	{ 
+		history.replaceState(stateObj, confid, currentPage.replace(/(conf=)(\d+)(\_\d+)(.*)/i,"$1"+confid+"_"+mid+"$4"));
+		if(currentPage.indexOf("ref=")<0){ if(ref!=null&&ref!="") { currentPage=currentPage+"&ref="+ref; } }
+		if(currentPage.match(/(ex=)(.*)/i)===null)
+		{ history.replaceState(stateObj, confid+" "+excode, currentPage+"&ex="+excode); }
+	}
+	else
+	{ history.replaceState(stateObj, confid, "?model/model.php?conf="+confid+"_"+mid+"&ex="+excode+addref); }	
+	currentPage = window.location.href;
 }
 
 function update_model_info(model_id) 

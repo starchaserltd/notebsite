@@ -6,7 +6,7 @@ $cpu_prod=array(); $cpu_model=array(); $cpu_ldmin=0; $cpu_ldmax=0; $cpu_status=0
 $display_model=array(); $display_sizemin=0; $display_sizemax=0; $display_format=array(); $display_hresmin=0; $display_hresmax=0; $display_vresmin=0; $display_vresmax=0; $display_surft=array(); $display_backt=array(); $display_touch=array();   $display_misc=array(); $display_resolutions=0; $display_ratingmin=0; $display_ratingmax=0; $display_srgb=0; 
 $gpu_typelist=array(); $gpu_typegpumin=0; $gpu_typegpumax=0; $gpu_prod=array(); $gpu_model=array(); $gpu_arch=array(); $gpu_techmin=0; $gpu_techmax=0; $gpu_shadermin=0; $gpu_cspeedmin=0; $gpu_cspeedmax=0; $gpu_sspeedmin=0; $gpu_sspeedmax=0; $gpu_mspeedmin=0; $gpu_mspeedmax=0; $gpu_mbwmin=0; $gpu_mbwmax=0; $gpu_mtype=array(); $gpu_maxmemmin=0; $gpu_maxmemmax=0; $gpu_sharem=0; $gpu_powermin=0; $gpu_powermax=0; $gpu_misc=array(); $gpu_ratemin=0; $gpu_ratemax=0;$gpu_ldmin=0; $gpu_ldmax=0;
 $acum_tipc=array(); $acum_nrcmin=0; $acum_nrcmax=0; $acum_volt=0; $acum_capmin=0; $acum_capmax=0; $acum_misc=array();
-$war_prod=array(); $war_yearsmin=0; $war_yearsmax=0; $war_typewar=array(); $war_misc=array(); $war_ratemin=0; $war_ratemax=0;
+$war_prod=array(); $war_yearsmin=0; $war_yearsmax=3; $war_typewar=array(); $war_misc=array(); $war_ratemin=0; $war_ratemax=0;
 $hdd_model=array(); $hdd_capmin=0; $hdd_capmax=0; $hdd_type=array(); $hdd_readspeedmin=0; $hdd_readspeedmax=0; $hdd_writesmin=0; $hdd_writesmax=0; $hdd_rpmmin=0; $hdd_rpmmax=0; $hdd_misc=array(); $hdd_ratemin=0; $hdd_ratemax=0;
 $nr_hdd=0;
 $wnet_prod=array(); $wnet_model=array(); $wnet_misc=array(); $wnet_speedmin=0; $wnet_speedmax=0; $wnet_bluetooth=0; $wnet_ratemin=0; $wnet_ratemax=0;

@@ -203,7 +203,7 @@ function search_valid_config($models,$cpu,$display,$mem,$hdd,$shdd,$gpu,$wnet,$o
 		$result = mysqli_query($cons,$sql);
 		
 		if($result!==FALSE&&mysqli_num_rows($result)>0)
-		{	
+		{
 			$confdata=mysqli_fetch_assoc($result);
 			$rows["cid"]=$confdata["id"]; $rows["cprice"]=$confdata["price"]; $rows["cerr"]=$confdata["err"]; $rows["cmodel"]=$confdata["model"]; $a=array();
 			if(intval($cpu)!=intval($confdata["cpu"])){ $a[]="processor"; $rows["changes"]["CPU"]=intval($confdata["cpu"]); } if(intval($display)!=intval($confdata["display"])){ $a[]="display"; $rows["changes"]["DISPLAY"]=intval($confdata["display"]); } if(intval($mem)!=intval($confdata["mem"])){ $a[]="memory"; $rows["changes"]["MEM"]=intval($confdata["mem"]); } if(intval($hdd)!=intval($confdata["hdd"])){ $a[]="hard drive"; $rows["changes"]["HDD"]=intval($confdata["hdd"]); }

@@ -1,11 +1,12 @@
 <?php
 /* SELECT CONFIG IDs */
-$afismodel=0; $cprice=0;
+$afismodel=0; $cprice=0; $init_conf=null;
 
 if(!$components_found)
 {
 	if($conf) 
 	{
+		$init_conf=$conf;
 		require_once("../etc/con_sdb.php");
 		$t=table($conf); $conf=$t[0];
 
