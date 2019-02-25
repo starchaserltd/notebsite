@@ -666,6 +666,9 @@ if(isset($_GET['yearsmax']) && ($_GET['yearsmax']))
 { $war_yearsmax = intval($_GET['yearsmax']); }
 $war_typewar=[1=>"1",2=>"2",3=>"3",4=>"4"];
 
+if(isset($regions_name[0])&&stripos($regions_name[0],"Euro")!==FALSE&&!isset($regions_name[1]))
+{$war_yearsmin=2;}
+
 if (isset($_GET['premiumadv']))
 { $war_typewar=[2=>"2",4=>"4"];}
 
