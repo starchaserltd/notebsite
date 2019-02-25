@@ -198,7 +198,7 @@ function search_valid_config($models,$cpu,$display,$mem,$hdd,$shdd,$gpu,$wnet,$o
 	{
 		$sql="";
 		foreach($models as $key=>$model)
-		{ $sql.="(SELECT * FROM `notebro_temp`.`all_conf_".$model."` WHERE model=".$model." AND ".$filter.$filter_complete." AND price>0 AND value>=".$cf." ORDER BY value asc LIMIT 1) UNION (SELECT * FROM notebro_temp.all_conf_".$model." WHERE model=".$model." AND ".$filter.$filter_complete." AND price>0 AND value<".$cf." ORDER BY VALUE desc LIMIT 1) UNION "; }
+		{ $sql.="(SELECT * FROM `notebro_temp`.`all_conf_".$model."` WHERE model=".$model." AND ".$filter.$filter_complete." AND price>0 AND value>=".$cf." ORDER BY value,id ASC LIMIT 1) UNION (SELECT * FROM notebro_temp.all_conf_".$model." WHERE model=".$model." AND ".$filter.$filter_complete." AND price>0 AND value<".$cf." ORDER BY value,id DESC LIMIT 1) UNION "; }
 		$sql=substr($sql, 0, -6); $sql.="ORDER BY abs(value - ".$cf.") LIMIT 1";
 		$result = mysqli_query($cons,$sql);
 		
@@ -265,8 +265,8 @@ function search_any_config($models,$exclude_war)
 	{
 		$sql="";
 		foreach($models as $key=>$model)
-		{ $sql.="(SELECT * FROM `notebro_temp`.`all_conf_".$model."` WHERE model=".$model." ".$filter_complete." AND price>0 ORDER BY value desc LIMIT 1) UNION "; }
-		$sql=substr($sql, 0, -6); $sql.="ORDER BY abs(value),id LIMIT 1";
+		{ $sql.="(SELECT * FROM `notebro_temp`.`all_conf_".$model."` WHERE model=".$model." ".$filter_complete." AND price>0 ORDER BY value,id DESC LIMIT 1) UNION "; }
+		$sql=substr($sql, 0, -6); $sql.="ORDER BY ABS(value) LIMIT 1";
 
 		$result = mysqli_query($cons,$sql);
 		if($result!==FALSE&&mysqli_num_rows($result)>0)
