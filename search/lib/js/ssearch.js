@@ -184,7 +184,7 @@ $(document).ready(function()
 			$('#graphics').multiselect('enable'); 
 			var budget_values=document.getElementById('budget').noUiSlider.get();
 			var t = parseFloat(currency_val[$('#currency').val()]);
-			if((parseFloat(budget_values[0])/t)<650){ $('#graphics').multiselect('select',['1']); }
+			if((parseFloat(budget_values[1])/t)<650){ $('#graphics').multiselect('select',['1']); }
 			else { $('#graphics').multiselect('select',['2']); }
 			if((parseFloat(budget_values[1])/t)>2000){ $('#graphics').multiselect('select',['3']); }
 			$('#graphics').multiselect('refresh'); 
