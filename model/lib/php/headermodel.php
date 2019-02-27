@@ -1,5 +1,5 @@
 <?php
-$idmodel=''; $conf=''; $nonexistent=1; $lang=-1; $components_found=false; $pos_ex_change=false;
+$idmodel=''; $conf=''; $nonexistent=1; $lang=-1; $components_found=false; $pos_ex_change=false; $afismodel=0; $cprice=0; $init_conf=null;
 
 $sel2="SELECT id,convr,code,sign,regions,ex_war FROM notebro_site.exchrate";
 $result=mysqli_query($con,$sel2); $exchange_list=new stdClass(); $region_ex=array();
@@ -40,10 +40,9 @@ if(isset($_GET['model_id']) && $_GET['model_id']!="NaN")
 	require_once("lib/php/query/getconf.php");
 	if($rows["cid"]!=0)
 	{
-		$idmodel=$rows["cmodel"];
 		$id[0]=$rows["cid"]; $idcpu=$rows["all"]["cpu"]; $iddisplay=$rows["all"]["display"]; $idmem=$rows["all"]["mem"]; $idhdd=$rows["all"]["hdd"]; $idshdd=$rows["all"]["shdd"]; $idgpu=$rows["all"]["gpu"];
 		$idwnet=$rows["all"]["wnet"]; $idodd=$rows["all"]["odd"]; $idmdb=$rows["all"]["mdb"]; $idchassis=$rows["all"]["chassis"]; $idacum=$rows["all"]["acum"]; $idwar=$rows["all"]["war"]; $idsist=$rows["all"]["sist"];
-		$idmodel=$rows["cmodel"]; $components_found=true;
+		$idmodel=$rows["cmodel"]; $cf=intval($rows["all"]["rating"]); $cprice=floatval($rows["all"]["price"]); $cperr=floatval($rows["all"]["err"]); $components_found=true;
 	}
 	else
 	{ $sql="SELECT id FROM `notebro_temp`.`all_conf_".$idmodel."` ORDER BY VALUE DESC LIMIT 1"; $result=mysqli_query($cons,$sql); if($result){ $id=mysqli_fetch_row($result); } }

@@ -1,7 +1,5 @@
 <?php
 /* SELECT CONFIG IDs */
-$afismodel=0; $cprice=0; $init_conf=null;
-
 if(!$components_found)
 {
 	if($conf) 
@@ -59,7 +57,7 @@ if(!$components_found)
 					$idmodel=$rows["cmodel"];
 					$cf=intval($rows["all"]["rating"]);
 					$cprice=floatval($rows["all"]["price"]);
-					$cperr=floatval($row["all"]["err"]);
+					$cperr=floatval($rows["all"]["err"]);
 					$conf=$rows["cid"];
 				}
 				else
@@ -386,7 +384,7 @@ function show_mdb($list)
 		}
 	}
 }
-//<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="21" data-load="1" data-html="true" data-toggle="tooltip" data-delay="{&quot;show&quot;: 600}" data-placement="top" data-original-title="data-loading..."><span class="toolinfo1">Core Speed:</span></div>
+
 /* MAKE MEM */
 function show_mem($list)
 {
