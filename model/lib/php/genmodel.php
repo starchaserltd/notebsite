@@ -83,7 +83,7 @@ if(!$components_found)
 		{ $idmodel=$conf; }
 	}
 }
-var_dump($cperr);
+
 /* SELECT MODEL IDs */
 if($idmodel)
 {
