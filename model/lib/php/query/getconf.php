@@ -3,7 +3,7 @@ if(!isset($any_conf_search)){$any_conf_search=false;} if(!isset($change_model_re
 if(isset($include_getconf)){$include_getconf=true; $getall=true; $c=true; if(!isset($conf_only_search)){$conf_only_search=false;} }
 else
 {
-	$include_getconf=false; $conf_only_search=false; $warnotin=""; $getall=false;
+	$include_getconf=false; $conf_only_search=false; $warnotin=""; $getall=false; $pre_search=array(); $presearch_filter=array();
 	if(isset($_GET['c'])){ $c=preg_replace('~[\x00\x0A\x0D\x1A\x22\x27\x5C]~u', '\\\$0', filter_var($_GET['c'],FILTER_SANITIZE_STRING)); if(stripos($c,"undefined")===FALSE){ $conf=explode("-",$c);} else {$c=0;} } else {$conf=array(); $c=0;}
 	if(isset($_GET['comp'])){ $comp=preg_replace('~[\x00\x0A\x0D\x1A\x22\x27\x5C]~u', '\\\$0', filter_var($_GET['comp'],FILTER_SANITIZE_STRING)); if(stripos($comp,"undefined")!==FALSE){ $comp=NULL; } }
 	if(isset($_GET['cf'])&&($_GET['cf']!="undefined")){ $cf=floatval($_GET['cf']); } else {$cf=0;} /* config rating */
@@ -17,7 +17,7 @@ if($c)
 	if(!$change_model_region){ $change_model_region=!model_in_region($cons,$conf[0],$excode); }
 	if($getall){$all="*,";}else{$all="";} if(!isset($conf[1])){for($i=1;$i<14;$i++){if(!isset($conf[$i])){$conf[$i]="";}}}
 	$sql="SELECT ".$all."id,price,model,err FROM notebro_temp.all_conf_".$conf[0]." WHERE model=".$conf[0]." AND cpu=".$conf[1]." AND display=".$conf[2]." AND mem=".$conf[3]." AND hdd=".$conf[4]." AND shdd=".$conf[5]." AND gpu=".$conf[6]." AND wnet=".$conf[7]." AND odd=".$conf[8]." AND mdb=".$conf[9]." AND chassis=".$conf[10]." AND acum=".$conf[11]." AND war".$warnotin." IN (".$conf[12].") AND sist=".$conf[13]." LIMIT 1";
-
+	
 	//Don't do the primary search when we need to change the region or exchange rate
 	if(!$change_model_region&&$comp!="EXCH"){$result=mysqli_query($cons,$sql);}
 	$retry=0; $exclude_war=array(); $current_region=[0]; $rows["exch"]=$excode; if(!isset($cf)){$cf=-1;} $region=[-1]; $no_avb_search=true; $only_exch_regions=false; $confdata=array();
@@ -43,19 +43,19 @@ if($c)
 		{
 			switch($comp)
 			{
-				case "CPU":	{ $filter="cpu=".$conf[1]; break; }
-				case "DISPLAY": { $filter="display=".$conf[2]; break; }
-				case "MEM": { $filter="mem=".$conf[3]; $no_avb_search=false; break; }
-				case "HDD":	{ $filter="hdd=".$conf[4]; $no_avb_search=false; break; }
-				case "SHDD": { $filter="shdd=".$conf[5]; $no_avb_search=false; break; }
-				case "GPU":	{ $filter="gpu=".$conf[6]; break; } 
-				case "WNET": { $filter="wnet=".$conf[7]; $no_avb_search=false; break; } 
-				case "ODD":	{ $filter="odd=".$conf[8]; $no_avb_search=false; break; } 
-				case "MDB":	{ $filter="mdb=".$conf[9]; break; } 
-				case "CHASSIS": { $filter="chassis=".$conf[10]; break; } 
-				case "ACUM": { $filter="acum=".$conf[11]; $no_avb_search=false; break; } 
-				case "WAR":	{ $filter="war=".$conf[12]; $no_avb_search=false; break; }  
-				case "SIST": { $filter="sist=".$conf[13]; $no_avb_search=false; break; }
+				case "CPU":	{ $filter="cpu=".$conf[1]; $presearch_filter["cpu"]=$conf[1]; break; }
+				case "DISPLAY": { $filter="display=".$conf[2]; $presearch_filter["display"]=$conf[2]; break; }
+				case "MEM": { $filter="mem=".$conf[3]; $presearch_filter["mem"]=$conf[3]; $no_avb_search=false; break; }
+				case "HDD":	{ $filter="hdd=".$conf[4]; $presearch_filter["hdd"]=$conf[4]; $no_avb_search=false; break; }
+				case "SHDD": { $filter="shdd=".$conf[5]; $presearch_filter["shdd"]=$conf[5]; $no_avb_search=false; break; }
+				case "GPU":	{ $filter="gpu=".$conf[6]; $presearch_filter["gpu"]=$conf[6]; break; } 
+				case "WNET": { $filter="wnet=".$conf[7]; $presearch_filter["wnet"]=$conf[7]; $no_avb_search=false; break; } 
+				case "ODD":	{ $filter="odd=".$conf[8]; $presearch_filter["odd"]=$conf[8]; $no_avb_search=false; break; } 
+				case "MDB":	{ $filter="mdb=".$conf[9]; $presearch_filter["mdb"]=$conf[9]; break; } 
+				case "CHASSIS": { $filter="chassis=".$conf[10]; $presearch_filter["chassis"]=$conf[10]; break; } 
+				case "ACUM": { $filter="acum=".$conf[11]; $presearch_filter["acum"]=$conf[11]; $no_avb_search=false; break; } 
+				case "WAR":	{ $filter="war=".$conf[12]; $presearch_filter["war"]=$conf[12]; $no_avb_search=false; break; }  
+				case "SIST": { $filter="sist=".$conf[13]; $presearch_filter["sist"]=$conf[13]; $no_avb_search=false; break; }
 				case "EXCH": { $filter="1=1"; $change_model_region=true; $only_exch_regions=true; break; }
 				default: { $filter="1=1"; break; }
 			}
@@ -96,6 +96,18 @@ if($c)
 			if($result!==FALSE&&mysqli_num_rows($result)>0)
 			{
 				$m_map=mysqli_fetch_assoc($result);
+				
+				//PRESEARCH MODELS THAT MATCH THE COMPONENT
+				if(isset($presearch_filter[0]))
+				{
+					$valid_models=conf_presearch($conf[0],$presearch_filter,$cons);
+					foreach($m_map as $key=>$el)
+					{
+						if(!in_array($el,$valid_models))
+						{ unset($m_map[$key]);}
+					}
+				}
+				
 				foreach($m_map as $key=>$el)
 				{
 					if(($only_exch_regions&&!(in_array($key,$current_ex_region)))&&(strval($key)!="0"))
@@ -287,5 +299,22 @@ function search_any_config($models,$exclude_war)
 	}
 	if(!$confdata){ $rows["cid"]=0; $rows["cmodel"]=$GLOBALS["conf"][0]; $rows["cprice"]=0; $rows["cerr"]=0; }
 	return $rows;
+}
+
+function conf_presearch($models,$comps,$cons)
+{
+	$to_return=array();
+	$sql="SELECT GROUP_CONCAT(`model_id`) as models FROM notebro_temp`.`presearch_tbl` WHERE `model_id` IN (".implode(",",$models).")";
+	foreach($comps as $key=>$val)
+	{
+		$sql.=" AND FIND_IN_SET(".$val.",".$key.")>0";
+	}
+	$result=mysqli_query($cons,$sql);
+	if($result!==FALSE&&mysqli_num_rows($result)>0)
+	{
+		$row=mysqli_fetch_assoc($result);
+		$to_return=explode(",",$row["models"]);
+	}
+	return $to_return;
 }
 ?>
