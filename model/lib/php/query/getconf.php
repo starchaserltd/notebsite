@@ -1,4 +1,4 @@
-<?php
+<?php function var_error_log($object=null){ob_start(); var_dump($object); $contents=ob_get_contents(); ob_end_clean(); error_log($contents);}
 if(!isset($any_conf_search)){$any_conf_search=false;} if(!isset($change_model_region)){$change_model_region=false;} if(!isset($try_for_exact_model)){$try_for_exact_model=false;}
 if(isset($include_getconf)){$include_getconf=true; $getall=true; $c=true; if(!isset($conf_only_search)){$conf_only_search=false;} }
 else
@@ -101,7 +101,7 @@ if($c)
 					if(($only_exch_regions&&!(in_array($key,$current_ex_region)))&&(strval($key)!="0"))
 					{ unset($m_map[$key]);}
 					elseif((!$no_avb_search)&&(strval($key)=="0")){ unset($m_map[$key]);}
-					elseif((isset($el)&&($el!=NULL)&&($el!="")&&strval($key)!="model_id"&&strval($key)!="show_smodel"))
+					elseif((isset($el)&&($el!=NULL)&&($el!="")&&strval($key)!="model_id"&&strval($key)!="pmodel"&&strval($key)!="show_smodel"))
 					{
 						 $m_map[$key]=explode(",",$el);
 						 if(!$any_conf_search&&!$change_model_region)
