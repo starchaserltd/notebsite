@@ -1,6 +1,7 @@
 <?php
 require_once("../etc/conf.php");
 
+if(isset($_GET['model_id'])) { $ex_model_id = intval($_GET['model_id']); }else{$ex_model_id=0;}
 if(isset($_POST['table'])) { $table = clean_string($_POST['table']); }
 if(isset($_POST['model_id_ireviews'])){ $model_id=array(); foreach($_POST['model_id_ireviews'] as $key=>$el) { $model_id[intval($key)]=intval($el); } }
 if(isset($_POST['site'])) { $site = clean_string($_POST['site']); }
@@ -20,6 +21,20 @@ if(!empty($_POST['captcha_code']))
 	{ $errMsg = 'Captcha code not matched, please try again.'; echo "<script type='text/javascript'>alert('Wrong captcha code. Please try again.')</script>"; }
 }
 else { $errMsg = 'Please enter the captcha code:'; }
+
+if($ex_model_id&&!isset($_POST['model_name_ireviews']))
+{
+	require_once("../etc/con_db.php");
+	$sql="SELECT `model`.`id`,`idfam`,`prod`,`model`,`fam`.`fam`,`fam`.`subfam`,`fam`.`showsubfam`,`model`.`p_model` FROM MODEL model JOIN ( SELECT id,fam,subfam,showsubfam FROM notebro_db.FAMILIES ) fam ON fam.id=model.idfam WHERE model.id=".$ex_model_id." LIMIT 1";
+	$query=mysqli_query($con,$sql);
+	if($query&&mysqli_num_rows($query)>0)
+	{
+		$ex_row=mysqli_fetch_assoc($query);
+		if(intval($ex_row['showsubfam'])==1){ $subfam=" ".$ex_row['subfam']." "; } else { $subfam=" "; }
+		$_POST['model_name_ireviews']=$ex_row['prod']." ".$ex_row['fam'].$subfam.$ex_row['model'];
+		$model_id[0]=$ex_model_id;
+	}
+}
 ?>
 <form id="ireviews_form" action="javascript:void(0);" method="post">
 <div style="min-height:650px">

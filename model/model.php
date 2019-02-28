@@ -743,7 +743,7 @@ else
 	{
 ?>
 		<div> <!-- external reviews div-->			
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ListTitle">External reviews</div>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ListTitle">External reviews	<span><a onclick="OpenPage('public/ireviews.php?model_id=<?php echo $p_model; ?>',event);" style="cursor:pointer; font-size:14px; margin:0px 0px 100px 0px; padding:2px 5px 2px 5px; border-radius:2px; background-color:#49505a; color:#fff; text-decoration:none;margin-left: 10px;" id="gototop">Add review</a></span></div>
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ListBox" style="padding:0px;">
 				<?php foreach($int_reviews as $el) { ?>	
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ListElem">
