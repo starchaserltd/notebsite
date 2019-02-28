@@ -13,8 +13,8 @@ require_once("etc/conf.php");
 		<meta name="author" content="Starchaser">	
 		<!-- JavaScript libraries -->   
 		<script type="text/javascript" src="lib/js/jquery.min.js"></script> 	
-		<script src="lib/js/popper.min.js"></script>	
-		<script src="lib/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="lib/js/popper.min.js"></script>	
+		<script type="text/javascript" src="lib/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="lib/js/select2.min.js"></script>
 		<script type="text/javascript" src="lib/js/classList.min.js"></script>
 		<!-- Bootstrap Mutliselect JavaScript -->
@@ -212,6 +212,5 @@ require_once("etc/conf.php");
 		<script type="text/javascript" src="libnb/js/tooltip.js" async></script>
 		<script type="text/javascript" src="libnb/js/index.js"></script>
 		<script type="text/javascript" src="libnb/js/presearch.js"></script>
-		<script type="text/javascript" src="lib/js/nouislider.min.js"></script>	
 	</body>
 </html>

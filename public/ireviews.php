@@ -15,7 +15,7 @@ if(!empty($_POST['captcha_code']))
 	$enteredcaptchaCode = clean_string($_POST['captcha_code']);
 	//verify the captcha code
 	if($enteredcaptchaCode === $captchaCode)
-	{ require_once("lib/php/updatefinal.php"); }
+	{ require_once("lib/php/updatereviews.php"); }
 	else
 	{ $errMsg = 'Captcha code not matched, please try again.'; echo "<script type='text/javascript'>alert('Wrong captcha code. Please try again.')</script>"; }
 }
@@ -41,7 +41,7 @@ else { $errMsg = 'Please enter the captcha code:'; }
 
 	<div class="row irevtop">
 		<div class="Irevm col-md-1">Link :</div>
-		<div class="col-md-6"><textarea class="Irevmod input" style="margin:0" name="link" autocomplete="off" spellcheck="false" id="link" name="link" placeholder="Ex. http://www.tomshardware.com/reviews/dell-inspiron-15-7000-gaming-laptop,4944.html" value=""></textarea></div>
+		<div class="col-md-6"><textarea class="Irevmod input" style="margin:0" name="link" autocomplete="off" spellcheck="false" id="link" placeholder="Ex. http://www.tomshardware.com/reviews/dell-inspiron-15-7000-gaming-laptop,4944.html" value=""></textarea></div>
 	</div>
 	<input type="hidden" name="intr" value="1">
 	<input type="hidden" name="table" value="REVIEWS">

@@ -41,7 +41,7 @@ $current_type="Business";
 			<?php echo "&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp&nbsp";?>
 			<input type="text"  autocomplete="off" spellcheck="false" maxlength="35" size="10" name="typenew" value = "<?php echo $row[1];?>"> 
 			<?php echo "&nbsp&nbsp&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp&nbsp";?>
-			<input type="text"  autocomplete="off" spellcheck="false" maxlength="35" size="15" name="conf_id" value = "<?php echo $row[4];?>"> 
+			<input type="text"  autocomplete="off" spellcheck="false" maxlength="35" size="30" name="conf_id" value = "<?php echo $row[4];?>"> 
 			<?php echo "&nbsp&nbsp&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp&nbsp";?>
 			<input type="text"  autocomplete="off" spellcheck="false" maxlength="20" size="4" name="price" value = "<?php echo $row[21];?>">
 			<?php echo "&nbsp&nbsp&nbsp&nbsp</td><td>&nbsp&nbsp&nbsp&nbsp";?>
