@@ -25,7 +25,7 @@ if ($table == 'COMMENTS')
 			}
 			else { $scor[$i]++; }
 
-			if (!preg_match("/^[ a-z A-Z 0-9 _\-\,\.\"\(\)\/\ ]*$/",$info_com)) 
+			if (!preg_match("/^[ a-z A-Z 0-9 _\-\,\.\"\(\)\/\:\%\+\ ]*$/",$info_com)) 
 			{ 
 				echo "<script type='text/javascript'>alert('Comment')</script>";
 				//echo "<meta http-equiv=\"refresh\" content=\"0;URL=cominfo.php\">";
@@ -40,7 +40,8 @@ if ($table == 'COMMENTS')
 			$result = mysqli_query($rcon,$query1);
 			if($result && !(mysqli_num_rows($result)>0))
 			{
-				$sql = "INSERT INTO `notebro_db`.`COMMENTS` (model, type, comment) values ('".$row["p_model"]."','com','".$info_com."')";
+				$sql = "INSERT INTO `notebro_db`.`COMMENTS` (`model`, `type`, `comment`,`valid`,`update`) VALUES ('".$row["p_model"]."','com','".$info_com."',0,0)";
+				var_dump($sql);
 				if(mysqli_query($rcon, $sql))
 				{
 					//echo "<meta http-equiv=\"refresh\" content=\"0;URL=?public/cominfo.php\">";
@@ -51,9 +52,18 @@ if ($table == 'COMMENTS')
 			}
 			else
 			{
-				$sql = "UPDATE `notebro_db`.`COMMENTS` SET `comment`='".$info_com."' WHERE model='".$row["p_model"]."' AND type='com'";
+				$query1 = "SELECT COUNT(`model`) as `count` FROM `notebro_db`.`COMMENTS` WHERE (model=".$row["p_model"]." OR model IN (SELECT `id` FROM `notebro_db`.`MODEL` WHERE `notebro_db`.`MODEL`.`p_model`=".$row["p_model"].")) AND `type`='com' AND `update`>0"; //echo $query1;
+				$result = mysqli_query($rcon,$query1);
+				$update_count=0;
+				if($result && mysqli_num_rows($result)>0)
+				{ $update_count=intval(mysqli_fetch_assoc($result)['count']); }
+				
+				$sql="INSERT INTO `notebro_db`.`COMMENTS` (`model`, `type`, `comment`,`valid`,`update`) VALUES ('".$row["p_model"]."','com','".$info_com."',0,".($update_count+1).")";
 				if(mysqli_query($rcon, $sql))
-				{ echo "<script type='text/javascript'>alert('Updated comment for $model_name[$i].')</script>"; }
+				{
+					//echo "<meta http-equiv=\"refresh\" content=\"0;URL=?public/cominfo.php\">";
+					echo "<script type='text/javascript'>alert('Update comment on $model_name[$i] submitted successfully. Thank you!')</script>"; $error=0;
+				}
 				else
 				{ echo "<script type='text/javascript'>alert('Were are sorry, but there was unknown error. Please contact the site administrator.')</script>"; }
 			}

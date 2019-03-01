@@ -3,8 +3,9 @@
 	<script type="text/javascript" src="../lib/js/jquery.min.js"></script> 
 	<script type="text/javascript" src="../lib/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../lib/js/select2.min.js"></script>
+	
 </head>
-<body>
+<body style="background-color:#6BCAE2" >
 <?php
 require_once("../etc/conf.php"); ?>
 <script><?php echo 'var siteroot = "'.$web_address.'";'; ?></script>
@@ -36,7 +37,7 @@ if(isset($table ))
 	<input type="hidden" name="intr" value="1">
 	<input type="hidden" name="table" value="COMMENTS">
 	<input type="hidden" name="model_names" id="model_names" value="">
-	<input type="submit" value="Submit" id="coms_form_btn" name="submit" style="display:inline-block; width: 150px; text-align: left;" >
+	<input type="submit" value="Submit" id="coms_form_btn" name="submit" style="display:inline-block; width: 150px; margin-left:108px;" >
 </form>
 <script>$.getScript("lib/js/cominfo.js");
 setTimeout(function (){
@@ -53,4 +54,6 @@ if($error)
 <link rel="stylesheet" href="../lib/css/bootstrap.min.css" crossorigin="anonymous">
 <link rel="stylesheet" href="../lib/fonts/fontawesome/css/all.min.css" crossorigin="anonymous">
 <link rel="stylesheet" href="../lib/css/select2.min.css" type="text/css" /> 
+
+<link href="../../../model/model.css" rel="stylesheet" type="text/css" />
 </body>
