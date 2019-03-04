@@ -92,6 +92,38 @@ function complete_text_info(model_id)
 			xmlhttp.send('list=com_info&keys='+model_id);
 		}
 	},10);
+	models_msc_info(model_id);
+	return model_id;
+}
+
+
+function models_msc_info(model_id)
+{
+	setTimeout(function()
+	{
+		document.getElementById("models_msc").innerHTML="";
+		if (model_id==null && model_id==""){ return; }
+		else 
+		{
+			if (window.XMLHttpRequest)	{ var	xmlhttp = new XMLHttpRequest(); }
+			
+			xmlhttp.onreadystatechange = function() 
+			{
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+				{
+					result_json=JSON.parse(xmlhttp.responseText);
+					if(result_json[0]!=undefined&&result_json[0]!=null&&result_json[0]!="")
+					{
+						if(result_json[0]["models_msc"]!=undefined&&result_json[0]["models_msc"]!=null&&result_json[0]["models_msc"]!="")
+						{ document.getElementById("models_msc").innerHTML=result_json[0]["models_msc"]; }
+					}
+				}
+			}
+			xmlhttp.open("POST","../public/lib/php/queries.php",true);
+			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xmlhttp.send('list=models_msc&keys='+model_id);
+		}
+	},10);
 	return model_id;
 }
 

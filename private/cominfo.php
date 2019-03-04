@@ -45,6 +45,7 @@ if(isset($table ))
 	<input type="hidden" name="model_names" id="model_names" value="">
 	<input type="submit" value="Submit" id="coms_form_btn" name="submit" style="display:inline-block; width: 150px; margin-left:108px;" >
 </form>
+<br><br><div><span>Comments for linked models:</span><br><span id="models_msc"></span></div>
 <script>$.getScript("lib/js/cominfo.js");
 setTimeout(function (){
 <?php

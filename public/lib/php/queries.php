@@ -35,6 +35,14 @@ switch($select)
 		while($rand = mysqli_fetch_row($result)) { $list[]=["model"=>$rand[0],"source"=>strval($rand[1])]; $i++; }
 		break;
 	}
+	case "models_msc":
+	{
+		$query="SELECT GROUP_CONCAT(CONCAT(`MODEL`.`model`,`MODEL`.`submodel`,' - ',IFNULL(`MODEL`.`msc`,'')) SEPARATOR ' <br> ') as `models_msc` FROM `notebro_db`.`MODEL` WHERE `p_model`=(SELECT `p_model` FROM `notebro_db`.`MODEL` WHERE `notebro_db`.`MODEL`.`id`='".$keys."' LIMIT 1) LIMIT 1";
+		$result=mysqli_query($con,$query);
+		$i=1;
+		while($rand = mysqli_fetch_row($result)) { $list[]=["models_msc"=>strval($rand[0])]; $i++; }
+		break;
+	}
 	default:
 	{
 		//nothing
