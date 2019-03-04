@@ -21,7 +21,7 @@ switch($select)
 	}
 	case "com_info":
 	{
-		$query="SELECT DISTINCT `model`,`comment` FROM `notebro_db`.`COMMENTS` WHERE type='com' AND model='".$keys."' AND valid=1 LIMIT 1";
+		$query="SELECT DISTINCT `model`,`comment` FROM `notebro_db`.`COMMENTS` WHERE type='com' AND (model='".$keys."' OR model=(SELECT `p_model` FROM `notebro_db`.`MODEL` WHERE `notebro_db`.`MODEL`.`id`='".$keys."' LIMIT 1)) AND `update`=0 LIMIT 1";
 		$result=mysqli_query($con,$query);
 		$i=1;
 		while($rand = mysqli_fetch_row($result)) { $list[]=["model"=>$rand[0],"comment"=>strval($rand[1])]; $i++; }
