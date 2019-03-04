@@ -707,7 +707,7 @@ else
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="row detaliicomp">
 								<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows" data-placement="top" title="data-loading...">About:</div>
-								<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows"><span><?php if(isset($msctext["p_model"]["com"])&&$msctext["p_model"]["com"]!=NULL) { echo $msctext["p_model"]["com"]." "; } ?></span><span id="model_msc"><?php echo $msctext["model_msc"];?></span></div>
+								<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows"><span><?php if(isset($msctext["p_model"]["com"])&&$msctext["p_model"]["com"]!=NULL) { echo $msctext["p_model"]["com"]." "; } if(isset($msctext["p_model"]["src"])&&$msctext["p_model"]["src"]!=NULL) { $src_msc_parts=array(); $src_msc_parts=explode(" ",$msctext["p_model"]["src"]); $k=0; foreach($src_msc_parts as $val){$k++; echo "<a target='_blank' href='".$val."'>[".$k."]</a>"; } } ?></span><span id="model_msc"><?php echo $msctext["model_msc"]; ?></span></div>
 							</div>
 						</div>
 					</div>
