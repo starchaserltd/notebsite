@@ -51,7 +51,8 @@ function complete_text_info(model_id)
 {
 	setTimeout(function()
 	{
-		{ document.getElementById("info_com").value=""; }
+		document.getElementById("info_com").value="";
+		document.getElementById("source_com").value="";
 		if (model_id==null && model_id==""){ return; }
 		else 
 		{
@@ -66,6 +67,23 @@ function complete_text_info(model_id)
 					{
 						if(result_json[0]["comment"]!=undefined&&result_json[0]["comment"]!=null&&result_json[0]["comment"]!="")
 						{ document.getElementById("info_com").value=result_json[0]["comment"]; }
+						
+						if (window.XMLHttpRequest)	{ var	xmlhttp_2 = new XMLHttpRequest(); }
+						xmlhttp_2.onreadystatechange = function() 
+						{
+							if (xmlhttp_2.readyState == 4 && xmlhttp_2.status == 200) 
+							{
+								result_json=JSON.parse(xmlhttp_2.responseText);
+								if(result_json[0]!=undefined&&result_json[0]!=null&&result_json[0]!="")
+								{
+									if(result_json[0]["source"]!=undefined&&result_json[0]["source"]!=null&&result_json[0]["source"]!="")
+									{ document.getElementById("source_com").value=result_json[0]["source"]; }
+								}
+							}
+						}
+						xmlhttp_2.open("POST","../public/lib/php/queries.php",true);
+						xmlhttp_2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+						xmlhttp_2.send('list=source_info&keys='+model_id);
 					}
 				}
 			}

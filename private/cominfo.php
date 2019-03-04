@@ -13,6 +13,7 @@ require_once("../etc/conf.php"); ?>
 if(isset($_POST['table'])) { $table = clean_string($_POST['table']); }
 if(isset($_POST['model_ids'])){ $model_id=array(); foreach($_POST['model_ids'] as $key=>$el) { $model_id[intval($key)]=intval($el); } }
 if(isset($_POST['info_com'])) { $info_com = clean_string(filter_var($_POST['info_com'],FILTER_SANITIZE_STRING)); }
+if(isset($_POST['source_com'])) { $source_com = clean_string(filter_var($_POST['source_com'],FILTER_SANITIZE_STRING)); }
 
 $error=1;
 if(isset($table ))
@@ -31,8 +32,13 @@ if(isset($table ))
 	</div>
 	<br>
 	<div class="row irevtop">
-		<div class="Irevm col-md-1">Info :</div>
+		<div class="Irevm col-md-1"><b>Info :</b></div>
 		<div class="col-md-6"><textarea class="input" style="margin:0; width:500px;" autocomplete="off" spellcheck="false" id="info_com" name="info_com" placeholder="Ex: Processor throttling under prologued heavy usage." value=""></textarea></div>
+	</div>
+	<br><br>
+	<div class="row irevtop">
+		<div class="Irevm col-md-1">Source Info :</div>
+		<div class="col-md-6"><textarea class="input" style="margin:0; height:50px; width:500px;" autocomplete="off" spellcheck="false" id="source_com" name="source_com" placeholder="Link to the source of information (forum post, review, etc.)" value=""></textarea></div>
 	</div>
 	<input type="hidden" name="intr" value="1">
 	<input type="hidden" name="table" value="COMMENTS">
@@ -46,6 +52,7 @@ if($error)
 {
 	if(isset($_POST['model_names'])&&isset($model_id)) { $model_names=explode(",",str_replace('"','',clean_string($_POST['model_names']))); foreach($model_names as $key=>$el){ echo "$('#model_ids').append('<option selected=".'"'."selected".'"'." value=".'"'.intval($model_id[$key]).'"'.">".$model_names[$key]."</option>');";  } }
 	if(isset($info_com)) { echo "document.getElementById('info_com').value='".$info_com."';"; }
+	if(isset($source_com)) { echo "document.getElementById('source_com').value='".implode(" ",$source_com_parts_final)."';"; }
 }
 ?>
 }, 200);
