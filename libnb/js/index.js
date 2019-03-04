@@ -451,7 +451,7 @@ $( ".leftMenuFilters" ).click(function()
 	$( ".SearchParameters" ).toggle("slow"); $( ".leftMenuFilters" ).toggleClass("rotate"); 
 	var button_el=document.getElementsByClassName("btn-title")[0];
 	if(button_el.getAttribute("aria-expanded") == "true"){button_el.setAttribute("aria-expanded", "false"); }
-	else if(button_el.getAttribute("aria-expanded") == "false"){button_el.setAttribute("aria-expanded", "true"); document.querySelector(".SearchParameters").style.display = "block"; }
+	else if(button_el.getAttribute("aria-expanded") == "false" || button_el.getAttribute("aria-expanded") == "permanentfalse"){button_el.setAttribute("aria-expanded", "true"); document.querySelector(".SearchParameters").style.display = "block"; }
 });
 
 function state_ssearch(type)
