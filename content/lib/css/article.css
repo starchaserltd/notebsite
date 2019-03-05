@@ -23,12 +23,6 @@
 	justify-content: center;
 }
 
-.wp-video {
-	display: flex; 
-	align-self: center; 
-	justify-content: center;
-}
-
 @media all and (-ms-high-contrast:none) {
 .centerImgFlex {
 	display: block;

@@ -88,7 +88,7 @@ echo preg_replace_callback('/\[ntab (.*)\](.*)(?=\[ntab .*\]|\Z)/Us',function ($
 			</div>
 		</div>
 	</div>
-	
+	<link rel="stylesheet" href="content/lib/css/review.css?v=0.3" type="text/css"/>
 	<script type="text/javascript">
 	jQuery(document).ready(function()
 	{	
