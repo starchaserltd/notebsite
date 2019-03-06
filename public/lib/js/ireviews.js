@@ -25,6 +25,7 @@ $(document).ready(function()
 				var queryParameters = {
 					list: $this.attr('field'),
 					q: "model",
+					ex: "USD",
 					keys: params.term,
 				}
 				return queryParameters;
