@@ -53,7 +53,7 @@ echo preg_replace_callback('/\[ntab (.*)\](.*)(?=\[ntab .*\]|\Z)/Us',function ($
 						else
 							{ echo '<li>'; }
 						
-						echo '<a href="#tab'.$i.'" id="ta'.$i.'" >'.$tabnames[$i].'</a></li>';
+						echo '<a href="#tab'.$i.'" id="tab'.$i.'m" >'.$tabnames[$i].'</a></li>';
 					}
 				?>
 				</ul>
@@ -90,17 +90,24 @@ echo preg_replace_callback('/\[ntab (.*)\](.*)(?=\[ntab .*\]|\Z)/Us',function ($
 	</div>
 	<link rel="stylesheet" href="content/lib/css/review.css?v=0.3" type="text/css"/>
 	<script type="text/javascript">
+	jQuery('.tabs .tab-links a').on('click', function(e)
+	{
+		sessionStorage["reviewtab"]=jQuery(this).attr('href');
+		change_review_tab(sessionStorage["reviewtab"]);
+		e.preventDefault();
+	});
+	
+	function change_review_tab(tab)
+	{
+		// Show/Hide Tabs
+		jQuery('.tabs '+tab).slideDown(400).siblings().slideUp(400);
+		// Change/remove current tab to active
+		jQuery(tab+"m").parent('li').addClass('active').siblings().removeClass('active');
+	}
+	
 	jQuery(document).ready(function()
 	{	
-		jQuery('.tabs .tab-links a').on('click', function(e)
-		{
-			var currentAttrValue = jQuery(this).attr('href');
-			// Show/Hide Tabs
-			jQuery('.tabs ' + currentAttrValue).slideDown(400).siblings().slideUp(400);
-			// Change/remove current tab to active
-			jQuery(this).parent('li').addClass('active').siblings().removeClass('active');
-			e.preventDefault();
-		});
+		if(sessionStorage["reviewtab"]!=undefined&&sessionStorage["reviewtab"]!=""){ change_review_tab(sessionStorage["reviewtab"]); }else{sessionStorage["reviewtab"]="";}
 		$('meta[name=description]').attr('content', "Laptop review.");
 		actbtn("REVIEWS");
 		document.title = "Noteb - Review";
@@ -121,11 +128,5 @@ echo preg_replace_callback('/\[ntab (.*)\](.*)(?=\[ntab .*\]|\Z)/Us',function ($
 		setTimeout(function()
 		{ istime=1; },1000);
 	});
-	<?php
-	for($i=0;$i<$nrtabs;$i++)
-	{
-		echo "$('#taburi').on( ".'"click"'.", '#tab-".$i."', function(e){ $('#ta".$i."').trigger('click'); }); ";
-	}
-	?>	
 </script>
 <?php include_once("../etc/scripts_pages.php"); ?>
