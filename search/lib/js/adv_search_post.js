@@ -830,7 +830,20 @@ function setrecommended()
 	$('#DISPLAY_msc_id').append(texttoapp);
 	document.getElementById('capacity').noUiSlider.set([179,99999]); $('#typehdd').multiselect('select',"SSD"); $('#nrhdd').val(1); $("#nrhdd").multiselect("refresh");
 	document.getElementById('ram').noUiSlider.set([8,99999]);
-	 $('#opsist').multiselect('select',"Windows 10 Home"); $('#opsist').multiselect('select',"Windows 10 Pro"); $('#opsist').multiselect('select',"Windows 10 S"); $('#opsist').multiselect('select',"macOS 10.13"); $('#opsist').multiselect('select',"Chrome OS 1");
+	var opsist_multiselect=$('#opsist option'); var opsist_list_select=["Windows 10","macOS","Chrome OS"];
+	for(var key in opsist_multiselect)
+	{
+		if(opsist_multiselect[key].value!=undefined&&opsist_multiselect[key].value!=""&&opsist_multiselect[key].value!=null)
+		{
+			for(var key_s in opsist_list_select)
+			{
+				if(opsist_multiselect[key].value.indexOf(opsist_list_select[key_s])>-1)
+				{
+					$('#opsist').multiselect('select',opsist_multiselect[key].value);
+				}
+			}
+		}
+	}
 	return;
 }
 
