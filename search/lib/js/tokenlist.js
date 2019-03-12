@@ -4,7 +4,7 @@ $(".multisearch").each(function()
 	$this.select2({
     tags: false,
     multiple: true,
-    tokenSeparators: [',', ' '],
+    tokenSeparators: [',',';'],
     minimumInputLength: 0,
 	//maximumResultsForSearch: 20,
 	searchType: "contains",

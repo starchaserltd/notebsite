@@ -331,7 +331,7 @@ switch ($q)
 			$y.=" AND";
 		}
 			
-		$sel="SELECT DISTINCT prod,fam,CONCAT(prod,' ',fam) as disfam FROM `FAMILIES` ".$y." ( fam LIKE $search OR prod LIKE $search ) ORDER BY `FAMILIES`.`prod` ASC, `FAMILIES`.`fam` ASC";
+		$sel="SELECT DISTINCT prod,fam,CONCAT(prod,' ',fam) as disfam FROM `FAMILIES` WHERE fam!='' AND CONCAT(prod,' ',fam) LIKE ".$search." ORDER BY `FAMILIES`.`prod` ASC, `FAMILIES`.`fam` ASC";
 		$result = mysqli_query($con, $sel);
 		$list = array();
 		$r=1;
