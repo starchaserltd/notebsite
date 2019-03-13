@@ -1,7 +1,7 @@
 /* GENERATE SOME JAVASCRIPT */
 var disqus_config = function () {
- this.page.url = '<?php if(isset($_GET['conf'])) { echo $web_address."?"."model/model.php?conf=".$conf."_".$idmodel;} else { echo $web_address."?"."model/model.php?model_id=".$idmodel; } ?>';//PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
- this.page.identifier = '<?php echo $p_model;?>';//PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+ this.page.url = '<?php echo $web_address."?"."model/model.php?model_id=".$idmodel; ?>';//PAGE_URL;
+ this.page.identifier = '<?php echo $p_model;?>';//PAGE_IDENTIFIER;
  this.page.title = mprod+' '+mmodel;
 };
 
