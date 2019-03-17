@@ -29,10 +29,3 @@
 	justify-content: center;
 	}
 }
-
-.html5-video-player {
-	display: flex; 
-	align-self: center; 
-	justify-content: center;
-	margin: 0 auto;
-}
