@@ -171,7 +171,7 @@ $(document).ready(function()
 			if(mem_el.noUiSlider.get()[0]<8) { pause_presearch=0; mem_el.noUiSlider.set([8,null]); document.getElementById('checkboxpre').checked=true; } 
 			if($('#type').val()=="4"&&$('#graphics').val()=="1"){ $('#graphics').multiselect('select',['2']); $('#graphics').multiselect('refresh'); }
 		}
-		setTimeout(function(){ pause_presearch=0; },100);
+		if(!first){setTimeout(function(){ pause_presearch=0; },100);}
 	});
 	
 	if($('#type').val()=="99"){ $('#graphics').multiselect('enable'); }

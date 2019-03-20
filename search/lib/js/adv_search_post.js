@@ -886,3 +886,9 @@ $('.toggleHiddenButtonsWirrOpt .glyphicon-chevron-down').click(function() { $('.
 var nouisliders=document.getElementsByClassName('advslider');
 for(var key in nouisliders){ if(nouisliders[key].noUiSlider!==undefined){ nouisliders[key].noUiSlider.on('update', function( values, handle ){presearch("#advform");});} }
 pause_presearch=1; setTimeout(function(){ pause_presearch=0; },2500);
+
+var prev_arrSelected=[];
+$('#material').on('change', function(){
+	var selected = $(this).find("option:selected"); var arrSelected = []; var metal_was_added=false;
+	selected.each((idx, val) => { var new_el=true; for( var key in prev_arrSelected) { if(val.value==prev_arrSelected[key]){new_el=false;}} if(new_el&&val.value=="Metal"){ metal_was_added=true; } arrSelected.push(val.value); }); if(metal_was_added){ arrSelected.push("Aluminium"); arrSelected.push("Magnesium"); $('#material').val(arrSelected); $('#material').multiselect("refresh"); } prev_arrSelected=arrSelected;
+});

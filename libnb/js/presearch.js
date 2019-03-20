@@ -25,7 +25,7 @@ function presearch(formname)
 		}
 	}
 
-	if(do_presearch&&!pause_presearch&&sstring!="")
+	if(do_presearch&&(pause_presearch!=1)&&sstring!="")
 	{
 		pause_presearch=1;
 		setTimeout(function()
