@@ -28,7 +28,7 @@ var istime=0;
 ?>
 		<div class="col-md-12 col-sm-12" style="background-color:white; ">
 			<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style="font-size:30px;margin-top:30px; padding-left:0px;" >
-				<a  style="text-decoration:none;color:black;"><?php echo get_post_field('post_title', $echoid);?></a>
+				<a  style="text-decoration:none;color:black;"><?php $content_title=""; $content_title=get_post_field('post_title', $echoid); echo $content_title;?></a>
 				<div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;">
 					<p style="font-style:italic;font-size:14px;">
 					<?php echo "by "; $user_info = get_userdata(get_post_field('post_author', $echoid)); echo $user_info->display_name;;?>
@@ -75,7 +75,7 @@ $(document).ready(function()
 	?>
 	
 	setTimeout(function(){ istime=1; },1000);
-	document.title = "Noteb - Article";
+	document.title = "Noteb - <?php echo $content_title; ?> - Article";
 	$('meta[name=description]').attr('content', "Laptop article.");
 });
 </script>

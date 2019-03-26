@@ -31,7 +31,7 @@ echo preg_replace_callback('/\[ntab (.*)\](.*)(?=\[ntab .*\]|\Z)/Us',function ($
 
 	<div class="col-md-12 col-sm-12" style="background-color:white;">
 		<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style=" font-size:30px; text-align:center; margin-top:30px;" >
-			<a style="text-decoration:none;float:left;color:black;"><?php echo get_post_field('post_title', $echoid);?></a>
+			<a style="text-decoration:none;float:left;color:black;"><?php $content_title=""; $content_title=get_post_field('post_title', $echoid); echo $content_title; ?></a>
 		</div>
 		<div class="col-md-12 col-sm-12 col-xs-12">
 			<p style="font-style:italic;">
@@ -110,7 +110,7 @@ echo preg_replace_callback('/\[ntab (.*)\](.*)(?=\[ntab .*\]|\Z)/Us',function ($
 		if(sessionStorage["reviewtab"]!=undefined&&sessionStorage["reviewtab"]!=""){ change_review_tab(sessionStorage["reviewtab"]); }else{sessionStorage["reviewtab"]="";}
 		$('meta[name=description]').attr('content', "Laptop review.");
 		actbtn("REVIEWS");
-		document.title = "Noteb - Review";
+		document.title = "Noteb - <?php echo $content_title; ?> - Review";
 		
 		<?php 
 		$posttags = wp_get_post_tags($echoid);
