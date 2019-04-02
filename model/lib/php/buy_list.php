@@ -64,7 +64,8 @@
 			{
 				$tag=""; $first_tag="";
 				if(isset($tags[$row["seller_name"]])&&$row["first_tag"]!=""&&$row["first_tag"]!=NULL){ $first_tag=str_replace("tagname",$tags[$row["seller_name"]],$row["first_tag"]); } 
-				if(isset($tags[$row["seller_name"]])&&$row["tag_name"]!=""&&$row["tag_name"]!=NULL){ $tag=$row["tag_name"].$tags[$row["seller_name"]];} 
+				if(isset($tags[$row["seller_name"]])&&$row["tag_name"]!=""&&$row["tag_name"]!=NULL){ $tag=$row["tag_name"].$tags[$row["seller_name"]];}
+				// \/product\/(.*)\/
 				if($first_tag!==""){$row["link"]=urlencode($row["link"]); $tag=urlencode($tag);}
 				if(isset($seller_rows[$row["seller_name"]])){ $seller_rows[$row["seller_name"]]++; }else{$seller_rows[$row["seller_name"]]=0;}
 				if($seller_rows[$row["seller_name"]]<3)
@@ -89,7 +90,7 @@
 	{
 		$tag=""; $first_tag="";
 		if(isset($tags[$el["seller_name"]])&&isset($first_tags[$el["seller_name"]])&&$first_tags[$el["seller_name"]]!=""&&$first_tags[$el["seller_name"]]!=NULL){ $first_tag=str_replace("tagname",$tags[$el["seller_name"]],$first_tags[$el["seller_name"]]); } 
-		if(isset($tags[$el["seller_name"]])&&isset($tag_names[$el["seller_name"]])&&$tag_names[$el["seller_name"]]!=""&&$tag_names[$el["seller_name"]]!=NULL){ $tag="&".$tag_names[$el["seller_name"]]."=".$tags[$el["seller_name"]];}
+		if(isset($tags[$el["seller_name"]])&&isset($tag_names[$el["seller_name"]])&&$tag_names[$el["seller_name"]]!=""&&$tag_names[$el["seller_name"]]!=NULL){ if($tag_names[$el["seller_name"]][0]!="&"){ $tag="&"; } $tag.=$tag_names[$el["seller_name"]].$tags[$el["seller_name"]];}
 		if($first_tag!==""){$el["link"]=urlencode($el["link"]); $tag=urlencode($tag);}
 		echo '<li><a href="'.$first_tag.$el["link"].$tag.'" target="blank"><span style="font-weight: bold; font-size: 14px;" class="searchLink">Search</span> <img src="res/img/logo/'.$el["seller_logo"].'" class="logoheight" alt="other seller"/></a></li>';
 	}
