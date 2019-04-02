@@ -373,20 +373,21 @@ function actbtn(pagename, mobile) {
 	switch (pagename) {
 		case "USER":
 		{
-			if (!mobile) { $(".btn-sus").removeClass("active"); }
-			$('#usermenu').addClass("acthelp");
+			if (!mobile) { $('.btn-sus').removeClass('active'); }
+			$('#usermenu').addClass('acthelp white');
 			break;
 		}
 		default:
 		{
 			if (!mobile) {
-				$(".btn-sus").removeClass("active");
-				$('#usermenu').removeClass("acthelp");
+				$('.btn-sus').removeClass('active');
+				$('.addrev').removeClass('selected');
+				$('#usermenu').removeClass('acthelp white');
 			}
 
-			$(".btn-sus").each(function(index) {
+			$('.btn-sus').each(function(index) {
 				if (this.innerHTML == pagename && (pagename != "Find the best laptop with Noteb notebook search engine." || pagename != "NOTEBROTHER")) {
-					$(this).addClass("active");
+					$(this).addClass('active');
 				}
 			});
 		}
@@ -511,18 +512,10 @@ function listrange(list_comp)
 // if ( ($(window).height() + 100) < $(document).height() ) { $('#top-link-block').removeClass('hidden').affix({ offset: {top:100} }); }
 //Usermenu activate
 $('.addrev').click(function() {
-	$('#usermenu').addClass('white');
-	$(this).toggleClass('selected');
-	if($(this).siblings().hasClass('selected')) {
-		$(this).siblings().removeClass('selected');
-	}
+	$(this).siblings().removeClass('selected');
+	$(this).addClass('selected');
 });
 //Deactivate api buton when click on other menu buttons
-
-$('.btn-sus').click(function() {
-   $('#usermenu').removeClass('white');
-   $('.addrev').removeClass('selected');
-});
 
 $('.logonb').click(function() {
    $('#usermenu').removeClass('white');

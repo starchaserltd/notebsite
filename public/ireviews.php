@@ -70,6 +70,7 @@ if($ex_model_id&&!isset($_POST['model_name_ireviews']))
 	</form>
 <link rel="stylesheet" href="public/lib/css/ireviews.css" type="text/css" />
 <script>$.getScript("public/lib/js/ireviews.js");
+actbtn("USER");
 setTimeout(function (){
 <?php
 if($error)

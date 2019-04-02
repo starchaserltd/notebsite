@@ -40,9 +40,8 @@ $('.showDetailsButton').on('click', function() {
 });
 
 //Affix top Laptop model 
-if ($(window).width() > 520) {
 	if ($('.modelName').length) {
-	    var scrollTrigger = 150, // px
+	    var scrollTrigger = 250, // px
 	        backToTop = function () {
 	            var scrollTop = $(window).scrollTop();
 	            if (scrollTop > scrollTrigger) {
@@ -56,11 +55,16 @@ if ($(window).width() > 520) {
 	        backToTop();
 	    });	   
 	}
+
+if ($(window).width() < 992) {
+	$('.modelName').addClass('linked');
 }
 //Affix mobile
 // if ($(window).width() < 520) { $("#title_MODEL").affix({ offset: { top: 150 }}); }
 //Scroll affix mobile
-$('.linked').scroll(function(){ $('.linked').scrollLeft($(this).scrollLeft()); });
+$('.linked').scroll(function(){
+    $('.linked').scrollLeft($(this).scrollLeft());    
+})
 
 /* HEADER */
 var array_var=["","","","","",""];

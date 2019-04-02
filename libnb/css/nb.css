@@ -1920,9 +1920,9 @@ td.text-center.comparecell3 {
 }
 
 table#comparelist td {
-    vertical-align: bottom;
-    padding-bottom: 15px!important;
+    vertical-align: bottom;    
     padding-top: 10px!important;
+    padding-bottom: 10px!important;
 }
 
 table#comparelist td.text-center.comparecell2 {
@@ -2508,6 +2508,11 @@ table#comparelist td.text-center.comparecell3 {
     left: 10px;
     top: 11px;
 }
+
+
+.dropdown-content a.addrev.selected  {
+	color:#000!important;
+}
 /* IE 11 Article fix*/
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
   article {
@@ -2518,6 +2523,8 @@ table#comparelist td.text-center.comparecell3 {
     width: 100%;
   }
 }
+
+
 
 /*Responsive media design */
 

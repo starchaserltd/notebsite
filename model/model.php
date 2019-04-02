@@ -99,27 +99,27 @@ else
 		<div class="row">
 			<div class="col-lg-12 ptop col-xl-12 col-lg-offset-0">
 				<div class="ratingContainer">
-						<div class="rating" style="padding: 0px;">
-							<p style="text-align:center;"><span><b>Rating: </b></span><span  class="labelblue"><span id="notebro_rate" style="margin-left:4px;"></span><span> / 100</span></span></p>
+					<div class="rating currency" style="margin-left: -30px;">
+						<span style="font-size: 12px;padding-right: 35px;"><b>Price: </b></span>
+						<div class="input-group">
+							<select class="custom-select" id="m_currency" aria-label="Currency change" onchange="change_m_currency(this);">
+							<?php
+								foreach($model_ex_list as $val)
+								{
+									$selected=""; if($selected_ex==$val){$selected=' selected="selected"';}
+									echo '<option data-id="'.$exchange_list->{$val}["id"].'" data-exch="'.$exchange_list->{$val}["convr"].'" value="'.$val.'"'.$selected.'>'.$exchange_list->{$val}["sign"].'</option>';
+								}									
+								?>
+							</select>								 
 						</div>
-						<div class="rating currency">
-							<span style="font-size: 12px;padding-right: 35px;"><b>Price: </b></span>
-							<div class="input-group">
-								<select class="custom-select" id="m_currency" aria-label="Currency change" onchange="change_m_currency(this);">
-								<?php
-									foreach($model_ex_list as $val)
-									{
-										$selected=""; if($selected_ex==$val){$selected=' selected="selected"';}
-										echo '<option data-id="'.$exchange_list->{$val}["id"].'" data-exch="'.$exchange_list->{$val}["convr"].'" value="'.$val.'"'.$selected.'>'.$exchange_list->{$val}["sign"].'</option>';
-									}									
-									?>
-								</select>								 
-							</div>
-							<span style="text-align:center;" class="labelblue"><span id="config_price1" style="margin-left:6px;"></span> - <span id="config_price2"></span></span>
-						</div>
-						<div  class=" rating" style="padding: 0px;">
-							<p style="text-align:center;"><span style=""><b>Battery: </b></span><span  class="labelblue"><span id="bat_life1" style="margin-left:4px;"></span> - <span id="bat_life2"></span><span> <?php echo " h"; ?></span></span></p>
-						</div>	
+						<span style="text-align:center;" class="labelblue"><span id="config_price1" style="margin-left:6px;"></span> - <span id="config_price2"></span></span>
+					</div>
+					<div  class=" rating" style="padding: 0px;">
+						<p style="text-align:center;"><span style=""><b>Battery: </b></span><span  class="labelblue"><span id="bat_life1" style="margin-left:4px;"></span> - <span id="bat_life2"></span><span> <?php echo " h"; ?></span></span></p>
+					</div>
+					<div class="rating" style="padding: 0px;">
+						<p style="text-align:center;"><span><b>Rating: </b></span><span  class="labelblue"><span id="notebro_rate" style="margin-left:4px;"></span><span> / 100</span></span></p>
+					</div>
 				</div>				
 				<div class="buy">
 					<div class="dropdown">
