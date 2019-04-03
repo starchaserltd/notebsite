@@ -2,6 +2,7 @@
 <?php
 require_once("../etc/con_rdb.php");
 require_once("../etc/con_db.php");
+require_once("../etc/conf.php");
 
 if ($table == 'REVIEWS')
 {   
@@ -57,7 +58,7 @@ if ($table == 'REVIEWS')
 			$result = mysqli_query($rcon,$query1);
 			if($result && !(mysqli_num_rows($result)>0))
 			{
-				$sql = "insert into REVIEWS (id, model, model_id, site, title, link, notebreview) values ('".$idireviews[0]."','".$model_name[$i]."','".$row["p_model"]."','".$site."','','".$link."','0')";
+				$sql = "INSERT INTO `notebro_db`.`REVIEWS` (id, model, model_id, site, title, link, notebreview, site_source) VALUES ('".$idireviews[0]."','".$model_name[$i]."','".$row["p_model"]."','".$site."','','".$link."','0', '".$site_name."')";
 				if(mysqli_query($rcon, $sql))
 				{
 					echo "<meta http-equiv=\"refresh\" content=\"0;URL=?public/ireviews.php\">";
