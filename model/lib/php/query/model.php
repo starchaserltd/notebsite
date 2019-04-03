@@ -32,6 +32,7 @@ if($id>=0)
 	$_SESSION['model']=$id; $model_data=show_vars('model.prod, families.fam, families.subfam, families.showsubfam, model.model, model.submodel, model.regions, model.keywords, model.msc', 'notebro_db.MODEL model JOIN notebro_db.FAMILIES families ON model.idfam=families.id',$id);
 	if($model_data)
 	{
+		if(isset($model_data["submodel"])&&($model_data["submodel"]=="NULL"||$model_data["submodel"]==NULL)){$model_data["submodel"]="";}
 		if(isset($model_data["subfam"])&&$model_data["showsubfam"]!=0){ $model_data["subfam"]=" ".$model_data["subfam"]; } else { $model_data["subfam"]=""; } unset($model_data["showsubfam"]);
 		$model_data['regionsid']=explode(",",$model_data['regions']); if(array_search("1",$model_data['regionsid'])===FALSE){ $model_data['region']=" (".show_vars("disp","REGIONS",intval($model_data['regions'][0])).")"; } else { $model_data['region']=""; $model_data['regions']=0; }
 	}
