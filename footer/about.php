@@ -30,7 +30,7 @@ Large price differences are almost always due to changes in producer price polic
 If you do notice a large price difference please <a href="https://<?php echo $site_name;?>?footer/contact.php">contact us</a> and we will make the necessary adjustments. <br> <br>
 		  	 <p><b>What is the Noteb Rating?</b></p>
 			Noteb rating evaluates the capabilities of a laptop against other laptops on the market and it is very useful when comparing different laptop models. Our rating evaluates the characteristic of every laptop component currently available on the market on scale from 1 to 100, where 100 is the best available on the market and 1 is the worse.
-			No laptop can achieve a rating of 100% simply because in a laptop everything is a trade-off. For instance, a high performance processors will necessarily sacrifice portability and battery life. Still there are laptops with low performance and poor battery life, which get a low rating from Noteb and there are laptops which provide good performance and very good battery life which get a much higher rating. 
+			No laptop can achieve a rating of 100% simply because in a laptop everything is a trade-off. For instance, a high performance processor will necessarily sacrifice portability and battery life. Still there are laptops with low performance and poor battery life, which get a low rating from Noteb and there are laptops which provide good performance and very good battery life which get a much higher rating. 
 			Be advised that a higher rating will most certainly imply a higher price.
  <br><br>
 			 <p><b>How do you estimate a laptop's battery life?</b></p>
