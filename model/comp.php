@@ -21,7 +21,7 @@ if($nrconf < 1 && $nrgetconfs <1) //nrconf is from headercomp.php
 else
 {
 ?>
-<link rel="stylesheet" href="model/lib/css/compare.css?v=22" type="text/css" />
+<link rel="stylesheet" href="model/lib/css/compare.css?v=29" type="text/css" />
 
 	<!-- TABLE HEADER -->
 	<div class="compContainer linked">
@@ -98,10 +98,10 @@ else
 				<tr class="row"></tr>
 				<tr class="hideDISPLAY row" style="display: none;"></tr>
 				<tr class="row"></tr>
-				<tr class="row"></tr>
 				<tr class="hideDISPLAY row" style="display: none;"></tr>
+				<tr class="row"></tr>
 				<tr class="row"></tr>				
-				<tr class="hideDISPLAY row" style="display: none;"></tr>				
+				<tr class="row"></tr>				
 				<tr class="arrowShowMore row">
 					<td>
 						<div class="col-sm-12 col-md-12 col-xs-12 shcomp"><a class="toggler toolinfo" data-toolid="100" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="top" data-original-title="data-loading..." data-hide="DISPLAY" style="text-decoration:none; color:black; cursor:pointer;"><span class="glyphicon glyphicon-chevron-down fas fa-angle-down" aria-hidden="true"></span></a></div>	
