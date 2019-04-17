@@ -91,7 +91,7 @@ function OpenPage(url, e, dontpush) {
 	for(var i in all_requests){ all_requests[i].abort();} all_requests=[]; clearTimeout(model_label_animation);
 	url=set_adv_search(url,"",0);
 	if(url.indexOf("search.php")>0&&url.indexOf("sort_by")<0&&url.indexOf("adv_search")<0){if(url.indexOf("browse_by")>0){url=url+"&sort_by="+global_sort_browse;}else{url=url+"&sort_by="+global_sort_search;}}
-	if(url.indexOf("ref=")<0){ if(ref!=null&&ref!="") { if(url.indexOf("?")>=0){ url=url+"&ref="+ref;}else { url=url+"?ref="+ref; } } }
+	if(url.indexOf("ref=")<0){ if(ref!=null&&ref!="") { if(url.indexOf("?")>=0){ url=url+"&ref="+ref; }else{ url=url+"?ref="+ref; } } }
 	url = decodeURIComponent(decodeURIComponent(url.replace("% ", "%25%20").replace("%%20", "%25%20")).replace("% ", "%25%20").replace("%%20", "%25%20"));
     //DEPENDING ON WHAT BUTTON WAS PRESSED WE DO DIFFERENT THINGS
     var e = e || window.event;
@@ -130,6 +130,22 @@ function OpenPageMenu(url)
 function OpenQuiz(url)
 {
     $.get(url, function(response) { $('#quiz').html(response); });
+}
+
+function delete_ref_url(url)
+{
+	var newref=url.match(/(?:[?]|[&]|^)ref=((?:[^&]|$)+)/m);
+	if(newref!==null)
+	{
+		var qmark=newref[0].indexOf("?"); var f_newref=null;
+		if(qmark>=0&&qmark<5)
+		{ url=url.replace(newref[0],"?");}
+		else
+		{ url=url.replace(newref[0],""); }
+	}
+	else
+	{ newref=Array(null,null); qmark=0; }
+	return([url,newref[1],qmark]);
 }
 
 $(document).ready(function() {
@@ -178,16 +194,25 @@ $(document).ready(function() {
         var currentpage = urlParts.slice(1).join('?');
     }
 	
-	var newref=currentpage.match(/(?:[?]|[&]|^)ref=((?:[^&]|$)+)/m);
-	if(newref!==null)
+	var ref_info=new Array(); var f_newref=null; var qmark=-1; var first_ref_run=true;
+	do
 	{
-		var qmark=newref[0].indexOf("?");
-		if(qmark>=0&&qmark<5)
-		{ currentpage=currentpage.replace(newref[0],"?"); }
-		else
-		{ currentpage=currentpage.replace(newref[0],""); }
+		ref_info=delete_ref_url(currentpage);
+		if(ref_info[1]!==null)
+		{
+			currentpage=ref_info[0];
+			if(first_ref_run)
+			{ var f_newref=ref_info[1]; first_ref_run=false; }
+		}
+	}
+	while(ref_info[1]!==null);
+	
+	qmark=currentpage.indexOf("?")+1;
+	if(currentpage[qmark]!==null&&currentpage[qmark+1]!=undefined){qmark=-1;}else{qmark=1}
 		
-		if(ref!=newref[1])
+	if(f_newref!==null)
+	{
+		if(ref!=f_newref)
 		{
 			if (window.XMLHttpRequest)	{ var	xmlhttp = new XMLHttpRequest(); }
 			xmlhttp.onreadystatechange = function() 
@@ -195,7 +220,7 @@ $(document).ready(function() {
 				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
 				{
 					if(parseInt(xmlhttp.responseText)==1)
-					{ ref=newref[1]; if(qmark>=0&&qmark<5) { currentpage=currentpage+"ref="+ref; }else{ currentpage=currentpage+"&ref="+ref; } }
+					{ ref=f_newref; if(qmark>=0&&qmark<5) { currentpage=currentpage+"ref="+ref; }else{ currentpage=currentpage+"&ref="+ref; } }
 					else
 					{ ref=null; }
 					first = 1; OpenPage(currentpage);
@@ -208,7 +233,7 @@ $(document).ready(function() {
 					}
 				}
 			}
-			xmlhttp.open("GET","libnb/php/checkref.php?ref="+newref[1],true);
+			xmlhttp.open("GET","libnb/php/checkref.php?ref="+f_newref,true);
 			xmlhttp.send();
 		}
 		else
