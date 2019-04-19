@@ -181,7 +181,7 @@ function show($tab, $id)
 		
 		case 'WNET':
 		{
-			if(!$resu['msc']){$resu['msc']="-";}
+			if(!$resu['msc']){$resu['msc']="-";}else{$resu['msc']=str_replace(",", ", ",$resu['msc']);}
 			$resu['model']=$resu['prod']." ".$resu['model'];
 			break;
 		}
