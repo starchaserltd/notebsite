@@ -229,6 +229,7 @@ $(document).ready(function() {
 				{
 					if (xmlhttp.readyState == 4 && xmlhttp.status != 200) 
 					{
+						if(qmark>=0&&qmark<5) { currentpage=currentpage+"ref="+"starchaser"; }else{ currentpage=currentpage+"&ref="+"starchaser"; }
 						first = 1; OpenPage(currentpage);
 					}
 				}
