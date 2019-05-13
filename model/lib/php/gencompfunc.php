@@ -116,7 +116,9 @@ function show($tab, $id)
 	
 			$resu['pi']=str_replace(",", ", ",$resu['pi']);
 			$resu['vi']=str_replace(",", ", ",$resu['vi']);	
-			$resu['made']=str_replace(",", ", ",$resu['made']);
+			$resu['made']=explode(",",$resu['made']);
+			if(!empty($resu['s_made'])){$resu['made']=array_unique(array_merge($resu['made'],explode(",",$resu['s_made'])));}
+			$resu['made']=implode(", ",$resu['made']);
 			$resu['color']=str_replace(",", ", ",$resu['color']);
 			$resu['keyboard']=str_replace(",", ", ",$resu['keyboard']);
 			$resu['msc']=str_replace(",", ", ",$resu['msc']);

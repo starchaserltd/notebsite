@@ -18,8 +18,9 @@ if($q>=0)
 		}
 	
 		$rows[] = $r;
-		$rows[0]['made']=str_replace(",", ", ",$rows[0]['made']);
-		if(!empty($rows[0]['s_made'])){$rows[0]['made'].=", ".str_replace(",", ", ",$rows[0]['s_made']);}
+		$rows[0]['made']=explode(",",$rows[0]['made']);
+		if(!empty($rows[0]['s_made'])){$rows[0]['made']=array_unique(array_merge($rows[0]['made'],explode(",",$rows[0]['s_made'])));}
+		$rows[0]['made']=implode(", ",$rows[0]['made']);
 		$rows[0]['msc']=str_replace(",", ", ",$rows[0]['msc']);
 		$rows[0]['pi']=str_replace(",", ", ",$rows[0]['pi']);
 		$rows[0]['keyboard']=str_replace(",", ", ",$rows[0]['keyboard']);
