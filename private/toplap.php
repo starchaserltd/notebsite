@@ -63,11 +63,10 @@ $current_type="Business";
 					require_once("../etc/con_sdb.php"); 
 					$get_pmodel=mysqli_query($cons,'SELECT `m_map_table`.`pmodel` FROM `notebro_temp`.`m_map_table` WHERE `m_map_table`.`model_id`="'.$row[3].'" LIMIT 1');
 					$pmodel_found=False;
-					if($get_pmodel && mysqli_num_rows($get_pmodelt)>0)
+					if($get_pmodel && mysqli_num_rows($get_pmodel)>0)
 					{
 						$pmodel=mysqli_fetch_assoc($get_pmodel)["pmodel"];
 						$result=mysqli_query($cons,'SELECT * FROM `notebro_temp`.`best_low_opt` WHERE `best_low_opt`.`id_model` LIKE "%p_'.$pmodel.'_2" LIMIT 1');
-						var_dump($result);
 						if($result && mysqli_num_rows($result)>0)
 						{
 							$pmodel_found=True;
