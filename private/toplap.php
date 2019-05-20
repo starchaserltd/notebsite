@@ -76,7 +76,7 @@ $current_type="Business";
 						}
 					}
 
-					if(!$pmodel_found=True)
+					if(!$pmodel_found)
 					{	
 						$result=mysqli_query($cons,'SELECT * FROM `notebro_temp`.`best_low_opt` WHERE `best_low_opt`.`id_model`="'.$row[3].'_2" LIMIT 1');
 						if($result && mysqli_num_rows($result)>0)
