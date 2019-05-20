@@ -67,14 +67,15 @@ $current_type="Business";
 					{
 						$pmodel=mysqli_fetch_assoc($get_pmodel)["pmodel"];
 						$result=mysqli_query($cons,'SELECT * FROM `notebro_temp`.`best_low_opt` WHERE `best_low_opt`.`id_model` LIKE "%p_'.$pmodel.'_2" LIMIT 1');
+						var_dump($result);
 						if($result && mysqli_num_rows($result)>0)
 						{
 							$pmodel_found=True;
 							$row=mysqli_fetch_assoc($result);
-							var_dump($row); var_dump($row[3]); echo "<br>";
 							$lowest_price=intval(directPrice(explode("_",$row["lowest_price"])[0],$cons));
 							$best_performance_price=intval(directPrice(explode("_",$row["best_performance"])[0],$cons));
 						}
+						mysqli_free_result($get_pmodel);
 					}
 
 					if(!$pmodel_found)
