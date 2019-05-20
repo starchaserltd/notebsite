@@ -85,7 +85,7 @@ if (isset($_POST['type']) && isset($_POST['conf_id']))
 				if(stripos($site_name,"noteb.com")!==FALSE)
 				{
 					require_once("../../../etc/con_sdb.php"); 
-					$get_pmodel=mysqli_query($cons,'SELECT `m_map_table`.`pmodel` FROM `notebro_temp`.`m_map_table` WHERE `m_map_table`.`model_id`="'.$row[3].'" LIMIT 1');
+					$get_pmodel=mysqli_query($cons,'SELECT `m_map_table`.`pmodel` FROM `notebro_temp`.`m_map_table` WHERE `m_map_table`.`model_id`="'.$m_id.'" LIMIT 1');
 					$pmodel_found=False;
 					if($get_pmodel && mysqli_num_rows($get_pmodel)>0)
 					{
@@ -104,7 +104,7 @@ if (isset($_POST['type']) && isset($_POST['conf_id']))
 
 					if(!$pmodel_found)
 					{	
-						$result=mysqli_query($cons,'SELECT * FROM `notebro_temp`.`best_low_opt` WHERE `best_low_opt`.`id_model`="'.$row[3].'_2" LIMIT 1');
+						$result=mysqli_query($cons,'SELECT * FROM `notebro_temp`.`best_low_opt` WHERE `best_low_opt`.`id_model`="'.$m_id.'_2" LIMIT 1');
 						if($result && mysqli_num_rows($result)>0)
 						{
 							$row=mysqli_fetch_assoc($result);
