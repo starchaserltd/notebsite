@@ -71,6 +71,7 @@ $current_type="Business";
 						{
 							$pmodel_found=True;
 							$row=mysqli_fetch_assoc($result);
+							var_dump($row); var_dump($row[3]); echo "<br>";
 							$lowest_price=intval(directPrice(explode("_",$row["lowest_price"])[0],$cons));
 							$best_performance_price=intval(directPrice(explode("_",$row["best_performance"])[0],$cons));
 						}
