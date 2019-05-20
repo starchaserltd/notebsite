@@ -57,23 +57,35 @@ $current_type="Business";
 			<?php 
 			if(intval($row[25]))
 			{
+				$lowest_price=0; $best_performance_price=0;
 				if(stripos($site_name,"noteb.com")!==FALSE)
 				{
 					require_once("../etc/con_sdb.php"); 
-					$result=mysqli_query($cons,"SELECT * FROM notebro_temp.best_low_opt WHERE id_model=".$row[3]." LIMIT 1");
+					$result=mysqli_query($cons,'SELECT * FROM `notebro_temp`.`best_low_opt` WHERE `best_low_opt`.`id_model` LIKE (SELECT CONCAT("%",IFNULL(`m_map_table`.`pmodel`,"nothing"),"_2%") FROM `notebro_temp`.`m_map_table` WHERE `m_map_table`.`model_id`="'.$row[3].'" LIMIT 1) LIMIT 1');
 					if($result && mysqli_num_rows($result)>0)
 					{
 						$row=mysqli_fetch_assoc($result);
 						$lowest_price=intval(directPrice($row["lowest_price"],$cons));
 						$best_performance_price=intval(directPrice($row["best_performance"],$cons));
 					}
+					else
+					{
+						$result=mysqli_query($cons,'SELECT * FROM `notebro_temp`.`best_low_opt` WHERE `best_low_opt`.`id_model`="'.$row[3].'_2" LIMIT 1');
+						if($result && mysqli_num_rows($result)>0)
+						{
+							$row=mysqli_fetch_assoc($result);
+							$lowest_price=intval(directPrice($row["lowest_price"],$cons));
+							$best_performance_price=intval(directPrice($row["best_performance"],$cons));
+						}
+					}
 				}
 				else
 				{
-					$data="apikey=BHB675VG15n23j4gAz&method=get_optimal_configs&param[model_id]=".$row[3];
+					$data="apikey=BHB675VG15n23j4gAz&method=get_optimal_configs&param[model_id]=".$row[3]."&param[region]=2&param[pmodel]=1";
 					$prldata=json_decode(httpPost($url,$data), true);
-					if(isset($prldata['result'][$row[3]])){if(intval($prldata['result'][$row[3]]['lowest_price'])!=0){ $lowest_price=intval($prldata['result'][$row[3]]['lowest_price']); }}
-					if(isset($prldata['result'][$row[3]])){if(intval($prldata['result'][$row[3]]['best_performance'])!=0){$best_performance_price=intval($prldata['result'][$row[3]]['best_performance']); }}
+					echo "<br>".$row[3]; var_dump($prldata['result'][$row[3]]);
+					if(isset($prldata['result'][$row[3]])){if(isset($prldata['result'][$row[3]]['lowest_price'])&&intval($prldata['result'][$row[3]]['lowest_price'])!=0){ $lowest_price=intval($prldata['result'][$row[3]]['lowest_price']); }}
+					if(isset($prldata['result'][$row[3]])){if(isset($prldata['result'][$row[3]]['best_performance'])&&intval($prldata['result'][$row[3]]['best_performance'])!=0){$best_performance_price=intval($prldata['result'][$row[3]]['best_performance']); }}
 				}
 				echo "<td>".$lowest_price."</td><td>".$best_performance_price."</td>";
 			}

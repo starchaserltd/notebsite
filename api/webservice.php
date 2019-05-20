@@ -308,32 +308,63 @@ if($api_key!==""&&$api_key!==NULL)
 					}
 					case "get_optimal_configs":
 					{
+						require_once("../libnb/php/api_access.php");
+						
 						$response->code=26; $response->message="Valid method.";$response->daily_hits_left=$hits_left;
 						$abort=0; $object_addr=$response->result;
 						if(isset($param['model_id'])&&$param['model_id']!==NULL&&$param['model_id']!=="")
 						{
-							$model_id=intval($param['model_id']);
+							$model_id=intval($param['model_id']); $org_model_id=$model_id;
+							if(isset($param['region'])){ $region_id=strval(intval($param['region'])); }else{ $region_id=""; }
+							if(isset($param['pmodel'])){ $for_pmodel=intval($param['pmodel']); }else{ $for_pmodel=0; }							
+							
 							require_once("../etc/con_sdb.php");
-							$result=mysqli_query($cons,"SELECT * FROM notebro_temp.best_low_opt WHERE id_model='".$model_id."_2' LIMIT 1");
+							
+							$no_p_model=False;
+							if($for_pmodel)
+							{
+								$get_pmodel=mysqli_query($cons,'SELECT `m_map_table`.`pmodel` FROM `notebro_temp`.`m_map_table` WHERE `m_map_table`.`model_id`="'.$model_id.'" LIMIT 1');
+								if($get_pmodel && mysqli_num_rows($get_pmodel)>0)
+								{
+									$pmodel=mysqli_fetch_assoc($get_pmodel)["pmodel"];
+									$result=mysqli_query($cons,'SELECT * FROM `notebro_temp`.`best_low_opt` WHERE `best_low_opt`.`id_model` LIKE "%p_'.$pmodel.'_'.$region_id.'" LIMIT 1');
+									if(!($result && mysqli_num_rows($result)>0))
+									{ $no_p_model=True; }
+									else
+									{ $model_id='%p_'.$pmodel.'_'.$region_id;}
+									mysqli_free_result($get_pmodel);
+								}
+								else
+								{ $no_p_model=True;}
+							
+								if($no_p_model)
+								{ $result=mysqli_query($cons,'SELECT * FROM `notebro_temp`.`best_low_opt` WHERE `best_low_opt`.`id_model`="'.$model_id.'_'.$region_id.'" LIMIT 1'); }
+							}
+							else
+							{ $no_p_model=True; $result=mysqli_query($cons,"SELECT * FROM `notebro_temp`.`best_low_opt` WHERE `id_model`='".$model_id."_".$region_id."' LIMIT 1"); }
+						
 							if(!($result && mysqli_num_rows($result)>0))
-							{ $result=mysqli_query($cons,"SELECT * FROM notebro_temp.best_low_opt WHERE id_model LIKE '%".$model_id."%' LIMIT 1"); }
+							{ $model_id=$org_model_id; $result=mysqli_query($cons,"SELECT * FROM `notebro_temp`.`best_low_opt` WHERE `id_model` LIKE '%".$model_id."%' LIMIT 1"); }
 
 							if(!($result && mysqli_num_rows($result)>0)){$response->code=29; $response->message.=" Invalid model id or database is inaccesible, aborting."; }
 							else
 							{
 								while($row=mysqli_fetch_assoc($result))
 								{
-									$response->result->{$model_id}=new stdClass(); $object_addr=$response->result->{$model_id};
+									$response->result->{$org_model_id}=new stdClass(); $object_addr=$response->result->{$org_model_id};
+									if(!$no_p_model){ $explode_result=explode("_",$row['lowest_price']); $row['lowest_price']=$explode_result[0]; $model_id=$explode_result[1];}
 									$query="SELECT price FROM notebro_temp.all_conf_".$model_id." WHERE id=".$row['lowest_price'];
 									$result_sdb=mysqli_query($cons,$query);
 									if($result_sdb && mysqli_num_rows($result_sdb)>0){ $row_sdb=mysqli_fetch_assoc($result_sdb); $object_addr->lowest_price_id=$row['lowest_price']; $object_addr->lowest_price=$row_sdb['price'];}
 									else
 									{ $response->code=30; $response->message.=" Unable to retrieve data for ".'lowest price id'; }
+									if(!$no_p_model){ $explode_result=explode("_",$row['best_performance']); $row['best_performance']=$explode_result[0]; $model_id=$explode_result[1];}
 									$query="SELECT price FROM notebro_temp.all_conf_".$model_id." WHERE id=".$row['best_performance'];
 									$result_sdb=mysqli_query($cons,$query);
 									if($result_sdb && mysqli_num_rows($result_sdb)>0){ $row_sdb=mysqli_fetch_assoc($result_sdb); $object_addr->best_performance_id=$row['best_performance']; $object_addr->best_performance=$row_sdb['price'];}
 									else
 									{ $response->code=30; $response->message.=" Unable to retrieve data for ".'best performance id'; }
+									if(!$no_p_model){ $explode_result=explode("_",$row['best_value']); $row['best_value']=$explode_result[0]; $model_id=$explode_result[1];}
 									$query="SELECT price FROM notebro_temp.all_conf_".$model_id." WHERE id=".$row['best_value'];
 									$result_sdb=mysqli_query($cons,$query);
 									if($result_sdb && mysqli_num_rows($result_sdb)>0){ $row_sdb=mysqli_fetch_assoc($result_sdb); $object_addr->best_value_id=$row['best_value']; $object_addr->best_value=$row_sdb['price'];}
