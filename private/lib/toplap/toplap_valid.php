@@ -80,24 +80,45 @@ if (isset($_POST['type']) && isset($_POST['conf_id']))
 			if(isset($_POST['price_range'])&&$_POST['price_range']!==''&&$_POST['price_range']!=NULL){ $price_range=intval($_POST['price_range']); }
 			if($price_range)
 			{
+				$price_min=0; $price_max=0;
 				require_once("../../../libnb/php/api_access.php");
 				if(stripos($site_name,"noteb.com")!==FALSE)
 				{
 					require_once("../../../etc/con_sdb.php"); 
-					$result=mysqli_query($cons,"SELECT * FROM notebro_temp.best_low_opt WHERE id_model=".$m_id." LIMIT 1");
-					if($result && mysqli_num_rows($result)>0)
+					$get_pmodel=mysqli_query($cons,'SELECT `m_map_table`.`pmodel` FROM `notebro_temp`.`m_map_table` WHERE `m_map_table`.`model_id`="'.$row[3].'" LIMIT 1');
+					$pmodel_found=False;
+					if($get_pmodel && mysqli_num_rows($get_pmodel)>0)
 					{
-						$row=mysqli_fetch_assoc($result);
-						$price_min=intval(directPrice($row["lowest_price"],$cons));
-						$price_max=intval(directPrice($row["best_performance"],$cons));
-						if($price==0){$price=intval(directPrice($c_id,$cons));}
+						$pmodel=mysqli_fetch_assoc($get_pmodel)["pmodel"];
+						$result=mysqli_query($cons,'SELECT * FROM `notebro_temp`.`best_low_opt` WHERE `best_low_opt`.`id_model` LIKE "%p_'.$pmodel.'_2" LIMIT 1');
+						if($result && mysqli_num_rows($result)>0)
+						{
+							$pmodel_found=True;
+							$row=mysqli_fetch_assoc($result);
+							$price_mine=intval(directPrice(explode("_",$row["lowest_price"])[0],$cons));
+							$price_max=intval(directPrice(explode("_",$row["best_performance"])[0],$cons));
+							if($price==0){$price=intval(directPrice($c_id,$cons));}
+						}
+						mysqli_free_result($get_pmodel);
+					}
+
+					if(!$pmodel_found)
+					{	
+						$result=mysqli_query($cons,'SELECT * FROM `notebro_temp`.`best_low_opt` WHERE `best_low_opt`.`id_model`="'.$row[3].'_2" LIMIT 1');
+						if($result && mysqli_num_rows($result)>0)
+						{
+							$row=mysqli_fetch_assoc($result);
+							$price_min=intval(directPrice($row["lowest_price"],$cons));
+							$price_max==intval(directPrice($row["best_performance"],$cons));
+							if($price==0){$price=intval(directPrice($c_id,$cons));}
+						}
 					}
 				}
 				else
 				{			
-					$data="apikey=BHB675VG15n23j4gAz&method=get_optimal_configs&param[model_id]=".$m_id;
+					$data="apikey=BHB675VG15n23j4gAz&method=get_optimal_configs&param[model_id]=".$m_id."&param[region]=2&param[pmodel]=1";
 					$prldata=json_decode(httpPost($url,$data), true);
-					if(isset($prldata['result'][$m_id])){if(intval($prldata['result'][$m_id]['lowest_price'])!=0){$price_min=intval($prldata['result'][$m_id]['lowest_price']);}else{$price_min='DEFAULT';} if(intval($prldata['result'][$m_id]['lowest_price'])!=0){$price_max=intval($prldata['result'][$m_id]['best_performance']);}else{$price_max='DEFAULT';} }
+					if(isset($prldata['result'][$m_id])){if(isset($prldata['result'][$m_id]['lowest_price'])&&intval($prldata['result'][$m_id]['lowest_price'])!=0){$price_min=intval($prldata['result'][$m_id]['lowest_price']);}else{$price_min='DEFAULT';} if(isset($prldata['result'][$m_id]['best_performance'])&&intval($prldata['result'][$m_id]['best_performance'])!=0){$price_max=intval($prldata['result'][$m_id]['best_performance']);}else{$price_max='DEFAULT';} }
 					if($price==0){ $data="apikey=BHB675VG15n23j4gAz&method=get_conf_info&param[conf_id]=".$c_id; $prldata=json_decode(httpPost($url,$data), true); if(isset($prldata['result']['config_price'])){$price=intval($prldata['result']['config_price']);}else{$price=0;}}
 				}
 			}
