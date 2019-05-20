@@ -17,7 +17,6 @@ function httpPost($url, $data)
 
 function directPrice($conf,$cons)
 {
-	$conf=explode("_",$conf)[0];
 	$sql="SELECT model FROM notebro_temp.all_conf WHERE id=".$conf." LIMIT 1";
 	$result=mysqli_query($cons,$sql);
 	if(isset($result)&&mysqli_num_rows($result)>0)
