@@ -667,7 +667,7 @@ if(isset($_GET['opsist']))
 }
 /* *** REGIONS *** */
 
-if(isset($_GET['Regions']) && $_GET['Regions']) { array_walk($_GET['Regions'],'clean_string'); $regions_name = $_GET['Regions']; } else {$to_search["regions"]=0;} 
+if(isset($_GET['Regions']) && $_GET['Regions']) { array_walk($_GET['Regions'],'clean_string'); $regions_name = $_GET['Regions']; foreach($regions_name as $region){if(strcmp("All",$region)==0){$to_search["regions"]=0;}}} else {$to_search["regions"]=0;} 
 
 /* *** WARRANTY *** */
 if(isset($_GET['yearsmin']) && ($_GET['yearsmin'])) 
