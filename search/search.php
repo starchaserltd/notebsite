@@ -69,12 +69,13 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 	}
 	
 	/*GET exchange rate list*/
-	$sel2="SELECT id,convr,code,sign,ROUND(convr,5) as rconvr,regions as region,(SELECT GROUP_CONCAT(regions) as regions FROM notebro_site.exchrate) as regions FROM notebro_site.exchrate";
+	$sel2="SELECT id,convr,code,sign,ROUND(convr,5) as rconvr,regions as region,country_long,(SELECT GROUP_CONCAT(regions) as regions FROM notebro_site.exchrate) as regions FROM notebro_site.exchrate";
 	$result = mysqli_query($con,$sel2); $exchange_list=new stdClass();$region_ex=array(); $region_ex[0]="USD"; $always_model_region=false;
 	while($row=mysqli_fetch_assoc($result))
 	{
 		foreach(explode(",",$row["region"]) as $el){ $el=intval($el); if(!isset($region_ex[$el])){$region_ex[$el]=$row["code"];}}
-		$exchange_list->{$row["code"]}=array("id"=>$row["id"],"convr"=>floatval($row["rconvr"]),"sign"=>$row["sign"],"region"=>$row["region"],"regions"=>$row["regions"]); 
+		$exchange_list->{$row["code"]}=array("id"=>$row["id"],"convr"=>floatval($row["rconvr"]),"sign"=>$row["sign"],"region"=>$row["region"],"regions"=>$row["regions"]);
+		$exchange_list->{$row["country_long"]}=array("id"=>$row["id"],"convr"=>floatval($row["rconvr"]),"sign"=>$row["sign"],"region"=>$row["region"],"regions"=>$row["regions"],"ex_code"=>$row["code"]);
 	}
 	
 	if((isset($_GET['exchange']) && is_string($_GET['exchange']))||(isset($_GET['exchadv']) && is_string($_GET['exchadv'])))
@@ -86,7 +87,7 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 	else
 	{ if(isset($_SESSION['exchcode'])){ $exchcode=$_SESSION['exchcode']; if(isset($_SESSION['regional_type'])){$regional_type=$_SESSION['regional_type'];}else{$regional_type="region"; $always_model_region=true;} }else{$exchcode="USD"; $regional_type="region"; $always_model_region=true;} }
 	$value=$exchange_list->{$exchcode};
-	
+
 	$exch=$value["convr"];
 	$exchsign=$value["sign"];
 	$search_regions_array=array_unique(explode(",",$value[$regional_type]));

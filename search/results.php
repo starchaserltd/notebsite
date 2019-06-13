@@ -102,7 +102,7 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 						<div class="row">
 							<div class="buy resultsShopBtn col-lg-6 col-md-5 col-sm-6 col-xs-6 col-xxs-12">
 								<div class="dropdown">
-									<div id="dLabel" class="btn buyBtn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-ref="<?php if(isset($usertag)&&$usertag!=""){ echo $usertag; } else { echo "";} ?>" data-target="buylist-<?php echo $i;?>" data-price="<?php echo $conf_price; ?>" data-idmodel="<?php echo $rand['model']; ?>" data-buyregions="<?php echo $search_regions; ?>" data-cpu="<?php echo $rand['cpu']; ?>" data-gpu="<?php echo $rand['gpu']; ?>" data-iddisplay="<?php echo $rand['display']; ?>" data-pmodel="<?php echo $p_model; ?>"  data-lang="<?php echo $exch_id; ?>" onclick="get_buy_list(this);">
+									<div id="dLabel" class="btn buyBtn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-ref="<?php if(isset($usertag)&&$usertag!=""){ echo $usertag; } else { echo "";} ?>" data-target="buylist-<?php echo $i;?>" data-price="<?php echo $conf_price; ?>" data-idmodel="<?php echo $rand['model']; ?>" data-buyregions="<?php echo $search_regions_results; ?>" data-cpu="<?php echo $rand['cpu']; ?>" data-gpu="<?php echo $rand['gpu']; ?>" data-iddisplay="<?php echo $rand['display']; ?>" data-pmodel="<?php echo $p_model; ?>"  data-lang="<?php echo $exch_id; ?>" onclick="get_buy_list(this);">
 											<span class="fas fa-shopping-cart"></span><span class="resultsBuyText"> Buy</span>
 											<span class="caret"></span>
 									</div>

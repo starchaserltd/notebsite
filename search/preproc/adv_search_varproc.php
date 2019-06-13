@@ -669,6 +669,52 @@ if(isset($_GET['opsist']))
 
 if(isset($_GET['Regions']) && $_GET['Regions']) { array_walk($_GET['Regions'],'clean_string'); $regions_name = $_GET['Regions']; foreach($regions_name as $region){if(strcmp("All",$region)==0){$to_search["regions"]=0;}}} else {$to_search["regions"]=0;} 
 
+/** OVERRIDE BUY BUTTON REGIONS FROM THE EXCHANGE RATE WITH THOSE OF THE REGION **/
+if($to_search["regions"])
+{ 
+	$regional_search_regions_array=array();
+	$regional_exch_ids=array();
+	$default_value=null;
+	foreach($regions_name as $el)
+	{
+		if(isset($exchange_list->{$el}))
+		{
+			$value=$exchange_list->{$el};
+			if($default_value==null){$default_value=$value;}
+			foreach(explode(",",$value[$regional_type]) as $el_2)
+			{ array_push($regional_search_regions_array,$el_2); }
+		}
+	}
+	if(isset($regional_search_regions_array[0]))
+	{ $regional_search_regions_array=array_unique($regional_search_regions_array); $search_regions_results=implode(",",$regional_search_regions_array); }
+	
+	foreach($exchange_list as $el)
+	{
+		if(isset($el["ex_code"]))
+		{
+			$el_regions=explode(",",$el["region"]);
+			foreach($regional_search_regions_array as $el2)
+			{
+				if($el2!=0&&$el2!=1)
+				{
+					if(in_array($el2,$el_regions))
+					{ array_push($regional_exch_ids,$el["id"]); }
+				}
+			}
+		}
+	}
+	
+	if(!in_array($exch_id,$regional_exch_ids)&&$default_value!=null)
+	{
+		$_SESSION['regional_type']=$default_value["region"];
+		$_SESSION['exchcode']=$default_value["ex_code"];
+		$_SESSION['exch']=$default_value["convr"];
+		$_SESSION['exchsign']=$default_value["sign"];
+		$_SESSION['lang']=$default_value["id"];
+	}
+}
+
+
 /* *** WARRANTY *** */
 if(isset($_GET['yearsmin']) && ($_GET['yearsmin'])) 
 { $war_yearsmin = intval($_GET['yearsmin']); }
