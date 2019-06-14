@@ -340,6 +340,17 @@ if(isset($_GET['region_type']))
 		elseif ($el==2){ $regions_name[]="Europe"; $war_yearsmin=2; }
 	}
 	$filtercomp[] = "regions";
+	
+	$regional_search_regions_array=array();
+	foreach($regions_name as $el)
+	{
+		if(isset($exchange_list->{$el}))
+		{
+			$value=$exchange_list->{$el};
+			foreach(explode(",",$value[$regional_type]) as $el_2){ array_push($regional_search_regions_array,$el_2); }
+		}
+	}
+	if(isset($regional_search_regions_array[0])){ $regional_search_regions_array=array_unique($regional_search_regions_array); $search_regions_results=implode(",",$regional_search_regions_array); }
 }
 
 $filtercomp=array_unique($filtercomp);

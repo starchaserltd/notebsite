@@ -91,7 +91,7 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 	$exch=$value["convr"];
 	$exchsign=$value["sign"];
 	$search_regions_array=array_unique(explode(",",$value[$regional_type]));
-	$search_regions=implode(",",$search_regions_array);
+	$search_regions_results=implode(",",$search_regions_array);
 	$_SESSION['regional_type']=$regional_type;
 	$_SESSION['exchcode']=$exchcode;
 	$_SESSION['exch']=$exch;
