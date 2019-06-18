@@ -100,7 +100,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 				{
 					$value=$exchange_list->{"code"}->{"USD"};
 					$_SESSION['regional_type']="region";
-					$_SESSION['exchcode']=$value["ex_code"];
+					$_SESSION['exchcode']="USD";
 					$_SESSION['exch']=$value["convr"];
 					$_SESSION['exchsign']=$value["sign"];
 					$_SESSION['lang']=$value["id"];

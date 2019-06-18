@@ -707,7 +707,7 @@ if($to_search["regions"])
 		if($el2!=0&&$el2!=1)
 		{
 			if(in_array($el2,$el_regions))
-			{ array_push($regional_exch_ids,$el["id"]); }
+			{ array_push($regional_exch_ids,$value["id"]); }
 		}
 	}
 	
