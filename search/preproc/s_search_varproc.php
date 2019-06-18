@@ -342,15 +342,20 @@ if(isset($_GET['region_type']))
 	$filtercomp[] = "regions";
 	
 	$regional_search_regions_array=array();
+	
 	foreach($regions_name as $el)
 	{
-		if(isset($exchange_list->{$el}))
+		foreach ($exchange_list->{"code"} as $ex_key => $ex_el)
 		{
-			$value=$exchange_list->{$el};
-			foreach(explode(",",$value[$regional_type]) as $el_2){ array_push($regional_search_regions_array,$el_2); }
+			if(in_array($el,explode(",",$ex_el["dregion"])))
+			{ 
+				foreach(explode(",",$ex_el["region"]) as $f_el)
+				{ array_push($regional_search_regions_array,$f_el); }
+			}
 		}
 	}
-	if(isset($regional_search_regions_array[0])){ $regional_search_regions_array=array_unique($regional_search_regions_array); $search_regions_results=implode(",",$regional_search_regions_array); }
+	if(isset($regional_search_regions_array[0]))
+	{ $regional_search_regions_array=array_unique($regional_search_regions_array); $search_regions_results=implode(",",$regional_search_regions_array); }
 }
 
 $filtercomp=array_unique($filtercomp);

@@ -94,6 +94,22 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 		case 'model' :
 		{		
 			$regions_name[]="United States";
+			if(!isset($_SESSION['exchcode'])||(isset($_SESSION['exchcode'])&&$_SESSION['exchcode']=="USD"))
+			{
+				if(isset($exchange_list->{"code"}->{"USD"}))
+				{
+					$value=$exchange_list->{"code"}->{"USD"};
+					$_SESSION['regional_type']="region";
+					$_SESSION['exchcode']=$value["ex_code"];
+					$_SESSION['exch']=$value["convr"];
+					$_SESSION['exchsign']=$value["sign"];
+					$_SESSION['lang']=$value["id"];
+					$_SESSION['dregion']=$value["dregion"];
+				}
+			}
+			else
+			{ $regions_name=explode(",",$_SESSION['dregion']); }
+
 			
 			if (isset($_GET['casual']) && $_GET['casual']==1)
 			{	if($model_minclass>0) { $model_minclass=0; }  if($model_maxclass<2){ $model_maxclass=1; } } 

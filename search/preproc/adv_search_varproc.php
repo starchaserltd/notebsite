@@ -397,14 +397,14 @@ foreach($chassis_ports as $key => $x)
 					if(stripos($piparts[1],"Type")===FALSE)
 					{
 						if(${'usb3'.$usbv.'_set'}>intval($piparts[0]))
-						{ $chassis_ports[$key]=$piparts[0]." X "."USB 3.".$usbv; ${'usb3'.$usbv.'_set'}=intval($piparts[0]); for($usbv2=$usbv+1;$usbv2<3;$usbv2++){$chassis_addpi[$piparts[0]." X "."USB 3.".$usbv][]=$piparts[0]." X "."USB 3.".$usbv2; } }
+						{ $chassis_ports[$key]=$piparts[0]." X "."USB 3.".$usbv; ${'usb3'.$usbv.'_set'}=intval($piparts[0]); for($usbv2=$usbv+1;$usbv2<3;$usbv2++){ for ($nrpi=intval($piparts[0]);$nrpi<7;$nrpi++){ $chassis_addpi[$piparts[0]." X "."USB 3.".$usbv][]=$nrpi." X "."USB 3.".$usbv2; } } }
 						else
 						{ unset($chassis_ports[$key]); }
 					}
 					else
 					{
 						if(${'usb3c'.$usbv.'_set'}>intval($piparts[0]))
-						{ $chassis_ports[$key]=$piparts[0]." X "."USB 3.".$usbv." (Type-C)"; ${'usb3c'.$usbv.'_set'}=intval($piparts[0]); for($usbv2=$usbv+1;$usbv2<3;$usbv2++){$chassis_addpi[$piparts[0]." X "."USB 3.".$usbv." (Type-C)"][]=$piparts[0]." X "."USB 3.".$usbv2." (Type-C)"; } }
+						{ $chassis_ports[$key]=$piparts[0]." X "."USB 3.".$usbv." (Type-C)"; ${'usb3c'.$usbv.'_set'}=intval($piparts[0]); for($usbv2=$usbv+1;$usbv2<3;$usbv2++){ for ($nrpi=intval($piparts[0]);$nrpi<7;$nrpi++){ $chassis_addpi[$piparts[0]." X "."USB 3.".$usbv." (Type-C)"][]=$nrpi." X "."USB 3.".$usbv2." (Type-C)"; } } }
 						else
 						{ unset($chassis_ports[$key]); }
 					}
@@ -458,6 +458,11 @@ foreach($chassis_vports as $key => $x)
 	}
 	
 	if((stripos($x,"Micro HDMI"))!==FALSE && $hdmi_set)
+	{
+		unset($chassis_vports[$key]);
+	}
+	
+	if((stripos($x,"Mini HDMI"))!==FALSE && $hdmi_set)
 	{
 		unset($chassis_vports[$key]);
 	}
@@ -677,37 +682,39 @@ if($to_search["regions"])
 	$default_value=null;
 	foreach($regions_name as $el)
 	{
-		if(isset($exchange_list->{$el}))
+		foreach ($exchange_list->{"code"} as $ex_key => $ex_el)
 		{
-			$value=$exchange_list->{$el};
-			if($default_value==null){$default_value=$value;}
-			foreach(explode(",",$value[$regional_type]) as $el_2)
-			{ array_push($regional_search_regions_array,$el_2); }
+			if(in_array($el,explode(",",$ex_el["dregion"])))
+			{ 
+				if(!isset($default_value)||$default_value==null)
+				{ $default_value=$ex_el; $default_value["code"]=$ex_key; }
+				
+				foreach(explode(",",$ex_el["region"]) as $f_el)
+				{
+					array_push($regional_search_regions_array,$f_el);
+				}
+			}
 		}
 	}
 	if(isset($regional_search_regions_array[0]))
 	{ $regional_search_regions_array=array_unique($regional_search_regions_array); $search_regions_results=implode(",",$regional_search_regions_array); }
 	
-	foreach($exchange_list as $el)
+	
+	$value=$exchange_list->{"code"}->{$exchcode};
+	$el_regions=explode(",",$value["region"]);
+	foreach($regional_search_regions_array as $el2)
 	{
-		if(isset($el["ex_code"]))
+		if($el2!=0&&$el2!=1)
 		{
-			$el_regions=explode(",",$el["region"]);
-			foreach($regional_search_regions_array as $el2)
-			{
-				if($el2!=0&&$el2!=1)
-				{
-					if(in_array($el2,$el_regions))
-					{ array_push($regional_exch_ids,$el["id"]); }
-				}
-			}
+			if(in_array($el2,$el_regions))
+			{ array_push($regional_exch_ids,$el["id"]); }
 		}
 	}
 	
 	if(!in_array($exch_id,$regional_exch_ids)&&$default_value!=null)
 	{
-		$_SESSION['regional_type']=$default_value["region"];
-		$_SESSION['exchcode']=$default_value["ex_code"];
+		$_SESSION['regional_type']="region";
+		$_SESSION['exchcode']=$default_value["code"];
 		$_SESSION['exch']=$default_value["convr"];
 		$_SESSION['exchsign']=$default_value["sign"];
 		$_SESSION['lang']=$default_value["id"];

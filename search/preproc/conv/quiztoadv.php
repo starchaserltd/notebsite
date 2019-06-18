@@ -29,7 +29,9 @@ if (isset($_GET['cad3d']) && $_GET['cad3d']==1 && !(isset($_GET['3dmodel'])))
 
 //REGIONAL Conditions
 $regions_name[]="United States";
-	
+if(isset($_SESSION['exchcode'])&&$_SESSION['exchcode']!="USD")
+{ $regions_name=explode(",",$_SESSION['dregion']); }
+
 // Laptop Class Conditions
 $model_minclass=999; $model_maxclass=-1;
 if (isset($_GET['casual']) && $_GET['casual']==1)
