@@ -2,7 +2,7 @@
 
 /* ********* SELECT CHASSIS BASED ON FILTERS ***** */
 
-function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax, $widthmin, $widthmax, $color, $weightmin, $weightmax, $made, $ports, $vports, $webmin, $webmax, $touch, $misc, $special_misc, $ratemin, $ratemax, $pricemin, $pricemax, $addmsc, $twoinone,$addpi)
+function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax, $widthmin, $widthmax, $color, $weightmin, $weightmax, $made, $charger, $ports, $vports, $webmin, $webmax, $touch, $misc, $special_misc, $ratemin, $ratemax, $pricemin, $pricemax, $addmsc, $twoinone,$addpi)
 {
 	
 //var_dump($addmsc);
@@ -139,6 +139,12 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 		
 		if($i>0){ $sel_chassis.=" ) "; }
 	}
+	
+	if($charger && $charger!="")
+	{
+		$sel_chassis.=" AND ";
+		$sel_chassis.="charger LIKE '%".$charger."%'";
+	}	
 	
 	// Port intreface filter
 	$i=0;
@@ -403,7 +409,7 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 	
 	// DO THE SEARCH
 	# echo "Query to select the CHASSIS:";
-    # echo "<br>";
+	# echo "<br>";
 	# echo "<pre>" . $sel_chassis. "</pre>";
 
 	$result = mysqli_query($GLOBALS['con'], "$sel_chassis");

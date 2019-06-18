@@ -595,8 +595,13 @@ foreach($chassis_stuff as $key => $x)
 		$chassis_stuff[]="klipsch";
 		$chassis_stuff[]="sonicmaster";
 		$chassis_stuff[]="dynaudio";
+		$chassis_stuff[]="akg";
+		$chassis_stuff[]="onkyo";
 		$chassis_stuff[]="ungroup";
 	}
+	
+	if(((stripos($x,"USB-C"))!==FALSE)&&((stripos($x,"charger"))!==FALSE))
+	{ unset($chassis_stuff[$key]); $chassis_charger="USB-C"; }
 }
 
 $addgroup=1;
