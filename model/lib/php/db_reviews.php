@@ -9,7 +9,8 @@ while($review=mysqli_fetch_array($query))
 		$nb_reviews[$nr_nb_reviews]["site"]=$review["site"];
 		if(strlen($review["title"])<1){ $review["title"]="Go to review"; } 
 		$nb_reviews[$nr_nb_reviews]["title"]=$review["title"];
-		$review["link"]=str_replace($web_address,"",$review["link"]);
+		$review["link"]=str_replace($web_address."?","",$review["link"]);
+		$review["link"]=str_replace("https://noteb.com/?","",$review["link"]);
 		$nb_reviews[$nr_nb_reviews]["link"]=$review["link"];
 		$nr_nb_reviews++;
 	}
