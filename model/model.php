@@ -729,10 +729,10 @@ else
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
 		<div> <!-- internal reviews div-->
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ListTitle">Noteb Reviews</div>
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0px;">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0px;text-align: center;">
 				<?php foreach($nb_reviews as $el) { ?>	
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ListElem">
-					<a onmousedown="OpenPage('<?php echo $el["link"]; ?>',event);"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="font-weight:bold;text-align:center;font-size:medium;cursor: pointer;"><?php echo $el["title"]; ?></div></a>
+					<a onmousedown="OpenPage('<?php echo $el["link"]; ?>',event);"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="font-weight:bold;font-size:large;cursor: pointer;"><?php echo $el["title"]; ?></div></a>
 				</div>
 			<?php } ?>
 			</div>
@@ -750,7 +750,7 @@ else
 				<?php foreach($int_reviews as $el) { ?>	
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ListElem">
 					<a href="<?php echo $el["link"]; ?>" target="blank" >
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="font-weight:bold;font-size:medium;"><?php echo $el["site"]; ?></div					
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="font-weight:bold;font-size:medium;cursor: pointer;"><?php echo $el["site"]; ?></div>
 					</a>
 				</div>
 				<?php } ?>

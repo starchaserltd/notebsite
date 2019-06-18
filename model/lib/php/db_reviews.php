@@ -7,6 +7,7 @@ while($review=mysqli_fetch_array($query))
 	if(intval($review["notebreview"])>0)
 	{
 		$nb_reviews[$nr_nb_reviews]["site"]=$review["site"];
+		if(strlen($review["title"])<1){ $review["title"]="Go to review"; } 
 		$nb_reviews[$nr_nb_reviews]["title"]=$review["title"];
 		$nb_reviews[$nr_nb_reviews]["link"]=$review["link"];
 		$nr_nb_reviews++;
