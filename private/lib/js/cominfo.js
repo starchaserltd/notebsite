@@ -81,13 +81,13 @@ function complete_text_info(model_id)
 								}
 							}
 						}
-						xmlhttp_2.open("POST","../public/lib/php/queries.php",true);
+						xmlhttp_2.open("POST",path_modifier+"../public/lib/php/queries.php",true);
 						xmlhttp_2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 						xmlhttp_2.send('list=source_info&keys='+model_id);
 					}
 				}
 			}
-			xmlhttp.open("POST","../public/lib/php/queries.php",true);
+			xmlhttp.open("POST",path_modifier+"../public/lib/php/queries.php",true);
 			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xmlhttp.send('list=com_info&keys='+model_id);
 		}
@@ -119,7 +119,7 @@ function models_msc_info(model_id)
 					}
 				}
 			}
-			xmlhttp.open("POST","../public/lib/php/queries.php",true);
+			xmlhttp.open("POST",path_modifier+"../public/lib/php/queries.php",true);
 			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xmlhttp.send('list=models_msc&keys='+model_id);
 		}

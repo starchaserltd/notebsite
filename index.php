@@ -11,15 +11,15 @@ require_once("etc/conf.php");
 		<meta name="description" content="Looking for a laptop? Search, Compare or even take a Quiz with Noteb.com to find the perfect laptop for your work, home or suggest one to your friends from over 6.000.000 configurations derived from over 900 models.">
 		<meta name="keywords" content="find,cheap,best,laptop,notebook,gaming,ultraportable,business">
 		<meta name="author" content="Starchaser">	
-		<!-- JavaScript libraries -->   
-		<script type="text/javascript" src="lib/js/jquery.min.js"></script> 	
-		<script type="text/javascript" src="lib/js/popper.min.js"></script>	
-		<script type="text/javascript" src="lib/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="lib/js/select2.min.js"></script>
-		<script type="text/javascript" src="lib/js/classList.min.js"></script>
+		<!-- JavaScript libraries --> 
+		<script src="lib/js/jquery.min.js"></script> 	
+		<script src="lib/js/popper.min.js"></script>	
+		<script src="lib/js/bootstrap.min.js"></script>
+		<script src="lib/js/select2.min.js"></script>
+		<script src="lib/js/classList.min.js"></script>
 		<!-- Bootstrap Mutliselect JavaScript -->
-		<script type="text/javascript" src="lib/js/bootstrap-multiselect.js"></script>
-		<script type="text/javascript" src="lib/js/nouislider.min.js"></script>
+		<script src="lib/js/bootstrap-multiselect.js"></script>
+		<script src="lib/js/nouislider.min.js"></script>
 		<!-- Lightbox js -->
 		<script src="lib/js/lightbox.min.js"></script> 
 		<?php echo "<script>var excode='"; if(isset($_SESSION['exchcode'])){ echo $_SESSION['exchcode'];}else{echo "USD";} echo "';</script>"; ?>
@@ -36,7 +36,7 @@ require_once("etc/conf.php");
 				<div class="row">
 					<div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" style="padding:0px; float:left; position:relative;">
 						<div class="btn-group-justified btn-group siteMenu d-flex justify-content-around">
-							<h1 class="btn blue logonb lognb menuItems"  onmousedown="OpenPage('content/home.php',event);">Looking for a laptop? Search, compare or use our quiz to find the laptop for you with Noteb search engine.</h1>
+							<h1 class="btn blue logonb lognb menuItems" onmousedown="OpenPage('content/home.php',event);">Looking for a laptop? Search, compare or use our quiz to find the laptop for you with Noteb search engine.</h1>
 							<a class="btn btn-sus blue menuItems" onmousedown="OpenPage('search/adv_search.php',event);">SEARCH</a>
 							<a class="btn btn-sus blue menuItems" onmousedown="OpenPage('content/articles.php',event);">ARTICLES</a>
 							<a class="btn btn-sus blue menuItems" onmousedown="OpenPage('content/reviews.php',event);">REVIEWS</a>
@@ -59,12 +59,12 @@ require_once("etc/conf.php");
 			</div>
 
 			<!-- left area -->	
-			<script type="text/javascript" src="libnb/js/compjsf.js" ></script><!-- compare list functions -->		
+			<script src="libnb/js/compjsf.js" ></script><!-- compare list functions -->		
 			<div class="col-lg-2 col-md-3 col-xs-12 col-sm-12 firstContainer">		
 				<div class="row">
 					<div class="col-md-12 col-xs-12 cod-sm-12 col-lg-12 searchDetailsFirstContainer">
 						<form action="javascript:void(0);" method="post" id="modelfind" style="text-align: -webkit-center;">		
-							<select class="modelsearch js-example-responsive" id="model_id" name ="model_id" data-placeholder="Search a laptop model" data-initvalue="search for a model"  style="width: 100%; margin:5px 0px 10px 0px; border-radius:1px;"> 
+							<select class="modelsearch js-example-responsive" id="model_id" name ="model_id" data-placeholder="Search a laptop model" data-initvalue="search for a model" style="width: 100%; margin:5px 0px 10px 0px; border-radius:1px;"> 
 							</select>
 						</form>
 					</div>
@@ -80,38 +80,38 @@ require_once("etc/conf.php");
 						</div>
 					</div>					
 				</div>
-				<nav class="navbar-collapse" role="navigation">	
+				<nav class="navbar-collapse">	
 					<div class="col-md-12 col-xs-12 col-sm-12 blue cssmenu" style="padding:0px">
 						<ul >
-						   <li class='has-sub'><a id="browse_menu">Browse laptops</a>
+						 <li class='has-sub'><a id="browse_menu">Browse laptops</a>
 								<ul>
 									<li class='has-sub'><a >By brand</a>
 										<ul>
-											<li><a  onmousedown="OpenPage('search/search.php?prod=HP&browse_by=prod',event); scrolltoid('content');">HP</a></li>
-											<li><a  onmousedown="OpenPage('search/search.php?prod=Lenovo&browse_by=prod',event); scrolltoid('content');">Lenovo</a></li>
-											<li><a  onmousedown="OpenPage('search/search.php?prod=Dell&browse_by=prod',event); scrolltoid('content');">Dell</a></li>
-											<li><a  onmousedown="OpenPage('search/search.php?prod=Apple&browse_by=prod',event); scrolltoid('content');">Apple</a></li>
-											<li><a  onmousedown="OpenPage('search/search.php?prod=Asus&browse_by=prod',event); scrolltoid('content');">Asus</a></li>
-											<li><a  onmousedown="OpenPage('search/search.php?prod=Acer&browse_by=prod',event); scrolltoid('content');">Acer</a></li>
-											<li><a  onmousedown="OpenPage('search/search.php?prod=Samsung&browse_by=prod',event); scrolltoid('content');">Samsung</a></li>
-											<li><a  style="color:#1D94DA" onmousedown="OpenPage('content/brands.php',event); scrolltoid('content');">Other brands</a></li>
+											<li><a onmousedown="OpenPage('search/search.php?prod=HP&browse_by=prod',event); scrolltoid('content');">HP</a></li>
+											<li><a onmousedown="OpenPage('search/search.php?prod=Lenovo&browse_by=prod',event); scrolltoid('content');">Lenovo</a></li>
+											<li><a onmousedown="OpenPage('search/search.php?prod=Dell&browse_by=prod',event); scrolltoid('content');">Dell</a></li>
+											<li><a onmousedown="OpenPage('search/search.php?prod=Apple&browse_by=prod',event); scrolltoid('content');">Apple</a></li>
+											<li><a onmousedown="OpenPage('search/search.php?prod=Asus&browse_by=prod',event); scrolltoid('content');">Asus</a></li>
+											<li><a onmousedown="OpenPage('search/search.php?prod=Acer&browse_by=prod',event); scrolltoid('content');">Acer</a></li>
+											<li><a onmousedown="OpenPage('search/search.php?prod=Samsung&browse_by=prod',event); scrolltoid('content');">Samsung</a></li>
+											<li><a style="color:#1D94DA" onmousedown="OpenPage('content/brands.php',event); scrolltoid('content');">Other brands</a></li>
 										</ul>
 									</li>	
 									<li class='has-sub'><a >By class</a>
 										<ul>
-											<li><a  onmousedown="OpenPage('search/search.php?browse_by=budget',event); scrolltoid('content');">Budget</a></li>
-											<li><a  onmousedown="OpenPage('search/search.php?browse_by=mainstream',event); scrolltoid('content');">Mainstream</a></li>
-											<li><a  onmousedown="OpenPage('search/search.php?browse_by=ultraportable',event); scrolltoid('content');">Ultraportable</a></li>
-											<li><a  onmousedown="OpenPage('search/search.php?browse_by=business',event); scrolltoid('content');">Business</a></li>
-											<li><a  onmousedown="OpenPage('search/search.php?browse_by=gaming',event); scrolltoid('content');">Gaming</a></li>
-											<li><a  onmousedown="OpenPage('search/search.php?browse_by=professional',event); scrolltoid('content');">CAD/3D modeling</a></li>
+											<li><a onmousedown="OpenPage('search/search.php?browse_by=budget',event); scrolltoid('content');">Budget</a></li>
+											<li><a onmousedown="OpenPage('search/search.php?browse_by=mainstream',event); scrolltoid('content');">Mainstream</a></li>
+											<li><a onmousedown="OpenPage('search/search.php?browse_by=ultraportable',event); scrolltoid('content');">Ultraportable</a></li>
+											<li><a onmousedown="OpenPage('search/search.php?browse_by=business',event); scrolltoid('content');">Business</a></li>
+											<li><a onmousedown="OpenPage('search/search.php?browse_by=gaming',event); scrolltoid('content');">Gaming</a></li>
+											<li><a onmousedown="OpenPage('search/search.php?browse_by=professional',event); scrolltoid('content');">CAD/3D modeling</a></li>
 										</ul>
 									</li>		
 									<li class='has-sub'><a >By screen size</a>
 										<ul>
-											<li><a  onmousedown="OpenPage('search/search.php?browse_by=smalldisplay',event); scrolltoid('content');">10" - 13.9"</a></li>
-											<li><a  onmousedown="OpenPage('search/search.php?browse_by=mediumdisplay',event); scrolltoid('content');">14" - 16.9" </a></li>
-											<li><a  onmousedown="OpenPage('search/search.php?browse_by=largedisplay',event); scrolltoid('content');">17" - 21" </a></li>
+											<li><a onmousedown="OpenPage('search/search.php?browse_by=smalldisplay',event); scrolltoid('content');">10" - 13.9"</a></li>
+											<li><a onmousedown="OpenPage('search/search.php?browse_by=mediumdisplay',event); scrolltoid('content');">14" - 16.9" </a></li>
+											<li><a onmousedown="OpenPage('search/search.php?browse_by=largedisplay',event); scrolltoid('content');">17" - 21" </a></li>
 										</ul>
 									</li>				
 								</ul>
@@ -120,13 +120,13 @@ require_once("etc/conf.php");
 					</div>		
 						
 					<div class="quickSearchContainer">
-						<button class="btn btn-title leftMenuFilters"  onclick=""><span style="color:white;">Quick search</span></button>
+						<button class="btn btn-title leftMenuFilters" onclick=""><span style="color:white;">Quick search</span></button>
 						<div class="SearchParameters" id="SearchParameters" style="display: none;">			
 							<?php include ("search/s_search.php");?>
 						</div>			
 					</div>						
 					<div style="text-align:center;">
-						<button  id="sadvsearch" onmousedown="OpenPage('search/adv_search.php',event);" type="button" class="btn blue leftMenuAdvSearch"><span style="text-decoration:none;color:white;">Advanced search</span></button>
+						<button id="sadvsearch" onmousedown="OpenPage('search/adv_search.php',event);" type="button" class="btn blue leftMenuAdvSearch"><span style="text-decoration:none;color:white;">Advanced search</span></button>
 					</div>					
 					<div class="col-md-12 col-xs-12 col-sm-12 blue cssmenu compareDropdown" style="padding:0px">
 						<ul>				
@@ -157,7 +157,7 @@ require_once("etc/conf.php");
 			</div>
 			<!-- loading animation -->
 			<div class="col-md-7 offset-md-2 col-sm-12 col-xs-12 loadingdiv col-lg-8" id="loadingNB">
-				<div class="loadingdivsec"  id="loadingNoteB">
+				<div class="loadingdivsec" id="loadingNoteB">
 					<div id="loadingNoteB_1" class="loadingNoteB"></div>
 					<div id="loadingNoteB_2" class="loadingNoteB"></div>
 					<div id="loadingNoteB_3" class="loadingNoteB"></div>
@@ -176,7 +176,7 @@ require_once("etc/conf.php");
 			</span><!-- /top-link-block -->
 			<div class="howToUse" id="howToUse">
 				<span class="glyphicon glyphicon-remove fas fa-times" aria-hidden="true"></span>							
-				<p><span class="tutorialClick hiddenMobile" onclick="OpenPage('footer/howto.php',event);">If you are new to Noteb.com <span>click here</span> for a short tutorial.</span><span class="tutorialClick displayMobile"  onclick="OpenPage('footer/howto.php',event);">How to use Noteb.</span></p>
+				<p><span class="tutorialClick hiddenMobile" onclick="OpenPage('footer/howto.php',event);">If you are new to Noteb.com <span>click here</span> for a short tutorial.</span><span class="tutorialClick displayMobile" onclick="OpenPage('footer/howto.php',event);">How to use Noteb.</span></p>
 			</div>
 			<!-- end main content -->
 			<!--left promotional space-->
@@ -193,14 +193,13 @@ require_once("etc/conf.php");
 		<link rel="stylesheet" href="lib/fonts/fontawesome/css/all.min.css" crossorigin="anonymous">
 		<link rel="stylesheet" href="lib/css/select2.min.css" type="text/css" /> 
 		<link rel="stylesheet" href="lib/css/bootstrap-multiselect.css" type="text/css" />
-		<!-- for multiselect forms -->  
+		<!-- for multiselect forms --> 
 		<link rel="stylesheet" href="lib/css/extra-fonts.css" type="text/css" />
 		<!-- menu fonts -->
 		<link rel="stylesheet" href="lib/css/socicon.min.css" type="text/css" />
 		<link rel="stylesheet" href="lib/css/bootstrap-social.css" type="text/css" />
 		<!-- socicon, bootstrap social - css for social media-->
 		<link rel="stylesheet" href="lib/css/nouislider.min.css" type="text/css"/>
-		<link rel="stylesheet" href="lib/css/nouislider.min.css" type="text/css" />
 		<link rel="stylesheet" href="libnb/css/nb.css" type="text/css" />
 		<!--custom OK	-->
 		<link rel="stylesheet" href="libnb/css/responsive.css" type="text/css" />
@@ -209,8 +208,8 @@ require_once("etc/conf.php");
 		<link rel="stylesheet" href="lib/css/lightbox.min.css" type="text/css"/>
 		<!-- Custom Theme JavaScript -->
 		<script><?php echo 'var siteroot = "'.$web_address.'";'; ?></script>
-		<script type="text/javascript" src="libnb/js/tooltip.js" async></script>
-		<script type="text/javascript" src="libnb/js/index.js"></script>
-		<script type="text/javascript" src="libnb/js/presearch.js"></script>
+		<script src="libnb/js/tooltip.js" async></script>
+		<script src="libnb/js/index.js"></script>
+		<script src="libnb/js/presearch.js"></script>
 	</body>
 </html>

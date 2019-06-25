@@ -1,4 +1,5 @@
 nrcheckchange=-1;
+if(nrcheck===undefined){nrcheck=0;}
 
 function addcomplink(idstring)
 {
