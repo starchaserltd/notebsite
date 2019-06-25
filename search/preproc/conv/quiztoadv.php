@@ -607,7 +607,8 @@ if (isset($_GET['b2000']) && $_GET['b2000']==1)
 {	if(isset($budgetmin) && $budgetmin>1425) { $budgetmin=1425; } if(isset($budgetmax) && $budgetmax<2170) { $budgetmax=2170; } }
 
 if (isset($_GET['b3000']) && $_GET['b3000']==1)
-{	if(isset($budgetmin) && $budgetmin>1850) { $budgetmin=1850; } if(isset($budgetmax) && $budgetmax<8000) { $budgetmax=2147483647; } }
+{	if(isset($budgetmin) && $budgetmin>1850) { $budgetmin=1850; } if(isset($budgetmax) && $budgetmax<8000) { $budgetmax=8000*4; if(isset($nomenvalues[14][2])){ $nomenvalues[14][2]=floatval($nomenvalues[14][2]); if($nomenvalues[14][2]>100){ $budgetmax=$nomenvalues[14][2];} } }
+} 
 
 if ($qsearchtype!=="p" && $qsearchtype!=="b")
 {	

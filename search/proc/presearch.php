@@ -15,7 +15,7 @@ foreach($list_comps_to_ignore as $val)
 	$i++;
 }
 
-$sql_presearch="SELECT GROUP_CONCAT(CONCAT(`model_id`,'+',`p_model`)) as `ids` FROM `notebro_temp`.`presearch_tbl` WHERE "; $model_id_new=array(); $start_id_model=0; $has_or=0;
+$sql_presearch="SELECT GROUP_CONCAT(CONCAT(`model_id`,'+',`p_model`)) AS `ids`,MIN(`min_batlife`) AS `min_batlife` FROM `notebro_temp`.`presearch_tbl` WHERE "; $model_id_new=array(); $start_id_model=0; $has_or=0;
 
 foreach($comp_lists as $key=>$val)
 {
@@ -48,7 +48,7 @@ foreach($comp_lists as $key=>$val)
 	}
 	else
 	{
-		if(is_array($val)&&reset($val)==NULL){$no_comp_search[]=$key; $sql_presearch="SELECT GROUP_CONCAT(CONCAT(`model_id`,'+',`p_model`)) as `ids` FROM `notebro_temp`.`presearch_tbl` WHERE 1=0 "; }
+		if(is_array($val)&&reset($val)==NULL){$no_comp_search[]=$key; $sql_presearch="SELECT GROUP_CONCAT(CONCAT(`model_id`,'+',`p_model`)) AS `ids`,MIN(`min_batlife`) AS `min_batlife` FROM `notebro_temp`.`presearch_tbl` WHERE 1=0 "; }
 	}
 
 	if($empty_cond){$sql_presearch.="1=1";}

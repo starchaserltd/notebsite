@@ -190,17 +190,27 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 	<?php
 	if($presearch_models_nr>0)
 	{
+		
+		$presearch_text=array(); $presearch_text["laptop"]="laptops"; $presearch_text["match"]="match"; $presearch_text["they"]="they are all";
+		if($presearch_models_nr==1){ $presearch_text["laptop"]="laptop"; $presearch_text["match"]="matches"; $presearch_text["they"]="it is"; }
 		preg_match("/(.search\.php)(.+)/",$_SERVER["REQUEST_URI"],$search_matches); if(isset($search_matches[2])){ $search_string=$search_matches[2];}else{$search_string="";}
+		$pre_minbat_text="with lower battery life.";
 		if ($issimple) 
 		{ $search_string=preg_replace("/.bdgmin=\d+/","",preg_replace("/.bdgmax=\d+/","",$search_string)); }
 		else if ( isset($_GET['advsearch']) && $_GET['advsearch'])
-		{ $search_string=preg_replace("/.bdgminadv=\d+/","",preg_replace("/.bdgmaxadv=\d+/","",$search_string)); }
+		{ if($presearch_min_batlife<($batlife_min/2)){$presearch_min_batlife=$batlife_min/2;} $search_string=preg_replace("/.batlifemin=[0-9]*\.?[0-9]/","&batlifemin=".$presearch_min_batlife,preg_replace("/.bdgminadv=\d+/","",preg_replace("/.bdgmaxadv=\d+/","",$search_string))); }
 		else if ( isset($_GET['quizsearch']) && $_GET['quizsearch'])
-		{ $search_string=preg_replace("/.b\d+=1/","",$search_string); }
+		{
+			if($presearch_min_batlife<7.5) { $search_string=preg_replace("/12hour=1/","12hour=0",$search_string); if(stripos($search_string,"10hour")===FALSE){$search_string.="&10hour=1";}}
+			if($presearch_min_batlife<4.9) { $search_string=preg_replace("/10hour=1/","10hour=0",$search_string); if(stripos($search_string,"6hour")===FALSE){$search_string.="&6hour=1";}}
+			if($presearch_min_batlife<2.7) { $search_string=preg_replace("/6hour=1/","6hour=0",$search_string); if(stripos($search_string,"2hour")===FALSE){$search_string.="&2hour=1";}}
+			if($presearch_min_batlife<0.9) { $search_string=preg_replace("/2hour=1/","2hour=0",$search_string); }
+			$search_string=preg_replace("/.b\d+=1/","",$search_string);
+		}
 		else
 		{$search_string="";}
 		if($search_string!=""){$search_string="search/search.php".$search_string;}
-		echo '<div style="margin-top:2px;">We found <span style="font-size: 12pt;"><a href="javascript:void(0);" onmousedown="OpenPage('."'".$search_string."'".')"><b>'.$presearch_models_nr.' laptops</b></a></span> that match your search criteria, but they are all outside your budget range ('.$exchsign."".round($budgetmin*$exch)." - ".$exchsign."".round($budgetmax*$exch).').<br><br><a href="javascript:void(0);" onmousedown="OpenPage('."'".$search_string."'".')">You can see here the matches outside your budget.<br></a></div>';
+		echo '<div style="margin-top:2px;">We found at least <span style="font-size: 12pt;"><a href="javascript:void(0);" onmousedown="OpenPage('."'".$search_string."'".')"><b>'.$presearch_models_nr.' '.$presearch_text["laptop"].'</b></a></span> that '.$presearch_text["match"].' your search criteria, but '.$presearch_text["they"].' outside your budget range ('.$exchsign."".round($budgetmin*$exch)." - ".$exchsign."".round($budgetmax*$exch).') and '.$pre_minbat_text.'<br><br><a href="javascript:void(0);" onmousedown="OpenPage('."'".$search_string."'".')">You can see here the matches outside your budget.<br></a></div>';
 	}
 	else
 	{
