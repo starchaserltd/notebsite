@@ -344,10 +344,7 @@ noUiSlider.create(document.getElementById('capacity'), {
 	step: 1,
 	direction: 'ltr',
 	format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
-	range: {
-		'min': [hddcapmin],
-		'max': [hddcapmax]		
-		}
+	range: listrange(list_hddsize)
 });
 
 //SET CAPACITY SLIDER TEXT UPDATE FUNCTIONS
