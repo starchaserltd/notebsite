@@ -36,18 +36,21 @@ function sliderrangeadv(old)
 	$('#bdgmaxadv').val(roundlimitadv(y));
 }			
 
-//CREATE CPU DATE SLIDER						
-noUiSlider.create(document.getElementById('launchdate'), {
-	start: [cpumindateset, cpumaxdateset],
-	connect: true,
-	step: 1,
-	direction: 'ltr',
-	format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
-	range: {
-		'min': [cpumindate],
-		'max': [cpumaxdate]		
-	}
-});
+//CREATE CPU DATE SLIDER
+if(document.getElementById('launchdate').noUiSlider===undefined)
+{	
+	noUiSlider.create(document.getElementById('launchdate'), {
+		start: [cpumindateset, cpumaxdateset],
+		connect: true,
+		step: 1,
+		direction: 'ltr',
+		format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
+		range: {
+			'min': [cpumindate],
+			'max': [cpumaxdate]		
+		}
+	});
+}
 
 //SET CPU DATE SLIDER TEXT UPDATE FUNCTIONS
 document.getElementById('launchdate').noUiSlider.on('update', function( values, handle ) 
@@ -63,18 +66,21 @@ document.getElementById('launchdate').noUiSlider.on('update', function( values, 
 	document.getElementById('launchdateval').innerHTML=left+" - "+right;
 });
 
-//CREATE CPU CORE SLIDER						
-noUiSlider.create(document.getElementById('nrcores'), {
-	start: [cpucoreminset, cpucoremaxset],
-	connect: true,
-	step: 2,
-	direction: 'ltr',
-	format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
-	range: {
-		'min': [cpumincore],
-		'max': [cpumaxcore]		
-	}
-});
+//CREATE CPU CORE SLIDER
+if(document.getElementById('nrcores').noUiSlider===undefined)
+{					
+	noUiSlider.create(document.getElementById('nrcores'), {
+		start: [cpucoreminset, cpucoremaxset],
+		connect: true,
+		step: 2,
+		direction: 'ltr',
+		format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
+		range: {
+			'min': [cpumincore],
+			'max': [cpumaxcore]		
+		}
+	});
+}
 
 //SET CPU CORE SLIDER TEXT UPDATE FUNCTIONS
 document.getElementById('nrcores').noUiSlider.on('update', function( values, handle ) 
@@ -89,22 +95,25 @@ document.getElementById('nrcores').noUiSlider.on('update', function( values, han
 	if(handle==1) {	document.getElementById('nrcoresmax').value=right; filtersearch('nrcoresmax',right,0); }
 	document.getElementById('nrcoresval').innerHTML=left+" - "+right;
 });
-						
-//CREATE CPU TDP SLIDER						
-noUiSlider.create(document.getElementById('cputdp'), {
-	start: [cputdpminset, cputdpmaxset],
-	connect: true,
-	//step: 1,
-	direction: 'ltr',
-	format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
-	range: {
-		'min': [cputdpmin,0.5],
-		'25%': [10,1],
-		'50%': [35,2],
-		'70%': [60,5],
-		'max': [cputdpmax,5]		
-	}
-});
+
+//CREATE CPU TDP SLIDER	
+if(document.getElementById('cputdp').noUiSlider===undefined)
+{										
+	noUiSlider.create(document.getElementById('cputdp'), {
+		start: [cputdpminset, cputdpmaxset],
+		connect: true,
+		//step: 1,
+		direction: 'ltr',
+		format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
+		range: {
+			'min': [cputdpmin,0.5],
+			'25%': [10,1],
+			'50%': [35,2],
+			'70%': [60,5],
+			'max': [cputdpmax,5]		
+		}
+	});
+}
 
 //SET CPU TDP SLIDER TEXT UPDATE FUNCTIONS
 document.getElementById('cputdp').noUiSlider.on('update', function( values, handle )
@@ -120,19 +129,22 @@ document.getElementById('cputdp').noUiSlider.on('update', function( values, hand
 	if(handle==1) {	document.getElementById('cputdpmax').value=right; filtersearch('cputdpmax',right,0); }
 	document.getElementById('cputdpval').innerHTML=left+" - "+right;
 });
-						
-//CREATE CPU FREQ SLIDER						
-noUiSlider.create(document.getElementById('cpufreq'), {
-	start: [cpufreqminset, cpufreqmaxset],
-	connect: true,
-	step: 0.1,
-	direction: 'ltr',
-	format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
-	range: {
-		'min': [cpufreqmin],
-		'max': [cpufreqmax]		
-	}
-});
+
+//CREATE CPU FREQ SLIDER
+if(document.getElementById('cpufreq').noUiSlider===undefined)
+{										
+	noUiSlider.create(document.getElementById('cpufreq'), {
+		start: [cpufreqminset, cpufreqmaxset],
+		connect: true,
+		step: 0.1,
+		direction: 'ltr',
+		format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
+		range: {
+			'min': [cpufreqmin],
+			'max': [cpufreqmax]		
+		}
+	});
+}
 
 //SET CPU FREQ SLIDER TEXT UPDATE FUNCTIONS
 document.getElementById('cpufreq').noUiSlider.on('update', function( values, handle )
@@ -147,16 +159,19 @@ document.getElementById('cpufreq').noUiSlider.on('update', function( values, han
 	if(handle==1) {	document.getElementById('cpufreqmax').value=right; filtersearch('cpufreqmax',right,0); }
 	document.getElementById('cpufreqval').innerHTML=left+" - "+right;
 });
-						
-//CREATE TECH CPU SLIDER						
-noUiSlider.create(document.getElementById('cputech'), {
-	start: [cputechminset, cputechmaxset],
-	connect: true,
-	step: 1,
-	direction: 'ltr',
-	format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
-	range: listrange(list_cputech)
-});
+
+//CREATE TECH CPU SLIDER	
+if(document.getElementById('cputech').noUiSlider===undefined)
+{											
+	noUiSlider.create(document.getElementById('cputech'), {
+		start: [cputechminset, cputechmaxset],
+		connect: true,
+		step: 1,
+		direction: 'ltr',
+		format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
+		range: listrange(list_cputech)
+	});
+}
 
 //SET CPU TECH SLIDER TEXT UPDATE FUNCTIONS
 document.getElementById('cputech').noUiSlider.on('update', function( values, handle )
@@ -172,15 +187,18 @@ document.getElementById('cputech').noUiSlider.on('update', function( values, han
 	document.getElementById('cputechval').innerHTML=left+" - "+right;
 });
 
-//CREATE GPU MEM SLIDER						
-noUiSlider.create(document.getElementById('gpumem'), {
-	start: [gpumemminset, gpumemmaxset],
-	connect: true,
-	step: 1,
-	direction: 'ltr',
-	format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
-	range: listrange(list_gpumem)
-});
+//CREATE GPU MEM SLIDER
+if(document.getElementById('gpumem').noUiSlider===undefined)
+{				
+	noUiSlider.create(document.getElementById('gpumem'), {
+		start: [gpumemminset, gpumemmaxset],
+		connect: true,
+		step: 1,
+		direction: 'ltr',
+		format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
+		range: listrange(list_gpumem)
+	});
+}
 
 //SET GPU MEM SLIDER TEXT UPDATE FUNCTIONS
 document.getElementById('gpumem').noUiSlider.on('update', function( values, handle )
@@ -198,15 +216,18 @@ document.getElementById('gpumem').noUiSlider.on('update', function( values, hand
 
 document.getElementById('gpumem').setAttribute('disabled', true);
 
-//CREATE GPU BUS SLIDER						
-noUiSlider.create(document.getElementById('gpubus'), {
-	start: [gpumembusminset, gpumembusmaxset],
-	connect: true,
-	step: gpumembusmin,
-	direction: 'ltr',
-	format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
-	range: listrange(list_gpumembus)
-});
+//CREATE GPU BUS SLIDER
+if(document.getElementById('gpubus').noUiSlider===undefined)
+{			
+	noUiSlider.create(document.getElementById('gpubus'), {
+		start: [gpumembusminset, gpumembusmaxset],
+		connect: true,
+		step: gpumembusmin,
+		direction: 'ltr',
+		format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
+		range: listrange(list_gpumembus)
+	});
+}
 
 //SET GPU BUS SLIDER TEXT UPDATE FUNCTIONS
 document.getElementById('gpubus').noUiSlider.on('update', function( values, handle )
@@ -224,20 +245,23 @@ document.getElementById('gpubus').noUiSlider.on('update', function( values, hand
 
 document.getElementById('gpubus').setAttribute('disabled', true);
 
-//CREATE GPU BUS SLIDER						
-noUiSlider.create(document.getElementById('gpupower'), {
-	start: [gpupowerminset, gpupowermaxset],
-	connect: true,
-	step: 2,
-	direction: 'ltr',
-	format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
-	range: {
-		'min': [gpupowermin,1],
-		'30%': [30,2],
-		'60%': [55,5],
-		'max': [gpupowermax]		
-		}
-});
+//CREATE GPU BUS SLIDER
+if(document.getElementById('gpupower').noUiSlider===undefined)
+{				
+	noUiSlider.create(document.getElementById('gpupower'), {
+		start: [gpupowerminset, gpupowermaxset],
+		connect: true,
+		step: 2,
+		direction: 'ltr',
+		format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
+		range: {
+			'min': [gpupowermin,1],
+			'30%': [30,2],
+			'60%': [55,5],
+			'max': [gpupowermax]		
+			}
+	});
+}
 
 //SET GPU BUS SLIDER TEXT UPDATE FUNCTIONS
 document.getElementById('gpupower').noUiSlider.on('update', function( values, handle )
@@ -255,19 +279,21 @@ document.getElementById('gpupower').noUiSlider.on('update', function( values, ha
 
 document.getElementById('gpupower').setAttribute('disabled', true);	
 
-
-//CREATE GPU DATE SLIDER						
-noUiSlider.create(document.getElementById('gpulaunchdate'), {
-	start: [gpumindateset, gpumaxdateset],
-	connect: true,
-	step: 1,
-	direction: 'ltr',
-	format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
-	range: {
-		'min': [gpumindate],
-		'max': [gpumaxdate]		
-	}
-});
+//CREATE GPU DATE SLIDER	
+if(document.getElementById('gpulaunchdate').noUiSlider===undefined)
+{						
+	noUiSlider.create(document.getElementById('gpulaunchdate'), {
+		start: [gpumindateset, gpumaxdateset],
+		connect: true,
+		step: 1,
+		direction: 'ltr',
+		format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
+		range: {
+			'min': [gpumindate],
+			'max': [gpumaxdate]		
+		}
+	});
+}
 
 //SET GPU DATE SLIDER TEXT UPDATE FUNCTIONS
 document.getElementById('gpulaunchdate').noUiSlider.on('update', function( values, handle ) 
@@ -286,15 +312,18 @@ document.getElementById('gpulaunchdate').noUiSlider.on('update', function( value
 document.getElementById('gpulaunchdate').setAttribute('disabled', true);	
 
 
-//CREATE DISPLAY SLIDER						
-noUiSlider.create(document.getElementById('display'), {
-	start: [displaysizeminset, displaysizemaxset],
-	connect: true,
-	step: 0.1,
-	direction: 'ltr',
-	format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
-	range: listrange(list_displaysize)
-});
+//CREATE DISPLAY SLIDER	
+if(document.getElementById('display').noUiSlider===undefined)
+{					
+	noUiSlider.create(document.getElementById('display'), {
+		start: [displaysizeminset, displaysizemaxset],
+		connect: true,
+		step: 0.1,
+		direction: 'ltr',
+		format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
+		range: listrange(list_displaysize)
+	});
+}
 
 //SET DISPLAY SLIDER TEXT UPDATE FUNCTIONS
 document.getElementById('display').noUiSlider.on('update', function( values, handle )
@@ -311,15 +340,18 @@ document.getElementById('display').noUiSlider.on('update', function( values, han
 	document.getElementById('displayval').innerHTML=left+" - "+right+ " inch";  
 });
 
-//CREATE VERTICAL RES DISPLAY SLIDER						
-noUiSlider.create(document.getElementById('verres'), {
-	start: [displayvresminset, displayvresmaxset],
-	connect: true,
-	step: 10,
-	direction: 'ltr',
-	format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
-	range: listrange(list_verres)
-});
+//CREATE VERTICAL RES DISPLAY SLIDER
+if(document.getElementById('verres').noUiSlider===undefined)
+{				
+	noUiSlider.create(document.getElementById('verres'), {
+		start: [displayvresminset, displayvresmaxset],
+		connect: true,
+		step: 10,
+		direction: 'ltr',
+		format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
+		range: listrange(list_verres)
+	});
+}
 
 //SET VERTICAL RES DISPLAY SLIDER TEXT UPDATE FUNCTIONS
 document.getElementById('verres').noUiSlider.on('update', function( values, handle )
@@ -337,15 +369,18 @@ document.getElementById('verres').noUiSlider.on('update', function( values, hand
 });
 
 
-//CREATE CAPACITY SLIDER						
-noUiSlider.create(document.getElementById('capacity'), {
-	start: [totalcapminset, totalcapmaxset],
-	connect: true,
-	step: 1,
-	direction: 'ltr',
-	format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
-	range: listrange(list_hddsize)
-});
+//CREATE CAPACITY SLIDER
+if(document.getElementById('capacity').noUiSlider===undefined)
+{					
+	noUiSlider.create(document.getElementById('capacity'), {
+		start: [totalcapminset, totalcapmaxset],
+		connect: true,
+		step: 1,
+		direction: 'ltr',
+		format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
+		range: listrange(list_hddsize)
+	});
+}
 
 //SET CAPACITY SLIDER TEXT UPDATE FUNCTIONS
 document.getElementById('capacity').noUiSlider.on('update', function( values, handle )
@@ -361,15 +396,18 @@ document.getElementById('capacity').noUiSlider.on('update', function( values, ha
 	document.getElementById('capacityval').innerHTML=left+" - "+right+" GB";
 });
 
-//CREATE MEM CAP SLIDER						
-noUiSlider.create(document.getElementById('ram'), {
-	start: [memcapminset, memcapmaxset],
-	connect: true,
-	step: 1,
-	direction: 'ltr',
-	format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
-	range: listrange(list_memcap)
-});
+//CREATE MEM CAP SLIDER
+if(document.getElementById('ram').noUiSlider===undefined)
+{				
+	noUiSlider.create(document.getElementById('ram'), {
+		start: [memcapminset, memcapmaxset],
+		connect: true,
+		step: 1,
+		direction: 'ltr',
+		format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
+		range: listrange(list_memcap)
+	});
+}
 
 //SET MEM CAP SLIDER TEXT UPDATE FUNCTIONS
 document.getElementById('ram').noUiSlider.on('update', function( values, handle )
@@ -385,15 +423,18 @@ document.getElementById('ram').noUiSlider.on('update', function( values, handle 
 	document.getElementById('ramval').innerHTML=left+" - "+right+ " GB";
 });
 						
-//CREATE MEM SPEED SLIDER						
-noUiSlider.create(document.getElementById('freq'), {
-	start: [memfreqminset, memfreqmaxset],
-	connect: true,
-	step: 1,
-	direction: 'ltr',
-	format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
-	range: listrange(list_memfreq)
-});
+//CREATE MEM SPEED SLIDER
+if(document.getElementById('freq').noUiSlider===undefined)
+{					
+	noUiSlider.create(document.getElementById('freq'), {
+		start: [memfreqminset, memfreqmaxset],
+		connect: true,
+		step: 1,
+		direction: 'ltr',
+		format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
+		range: listrange(list_memfreq)
+	});
+}
 
 //SET MEM SPEED SLIDER TEXT UPDATE FUNCTIONS
 document.getElementById('freq').noUiSlider.on('update', function( values, handle )
@@ -409,18 +450,21 @@ document.getElementById('freq').noUiSlider.on('update', function( values, handle
 	document.getElementById('freqval').innerHTML=left+" - "+right+" Mhz";
 });
 
-//CREATE BATTERY SLIDER						
-noUiSlider.create(document.getElementById('batlife'), {
-	start: [batlifeminset, batlifemaxset],
-	connect: true,
-	step: 0.1,
-	direction: 'ltr',
-	format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
-	range: {
-		'min': [batlifemin],
-		'max': [batlifemax]		
-		}
-});
+//CREATE BATTERY SLIDER
+if(document.getElementById('batlife').noUiSlider===undefined)
+{				
+	noUiSlider.create(document.getElementById('batlife'), {
+		start: [batlifeminset, batlifemaxset],
+		connect: true,
+		step: 0.1,
+		direction: 'ltr',
+		format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
+		range: {
+			'min': [batlifemin],
+			'max': [batlifemax]		
+			}
+	});
+}
 
 //SET BATTERY SLIDER TEXT UPDATE FUNCTIONS
 document.getElementById('batlife').noUiSlider.on('update', function( values, handle )
@@ -436,18 +480,21 @@ document.getElementById('batlife').noUiSlider.on('update', function( values, han
 	document.getElementById('batlifeval').innerHTML=left+" - "+right+" h";
 });
 
-//CREATE ACUM CAP SLIDER						
-noUiSlider.create(document.getElementById('acumcap'), {
-	start: [acumcapminset, acumcapmaxset],
-	connect: true,
-	step: 1,
-	direction: 'ltr',
-	format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
-	range: {
-			'min': [acumcapmin],
-			'max': [acumcapmax]		
-		}
-});
+//CREATE ACUM CAP SLIDER
+if(document.getElementById('acumcap').noUiSlider===undefined)
+{					
+	noUiSlider.create(document.getElementById('acumcap'), {
+		start: [acumcapminset, acumcapmaxset],
+		connect: true,
+		step: 1,
+		direction: 'ltr',
+		format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
+		range: {
+				'min': [acumcapmin],
+				'max': [acumcapmax]		
+			}
+	});
+}
 
 //SET ACUM CAP SLIDER TEXT UPDATE FUNCTIONS
 document.getElementById('acumcap').noUiSlider.on('update', function( values, handle )
@@ -463,18 +510,21 @@ document.getElementById('acumcap').noUiSlider.on('update', function( values, han
 	document.getElementById('acumcapval').innerHTML=left+" - "+right+" Whr";
 });
 
-//CREATE WEIGHT SLIDER						
-noUiSlider.create(document.getElementById('weight'), {
-	start: [chassisweightminset, chassisweightmaxset],
-	connect: true,
-	step: 0.1,
-	direction: 'ltr',
-	format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
-	range: {
-			'min': [chassisweightmin],
-			'max': [chassisweightmax]		
-		}
-});
+//CREATE WEIGHT SLIDER
+if(document.getElementById('weight').noUiSlider===undefined)
+{			
+	noUiSlider.create(document.getElementById('weight'), {
+		start: [chassisweightminset, chassisweightmaxset],
+		connect: true,
+		step: 0.1,
+		direction: 'ltr',
+		format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
+		range: {
+				'min': [chassisweightmin],
+				'max': [chassisweightmax]		
+			}
+	});
+}
 
 //SET WEIGHT SLIDER TEXT UPDATE FUNCTIONS
 document.getElementById('weight').noUiSlider.on('update', function( values, handle )
@@ -490,18 +540,21 @@ document.getElementById('weight').noUiSlider.on('update', function( values, hand
 	document.getElementById('weightval').innerHTML=(left.toFixed(2)+" - "+right.toFixed(2)+ " (kg) / "+(left*2.2046226218).toFixed(2)+ " - "+ (right*2.2046226218).toFixed(2)+ " (lb)");
 });				 
 
-//CREATE THICKNESS SLIDER						
-noUiSlider.create(document.getElementById('thickness'), {
-	start: [chassisthicminset, chassisthicmaxset],
-	connect: true,
-	step: 0.1,
-	direction: 'ltr',
-	format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },							
-	range: {
-			'min': [chassisthicmin],
-			'max': [chassisthicmax]		
-		}
-});
+//CREATE THICKNESS SLIDER
+if(document.getElementById('thickness').noUiSlider===undefined)
+{				
+	noUiSlider.create(document.getElementById('thickness'), {
+		start: [chassisthicminset, chassisthicmaxset],
+		connect: true,
+		step: 0.1,
+		direction: 'ltr',
+		format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },							
+		range: {
+				'min': [chassisthicmin],
+				'max': [chassisthicmax]		
+			}
+	});
+}
 
 //SET THICKNESS SLIDER TEXT UPDATE FUNCTIONS
 document.getElementById('thickness').noUiSlider.on('update', function( values, handle )
@@ -517,18 +570,21 @@ document.getElementById('thickness').noUiSlider.on('update', function( values, h
 	document.getElementById('thicval').innerHTML=(left/10).toFixed(2)+" - "+(right/10).toFixed(2)+" (cm) / "+(left/10*0.393701).toFixed(2)+" - "+(right/10*0.393701).toFixed(2)+" (inch)";
 });				 
 
-//CREATE WIDTH SLIDER						
-noUiSlider.create(document.getElementById('width'), {
-	start: [chassiswidthminset, chassiswidthmaxset],
-	connect: true,
-	step: 0.1,
-	direction: 'ltr',
-	format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
-	range: {
-			'min': [chassiswidthmin],
-			'max': [chassiswidthmax]		
-		}
-});
+//CREATE WIDTH SLIDER
+if(document.getElementById('width').noUiSlider===undefined)
+{					
+	noUiSlider.create(document.getElementById('width'), {
+		start: [chassiswidthminset, chassiswidthmaxset],
+		connect: true,
+		step: 0.1,
+		direction: 'ltr',
+		format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
+		range: {
+				'min': [chassiswidthmin],
+				'max': [chassiswidthmax]		
+			}
+	});
+}
 
 //SET WIDTH SLIDER TEXT UPDATE FUNCTIONS
 document.getElementById('width').noUiSlider.on('update', function( values, handle )
@@ -544,18 +600,21 @@ document.getElementById('width').noUiSlider.on('update', function( values, handl
 	document.getElementById('widthval').innerHTML=(left/10).toFixed(2)+" - "+(right/10).toFixed(2)+" (cm) / "+(left/10*0.393701).toFixed(2)+" - "+(right/10*0.393701).toFixed(2)+" (inch)";
 });				 
 
-//CREATE DEPTH SLIDER						
-noUiSlider.create(document.getElementById('depth'), {
-	start: [chassisdepthminset, chassisdepthmaxset],
-	connect: true,
-	step: 0.1,
-	direction: 'ltr',
-	format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
-	range: {
-		'min': [chassisdepthmin],
-		'max': [chassisdepthmax]
-	}		
-});
+//CREATE DEPTH SLIDER
+if(document.getElementById('depth').noUiSlider===undefined)
+{					
+	noUiSlider.create(document.getElementById('depth'), {
+		start: [chassisdepthminset, chassisdepthmaxset],
+		connect: true,
+		step: 0.1,
+		direction: 'ltr',
+		format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
+		range: {
+			'min': [chassisdepthmin],
+			'max': [chassisdepthmax]
+		}		
+	});
+}
 
 //SET DEPTH SLIDER TEXT UPDATE FUNCTIONS
 document.getElementById('depth').noUiSlider.on('update', function( values, handle )
@@ -571,15 +630,18 @@ document.getElementById('depth').noUiSlider.on('update', function( values, handl
 	document.getElementById('depthval').innerHTML=(left/10).toFixed(2)+" - "+(right/10).toFixed(2)+" (cm) / "+(left/10*0.393701).toFixed(2)+" - "+(right/10*0.393701).toFixed(2)+" (inch)";
 });				 
 
-//CREATE WEBCAM SLIDER						
-noUiSlider.create(document.getElementById('web'), {
-	start: [chassiswebminset, chassiswebmaxset],
-	connect: true,
-	step: 0.1,
-	direction: 'ltr',
-	format: { to: function(value){ return parseFloat(value); }, from: function(value){ return parseFloat(value); } },
-	range: listrange(list_chassisweb)
-});
+//CREATE WEBCAM SLIDER
+if(document.getElementById('web').noUiSlider===undefined)
+{
+	noUiSlider.create(document.getElementById('web'), {
+		start: [chassiswebminset, chassiswebmaxset],
+		connect: true,
+		step: 0.1,
+		direction: 'ltr',
+		format: { to: function(value){ return parseFloat(value); }, from: function(value){ return parseFloat(value); } },
+		range: listrange(list_chassisweb)
+	});
+}
 
 //SET WEBCAM SPEED TEXT UPDATE FUNCTIONS
 document.getElementById('web').noUiSlider.on('update', function( values, handle )
@@ -595,18 +657,21 @@ document.getElementById('web').noUiSlider.on('update', function( values, handle 
 	document.getElementById('webval').innerHTML=left+" - "+right+" MP";
 });	
 				
-//CREATE WARRANTY SLIDER						
-noUiSlider.create(document.getElementById('years'), {
-	start: [waryearsminset, waryearsmaxset],
-	connect: true,
-	step: 1,
-	direction: 'ltr',
-	format: { to: function(value){ return parseFloat(value); }, from: function(value){ return parseFloat(value); } },
-	range: {
-			'min': [waryearsmin],
-			'max': [waryearsmax]		
-		}
-});
+//CREATE WARRANTY SLIDER
+if(document.getElementById('years').noUiSlider===undefined)
+{
+	noUiSlider.create(document.getElementById('years'), {
+		start: [waryearsminset, waryearsmaxset],
+		connect: true,
+		step: 1,
+		direction: 'ltr',
+		format: { to: function(value){ return parseFloat(value); }, from: function(value){ return parseFloat(value); } },
+		range: {
+				'min': [waryearsmin],
+				'max': [waryearsmax]		
+			}
+	});
+}
 
 //SET WARRANTY SLIDER TEXT UPDATE FUNCTIONS
 document.getElementById('years').noUiSlider.on('update', function( values, handle )
