@@ -57,15 +57,18 @@ $(document).ready(function()
 	$('#region_type').multiselect(btnsearchval);
 	$('#graphics').multiselect('disable');
 	
-	//CREATE MEMORY SLIDER	
-	noUiSlider.create(document.getElementById('s_mem'), {
-		start: [8, 16],
-		connect: true,
-		step: 4,
-		direction: 'ltr',
-		format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
-		range: listrange([2,4,8,16,24,32])
-	});
+	//CREATE MEMORY SLIDER
+	if(document.getElementById('s_mem').noUiSlider===undefined)
+	{
+		noUiSlider.create(document.getElementById('s_mem'), {
+			start: [8, 16],
+			connect: true,
+			step: 4,
+			direction: 'ltr',
+			format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
+			range: listrange([2,4,8,16,24,32])
+		});
+	}
 
 	//SET MEMORY SLIDER TEXT UPDATE FUNCTIONS
 	document.getElementById('s_mem').noUiSlider.on('update', function( values, handle ) {
@@ -80,16 +83,19 @@ $(document).ready(function()
 		document.getElementById('s_memval').innerHTML=left+" - "+right;
 	});
 
-	//CREATE STORAGE SLIDER	
-	noUiSlider.create(document.getElementById('s_hdd'), {
-		start: [180, 2048],
-		connect: true,
-		step: 4,
-		direction: 'ltr',
-		format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
-		range: listrange([32,64,128,180,256,512,768,1024,2048])
-	});
-
+	//CREATE STORAGE SLIDER
+	if(document.getElementById('s_hdd').noUiSlider===undefined)
+	{
+		noUiSlider.create(document.getElementById('s_hdd'), {
+			start: [180, 2048],
+			connect: true,
+			step: 4,
+			direction: 'ltr',
+			format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
+			range: listrange([32,64,128,180,256,512,768,1024,2048])
+		});
+	}
+	
 	//SET STORAGE SLIDER TEXT UPDATE FUNCTIONS
 	document.getElementById('s_hdd').noUiSlider.on('update', function( values, handle ) {
 		if (typeof values[0] === 'string' || values[0] instanceof String)
@@ -103,15 +109,18 @@ $(document).ready(function()
 		document.getElementById('s_hddval').innerHTML=left+" - "+right;
 	});
 	
-	//CREATE DISPLAY SLIDER	
-	noUiSlider.create(document.getElementById('s_dispsize'), {
-		start: [14, 16.1],
-		connect: true,
-		step: 4,
-		direction: 'ltr',
-		format: { to: function(value){ return parseFloat(value); }, from: function(value){ return parseFloat(value); } },
-		range: listrange([10.1,12,13.3,13.9,14,15,15.4,15.6,16.1,17,18.1])
-	});
+	//CREATE DISPLAY SLIDER
+	if(document.getElementById('s_dispsize').noUiSlider===undefined)
+	{
+		noUiSlider.create(document.getElementById('s_dispsize'), {
+			start: [14, 16.1],
+			connect: true,
+			step: 4,
+			direction: 'ltr',
+			format: { to: function(value){ return parseFloat(value); }, from: function(value){ return parseFloat(value); } },
+			range: listrange([10.1,12,13.3,13.9,14,15,15.4,15.6,16.1,17,18.1])
+		});
+	}
 
 	//SET SDISPLAY SLIDER TEXT UPDATE FUNCTIONS
 	document.getElementById('s_dispsize').noUiSlider.on('update', function( values, handle ) {	
