@@ -140,7 +140,7 @@ if($api_key!==""&&$api_key!==NULL)
 						}
 						break;
 					}
-					case "list_primary_models":
+					case "list_group_models":
 					{
 						$response->code=26; $response->message="Valid method."; $response->daily_hits_left=$hits_left;
 						$object_addr=$response->result;
