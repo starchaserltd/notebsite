@@ -149,7 +149,10 @@ if($api_key!==""&&$api_key!==NULL)
 							$param['model_id']=intval($param['model_id']);
 							require_once("lib/model_param.php");
 							$primary_model_list=comp_details("get_primary_models",$param['model_id']);
-							$response->result=$primary_model_list;
+							if(isset($primary_model_list[0]))
+							{	$response->result=$primary_model_list; }
+							else
+							{ $response->code=29; $response->message.=" No models found with this id."; }
 						}
 						else
 						{ $response->code=29; $response->message.=" Model id is not set."; }
