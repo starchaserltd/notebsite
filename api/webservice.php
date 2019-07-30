@@ -140,6 +140,21 @@ if($api_key!==""&&$api_key!==NULL)
 						}
 						break;
 					}
+					case "list_primary_models":
+					{
+						$response->code=26; $response->message="Valid method."; $response->daily_hits_left=$hits_left;
+						$object_addr=$response->result;
+						if(isset($param['model_id'])&&$param['model_id']!=NULL)
+						{
+							$param['model_id']=intval($param['model_id']);
+							require_once("lib/model_param.php");
+							$primary_model_list=comp_details("get_primary_models",$param['model_id']);
+							$response->result=$primary_model_list;
+						}
+						else
+						{ $response->code=29; $response->message.=" Model id is not set."; }
+						break;
+					}
 					case "get_conf_info":
 					{
 						$response->code=26; $response->message="Valid method.";$response->daily_hits_left=$hits_left;

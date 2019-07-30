@@ -22,7 +22,7 @@ function comp_details($comp,$id)
 		case "model_res":
 		{
 			$limit=substr_count($id,","); 
-			$sel="SELECT IF(STRCMP(img_1,''),CONCAT('".$GLOBALS['web_address']."res/img/models/thumb/t_"."',img_1),NULL) as thumbnail,IF(STRCMP(img_1,''),CONCAT('".$GLOBALS['web_address']."res/img/models/"."',img_1),NULL) as image_1,IF(STRCMP(img_2,''),CONCAT('".$GLOBALS['web_address']."res/img/models/"."',img_2),NULL) as image_2,IF(STRCMP(img_3,''),CONCAT('".$GLOBALS['web_address']."res/img/models/"."',img_3),NULL) as image_3,IF(STRCMP(img_4,''),CONCAT('".$GLOBALS['web_address']."res/img/models/"."',img_4),NULL) as image_4,link as official_link,IF(STRCMP(link2,''),link2,NULL) as official_link2,ldate as launch_date,cpu,display,mem,hdd,shdd,gpu,wnet,odd,mdb,chassis,acum,warranty,sist,id FROM `notebro_db`.`MODEL` WHERE id IN (".$id.") LIMIT ".($limit+1);
+			$sel="SELECT IF(STRCMP(img_1,''),CONCAT('".$GLOBALS['web_address']."res/img/models/thumb/t_"."',img_1),NULL) as thumbnail,IF(STRCMP(img_1,''),CONCAT('".$GLOBALS['web_address']."res/img/models/"."',img_1),NULL) as image_1,IF(STRCMP(img_2,''),CONCAT('".$GLOBALS['web_address']."res/img/models/"."',img_2),NULL) as image_2,IF(STRCMP(img_3,''),CONCAT('".$GLOBALS['web_address']."res/img/models/"."',img_3),NULL) as image_3,IF(STRCMP(img_4,''),CONCAT('".$GLOBALS['web_address']."res/img/models/"."',img_4),NULL) as image_4,link as official_link,IF(STRCMP(link2,''),link2,NULL) as official_link2,`ldate` as `launch_date`,cpu,display,mem,hdd,shdd,gpu,wnet,odd,mdb,chassis,acum,warranty,sist,id,`p_model` AS `primary_model` FROM `notebro_db`.`MODEL` WHERE id IN (".$id.") LIMIT ".($limit+1);
 			$res=array(); $result=mysqli_query($GLOBALS['con'], $sel);
 			if($result)
 			{
@@ -31,6 +31,18 @@ function comp_details($comp,$id)
 				else { return $res[0];}
 			}
 			break; 
+		}
+		case "get_primary_models":
+		{
+			$sel="SELECT `id` FROM `notebro_db`.`MODEL` WHERE `p_model`=(SELECT `p_model` FROM `notebro_db`.`MODEL` WHERE `id`='".$id."' LIMIT 1)";
+			$result=mysqli_query($GLOBALS['con'], $sel);
+			$res=array(); $key=0;
+			if($result&&mysqli_num_rows($result)>0)
+			{ 
+				while($row=mysqli_fetch_assoc($result)){ $res[$key]=$row["id"]; $key++; }
+				if($key>0){ return $res; }
+			}
+			break;
 		}
 		case "cpu":
 		{
