@@ -34,7 +34,7 @@ var displaysizeminset=setminuplimit(displaysizeminset,list_displaysize);
 <?php echo "var chassisdepthminset=".$chassisdepthmin.";"; echo "var chassisdepthmaxset=".$chassisdepthmax.";"; ?>
 <?php echo "var chassiswebminset=".$chassiswebmin.";"; echo "var chassiswebmaxset=".$chassiswebmax.";"; ?>
 <?php if(isset($chassisstuff)){ ?>$('#CHASSIS_stuff_id').append('<?php echo $chassisstuff; ?>'); <?php } ?>
-<?php echo "var waryearsminset=".$waryearsmin.";"; echo "var waryearsmaxset=".$waryearsmax.";"; ?>
+<?php echo "var waryearsminset=".$waryearsmin.";"; echo "var waryearsmaxset=".$waryearsmax.";"; if(!isset($waryearsset)||!$waryearsset){echo "waryearsminset=waryearsminset+1;";}?>
 <?php echo "var displayvresminset=".$displayvresmin.";"; echo "var displayvresmaxset=".$displayvresmax.";"; ?>
 <?php echo "var lang=".$lang.";"; ?>
 <?php if($show_rpm){ echo "var rpm_enable=1;"; }else{ echo "var rpm_enable=0;"; } ?>

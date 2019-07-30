@@ -198,7 +198,7 @@
 	if(isset($_GET['touchscreen']) && $_GET['touchscreen'] == "on") {$tcheck = "checked";}
 	if(isset($_GET['nontouchscreen']) && $_GET['nontouchscreen'] == "on") {$ntcheck = "checked";} 
 
-	$waryearsmin = $_GET['yearsmin'];
+	if(isset($_GET['yearsmin'])){ $waryearsmin = $_GET['yearsmin']; $waryearsset=true;}
 	$waryearsmax = $_GET['yearsmax'];
 
 	if($hddcapmin)

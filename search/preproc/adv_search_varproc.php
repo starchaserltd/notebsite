@@ -728,7 +728,7 @@ if($to_search["regions"])
 
 
 /* *** WARRANTY *** */
-if(isset($_GET['yearsmin']) && ($_GET['yearsmin'])) 
+if(isset($_GET['yearsmin']) && ($_GET['yearsmin'])!="" && ($_GET['yearsmin'])!=NULL) 
 { $war_yearsmin = intval($_GET['yearsmin']); }
 if(isset($_GET['yearsmax']) && ($_GET['yearsmax'])) 
 { $war_yearsmax = intval($_GET['yearsmax']); }

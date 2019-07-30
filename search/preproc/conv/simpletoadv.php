@@ -309,10 +309,10 @@ else {	$mdbwwansel0 = 'selected="selected"'; }
 //regional search
 if(isset($_GET['region_type']))
 {
-	$regions="";
+	$regions=""; $waryearsset=true;
 	foreach($_GET['region_type'] as $el)
 	{
-		if($el==1){ $regions.='<option selected="selected">United States</option>'; }
+		if($el==1){ $regions.='<option selected="selected">United States</option>'; $waryearsmin=1; }
 		elseif ($el==2){ $regions.='<option selected="selected">Europe</option>'; $waryearsmin=2; }
 	}
 }

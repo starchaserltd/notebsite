@@ -336,7 +336,7 @@ if(isset($_GET['region_type']))
 {
 	foreach($_GET['region_type'] as $el)
 	{
-		if($el==1){ $regions_name[]="United States"; }
+		if($el==1){ $regions_name[]="United States"; $war_yearsmin=1; }
 		elseif ($el==2){ $regions_name[]="Europe"; $war_yearsmin=2; }
 	}
 	$filtercomp[] = "regions";

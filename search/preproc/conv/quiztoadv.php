@@ -7,7 +7,7 @@ while( $row=mysqli_fetch_array($result)){ $nomenvalues[]=$row; }
 $totalcapmin = round($nomenvalues[3][2]);
 $totalcapmax = round($nomenvalues[4][2]);
 
-$cpucoremin=1; $to_search["gpu"]=0; $memcapmin=2; $mdbslots=-1; $gpupowermin=0; $gpupowermax=500; $displayvresmax=99999; $displayvresmin=0;
+$cpucoremin=1; $to_search["gpu"]=0; $memcapmin=2; $mdbslots=-1; $gpupowermin=0; $gpupowermax=500; $displayvresmax=99999; $displayvresmin=0; $waryearsmin=1; $waryearsset=true;
 
 if (isset($_GET['casual']) && $_GET['casual']==1 && !(isset($_GET['office'])))
 {	$_GET['relax']=1; }
