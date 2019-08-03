@@ -61,7 +61,7 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 					{ break; }
 					$rand = $results[$pos];
 					getdetails($rand['model']);
-					$value=array(); $m_region=""; $exchcode_model=$exchcode; $exch_model=$exch; $exchsign_model=$exchsign; if(isset($region_ex[$region_m_id])&&(!in_array($region_m_id,$search_regions_array)||($always_model_region&&$region_m_id!=1&&$region_m_id!=0))){ $exchcode_model=$region_ex[$region_m_id]; $value=$exchange_list->{"code"}->{$exchcode_model}; $exch_model=$value["convr"]; $exchsign_model=$value["sign"]; if(!isset($regions_name[$region_m_id])){$regions_name[$region_m_id]=show('disp','REGIONS',$region_m_id);} $m_region="(".$regions_name[$region_m_id].")";} 
+					$value=array(); $m_region=""; $exchcode_model=$exchcode; $exch_model=$exch; $exchsign_model=$exchsign; if(isset($region_ex[$region_m_id])&&(!in_array($region_m_id,$search_regions_array)||($always_model_region&&$region_m_id!=1&&$region_m_id!=0))){ $exchcode_model=$region_ex[$region_m_id]; $value=$exchange_list->{"code"}->{$exchcode_model}; $exch_model=$value["convr"]; $exchsign_model=$value["sign"]; if(!isset($regions_name[$region_m_id])){$regions_name[$region_m_id]=show('disp','REGIONS',$region_m_id);} $m_region="(".$regions_name[$region_m_id].")";}else{if($region_m_id==0){$m_region="(NoAvb)";}}
 				?>
 				<div class="col-md-6 col-sm-6 col-lg-3 col-6 col-xs-3" style="" >
 					<div class="searchresult">
