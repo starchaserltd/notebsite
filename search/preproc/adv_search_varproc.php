@@ -392,9 +392,9 @@ foreach($chassis_ports as $key => $x)
 		{
 			for($usbv=0;$usbv<3;$usbv++)
 			{
-				if(stripos($piparts[1],"USB 3.".$usbv)!==FALSE)
+				if(stripos($piparts[1],"USB 3.".$usbv)!==FALSE||stripos($piparts[1],"USB-C 3.".$usbv)!==FALSE)
 				{
-					if(stripos($piparts[1],"Type")===FALSE)
+					if(stripos($piparts[1],"USB-C")===FALSE)
 					{
 						if(${'usb3'.$usbv.'_set'}>intval($piparts[0]))
 						{ $chassis_ports[$key]=$piparts[0]." X "."USB 3.".$usbv; ${'usb3'.$usbv.'_set'}=intval($piparts[0]); for($usbv2=$usbv+1;$usbv2<3;$usbv2++){ for ($nrpi=intval($piparts[0]);$nrpi<7;$nrpi++){ $chassis_addpi[$piparts[0]." X "."USB 3.".$usbv][]=$nrpi." X "."USB 3.".$usbv2; } } }
@@ -404,7 +404,7 @@ foreach($chassis_ports as $key => $x)
 					else
 					{
 						if(${'usb3c'.$usbv.'_set'}>intval($piparts[0]))
-						{ $chassis_ports[$key]=$piparts[0]." X "."USB 3.".$usbv." (Type-C)"; ${'usb3c'.$usbv.'_set'}=intval($piparts[0]); for($usbv2=$usbv+1;$usbv2<3;$usbv2++){ for ($nrpi=intval($piparts[0]);$nrpi<7;$nrpi++){ $chassis_addpi[$piparts[0]." X "."USB 3.".$usbv." (Type-C)"][]=$nrpi." X "."USB 3.".$usbv2." (Type-C)"; } } }
+						{ $chassis_ports[$key]=$piparts[0]." X "."USB-C 3.".$usbv.""; ${'usb3c'.$usbv.'_set'}=intval($piparts[0]); for($usbv2=$usbv+1;$usbv2<3;$usbv2++){ for ($nrpi=intval($piparts[0]);$nrpi<7;$nrpi++){ $chassis_addpi[$piparts[0]." X "."USB-C 3.".$usbv.""][]=$nrpi." X "."USB-C 3.".$usbv2.""; } } }
 						else
 						{ unset($chassis_ports[$key]); }
 					}
