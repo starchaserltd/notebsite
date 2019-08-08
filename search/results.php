@@ -29,7 +29,7 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 						<a class="btn" style="text-decoration:none;color:black;font-weight:bold;padding:2px 0px 0px 0px;">Order by:</a>
 						<button type="button" class="btn btn-result<?php echo $value_button;?>" style="margin-left:10px;border-radius: 1px 0px 0px 1px;"  onmousedown="OpenPage(sortresults('value'),event)"><a style="color:white;text-decoration:none">value</a></button>	
 						<button type="button"  class="btn btn-result<?php echo $price_button; ?>" onmousedown="OpenPage(sortresults('price'),event)"><a style="color:white;text-decoration:none">price</a></button>
-						<button type="button" class="btn btn-result<?php echo $performance_button; ?>" onmousedown="OpenPage(sortresults('performance'),event)"><a style="color:white;text-decoration:none">perfomance</a></button>	
+						<button type="button" class="btn btn-result<?php echo $performance_button; ?>" onmousedown="OpenPage(sortresults('performance'),event)"><a style="color:white;text-decoration:none">performance</a></button>	
 						<button type="button" class="btn btn-result<?php echo $name_button;?>" style="border-radius: 0px 1px 1px 0px;" onmousedown="OpenPage(sortresults('name'),event)"><a style="color:white;text-decoration:none">name</a></button>		
 						<div class="btn-group" style="width:auto!important;margin-left:3px">
 							<button type="button" data-toggle="dropdown" class="btn btn-result dropdown-toggle" style="width:35px;border-radius:1px;"><?php echo '<a style="text-decoration:none; color:white">'.$exchsign.'</a>'; ?>
