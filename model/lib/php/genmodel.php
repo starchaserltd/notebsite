@@ -256,8 +256,8 @@ function show_display($list)
 	}
 	if(count($list)>1) 
 	{
-		echo '<form><SELECT name="DISPLAY" onchange="getconf('."'".'DISPLAY'."'".',this.value)">';
-		$sel="SELECT id,model,touch,backt FROM notebro_db.DISPLAY WHERE id IN (".implode(",",$list).")";
+		echo '<form><SELECT id="DISPLAY" name="DISPLAY" onchange="getconf('."'".'DISPLAY'."'".',this.value)">';
+		$sel="SELECT id,model,touch,backt,lum FROM notebro_db.DISPLAY WHERE id IN (".implode(",",$list).")";
 		$result=mysqli_query($GLOBALS['con'], $sel);
 
 		if($result&&mysqli_num_rows($result)>0)
@@ -265,14 +265,13 @@ function show_display($list)
 			while($row=mysqli_fetch_array($result))
 			{				
 				$row["model"]=replace_surft_type($row["model"],$row["backt"]);
-				$touch="";
-				if($row["touch"]==1)
-				{ $touch=" &#128075;"; }
+				$touch=""; if($row["touch"]==1) { $touch=" &#128075;"; }
+				$lum=0; $lum=intval($row["lum"]); if($lum>30&&$lum<10000){$lum=" - ".$lum." nits";}else{$lum="";}
 	
 				if($row["id"]!=$GLOBALS['iddisplay'])
-				{ echo "<option value=".$row["id"].">".$prodm." ".$row["model"].$touch."</option>"; }
+				{ echo "<option value=".$row["id"].">".$prodm." ".$row["model"].$touch.$lum."</option>"; }
 				else
-				{ echo "<option value=".$row["id"]." selected='selected'>".$prodm." ".$row["model"].$touch."</option>"; }
+				{ echo "<option value=".$row["id"]." selected='selected'>".$prodm." ".$row["model"].$touch.$lum."</option>"; }
 			}
 		}
 		echo "</SELECT></form>";

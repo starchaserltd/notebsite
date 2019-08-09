@@ -9,7 +9,7 @@ function gpu_right_align()
 	{ var maxtext=16;  maxwidth=128; var borderpx=1; }
 	
 	var borderpx=1;
-	var el=$('#GPU option:selected'); var el_text=$('#GPU option:selected').text();
+	var el=$('#GPU option:selected'); var el_text=el.text();
 
 	if(el_text.length>0)
 	{
@@ -43,7 +43,7 @@ function char_indent(str,maxlength)
 	return pixels;
 }
 
-var comp_open=false;  var mousedown=false;
+var comp_open=false; var d_comp_open=false; var mousedown=false; var org_display=[];
 function isOpen()
 {
 	if(comp_open){ $('#GPU').css({'transform': 'translateX(0px)', 'width': maxwidth+'px'}); }
