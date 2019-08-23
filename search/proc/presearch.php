@@ -9,6 +9,7 @@ $ignored_comp=array(); $no_comp_search=array();
 $sql_presearch="(SELECT COUNT(id) FROM CHASSIS WHERE valid=1) UNION (SELECT COUNT(id) FROM MDB WHERE valid=1) UNION (SELECT COUNT(id) FROM DISPLAY WHERE valid=1) UNION (SELECT COUNT(id) FROM ACUM WHERE valid=1) UNION (SELECT COUNT(id) FROM CPU WHERE valid=1) UNION (SELECT COUNT(id) FROM GPU WHERE valid=1) UNION (SELECT COUNT(id) FROM MEM WHERE valid=1) UNION (SELECT COUNT(id) FROM WNET WHERE valid=1)";
 $result=mysqli_query($con,$sql_presearch); $row=mysqli_fetch_all($result);
 $list_comps_to_ignore=["chassis","mdb","display","acum","cpu","gpu","mem","wnet"]; $i=0;
+
 foreach($list_comps_to_ignore as $val)
 {
 	if(isset($comp_lists[$val])&&is_array($comp_lists[$val])){ $count=count($comp_lists[$val]); if(($count>$presearch_comp_limit)&&($count>intval(0.75*intval($row[$i][0])))){$ignored_comp[]=$val;}}
@@ -16,10 +17,10 @@ foreach($list_comps_to_ignore as $val)
 }
 
 $sql_presearch="SELECT GROUP_CONCAT(CONCAT(`model_id`,'+',`p_model`)) AS `ids`,MIN(`min_batlife`) AS `min_batlife` FROM `notebro_temp`.`presearch_tbl` WHERE "; $model_id_new=array(); $start_id_model=0; $has_or=0;
-
+$sql_presearch_add_no_results=""; $no_results_has_or=0;
 foreach($comp_lists as $key=>$val)
 {
-	$sql_presearch.="("; $empty_cond=0;
+	$sql_presearch_add_no_results.="("; $sql_presearch.="("; $empty_cond=0;
 	if(isset($val)&&$val!=NULL)
 	{
 		if(is_array($val)&&reset($val)!==NULL)
@@ -39,7 +40,10 @@ foreach($comp_lists as $key=>$val)
 						$sql_presearch.=" FIND_IN_SET(".$key2.",`".$key."`)>0 OR"; $has_or=1;
 					}
 					else
-					{ $empty_cond=1; }
+					{ 
+						$empty_cond=1;
+						$sql_presearch_add_no_results.=" FIND_IN_SET(".$key2.",`".$key."`)>0 OR"; $no_results_has_or=1;
+					}
 				}
 			}
 		}
@@ -51,12 +55,26 @@ foreach($comp_lists as $key=>$val)
 		if(is_array($val)&&reset($val)==NULL){$no_comp_search[]=$key; $sql_presearch="SELECT GROUP_CONCAT(CONCAT(`model_id`,'+',`p_model`)) AS `ids`,MIN(`min_batlife`) AS `min_batlife` FROM `notebro_temp`.`presearch_tbl` WHERE 1=0 "; }
 	}
 
-	if($empty_cond){$sql_presearch.="1=1";}
+	if($empty_cond)
+	{
+		$sql_presearch.="1=1";
+		if($no_results_has_or)
+		{
+			$sql_presearch_add_no_results=substr($sql_presearch_add_no_results, 0, -3); $no_results_has_or=0;
+			if($start_id_model){ $sql_presearch_add_no_results.=" `model_id` IN (".implode(",",$model_id_new).")";}
+			$sql_presearch_add_no_results.=") AND ";
+		}
+		else
+		{ $sql_presearch_add_no_results=substr($sql_presearch_add_no_results, 0, -1); }
+	}
+	else
+	{ $sql_presearch_add_no_results=substr($sql_presearch_add_no_results, 0, -1); }
 	
 	if($has_or){$sql_presearch=substr($sql_presearch, 0, -3); $has_or=0;}
 	if($start_id_model){ $sql_presearch.=" `model_id` IN (".implode(",",$model_id_new).")";}
 	$sql_presearch.=") AND ";
 }
+
 $sql_presearch.=$shdd_search_cond."((`min_price`<".$budgetmax." AND `max_price`>".$budgetmin.") OR `min_price`=0) AND ((`min_batlife`<".$batlife_max." AND `max_batlife`>".$batlife_min.") OR `min_batlife`=0) AND ((`min_cap`<".$hdd_capmax." AND `max_cap`>".$totalcapmin.") OR `min_cap`=0)";
 $result=mysqli_query($cons,$sql_presearch); $valid_ids=array(); $count_p_models=array();
 if($result&&mysqli_num_rows($result)>0)
