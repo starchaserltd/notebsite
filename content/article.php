@@ -21,12 +21,13 @@ $echoid = url_to_postid($ad[1]); //echo $echoid;
 var lang = <?php echo $lang; ?>;
 var istime=0;
 </script>
+
 <br>
 <?php
 	if($echoid)
 	{
 ?>
-		<div class="col-md-12 col-sm-12" style="background-color:white; ">
+		<div class="col-md-12 col-sm-12" style="background-color:white;">
 			<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style="font-size:30px;margin-top:30px; padding-left:0px;" >
 				<a  style="text-decoration:none;color:black;"><?php $content_title=""; $content_title=get_post_field('post_title', $echoid); echo $content_title;?></a>
 				<div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;">

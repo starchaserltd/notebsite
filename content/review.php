@@ -28,7 +28,6 @@ echo preg_replace_callback('/\[ntab (.*)\](.*)(?=\[ntab .*\]|\Z)/Us',function ($
 	var lang = <?php echo $lang; ?>;
 	var istime=0;	
 </script>
-
 	<div class="row" style="background-color:white;">
 		<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style=" font-size:30px; text-align:center; margin-top:30px;" >
 			<a style="text-decoration:none;float:left;color:black;"><?php $content_title=""; $content_title=get_post_field('post_title', $echoid); echo $content_title; ?></a>

@@ -4,3 +4,79 @@
 	justify-content: center;
 	margin: 0 auto;
 }
+
+.customtablewp { 
+	position: absolute;
+	width: auto;
+	border-radius: 6px;
+	bottom: 9%;  right: 1%;
+	opacity:0.7;
+	background-color:#edeff2;
+	line-height: 1.1;
+	font-size:90%;
+ }
+ 
+.customtablewp:hover {
+   opacity:1;
+ }
+ 
+.tdc {
+	background-color:#edeff2;
+	padding-left: 2px;
+	padding-right: 2px;
+ }
+ 
+.div_title {
+	position: absolute;
+	margin: auto; 
+	top: 1%; 
+	width: 100%;
+	font-weight: bold;
+ }
+
+.table_big:hover {
+   opacity:1;
+ }
+
+.table_big { 
+	position: absolute;width: 45%;border-radius: 6px;	line-height: 1.5; bottom: 1%;  right: 1%;	opacity:0.7;
+ } 
+ 
+.customtablewp_score:hover {
+   opacity:1;
+ }
+ 
+.customtablewp_score { 
+	position: absolute;
+	width: 50%;
+	border-radius: 6px;
+	top: 22%;  right: 1%;
+	opacity:0.7;	
+ } 
+ 
+ .div_gb_title {
+	position: absolute; 
+	text-align: left; 
+	top: 0px; 
+	left: 1%;
+ }
+ 
+.div_gb_header {
+	position: absolute;
+	width: 25%; 
+	text-align: center; 
+	bottom: 0px;
+ }
+
+.td_gb {
+	width: 25%; 
+	text-align: center; 
+	font-size: 90%;
+ }
+
+.table_gb {
+	width: 100%; 
+	line-height: 1.2; 
+	margin-top: -10px; 
+	margin-bottom: 10px;
+ }
