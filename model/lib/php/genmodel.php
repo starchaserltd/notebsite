@@ -319,7 +319,7 @@ function show_hdd ($list)
 function show_shdd ($list)
 {
 	$text="";	
-	sort($list); $nrel=count($list);
+	sort($list); $nrel=count($list); $lastrow="N/A";
 	if($nrel<1){ $list=array("0"); $nrel=1; }
 	
 	$text='<form><SELECT name="SHDD" onchange="getconf('."'".'SHDD'."'".',this.value)">';
@@ -352,11 +352,12 @@ function show_shdd ($list)
 				else
 				{ $text.="<option value="."0"." selected='selected'>"."None"."</option>"; }	
 			}
+			$lastrow=$row["model"];
 		}
 	}
 	$text.="</SELECT></form>";
-	
-	if($nrel==1 &&  !(strcmp($row["model"],"N/A")))
+
+	if($nrel==1 && !(strcmp($lastrow,"N/A")))
 	{ $text=""; }
 	return $text;
 }
