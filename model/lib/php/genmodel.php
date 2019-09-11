@@ -171,7 +171,7 @@ function show_cpu($list)
 		echo '<form><SELECT name="CPU" onchange="getconf('."'".'CPU'."'".',this.value)">';
 		foreach($list as $key=>$id)
 		{
-			$sel="SELECT prod,model,gpu FROM notebro_db.CPU WHERE id=$id";
+			$sel="SELECT prod,model,gpu FROM notebro_db.CPU WHERE id=$id ORDER BY `rating` ASC";
 			$result = mysqli_query($GLOBALS['con'], $sel);
 			$row = mysqli_fetch_array($result);
 	
@@ -187,7 +187,7 @@ function show_cpu($list)
 	{
 		foreach($list as $key=>$id)
 		{
-			$sel="SELECT prod,model FROM notebro_db.CPU WHERE id=$id"; 
+			$sel="SELECT prod,model FROM notebro_db.CPU WHERE id=$id ORDER BY `rating` ASC"; 
 			$result = mysqli_query($GLOBALS['con'], $sel);
 			$row = mysqli_fetch_array($result);
 			if(strcasecmp($row['prod'],"INTEL")==0){$row['prod']=ucfirst(strtolower($row['prod'])); }
@@ -204,7 +204,7 @@ function show_gpu($list)
 	$havecpuint=0;
 	echo '<form><SELECT id="GPU" name="GPU" onchange="getconf('."'".'GPU'."'".',this.value)">';
 
-	$sel="SELECT `id`,`prod`,`model`,`typegpu` FROM `notebro_db`.`GPU` WHERE `id` IN (".implode(",",$list).") ORDER BY `typegpu` ASC";
+	$sel="SELECT `id`,`prod`,`model`,`typegpu` FROM `notebro_db`.`GPU` WHERE `id` IN (".implode(",",$list).") ORDER BY `typegpu` ASC, `rating` ASC";
 	$result = mysqli_query($GLOBALS['con'], $sel);
 	if($result&&mysqli_num_rows($result)>0)
 	{
@@ -257,7 +257,7 @@ function show_display($list)
 	if(count($list)>1) 
 	{
 		echo '<form><SELECT id="DISPLAY" name="DISPLAY" onchange="getconf('."'".'DISPLAY'."'".',this.value)">';
-		$sel="SELECT id,model,touch,backt,lum FROM notebro_db.DISPLAY WHERE id IN (".implode(",",$list).")";
+		$sel="SELECT id,model,touch,backt,lum FROM notebro_db.DISPLAY WHERE id IN (".implode(",",$list).") ORDER BY `rating` ASC";
 		$result=mysqli_query($GLOBALS['con'], $sel);
 
 		if($result&&mysqli_num_rows($result)>0)
@@ -280,7 +280,7 @@ function show_display($list)
 	{
 		foreach($list as $key=>$id)
 		{
-			$sel="SELECT model,backt FROM notebro_db.DISPLAY WHERE id=$id";
+			$sel="SELECT model,backt FROM notebro_db.DISPLAY WHERE id=$id ORDER BY `rating` ASC";
 			$result = mysqli_query($GLOBALS['con'], $sel);
 			$row = mysqli_fetch_array($result);
 			$row["model"]=replace_surft_type($row["model"],$row["backt"]);
@@ -293,20 +293,24 @@ function show_display($list)
 function show_hdd ($list)
 {
 	echo '<form><SELECT name="HDD" onchange="getconf('."'".'HDD'."'".',this.value)">';
-	foreach($list as $key=>$id)
+	
+	$sel="SELECT `id`,`model`,`cap`,`rpm` FROM notebro_db.HDD WHERE `id` IN (".implode(",",$list).") ORDER BY `readspeed` ASC,`rating` ASC"; 
+	$result = mysqli_query($GLOBALS['con'], $sel);
+	
+	if($result&&mysqli_num_rows($result)>0)
 	{
-		$sel="SELECT model,cap,rpm FROM notebro_db.HDD WHERE id=$id"; 
-		$result = mysqli_query($GLOBALS['con'], $sel);
-		$row = mysqli_fetch_array($result);
-		$rpm="";
-		
-		if($row["rpm"])
-		{ $rpm=" ".round((floatval($row["rpm"])/1000),1)."K"; }
+		while($row=mysqli_fetch_array($result))
+		{
+			$rpm=""; $id=intval($row["id"]);
+	
+			if($row["rpm"])
+			{ $rpm=" ".round((floatval($row["rpm"])/1000),1)."K"; }
 
-		if($id!=$GLOBALS['idhdd'])
-		{ echo "<option value=".$id.">".$extra." ".$row["model"]." - ".$row["cap"]."GB".$rpm."</option>"; }
-		else
-		{ echo "<option value=".$id." selected='selected'>".$extra." ".$row["model"]." - ".$row["cap"]."GB".$rpm."</option>"; }
+			if($id!=$GLOBALS['idhdd'])
+			{ echo "<option value=".$id.">".$extra." ".$row["model"]." - ".$row["cap"]."GB".$rpm."</option>"; }
+			else
+			{ echo "<option value=".$id." selected='selected'>".$extra." ".$row["model"]." - ".$row["cap"]."GB".$rpm."</option>"; }
+		}
 	}
 	echo "</SELECT></form>";
 }
@@ -319,31 +323,35 @@ function show_shdd ($list)
 	if($nrel<1){ $list=array("0"); $nrel=1; }
 	
 	$text='<form><SELECT name="SHDD" onchange="getconf('."'".'SHDD'."'".',this.value)">';
-	foreach($list as $key=>$id)
+
+	$sel="SELECT `id`,`model`,`cap`,`rpm`,`type` FROM `notebro_db`.`HDD` WHERE `id` IN (".implode(",",$list).") ORDER BY `readspeed` ASC,`rating` ASC"; 
+	$result = mysqli_query($GLOBALS['con'], $sel);
+
+	if($result&&mysqli_num_rows($result)>0)
 	{
-		$sel="SELECT id,model,cap,rpm,type FROM notebro_db.HDD WHERE id=$id"; 
-		$result = mysqli_query($GLOBALS['con'], $sel);
-		$row = mysqli_fetch_array($result);
-		$rpm="";
-		
-		if(intval($row["rpm"]))
-		{ $rpm=" ".round((floatval($row["rpm"])/1000),1)."K"; }
-		else
-		{  $rpm=" ".$row["type"]; }
-		
-		if($id!=0)
-		{			
-			if($id!=$GLOBALS['idshdd'])
-			{ $text.="<option value=".$id.">".$row["cap"]."GB".$rpm."</option>"; }
-			else
-			{ $text.="<option value=".$id." selected='selected'>".$row["cap"]."GB".$rpm."</option>"; }
-		}
-		else
+		while($row=mysqli_fetch_array($result))
 		{
-			if($id!=$GLOBALS['idshdd'])
-			{ $text.="<option value="."0".">"."None"."</option>"; }
+			$rpm=""; $id=intval($row["id"]);
+			
+			if(intval($row["rpm"]))
+			{ $rpm=" ".round((floatval($row["rpm"])/1000),1)."K"; }
 			else
-			{ $text.="<option value="."0"." selected='selected'>"."None"."</option>"; }	
+			{  $rpm=" ".$row["type"]; }
+			
+			if($id!=0)
+			{			
+				if($id!=$GLOBALS['idshdd'])
+				{ $text.="<option value=".$id.">".$row["cap"]."GB".$rpm."</option>"; }
+				else
+				{ $text.="<option value=".$id." selected='selected'>".$row["cap"]."GB".$rpm."</option>"; }
+			}
+			else
+			{
+				if($id!=$GLOBALS['idshdd'])
+				{ $text.="<option value="."0".">"."None"."</option>"; }
+				else
+				{ $text.="<option value="."0"." selected='selected'>"."None"."</option>"; }	
+			}
 		}
 	}
 	$text.="</SELECT></form>";
@@ -361,7 +369,7 @@ function show_mdb($list)
 		echo '<form><SELECT name="MDB" onchange="getconf('."'".'MDB'."'".',this.value)">';
 		foreach($list as $key=>$id)
 		{
-			$sel="SELECT prod,submodel FROM notebro_db.MDB WHERE id=$id"; 
+			$sel="SELECT `prod`,`submodel` FROM `notebro_db`.`MDB` WHERE `id`=$id ORDER BY `rating` ASC"; 
 			$result = mysqli_query($GLOBALS['con'], $sel);
 			$row = mysqli_fetch_array($result);
 										
@@ -376,7 +384,7 @@ function show_mdb($list)
 	{
 		foreach($list as $key=>$id)
 		{
-			$sel="SELECT prod,submodel FROM notebro_db.MDB WHERE id=$id"; 
+			$sel="SELECT prod,submodel FROM notebro_db.MDB WHERE id=$id ORDER BY `rating` ASC"; 
 			$result = mysqli_query($GLOBALS['con'], $sel);
 			$row = mysqli_fetch_array($result);
 			echo $row["submodel"];
@@ -390,7 +398,7 @@ function show_mem($list)
 	if(count($list)>1) 
 	{
 		echo '<form><SELECT name="MEM" onchange="getconf('."'".'MEM'."'".',this.value)">';
-		$sel="SELECT id,prod,cap,type FROM notebro_db.MEM WHERE id IN (".implode(",",$list).")";
+		$sel="SELECT `id`,`prod`,`cap`,`type` FROM `notebro_db`.`MEM` WHERE `id` IN (".implode(",",$list).") ORDER BY `rating` ASC";
 		$result=mysqli_query($GLOBALS['con'], $sel);
 
 		if($result&&mysqli_num_rows($result)>0)
@@ -407,7 +415,7 @@ function show_mem($list)
 	}
 	else
 	{
-		$sel="SELECT prod,cap,type FROM notebro_db.MEM WHERE id=".reset($list).""; //echo $sel;
+		$sel="SELECT prod,cap,type FROM notebro_db.MEM WHERE id=".reset($list)." ORDER BY `rating` ASC"; //echo $sel;
 		$result = mysqli_query($GLOBALS['con'], $sel);
 		$row = mysqli_fetch_array($result);
 		echo $extra." ".$row["cap"]." GB ".$row["type"]."";
@@ -425,7 +433,7 @@ function show_odd($list)
 		echo '<form><SELECT name="ODD" onchange="getconf('."'".'ODD'."'".',this.value)">';
 		foreach($list as $key=>$id)
 		{
-			$sel="SELECT type FROM notebro_db.ODD WHERE id=$id"; 
+			$sel="SELECT type FROM notebro_db.ODD WHERE id=$id ORDER BY `rating` ASC"; 
 			$result = mysqli_query($GLOBALS['con'], $sel);
 			$row = mysqli_fetch_array($result);
 			if(strcasecmp($row["type"],"NONE")==0){$row["type"]=ucfirst(strtolower($row["type"]));}
@@ -440,7 +448,7 @@ function show_odd($list)
 	{
 		foreach($list as $key=>$id)
 		{
-			$sel="SELECT type FROM notebro_db.ODD WHERE id=$id"; 
+			$sel="SELECT type FROM notebro_db.ODD WHERE id=$id ORDER BY `rating` ASC"; 
 			$result = mysqli_query($GLOBALS['con'], $sel);
 			$row = mysqli_fetch_array($result);
 			if(strcasecmp($row["type"],"NONE")==0){$row["type"]=ucfirst(strtolower($row["type"]));}
@@ -460,16 +468,19 @@ function show_acum($list)
 	if(count($list)>1)
 	{
 		echo '<form><SELECT name="ACUM" onchange="getconf('."'".'ACUM'."'".',this.value)">';
-		foreach($list as $key=>$id)
-		{
-			$sel="SELECT model,nrc,cap FROM notebro_db.ACUM WHERE id=$id";
-			$result = mysqli_query($GLOBALS['con'], $sel);
-			$row = mysqli_fetch_array($result);
+		
+		$sel="SELECT `id`,`model`,`nrc`,`cap` FROM `notebro_db`.`ACUM` WHERE `id` IN (".implode(",",$list).") ORDER BY `rating` ASC";
+		$result = mysqli_query($GLOBALS['con'], $sel);
 	
-			if($id!=$GLOBALS['idacum'])
-			{ echo "<option value=".$id.">".$row["cap"]." WHr</option>"; }
-			else
-			{ echo "<option value=".$id." selected='selected'>".$row["cap"]." Whr</option>"; }
+		if($result&&mysqli_num_rows($result)>0)
+		{
+			while($row=mysqli_fetch_array($result))
+			{
+				if($row["id"]!=$GLOBALS['idacum'])
+				{ echo "<option value=".$row["id"].">".$row["cap"]." WHr</option>"; }
+				else
+				{ echo "<option value=".$row["id"]." selected='selected'>".$row["cap"]." Whr</option>"; }
+			}
 		}
 		echo "</SELECT></form>";
 	}
@@ -477,7 +488,7 @@ function show_acum($list)
 	{
 		foreach($list as $key=>$id)
 		{
-			$sel="SELECT cap FROM notebro_db.ACUM WHERE id=$id"; 
+			$sel="SELECT cap FROM notebro_db.ACUM WHERE id=$id ORDER BY `rating` ASC"; 
 			$result = mysqli_query($GLOBALS['con'], $sel);
 			$row = mysqli_fetch_array($result);
 			echo $row["cap"]." WHr";
@@ -493,16 +504,20 @@ function show_chassis($list)
 	if(count($list)>1)
 	{
 		$chassistext.='<form><SELECT name="CHASSIS" onchange="getconf('."'".'CHASSIS'."'".',this.value)">';
-		foreach($list as $key=>$id)
+		
+		$sel="SELECT `id`,`submodel` FROM `notebro_db`.`CHASSIS` WHERE `id` IN (".implode(",",$list).") ORDER BY `rating` ASC"; 
+		$result = mysqli_query($GLOBALS['con'], $sel);
+
+		if($result&&mysqli_num_rows($result)>0)
 		{
-			$sel="SELECT submodel FROM notebro_db.CHASSIS WHERE id=$id"; 
-			$result = mysqli_query($GLOBALS['con'], $sel);
-			$row = mysqli_fetch_array($result);
-	
-			if($id!=$GLOBALS['idchassis'])
-			{ $chassistext.="<option value=".$id.">".$row["submodel"]."</option>"; }
-			else
-			{ $chassistext.="<option value=".$id." selected='selected'>".$row["submodel"]."</option>"; }
+			while($row=mysqli_fetch_array($result))
+			{	
+				$id=intval($row["id"]);
+				if($id!=$GLOBALS['idchassis'])
+				{ $chassistext.="<option value=".$id.">".$row["submodel"]."</option>"; }
+				else
+				{ $chassistext.="<option value=".$id." selected='selected'>".$row["submodel"]."</option>"; }
+			}
 		}
 		$chassistext.="</SELECT></form>";
 	}
@@ -510,7 +525,7 @@ function show_chassis($list)
 	{
 		foreach($list as $key=>$id)
 		{
-			$sel="SELECT submodel,price,err FROM notebro_db.CHASSIS WHERE id=$id"; 
+			$sel="SELECT submodel,price,err FROM notebro_db.CHASSIS WHERE id=$id ORDER BY `rating` ASC"; 
 			$result = mysqli_query($GLOBALS['con'], $sel);
 			$row = mysqli_fetch_array($result);
 		}
@@ -526,16 +541,19 @@ function show_wnet($list)
 	{
 		echo '<form><SELECT name="WNET" onchange="getconf('."'".'WNET'."'".',this.value)">';
 		
-		foreach($list as $key=>$id)
+		$sel="SELECT `id`,`prod`,`model` FROM `notebro_db`.`WNET` WHERE `id` IN (".implode(",",$list).") ORDER BY `rating` ASC"; 
+		$result = mysqli_query($GLOBALS['con'], $sel);
+		
+		if($result&&mysqli_num_rows($result)>0)
 		{
-			$sel="SELECT prod,model FROM notebro_db.WNET WHERE id=$id"; 
-			$result = mysqli_query($GLOBALS['con'], $sel);
-			$row = mysqli_fetch_array($result);
-	
-			if($id!=$GLOBALS['idwnet'])
-			{ echo "<option value=".$id.">".$row["prod"]." ".$row["model"]."</option>"; }
-			else
-			{ echo "<option value=".$id." selected='selected'>".$row["prod"]." ".$row["model"]."</option>"; }
+			while($row=mysqli_fetch_array($result))
+			{
+				$id=intval($row["id"]);
+				if($id!=$GLOBALS['idwnet'])
+				{ echo "<option value=".$id.">".$row["prod"]." ".$row["model"]."</option>"; }
+				else
+				{ echo "<option value=".$id." selected='selected'>".$row["prod"]." ".$row["model"]."</option>"; }
+			}
 		}
 		echo "</SELECT></form>";
 	}
@@ -543,7 +561,7 @@ function show_wnet($list)
 	{
 		foreach($list as $key=>$id)
 		{
-			$sel="SELECT prod,model,slot,price,err FROM notebro_db.WNET WHERE id=$id"; 
+			$sel="SELECT prod,model,slot,price,err FROM notebro_db.WNET WHERE id=$id ORDER BY `rating` ASC"; 
 			$result = mysqli_query($GLOBALS['con'], $sel);
 			$row = mysqli_fetch_array($result);
 			echo $row["prod"]." ".$row["model"];
@@ -559,7 +577,7 @@ function show_war($list)
 		echo '<form><SELECT name="WAR" onchange="getconf('."'".'WAR'."'".',this.value)">';
 		foreach($list as $key=>$id)
 		{
-			$sel="SELECT years,prod,price,err FROM notebro_db.WAR WHERE id=$id"; 
+			$sel="SELECT years,prod,price,err FROM notebro_db.WAR WHERE id=$id ORDER BY `rating` ASC"; 
 			$result = mysqli_query($GLOBALS['con'], $sel);
 			$row = mysqli_fetch_array($result);
 			
@@ -574,7 +592,7 @@ function show_war($list)
 	{
 		foreach($list as $key=>$id)
 		{
-			$sel="SELECT years,price,err FROM notebro_db.WAR WHERE id=$id";
+			$sel="SELECT years,price,err FROM notebro_db.WAR WHERE id=$id ORDER BY `rating` ASC";
 			$result = mysqli_query($GLOBALS['con'], $sel);
 			$row = mysqli_fetch_array($result);
 			echo $row["years"];
@@ -590,7 +608,7 @@ function show_sist($list)
 		echo '<form><SELECT name="SIST" onchange="getconf('."'".'SIST'."'".',this.value)">';
 		foreach($list as $key=>$id)
 		{
-			$sel="SELECT sist,vers,type,price,err FROM notebro_db.SIST WHERE id=$id"; 
+			$sel="SELECT sist,vers,type,price,err FROM notebro_db.SIST WHERE id=$id ORDER BY `rating` ASC"; 
 			$result = mysqli_query($GLOBALS['con'], $sel);
 			$row = mysqli_fetch_array($result);
 	
@@ -608,7 +626,7 @@ function show_sist($list)
 	{
 		foreach($list as $key=>$id)
 		{
-			$sel="SELECT sist,vers,price,type,err FROM notebro_db.SIST WHERE id=$id"; 
+			$sel="SELECT sist,vers,price,type,err FROM notebro_db.SIST WHERE id=$id ORDER BY `rating` ASC"; 
 			$result = mysqli_query($GLOBALS['con'], $sel);
 			$row = mysqli_fetch_array($result);
 			if(is_numeric($row['vers']))
