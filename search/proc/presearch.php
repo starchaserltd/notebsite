@@ -75,7 +75,7 @@ foreach($comp_lists as $key=>$val)
 	$sql_presearch.=") AND ";
 }
 
-$sql_presearch.=$shdd_search_cond."((`min_price`<".$budgetmax." AND `max_price`>".$budgetmin.") OR `min_price`=0) AND ((`min_batlife`<".$batlife_max." AND `max_batlife`>".$batlife_min.") OR `min_batlife`=0) AND ((`min_cap`<".$hdd_capmax." AND `max_cap`>".$totalcapmin.") OR `min_cap`=0)";
+$sql_presearch.=$shdd_search_cond."((`min_price`<=".$budgetmax." AND `max_price`>=".$budgetmin.") OR `min_price`=0) AND ((`min_batlife`<=".$batlife_max." AND `max_batlife`>=".$batlife_min.") OR `min_batlife`=0) AND ((`min_cap`<=".$hdd_capmax." AND `max_cap`>=".$totalcapmin.") OR `min_cap`=0)";
 $result=mysqli_query($cons,$sql_presearch); $valid_ids=array(); $count_p_models=array();
 if($result&&mysqli_num_rows($result)>0)
 { if($row=mysqli_fetch_assoc($result)){ if(isset($row["ids"])&&$row["ids"]){ $raw_valid_ids=explode(",",$row["ids"]); foreach($raw_valid_ids as $val){ $val_parts=explode("+",$val); $valid_ids[$val_parts[0]]=$val_parts[1]; } } } }
