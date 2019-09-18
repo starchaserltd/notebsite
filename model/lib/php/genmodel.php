@@ -169,17 +169,19 @@ function show_cpu($list)
 	if(count($list)>1)
 	{
 		echo '<form><SELECT name="CPU" onchange="getconf('."'".'CPU'."'".',this.value)">';
-		foreach($list as $key=>$id)
+		
+		$sel="SELECT `id`,`prod`,`model`,`gpu` FROM `notebro_db`.`CPU` WHERE `id` IN (".implode(",",$list).") ORDER BY `rating` ASC";
+		$result = mysqli_query($GLOBALS['con'], $sel);
+		if($result&&mysqli_num_rows($result)>0)
 		{
-			$sel="SELECT prod,model,gpu FROM notebro_db.CPU WHERE id=$id ORDER BY `rating` ASC";
-			$result = mysqli_query($GLOBALS['con'], $sel);
-			$row = mysqli_fetch_array($result);
-	
-			if(strcasecmp($row['prod'],"INTEL")==0){$row['prod']=ucfirst(strtolower($row['prod'])); }
-			if($id!=$GLOBALS['idcpu'])
-			{ echo "<option value=".$id." data-gpu='".$row["gpu"]."' >".$row["prod"]." ".$row["model"]."</option>"; }
-			else
-			{ echo "<option value=".$id." selected='selected' data-gpu='".$row["gpu"]."' >".$row["prod"]." ".$row["model"]."</option>"; }
+			while($row=mysqli_fetch_array($result))
+			{
+				if(strcasecmp($row['prod'],"INTEL")==0){$row['prod']=ucfirst(strtolower($row['prod'])); }
+				if($row["id"]!=$GLOBALS['idcpu'])
+				{ echo "<option value=".$row["id"]." data-gpu='".$row["gpu"]."' >".$row["prod"]." ".$row["model"]."</option>"; }
+				else
+				{ echo "<option value=".$row["id"]." selected='selected' data-gpu='".$row["gpu"]."' >".$row["prod"]." ".$row["model"]."</option>"; }
+			}
 		}
 		echo "</SELECT></form>";
 	}
