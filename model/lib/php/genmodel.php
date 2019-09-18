@@ -165,83 +165,88 @@ function get_regions_model($con,$idmodel)
 
 /* MAKE CPU */
 function show_cpu($list)
-{	
-	if(count($list)>1)
+{
+	$s_list=false; if(count($list)<2){$s_list=true;}
+	
+	$sel="SELECT `id`,`prod`,`model`,`gpu` FROM `notebro_db`.`CPU` WHERE `id` IN (".implode(",",$list).") ORDER BY `rating` ASC";
+	if($s_list){$sel.=" LIMIT 1";}
+	
+	$result=mysqli_query($GLOBALS['con'], $sel);
+	if($result&&mysqli_num_rows($result)>0)
 	{
-		echo '<form><SELECT name="CPU" onchange="getconf('."'".'CPU'."'".',this.value)">';
-		
-		$sel="SELECT `id`,`prod`,`model`,`gpu` FROM `notebro_db`.`CPU` WHERE `id` IN (".implode(",",$list).") ORDER BY `rating` ASC";
-		$result = mysqli_query($GLOBALS['con'], $sel);
-		if($result&&mysqli_num_rows($result)>0)
+		if(mysqli_num_rows($result)>1)
 		{
+			echo '<form><SELECT name="CPU" onchange="getconf('."'".'CPU'."'".',this.value)">';
 			while($row=mysqli_fetch_array($result))
 			{
 				if(strcasecmp($row['prod'],"INTEL")==0){$row['prod']=ucfirst(strtolower($row['prod'])); }
-				if($row["id"]!=$GLOBALS['idcpu'])
-				{ echo "<option value=".$row["id"]." data-gpu='".$row["gpu"]."' >".$row["prod"]." ".$row["model"]."</option>"; }
-				else
-				{ echo "<option value=".$row["id"]." selected='selected' data-gpu='".$row["gpu"]."' >".$row["prod"]." ".$row["model"]."</option>"; }
+				
+				$selected=""; if($row["id"]==$GLOBALS['idcpu']){$selected=" selected='selected'";}
+				if(isset($row["id"])){ echo "<option value=".$row["id"].$selected." data-gpu='".$row["gpu"]."' >".$row["prod"]." ".$row["model"]."</option>"; } 
 			}
+			echo "</SELECT></form>";
 		}
-		echo "</SELECT></form>";
-	}
-	else
-	{
-		foreach($list as $key=>$id)
+		else
 		{
-			$sel="SELECT prod,model FROM notebro_db.CPU WHERE id=$id ORDER BY `rating` ASC"; 
-			$result = mysqli_query($GLOBALS['con'], $sel);
-			$row = mysqli_fetch_array($result);
+			$row=mysqli_fetch_array($result);
 			if(strcasecmp($row['prod'],"INTEL")==0){$row['prod']=ucfirst(strtolower($row['prod'])); }
 			echo $row["prod"]." ".$row["model"];
 		}
-	}	
+	}
+	else
+	{ echo "Error. Sorry."; }
 }
 
 /* MAKE GPU */
 function show_gpu($list)
 {
-	$a=0; 
-	$b=1;
-	$havecpuint=0;
-	echo '<form><SELECT id="GPU" name="GPU" onchange="getconf('."'".'GPU'."'".',this.value)">';
-
+	$s_list=false; if(count($list)<2){$s_list=true;}
+	
 	$sel="SELECT `id`,`prod`,`model`,`typegpu` FROM `notebro_db`.`GPU` WHERE `id` IN (".implode(",",$list).") ORDER BY `typegpu` ASC, `rating` ASC";
-	$result = mysqli_query($GLOBALS['con'], $sel);
+	if($s_list){$sel.=" LIMIT 1";}
+	
+	$a=false; $b=true; $havecpuint=0; $gpu_list=array(); $gpu_name=array(); $opt_nr=1;
+	$result=mysqli_query($GLOBALS['con'], $sel);
 	if($result&&mysqli_num_rows($result)>0)
 	{
-		while($row=mysqli_fetch_array($result))
+		if(mysqli_num_rows($result)>1)
 		{
-			$gpulist=$row["id"];
-			if($row["typegpu"]>0)
-			{	
-				if($row["id"]!=$GLOBALS['idgpu'])
-				{ $int_gpu.="<option value=".$row["id"].">".$row["prod"]." ".$row["model"]."</option>"; }
+			while($row=mysqli_fetch_array($result))
+			{
+				$selected=""; if($row["id"]==$GLOBALS['idcpu']){$selected=" selected='selected'"; $a=true;}
+				
+				$gpulist=$row["id"];
+				if($row["typegpu"]>0)
+				{
+					$selected=""; if($row["id"]!=$GLOBALS['idcpu']){$selected=" selected='selected'";} $gpu_name[$opt_nr]=$row["prod"]." ".$row["model"];
+					$gpu_list[$opt_nr]="<option value=".$row["id"].$selected.">".$gpu_name[$opt_nr]."</option>"; $opt_nr++;
+				
+					if($b){ $gpulist=$row["id"]; $b=false; }
+				}
 				else
-				{ $int_gpu.="<option value=".$row["id"]." selected='selected'>".$row["prod"]." ".$row["model"]."</option>"; $a=1;}
-
-				if($b)
-				{ $gpulist=$row["id"]; $b=0; }
+				{ $havecpuint=1;}
 			}
-			else
-			{ $havecpuint=1;}
 		}
+		else
+		{ $havecpuint=1;}
 	}
 	else
 	{ $havecpuint=1;}
-	
-	if(($int_gpu || $b==1) && $havecpuint)
+
+	if(($opt_nr>1 || $b==true) && $havecpuint)
 	{
-		$int_gpu=$int_gpu."<option value='-1' ";
+		$gpu_list[$opt_nr]="<option value='-1' ";
 		if(!$a)
-		{ $int_gpu=$int_gpu."selected='selected'"; }
-		$int_gpu=$int_gpu." >CPU Integrated</option>";
+		{ $gpu_list[$opt_nr].="selected='selected'"; }
+		$gpu_list[$opt_nr].=" >CPU Integrated</option>";
+		$gpu_name[$opt_nr]="CPU Integrated";
 	}
-	
-	echo $int_gpu;
-	echo "</SELECT></form>";
+
+	$gpu_list[0]='<form><SELECT id="GPU" name="GPU" onchange="getconf('."'".'GPU'."'".',this.value)">'; $opt_nr++; $gpu_list[$opt_nr]="</SELECT></form>"; ksort($gpu_list); echo implode($gpu_list);
+
 	echo "<script>var gpudet=".$gpulist."; </script>";
 }
+
 
 /* MAKE DISPLAY */
 function show_display($list)
@@ -294,27 +299,38 @@ function show_display($list)
 /* MAKE HDD */
 function show_hdd ($list)
 {
-	echo '<form><SELECT name="HDD" onchange="getconf('."'".'HDD'."'".',this.value)">';
+	$s_list=false; if(count($list)<2){$s_list=true;}
 	
-	$sel="SELECT `id`,`model`,`cap`,`rpm` FROM notebro_db.HDD WHERE `id` IN (".implode(",",$list).") ORDER BY `readspeed` ASC,`rating` ASC"; 
-	$result = mysqli_query($GLOBALS['con'], $sel);
+	$sel="SELECT `id`,`model`,`cap`,`rpm` FROM notebro_db.HDD WHERE `id` IN (".implode(",",$list).") ORDER BY `readspeed` ASC,`rating` ASC";
+	if($s_list){$sel.=" LIMIT 1";}
 	
+	$result=mysqli_query($GLOBALS['con'], $sel);
 	if($result&&mysqli_num_rows($result)>0)
 	{
-		while($row=mysqli_fetch_array($result))
+		if(mysqli_num_rows($result)>1)
 		{
-			$rpm=""; $id=intval($row["id"]);
-	
+			echo '<form><SELECT name="HDD" onchange="getconf('."'".'HDD'."'".',this.value)">';
+			while($row=mysqli_fetch_array($result))
+			{
+				$rpm=""; $id=intval($row["id"]); $selected="";
+				if($row["rpm"])
+				{ $rpm=" ".round((floatval($row["rpm"])/1000),1)."K"; }
+				
+				if($id==$GLOBALS['idhdd']){$selected=" selected='selected'";}
+				if(isset($id)){ echo "<option value=".$id.$selected.">".$row["model"]." - ".$row["cap"]."GB".$rpm."</option>"; }
+			}
+			echo "</SELECT></form>";
+		}
+		else
+		{
+			$row=mysqli_fetch_array($result);
 			if($row["rpm"])
 			{ $rpm=" ".round((floatval($row["rpm"])/1000),1)."K"; }
-
-			if($id!=$GLOBALS['idhdd'])
-			{ echo "<option value=".$id.">".$extra." ".$row["model"]." - ".$row["cap"]."GB".$rpm."</option>"; }
-			else
-			{ echo "<option value=".$id." selected='selected'>".$extra." ".$row["model"]." - ".$row["cap"]."GB".$rpm."</option>"; }
+			echo $row["model"]." - ".$row["cap"]."GB".$rpm;
 		}
 	}
-	echo "</SELECT></form>";
+	else
+	{ echo "Error. Sorry."; }
 }
 
 /* MAKE SHDD */
