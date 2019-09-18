@@ -218,9 +218,8 @@ function show_gpu($list)
 				$gpulist=$row["id"];
 				if($row["typegpu"]>0)
 				{
-					$selected=""; if($row["id"]!=$GLOBALS['idcpu']){$selected=" selected='selected'";} $gpu_name[$opt_nr]=$row["prod"]." ".$row["model"];
-					$gpu_list[$opt_nr]="<option value=".$row["id"].$selected.">".$gpu_name[$opt_nr]."</option>"; $opt_nr++;
-				
+					$selected=""; if($row["id"]!=$GLOBALS['idcpu']){$selected=" selected='selected'";} $gpu_name[$opt_nr]=array(); $gpu_name[$opt_nr]["name"]=$row["prod"]." ".$row["model"]; $gpu_name[$opt_nr]["value"]=$row["id"];
+					$gpu_list[$opt_nr]="<option value='".$gpu_name[$opt_nr]["value"]."'".$selected.">".$gpu_name[$opt_nr]["name"]."</option>"; $opt_nr++;
 					if($b){ $gpulist=$row["id"]; $b=false; }
 				}
 				else
@@ -228,24 +227,26 @@ function show_gpu($list)
 			}
 		}
 		else
-		{ $row=mysqli_fetch_array($result); if($row["typegpu"]>0){ $gpu_name[$opt_nr]=$row["prod"]." ".$row["model"]; $opt_nr++; if($b){ $gpulist=$row["id"]; $b=false; } }else{ $havecpuint=1;} }
+		{ $row=mysqli_fetch_array($result); if($row["typegpu"]>0){ $gpu_name[$opt_nr]["value"]=$row["id"]; $gpu_name[$opt_nr]["name"]=$row["prod"]." ".$row["model"]; $opt_nr++; if($b){ $gpulist=$row["id"]; $b=false; } }else{ $havecpuint=1;} }
 	}
 	else
 	{ $havecpuint=1;}
 
 	if(($opt_nr>1 || $b==true) && $havecpuint)
 	{
-		$gpu_list[$opt_nr]="<option value='-1' ";
+		$gpu_name[$opt_nr]=array();
+		$gpu_name[$opt_nr]["value"]=-1;
+		$gpu_list[$opt_nr]="<option value='".$gpu_name[$opt_nr]["value"]."' ";
 		if(!$a)
 		{ $gpu_list[$opt_nr].="selected='selected'"; }
 		$gpu_list[$opt_nr].=" >CPU Integrated</option>";
-		$gpu_name[$opt_nr]="CPU Integrated";
+		$gpu_name[$opt_nr]["name"]="CPU Integrated";
 		$opt_nr++;
 	}
 
 	if($opt_nr>2){ $gpu_list[0]='<form><SELECT id="GPU" name="GPU" onchange="getconf('."'".'GPU'."'".',this.value)">'; $gpu_list[$opt_nr]="</SELECT></form>"; ksort($gpu_list); echo implode($gpu_list); }
 	else
-	{ echo '<span id="GPU" name="GPU" value=-1>'.$gpu_name[1].'</span>'; $no_select='var gpu_noselect=0;'; }
+	{ echo '<span id="GPU" name="GPU" value='.$gpu_name[1]["value"].'>'.$gpu_name[1]["name"].'</span>'; if(intval($gpu_name[1]["value"])<1){ $no_select='var gpu_noselect=-1;'; }else{$no_select='var gpu_noselect=0;'; } }
 
 	echo "<script>var gpudet=".$gpulist."; ".$no_select." </script>";
 }
