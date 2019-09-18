@@ -205,7 +205,7 @@ function show_gpu($list)
 	$sel="SELECT `id`,`prod`,`model`,`typegpu` FROM `notebro_db`.`GPU` WHERE `id` IN (".implode(",",$list).") ORDER BY `typegpu` ASC, `rating` ASC";
 	if($s_list){$sel.=" LIMIT 1";}
 	
-	$a=false; $b=true; $havecpuint=0; $gpu_list=array(); $gpu_name=array(); $opt_nr=1;
+	$a=false; $b=true; $havecpuint=0; $gpu_list=array(); $gpu_name=array(); $opt_nr=1; $gpulist=0; $no_select='var gpu_noselect=1;'; 
 	$result=mysqli_query($GLOBALS['con'], $sel);
 	if($result&&mysqli_num_rows($result)>0)
 	{
@@ -224,11 +224,11 @@ function show_gpu($list)
 					if($b){ $gpulist=$row["id"]; $b=false; }
 				}
 				else
-				{ $havecpuint=1;}
+				{ $havecpuint=1; }
 			}
 		}
 		else
-		{ $havecpuint=1;}
+		{ $row=mysqli_fetch_array($result); if($row["typegpu"]>0){ $gpu_name[$opt_nr]=$row["prod"]." ".$row["model"]; $opt_nr++; if($b){ $gpulist=$row["id"]; $b=false; } }else{ $havecpuint=1;} }
 	}
 	else
 	{ $havecpuint=1;}
@@ -240,11 +240,14 @@ function show_gpu($list)
 		{ $gpu_list[$opt_nr].="selected='selected'"; }
 		$gpu_list[$opt_nr].=" >CPU Integrated</option>";
 		$gpu_name[$opt_nr]="CPU Integrated";
+		$opt_nr++;
 	}
 
-	$gpu_list[0]='<form><SELECT id="GPU" name="GPU" onchange="getconf('."'".'GPU'."'".',this.value)">'; $opt_nr++; $gpu_list[$opt_nr]="</SELECT></form>"; ksort($gpu_list); echo implode($gpu_list);
+	if($opt_nr>2){ $gpu_list[0]='<form><SELECT id="GPU" name="GPU" onchange="getconf('."'".'GPU'."'".',this.value)">'; $gpu_list[$opt_nr]="</SELECT></form>"; ksort($gpu_list); echo implode($gpu_list); }
+	else
+	{ echo '<span id="GPU" name="GPU" value=-1>'.$gpu_name[1].'</span>'; $no_select='var gpu_noselect=0;'; }
 
-	echo "<script>var gpudet=".$gpulist."; </script>";
+	echo "<script>var gpudet=".$gpulist."; ".$no_select." </script>";
 }
 
 

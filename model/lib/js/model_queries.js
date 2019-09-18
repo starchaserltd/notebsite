@@ -40,7 +40,7 @@ function showCPU(str)
 				document.getElementById('dLabel').setAttribute("data-cpu",str);
 				cpu_gpu=parseInt(cpu["gpu"]);
 
-				if($("#GPU").val()==-1)
+				if(($("#GPU").val()==-1)||gpu_noselect===0)
 				{
 					if(cpu_gpu)
 					{ showGPU(cpu_gpu);}
@@ -64,7 +64,7 @@ function showGPU(str)
 		{
 			alert("This processor does not have an integrated graphics controller, please choose a different processor first!")
 			str=gpu_previous;
-			document.querySelector('#GPU [value="' + str + '"]').selected = true; gpu_right_align();
+			if(gpu_noselect){ document.querySelector('#GPU [value="' + str + '"]').selected = true; gpu_right_align(); }
 		}
 		else { str=cpu_gpu; }
 	}
@@ -89,9 +89,9 @@ function showGPU(str)
 				document.getElementById('gpu_shaders').innerHTML = gpu["pipe"];
 				
 				if(gpu["typegpu"]==0)
-				{ document.getElementById('gpu_misc').innerHTML = gpu["prod"]+" "+gpu["model"]+"<br/>"+gpumisc(gpu["msc"]); document.querySelector('#GPU [value="-1"]').selected = true; }
+				{ document.getElementById('gpu_misc').innerHTML = gpu["prod"]+" "+gpu["model"]+"<br/>"+gpumisc(gpu["msc"]); if(gpu_noselect) { document.querySelector('#GPU [value="-1"]').selected = true; } }
 				else
-				{ document.getElementById('gpu_misc').innerHTML = gpumisc(gpu["msc"]); document.querySelector('#GPU [value="'+str+'"]').selected = true; }
+				{ document.getElementById('gpu_misc').innerHTML = gpumisc(gpu["msc"]); if(gpu_noselect){ document.querySelector('#GPU [value="'+str+'"]').selected = true; } }
 				gpu_right_align();
 				document.getElementById('gpu_shadermodel').innerHTML = parseFloat(gpu["shader"]).toFixed(1);
 				document.getElementById('gpu_memspeed').innerHTML = gpu["mspeed"];
