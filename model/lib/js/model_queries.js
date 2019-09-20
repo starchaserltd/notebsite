@@ -40,8 +40,9 @@ function showCPU(str)
 				document.getElementById('dLabel').setAttribute("data-cpu",str);
 				cpu_gpu=parseInt(cpu["gpu"]);
 
-				if(($("#GPU").val()==-1)||gpu_noselect===-1)
+				if((typeof $("#GPU").val()==="function" && $("#GPU").val()==-1)||gpu_noselect===-1)
 				{
+					console.log("GPU_load");
 					if(cpu_gpu)
 					{ showGPU(cpu_gpu);}
 					else
