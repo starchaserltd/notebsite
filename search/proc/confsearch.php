@@ -2,38 +2,22 @@
 require_once("confsearchfunc.php");
 require_once("../etc/con_sdb.php");
 
-$cons=dbs_connect(); $conds = array(); $conds["price"]="(price > 0)";
+$cons=dbs_connect(); $conds = array();
+$results = array(); $queries = array(); $final_comp_list=array();
+
+$conds["price"]="(price > 0)"; 
 if($browse_by)
 {
-	//IF BROWSING WE HAVE A SIMPLER QUERY	
-	foreach ($filtercomp as $v)
-	{
-		if (!$to_search[$v]) { continue; }
-		$conds[$v] = $v . " IN (" . implode(",", array_keys($comp_lists[$v])) . ")";
-	} 
-	if ($nr_hdd == 2) { $conds["shdd"] = "shdd > 0"; }
 	$conds["capacity"] = "(capacity BETWEEN " . $totalcapmin . " AND 2048 )";
 }
 elseif ($issimple || $isadvanced || $isquiz)
 {
 	//IF WE ARE SEARCHING, THINGS GET A TAD MORE COMPLICATED
-	foreach (array("cpu", "display", "gpu", "acum", "war", "hdd", "wnet", "sist", "odd", "mem", "mdb", "chassis") as $v) 
-	{
-		if (!$to_search[$v]) { continue; }
-		$conds[$v] = $v . " IN (" . implode(",", array_keys($comp_lists[$v])) . ")";
-	}
-
 	$conds["batlife_min"] = "batlife >= ".$batlife_min; 
 	$conds["batlife_max"] = "batlife <= ".$batlife_max; 
-
-	if ($nr_hdd ==2) { $conds["shdd"]="shdd > 0"; }
-
 	$conds["price"] = "(price BETWEEN " . $budgetmin . " AND " . $budgetmax . ")";
 	$conds["capacity"] = "(capacity BETWEEN " . $totalcapmin . " AND " . $hdd_capmax . " )";
 }
-
-$results = array();
-$queries = array();
 
 /* DEBUGGING CODE */
 # $time_start = microtime(true);
@@ -41,9 +25,30 @@ $queries = array();
 
 foreach($comp_lists["model"] as $m)
 {
-	$model = $m["id"];
-	$conds_model = $conds;
+	$model=$m["id"];
+	//CLEANING THE LIST OF COMPONENTS
+	foreach($comp_pre_list as $comp)
+	{
+		$final_comp_list[$comp]=array(); if(isset($conds[$comp])){unset($conds[$comp]);} $f_count=0;
+		if ($nr_hdd == 2) { $conds["shdd"] = "shdd > 0"; }
+		
+		if(isset($comp_lists[$comp])&&is_array($comp_lists[$comp]))
+		{ $final_comp_list[$comp]=array_intersect($valid_comps[$model][$comp],array_keys($comp_lists[$comp])); }
+		else
+		{ $final_comp_list[$comp]=$valid_comps[$model][$comp]; }
 	
+		$f_count=count($final_comp_list[$comp]);
+	
+		if($f_count<1)
+		{ continue 2; }
+		elseif(($f_count!=$valid_comps["count"][$model][$comp])&&$to_search[$comp])
+		{ $conds[$comp] = $comp." IN (".implode(",",$final_comp_list[$comp]).")";}
+		else
+		{ continue; }
+	}
+
+	$conds_model = $conds;
+
 	if($conds_model)
     { 
 		$query_search = "SELECT * FROM `notebro_temp`.`all_conf_".$model."` WHERE " . implode(" AND ", $conds_model) . " " . $orderby . " LIMIT 1"; 
@@ -92,14 +97,15 @@ usort($queries, function ($p, $q) {
 		{ break; }
 		echo "<pre>" . $q["query"] . "</pre>";
 		echo "Time elapsed: " . sprintf("%.4f", $q["time"]) . " s<br>";
-     }
+    }
 */
-    /* $time_end = microtime(true);
-     $execution_time = ($time_end - $time_start);
+/*
+    $time_end = microtime(true);
+    $execution_time = ($time_end - $time_start);
 
-	 echo "<hr>";
-     echo "Total time elapsed: " . $execution_time . " s";
-     echo "<br>";
+	echo "<hr>";
+    echo "Total time elapsed: " . $execution_time . " s";
+    echo "<br>";
 */
     $count=count($results); 
 	if($count<1)

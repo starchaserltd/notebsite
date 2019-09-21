@@ -9,13 +9,14 @@ $ignored_comp=array(); $no_comp_search=array();
 $sql_presearch="(SELECT COUNT(id) FROM CHASSIS WHERE valid=1) UNION (SELECT COUNT(id) FROM MDB WHERE valid=1) UNION (SELECT COUNT(id) FROM DISPLAY WHERE valid=1) UNION (SELECT COUNT(id) FROM ACUM WHERE valid=1) UNION (SELECT COUNT(id) FROM CPU WHERE valid=1) UNION (SELECT COUNT(id) FROM GPU WHERE valid=1) UNION (SELECT COUNT(id) FROM MEM WHERE valid=1) UNION (SELECT COUNT(id) FROM WNET WHERE valid=1)";
 $result=mysqli_query($con,$sql_presearch); $row=mysqli_fetch_all($result);
 $list_comps_to_ignore=["chassis","mdb","display","acum","cpu","gpu","mem","wnet"]; $i=0;
+$comp_pre_list=array("cpu","display","mem","hdd","shdd","gpu","wnet","odd","mdb","chassis","acum","war","sist");
 
 foreach($list_comps_to_ignore as $val)
 {
 	if(isset($comp_lists[$val])&&is_array($comp_lists[$val])){ $count=count($comp_lists[$val]); if(($count>$presearch_comp_limit)&&($count>intval(0.75*intval($row[$i][0])))){$ignored_comp[]=$val;}}
 	$i++;
 }
-$comp_pre_list=array("cpu","display","mem","hdd","shdd","gpu","wnet","odd","mdb","chassis","acum","war","sist");
+
 $sql_presearch="SELECT `model_id`,`p_model`,`min_batlife`,`".implode("`,`",$comp_pre_list)."` FROM `notebro_temp`.`presearch_tbl` WHERE "; $model_id_new=array(); $start_id_model=0; $has_or=0;
 $sql_presearch_add_no_results=""; $no_results_has_or=0;
 foreach($comp_lists as $key=>$val)
@@ -76,13 +77,14 @@ foreach($comp_lists as $key=>$val)
 }
 
 $sql_presearch.=$shdd_search_cond."((`min_price`<=".$budgetmax." AND `max_price`>=".$budgetmin.") OR `min_price`=0) AND ((`min_batlife`<=".$batlife_max." AND `max_batlife`>=".$batlife_min.") OR `min_batlife`=0) AND ((`min_cap`<=".$hdd_capmax." AND `max_cap`>=".$totalcapmin.") OR `min_cap`=0)";
+$sql_presearch=str_replace("AND () "," ",$sql_presearch);
 
 $result=mysqli_query($cons,$sql_presearch); $valid_ids=array(); $count_p_models=array(); $pre_min_bat_life=9999999;
 if($result&&mysqli_num_rows($result)>0)
 { 
 	while($row=mysqli_fetch_assoc($result))
 	{
-		if(isset($row["model_id"])&&$row["model_id"]){ $valid_ids[$row["model_id"]]=$row["p_model"]; foreach($comp_pre_list as $el){ $valid_comps[$row["model_id"]][$el]=explode(",",$row[$el]);} $row["min_batlife"]=floatval($row["min_batlife"]); if($pre_min_bat_life>$row["min_batlife"]){$pre_min_bat_life=$row["min_batlife"];} }
+		if(isset($row["model_id"])&&$row["model_id"]){ $valid_ids[$row["model_id"]]=$row["p_model"]; foreach($comp_pre_list as $el){ $valid_comps[$row["model_id"]][$el]=explode(",",$row[$el]); $valid_comps["count"][$row["model_id"]][$el]=count($valid_comps[$row["model_id"]][$el]);} $row["min_batlife"]=floatval($row["min_batlife"]); if($pre_min_bat_life>$row["min_batlife"]){$pre_min_bat_life=$row["min_batlife"];} }
 	}
 	$row["min_batlife"]=$pre_min_bat_life;
 }
