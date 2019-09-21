@@ -111,8 +111,9 @@ usort($queries, function ($p, $q) {
 	if($count<1)
 	{
 		//SEARCHING FOR LAPTOPS THAT MATCH EVERYTHING EXCEPT THE BUDGET
-		$sql_presearch=str_ireplace("((`min_price`<".$budgetmax." AND `max_price`>".$budgetmin.") OR `min_price`=0) AND","",str_ireplace("GROUP_CONCAT(CONCAT(`model_id`,'+',`p_model`))","COUNT(DISTINCT `p_model`)",$sql_presearch));
+		$sql_presearch=str_ireplace("((`min_price`<=".$budgetmax." AND `max_price`>=".$budgetmin.") OR `min_price`=0) AND","",str_ireplace($pre_sql_presearch,"SELECT COUNT(DISTINCT `p_model`) as `ids`,MIN(`min_batlife`) as `min_batlife` FROM `notebro_temp`.`presearch_tbl` WHERE ",$sql_presearch));
 		$sql_presearch.=" AND ".$sql_presearch_add_no_results."1=1";
+		$result_noresult=mysqli_query($cons,$sql_presearch); $presearch_models_nr=0; $presearch_min_batlife=0.0;
 		$result_noresult=mysqli_query($cons,$sql_presearch); $presearch_models_nr=0; $presearch_min_batlife=0.0;
 		if($result_noresult&&mysqli_num_rows($result_noresult)>0)
 		{ if($row=mysqli_fetch_assoc($result_noresult)){ if(isset($row["ids"])&&$row["ids"]){ $presearch_models_nr=intval($row["ids"]); $presearch_min_batlife=floatval($row["min_batlife"]); } } }
