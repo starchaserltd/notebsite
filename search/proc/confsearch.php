@@ -29,7 +29,7 @@ $count_comp_list=0; $count_comp_list=count($comp_lists["model"]);
 
 foreach($comp_lists["model"] as $mkey=>$m)
 {
-	$model=$m["id"];
+	$model=$m["id"]; $do_query=true;
 	//CLEANING THE LIST OF COMPONENTS
 	foreach($comp_pre_list as $comp)
 	{
@@ -44,22 +44,25 @@ foreach($comp_lists["model"] as $mkey=>$m)
 		$f_count=count($final_comp_list[$comp]);
 	
 		if($f_count<1)
-		{ $i++; continue 2; }
+		{ $do_query=false; continue; }
 		elseif(($f_count!=$valid_comps["count"][$model][$comp])&&$to_search[$comp])
 		{ $conds[$comp] = $comp." IN (".implode(",",$final_comp_list[$comp]).")";}
 		else
 		{ continue; }
 	}
 
-	$conds_model = $conds;
+	if($do_query)
+	{
+		$conds_model = $conds;
 
-	if($conds_model)
-    { 
-		$query_search[$i] = "SELECT * FROM `notebro_temp`.`all_conf_".$model."` WHERE " . implode(" AND ", $conds_model) . " " . $orderby . " LIMIT 1";
-	}
-    else
-	{ 
-		$query_search[$i] = "SELECT * FROM `notebro_temp`.`all_conf_".$model."` " . $orderby . " LIMIT 1";
+		if($conds_model)
+		{ 
+			$query_search[$i] = "SELECT * FROM `notebro_temp`.`all_conf_".$model."` WHERE " . implode(" AND ", $conds_model) . " " . $orderby . " LIMIT 1";
+		}
+		else
+		{ 
+			$query_search[$i] = "SELECT * FROM `notebro_temp`.`all_conf_".$model."` " . $orderby . " LIMIT 1";
+		}
 	}
 	/* DEBUGGING CODE */
 	# echo "<pre>" . var_dump($query_search) . "</pre>";
