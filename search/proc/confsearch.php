@@ -44,7 +44,7 @@ foreach($comp_lists["model"] as $mkey=>$m)
 		$f_count=count($final_comp_list[$comp]);
 	
 		if($f_count<1)
-		{ continue 2; }
+		{ $i++; continue 2; }
 		elseif(($f_count!=$valid_comps["count"][$model][$comp])&&$to_search[$comp])
 		{ $conds[$comp] = $comp." IN (".implode(",",$final_comp_list[$comp]).")";}
 		else
@@ -65,7 +65,7 @@ foreach($comp_lists["model"] as $mkey=>$m)
 	# echo "<pre>" . var_dump($query_search) . "</pre>";
 	# $time_start_query = microtime(true);
 	# echo "<pre>"; var_dump($query_search); echo "<br>"; echo "</pre>";
-	
+
 	$i++;
 	if($i%$search_batch_size==0||$count_comp_list<=$i)
 	{
