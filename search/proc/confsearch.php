@@ -23,7 +23,11 @@ elseif ($issimple || $isadvanced || $isquiz)
 # $time_start = microtime(true);
 # echo "<pre>" . var_dump($comp_lists) . "</pre>";
 
-foreach($comp_lists["model"] as $m)
+$search_batch_size=100; $i=0;
+$query_search=array(); $results=array(); $results_pmode=array();
+$count_comp_list=0; $count_comp_list=count($comp_lists["model"]);
+
+foreach($comp_lists["model"] as $mkey=>$m)
 {
 	$model=$m["id"];
 	//CLEANING THE LIST OF COMPONENTS
@@ -51,38 +55,67 @@ foreach($comp_lists["model"] as $m)
 
 	if($conds_model)
     { 
-		$query_search = "SELECT * FROM `notebro_temp`.`all_conf_".$model."` WHERE " . implode(" AND ", $conds_model) . " " . $orderby . " LIMIT 1"; 
+		$query_search[$i] = "SELECT * FROM `notebro_temp`.`all_conf_".$model."` WHERE " . implode(" AND ", $conds_model) . " " . $orderby . " LIMIT 1";
 	}
     else
 	{ 
-		$query_search = "SELECT * FROM `notebro_temp`.`all_conf_".$model."` " . $orderby . " LIMIT 1";
+		$query_search[$i] = "SELECT * FROM `notebro_temp`.`all_conf_".$model."` " . $orderby . " LIMIT 1";
 	}
 	/* DEBUGGING CODE */
 	# echo "<pre>" . var_dump($query_search) . "</pre>";
 	# $time_start_query = microtime(true);
 	# echo "<pre>"; var_dump($query_search); echo "<br>"; echo "</pre>";
-	$result=mysqli_query($cons, $query_search);
 	
-	if($result&&mysqli_num_rows($result)>0)
-	{ 
-		$result = mysqli_fetch_assoc($result); 
+	$i++;
+	if($i%$search_batch_size==0||$count_comp_list<=$i)
+	{
+		$result=NULL;
+		if(mysqli_multi_query($cons,implode("; ",$query_search)))
+		{
+			do
+			{
+				if($result=mysqli_store_result($cons))
+				{ 
+					if(mysqli_num_rows($result)>0)
+					{ $row=mysqli_fetch_assoc($result); $results[$row["model"]]=$row; }
+				}
+				mysqli_free_result($result);
+			}while (mysqli_next_result($cons));
+		}
+		$query_search=array();
+	}
+}
+
+$query_search_pmodel="SELECT * FROM `notebro_temp`.`m_map_table` WHERE `notebro_temp`.`m_map_table`.`model_id` IN (".implode(",",array_keys($results)).")";
+$result_pmodel_r=mysqli_query($cons,$query_search_pmodel);
+
+if($result_pmodel_r&&mysqli_num_rows($result_pmodel_r)>0)
+{
+	while($row=mysqli_fetch_assoc($result_pmodel_r))
+	{ $results_pmodel[$row["model_id"]]=$row; }
+	mysqli_free_result($result_pmodel_r);
+}
+
+foreach(array_keys($results) as $el)
+{
+	if(!isset($results_pmodel[$el]))
+	{ $results_pmodel[$el]["pmodel"]=$el; $results_pmodel[$el]["show_smodel"]=0; }
+
+	$results[$el]["pmodel"]=$results_pmodel[$el]["pmodel"]; $results[$el]["show_smodel"]=intval($results_pmodel[$el]["show_smodel"]); $results_pmodel[$el]["mi_region"]=0; foreach($search_regions_array as $val){if(isset($results_pmodel[$el][$val])&&$results_pmodel[$el][$val]!=null){ if(in_array($results[$el]["model"],explode(",",$results_pmodel[$el][$val]))){ $results_pmodel[$el]["mi_region"]=1; } } } $results[$el]["mi_region"]=$results_pmodel[$el]["mi_region"];
+}
 
 	# $time_end_query = microtime(true);
 	# array_push($queries, array(
 	#	"query" => $query_search,
 	#	"time" => $time_end_query - $time_start_query));
-		$query_search_pmodel="SELECT * FROM `notebro_temp`.`m_map_table` WHERE `notebro_temp`.`m_map_table`.`model_id`=".$model." LIMIT 1";
-		$result_pmodel_r=mysqli_query($cons,$query_search_pmodel);
-		if($result_pmodel_r&&mysqli_num_rows($result_pmodel_r)>0)
-		{ $result_pmodel=mysqli_fetch_assoc($result_pmodel_r);}
-		else
-		{ $result_pmodel["pmodel"]=$model; $result_pmodel["show_smodel"]=0; }
-		$result["pmodel"]=$result_pmodel["pmodel"]; $result["show_smodel"]=intval($result_pmodel["show_smodel"]); $result_pmodel["mi_region"]=0; foreach($search_regions_array as $val){if(isset($result_pmodel[$val])&&$result_pmodel[$val]!=null){ if(in_array($result["model"],explode(",",$result_pmodel[$val]))){ $result_pmodel["mi_region"]=1; } } } $result["mi_region"]=$result_pmodel["mi_region"];
-		
-		if (!is_null($result)) { $results[]=$result; }
-	}
-}
 	
+/*
+	# $time_end_query = microtime(true);
+	# array_push($queries, array(
+	#	"query" => $query_search,
+	#	"time" => $time_end_query - $time_start_query));
+	
+
 /* DEBUGGING CODE */
 /*
 //HERE WE CALCULATE EXECUTION TIMES
