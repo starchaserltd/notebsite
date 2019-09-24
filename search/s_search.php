@@ -24,7 +24,7 @@ require_once("etc/conf.php"); ?>
 				<option value="4" data-name="Core i7/i9">Intel Core i7/i9</option>
 				<option value="5" data-name="AMD">AMD any</option>
 				<option value="6" data-name="Ryzen">AMD Ryzen</option>
-				<option value="7" data-name="HT">Multithreading</option>
+				<option value="7" data-name="HT/SMT">Multithreading</option>
 				<option value="8" data-name="4-core">4-core processor</option>
 				<option value="9" data-name="6-core">6-core processor</option>
 			</select>				

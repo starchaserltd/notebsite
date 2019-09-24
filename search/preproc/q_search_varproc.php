@@ -137,76 +137,76 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 		{
 			$cores=1.5;
 			if (isset($_GET['calc']) && $_GET['calc']==1)
-			{	$cpu_turbomin = 3.1; $cpu_misc[]="HT"; $cores=2.5; }
+			{	$cpu_turbomin = 3.1; $cpu_misc[]="HT/SMT"; $cores=2.5; }
 		
 			if (isset($_GET['heavybrowsing']) && $_GET['heavybrowsing']==1)
-			{	$cpu_turbomin = 3.1; $cpu_misc[]="HT"; $cores=2.5; }
+			{	$cpu_turbomin = 3.1; $cpu_misc[]="HT/SMT"; $cores=2.5; }
 				
 			if (isset($_GET['coding']) && $_GET['coding']==1)
-			{	if($cores<=2) { $cpu_coremin = 2; $cpu_turbomin = 3.1; $cores=2.5;} $cpu_misc[]="HT"; }
+			{	if($cores<=2) { $cpu_coremin = 2; $cpu_turbomin = 3.1; $cores=2.5;} $cpu_misc[]="HT/SMT"; }
 		
 			if (isset($_GET['vmnone']) && $_GET['vmnone']==1)
 			{ }
 		
 			if (isset($_GET['vmsmall']) && $_GET['vmsmall']==1)
-			{	if($cores<2) { $cpu_coremin = 2; $cores=2.5; array_push($cpu_misc,"HT","VT-d/AMD-Vi"); } }
+			{	if($cores<2) { $cpu_coremin = 2; $cores=2.5; array_push($cpu_misc,"HT/SMT","VT-d/AMD-Vi"); } }
 		
 			if (isset($_GET['vmmedium']) && $_GET['vmmedium']==1)
-			{	if($cores<4) { $cpu_coremin = 4; $cores=4; $cpu_misc=array_diff($cpu_misc,["HT"]); array_push($cpu_misc,"VT-d/AMD-Vi"); } }
+			{	if($cores<4) { $cpu_coremin = 4; $cores=4; $cpu_misc=array_diff($cpu_misc,["HT/SMT"]); array_push($cpu_misc,"VT-d/AMD-Vi"); } }
 		
 			if (isset($_GET['vmheavy']) && $_GET['vmheavy']==1)
-			{	if($cores<5) { $cpu_coremin = 4; $cores=5; array_push($cpu_misc,"HT","VT-d/AMD-Vi"); } }
+			{	if($cores<5) { $cpu_coremin = 4; $cores=5; array_push($cpu_misc,"HT/SMT","VT-d/AMD-Vi"); } }
 		
 			if (isset($_GET['lvedit']) && $_GET['lvedit']==1 && $cpu_coremin < 2)
-			{	$cpu_coremin = 2;  $cpu_misc[]="HT"; $cores=2.5; }
+			{	$cpu_coremin = 2;  $cpu_misc[]="HT/SMT"; $cores=2.5; }
 
 			if (isset($_GET['hvedit']) && $_GET['hvedit']==1 )
-			{	$cpu_coremin = 4;  $cpu_misc[]="HT"; }			
+			{	$cpu_coremin = 4;  $cpu_misc[]="HT/SMT"; }			
 								
 			if (isset($_GET['swlight']) && $_GET['swlight']==1  && $cpu_coremin < 2)
-			{	$cpu_coremin = 2;  $cpu_misc[]="HT"; $cores=2.5; if($cpu_turbomin<3){ $cpu_turbomin=3; } }
+			{	$cpu_coremin = 2;  $cpu_misc[]="HT/SMT"; $cores=2.5; if($cpu_turbomin<3){ $cpu_turbomin=3; } }
 
 			if (isset($_GET['swmedium']) && $_GET['swmedium']==1 ) 
-			{	$cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
+			{	$cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT/SMT"]); $cores=4;} }
 	
 			if (isset($_GET['swheavy']) && $_GET['swheavy']==1 )
-			{	$cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
+			{	$cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT/SMT"]); $cores=4;} }
 	
 			if (isset($_GET['3dsmaxlight']) && $_GET['3dsmaxlight']==1  && $cpu_coremin < 2)
-			{	$cpu_coremin = 2;  $cpu_misc[]="HT"; if($cpu_turbomin<3){ $cpu_turbomin=3; } }
+			{	$cpu_coremin = 2;  $cpu_misc[]="HT/SMT"; if($cpu_turbomin<3){ $cpu_turbomin=3; } }
 
 			if (isset($_GET['3dsmaxmedium']) && $_GET['3dsmaxmedium']==1) 
-			{	$cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
+			{	$cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT/SMT"]); $cores=4;} }
 	
 			if (isset($_GET['3dsmaxheavy']) && $_GET['3dsmaxheavy']==1 ) 
-			{	$cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
+			{	$cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT/SMT"]); $cores=4;} }
 	
 			if (isset($_GET['catialight']) && $_GET['catialight']==1 && $cpu_coremin < 2)
-			{	$cpu_coremin = 2;  $cpu_misc[]="HT"; if($cpu_turbomin<3.1){ $cpu_turbomin=3.1; } $cores=2.5; }
+			{	$cpu_coremin = 2;  $cpu_misc[]="HT/SMT"; if($cpu_turbomin<3.1){ $cpu_turbomin=3.1; } $cores=2.5; }
 
 			if (isset($_GET['catiamedium']) && $_GET['catiamedium']==1 ) 
-			{	$cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
+			{	$cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT/SMT"]); $cores=4;} }
 	
 			if (isset($_GET['catiaheavy']) && $_GET['catiaheavy']==1) 
-			{	$cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
+			{	$cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT/SMT"]); $cores=4;} }
 	
 			if (isset($_GET['rhinolight']) && $_GET['rhinolight']==1  && $cpu_coremin < 2) 
-			{	$cpu_coremin = 2;  $cpu_misc[]="HT"; if($cpu_turbomin<3){ $cpu_turbomin=3; } $cores=2.5; }
+			{	$cpu_coremin = 2;  $cpu_misc[]="HT/SMT"; if($cpu_turbomin<3){ $cpu_turbomin=3; } $cores=2.5; }
 
 			if (isset($_GET['rhinomedium']) && $_GET['rhinomedium']==1) 
-			{	$cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
+			{	$cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT/SMT"]); $cores=4;} }
 	
 			if (isset($_GET['rhinoheavy']) && $_GET['rhinoheavy']==1 ) 
-			{	$cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
+			{	$cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT/SMT"]); $cores=4;} }
 	
 			if (isset($_GET['cadolight']) && $_GET['cadolight']==1  && $cpu_coremin < 2) 
-			{	$cpu_coremin = 2;  $cpu_misc[]="HT"; if($cpu_turbomin<3.1){ $cpu_turbomin=3.1; } $cores=2.5; }
+			{	$cpu_coremin = 2;  $cpu_misc[]="HT/SMT"; if($cpu_turbomin<3.1){ $cpu_turbomin=3.1; } $cores=2.5; }
 
 			if (isset($_GET['cadomedium']) && $_GET['cadomedium']==1 ) 
-			{	$cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
+			{	$cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT/SMT"]); $cores=4;} }
 	
 			if (isset($_GET['cadoheavy']) && $_GET['cadoheavy']==1 ) 
-			{	$cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
+			{	$cpu_coremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT/SMT"]); $cores=4;} }
 			
 			$cpu_misc=array_unique($cpu_misc);
 			

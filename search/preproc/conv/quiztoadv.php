@@ -55,76 +55,76 @@ if (isset($_GET['business']) && $_GET['business']==1)
 // CPU Conditions
 $cores=1.5;
 if (isset($_GET['calc']) && $_GET['calc']==1)
-{	$cpufreqmin = 3.1; $cpu_misc[]="HT"; $cores=2.5; }
+{	$cpufreqmin = 3.1; $cpu_misc[]="Multithreading"; $cores=2.5; }
 	
 if (isset($_GET['heavybrowsing']) && $_GET['heavybrowsing']==1)
-{	$cpufreqmin = 3.1; $cpu_misc[]="HT"; $cores=2.5; }
+{	$cpufreqmin = 3.1; $cpu_misc[]="Multithreading"; $cores=2.5; }
 	
 if (isset($_GET['coding']) && $_GET['coding']==1)
-{	if($cores<2) { $cpucoremin = 2; $cpufreqmin = 3.1; $cores=2.5;} $cpu_misc[]="HT"; }
+{	if($cores<2) { $cpucoremin = 2; $cpufreqmin = 3.1; $cores=2.5;} $cpu_misc[]="Multithreading"; }
 
 if (isset($_GET['vmnone']) && $_GET['vmnone']==1)
 {	}
 
 if (isset($_GET['vmsmall']) && $_GET['vmsmall']==1)
-{	if($cores<2) { $cpucoremin = 2; $cores=2.5; array_push($cpu_misc,"HT","VT-d/AMD-Vi"); } }
+{	if($cores<2) { $cpucoremin = 2; $cores=2.5; array_push($cpu_misc,"Multithreading","VT-d/AMD-Vi"); } }
 
 if (isset($_GET['vmmedium']) && $_GET['vmmedium']==1)
-{	if($cores<4) { $cpucoremin = 4; $cores=4; $cpu_misc=array_diff($cpu_misc,["HT"]); array_push($cpu_misc,"VT-d/AMD-Vi"); } }
+{	if($cores<4) { $cpucoremin = 4; $cores=4; $cpu_misc=array_diff($cpu_misc,["Multithreading"]); array_push($cpu_misc,"VT-d/AMD-Vi"); } }
 
 if (isset($_GET['vmheavy']) && $_GET['vmheavy']==1)
-{	if($cores<5) { $cpucoremin = 4; $cores=5; array_push($cpu_misc,"HT","VT-d/AMD-Vi"); } }
+{	if($cores<5) { $cpucoremin = 4; $cores=5; array_push($cpu_misc,"Multithreading","VT-d/AMD-Vi"); } }
 
 if (isset($_GET['lvedit']) && $_GET['lvedit']==1 && $cpucoremin < 2)
-{	$cpucoremin = 2;  $cpu_misc[]="HT"; $cores=2.5; }
+{	$cpucoremin = 2;  $cpu_misc[]="Multithreading"; $cores=2.5; }
 
 if (isset($_GET['hvedit']) && $_GET['hvedit']==1 )
-{	$cpucoremin = 4;  $cpu_misc[]="HT"; }			
+{	$cpucoremin = 4;  $cpu_misc[]="Multithreading"; }			
 					
 if (isset($_GET['swlight']) && $_GET['swlight']==1  && $cpucoremin < 2)
-{	$cpucoremin = 2;  $cpu_misc[]="HT"; $cores=2.5; if($cpufreqmin<3){ $cpufreqmin=3; } }
+{	$cpucoremin = 2;  $cpu_misc[]="Multithreading"; $cores=2.5; if($cpufreqmin<3){ $cpufreqmin=3; } }
 
 if (isset($_GET['swmedium']) && $_GET['swmedium']==1 ) 
-{	$cpucoremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
+{	$cpucoremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["Multithreading"]); $cores=4;} }
 
 if (isset($_GET['swheavy']) && $_GET['swheavy']==1 )
-{	$cpucoremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
+{	$cpucoremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["Multithreading"]); $cores=4;} }
 
 if (isset($_GET['3dsmaxlight']) && $_GET['3dsmaxlight']==1  && $cpucoremin < 2)
-{	$cpucoremin = 2;  $cpu_misc[]="HT"; if($cpufreqmin<3){ $cpufreqmin=3; } }
+{	$cpucoremin = 2;  $cpu_misc[]="Multithreading"; if($cpufreqmin<3){ $cpufreqmin=3; } }
 
 if (isset($_GET['3dsmaxmedium']) && $_GET['3dsmaxmedium']==1) 
-{	$cpucoremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
+{	$cpucoremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["Multithreading"]); $cores=4;} }
 
 if (isset($_GET['3dsmaxheavy']) && $_GET['3dsmaxheavy']==1 ) 
-{	$cpucoremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
+{	$cpucoremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["Multithreading"]); $cores=4;} }
 
 if (isset($_GET['catialight']) && $_GET['catialight']==1 && $cpucoremin < 2)
-{	$cpucoremin = 2;  $cpu_misc[]="HT"; if($cpufreqmin<3.1){ $cpufreqmin=3.1; } $cores=2.5; }
+{	$cpucoremin = 2;  $cpu_misc[]="Multithreading"; if($cpufreqmin<3.1){ $cpufreqmin=3.1; } $cores=2.5; }
 
 if (isset($_GET['catiamedium']) && $_GET['catiamedium']==1 ) 
-{	$cpucoremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
+{	$cpucoremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["Multithreading"]); $cores=4;} }
 
 if (isset($_GET['catiaheavy']) && $_GET['catiaheavy']==1) 
-{	$cpucoremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
+{	$cpucoremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["Multithreading"]); $cores=4;} }
 
 if (isset($_GET['rhinolight']) && $_GET['rhinolight']==1  && $cpucoremin < 2) 
-{	$cpucoremin = 2;  $cpu_misc[]="HT"; if($cpufreqmin<3){ $cpufreqmin=3; } $cores=2.5; }
+{	$cpucoremin = 2;  $cpu_misc[]="Multithreading"; if($cpufreqmin<3){ $cpufreqmin=3; } $cores=2.5; }
 
 if (isset($_GET['rhinomedium']) && $_GET['rhinomedium']==1) 
-{	$cpucoremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
+{	$cpucoremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["Multithreading"]); $cores=4;} }
 
 if (isset($_GET['rhinoheavy']) && $_GET['rhinoheavy']==1 ) 
-{	$cpucoremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
+{	$cpucoremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["Multithreading"]); $cores=4;} }
 
 if (isset($_GET['cadolight']) && $_GET['cadolight']==1  && $cpucoremin < 2) 
-{	$cpucoremin = 2;  $cpu_misc[]="HT"; if($cpufreqmin<3.1){ $cpufreqmin=3.1; } $cores=2.5; }
+{	$cpucoremin = 2;  $cpu_misc[]="Multithreading"; if($cpufreqmin<3.1){ $cpufreqmin=3.1; } $cores=2.5; }
 
 if (isset($_GET['cadomedium']) && $_GET['cadomedium']==1 ) 
-{	$cpucoremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
+{	$cpucoremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["Multithreading"]); $cores=4;} }
 
 if (isset($_GET['cadoheavy']) && $_GET['cadoheavy']==1 ) 
-{	$cpucoremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["HT"]); $cores=4;} }
+{	$cpucoremin = 4; if($cores>2 && $cores <4) { $cpu_misc=array_diff($cpu_misc,["Multithreading"]); $cores=4;} }
 	
 $cpu_misc=array_unique($cpu_misc);
 
