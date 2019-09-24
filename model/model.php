@@ -354,15 +354,15 @@ else
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="50" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1">Model/Capacity:</span></div>
 							<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows gpuhdd"><?php show_hdd($modelhdd); ?></div>
 						</div>
-						<div class="row detaliicomp">
+						<div class="row hidesto hideall detaliicomp" style="display:none">
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="49" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1">RPM:</span></div>
 							<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="49" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1"><span id ="hdd_rpm"></span></span></div>
 						</div>
-						<div class="row hidesto hideall detaliicomp" style="display:none">						
+						<div class="row hidesto hideall detaliicomp" style="display:none">					
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="51" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1">Type:</span></div>
 							<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="51" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1"><span id ="hdd_type"></span></span></div>
 						</div>
-						<div class="row hidesto hideall detaliicomp" style="display:none">
+						<div class="row detaliicomp">
 							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Read Speed:</div>
 							<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows"><span id ="hdd_readspeed"></span> MB/s</div>
 						</div>
