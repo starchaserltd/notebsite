@@ -122,7 +122,7 @@ if(isset($_GET['cpu_type']))
 			}
 			case "7":
 			{
-				$cpumsc.='<option selected="selected">HT/Hyper-threading</option>';
+				$cpumsc.='<option selected="selected">Multithreading</option>';
 				break;
 			}
 			case "8":

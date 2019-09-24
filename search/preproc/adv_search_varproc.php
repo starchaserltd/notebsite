@@ -98,7 +98,10 @@ if(isset($_GET['CPU_socket_id']))
 // CPU miscellaneous
 if(isset($_GET['CPU_msc_id']))
 { array_walk($_GET['CPU_msc_id'],'clean_string'); $cpu_misc = $_GET['CPU_msc_id']; }
-
+foreach($cpu_misc  as $key=>$el)
+{
+	if(stripos($el,"threading")!==FALSE){$cpu_misc[$key]="HT/SMT";}
+}
 // CPU Launch date
 if($_GET['launchdatemin'])
 { $cpu_ldmin = $_GET['launchdatemin']; }
