@@ -165,6 +165,12 @@ else
 	if (isset($_GET['FHDplus'])&& $_GET['FHDplus']==1 ) 
 	{	$displayvresmin = 1440; }
 }
+
+if (isset($_GET['hrefresh']) && $_GET['hrefresh']==1)
+{
+	$display_backt = ["LED IPS","LED IPS PenTile","LED TN WVA","OLED","120Hz","144Hz","240Hz"];
+}
+
 /*de vazut daca ia touch*/
 if (isset($_GET['ntouch'])&& $_GET['ntouch']==1 ) 
 {	$displaytouch[] = "1"; $tcheck = "checked"; }

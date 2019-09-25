@@ -168,8 +168,9 @@ if(isset($_GET['display_type']))
 			case "2":
 			{
 				$displaymsc.='<option selected="selected">LED TN WVA</option>';
-				$displaymsc.='<option selected="selected">120 Hz</option>';
-				$displaymsc.='<option selected="selected">144 Hz</option>';
+				$displaymsc.='<option selected="selected">120Hz</option>';
+				$displaymsc.='<option selected="selected">144Hz</option>';
+				$displaymsc.='<option selected="selected">240Hz</option>';
 				break;
 			}
 			case "3":

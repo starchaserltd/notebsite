@@ -249,6 +249,9 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 				{	$display_vresmin = 1440; }
 			}
 			
+			if (isset($_GET['hrefresh']) && $_GET['hrefresh']==1) 
+			{ $display_backt = ["LED IPS","LED IPS PenTile","LED TN WVA","OLED"]; $display_misc["Hz"]=array(); array_push($display_misc["Hz"],"120Hz","144Hz","240Hz"); }
+			
 			if (isset($_GET['ntouch'])&& $_GET['ntouch']==1 ) 
 			{	$display_touch[] = "1"; }
 							
