@@ -244,7 +244,10 @@ var quiz = {
             'options': {
                 'FHD' : { 'txt':['<span style="font-size:13px;">Normal<br>resolution</span>','multiple'], 'img':['fhd.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
                 'FHDplus' : { 'txt':['<span style="font-size:13px;">High<br>resolution</span>','multiple'], 'img':['fhdplus.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
-                'srgb' : { 'txt':['<span style="font-size:13px;">Color<br>quality</span>','multiple'], 'img':['srgb.svg',''], 'chk':{'on':0,'style':['display:none;']},'extra':['srgb'],'no':1 }
+				'60srgb' : { 'txt':['<span style="font-size:13px;">Normal<br>colour gamut</span>','multiple'], 'img':['ngamut.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+                '90srgb' : { 'txt':['<span style="font-size:13px;">High<br>colour gamut</span>','multiple'], 'img':['hgamut.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 },
+				'hrefresh' : { 'txt':['<span style="font-size:13px;">High<br>refresh rate</span>','multiple'], 'img':['hrrate.svg',''], 'chk':{'on':0,'style':['display:none;']},'no':1 }
+                /*'srgb' : { 'txt':['<span style="font-size:13px;">Color<br>quality</span>','multiple'], 'img':['srgb.svg',''], 'chk':{'on':0,'style':['display:none;']},'extra':['srgb'],'no':1 }*/
             },
             'selected': 0,
             'done': 1
@@ -293,12 +296,15 @@ var quiz = {
         }
     };
 
+//nogo are the conditions that disable an option. go are the conditions that enable an option. all is when the option is disabled by default. permissive is when an enabling option can be disabled by disabling options. permissive options must be placed at the end.
 var compatibility={
 	'relax' : { 'nogo':[['all']], 'go':[['casual','permissive'],['business','permissive'],['coding','permissive']]},
 	'calc' : { 'nogo':[['all']], 'go':[['casual','permissive'],['business','permissive']]},
 	'heavybrowsing' : { 'nogo':[['all']], 'go':[['casual','permissive'],['business','permissive']]},
-	'60srgb' : { 'nogo':[['all']], 'go':[['gaming','permissive'],['cad3d','permissive'],['content','permissive']]},
+	'60srgb' : { 'nogo':[['all'],['FHDplus']], 'go':[['FHD'],['gaming','permissive'],['cad3d','permissive'],['content','permissive']]},
 	'90srgb' : { 'nogo':[['all'],['business','lap','swheavy']], 'go':[['gaming','permissive'],['cad3d','permissive'],['content','permissive']]},
+	'hrefresh' : { 'nogo':[['all'],['FHDplus']], 'go':[['gaming','FHD'],['gaming','permissive']]},
+	'FHDplus' : { 'nogo':[['hrefresh']], 'go':[]},
 	'vmnone' : { 'nogo':[['all']], 'go':[['coding','permissive']]},
 	'vmsmall' : { 'nogo':[['all']], 'go':[['coding','permissive']]},
 	'vmmedium' : { 'nogo':[['all']], 'go':[['coding','permissive']]},
