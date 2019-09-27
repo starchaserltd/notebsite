@@ -1,5 +1,5 @@
 var ref=null; var nquiz="../../";
-
+console.log(window.location.href);
 if (!(window.location.href.split('quiz')[1])) 
 { var currentpage = "search/quiz/nquiz.php"; }
 else

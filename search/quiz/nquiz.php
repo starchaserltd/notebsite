@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 require_once("../../etc/conf.php");
 $rootpath = realpath($_SERVER["DOCUMENT_ROOT"]).$root_mod;
@@ -18,11 +19,12 @@ $quiz_css_addr="";
 		<div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 col-sm-12 offset-sm-0">
 			<div class="quiz_container">
 				<?php include ("quiz.php");?>
+				</div>
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript" src="lib/js/nquiz.js"></script>
+	<script type="text/javascript" src="../../libnb/js/presearch.js"></script>
+	<script type="text/javascript" src="../../lib/js/classList.min.js"></script>
+	<?php include_once("../etc/scripts_pages.php"); ?>
 </body>
-<script type="text/javascript" src="lib/js/nquiz.js"></script>
-<script type="text/javascript" src="../../libnb/js/presearch.js"></script>
-<script type="text/javascript" src="../../lib/js/classList.min.js"></script>
-<?php include_once("../etc/scripts_pages.php"); ?>
