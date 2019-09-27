@@ -227,27 +227,23 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 	// video port intreface filter
 	$i=0;
 	if(gettype($vports)!="array") { $vports=(array)$vports; }
+	$add_part_link=false;
 	foreach($vports as $x)
 	{
-		if($i){ $sel_chassis.=" AND "; }
-		else { $sel_chassis.=" AND ( "; }
+		if(!$i){ $sel_chassis.=" AND ("; $i++; }
+		if($x=="group"){if($add_part_link){ $sel_chassis.="AND (";}else{$sel_chassis.="(";} $add_part_link=false; continue;}
+		if($x=="ungroup"){$sel_chassis.=")"; $add_part_link=true; $i++; continue;}
+		
+		if($add_part_link){	if(isset($x["or"])&&$x["or"]){ $sel_chassis.=" OR "; }else{ $sel_chassis.=" AND "; } }
+		
+		$table="`vi`";
+		if(isset($x["alt"])){$table=$x["alt"];}
 
-		if(($GLOBALS['diffvisearch'])<=0)
-		{
-			$sel_chassis.="FIND_IN_SET('";
-			$sel_chassis.=$x;
-			$sel_chassis.="',vi)>0";
-		}
+		if(isset($x["prop"])&&$x["prop"]=="diffvisearch")
+		{ $sel_chassis.=$table." LIKE '%".$x["value"]."%'"; $add_part_link=true; }
 		else
-		{
-			$sel_chassis.="(";
-			$sel_chassis.="vi LIKE ";
-			$sel_chassis.="'%".$x."%'";
-			if(($GLOBALS['diffvisearch'])==2 && stripos($x,"HDMI")!==FALSE && stripos($sel_chassis,"Thunderbolt")===FALSE) { $sel_chassis.=" OR pi LIKE '%Thunderbolt%'"; } if(($GLOBALS['diffvisearch'])==2) { $sel_chassis.=" OR vi LIKE '%DP%'"; }
-			if(stripos($x,"DP")!==FALSE && stripos($sel_chassis,"Thunderbolt")===FALSE) { $sel_chassis.=" OR pi LIKE '%Thunderbolt%' "; }
-			$sel_chassis.=")";
-			$i++;
-		}
+		{ $sel_chassis.="FIND_IN_SET('".$x["value"]."',".$table.")>0"; $add_part_link=true; }
+	
 		$i++;
 	}
 	if($i>0){ $sel_chassis.=" ) "; }
@@ -409,7 +405,7 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 	
 	// DO THE SEARCH
 	# echo "Query to select the CHASSIS:";
-	# echo "<br>";
+    # echo "<br>";
 	# echo "<pre>" . $sel_chassis. "</pre>";
 
 	$result = mysqli_query($GLOBALS['con'], "$sel_chassis");

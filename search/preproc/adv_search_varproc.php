@@ -430,57 +430,85 @@ if(isset($_GET['MDB_vport_id']))
 
 $hdmi_set=0; $dp_set=0;
 
-foreach($chassis_vports as $key => $x)
+$org_chassis_vports=$chassis_vports;
+$chassis_vports=array(); $c_key=0;
+$chassis_e_ports=array();
+foreach($org_chassis_vports as $key => $x)
+{
+	if(stripos($x,"DP")!==FALSE)
+	{ if(!isset($chassis_e_ports["mDP"])){ $chassis_e_ports["DP"]=["mDP","Thunderbolt"]; } }
+	if(stripos($x,"HDMI")!==FALSE)
+	{ $chassis_e_ports["HDMI"]=["mini HDMI","micro HDMI"]; }
+	if(stripos($x,"mini HDMI")!==FALSE)
+	{ $chassis_e_ports["mini HDMI"]=["micro HDMI"]; }
+	if(stripos($x,"mDP")!==FALSE)
+	{ $chassis_e_ports["mDP"]=["Thunderbolt"]; $chassis_e_ports["DP"]=array(); }
+}
+
+foreach($org_chassis_vports as $key => $x)
 {
 	if((stripos($x,"any"))!==FALSE)
 	{
-		$chassis_vports[$key]="HDMI";
-		$diffvisearch=2;
+		$chassis_vports[$c_key]="group"; $c_key++;
+		foreach(["HDMI","DP","VGA"] as $val)
+		{	
+			$chassis_vports[$c_key]["value"]=$val;
+			$chassis_vports[$c_key]["prop"]="diffvisearch";
+			$chassis_vports[$c_key]["or"]=true;
+			$c_key++;
+			if($val=="DP"){ $chassis_vports[$c_key]["value"]="Thunderbolt"; $chassis_vports[$c_key]["alt"]="`CHASSIS`.`pi`"; $c_key++;}
+		}
+		$chassis_vports[$c_key]="ungroup"; $c_key++;
 	}
-	
-	if((stripos($x,"mDP"))!==FALSE && $dp_set)
-	{
-		unset($chassis_vports[$key]);
-	}
-	
-	if((stripos($x,"1 X mDP"))!==FALSE)
-	{
-		$chassis_vports[$key]="mDP";
-		$diffvisearch=1;
-	}
-	
-	if((stripos($x,"X DP"))!==FALSE)
-	{ $dp_set=1; }
-	
-	if((stripos($x,"1 X DP"))!==FALSE)
-	{
-		$chassis_vports[$key]="DP";
-		$diffvisearch=1;
-	}
-
-	if((stripos($x,"X HDMI"))!==FALSE)
-	{ $hdmi_set=1; }
-	
-	if((stripos($x,"1 X HDMI"))!==FALSE)
-	{
-		$chassis_vports[$key]="HDMI";
-		$diffvisearch=1;
-	}
-	
-	if((stripos($x,"Micro HDMI"))!==FALSE && $hdmi_set)
-	{
-		unset($chassis_vports[$key]);
-	}
-	
-	if((stripos($x,"Mini HDMI"))!==FALSE && $hdmi_set)
-	{
-		unset($chassis_vports[$key]);
-	}
-	
-	if((stripos($x,"1 X VGA"))!==FALSE)
-	{
-		$chassis_vports[$key]="VGA";
-		$diffvisearch=1;
+	elseif(stripos($x," x ")!==FALSE)
+	{ 
+		$viparts=explode(" X ",$x); $start_count=intval($viparts[0]); $port=$viparts[1];
+		
+		if($start_count>1||(isset($chassis_e_ports["mDP"])&&isset($chassis_e_ports["DP"])))
+		{
+			$chassis_vports[$c_key]="group"; $c_key++;
+			for($i=$start_count;$i<=6;$i++)
+			{
+				$chassis_vports[$c_key]["value"]=$i." X ".$port;
+				$chassis_vports[$c_key]["or"]=true;
+				$c_key++;
+			}
+			foreach($chassis_e_ports[$port] as $val)
+			{
+				if(!isset($chassis_e_ports[$val]))
+				{
+					for($i=$start_count;$i<=6;$i++)
+					{
+						if(($val=="Thunderbolt")&&($start_count<2)){ $chassis_vports[$c_key]["value"]=$val; $chassis_vports[$c_key]["prop"]="diffvisearch"; $chassis_vports[$c_key]["alt"]="`CHASSIS`.`pi`"; $i=10; }
+						else
+						{ $chassis_vports[$c_key]["value"]=$i." X ".$val; }
+						$chassis_vports[$c_key]["or"]=true;
+						$c_key++;
+					}
+				}
+			}
+			$chassis_vports[$c_key]="ungroup"; $c_key++;
+		}
+		else
+		{
+			$chassis_vports[$c_key]="group"; $c_key++;
+			$chassis_vports[$c_key]["value"]=$port;
+			$chassis_vports[$c_key]["prop"]="diffvisearch";
+			$chassis_vports[$c_key]["or"]=true;
+			$c_key++;
+			foreach($chassis_e_ports[$port] as $val)
+			{
+				if(!isset($chassis_e_ports[$val]))
+				{
+					$chassis_vports[$c_key]["value"]=$val;
+					$chassis_vports[$c_key]["prop"]="diffvisearch";
+					$chassis_vports[$c_key]["or"]=true;
+					if($val=="Thunderbolt"){ $chassis_vports[$c_key]["alt"]="`CHASSIS`.`pi`"; }
+					$c_key++;
+				}
+			}
+			$chassis_vports[$c_key]="ungroup"; $c_key++;
+		}
 	}
 }
 
