@@ -66,6 +66,7 @@
 	width: 25%; 
 	text-align: center; 
 	bottom: 0px;
+	
  }
 
 .td_gb {
@@ -79,4 +80,68 @@
 	line-height: 1.2; 
 	margin-top: -10px; 
 	margin-bottom: 10px;
+ }
+
+ .containerGamingBenchmark {
+ 	text-align: center;
+ }
+
+.containerGamingBenchmark .header {
+	background: #000;
+	color: #fff;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+ .containerGamingBenchmark .imgBenchmark img {
+ 	width: 96px;
+ }
+
+ .containerGamingBenchmark .imgBenchmark a {
+ 	width: 36px;
+ 	position: absolute;
+ 	left: 50%;
+ 	top: 50%;
+ 	margin-top: -18px;
+ 	margin-left: -18px;
+ }
+
+  .containerGamingBenchmark .imgBenchmark .youtube {
+ 	width: 36px;
+ }
+
+
+ table.table-borderless.customtablewp th {
+ 	vertical-align: top;
+ }
+
+  @media(min-width: 1980px) {
+ 	table.table-borderless.customtablewp th {
+ 		font-size: 24px!important; 		
+ 	}
+
+ 		table.table-borderless.customtablewp th p {
+ 		font-size: 24px!important; 		
+ 	}
+ }
+
+ @media(min-width: 1200px) {
+ 	table.table-borderless.customtablewp th {
+ 		font-size: 18px!important; 		
+ 	}
+
+ 		table.table-borderless.customtablewp th p {
+ 		font-size: 18px!important; 		
+ 	}
+ }
+
+  @media(max-width: 450px) {
+ 	table.table-borderless.customtablewp th {
+ 		font-size: 16px!important; 		
+ 	}
+
+ 	.customtablewp {
+ 		bottom: 14%;
+ 	}
+	
  }
