@@ -282,10 +282,10 @@ if(isset($_GET['DISPLAY_msc_id']))
 			}
 			
 			case ((stripos($el,"edgeless"))!==FALSE):
-			{ $chassis_misc[]="Edgeless display"; unset($display_backt[$key]); break;}
+			{ $chassis_stuff[]="Edgeless display"; unset($display_backt[$key]); break;}
 			
 			case ((stripos($el,"stylus"))!==FALSE):
-			{ $chassis_misc[]="Stylus"; unset($display_backt[$key]); break;}
+			{ $chassis_stuff[]="Stylus"; unset($display_backt[$key]); break;}
 			
 			case $el=='80% sRGB or better' :
 			{
