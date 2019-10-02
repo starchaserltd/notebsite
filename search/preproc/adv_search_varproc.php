@@ -287,9 +287,14 @@ if(isset($_GET['DISPLAY_msc_id']))
 			case ((stripos($el,"stylus"))!==FALSE):
 			{ $chassis_stuff[]="Stylus"; unset($display_backt[$key]); break;}
 			
-			case $el=='80% sRGB or better' :
+			case $el=='80% sRGB or better':
 			{
 				$display_srgb=80; unset($display_backt[$key]); break;
+			}
+			
+			case $el=='HDR':
+			{
+				$display_misc[]="HDR"; unset($display_backt[$key]); break;
 			}
 		}
 	}
