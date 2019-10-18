@@ -39,10 +39,9 @@ function showCPU(str)
 				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
 				document.getElementById('dLabel').setAttribute("data-cpu",str);
 				cpu_gpu=parseInt(cpu["gpu"]);
-
-				if((typeof $("#GPU").val()==="function" && $("#GPU").val()==-1)||gpu_noselect===-1)
+				
+				if((typeof $("#GPU").val()==="string" && $("#GPU").val()==-1)||gpu_noselect===-1)
 				{
-					console.log("GPU_load");
 					if(cpu_gpu)
 					{ showGPU(cpu_gpu);}
 					else
