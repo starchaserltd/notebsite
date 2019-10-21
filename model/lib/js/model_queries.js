@@ -60,7 +60,7 @@ var gpu = {}; var gpu_price_old=0; var gpu_price_new=0; var gpu_err_new=0; var g
 var gpu_type=4; var gpu_previous=0; 
 function showGPU(str) 
 {
-	if(prevent_cpu_gpu_load==0){ prevent_cpu_gpu_load=1; setTimeout(function(){ prevent_cpu_gpu_load=-1; }, 500); }
+	if(prevent_cpu_gpu_load==0){ prevent_cpu_gpu_load=1; setTimeout(function(){ prevent_cpu_gpu_load=-1; }, 750); }
 	if(str == -1)
 	{
 		if(!cpu_gpu)
