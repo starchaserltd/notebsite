@@ -39,7 +39,7 @@ function showCPU(str)
 				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
 				document.getElementById('dLabel').setAttribute("data-cpu",str);
 				cpu_gpu=parseInt(cpu["gpu"]);
-				
+
 				if(((typeof $("#GPU").val()==="string" && $("#GPU").val()==-1)||gpu_noselect===-1)&&prevent_cpu_gpu_load<1)
 				{
 					if(cpu_gpu)
@@ -60,6 +60,7 @@ var gpu = {}; var gpu_price_old=0; var gpu_price_new=0; var gpu_err_new=0; var g
 var gpu_type=4; var gpu_previous=0; 
 function showGPU(str) 
 {
+	if(prevent_cpu_gpu_load==0){ prevent_cpu_gpu_load=1; setTimeout(function(){ prevent_cpu_gpu_load=-1; }, 500); }
 	if(str == -1)
 	{
 		if(!cpu_gpu)
@@ -116,7 +117,6 @@ function showGPU(str)
 				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
 				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
 				document.getElementById('dLabel').setAttribute("data-gpu",str); 
-				if(prevent_cpu_gpu_load==0){ prevent_cpu_gpu_load=1; setTimeout(function(){ prevent_cpu_gpu_load=-1; }, 500); }
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/gpu.php?q="+str,true);
