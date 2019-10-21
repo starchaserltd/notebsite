@@ -40,13 +40,15 @@ function showCPU(str)
 				document.getElementById('dLabel').setAttribute("data-cpu",str);
 				cpu_gpu=parseInt(cpu["gpu"]);
 				
-				if((typeof $("#GPU").val()==="string" && $("#GPU").val()==-1)||gpu_noselect===-1)
+				if(((typeof $("#GPU").val()==="string" && $("#GPU").val()==-1)||gpu_noselect===-1)&&prevent_cpu_gpu_load<1)
 				{
 					if(cpu_gpu)
 					{ showGPU(cpu_gpu);}
 					else
 					{ showGPU(gpudet); }
-				}		
+				}
+				else
+				{ if(!(prevent_cpu_gpu_load<1)){ prevent_cpu_gpu_load=-1;} }
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/cpu.php?q="+str,true);
@@ -114,6 +116,7 @@ function showGPU(str)
 				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
 				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
 				document.getElementById('dLabel').setAttribute("data-gpu",str); 
+				if(prevent_cpu_gpu_load==0){ prevent_cpu_gpu_load=1; setTimeout(function(){ prevent_cpu_gpu_load=-1; }, 500); }
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/gpu.php?q="+str,true);
