@@ -12,7 +12,14 @@ $show_submodel=false; $reg_sql=""; $current_regions_array=array();
 
 if(strlen($keys)>2 && $keys[-3]=="%")
 { $keys=substr($keys, 0, -3); }
-$keysparts=explode(" ",$keys); $conditions_model=""; $conditions_altmodel=""; $conditions="";
+
+$doing_id_search=false;
+if(stripos($keys,"id:")===FALSE)
+{ $keysparts=explode(" ",$keys); }
+else
+{ $keysparts=explode(":",$keys); $id_set=intval($keysparts[1]); unset($keysparts); }
+
+$conditions_model=""; $conditions_altmodel=""; $conditions="";
 
 if($excode)
 {
@@ -21,13 +28,20 @@ if($excode)
 	{ $regions=mysqli_fetch_assoc($ex_result)["regions"]; $current_regions_array=explode(",",$regions); $reg_sql=" AND ("; foreach($current_regions_array as $val){ $reg_sql.="FIND_IN_SET(".$val.",`regions`)>0 OR "; } $reg_sql=substr($reg_sql,0,-4).")"; }
 }
 
-foreach($keysparts as $el)
+if(isset($keysparts))
 {
-	$conditions_model.="`notebro_db`.GEN_NAME(`MODEL`.`id`) LIKE '%".$el."%' AND ";
-	$conditions_altmodel.="`alt_model`.`name` LIKE '%".$el."%' AND ";
+	foreach($keysparts as $el)
+	{
+		$conditions_model.="`notebro_db`.GEN_NAME(`MODEL`.`id`) LIKE '%".$el."%' AND ";
+		$conditions_altmodel.="`alt_model`.`name` LIKE '%".$el."%' AND ";
+	}
 }
+
 $conditions_model=substr($conditions_model, 0, -5); $conditions_altmodel=substr($conditions_altmodel, 0, -5);
-if(isset($id_set) && $id_set){ $conditions_model.="AND id IN ($id_set)"; }
+
+if(isset($id_set) && $id_set){ $and=""; if(isset($conditions_model[1])){ $and=" AND";} $conditions_model.=$and." `MODEL`.`id` IN ($id_set)"; }
+elseif(isset($m_search_included)&&isset($from_date)){ $conditions_model.=" AND `MODEL`.`ldate` >= '".$from_date."'"; $conditions_altmodel.=" AND `model`.`ldate` >= '".$from_date."'"; }
+
 if($p_model_only){ $conditions_model.=" GROUP BY `p_model`,`show_smodel`"; $conditions_altmodel.=" GROUP BY `model`.`p_model`"; }
 
 // CONSTRUCTING THE SEARCH QUERY
@@ -45,11 +59,12 @@ $result=mysqli_query($con, $sel);
 //IF NO RESULTS FOUND, MAYBE WE ARE SEARCHING FOR A SUBMODEL
 if((!$result)||($result&&mysqli_num_rows($result)<=0))
 {
-	if(strlen($keys)>4)
+	if((strlen($keys)>4)&&!(isset($id_set)))
 	{
 		$conditions_model=""; $show_submodel=true;
 		foreach($keysparts as $el)
 		{ $conditions_model.="`notebro_db`.GEN_NAME_WSUBMODEL(`MODEL`.`id`) LIKE '%".$el."%' AND "; } $conditions_model=substr($conditions_model, 0, -5);
+		if(isset($m_search_included)&&isset($from_date)){ $conditions_model.=" AND `MODEL`.`ldate` >= '".$from_date."'"; }
 		$sel="SELECT `MODEL`.`id`,`MODEL`.`mdb`,`MODEL`.`submodel`,`MODEL`.`p_model` as `c_p_model`,`MODEL`.`regions`,GEN_NAME_WSUBMODEL(`MODEL`.`id`) as `name`,'nop' as `np` FROM `notebro_db`.`MODEL` WHERE ".$conditions_model."".$reg_sql." ORDER BY `name` ASC";
 		$result=mysqli_query($con,$sel);
 		if(!($result&&mysqli_num_rows($result)>0)&&$reg_sql!="")

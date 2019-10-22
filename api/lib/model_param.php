@@ -27,8 +27,11 @@ function comp_details($comp,$id)
 			if($result)
 			{
 				while($row=mysqli_fetch_assoc($result)){ $res[]=$row; }
-				if($limit>0){ return $res; }
-				else { return $res[0];}
+				if(isset($res[0]))
+				{
+					if($limit>0){ return $res; }
+					else { return $res[0];}
+				}
 			}
 			break; 
 		}

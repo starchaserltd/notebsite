@@ -32,11 +32,23 @@ foreach ($search_array as $v)
 		{		
 			if((isset($param['model_id'])&&!empty($param['model_id']))||(isset($param['model_name'])&&!empty($param['model_name'])))
 			{	
-				$id_set=NULL;
+				$id_set=NULL; $from_date="";
+				if (isset($param['from_date'])&&!empty($param['from_date'])) 
+				{
+					$from_date=preg_replace("([^0-9-])", "", $param['from_date']);
+					$from_date_parts=explode("-",$from_date); $from_date=""; $from_date_parts[0]=intval($from_date_parts[0]); $from_date_parts[1]=intval($from_date_parts[1]); $from_date_parts[2]=intval($from_date_parts[2]);
+					if(!($from_date_parts[0]>0&&$from_date_parts[0]<4000)){ $response->code=29; $response->message.=" Invalid date format. Year is outside range (1 - 4000)."; }
+					elseif(!($from_date_parts[1]>0&&$from_date_parts[1]<13)){ $response->code=29; $response->message.=" Invalid date format. Month is outside range."; }
+					elseif(!($from_date_parts[2]>0&&$from_date_parts[2]<32)){ $response->code=29; $response->message.=" Invalid date format. Day is outside range."; }
+					else { $from_date=$from_date_parts[0]."-".$from_date_parts[1]."-".$from_date_parts[2]; }
+				}
 				if (isset($param['model_id'])&&!empty($param['model_id'])) 
 				{ 
+					//add frm date here as well
 					$param['model_id']=mysqli_real_escape_string($con,$param['model_id']);
-					$result = mysqli_query($GLOBALS['con'], "SELECT id FROM `notebro_db`.`MODEL` WHERE id IN (".$param['model_id'].") LIMIT ".$nr_max_models);
+					if(isset($from_date)&&$from_date!=""){ $from_date=" AND `MODEL`.`ldate` >= '".$from_date."'"; }else{ $from_date=""; }
+					$result = mysqli_query($GLOBALS['con'], "SELECT `id` FROM `notebro_db`.`MODEL` WHERE `MODEL`.`id` IN (".$param['model_id'].")".$from_date." LIMIT ".$nr_max_models);
+
 					if($result && mysqli_num_rows($result)>0)
 					{ $id_set=$param['model_id']; }
 					else

@@ -123,20 +123,25 @@ if($api_key!==""&&$api_key!==NULL)
 					{
 						$response->code=26; $response->message="Valid method.";$response->daily_hits_left=$hits_left;
 						$i=0; $single_result=1; $search_array=array("model"); $nr_max_models=100000; if(!isset($param['model_name'])||(isset($param['model_name'])&&$param['model_name']==NULL)){ $param['model_name']="%"; }
+						if(!isset($param['from_date'])||(isset($param['from_date'])&&$param['from_date']==NULL)){ $param['from_date']="1900-01-01"; }
 						require_once("preproc/api_varproc.php");
 						require_once("lib/model_param.php");
 						$m_search_ids_list=""; foreach($m_search_included as $el){ $m_search_ids_list.=$el["id"].","; } $m_search_ids_list=rtrim($m_search_ids_list,",");
 						$list_all_model_res=comp_details("model_res",$m_search_ids_list);
-						foreach($list_all_model_res as $el)
+						if(isset($list_all_model_res))
 						{
-							$response->result->{$i}=new stdClass(); $object_addr=$response->result->{$i};
-							// Model info
-							$object_addr->model_info=comp_details("model_name_msearch",$el["id"]);
-							$object_addr->model_resources=$el;
-							unset($object_addr->model_resources["cpu"]); unset($object_addr->model_resources["display"]); unset($object_addr->model_resources["mem"]); unset($object_addr->model_resources["hdd"]); unset($object_addr->model_resources["shdd"]);
-							unset($object_addr->model_resources["gpu"]); unset($object_addr->model_resources["wnet"]); unset($object_addr->model_resources["odd"]); unset($object_addr->model_resources["mdb"]); unset($object_addr->model_resources["chassis"]);
-							unset($object_addr->model_resources["acum"]); unset($object_addr->model_resources["warranty"]); unset($object_addr->model_resources["sist"]); unset($object_addr->model_resources["id"]);
-							$i++;
+							if(!isset($list_all_model_res[0])){ $list_all_model_res=[0=>$list_all_model_res]; }
+							foreach($list_all_model_res as $el)
+							{
+								$response->result->{$i}=new stdClass(); $object_addr=$response->result->{$i};
+								// Model info
+								$object_addr->model_info=comp_details("model_name_msearch",$el["id"]);
+								$object_addr->model_resources=$el;
+								unset($object_addr->model_resources["cpu"]); unset($object_addr->model_resources["display"]); unset($object_addr->model_resources["mem"]); unset($object_addr->model_resources["hdd"]); unset($object_addr->model_resources["shdd"]);
+								unset($object_addr->model_resources["gpu"]); unset($object_addr->model_resources["wnet"]); unset($object_addr->model_resources["odd"]); unset($object_addr->model_resources["mdb"]); unset($object_addr->model_resources["chassis"]);
+								unset($object_addr->model_resources["acum"]); unset($object_addr->model_resources["warranty"]); unset($object_addr->model_resources["sist"]); unset($object_addr->model_resources["id"]);
+								$i++;
+							}
 						}
 						break;
 					}
