@@ -148,8 +148,8 @@ function showDISPLAY(str)
 				document.getElementById('display_backt').innerHTML = display["backt"];
 				document.getElementById('display_touch').innerHTML = display["touch"];
 				document.getElementById('display_misc').innerHTML = display["msc"];
-				if( parseInt(display["sRGB"]) > 0) { document.getElementById('display_misc').innerHTML = document.getElementById('display_misc').innerHTML + ', <span class="toolinfo" data-toolid=86 data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="top" data-original-title="Loading..."><span class="toolinfo1">'+ display["sRGB"] + "% sRGB</span></span>";  }
-				if( parseInt(display["lum"]) > 0) { document.getElementById('display_misc').innerHTML = document.getElementById('display_misc').innerHTML + ', <span class="toolinfo" data-toolid=87 data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="top" data-original-title="Loading..."><span class="toolinfo1">'+ display["lum"] + " nits</span></span>";  } 
+				if( parseInt(display["sRGB"]) > 0) { document.getElementById('display_misc').innerHTML=eliminate_first_line_desc(document.getElementById('display_misc').innerHTML)+' <span class="toolinfo" data-toolid=86 data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="top" data-original-title="Loading..."><span class="toolinfo1">'+ display["sRGB"] + "% sRGB</span></span>"; }
+				if( parseInt(display["lum"]) > 0) { document.getElementById('display_misc').innerHTML=eliminate_first_line_desc(document.getElementById('display_misc').innerHTML)+' <span class="toolinfo" data-toolid=87 data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="top" data-original-title="Loading..."><span class="toolinfo1">'+ display["lum"] + " nits</span></span>"; } 
 				document.getElementById('display_rating').innerHTML = display["rating"];
 			
 				display_rate_old = display_rate_new;
@@ -910,6 +910,7 @@ function set_best_low(confid,array_values)
 	if(i) { set_active_confopt(-1); }
 }
 
+function eliminate_first_line_desc(el){ var temp_el=el; if(temp_el==="-"){temp_el="";}else{temp_el=temp_el+",";} return temp_el;}
 function normal_rating(x){ x=x*1000; return (((1.25/1000000*Math.pow(x,2))+1.305*x+(-4.3/100000000000*Math.pow(x,3)))/1000); }
 function bat_animation(){ document.getElementsByClassName("labelblue")[2].classList.add('blueAnimation'); setTimeout(function () { var el=document.getElementsByClassName("labelblue")[2]; if(el!='undefined'&&el!=null){ el.classList.remove('blueAnimation');} }, 1000); }
 function change_exch(new_exchcode){ for(var key in document.getElementById("m_currency").options){ if(document.getElementById("m_currency").options[key].value==new_exchcode){document.getElementById("m_currency").selectedIndex=key;}}}
