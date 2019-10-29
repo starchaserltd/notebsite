@@ -48,11 +48,13 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 		require_once($root."proc/shdd_search.php");
 		$comp_lists["shdd"] = search_shdd ($nr_hdd);
 	}
-
+	
+	foreach($gpu_typelist as $val){if($val<1){ if(count($comp_lists["cpu"])>0){ foreach($comp_lists["cpu"] as $el){ $gpu_idlist[]=$el["gpu"];} $gpu_idlist=array_unique($gpu_idlist); } break;}}
+	
 	if($to_search["gpu"])
 	{ 
 		require_once($root."proc/gpu_search.php");
-		$comp_lists["gpu"] = search_gpu ($gpu_typelist, $gpu_prod, $gpu_model, $gpu_arch, $gpu_techmin, $gpu_techmax, $gpu_shadermin, $gpu_cspeedmin, $gpu_cspeedmax, $gpu_sspeedmin, $gpu_sspeedmax, $gpu_mspeedmin, $gpu_mspeedmax, $gpu_mbwmin, $gpu_mbwmax, $gpu_mtype, $gpu_maxmemmin, $gpu_maxmemmax, $gpu_sharem, $gpu_powermin, $gpu_powermax, $gpu_ldmin, $gpu_ldmax, $gpu_misc, $gpu_ratemin, $gpu_ratemax, $pricemin ,$budgetmax, $battery_life);
+		$comp_lists["gpu"] = search_gpu ($gpu_typelist, $gpu_prod, $gpu_model, $gpu_arch, $gpu_techmin, $gpu_techmax, $gpu_shadermin, $gpu_cspeedmin, $gpu_cspeedmax, $gpu_sspeedmin, $gpu_sspeedmax, $gpu_mspeedmin, $gpu_mspeedmax, $gpu_mbwmin, $gpu_mbwmax, $gpu_mtype, $gpu_maxmemmin, $gpu_maxmemmax, $gpu_sharem, $gpu_powermin, $gpu_powermax, $gpu_ldmin, $gpu_ldmax, $gpu_misc, $gpu_ratemin, $gpu_ratemax, $pricemin ,$budgetmax, $battery_life, $gpu_idlist);
 	}
 
 	if($to_search["wnet"])

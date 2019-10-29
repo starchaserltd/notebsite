@@ -2,7 +2,7 @@
 
 /* ********* SELECT GPUS BASED ON FILTERS ***** */
 
-function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shadermin, $cspeedmin, $cspeedmax, $sspeedmin, $sspeedmax, $mspeedmin, $mspeedmax, $mbwmin, $mbwmax, $mtype, $maxmemmin, $maxmemmax, $sharem, $powermin, $powermax, $ldmin, $ldmax, $misc, $ratemin, $ratemax, $pricemin, $pricemax, $seltdp)
+function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shadermin, $cspeedmin, $cspeedmax, $sspeedmin, $sspeedmax, $mspeedmin, $mspeedmax, $mbwmin, $mbwmax, $mtype, $maxmemmin, $maxmemmax, $sharem, $powermin, $powermax, $ldmin, $ldmax, $misc, $ratemin, $ratemax, $pricemin, $pricemax, $seltdp, $idlist)
 {
 	if($seltdp>0)
 	{ $sel_gpu="SELECT id,typegpu,price,rating,err,power FROM notebro_db.GPU WHERE 1=1 AND valid=1"; }
@@ -32,6 +32,7 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 		$sel_gpu.="typegpu='";
 		$sel_gpu.=$x;
 		$sel_gpu.="'";
+		if($x===0){ if($idlist && isset($idlist[0])){ $sel_gpu.=" AND `id` IN ("; $sel_gpu.=implode(",",$idlist); $sel_gpu.=")"; } }
 		$i++;
 
 		if($k==1){ $sel_gpu.=" )";}
@@ -352,7 +353,7 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 			
 	// DO THE SEARCH
 	# echo "Query to select the GPUs:";
-    # echo "<br>";
+	# echo "<br>";
 	# echo "<pre>" . $sel_gpu . "</pre>";
 
 	$result=mysqli_query($GLOBALS['con'],$sel_gpu);

@@ -20,6 +20,7 @@ foreach($list_comps_to_ignore as $val)
 $pre_sql_presearch="SELECT `model_id`,`p_model`,`min_batlife`,`".implode("`,`",$comp_pre_list)."` FROM `notebro_temp`.`presearch_tbl` WHERE "; $model_id_new=array(); $start_id_model=0; $has_or=0;
 $sql_presearch=$pre_sql_presearch;
 $sql_presearch_add_no_results=""; $no_results_has_or=0;
+
 foreach($comp_lists as $key=>$val)
 {
 	$sql_presearch_add_no_results.="("; $sql_presearch.="("; $empty_cond=0;

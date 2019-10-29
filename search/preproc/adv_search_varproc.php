@@ -158,12 +158,16 @@ if($typegpu==1)
 	{
 		foreach($_GET['gputype2'] as $x)
 		{
-			$x=intval($x);
-			if($x==0) { $gpu_typelist[]=0; $gpu_typelist[]=1; }
-			if($x==1) { $gpu_typelist[]=1; }
-			if($x==2) { $gpu_typelist[]=2; }
-			if($x==3) { $gpu_typelist[]=3; }
-			if($x==4) { $gpu_typelist[]=4; }
+			switch(intval($x))
+			{
+				case 0: { $gpu_typelist[]=0; $gpu_typelist[]=1; break; }
+				case 1: { $gpu_typelist[]=1; break; }
+				case 2: { $gpu_typelist[]=2; break; }
+				case 3: { $gpu_typelist[]=3; break; }
+				case 4: { $gpu_typelist[]=4; break; }
+				case 10: { $gpu_typelist[]=0; $gpu_ratemin=6; break; }
+				default: { $gpu_typelist[]=0; $gpu_typelist[]=1; break; }
+			}
 		}
 	}
 	else

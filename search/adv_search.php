@@ -159,6 +159,7 @@
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 								<div>Type</div>			
 								<select onchange="presearch('#advform');" id="gputype2" name="gputype2[]" data-lcom='GPU_model' data-lfield="gpu_type" multiple="multiple">
+								<option value="10" <?php echo $gputypesel[10] ?>>Integrated Pro</option>
 								<option value="0" <?php echo $gputypesel[0] ?>>Integrated + Basic</option>
 								<option value="1" <?php echo $gputypesel[1] ?>>Basic</option>
 								<option value="2" <?php echo $gputypesel[2] ?>>Gaming</option>
