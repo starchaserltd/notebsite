@@ -640,6 +640,7 @@ foreach($chassis_stuff as $key => $x)
 		$chassis_stuff[]="dynaudio";
 		$chassis_stuff[]="akg";
 		$chassis_stuff[]="onkyo";
+		$chassis_stuff[]="omnisonic";
 		$chassis_stuff[]="ungroup";
 	}
 	
