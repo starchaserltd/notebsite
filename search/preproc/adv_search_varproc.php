@@ -381,20 +381,16 @@ foreach($chassis_ports as $key => $x)
 	{ 
 		$remove_sd=1;
 		if($remove_msd){ unset($chassis_ports[$key]); $chassis_addpi["SD card reader"][]="MicroSD card reader"; }
+		else
+		{
+			$chassis_addpi["MicroSD card reader"][]="SD card reader";
+		}
 	}
 
 	if((strcasecmp($x,"SD card reader"))==0)
 	{
 		$remove_msd=1;
 		if($remove_sd){ unset($chassis_ports[$key]); $chassis_addpi["MicroSD card reader"][]="SD card reader"; }
-		else
-		{
-			$chassis_addpi["SD card reader"][]="2-in-1 card reader";
-			$chassis_addpi["SD card reader"][]="3-in-1 card reader";
-			$chassis_addpi["SD card reader"][]="4-in-1 card reader";
-			$chassis_addpi["SD card reader"][]="5-in-1 card reader";
-			$chassis_addpi["SD card reader"][]="6-in-1 card reader";
-		}
 	}
 	
 	if(stripos($x,"USB")!==FALSE)
