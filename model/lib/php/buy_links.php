@@ -16,11 +16,11 @@ if(isset($_GET["model_id"])&&isset($_GET["seller"]))
 	
 	foreach($seller as $seller)
 	{
-		$sql="SELECT logo,region,(SELECT `notebro_site`.`exchrate`.`sign` FROM `notebro_site`.`exchrate` WHERE `notebro_site`.`exchrate`.`id`=`notebro_buy`.`SELLERS`.`exchrate`) as exchsign FROM `notebro_buy`.`SELLERS` WHERE `notebro_buy`.`SELLERS`.`name`='".$seller."' LIMIT 1";
+		$sql="SELECT `id`,`name`,`logo`,`region`,(SELECT `notebro_site`.`exchrate`.`sign` FROM `notebro_site`.`exchrate` WHERE `notebro_site`.`exchrate`.`id`=`notebro_buy`.`SELLERS`.`exchrate`) as exchsign FROM `notebro_buy`.`SELLERS` WHERE `notebro_buy`.`SELLERS`.`id`='".$seller."' LIMIT 1";
 		$result_s=mysqli_query($con,$sql);
-		if($result_s && mysqli_num_rows($result_s)>0){ $seller_info=mysqli_fetch_assoc($result_s); $region=intval($seller_info["region"]); } else { $seller_info["logo"]="generic_seller_logo.png"; $seller_info["region"]=1; $seller_info["exchsign"]="$"; }
+		if($result_s && mysqli_num_rows($result_s)>0){ $seller_info=mysqli_fetch_assoc($result_s); $region=intval($seller_info["region"]); } else { $seller_info["name"]="unknown"; $seller_info["logo"]="generic_seller_logo.png"; $seller_info["region"]=1; $seller_info["exchsign"]="$"; }
 		
-		switch($seller)
+		switch($seller_info["name"])
 		{	
 			case "googleuk":
 			{ $key_proc='standard_key_proc'; $link_gen='google_uk_link'; $region=3; break;}
@@ -44,7 +44,7 @@ if(isset($_GET["model_id"])&&isset($_GET["seller"]))
 			{ $key_proc='standard_key_proc'; $link_gen='google_com_link'; $region=2; break;}
 		}
 		
-		$sql="SELECT id,(SELECT `notebro_db`.`MDB`.`submodel` FROM `notebro_db`.`MDB` WHERE FIND_IN_SET(`notebro_db`.`MDB`.`id`,`notebro_db`.`MODEL`.`mdb`)>0 LIMIT 1) as mdb,model,submodel,regions,prod,keywords,REGEXP_REPLACE(CONCAT(IFNULL((SELECT fam FROM `notebro_db`.`FAMILIES` WHERE id=idfam),''),' ',IFNULL((SELECT subfam FROM `notebro_db`.`FAMILIES` WHERE id=idfam and showsubfam=1),'')),'[[:space:]]+', ' ') as fam from `notebro_db`.`MODEL`".$model_cond;
+		$sql="SELECT `id`,(SELECT `notebro_db`.`MDB`.`submodel` FROM `notebro_db`.`MDB` WHERE FIND_IN_SET(`notebro_db`.`MDB`.`id`,`notebro_db`.`MODEL`.`mdb`)>0 LIMIT 1) as mdb,model,submodel,regions,prod,keywords,REGEXP_REPLACE(CONCAT(IFNULL((SELECT fam FROM `notebro_db`.`FAMILIES` WHERE id=idfam),''),' ',IFNULL((SELECT subfam FROM `notebro_db`.`FAMILIES` WHERE id=idfam and showsubfam=1),'')),'[[:space:]]+', ' ') as fam from `notebro_db`.`MODEL`".$model_cond;
 		$result=mysqli_query($con,$sql);
 
 		while($row=mysqli_fetch_assoc($result))
@@ -456,10 +456,10 @@ if(isset($_GET["model_id"])&&isset($_GET["seller"]))
 					break;
 				}
 			}
-			
+
 			$keys=$key_proc($row["model"],$row["id"],$row["submodel"]);
 			$return[$key]["model_id"]=$row["id"];
-			$return[$key]["link"]=$link_gen($row["prod"],$keys); $return[$key]["seller_name"]=$seller;
+			$return[$key]["link"]=$link_gen($row["prod"],$keys); $return[$key]["id"]=$seller;
 			require_once("link_gen/link_changes.php");
 			if($show_keys==1) { $return[$key]["keys"]=valid_keys($keys,$row["prod"],$row["fam"],$cond);} else { $return[$key]["seller_logo"]=$seller_info["logo"]; $return[$key]["seller_exchsign"]=$seller_info["exchsign"]; }
 			$key++;
