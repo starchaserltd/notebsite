@@ -1,5 +1,5 @@
 <?php
-if(!(isset($include_aff_gen)&&$include_aff_gen==true)){$function_replay=false; $include_aff_gen=false; require("../../../etc/con_db.php");}
+if(!(isset($include_aff_gen)&&$include_aff_gen==true)){$function_replay=false; $include_aff_gen=false; require("../../etc/con_db.php");}
 //$_POST["usertag"]=$_GET["usertag"];
 //$_POST["links"]=$_GET["links"];
 //$_POST["sellers"]=$_GET["sellers"];
