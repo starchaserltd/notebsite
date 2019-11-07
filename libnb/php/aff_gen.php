@@ -1,11 +1,11 @@
 <?php
-if(!(isset($include_aff_gen)&&$include_aff_gen==true)){$function_replay=false; $include_aff_gen=false; require("../../etc/con_db.php");}
+if(!(isset($include_aff_gen)&&$include_aff_gen==true)){$function_replay=false; $include_aff_gen=false; require_once("../../etc/con_db.php");}
 //$_POST["usertag"]=$_GET["usertag"];
 //$_POST["links"]=$_GET["links"];
 //$_POST["sellers"]=$_GET["sellers"];
 $usertag=null; $go=0;
 if(isset($_POST["usertag"])&&$_POST["usertag"]!=""&&$_POST["usertag"]!=null)
-{ $usertag=mysqli_real_escape_string($con,filter_var($_POST["usertag"], FILTER_SANITIZE_STRING)); $go++;}
+{ $usertag=mysqli_real_escape_string($con,filter_var($_POST["usertag"], FILTER_SANITIZE_STRING)); if($usertag!="noref"){ $go++;} }
 
 $links_list=null; $sellerid_list=array();
 
@@ -78,14 +78,13 @@ function get_link_sellerid($links,$id_list,$con)
 	{ return null; }
 }
 
-		if(isset($usertag)&&$usertag!="")
-		{
-			$result=mysqli_query($con,"SELECT * FROM `notebro_buy`.`TAGS` WHERE usertag='".$usertag."' LIMIT 1");
-			if(!($result && mysqli_num_rows($result)>0)){ $usertag=""; }
-			else
-			{ $row=mysqli_fetch_array($result); $tags=json_decode($row[2],true); $ref_only=intval($row[3]); }
-		}
-
+if(isset($usertag)&&$usertag!=""&&$usertag!="noref")
+{
+	$result=mysqli_query($con,"SELECT * FROM `notebro_buy`.`TAGS` WHERE usertag='".$usertag."' LIMIT 1");
+	if(!($result && mysqli_num_rows($result)>0)){ $usertag=""; }
+	else
+	{ $row=mysqli_fetch_array($result); $tags=json_decode($row[2],true); $ref_only=intval($row[3]); }
+}
 
 if($go>1)
 {

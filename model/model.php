@@ -88,9 +88,21 @@ else
 							<p style="color:black;text-decoration:none; font-weight:bold">Official Site:</p>
 						</div>
 						<div class="officialSite" style="padding:0 0 0 5px;">
-							<?php $imgprod=mysqli_fetch_array(mysqli_query($con,"SELECT pic,pic2 FROM notebro_site.brands WHERE brand='".$mprod."'")); show_vars('link,link2', 'MODEL',$idmodel );?>
-							<a href="<?php echo $show_vars["link"].'" target="blank"><img src=res/'.$imgprod["pic"].' class="logoheightof" alt="Product consumer page">'; ?></a>
-							<?php /*if(isset($show_vars["link2"]) && $show_vars["link2"]){ ?><a href="<?php echo $show_vars["link2"].'" target="blank"><img src=res/'.$imgprod["pic2"].' class="logoheightof" style="margin-left:2px" alt="Product business page">'; ?></a> <?php }*/ ?>
+							<?php $imgprod=mysqli_fetch_array(mysqli_query($con,"SELECT pic,pic2 FROM notebro_site.brands WHERE brand='".$mprod."'")); show_vars('link,link2', 'MODEL',$idmodel );
+							$aff_link=null;
+							if(isset($show_vars["link2"]) && $show_vars["link2"] && isset($usertag)&& $usertag!="" && $usertag!="noref")
+							{
+								$include_aff_gen=true; $function_replay=null; $_POST["usertag"]=$usertag; $_POST["links"]=$show_vars["link"]; $_POST["sellers"]=$show_vars["link2"]; require_once("../libnb/php/aff_gen.php");
+								if($function_replay!=null&&isset($function_replay[0])&&$function_replay[0]!=null)
+								{ 
+									$function_replay=json_decode($function_replay);
+									if($function_replay!=null&&isset($function_replay[0])&&$function_replay[0]!=null)
+									{ 	$aff_link=$function_replay; }
+								}
+							}
+							if($aff_link&&isset($aff_link[0])&&$aff_link[0]!=NULL&&$aff_link[0]!=""){$show_vars["link"]=$aff_link[0];}
+							?>
+							<a href="<?php echo $show_vars["link"].'" target="blank"><img src=res/'.$imgprod["pic"].' class="logoheightof" alt="Product consumer page"></a>'; ?>
 						</div>
 				</div>	
 			</div>			

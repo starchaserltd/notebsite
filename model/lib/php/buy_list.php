@@ -129,7 +129,4 @@ foreach($link_list as $key=>$el)
 		default:{ echo '<li><a href="'.$el.'" target="blank"><span class="buyProducerImg"><img src="res/img/logo/'.$generated_buy_list[$key]["logo"].'" class="logoheight" alt="other seller"/></span></a></li>'; break;}
 	}
 }
-
-
 ?>
-
