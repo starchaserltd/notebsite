@@ -90,7 +90,7 @@ else
 						<div class="officialSite" style="padding:0 0 0 5px;">
 							<?php $imgprod=mysqli_fetch_array(mysqli_query($con,"SELECT pic,pic2 FROM notebro_site.brands WHERE brand='".$mprod."'")); show_vars('link,link2', 'MODEL',$idmodel );?>
 							<a href="<?php echo $show_vars["link"].'" target="blank"><img src=res/'.$imgprod["pic"].' class="logoheightof" alt="Product consumer page">'; ?></a>
-							<?php if(isset($show_vars["link2"]) && $show_vars["link2"]){ ?><a href="<?php echo $show_vars["link2"].'" target="blank"><img src=res/'.$imgprod["pic2"].' class="logoheightof" style="margin-left:2px" alt="Product business page">'; ?></a> <?php } ?>
+							<?php /*if(isset($show_vars["link2"]) && $show_vars["link2"]){ ?><a href="<?php echo $show_vars["link2"].'" target="blank"><img src=res/'.$imgprod["pic2"].' class="logoheightof" style="margin-left:2px" alt="Product business page">'; ?></a> <?php }*/ ?>
 						</div>
 				</div>	
 			</div>			
