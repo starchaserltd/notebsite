@@ -138,7 +138,7 @@ $(document).ready(function()
 	//CREATE  BUDGET SLIDER
 	//HERE WE CALCULATE THE VARIABLES
 	var t = parseFloat(currency_val[$('#currency').val()]);
-	var x = minbudgetnomen*4.5; var y = minbudgetnomen*12; y=parseInt(y*t); x=parseInt(x*t); minb=parseInt(minbudgetnomen*t); maxb=parseInt(maxbudgetnomen*t);
+	var x = minbudgetnomen*4.5; var y = minbudgetnomen*11; y=parseInt(y*t); x=parseInt(x*t); minb=parseInt(minbudgetnomen*t); maxb=parseInt(maxbudgetnomen*t);
 
 	noUiSlider.create(document.getElementById('budget'), {
 	start: [roundlimit(x), roundlimit(y)],

@@ -16,7 +16,7 @@
 		var minbudgetnomenadv=<?php echo $minconfigprice; ?>;
 		var maxbudgetnomenadv=<?php echo $maxconfigprice; ?>;
 		var minbudgetset=<?php if(!isset($bdgmin)){ $bdgmin=$minconfigprice*4.5; }else{if($bdgmin==-10){$bdgmin=$minconfigprice;}} echo $bdgmin; ?>;
-		var maxbudgetset=<?php if(!isset($bdgmax)){ $bdgmax=$minconfigprice*12; }else{if($bdgmax<-5){$bdgmax=$maxconfigprice;}} echo $bdgmax; ?>;
+		var maxbudgetset=<?php if(!isset($bdgmax)){ $bdgmax=$minconfigprice*11; }else{if($bdgmax<-5){$bdgmax=$maxconfigprice;}} echo $bdgmax; ?>;
 	</script>
 	<form  method="post" id="advform" name="advform">
 	<input type="hidden" name="advsearch" value="1">
