@@ -777,7 +777,7 @@ function update_model_info(model_id)
 function setselectedcomp(comp,value)
 {
 	comp=document.getElementsByName(comp)[0];
-	if(comp!==undefined)
+	if(comp!==undefined&&comp.options!==undefined)
 	{
 		for ( var i = 0; i < comp.options.length; i++ )
 		{ if ( comp.options[i].value == value ) { comp.options[i].selected = true; return; } }
