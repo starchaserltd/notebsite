@@ -550,32 +550,6 @@ $('.logonb').click(function() {
 
 function mail_to(email){ window.location.href = "mailto:"+email+"@starchaser.ro"; }
 
-function get_buy_list(el)
-{
-	setTimeout(function()
-	{
-		if(el.getAttribute("aria-expanded")==="true")
-		{		
-			if (el.dataset.target === "")	{ return; }
-			else 
-			{
-				if (window.XMLHttpRequest)	{ var	xmlhttp = new XMLHttpRequest(); }
-				
-				xmlhttp.onreadystatechange = function() 
-				{
-					if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
-					{
-						document.getElementById(el.dataset.target).innerHTML = xmlhttp.responseText;
-					}
-				}
-				xmlhttp.open("POST","model/lib/php/buy_list.php",true);
-				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-				xmlhttp.send('idmodel='+el.dataset.idmodel+'&buyregions='+el.dataset.buyregions+'&lang='+el.dataset.lang+'&usertag='+el.dataset.ref+'&price='+el.dataset.price+'&cpu='+el.dataset.cpu+'&gpu='+el.dataset.gpu+'&display='+el.dataset.iddisplay+'&pmodel='+el.dataset.pmodel);
-			}
-		}
-	},5);
-}
-
 function set_adv_search(pagetoopen,headpart,back)
 { if(pagetoopen.indexOf("adv_search.php")>=0 && searchurl.indexOf("advsearch=1")>=0 && pagetoopen.indexOf("advsearch=1")<0) { if(pagetoopen.indexOf("s_memmin")<0&&pagetoopen.indexOf("quizsearch")<0&&pagetoopen.indexOf("browse_by")<0){ if(pagetoopen.indexOf("reset=1")<0||back){ pagetoopen=headpart+"search/adv_search.php?"+searchurl;}else{pagetoopen=headpart+"search/adv_search.php?reset=1"; searchurl="";}}} return pagetoopen; }
 

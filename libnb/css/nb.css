@@ -2513,6 +2513,91 @@ table#comparelist td.text-center.comparecell3 {
 .dropdown-content a.addrev.selected  {
 	color:#000!important;
 }
+
+/*-------- Model modal popup css ---------*/ 
+
+#affil-popup  .close {
+    right: 12px;
+    position: absolute;
+    z-index: 999;
+    opacity: 0.8;
+    color: #0066cb;
+}
+
+#affil-popup .modal-dialog.modal-sm {
+    max-width: 300px;    
+    transition: all 0.7s ease;
+    
+}
+
+#affil-popup.width .modal-dialog.modal-sm  {
+    max-width: 600px;
+}
+
+
+#affil-popup .modal-body {
+    background-color: #fff;
+    color: #0066cb;
+}
+
+#affil-popup .modal-dialog {
+    top:320px;
+}
+
+#affil-popup  .btn {
+    max-width: 120px;
+    min-width: 120px;
+}
+
+#affil-popup #learn-more-affil-btn {
+    display: block;
+    padding: 10px 30px;
+    border: 1px solid #0066cb;
+    margin-top: 15px;    
+    border-radius: 4px;    
+    margin: 20px auto 0 auto;
+    cursor: pointer;
+}
+
+#affil-popup #learn-more-affil-btn a {
+    color: #0066cb;
+    text-decoration: none;
+}
+
+#affil-popup #affil-popup-body p {
+    line-height: 20px;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+#affil-popup .modal-footer {
+    justify-content: center;
+}
+
+#affil-popup .modal-body {
+   height: auto;
+   min-height: auto;
+   padding-top: 30px!important;
+}
+
+.modal {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: block;
+    z-index: -1;
+    height: 0;
+
+}
+
+.modal.visible {
+    opacity: 1;
+    z-index: 99;
+    height: 100%;
+}
+
+/*-------- End Model modal popup css ---------*/ 
+
 /* IE 11 Article fix*/
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
   article {

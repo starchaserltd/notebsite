@@ -51,6 +51,7 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 				</div><!-- row end-->
 			</div>
 		</div>
+		<?php include_once("../libnb/php/aff_modal.php"); ?>
 		<div class="row">
 				<?php
 				$cons=dbs_connect();

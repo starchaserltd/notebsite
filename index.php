@@ -209,6 +209,7 @@ require_once("etc/conf.php");
 		<!-- Custom Theme JavaScript -->
 		<script><?php echo 'var siteroot = "'.$web_address.'";'; ?></script>
 		<script src="libnb/js/tooltip.js" async></script>
+		<script src="libnb/js/affil.js" async></script>
 		<script src="libnb/js/index.js"></script>
 		<script src="libnb/js/presearch.js"></script>
 	</body>

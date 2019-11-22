@@ -144,6 +144,7 @@ else
 								<span class="loader"></span>
 							</li>
 						</ul>
+						<?php include_once("../libnb/php/aff_modal.php"); ?>
 					</div><!-- Dropdown end div-->		
 					<div class="btn addtocpmp" id="addcompare" >
 						<a style="text-decoration:none;">Add to compare</a>
