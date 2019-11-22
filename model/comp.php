@@ -22,7 +22,7 @@ else
 {
 ?>
 <link rel="stylesheet" href="model/lib/css/compare.css?v=29" type="text/css" />
-
+<?php include_once("../libnb/php/aff_modal.php"); ?>
 	<!-- TABLE HEADER -->
 	<div class="compContainer linked">
 		<table id="title_MODEL" style="border: 0; width:100%;" class="titleModel linked">
