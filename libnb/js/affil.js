@@ -1,4 +1,4 @@
-function setCookie(cname, cvalue, exdays) {
+function setCookie(cname,cvalue,exdays) {
 	var d = new Date();
 	d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
 	var expires = "expires=" + d.toUTCString();
@@ -41,7 +41,7 @@ function create_affil_modal(set_link) {
 
 	$('#yes-affil-btn').click(function () {
 		$(document).off('keypress');
-		setCookie('ref', 'starchaser', 4);
+		setCookie('ref','starchaser',10);
 		var store_window = window.open('','_blank');
 		if (window.XMLHttpRequest) { var xmlhttp = new XMLHttpRequest(); }
 		xmlhttp.onreadystatechange = function () {
@@ -63,7 +63,7 @@ function create_affil_modal(set_link) {
 		close_popup_extra(affil_popup);
 	});
 
-	$('#no-affil-btn').click(function () { $(document).off('keypress'); setCookie('ref', 'noref', 4); close_popup_extra(affil_popup); record_choice(0); window.open(set_link); });
+	$('#no-affil-btn').click(function () { $(document).off('keypress'); setCookie('ref','noref',10); close_popup_extra(affil_popup); record_choice(0); window.open(set_link); });
 
 	listeners_set = true;
 }
