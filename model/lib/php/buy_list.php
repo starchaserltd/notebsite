@@ -92,7 +92,8 @@ if($result && mysqli_num_rows($result)>0)
 		}
 	}
 }
-if(count($excluded_sellers)>0){ $excluded_sellers="AND id NOT IN (".implode(",",$excluded_sellers).")"; } else { $excluded_sellers=""; }
+
+if(count($excluded_sellers)>0){ /*$excluded_sellers[]="3";*/ $excluded_sellers="AND id NOT IN (".implode(",",$excluded_sellers).")"; } else { $excluded_sellers=""; }
 
 if($buy_regions=="3"&&$lang!=1&&$lang!=3){$lang=1;}
 if($buy_regions=="0"){ $result=mysqli_query($con,"SELECT GROUP_CONCAT(`notebro_buy`.`SELLERS`.`id`) AS `id` FROM `notebro_buy`.`SELLERS` WHERE `exchrate` IN (".$lang.") AND id IN (2,3,4,5,6,7,8,9,10) ".$excluded_sellers." ORDER BY priority DESC"); }
