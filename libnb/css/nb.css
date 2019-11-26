@@ -2516,122 +2516,124 @@ table#comparelist td.text-center.comparecell3 {
 
 /*-------- Model modal popup css ---------*/ 
 
-#affil-popup  .close {
-    right: 25px;
-    position: absolute;
-    z-index: 999;
-    opacity: 0.8;
-    color: #000;
-    top: 20px;
+#affil-popup .close {
+right:25px;
+position:absolute;
+z-index:999;
+opacity:.8;
+color:#000;
+top:20px
 }
 
 #affil-popup .modal-dialog.modal-sm {
-       
-    transition: all 0.7s ease;
-    
+transition:all .7s ease
 }
 
-#affil-popup.width .modal-dialog.modal-sm  {
-    max-width: 600px;
+#affil-popup.width .modal-dialog.modal-sm {
+max-width:600px
 }
-
 
 #affil-popup .modal-body {
-    background-color: #fff;
-    color: #0066cb;
-    font-size: 16px;
+background-color:#fff;
+color:#0066cb;
+font-size:16px
 }
 
 #affil-popup .modal-dialog {
-    top:320px;
+top:320px
 }
 
-#affil-popup  .btn {
-    max-width: 120px;
-    min-width: 120px;
+#affil-popup .btn {
+max-width:120px;
+min-width:120px
 }
 
 #affil-popup #learn-more-affil-btn {
-    display: block;
-    padding: 5px 0px;    
-    margin: 0 auto 20px auto;
-    cursor: pointer;
-    border-bottom: 1px solid  #0066cb;
-    color: #007bff!important;
-    max-width: 141px;
+display:block;
+padding:5px 0;
+margin:0 auto 20px;
+cursor:pointer;
+border-bottom:1px solid #0066cb;
+color:#007bff!important;
+max-width:141px
 }
 
 .modal-footer .btn-primary {
-    background-color: #0066cb!important;
+background-color:#0066cb!important
+}
+
+.modal-footer .btn-secondary {
+background-color:#fff!important;
+color:#636363;
+border-color:#636363
 }
 
 .modal .modal-content {
-    font-family: sans-serif;
+font-family:Arial
 }
 
 #affil-popup.width #learn-more-affil-btn {
-     padding: 10px 30px;
-     border-bottom: none;
-     max-width: 400px;
-     line-height: 18px;
+padding:10px 30px;
+border-bottom:none;
+max-width:400px;
+line-height:18px
 }
 
 #affil-popup #learn-more-affil-btn a {
-    color: #0066cb;
-    text-decoration: none;
+color:#0066cb;
+text-decoration:none
 }
 
 #affil-popup #affil-popup-body p {
-    line-height: 20px;
-    text-align: center;
-    width: 100%;
-    margin-bottom: 0;
+line-height:20px;
+text-align:center;
+width:100%;
+margin-bottom:0
 }
 
 #affil-popup .modal-footer {
-    justify-content: center;
+justify-content:center
 }
 
 #affil-popup .modal-body {
-   height: auto;
-   min-height: auto;
-   padding-top: 60px!important;
+height:auto;
+min-height:auto;
+padding-top:60px!important
 }
 
 .modal {
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    display: block;
-    z-index: -1;
-    height: 0;
-
+opacity:0;
+transition:opacity .3s ease;
+display:block;
+z-index:-1;
+height:0
 }
 
 .modal.visible {
-    opacity: 1;
-    z-index: 99;
-    height: 100%;
+opacity:1;
+z-index:99;
+height:100%
 }
 
-#affil-popup.modal.width.visible .modal-dialog.modal-sm  {
-    top:50px!important;
+#affil-popup.modal.width.visible .modal-dialog.modal-sm {
+top:50px!important
 }
 
 #affil-popup.modal.width.visible p {
-    color: #636363;
+color:#636363
 }
 
 #learn-more-affil-btn a {
-    text-transform: capitalize;
-    color: #0066cb!important;
+text-transform:capitalize;
+color:#0066cb!important
 }
 
 .searcButtonMobile {
-    font-size: 16px;
+font-size:16px
 }
 
 .modal-footer {
-    border-top: 0;
+border-top:0
 }
 
 /*-------- End Model modal popup css ---------*/ 
