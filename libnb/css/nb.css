@@ -2517,15 +2517,16 @@ table#comparelist td.text-center.comparecell3 {
 /*-------- Model modal popup css ---------*/ 
 
 #affil-popup  .close {
-    right: 12px;
+    right: 25px;
     position: absolute;
     z-index: 999;
     opacity: 0.8;
-    color: #0066cb;
+    color: #000;
+    top: 20px;
 }
 
 #affil-popup .modal-dialog.modal-sm {
-    max-width: 300px;    
+       
     transition: all 0.7s ease;
     
 }
@@ -2538,6 +2539,7 @@ table#comparelist td.text-center.comparecell3 {
 #affil-popup .modal-body {
     background-color: #fff;
     color: #0066cb;
+    font-size: 16px;
 }
 
 #affil-popup .modal-dialog {
@@ -2551,12 +2553,27 @@ table#comparelist td.text-center.comparecell3 {
 
 #affil-popup #learn-more-affil-btn {
     display: block;
-    padding: 10px 30px;
-    border: 1px solid #0066cb;
-    margin-top: 15px;    
-    border-radius: 4px;    
-    margin: 20px auto 0 auto;
+    padding: 5px 0px;    
+    margin: 0 auto 20px auto;
     cursor: pointer;
+    border-bottom: 1px solid  #0066cb;
+    color: #007bff!important;
+    max-width: 141px;
+}
+
+.modal-footer .btn-primary {
+    background-color: #0066cb!important;
+}
+
+.modal .modal-content {
+    font-family: sans-serif;
+}
+
+#affil-popup.width #learn-more-affil-btn {
+     padding: 10px 30px;
+     border-bottom: none;
+     max-width: 400px;
+     line-height: 18px;
 }
 
 #affil-popup #learn-more-affil-btn a {
@@ -2578,7 +2595,7 @@ table#comparelist td.text-center.comparecell3 {
 #affil-popup .modal-body {
    height: auto;
    min-height: auto;
-   padding-top: 30px!important;
+   padding-top: 60px!important;
 }
 
 .modal {
@@ -2594,6 +2611,27 @@ table#comparelist td.text-center.comparecell3 {
     opacity: 1;
     z-index: 99;
     height: 100%;
+}
+
+#affil-popup.modal.width.visible .modal-dialog.modal-sm  {
+    top:50px!important;
+}
+
+#affil-popup.modal.width.visible p {
+    color: #636363;
+}
+
+#learn-more-affil-btn a {
+    text-transform: capitalize;
+    color: #0066cb!important;
+}
+
+.searcButtonMobile {
+    font-size: 16px;
+}
+
+.modal-footer {
+    border-top: 0;
 }
 
 /*-------- End Model modal popup css ---------*/ 
