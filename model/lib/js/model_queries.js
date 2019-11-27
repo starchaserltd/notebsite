@@ -10,7 +10,7 @@ function showCPU(str)
 	
 		xmlhttp.onreadystatechange = function() 
 		{
-			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+			if (xmlhttp.readyState==4 && xmlhttp.status==200 && document.getElementById('cpu_title')!=null) 
 			{
 				cpu = JSON.parse(xmlhttp.responseText);
 				document.getElementById('cpu_title').innerHTML = cpu["prod"]+" "+cpu["model"];
@@ -80,7 +80,7 @@ function showGPU(str)
 		
 		xmlhttp.onreadystatechange = function() 
 		{
-			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+			if (xmlhttp.readyState==4 && xmlhttp.status==200 && document.getElementById('cpu_title')!=null)  
 			{
 				gpu = JSON.parse(xmlhttp.responseText);
 				
@@ -135,7 +135,7 @@ function showDISPLAY(str)
 
 		xmlhttp.onreadystatechange = function() 
 		{
-			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+			if (xmlhttp.readyState==4 && xmlhttp.status==200 && document.getElementById('cpu_title')!=null) 
 			{
 				display = JSON.parse(xmlhttp.responseText);
 				
@@ -182,7 +182,7 @@ function showHDD(str)
 
 		xmlhttp.onreadystatechange = function() 
 		{
-			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+			if (xmlhttp.readyState==4 && xmlhttp.status==200 && document.getElementById('cpu_title')!=null) 
 			{
 				hdd = JSON.parse(xmlhttp.responseText);
 				
@@ -227,7 +227,7 @@ function showSHDD(str)
 
 		xmlhttp.onreadystatechange = function() 
 		{
-			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+			if (xmlhttp.readyState==4 && xmlhttp.status==200 && document.getElementById('cpu_title')!=null) 
 			{
 				var prev_el=shdd;
 				shdd = JSON.parse(xmlhttp.responseText);
@@ -280,7 +280,7 @@ function showMDB(str)
 		
 		xmlhttp.onreadystatechange = function() 
 		{
-			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+			if (xmlhttp.readyState==4 && xmlhttp.status==200 && document.getElementById('cpu_title')!=null) 
 			{
 				mdb = JSON.parse(xmlhttp.responseText);
 				document.getElementById('mdb_ram').innerHTML = mdb["ram"];
@@ -320,7 +320,7 @@ function showMEM(str)
 
 		xmlhttp.onreadystatechange = function() 
 		{
-			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+			if (xmlhttp.readyState==4 && xmlhttp.status==200 && document.getElementById('cpu_title')!=null) 
 			{
 				mem = JSON.parse(xmlhttp.responseText);
 				document.getElementById('mem_title').innerHTML = mem["cap"]+"GB "+mem["type"];
@@ -352,7 +352,7 @@ function showODD(str)
 
 		xmlhttp.onreadystatechange = function() 
 		{
-			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+			if (xmlhttp.readyState==4 && xmlhttp.status==200 && document.getElementById('cpu_title')!=null)
 			{
 				odd = JSON.parse(xmlhttp.responseText);
 				if((odd["type"]).toUpperCase()!="NONE") { document.getElementById('odd_title').innerHTML = ", "+odd["type"]; } else { document.getElementById('odd_title').innerHTML = ""; }
@@ -381,7 +381,7 @@ function showACUM(str)
 
 		xmlhttp.onreadystatechange = function() 
 		{
-			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+			if (xmlhttp.readyState==4 && xmlhttp.status==200 && document.getElementById('cpu_title')!=null)  
 			{
 				acum = JSON.parse(xmlhttp.responseText);
 				
@@ -418,7 +418,7 @@ function showCHASSIS(str)
 
 		xmlhttp.onreadystatechange = function() 
 		{
-			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+			if (xmlhttp.readyState==4 && xmlhttp.status==200 && document.getElementById('cpu_title')!=null) ) 
 			{
 				chassis = JSON.parse(xmlhttp.responseText);
 				
@@ -469,7 +469,7 @@ function showWNET(str)
 		
 		xmlhttp.onreadystatechange = function() 
 		{
-			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+			if (xmlhttp.readyState==4 && xmlhttp.status==200 && document.getElementById('cpu_title')!=null)  
 			{
 				wnet = JSON.parse(xmlhttp.responseText);
 				if(parseInt(wnet["speed"])!=0){document.getElementById('wnet_speed').innerHTML = wnet["speed"]+" Mbps";} else {document.getElementById('wnet_speed').innerHTML = "-";} 
@@ -499,7 +499,7 @@ function showWAR(str)
 		
 		xmlhttp.onreadystatechange = function() 
 		{
-			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+			if (xmlhttp.readyState==4 && xmlhttp.status==200 && document.getElementById('cpu_title')!=null)  
 			{
 				war = JSON.parse(xmlhttp.responseText);
 				document.getElementById('war_misc').innerHTML = war["msc"];
@@ -526,7 +526,7 @@ function showSIST(str)
 		
 		xmlhttp.onreadystatechange = function() 
 		{
-			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+			if (xmlhttp.readyState==4 && xmlhttp.status==200 && document.getElementById('cpu_title')!=null) 
 			{
 				sist = JSON.parse(xmlhttp.responseText);
 				if(sist["vers"]==0){sist["vers"]="";}
