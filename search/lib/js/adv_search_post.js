@@ -37,7 +37,7 @@ function sliderrangeadv(old)
 }			
 
 //CREATE CPU DATE SLIDER
-if(document.getElementById('launchdate').noUiSlider===undefined)
+if(document.getElementById('launchdate').noUiSlider===undefined||document.getElementById('launchdate').noUiSlider===null)
 {	
 	noUiSlider.create(document.getElementById('launchdate'), {
 		start: [cpumindateset, cpumaxdateset],
