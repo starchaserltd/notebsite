@@ -492,18 +492,20 @@ function navigation()
 {
 	if(quiz[currentp]['selected']>=quiz[currentp]['done'] && inextra==0)
     {    if(currentp<maxpage)
-        { if(document.getElementsByClassName('glyphicon-arrow-right')[0]!==undefined) { document.getElementsByClassName('glyphicon-arrow-right')[0].style.display="inline"; document.getElementById("quiz_submit_btn").style.display="none"; } }
+        { if(document.getElementsByClassName('glyphicon-arrow-right')[0]!==undefined){ document.getElementsByClassName('glyphicon-arrow-right')[0].style.display="inline"; document.getElementById("quiz_submit_btn").style.display="none"; } }
         else
         { if(currentp==maxpage){ document.getElementById("quiz_submit_btn").style.display="block"; } document.getElementsByClassName('glyphicon-arrow-right')[0].style.display="none";  } 
     }
     else
-    { if(document.getElementsByClassName('glyphicon-arrow-right')[0]!==undefined) { document.getElementsByClassName('glyphicon-arrow-right')[0].style.display="none"; document.getElementById("quiz_submit_btn").style.display="none"; } }
+    { if(document.getElementsByClassName('glyphicon-arrow-right')[0]!==undefined){ document.getElementsByClassName('glyphicon-arrow-right')[0].style.display="none"; document.getElementById("quiz_submit_btn").style.display="none"; } }
     
-    if(currentp<=0)
-    { document.getElementsByClassName('glyphicon-arrow-left')[0].style.display="none";}
-    else
-    { document.getElementsByClassName('glyphicon-arrow-left')[0].style.display="inline"; }
-
+    if(document.getElementsByClassName('glyphicon-arrow-left')[0]!==undefined)
+	{
+		if(currentp<=0)
+		{ document.getElementsByClassName('glyphicon-arrow-left')[0].style.display="none";}
+		else
+		{ document.getElementsByClassName('glyphicon-arrow-left')[0].style.display="inline"; }
+	}
     
     var navnr=document.getElementsByClassName('nrcircle'); var lastactive=-1; var quizfinal=1;
     for (var key=0;key<=maxpage;key++)
