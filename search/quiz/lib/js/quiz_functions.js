@@ -530,8 +530,11 @@ function navigation()
         }
     }
     if(lastactive>=maxpage) { lastactive--;}
-    navnr[lastactive+1].classList.add("nrcircleactive");
-    navnr[lastactive+1].setAttribute( "onClick", "makePage("+(lastactive+1)+");" );
+    if(navnr[lastactive+1]!==undefined)
+	{
+		navnr[lastactive+1].classList.add("nrcircleactive");
+		navnr[lastactive+1].setAttribute( "onClick", "makePage("+(lastactive+1)+");" );
+	}
 }
 
 
