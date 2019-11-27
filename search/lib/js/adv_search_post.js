@@ -37,35 +37,37 @@ function sliderrangeadv(old)
 }			
 
 //CREATE CPU DATE SLIDER
-if(document.getElementById('launchdate')!=null&&document.getElementById('launchdate').noUiSlider===undefined)
-{	
-	noUiSlider.create(document.getElementById('launchdate'), {
-		start: [cpumindateset, cpumaxdateset],
-		connect: true,
-		step: 1,
-		direction: 'ltr',
-		format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
-		range: {
-			'min': [cpumindate],
-			'max': [cpumaxdate]		
-		}
+if(document.getElementById('launchdate')!=null)
+{
+	if(document.getElementById('launchdate').noUiSlider===undefined)
+	{	
+		noUiSlider.create(document.getElementById('launchdate'), {
+			start: [cpumindateset, cpumaxdateset],
+			connect: true,
+			step: 1,
+			direction: 'ltr',
+			format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
+			range: {
+				'min': [cpumindate],
+				'max': [cpumaxdate]		
+			}
+		});
+	}
+
+	//SET CPU DATE SLIDER TEXT UPDATE FUNCTIONS
+	document.getElementById('launchdate').noUiSlider.on('update', function( values, handle ) 
+	{
+		if (typeof values[0] === 'string' || values[0] instanceof String)
+		{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+
+		if (typeof values[1] === 'string' || values[1] instanceof String)
+		{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+								
+		if(handle==0) {	document.getElementById('launchdatemin').value=left; filtersearch('launchdatemin',left,0); }
+		if(handle==1) {	document.getElementById('launchdatemax').value=right; filtersearch('launchdatemax',right,0); }
+		document.getElementById('launchdateval').innerHTML=left+" - "+right;
 	});
 }
-
-//SET CPU DATE SLIDER TEXT UPDATE FUNCTIONS
-document.getElementById('launchdate').noUiSlider.on('update', function( values, handle ) 
-{
-	if (typeof values[0] === 'string' || values[0] instanceof String)
-	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
-
-	if (typeof values[1] === 'string' || values[1] instanceof String)
-	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
-							
-	if(handle==0) {	document.getElementById('launchdatemin').value=left; filtersearch('launchdatemin',left,0); }
-	if(handle==1) {	document.getElementById('launchdatemax').value=right; filtersearch('launchdatemax',right,0); }
-	document.getElementById('launchdateval').innerHTML=left+" - "+right;
-});
-
 //CREATE CPU CORE SLIDER
 if(document.getElementById('nrcores').noUiSlider===undefined)
 {					
