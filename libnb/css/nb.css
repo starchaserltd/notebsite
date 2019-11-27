@@ -2636,6 +2636,10 @@ font-size:16px
 border-top:0
 }
 
+.modal .modal-header {
+border:none!important;
+}
+
 /*-------- End Model modal popup css ---------*/ 
 
 /* IE 11 Article fix*/
