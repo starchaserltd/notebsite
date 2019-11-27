@@ -42,23 +42,7 @@ function create_affil_modal(set_link) {
 	$('#yes-affil-btn').click(function () {
 		$(document).off('keypress');
 		setCookie('ref','starchaser',10);
-		var store_window = window.open('','_blank');
-		if (window.XMLHttpRequest) { var xmlhttp = new XMLHttpRequest(); }
-		xmlhttp.onreadystatechange = function () {
-			if (xmlhttp.readyState == 4) {
-				if (xmlhttp.status == 200) {
-					var res = xmlhttp.responseText; res = JSON.parse(res);
-					if (res[0] == null) { console.log(res[1]); store_window.location=set_link; }
-					else { store_window.location=res[0]; }
-				}
-				else { console.log(xmlhttp.statusText); store_window.location=set_link; }
-			}
-		}
-		xmlhttp.onerror=function (e){ console.log(xmlhttp.statusText); store_window.location=set_link; };
-		
-		xmlhttp.open("POST", "libnb/php/aff_gen.php", true);
-		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		xmlhttp.send(`usertag=${'starchaser'}&links=${set_link}`);
+		get_aff_link(set_link);
 		record_choice(1);
 		close_popup_extra(affil_popup);
 	});
@@ -68,7 +52,29 @@ function create_affil_modal(set_link) {
 	listeners_set = true;
 }
 
-function close_popup_extra(affil_popup){ if(document.getElementById('affil-popup').classList.contains('width')){$('#learn-more-affil-btn').html(org_learnMoreEl); affil_popup.removeClass('width');} affil_popup.removeClass("visible"); }
+function get_aff_link(set_link,ref)
+{
+	var ref=''; var storedRef = getCookie('ref'); var store_window = window.open('','_blank');
+	if (storedRef) { ref = storedRef; }else{ ref = el.dataset.ref; }
+	if (window.XMLHttpRequest) { var xmlhttp = new XMLHttpRequest(); }
+	xmlhttp.onreadystatechange = function () {
+		if (xmlhttp.readyState == 4) {
+			if (xmlhttp.status == 200) {
+				var res = xmlhttp.responseText; res = JSON.parse(res);
+				if (res[0] == null) { console.log(res[1]); store_window.location=set_link; }
+				else { store_window.location=res[0]; }
+			}
+			else { console.log(xmlhttp.statusText); store_window.location=set_link; }
+		}
+	}
+	xmlhttp.onerror=function (e){ console.log(xmlhttp.statusText); store_window.location=set_link; };
+	
+	xmlhttp.open("POST", "libnb/php/aff_gen.php", true);
+	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xmlhttp.send(`usertag=${ref}&links=${set_link}`);
+}
+
+function close_popup_extra(affil_popup){ if(document.getElementById('affil-popup')!==null&&document.getElementById('affil-popup').classList.contains('width')){$('#learn-more-affil-btn').html(org_learnMoreEl); affil_popup.removeClass('width');} affil_popup.removeClass("visible"); }
 
 function show_buy_dropdown(el) {
 	if (window.XMLHttpRequest) { var xmlhttp = new XMLHttpRequest(); }
@@ -79,13 +85,16 @@ function show_buy_dropdown(el) {
 
 	xmlhttp.onreadystatechange = function () {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			document.getElementById(el.dataset.target).innerHTML = xmlhttp.responseText;
+			if(document.getElementById(el.dataset.target)!==null)
+			{
+				document.getElementById(el.dataset.target).innerHTML = xmlhttp.responseText;
 
-			// set click listener for links to modify when its done
-			if (!ref && !getCookie('ref')) {
-				$('#' + el.dataset.target).on('click', 'a', function (event) {
-					if (!ref && !getCookie('ref')) { event.preventDefault(); var set_link = $(this).attr('href'); create_affil_modal(set_link) }
-				});
+				// set click listener for links to modify when its done
+				if (!ref && !getCookie('ref')) {
+					$('#' + el.dataset.target).on('click', 'a', function (event) {
+						if (!ref && !getCookie('ref')) { event.preventDefault(); var set_link = $(this).attr('href'); create_affil_modal(set_link) }
+					});
+				}
 			}
 		}
 	}
@@ -96,7 +105,7 @@ function show_buy_dropdown(el) {
 
 
 function affil_q(el)
-{ if (!ref && !getCookie('ref')) { var set_link = $(el).attr('href'); create_affil_modal(set_link); return false; }else{ return true;} }
+{ var set_link = $(el).attr('href'); if (!ref && !getCookie('ref')) { create_affil_modal(set_link); return false; }else{ get_aff_link(set_link); return false;} }
 
 function record_choice(choice_val)
 {
