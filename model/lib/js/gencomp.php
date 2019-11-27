@@ -371,8 +371,8 @@ foreach ($maxminvalues as $key => $value)
 {
 	if($value[0]!=$value[1])
 	{
-		foreach($value[0] as $val){ echo '$(document).ready(function(){ if(document.getElementById("'.$key.$val.'")!=null){ document.getElementById("'.$key.$val.'").className = "labelblue-s"; }); }'; }
-		foreach($value[1] as $val){ echo '$(document).ready(function(){ if(document.getElementById("'.$key.$val.'")!=null){ document.getElementById("'.$key.$val.'").className = "labelred-s"; }); }'; }
+		foreach($value[0] as $val){ echo '$(document).ready(function(){ if(document.getElementById("'.$key.$val.'")!=null){ document.getElementById("'.$key.$val.'").className = "labelblue-s"; } });'; }
+		foreach($value[1] as $val){ echo '$(document).ready(function(){ if(document.getElementById("'.$key.$val.'")!=null){ document.getElementById("'.$key.$val.'").className = "labelred-s"; } });'; }
 	}
 }
 
@@ -381,7 +381,7 @@ if($delshdd)
 	echo '$(document).ready(function(){ if(document.getElementById("SSTORAGE_table")!=null){ mytbl = document.getElementById("SSTORAGE_table");
 	mytbl.parentNode.removeChild(mytbl);
 	mytbl = document.getElementById("title_SS");
-	mytbl.parentNode.removeChild(mytbl); }); }';
+	mytbl.parentNode.removeChild(mytbl); } });';
 }
 
 if($delodd)
@@ -390,7 +390,7 @@ if($delodd)
 	mytbl.parentNode.removeChild(mytbl);
 	mytbl = document.getElementById("title_BAT");
 	mytbl.parentNode.removeChild(mytbl);
-	document.getElementById("title_ODD").innerHTML = "Battery"; }); }';
+	document.getElementById("title_ODD").innerHTML = "Battery"; } });';
 }
 
 if($delmsc)
@@ -398,7 +398,7 @@ if($delmsc)
 	echo '$(document).ready(function(){ if(document.getElementById("MSC_table")!=null){ mytbl = document.getElementById("MSC_table");
 	mytbl.parentNode.removeChild(mytbl);
 	mytbl = document.getElementById("title_MSC");
-	mytbl.parentNode.removeChild(mytbl); }); }';
+	mytbl.parentNode.removeChild(mytbl); } });';
 }
 
 //var_dump($maxminvalues);
