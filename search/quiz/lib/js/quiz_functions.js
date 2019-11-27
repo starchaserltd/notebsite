@@ -523,7 +523,7 @@ function navigation()
         else
 		{ quizfinal=0; }
 		
-        if(key>lastactive && !quizfinal)
+        if(key>lastactive && !quizfinal && navnr[key]!==undefined)
         {
 			navnr[key].removeAttribute( "onClick", "makePage("+key+");" );
             navnr[key].classList.remove("nrcircleactive");
