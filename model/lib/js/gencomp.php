@@ -395,7 +395,7 @@ if($delodd)
 
 if($delmsc)
 {
-	echo '$(document).ready(function(){ if(document.getElementById("MSC_table")!=null { mytbl = document.getElementById("MSC_table");
+	echo '$(document).ready(function(){ if(document.getElementById("MSC_table")!=null){ mytbl = document.getElementById("MSC_table");
 	mytbl.parentNode.removeChild(mytbl);
 	mytbl = document.getElementById("title_MSC");
 	mytbl.parentNode.removeChild(mytbl); }); }';
