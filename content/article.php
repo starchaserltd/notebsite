@@ -21,14 +21,12 @@ $echoid = url_to_postid($ad[1]); //echo $echoid;
 var lang = <?php echo $lang; ?>;
 var istime=0;
 </script>
-
-<br>
 <?php
 	if($echoid)
 	{
 ?>
 		<div class="col-md-12 col-sm-12" style="background-color:white;">
-			<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style="font-size:30px;margin-top:30px; padding-left:0px;" >
+			<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style="font-size:30px; padding-left:0px;" >
 				<a  style="text-decoration:none;color:black;"><?php $content_title=""; $content_title=get_post_field('post_title', $echoid); echo $content_title;?></a>
 				<div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;">
 					<p style="font-style:italic;font-size:14px;">
@@ -38,15 +36,18 @@ var istime=0;
 				</div>
 		
 			</div>
+			<!--
 			<div class="col-md-8 col-sm-8 col-xs-8 col-lg-8" style="padding-left:0px">
 				<img src="<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($echoid) )); echo $url;?>" class="img-responsive img-fluid" alt="articleImg">
 			</div>
+			-->
 			<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 detaliicomp2" style= "font-size:16px; line-height:30px; padding:0px; text-align:justify;">
 				<div>
 					<div><?php  echo preg_replace_callback('/\[tooltip (.*)\](.*)\[tooltip\]/U',function ($m) {return maketooltip(gettoolid($m[1]),$m[2]);},str_replace($wp_address.$wp_rmimg,$new_wp_address,apply_filters('the_content',get_post_field('post_content', $echoid, 'display')))); 
 					echo "<br>"; ?> </div>
 				</div>
 			</div>
+			<?php include_once("../libnb/php/aff_modal.php"); ?>
 		</div>	 
 <?php
 	}

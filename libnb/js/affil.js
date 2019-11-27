@@ -94,6 +94,10 @@ function show_buy_dropdown(el) {
 	xmlhttp.send('idmodel=' + el.dataset.idmodel + '&buyregions=' + el.dataset.buyregions + '&lang=' + el.dataset.lang + '&usertag=' + ref + '&price=' + el.dataset.price + '&cpu=' + el.dataset.cpu + '&gpu=' + el.dataset.gpu + '&display=' + el.dataset.iddisplay + '&pmodel=' + el.dataset.pmodel);
 }
 
+
+function affil_q(el)
+{ if (!ref && !getCookie('ref')) { var set_link = $(el).attr('href'); create_affil_modal(set_link); return false; }else{ return true;} }
+
 function record_choice(choice_val)
 {
 	if (window.XMLHttpRequest) { var xmlhttp = new XMLHttpRequest(); }
