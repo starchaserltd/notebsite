@@ -751,41 +751,44 @@ $(document).ready(function()
 	var t = parseFloat(currency_val[$('#currencyadv').val()]);
 	var x = minbudgetset; var y = maxbudgetset; y=parseInt(y*t); x=parseInt(x*t); minbadv=parseInt(minbudgetnomenadv*t); maxbadv=parseInt(maxbudgetnomenadv*t);	rangemaxbadv=y;
 
-	if(document.getElementById('budgetadv').noUiSlider===undefined)
+	if(document.getElementById('budgetadv')!=null)
 	{
-		noUiSlider.create(document.getElementById('budgetadv'), {
-			start: [roundlimitadv(x), roundlimitadv(y)],
-			connect: true,
-			direction: 'ltr',
-			format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
-			range: {
-				'min': [ roundlimitadv(minbadv),roundstepadv((maxbadv-minbadv)*0.00065)],
-				'10%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.025),  roundstepadv((maxbadv-minbadv)*0.0015) ],
-				'20%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.035),  roundstepadv((maxbadv-minbadv)*0.0015)],
-				'30%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.055),  roundstepadv((maxbadv-minbadv)*0.0013)],
-				'40%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.075),  roundstepadv((maxbadv-minbadv)*0.0013) ],
-				'50%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.1),  roundstepadv((maxbadv-minbadv)*0.002) ],
-				'60%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.15),  roundstepadv((maxbadv-minbadv)*0.0033) ],
-				'70%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.20),  roundstepadv((maxbadv-minbadv)*0.0066) ],
-				'80%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.30),  roundstepadv((maxbadv-minbadv)*0.013) ],
-				'90%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.45), roundstepadv((maxbadv-minbadv)*0.033) ],		
-				'max': [ roundlimitadv(maxbadv),roundstepadv((maxbadv-minbadv)*0.055)]
-			}
+		if(document.getElementById('budgetadv').noUiSlider===undefined)
+		{
+			noUiSlider.create(document.getElementById('budgetadv'), {
+				start: [roundlimitadv(x), roundlimitadv(y)],
+				connect: true,
+				direction: 'ltr',
+				format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
+				range: {
+					'min': [ roundlimitadv(minbadv),roundstepadv((maxbadv-minbadv)*0.00065)],
+					'10%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.025),  roundstepadv((maxbadv-minbadv)*0.0015) ],
+					'20%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.035),  roundstepadv((maxbadv-minbadv)*0.0015)],
+					'30%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.055),  roundstepadv((maxbadv-minbadv)*0.0013)],
+					'40%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.075),  roundstepadv((maxbadv-minbadv)*0.0013) ],
+					'50%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.1),  roundstepadv((maxbadv-minbadv)*0.002) ],
+					'60%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.15),  roundstepadv((maxbadv-minbadv)*0.0033) ],
+					'70%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.20),  roundstepadv((maxbadv-minbadv)*0.0066) ],
+					'80%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.30),  roundstepadv((maxbadv-minbadv)*0.013) ],
+					'90%': [ roundlimitadv(minbadv+(maxbadv-minbadv)*0.45), roundstepadv((maxbadv-minbadv)*0.033) ],		
+					'max': [ roundlimitadv(maxbadv),roundstepadv((maxbadv-minbadv)*0.055)]
+				}
+			});
+		}
+		
+		// HERE WE SET VALUES FOR INPUT BOX WHENT SLIDER IS MOVED
+		document.getElementById('budgetadv').noUiSlider.on('update', function( values, handle ) {
+			if (typeof values[0] === 'string' || values[0] instanceof String)
+			{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+
+			if (typeof values[1] === 'string' || values[1] instanceof String)
+			{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+			
+			if(handle==0) {	document.getElementById('bdgminadv').value=left; }
+			if(handle==1) {	document.getElementById('bdgmaxadv').value=right; }
 		});
 	}
 	
-	// HERE WE SET VALUES FOR INPUT BOX WHENT SLIDER IS MOVED
-	document.getElementById('budgetadv').noUiSlider.on('update', function( values, handle ) {
-		if (typeof values[0] === 'string' || values[0] instanceof String)
-		{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
-
-		if (typeof values[1] === 'string' || values[1] instanceof String)
-		{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
-		
-		if(handle==0) {	document.getElementById('bdgminadv').value=left; }
-		if(handle==1) {	document.getElementById('bdgmaxadv').value=right; }
-	});
-
 	$('#CPU_prod_id').multiselect(btnsearch);
 							
 	$('#CPU_prod_id').change(function()
