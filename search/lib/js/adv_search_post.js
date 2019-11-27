@@ -361,352 +361,386 @@ if(document.getElementById('display')!=null)
 	});
 }
 //CREATE VERTICAL RES DISPLAY SLIDER
-if(document.getElementById('verres').noUiSlider===undefined)
-{				
-	noUiSlider.create(document.getElementById('verres'), {
-		start: [displayvresminset, displayvresmaxset],
-		connect: true,
-		step: 10,
-		direction: 'ltr',
-		format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
-		range: listrange(list_verres)
+if(document.getElementById('verres')!=null)
+{
+	if(document.getElementById('verres').noUiSlider===undefined)
+	{				
+		noUiSlider.create(document.getElementById('verres'), {
+			start: [displayvresminset, displayvresmaxset],
+			connect: true,
+			step: 10,
+			direction: 'ltr',
+			format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
+			range: listrange(list_verres)
+		});
+	}
+
+	//SET VERTICAL RES DISPLAY SLIDER TEXT UPDATE FUNCTIONS
+	document.getElementById('verres').noUiSlider.on('update', function( values, handle )
+	{			
+		if (typeof values[0] === 'string' || values[0] instanceof String)
+		{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+
+		if (typeof values[1] === 'string' || values[1] instanceof String)
+		{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+								
+		if(handle==0) {	document.getElementById('verresmin').value=left; filtersearch('verresmin',left,0); }
+		if(handle==1) {	document.getElementById('verresmax').value=right; filtersearch('verresmax',right,0); }
+
+		document.getElementById('verresval').innerHTML=left+" - "+right+ " pixels";  
 	});
 }
-
-//SET VERTICAL RES DISPLAY SLIDER TEXT UPDATE FUNCTIONS
-document.getElementById('verres').noUiSlider.on('update', function( values, handle )
-{			
-	if (typeof values[0] === 'string' || values[0] instanceof String)
-	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
-
-	if (typeof values[1] === 'string' || values[1] instanceof String)
-	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
-							
-	if(handle==0) {	document.getElementById('verresmin').value=left; filtersearch('verresmin',left,0); }
-	if(handle==1) {	document.getElementById('verresmax').value=right; filtersearch('verresmax',right,0); }
-
-	document.getElementById('verresval').innerHTML=left+" - "+right+ " pixels";  
-});
-
 
 //CREATE CAPACITY SLIDER
-if(document.getElementById('capacity').noUiSlider===undefined)
-{					
-	noUiSlider.create(document.getElementById('capacity'), {
-		start: [totalcapminset, totalcapmaxset],
-		connect: true,
-		step: 1,
-		direction: 'ltr',
-		format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
-		range: listrange(list_hddsize)
+if(document.getElementById('capacity')!=null)
+{
+	if(document.getElementById('capacity').noUiSlider===undefined)
+	{					
+		noUiSlider.create(document.getElementById('capacity'), {
+			start: [totalcapminset, totalcapmaxset],
+			connect: true,
+			step: 1,
+			direction: 'ltr',
+			format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
+			range: listrange(list_hddsize)
+		});
+	}
+
+	//SET CAPACITY SLIDER TEXT UPDATE FUNCTIONS
+	document.getElementById('capacity').noUiSlider.on('update', function( values, handle )
+	{
+		if (typeof values[0] === 'string' || values[0] instanceof String)
+		{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+
+		if (typeof values[1] === 'string' || values[1] instanceof String)
+		{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+		
+		if(handle==0) {	document.getElementById('capacitymin').value=left; }
+		if(handle==1) {	document.getElementById('capacitymax').value=right;  }
+		document.getElementById('capacityval').innerHTML=left+" - "+right+" GB";
 	});
 }
-
-//SET CAPACITY SLIDER TEXT UPDATE FUNCTIONS
-document.getElementById('capacity').noUiSlider.on('update', function( values, handle )
-{
-	if (typeof values[0] === 'string' || values[0] instanceof String)
-	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
-
-	if (typeof values[1] === 'string' || values[1] instanceof String)
-	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
-	
-	if(handle==0) {	document.getElementById('capacitymin').value=left; }
-	if(handle==1) {	document.getElementById('capacitymax').value=right;  }
-	document.getElementById('capacityval').innerHTML=left+" - "+right+" GB";
-});
 
 //CREATE MEM CAP SLIDER
-if(document.getElementById('ram').noUiSlider===undefined)
-{				
-	noUiSlider.create(document.getElementById('ram'), {
-		start: [memcapminset, memcapmaxset],
-		connect: true,
-		step: 1,
-		direction: 'ltr',
-		format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
-		range: listrange(list_memcap)
+if(document.getElementById('ram')!=null)
+{
+	if(document.getElementById('ram').noUiSlider===undefined)
+	{				
+		noUiSlider.create(document.getElementById('ram'), {
+			start: [memcapminset, memcapmaxset],
+			connect: true,
+			step: 1,
+			direction: 'ltr',
+			format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
+			range: listrange(list_memcap)
+		});
+	}
+
+	//SET MEM CAP SLIDER TEXT UPDATE FUNCTIONS
+	document.getElementById('ram').noUiSlider.on('update', function( values, handle )
+	{
+		if (typeof values[0] === 'string' || values[0] instanceof String)
+		{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+
+		if (typeof values[1] === 'string' || values[1] instanceof String)
+		{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+								
+		if(handle==0) {	document.getElementById('rammin').value=left;  }
+		if(handle==1) {	document.getElementById('rammax').value=right;  }
+		document.getElementById('ramval').innerHTML=left+" - "+right+ " GB";
 	});
 }
 
-//SET MEM CAP SLIDER TEXT UPDATE FUNCTIONS
-document.getElementById('ram').noUiSlider.on('update', function( values, handle )
-{
-	if (typeof values[0] === 'string' || values[0] instanceof String)
-	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
-
-	if (typeof values[1] === 'string' || values[1] instanceof String)
-	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
-							
-	if(handle==0) {	document.getElementById('rammin').value=left;  }
-	if(handle==1) {	document.getElementById('rammax').value=right;  }
-	document.getElementById('ramval').innerHTML=left+" - "+right+ " GB";
-});
-						
 //CREATE MEM SPEED SLIDER
-if(document.getElementById('freq').noUiSlider===undefined)
-{					
-	noUiSlider.create(document.getElementById('freq'), {
-		start: [memfreqminset, memfreqmaxset],
-		connect: true,
-		step: 1,
-		direction: 'ltr',
-		format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
-		range: listrange(list_memfreq)
+if(document.getElementById('freq')!=null)
+{
+	if(document.getElementById('freq').noUiSlider===undefined)
+	{					
+		noUiSlider.create(document.getElementById('freq'), {
+			start: [memfreqminset, memfreqmaxset],
+			connect: true,
+			step: 1,
+			direction: 'ltr',
+			format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
+			range: listrange(list_memfreq)
+		});
+	}
+
+	//SET MEM SPEED SLIDER TEXT UPDATE FUNCTIONS
+	document.getElementById('freq').noUiSlider.on('update', function( values, handle )
+	{
+		if (typeof values[0] === 'string' || values[0] instanceof String)
+		{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+
+		if (typeof values[1] === 'string' || values[1] instanceof String)
+		{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+								
+		if(handle==0) {	document.getElementById('freqmin').value=left;  }
+		if(handle==1) {	document.getElementById('freqmax').value=right; }
+		document.getElementById('freqval').innerHTML=left+" - "+right+" Mhz";
 	});
 }
-
-//SET MEM SPEED SLIDER TEXT UPDATE FUNCTIONS
-document.getElementById('freq').noUiSlider.on('update', function( values, handle )
-{
-	if (typeof values[0] === 'string' || values[0] instanceof String)
-	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
-
-	if (typeof values[1] === 'string' || values[1] instanceof String)
-	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
-							
-	if(handle==0) {	document.getElementById('freqmin').value=left;  }
-	if(handle==1) {	document.getElementById('freqmax').value=right; }
-	document.getElementById('freqval').innerHTML=left+" - "+right+" Mhz";
-});
 
 //CREATE BATTERY SLIDER
-if(document.getElementById('batlife').noUiSlider===undefined)
-{				
-	noUiSlider.create(document.getElementById('batlife'), {
-		start: [batlifeminset, batlifemaxset],
-		connect: true,
-		step: 0.1,
-		direction: 'ltr',
-		format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
-		range: {
-			'min': [batlifemin],
-			'max': [batlifemax]		
-			}
+if(document.getElementById('batlife')!=null)
+{
+	if(document.getElementById('batlife').noUiSlider===undefined)
+	{				
+		noUiSlider.create(document.getElementById('batlife'), {
+			start: [batlifeminset, batlifemaxset],
+			connect: true,
+			step: 0.1,
+			direction: 'ltr',
+			format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
+			range: {
+				'min': [batlifemin],
+				'max': [batlifemax]		
+				}
+		});
+	}
+
+	//SET BATTERY SLIDER TEXT UPDATE FUNCTIONS
+	document.getElementById('batlife').noUiSlider.on('update', function( values, handle )
+	{
+		if (typeof values[0] === 'string' || values[0] instanceof String)
+		{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+		
+		if (typeof values[1] === 'string' || values[1] instanceof String)
+		{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+								
+		if(handle==0) {	document.getElementById('batlifemin').value=left;  }
+		if(handle==1) {	document.getElementById('batlifemax').value=right; }
+		document.getElementById('batlifeval').innerHTML=left+" - "+right+" h";
 	});
 }
-
-//SET BATTERY SLIDER TEXT UPDATE FUNCTIONS
-document.getElementById('batlife').noUiSlider.on('update', function( values, handle )
-{
-	if (typeof values[0] === 'string' || values[0] instanceof String)
-	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
-	
-	if (typeof values[1] === 'string' || values[1] instanceof String)
-	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
-							
-	if(handle==0) {	document.getElementById('batlifemin').value=left;  }
-	if(handle==1) {	document.getElementById('batlifemax').value=right; }
-	document.getElementById('batlifeval').innerHTML=left+" - "+right+" h";
-});
 
 //CREATE ACUM CAP SLIDER
-if(document.getElementById('acumcap').noUiSlider===undefined)
-{					
-	noUiSlider.create(document.getElementById('acumcap'), {
-		start: [acumcapminset, acumcapmaxset],
-		connect: true,
-		step: 1,
-		direction: 'ltr',
-		format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
-		range: {
-				'min': [acumcapmin],
-				'max': [acumcapmax]		
-			}
+if(document.getElementById('acumcap')!=null)
+{
+	if(document.getElementById('acumcap').noUiSlider===undefined)
+	{					
+		noUiSlider.create(document.getElementById('acumcap'), {
+			start: [acumcapminset, acumcapmaxset],
+			connect: true,
+			step: 1,
+			direction: 'ltr',
+			format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
+			range: {
+					'min': [acumcapmin],
+					'max': [acumcapmax]		
+				}
+		});
+	}
+
+	//SET ACUM CAP SLIDER TEXT UPDATE FUNCTIONS
+	document.getElementById('acumcap').noUiSlider.on('update', function( values, handle )
+	{
+		if (typeof values[0] === 'string' || values[0] instanceof String)
+		{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+
+		if (typeof values[1] === 'string' || values[1] instanceof String)
+		{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+								
+		if(handle==0) {	document.getElementById('acumcapmin').value=left;  }
+		if(handle==1) {	document.getElementById('acumcapmax').value=right; }
+		document.getElementById('acumcapval').innerHTML=left+" - "+right+" Whr";
 	});
 }
-
-//SET ACUM CAP SLIDER TEXT UPDATE FUNCTIONS
-document.getElementById('acumcap').noUiSlider.on('update', function( values, handle )
-{
-	if (typeof values[0] === 'string' || values[0] instanceof String)
-	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
-
-	if (typeof values[1] === 'string' || values[1] instanceof String)
-	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
-							
-	if(handle==0) {	document.getElementById('acumcapmin').value=left;  }
-	if(handle==1) {	document.getElementById('acumcapmax').value=right; }
-	document.getElementById('acumcapval').innerHTML=left+" - "+right+" Whr";
-});
 
 //CREATE WEIGHT SLIDER
-if(document.getElementById('weight').noUiSlider===undefined)
-{			
-	noUiSlider.create(document.getElementById('weight'), {
-		start: [chassisweightminset, chassisweightmaxset],
-		connect: true,
-		step: 0.1,
-		direction: 'ltr',
-		format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
-		range: {
-				'min': [chassisweightmin],
-				'max': [chassisweightmax]		
-			}
-	});
-}
-
-//SET WEIGHT SLIDER TEXT UPDATE FUNCTIONS
-document.getElementById('weight').noUiSlider.on('update', function( values, handle )
+if(document.getElementById('weight')!=null)
 {
-	if (typeof values[0] === 'string' || values[0] instanceof String)
-	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+	if(document.getElementById('weight').noUiSlider===undefined)
+	{			
+		noUiSlider.create(document.getElementById('weight'), {
+			start: [chassisweightminset, chassisweightmaxset],
+			connect: true,
+			step: 0.1,
+			direction: 'ltr',
+			format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
+			range: {
+					'min': [chassisweightmin],
+					'max': [chassisweightmax]		
+				}
+		});
+	}
 
-	if (typeof values[1] === 'string' || values[1] instanceof String)
-	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
-							
-	if(handle==0) {	document.getElementById('weightmin').value=left;  }
-	if(handle==1) {	document.getElementById('weightmax').value=right; }
-	document.getElementById('weightval').innerHTML=(left.toFixed(2)+" - "+right.toFixed(2)+ " (kg) / "+(left*2.2046226218).toFixed(2)+ " - "+ (right*2.2046226218).toFixed(2)+ " (lb)");
-});				 
+	//SET WEIGHT SLIDER TEXT UPDATE FUNCTIONS
+	document.getElementById('weight').noUiSlider.on('update', function( values, handle )
+	{
+		if (typeof values[0] === 'string' || values[0] instanceof String)
+		{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+
+		if (typeof values[1] === 'string' || values[1] instanceof String)
+		{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+								
+		if(handle==0) {	document.getElementById('weightmin').value=left;  }
+		if(handle==1) {	document.getElementById('weightmax').value=right; }
+		document.getElementById('weightval').innerHTML=(left.toFixed(2)+" - "+right.toFixed(2)+ " (kg) / "+(left*2.2046226218).toFixed(2)+ " - "+ (right*2.2046226218).toFixed(2)+ " (lb)");
+	});				 
+}
 
 //CREATE THICKNESS SLIDER
-if(document.getElementById('thickness').noUiSlider===undefined)
-{				
-	noUiSlider.create(document.getElementById('thickness'), {
-		start: [chassisthicminset, chassisthicmaxset],
-		connect: true,
-		step: 0.1,
-		direction: 'ltr',
-		format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },							
-		range: {
-				'min': [chassisthicmin],
-				'max': [chassisthicmax]		
-			}
-	});
-}
-
-//SET THICKNESS SLIDER TEXT UPDATE FUNCTIONS
-document.getElementById('thickness').noUiSlider.on('update', function( values, handle )
+if(document.getElementById('thickness')!=null)
 {
-	if (typeof values[0] === 'string' || values[0] instanceof String)
-	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+	if(document.getElementById('thickness').noUiSlider===undefined)
+	{				
+		noUiSlider.create(document.getElementById('thickness'), {
+			start: [chassisthicminset, chassisthicmaxset],
+			connect: true,
+			step: 0.1,
+			direction: 'ltr',
+			format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },							
+			range: {
+					'min': [chassisthicmin],
+					'max': [chassisthicmax]		
+				}
+		});
+	}
 
-	if (typeof values[1] === 'string' || values[1] instanceof String)
-	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
-							
-	if(handle==0) {	document.getElementById('thicmin').value=left;  }
-	if(handle==1) {	document.getElementById('thicmax').value=right; }
-	document.getElementById('thicval').innerHTML=(left/10).toFixed(2)+" - "+(right/10).toFixed(2)+" (cm) / "+(left/10*0.393701).toFixed(2)+" - "+(right/10*0.393701).toFixed(2)+" (inch)";
-});				 
+	//SET THICKNESS SLIDER TEXT UPDATE FUNCTIONS
+	document.getElementById('thickness').noUiSlider.on('update', function( values, handle )
+	{
+		if (typeof values[0] === 'string' || values[0] instanceof String)
+		{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+
+		if (typeof values[1] === 'string' || values[1] instanceof String)
+		{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+								
+		if(handle==0) {	document.getElementById('thicmin').value=left;  }
+		if(handle==1) {	document.getElementById('thicmax').value=right; }
+		document.getElementById('thicval').innerHTML=(left/10).toFixed(2)+" - "+(right/10).toFixed(2)+" (cm) / "+(left/10*0.393701).toFixed(2)+" - "+(right/10*0.393701).toFixed(2)+" (inch)";
+	});				 
+}
 
 //CREATE WIDTH SLIDER
-if(document.getElementById('width').noUiSlider===undefined)
-{					
-	noUiSlider.create(document.getElementById('width'), {
-		start: [chassiswidthminset, chassiswidthmaxset],
-		connect: true,
-		step: 0.1,
-		direction: 'ltr',
-		format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
-		range: {
-				'min': [chassiswidthmin],
-				'max': [chassiswidthmax]		
-			}
-	});
-}
-
-//SET WIDTH SLIDER TEXT UPDATE FUNCTIONS
-document.getElementById('width').noUiSlider.on('update', function( values, handle )
+if(document.getElementById('width')!=null)
 {
-	if (typeof values[0] === 'string' || values[0] instanceof String)
-	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+	if(document.getElementById('width').noUiSlider===undefined)
+	{					
+		noUiSlider.create(document.getElementById('width'), {
+			start: [chassiswidthminset, chassiswidthmaxset],
+			connect: true,
+			step: 0.1,
+			direction: 'ltr',
+			format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
+			range: {
+					'min': [chassiswidthmin],
+					'max': [chassiswidthmax]		
+				}
+		});
+	}
 
-	if (typeof values[1] === 'string' || values[1] instanceof String)
-	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
-							
-	if(handle==0) {	document.getElementById('widthmin').value=left;  }
-	if(handle==1) {	document.getElementById('widthmax').value=right; }
-	document.getElementById('widthval').innerHTML=(left/10).toFixed(2)+" - "+(right/10).toFixed(2)+" (cm) / "+(left/10*0.393701).toFixed(2)+" - "+(right/10*0.393701).toFixed(2)+" (inch)";
-});				 
+	//SET WIDTH SLIDER TEXT UPDATE FUNCTIONS
+	document.getElementById('width').noUiSlider.on('update', function( values, handle )
+	{
+		if (typeof values[0] === 'string' || values[0] instanceof String)
+		{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+
+		if (typeof values[1] === 'string' || values[1] instanceof String)
+		{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+								
+		if(handle==0) {	document.getElementById('widthmin').value=left;  }
+		if(handle==1) {	document.getElementById('widthmax').value=right; }
+		document.getElementById('widthval').innerHTML=(left/10).toFixed(2)+" - "+(right/10).toFixed(2)+" (cm) / "+(left/10*0.393701).toFixed(2)+" - "+(right/10*0.393701).toFixed(2)+" (inch)";
+	});				 
+}
 
 //CREATE DEPTH SLIDER
-if(document.getElementById('depth').noUiSlider===undefined)
-{					
-	noUiSlider.create(document.getElementById('depth'), {
-		start: [chassisdepthminset, chassisdepthmaxset],
-		connect: true,
-		step: 0.1,
-		direction: 'ltr',
-		format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
-		range: {
-			'min': [chassisdepthmin],
-			'max': [chassisdepthmax]
-		}		
-	});
-}
-
-//SET DEPTH SLIDER TEXT UPDATE FUNCTIONS
-document.getElementById('depth').noUiSlider.on('update', function( values, handle )
+if(document.getElementById('depth')!=null)
 {
-	if (typeof values[0] === 'string' || values[0] instanceof String)
-	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+	if(document.getElementById('depth').noUiSlider===undefined)
+	{					
+		noUiSlider.create(document.getElementById('depth'), {
+			start: [chassisdepthminset, chassisdepthmaxset],
+			connect: true,
+			step: 0.1,
+			direction: 'ltr',
+			format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
+			range: {
+				'min': [chassisdepthmin],
+				'max': [chassisdepthmax]
+			}		
+		});
+	}
 
-	if (typeof values[1] === 'string' || values[1] instanceof String)
-	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
-							
-	if(handle==0) {	document.getElementById('depthmin').value=left;  }
-	if(handle==1) {	document.getElementById('depthmax').value=right; }
-	document.getElementById('depthval').innerHTML=(left/10).toFixed(2)+" - "+(right/10).toFixed(2)+" (cm) / "+(left/10*0.393701).toFixed(2)+" - "+(right/10*0.393701).toFixed(2)+" (inch)";
-});				 
+	//SET DEPTH SLIDER TEXT UPDATE FUNCTIONS
+	document.getElementById('depth').noUiSlider.on('update', function( values, handle )
+	{
+		if (typeof values[0] === 'string' || values[0] instanceof String)
+		{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+
+		if (typeof values[1] === 'string' || values[1] instanceof String)
+		{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+								
+		if(handle==0) {	document.getElementById('depthmin').value=left;  }
+		if(handle==1) {	document.getElementById('depthmax').value=right; }
+		document.getElementById('depthval').innerHTML=(left/10).toFixed(2)+" - "+(right/10).toFixed(2)+" (cm) / "+(left/10*0.393701).toFixed(2)+" - "+(right/10*0.393701).toFixed(2)+" (inch)";
+	});		 
+}
 
 //CREATE WEBCAM SLIDER
-if(document.getElementById('web').noUiSlider===undefined)
+if(document.getElementById('web')!=null)
 {
-	noUiSlider.create(document.getElementById('web'), {
-		start: [chassiswebminset, chassiswebmaxset],
-		connect: true,
-		step: 0.1,
-		direction: 'ltr',
-		format: { to: function(value){ return parseFloat(value); }, from: function(value){ return parseFloat(value); } },
-		range: listrange(list_chassisweb)
-	});
+	if(document.getElementById('web').noUiSlider===undefined)
+	{
+		noUiSlider.create(document.getElementById('web'), {
+			start: [chassiswebminset, chassiswebmaxset],
+			connect: true,
+			step: 0.1,
+			direction: 'ltr',
+			format: { to: function(value){ return parseFloat(value); }, from: function(value){ return parseFloat(value); } },
+			range: listrange(list_chassisweb)
+		});
+	}
+
+	//SET WEBCAM SPEED TEXT UPDATE FUNCTIONS
+	document.getElementById('web').noUiSlider.on('update', function( values, handle )
+	{
+		if (typeof values[0] === 'string' || values[0] instanceof String)
+		{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+
+		if (typeof values[1] === 'string' || values[1] instanceof String)
+		{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+								
+		if(handle==0) {	document.getElementById('webmin').value=left;  }
+		if(handle==1) {	document.getElementById('webmax').value=right; }
+		document.getElementById('webval').innerHTML=left+" - "+right+" MP";
+	});	
 }
 
-//SET WEBCAM SPEED TEXT UPDATE FUNCTIONS
-document.getElementById('web').noUiSlider.on('update', function( values, handle )
-{
-	if (typeof values[0] === 'string' || values[0] instanceof String)
-	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
-
-	if (typeof values[1] === 'string' || values[1] instanceof String)
-	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
-							
-	if(handle==0) {	document.getElementById('webmin').value=left;  }
-	if(handle==1) {	document.getElementById('webmax').value=right; }
-	document.getElementById('webval').innerHTML=left+" - "+right+" MP";
-});	
-				
 //CREATE WARRANTY SLIDER
-if(document.getElementById('years').noUiSlider===undefined)
+if(document.getElementById('years')!=null)
 {
-	noUiSlider.create(document.getElementById('years'), {
-		start: [waryearsminset, waryearsmaxset],
-		connect: true,
-		step: 1,
-		direction: 'ltr',
-		format: { to: function(value){ return parseFloat(value); }, from: function(value){ return parseFloat(value); } },
-		range: {
-				'min': [waryearsmin],
-				'max': [waryearsmax]		
-			}
-	});
-}
+	if(document.getElementById('years').noUiSlider===undefined)
+	{
+		noUiSlider.create(document.getElementById('years'), {
+			start: [waryearsminset, waryearsmaxset],
+			connect: true,
+			step: 1,
+			direction: 'ltr',
+			format: { to: function(value){ return parseFloat(value); }, from: function(value){ return parseFloat(value); } },
+			range: {
+					'min': [waryearsmin],
+					'max': [waryearsmax]		
+				}
+		});
+	}
 
-//SET WARRANTY SLIDER TEXT UPDATE FUNCTIONS
-document.getElementById('years').noUiSlider.on('update', function( values, handle )
-{
-	if (typeof values[0] === 'string' || values[0] instanceof String)
-	{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
+	//SET WARRANTY SLIDER TEXT UPDATE FUNCTIONS
+	document.getElementById('years').noUiSlider.on('update', function( values, handle )
+	{
+		if (typeof values[0] === 'string' || values[0] instanceof String)
+		{ var left = values[0].match(/\d+/g)[0]; } else { var left = values[0]; }
 
-	if (typeof values[1] === 'string' || values[1] instanceof String)
-	{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
-							
-	if(handle==0) {	document.getElementById('yearsmin').value=left;  }
-	if(handle==1) {	document.getElementById('yearsmax').value=right; }
-	document.getElementById('yearsval').innerHTML=left+" - "+right;
-});				 
-				
+		if (typeof values[1] === 'string' || values[1] instanceof String)
+		{ var right = values[0].match(/\d+/g)[0]; } else { var right = values[1]; }
+								
+		if(handle==0) {	document.getElementById('yearsmin').value=left;  }
+		if(handle==1) {	document.getElementById('yearsmax').value=right; }
+		document.getElementById('yearsval').innerHTML=left+" - "+right;
+	});				 
+}				
 
 /* ************************ */
 /* DOCUMENT READY FUNCTIONS */
