@@ -3,9 +3,9 @@ if(!(isset($include_aff_gen)&&$include_aff_gen==true)){$function_replay=false; $
 //$_POST["usertag"]=$_GET["usertag"];
 //$_POST["links"]=$_GET["links"];
 //$_POST["sellers"]=$_GET["sellers"];
-$usertag=null; $go=0;
+$usertag=null; $go=0; $function_replay=json_encode([null,"Something went terribly wrong!"]);
 if(isset($_POST["usertag"])&&$_POST["usertag"]!=""&&$_POST["usertag"]!=null)
-{ $usertag=mysqli_real_escape_string($con,filter_var($_POST["usertag"], FILTER_SANITIZE_STRING)); if($usertag!="noref"){ $go++;} }
+{ $usertag=mysqli_real_escape_string($con,filter_var($_POST["usertag"], FILTER_SANITIZE_STRING)); if($usertag!="noref"){ $go++; }else{$function_replay=json_encode([null,"Standard link, referral set to none."]);} }
 
 $links_list=null; $sellerid_list=array();
 
@@ -34,8 +34,6 @@ if(isset($_POST["links"])&&$_POST["links"]!=""&&$_POST["links"]!=null)
 	if(isset($unmatched_links[0])){ $rematch_links=get_link_sellerid($unmatched_links,null,$con); $i=0; foreach($unmatched_links as $key=>$val){$sellerid_list[$key]=$rematch_links[$i]; $i++;}}
 	$go++;
 }
-
-$function_replay=json_encode([null,"Something went terribly wrong!"]);
 
 function get_link_sellerid($links,$id_list,$con)
 {
@@ -122,7 +120,7 @@ if($go>1)
 	{ $function_replay=json_encode([null,"Wrong referal name!"]); }
 }
 else
-{ $function_replay=json_encode([null,"Bad supplied parameters!"]); }
+{ if($usertag!="noref"){$function_replay=json_encode([null,"Bad supplied parameters!"]); } }
 
 if(!$include_aff_gen){ mysqli_close($con); echo $function_replay; }
 ?>

@@ -59,13 +59,9 @@ setInterval(function()
     }
 
     if ($(window).width() < 992)
-	{
-        if (ismobile!=1) { ismobile = 1; state_ssearch(1); }
-    }
+	{ if (ismobile!=1) { ismobile = 1; state_ssearch(1); } }
 	else
-	{
-		if (ismobile!=0) { ismobile=0; state_ssearch(0); }
-    }
+	{ if (ismobile!=0) { ismobile=0; state_ssearch(0); } }
 }, 50);
 
 function urlrequest(url, e, dontpush) {
@@ -113,9 +109,7 @@ function OpenPage(url, e, dontpush) {
             go = 1;
     }
 
-    if (go == 1 || go == 2) {
-		//	document.getElementById("sharefb").href="https://www.facebook.com/sharer/sharer.php?u="+siteroot+"/?"+url;
-		}
+    if (go == 1 || go == 2) { /*document.getElementById("sharefb").href="https://www.facebook.com/sharer/sharer.php?u="+siteroot+"/?"+url;*/ }
     if (go == 1) { urlrequest(url, e, dontpush); }
     if (go == 2) { wopen =window.open(siteroot + "?" + url, "_blank"); if (wopen==null||typeof(wopen)=='undefined'){alert("Turn off your pop-up blocker!");} }
 }
