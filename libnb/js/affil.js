@@ -60,7 +60,7 @@ function get_aff_link(set_link)
 	xmlhttp.onreadystatechange = function () {
 		if (xmlhttp.readyState == 4) {
 			if (xmlhttp.status == 200) {
-				var res = xmlhttp.responseText; res = JSON.parse(res);
+				var res=xmlhttp.responseText; res=JSON.parse(res);
 				if (res[0] == null) { console.log(res[1]); store_window.location=set_link; }
 				else { store_window.location=res[0]; }
 			}

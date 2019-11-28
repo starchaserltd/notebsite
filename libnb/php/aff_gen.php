@@ -43,13 +43,13 @@ function get_link_sellerid($links,$id_list,$con)
 	{
 		if(!is_array($id_list)){$newarray=array(); $newarray[0]=$id_list; $id_list=$newarray;}
 		foreach($id_list as $id)
-		{ $query.="SELECT `id`,`name`,`tag_name`,`first_tag`,`website`,`encoded` FROM `notebro_buy`.`SELLERS` WHERE `SELLERS`.`id`=".$id." LIMIT 1; "; }
+		{ $query.="SELECT `id`,`name`,`tag_name`,`first_tag`,`website`,`end_tag`,`encoded` FROM `notebro_buy`.`SELLERS` WHERE `SELLERS`.`id`=".$id." LIMIT 1; "; }
 	}
 	elseif($links)
 	{
 		if(!is_array($links)){$newarray=array(); $newarray[0]=$links; $links=$newlinks;}
 		foreach($links as $link)
-		{ $query.="SELECT `id`,`name`,`tag_name`,`first_tag`,`website`,`encoded` FROM `notebro_buy`.`SELLERS` WHERE '".substr($link,0,50)."' LIKE CONCAT('%',website,'%') LIMIT 1; "; }
+		{ $query.="SELECT `id`,`name`,`tag_name`,`first_tag`,`website`,`end_tag`,`encoded` FROM `notebro_buy`.`SELLERS` WHERE '".substr($link,0,50)."' LIKE CONCAT('%',website,'%') LIMIT 1; "; }
 	}
 	
 	if($query!=="")
@@ -102,14 +102,15 @@ if($go>1)
 		foreach($tags as $val_k){ foreach($val_k as $key=>$val){ $tags[$key]=$val; } }
 		foreach($links_list as $key=>$link)
 		{
-			$tag=""; $first_tag="";
+			$tag=""; $first_tag=""; $end_tag="";
 			if(isset($sellerid_list[$key])&&$sellerid_list[$key]!=null&&isset($tags[$sellerid_list[$key]["name"]]))
 			{
 				$seller_info=$sellerid_list[$key];
 				if(isset($seller_info["name"])&&$seller_info["first_tag"]!=""&&$seller_info["first_tag"]!=NULL){ $first_tag=str_replace("tagname",$tags[$seller_info["name"]],$seller_info["first_tag"]); } 
 				if(isset($seller_info["name"])&&$seller_info["tag_name"]!=""&&$seller_info["tag_name"]!=NULL){ $tag=$seller_info["tag_name"].$tags[$seller_info["name"]];}
 				if($first_tag!==""){ $link=urldecode($link); if(intval($seller_info["encoded"])==1){ $link=urlencode($link); $tag=urlencode($tag);} }
-				$new_links[$key]=$first_tag.$link.$tag;
+				if(isset($seller_info["name"])&&$seller_info["end_tag"]!=""&&$seller_info["end_tag"]!=NULL){ $end_tag=$seller_info["end_tag"]; } 
+				$new_links[$key]=$first_tag.$link.$tag.$end_tag;
 			}
 			else
 			{ $new_links[$key]=$link; }
