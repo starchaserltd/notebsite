@@ -47,27 +47,27 @@ function create_affil_modal(set_link) {
 		close_popup_extra(affil_popup);
 	});
 
-	$('#no-affil-btn').click(function () { $(document).off('keypress'); setCookie('ref','noref',10); close_popup_extra(affil_popup); var unique_nr=make_r_int(); var store_window={unique_nr:window.open('','_blank')}; record_choice(0); store_window.unique_nr.location=set_link; });
+	$('#no-affil-btn').click(function () { $(document).off('keypress'); setCookie('ref','noref',10); close_popup_extra(affil_popup); store_window=window.open('','_blank'); record_choice(0); store_window.location=set_link; });
 
 	listeners_set = true;
 }
 
-function get_aff_link(set_link,ref)
+function get_aff_link(set_link)
 {
-	var ref=''; var storedRef = getCookie('ref'); var unique_nr=make_r_int(); var store_window={unique_nr:window.open('','_blank')};
-	if (storedRef) { ref = storedRef; }else{ ref = el.dataset.ref; }
+	var ref=''; var storedRef = getCookie('ref'); var unique_nr=make_r_int(); var store_window=window.open('','_blank');
+	if (storedRef) { ref = storedRef; }else{ if(window.ref!=null){ref=window.ref;} }
 	if (window.XMLHttpRequest) { var xmlhttp = new XMLHttpRequest(); }
 	xmlhttp.onreadystatechange = function () {
 		if (xmlhttp.readyState == 4) {
 			if (xmlhttp.status == 200) {
 				var res = xmlhttp.responseText; res = JSON.parse(res);
-				if (res[0] == null) { console.log(res[1]); store_window.unique_nr.location=set_link; }
-				else { store_window.unique_nr.location=res[0]; }
+				if (res[0] == null) { console.log(res[1]); store_window.location=set_link; }
+				else { store_window.location=res[0]; }
 			}
-			else { console.log(xmlhttp.statusText); store_window.unique_nr.location=set_link; }
+			else { console.log(xmlhttp.statusText); store_window.location=set_link; }
 		}
 	}
-	xmlhttp.onerror=function (e){ console.log(xmlhttp.statusText); store_window.unique_nr.location=set_link; };
+	xmlhttp.onerror=function (e){ console.log(xmlhttp.statusText); store_window.location=set_link; };
 	
 	xmlhttp.open("POST", "libnb/php/aff_gen.php", true);
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -107,7 +107,7 @@ function show_buy_dropdown(el) {
 
 
 function affil_q(el)
-{ var set_link = $(el).attr('href'); if (!ref && !getCookie('ref')) { create_affil_modal(set_link); return false; }else{ get_aff_link(set_link); return false;} }
+{ var set_link = $(el).attr('href'); if(!ref && !getCookie('ref')){ create_affil_modal(set_link); return false; }else{ get_aff_link(set_link); return false;} }
 
 function record_choice(choice_val)
 {
