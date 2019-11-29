@@ -93,7 +93,7 @@ if(isset($_GET["model_id"])&&isset($_GET["seller"]))
 					switch($region)
 					{
 						case 3:
-						{ $row["model"]=preg_replace("/(\d{2})(t)/", '${1} Intel',$row["model"]); $row["model"]=preg_replace("/(\d{2})(z)/", '${1} AMD',$row["model"]); break;}
+						{ foreach (["Intel","AMD","ARM"] as $cpu_prod){ $row["model"]=preg_replace("/(\d{2})(t)/", '${1} '.$cpu_prod,$row["model"]); } break;}
 						default:
 						{ break;}
 					}
