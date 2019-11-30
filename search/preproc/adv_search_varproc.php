@@ -711,10 +711,17 @@ if(isset($_GET['opsist']))
 			}
 			else
 			{
-				$sist_type=end($sist_parts);
-				$sist_vers[]=prev($sist_parts);
-				array_splice($sist_parts,-2,2);
-				$sist_sist[]=implode(" ",$sist_parts)."+".$sist_type;
+				if(is_numeric(prev($sist_parts)))
+				{
+					$sist_type=end($sist_parts);
+					$sist_vers[]=prev($sist_parts);
+					array_splice($sist_parts,-2,2);
+					$sist_sist[]=implode(" ",$sist_parts)."+".$sist_type;
+				}
+				else
+				{
+					$sist_sist[]=$x;
+				}
 			}
 		}
 	}
