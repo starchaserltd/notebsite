@@ -13,9 +13,9 @@
 				</div>
 				<div class="footer-right col-lg-3 col-xl-2 col-md-12 col-sm-12 col-12">
 					<span class="socialMediaFooter">Social Media:</span>
+					<a style="cursor:pointer" href="https://www.youtube.com/channel/UC7nnclcN7BZDn_FqKtzwBGQ"><span class="faSocial"><i class="fab fa-youtube"></i></span></a>
 					<a style="cursor:pointer" href="https://www.facebook.com/Noteb-162949570886382/">	<span class="faSocial"><i class="fab fa-facebook-f"></i></span></a>
 					<a style="cursor:pointer" href="https://twitter.com/notebcom"><span class="faSocial"><i class="fab fa-twitter"></i></span></a>
-					<a style="cursor:pointer" href="https://www.youtube.com/channel/UC7nnclcN7BZDn_FqKtzwBGQ"><span class="faSocial"><i class="fab fa-youtube"></i></span></a>
 				</div>					
 			</div>
 			<div class="row">
