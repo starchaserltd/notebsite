@@ -1,21 +1,35 @@
-
-
 .footer-distributed{
-	background-color: #292c2f;
+	background-color: #000;
 	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
 	box-sizing: border-box;
 	width: 100%;
 	text-align: left;
-	font: normal 16px sans-serif;
-
-	padding: 40px 50px;
-	margin-top: 40px;
+	font: normal 16px sans-serif;	
+	margin-top: 40px;	
 }
 
 .footer-distributed .footer-left p{
 	color:  #8f9296;
 	font-size: 14px;
 	margin: 0;
+	width: 100%;
+	text-align: center;
+}
+
+.footer-distributed .footer-left {
+	display: flex;
+    justify-content: space-between;
+    padding-top: 15px;
+    align-items: center;
+    flex-wrap: nowrap;
+    padding-bottom: 15px;
+}
+
+.footer-distributed .footer-right {
+	display: flex;
+	justify-content: flex-end;
+	padding-top: 5px;
+	align-items: center;
 }
 
 /* Footer links */
@@ -36,27 +50,29 @@
 }
 
 .footer-distributed .footer-right{
-	float: right;
-	margin-top: 6px;
-	max-width: 180px;
+	float: right;	
+	
 }
 
 .footer-distributed .footer-right a{
 	display: inline-block;
 	width: 35px;
-	height: 35px;
-	background-color:  #33383b;
+	height: 35px;	
 	border-radius: 2px;
-
 	font-size: 20px;
 	color: #ffffff;
 	text-align: center;
 	line-height: 41px;
-
 	margin-left: 3px;
 }
 
 /* If you don't want the footer to be responsive, remove these media queries */
+
+@media(max-width: 1250px) {
+	.footer-distributed .footer-left {
+		flex-wrap: wrap;
+	}
+}
 
 @media (max-width: 600px) {
 
