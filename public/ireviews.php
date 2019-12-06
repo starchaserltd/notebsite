@@ -56,15 +56,15 @@ if($ex_model_id&&!isset($_POST['model_name_ireviews']))
 
 	<div class="row irevtop">
 		<div class="Irevm col-md-1">Link :</div>
-		<div class="col-md-6"><textarea class="Irevmod input" style="margin:0" name="link" autocomplete="off" spellcheck="false" id="link" placeholder="Ex. http://www.tomshardware.com/reviews/dell-inspiron-15-7000-gaming-laptop,4944.html" value=""></textarea></div>
+		<div class="col-md-6"><textarea class="Irevmod input" style="margin-left:15px;" name="link" autocomplete="off" spellcheck="false" id="link" placeholder="Ex. http://www.tomshardware.com/reviews/dell-inspiron-15-7000-gaming-laptop,4944.html" value=""></textarea></div>
 	</div>
 	<input type="hidden" name="intr" value="1">
 	<input type="hidden" name="table" value="REVIEWS">
 	<input type="hidden" name="model_name_ireviews" id="model_name_ireviews" value="">
 
-<?php if(!empty($errMsg)) echo '<div style="padding-left:0!important;" class="col-md-11 offset-md-1 Irevm"><p style="color:#EA4335">'.$errMsg.'</p></div>';?>
+<?php if(!empty($errMsg)) echo '<div  class="col-md-11 offset-md-1 Irevm"><p style="color:#EA4335">'.$errMsg.'</p></div>';?>
 <?php if(!empty($succMsg)) echo '<p style="color:#34A853;">'.$succMsg.'</p>';?>
-<div style="padding-left:0;"; class="col-md-6 offset-md-1">	<img src="<?php echo $web_address;?>public/lib/php/captcha.php?<?php echo mt_rand(); ?>" id="capImage"/></br><p style="font-size:10px">Can't read the image? click here to<a style="margin-left:2px;text-decoration:none" href="javascript:void(0);" onclick="javascript:$('#capImage').attr('src','<?php echo $web_address;?>public/lib/php/captcha.php?'+new Date().getTime());">refresh</a></p>Enter the code: <input name="captcha_code" type="text" value=""></div>
+<div class="col-md-6 offset-md-1">	<img src="<?php echo $web_address;?>public/lib/php/captcha.php?<?php echo mt_rand(); ?>" id="capImage"/></br><p style="font-size:10px">Can't read the image? click here to<a style="margin-left:2px;text-decoration:none" href="javascript:void(0);" onclick="javascript:$('#capImage').attr('src','<?php echo $web_address;?>public/lib/php/captcha.php?'+new Date().getTime());">refresh</a></p>Enter the code: <input name="captcha_code" type="text" value=""></div>
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align: center;"><input class="btn blue bsub" type="submit" value="Submit" id="ireviews_form_btn" name="submit" style="display:inline-block;width: 150px;color:white;" >
 </div>
 	</form>

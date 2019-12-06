@@ -377,6 +377,7 @@ _:-ms-lang(x),
     padding: 0px;
     color: #285F8F;
     overflow: hidden;
+    cursor: pointer;
 }
 
 
@@ -521,24 +522,27 @@ _:-ms-lang(x),
 
 .quiz_container label.label_intro1 {
     position: absolute;
-    bottom: 5px;
-    right: 33%;
-    margin-right: -160px;
+    right: 0;    
     z-index: 98;
-    color: #fff;
+    color:
+    #fff;
     transition: all 0.7s ease-in;
-    font-weight: 100; 
+    font-weight: 100;
     animation: bannerButton 1s ease 1 both;
+    top: 50px;
+    right: 50px;
+    width: 500px;    
+    cursor: pointer;
 }
 
 .quiz_container label.label_intro2 {
     position: absolute;
-    top: 100%;
-    right: 50%;
+    top: 60%;
+    right: 245px;
     margin-right: -80px;
     z-index: 97;
     transition: all 0.6s ease-in;
-    display: none;
+    display: block;
 }
 
 .quiz_container>#tab1~.tab1_intro {
@@ -565,9 +569,19 @@ _:-ms-lang(x),
     transform: translateY(-100%);
 }
 
-.quiz_container:hover .startQuiz {
-    background: url('../../res/img/shape_button_full.png') no-repeat;
-    color: #fff;
+.quiz_container>#tab1:checked~.tab2_intro {
+    transform: translateY(-100%);
+}
+
+.quiz_container>#tab2:checked~.tab1_intro {
+    transform: translateY(-100%);
+}
+
+.quiz_container>#tab2:checked~.tab2_intro {
+    transform: translateY(-100%);
+}
+
+.quiz_container:hover .startQuiz {         
      background-size: 100% 100%;
 }
 
@@ -617,29 +631,22 @@ _:-ms-lang(x),
 }
 
 .startQuiz {
-   display: inline-block;
-    margin-left: -130px;
-    padding: 13px 15px;   
-    line-height: 15px;
+    display: inline-block;    
+    padding: 13px 15px;
+    line-height: 58px;
     transition: all 0.3s ease-in;
-    width: 260px;
-    cursor: pointer;   
+    width: 500px;
+    cursor: pointer;
     text-align: center;
-    color: rgb(40, 95, 143);
-    font-size: 22px;
-    background: url('../../res/img/shape_button_round.png') no-repeat;
+    color:    #0066cb;
+    font-size: 42px;   
     background-size: 100% 100%;
+    right: 0;
 }
 
-.findLaptop {
-	margin-left: 41px;
-}
 
-.startQuiz:hover {
-    background: url('../../res/img/shape_button_full.png') no-repeat;
-    color: #fff;
-     background-size: 100% 100%;
-}
+
+
 
 .quiz_container .tab2_intro p:not(.h2) {
     padding: 0 15px;
@@ -705,20 +712,42 @@ _:-ms-lang(x),
 
 .startQuiz strong {
     display: block;
-    margin-top: 14px;
-    margin-left: -40px;
+    margin-top: 14px;    
 }
+
+.startQuiz.buttonStartQuiz {
+    font-size: 20px;
+    background-color: #0066cb;
+    padding: 20px 5px;
+    color: #fff;
+    border-radius: 8px;
+    max-width: 200px;   
+    line-height: 20px; 
+    animation: bannerButton 1s ease 1 both;
+}
+
+.startQuiz.buttonStartQuiz:hover {
+    background: #fff;
+    color: #000;
+    transition: all 0.3s ease;
+}
+
+
+.label_intro1.hidden, .label_intro2.hidden {
+      transform: translateY(-500px);
+}
+
 
 /* Animations for quiz button and image */
 
 @-webkit-keyframes bannerButton {
      0% {right: -100%;opacity: 0;}
-    100% {right: 33%;opacity: 1;}
+    100% {right: 100px;opacity: 1;}
 }
 
 @keyframes bannerButton {
      0% {right: -100%;opacity: 0;}
-    100% {right: 33%;opacity: 1;}
+    100% {right: 20px;opacity: 1;}
 }
 
 @-webkit-keyframes bannerImg {
@@ -743,7 +772,20 @@ _:-ms-lang(x),
 	.startQuiz {
 		font-size: 20px;
 		padding: 10px 10px;
+        line-height: 16px;
+
 	}
+
+    .quiz_container label.label_intro2 {
+        top: 32%;
+        right: 296px;
+    }
+
+    .startQuiz.buttonStartQuiz {
+        font-size: 16px;
+        max-width: 100px;
+        padding: 10px 5px;
+    }
 }
 
 @media (min-width:800px ) and (max-width: 991px) {
@@ -780,6 +822,16 @@ _:-ms-lang(x),
     .noresultsSecondParagraph {
         font-size: 14px;
     }
+
+    .quiz_container label.label_intro1 {
+        width: 350px;
+    }
+
+    .quiz_container label.label_intro2 {
+        width: 350px;
+        text-align: right;
+        right: 150px;
+    }
 }
 
 @media(max-width:600px) {    
@@ -802,6 +854,10 @@ _:-ms-lang(x),
 	    right: 50%;
 	    margin-right: -30px; 
 	}
+
+     .quiz_container label.label_intro1 {
+        width: 225px;
+    }
 }
 
 @media(max-width:425px) {

@@ -1,3 +1,4 @@
+
 <?php
 require_once("../etc/conf.php");
 if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_name) ==FALSE) 
@@ -28,8 +29,11 @@ echo preg_replace_callback('/\[ntab (.*)\](.*)(?=\[ntab .*\]|\Z)/Us',function ($
 	var lang = <?php echo $lang; ?>;
 	var istime=0;	
 </script>
-	<div class="row" style="background-color:white;">
-		<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style=" font-size:30px; text-align:center; margin-top:30px;" >
+<link rel="stylesheet" href="content/lib/css/review_add.css">
+<!--******pana aici -->
+
+	<div class="row" style="background-color:white;margin: -15px 0 0 0;">
+		<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style=" font-size:30px; text-align:center;" >
 			<a style="text-decoration:none;float:left;color:black;"><?php $content_title=""; $content_title=get_post_field('post_title', $echoid); echo $content_title; ?></a>
 		</div>
 		<div class="col-md-12 col-sm-12 col-xs-12">
@@ -71,15 +75,15 @@ echo preg_replace_callback('/\[ntab (.*)\](.*)(?=\[ntab .*\]|\Z)/Us',function ($
 				?>
        			</div>
 				<div class="btn-group" role="group">
-					<button type="button" class="btn btn-test dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="border-radius:0px; ">
+					<button type="button" class="btn btn-test dropdown-toggle reviewGoTo" data-toggle="dropdown" aria-expanded="false" style="border-radius:0px; ">
 					Go to:
 					<span class="caret"></span>
 					</button>	
-					<ul class="dropdown-menu tab-links" style="width:auto;padding:0px" role="menu">
+					<ul class="dropdown-menu tab-links reviewGoToDropdown" style="width:auto;padding:0px" role="menu">
 					<?php $j=1;
 						for($i=0;$i<$nrtabs;$i++)
 						{
-							echo '<li  style="float:none;"><a href="#tab'.$i.'" id="tab-'.$i.'">'.$tabnames[$i].'</a></li>';	
+							echo '<li  style="float:none;"><a href="#tab'.$i.'" id="tab-'.$i.'" onclick="scrolltoid('."'".'content'."'".',0);">'.$tabnames[$i].'</a></li>';	
 						}
 					?>
 					</ul>	
@@ -87,45 +91,34 @@ echo preg_replace_callback('/\[ntab (.*)\](.*)(?=\[ntab .*\]|\Z)/Us',function ($
 			</div>
 		</div>
 	</div>
-	<link rel="stylesheet" href="content/lib/css/review.css?v=1.1" type="text/css"/>
+	<link rel="stylesheet" href="content/lib/css/review.css?v=1.3" type="text/css"/>
+	
 	<script type="text/javascript">
-	jQuery('.tabs .tab-links a').on('click', function(e)
+	$.getScript("content/lib/js/review.js", function()
 	{
-		sessionStorage["reviewtab"]=jQuery(this).attr('href');
-		change_review_tab(sessionStorage["reviewtab"]);
-		e.preventDefault();
-	});
-	
-	function change_review_tab(tab)
-	{
-		// Show/Hide Tabs
-		jQuery('.tabs '+tab).slideDown(400).siblings().slideUp(400);
-		// Change/remove current tab to active
-		jQuery(tab+"m").parent('li').addClass('active').siblings().removeClass('active');
-	}
-	
-	jQuery(document).ready(function()
-	{	
-		if(sessionStorage["reviewtab"]!=undefined&&sessionStorage["reviewtab"]!=""){ change_review_tab(sessionStorage["reviewtab"]); }else{sessionStorage["reviewtab"]="";}
-		$('meta[name=description]').attr('content', "Laptop review.");
-		actbtn("REVIEWS");
-		document.title = "Noteb - <?php echo $content_title; ?> - Review";
-		
-		<?php 
-		$posttags = wp_get_post_tags($echoid);
-		if ($posttags)
-		{ 
-			$i=0; $keywords="";
-			foreach($posttags as $tag) 
-			{
-				if($i) { $keywords.=", ";}
-				$keywords.=$tag->name; $i=1;
-			}
-		} 
-		echo 'metakeys("'.$keywords.'");';
-		?>
-		setTimeout(function()
-		{ istime=1; },1000);
+		jQuery(document).ready(function()
+		{	
+			if(sessionStorage["reviewtab"]!=undefined&&sessionStorage["reviewtab"]!=""){ change_review_tab(sessionStorage["reviewtab"]); }else{sessionStorage["reviewtab"]="";}
+			$('meta[name=description]').attr('content', "Laptop review.");
+			actbtn("REVIEWS");
+			document.title = "Noteb - <?php echo $content_title; ?> - Review";
+			
+			<?php 
+			$posttags = wp_get_post_tags($echoid);
+			if ($posttags)
+			{ 
+				$i=0; $keywords="";
+				foreach($posttags as $tag) 
+				{
+					if($i) { $keywords.=", ";}
+					$keywords.=$tag->name; $i=1;
+				}
+			} 
+			echo 'metakeys("'.$keywords.'");';
+			?>
+			setTimeout(function()
+			{ istime=1; },1000);
+		});
 	});
 </script>
 <?php include_once("../etc/scripts_pages.php"); ?>

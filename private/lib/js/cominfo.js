@@ -178,7 +178,7 @@ $("#coms_form_btn").click(function () {
 	for(var i=0;i<((Object.keys($("#model_ids :selected")).length)-2);i++)
 	{ model_names[i]=$("#model_ids :selected")[i].text; }
 	document.getElementById("model_names").value=model_names;
-	//scrolltoid('content');
+	//scrolltoid('content',1);
 	//$('#loadingNB').show();
 	//trigger=0;
 	//$.post('private/cominfo.php', $("#com_info_form").serialize(), function(data) {

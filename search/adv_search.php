@@ -18,22 +18,24 @@
 		var minbudgetset=<?php if(!isset($bdgmin)){ $bdgmin=$minconfigprice*4.5; }else{if($bdgmin==-10){$bdgmin=$minconfigprice;}} echo $bdgmin; ?>;
 		var maxbudgetset=<?php if(!isset($bdgmax)){ $bdgmax=$minconfigprice*11; }else{if($bdgmax<-5){$bdgmax=$maxconfigprice;}} echo $bdgmax; ?>;
 	</script>
-	<form  method="post" id="advform" name="advform">
+	<form  method="post" id="advform" name="advform" style="background-color: #fff; padding: 0 15px;">
 	<input type="hidden" name="advsearch" value="1">
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			<div class="row">
-				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="background-color:white; font-family:arial;">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 					<div class="row">
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-						<a onclick="scrolltoid('submitformid');" style="cursor:pointer; font-size:14px; float:right; margin-top:20px; margin-left:10px; padding:0px 25px 0px 25px; border-radius:2px; background-color:#49505a; color:#fff; text-decoration:none;">Go to bottom<i class="glyphicon glyphicon-arrow-down fas fa-arrow-down" style="font-size:12px; display:inline-block;margin-left:10px;"></i></a>
-						<a onclick="reset_select2_vars(); OpenPage('search/adv_search.php?reset=1',event);" style="cursor:pointer; font-size:14px; float:right; margin-top:20px; padding:0px 25px 0px 25px; border-radius:2px; background-color:#49505a; color:#fff; text-decoration:none;margin-left: 10px;" id="gototop">Reset</a>
-						<a onclick="setrecommended();" style="cursor:pointer;  font-size:14px; float:right; margin-top:20px; padding:0px 25px 0px 25px; border-radius:2px; background-color:#49505a; color:#fff; text-decoration:none;">Set recommended filters</a>
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<a onclick="scrolltoid('submitformid',0);" style="cursor:pointer; font-size:14px; float:right; height: 22.5px; margin:20px 0px -5px 10px; padding:0px 25px 0px 25px; border-radius:2px; background-color:#49505a; color:#fff; text-decoration:none;">Go to bottom<i class="glyphicon glyphicon-arrow-down fas fa-arrow-down" style="font-size:12px; display:inline-block;margin-left:10px;"></i></a>
+								<a onclick="reset_select2_vars(); OpenPage('search/adv_search.php?reset=1',event);" style="cursor:pointer; font-size:15px; float:right; margin:20px 0px -5px 0px; padding:0px 25px 0px 25px; border-radius:2px; background-color:#49505a; color:#fff; text-decoration:none;margin-left: 10px;" id="gototop">Reset</a>
+								<a onclick="setrecommended();" style="cursor:pointer;  font-size:15px; float:right; margin:20px 0px 10px 0px; padding:0px 25px 0px 25px; border-radius:2px; background-color:#0066cb; color:#fff; text-decoration:none;">Set recommended filters</a>
+						    </div>
 						</div>					
 						
 						<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top:5px">
-								<div style="font-size:16px; font-weight:bold;">Availability:</div>
+							<div style="font-size:16px; font-weight:bold;">Availability:</div>
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top:5px">								
 								<select onchange="presearch('#advform');" class="multisearch js-example-responsive" id="Regions_name_id" name = "Regions[]" data-lcom='regions' data-lfield="name" data-placeholder="Ex. USA, Europe" data-initvalue="All" multiple="multiple" data-ajax--url="search/lib/func/list.php" style="width:100%;"></select>
 							</div>
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top:15px; font-size:15px;">
@@ -561,10 +563,10 @@
 				
 				<!-- WARRANTY -->
 				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" >
-					<div class="row">
+					
 						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><hr class=""  style="height:5px;"></div>
-						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6"  style="font-size:16px; font-weight:bold;padding-bottom:5px;">Warranty</div>
-						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-left: 15px;">
+						<div  style="font-size:16px; font-weight:bold;padding-bottom:5px;">Warranty</div>
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
 							<div style="margin-top:5px;"><span style="margin-top:5px; font-size:13.5px; margin-bottom:2px;">
 								Nr of years:</span>  <span id="yearsval"><?php echo $waryearsmin; ?> - <?php echo $waryearsmax; ?></span>
 							</div>	  
@@ -576,14 +578,14 @@
 								<label for="checkboxadv" class="css-label sme depressed" style="font-weight:normal;min-height:16px;">On-site</label>
 							</div>	
 						</div>
-					</div><!-- Row -->
+					
 				</div><!-- Col -->
 						
 				<!-- SUBMIT BUTTON -->		
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-top: 20px;">		
 					<nav style="margin-bottom:20px!important">		
 						<a id="submit"></a>	
-						<input type="submit" id="submitformid" class="btn submitbutton" value="Submit" onclick="scrolltoid('gototop');">
+						<input type="submit" id="submitformid" class="btn submitbutton" value="Submit" onclick="scrolltoid('gototop',0);">
 					</nav>
 				</div>
 			</div><!-- End Row -->

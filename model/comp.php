@@ -21,7 +21,7 @@ if($nrconf < 1 && $nrgetconfs <1) //nrconf is from headercomp.php
 else
 {
 ?>
-<link rel="stylesheet" href="model/lib/css/compare.css?v=29" type="text/css" />
+<link rel="stylesheet" href="model/lib/css/compare.css?v=30" type="text/css" />
 <?php include_once("../libnb/php/aff_modal.php"); ?>
 	<!-- TABLE HEADER -->
 	<div class="compContainer linked">

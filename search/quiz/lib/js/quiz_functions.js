@@ -560,3 +560,14 @@ function submit_the_quiz()
     location.href=siteroot+"?search/search.php?quizsearch=1&"+quiz_submit.join("&");
     return "Quiz submission!";
 }
+
+
+$('.label_intro1').click(function() {
+   $('.label_intro1').addClass('hidden');
+   $('.label_intro2').addClass('hidden')
+});
+
+$('.label_intro2').click(function() {
+   $('.label_intro1').addClass('hidden');
+   $('.label_intro2').addClass('hidden')
+});

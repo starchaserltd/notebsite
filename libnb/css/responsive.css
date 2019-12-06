@@ -295,7 +295,7 @@ div.searchresultitlu  p {
 
 @media screen and (min-width:2001px) and (max-width:2559px) {
 	.searchresultdesc {
-		height: 215px !important;
+		height: 235px !important;
 		font-size: 13.6px;
 		padding-left: 20% !important;
 	}

@@ -44,7 +44,7 @@ $published_posts = $category->category_count;
 
 ?>
 	
-	<div class="row headerback" style="margin-top:5px;margin-right:0px; margin-left:0px;padding-right:0px; background-color:white;">
+	<div class="row headerback" style="margin-left:0px;background-color:white;">
 	<article style="display: -webkit-box;    display: -ms-flexbox;    display: flex;    -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;-ms-flex-direction: row; flex-direction: row; -ms-flex-wrap: wrap;
         flex-wrap: wrap;" class="col-xs-12">
@@ -111,6 +111,8 @@ $published_posts = $category->category_count;
 	$page++;
 	$count=ceil(get_post_count(2)/8);
 	?>
+		</article>	
+</div>
 		<div class="col-md-12">
 			<ul class="pagination" style="float:right;">
 			<li class="page-item"><a class="page-link" onmousedown="OpenPage('content/articles.php?page=1',event);" style="cursor: pointer; color:#000;" >&lt;&lt;</a></li>
@@ -150,8 +152,7 @@ $published_posts = $category->category_count;
 			</ul>
 		</div>
 	<?php //PAGINATION CODE END ?>
-	</article>	
-</div>
+
 <script type="text/javascript">
 	$(document).ready(function(){
 		actbtn("ARTICLES"); metakeys("noteb,laptop,articles");

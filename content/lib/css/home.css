@@ -1,33 +1,45 @@
-.latest2 {
-	border-top: 1px solid #DDD;
+.latest2 {	
 	padding: 10px !important;
 	display: flex;
-	margin-top: 5px;
+	margin-top: 5px;	
+	position: relative;
+	padding-bottom: 15px;
+	margin-bottom: 40px;
+}
+
+.latest2:after {
+	content: "";
+	position: absolute;
+	right: 15px;
+	left: 15px;
+	height: 1px;
+	background-color: rgb(000,000,000, 0.1);
+	bottom: -20px;
 }
 
 .showMore {
-	text-align: center;	
+	text-align: center;
 }
 
 .showMore span {
 	padding: 5px;
-	border-radius: 25px;
+	border-radius: 4px;
 	font-size: 16px;
 	font-weight: bold;
-	background-color: rgb(40, 95, 143);
-	margin-bottom: 10px;
+	background-color: #0066cb;
+	margin-bottom: 20px;
 	color: #fff;
 	display: inline-block;	
 	cursor: pointer;
-	border:1px solid rgb(40, 95, 143);
 	width: 160px;
     margin-top: 10px;
 
 }
 
 .showMore span:hover {
-	background-color: #a9bfd2;
+	background-color: #fff;
 	transition: all 0.3s ease; 
+	color: #000;
 }
 
 .latest3 {
@@ -55,10 +67,18 @@ div.latest4 a {
 }
 
 .rmore {
-	color: blue !important;
-	cursor: pointer;
-	font-weight: normal !important;
-	font-size: 14px !important;
+	color: #0066cb !important;
+    cursor: pointer;
+    font-weight: normal !important;
+    font-size: 14px !important;
+    border: 1px solid #0066cb;
+    padding: 10px;
+    display: block;
+    width: 100px;
+    line-height: 15px;
+    text-align: center;
+    margin-top: 10px;
+    border-radius: 4px;
 }
 
 .mobileShowMoreGaming, .mobileShowMoreBusiness, .mobileShowMoreUltrabooks, .mobileShowMoreStudent {
@@ -118,22 +138,24 @@ div.latest4 a {
 }
 
 .topLaptopsDate {
-	text-align: center;
-	color: #fff;
-	font-size: 10px;
-	background-color: #49505a;
-	margin:0px -15px 0px -15px;
+	text-align: left;
+    color: #6d6d6d;
+    font-size: 10px;
+    background-color: transparent;
+    margin: 0 0 10px -8px;
 }
 
 .pretTopLaptops {
-	font-weight: bold;
-	color: #49505a;
+	font-weight: normal;
+    color: #0066cb;
+    font-size: 16px;
+    display: block;
 }
 
 /* Media queries */
 
 @media screen and (max-width:767px) {
-	.gamingTopLaptops, .businessTopLaptops, .ultrabooksTopLaptops, .studentTopLaptops {
+	/*.gamingTopLaptops, .businessTopLaptops, .ultrabooksTopLaptops, .studentTopLaptops {
 		max-height: 35px;
 		overflow: hidden;
 		transition: max-height 0.4s ease;
@@ -145,14 +167,14 @@ div.latest4 a {
 		transition: max-height 0.4s ease;
 		margin-bottom: 30px;		
 	}
-
+*/
 	
 
 	.showMore span {
 		display: none;
 	}
 
-	.h2TopLaptopsGaming:after, .h2TopLaptopsBusiness:after, .h2TopLaptopsUltrabooks:after, .h2TopLaptopsStudent:after  {
+	/*.h2TopLaptopsGaming:after, .h2TopLaptopsBusiness:after, .h2TopLaptopsUltrabooks:after, .h2TopLaptopsStudent:after  {
 		position: absolute;
 		right: 26px;
 		top: 11px;
@@ -215,12 +237,11 @@ div.latest4 a {
 		-ms-transform: rotate(45deg);
 		-o-transform: rotate(45deg);
 		transform: rotate(45deg);
-	}	
+	}	*/
 
 	.topLaptopsDate {
 		text-align: left;
-	    padding-left: 8px;
-	    position: absolute;
+	    padding-left: 8px;	    
 	    width: auto;
 	    left: 200px;
 	    top: 10px;
@@ -274,6 +295,10 @@ div.latest4 a {
 		float: none !important;
 		margin: 0 auto;
 		width: 100% !important
+	}
+
+	.topLaptopsDate {
+		font-size: 12px;
 	}
 
 }

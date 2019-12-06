@@ -162,14 +162,7 @@ else
 					</div><!-- End Configuration div-->	
 				</div>
 			</div>
-		</div>	<!-- row-->		
-		<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" style="padding:0px" >
-			<!-- <div class="col-md-5 col-sm-6 col-xs-12 col-lg-5" style="margin-top:15px; padding:0px;">
-				<a style="font-weight:bold; color:black;text-decoration:none; cursor:pointer;" onclick="scrolltoid('leave_comment');">Leave a comment !</a>
-				<br>				
-			</div> -->
-			<div class="col-md-7 col-sm-6 col-xs-12 col-lg-7" style="margin-top:10px; padding:0px;"></div>
-		</div>		
+		</div>
 		<!-- start specs -->
 		<div class="row" style="background-color:white; font-family:arial;padding:0px;text-align:left;">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 btn" style="text-align:left;padding-top:0px">
@@ -196,7 +189,7 @@ else
 							<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows" id="cpu_ldate"></div>					
 						</div>	
 						<div class="row hidecpu hideall detaliicomp" style="display:none">					
-							<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 rows toolinfo" data-toolid="1" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top"  data-original-title="data-loading..."><span class="toolinfo1">Socket:</span></div>
+							<div class="col-md-5 col-xs-5 col-5 col-sm-5 col-lg-5 rows toolinfo" data-toolid="1" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top"  data-original-title="data-loading..."><span class="toolinfo1">Socket:</span></div>
 							<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="1" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="top" data-original-title="data-loading..."><span class="toolinfo1"><span id="cpu_socket"></span></span></div>
 						</div>
 						<div class="row hidecpu hideall detaliicomp" style="display:none">					
@@ -782,5 +775,5 @@ else
 <?php  
 } } ?>
 </div>
-<link rel="stylesheet" href="model/lib/css/model.css?v=94" type="text/css"/>
+<link rel="stylesheet" href="model/lib/css/model.css?v=96" type="text/css"/>
 <?php include_once("../etc/scripts_pages.php"); ?>

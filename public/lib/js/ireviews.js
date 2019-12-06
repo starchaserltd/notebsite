@@ -95,7 +95,7 @@ $("#ireviews_form_btn").click(function () {
 	for(var i=0;i<((Object.keys($("#model_id_ireviews :selected")).length)-2);i++)
 	{ model_names[i]=$("#model_id_ireviews :selected")[i].text; }
 	document.getElementById("model_name_ireviews").value=model_names;
-	scrolltoid('content');
+	scrolltoid('content',1);
 	$('#loadingNB').show();
 	trigger=0;
 	$.post('public/ireviews.php', $("#ireviews_form").serialize(), function(data) {

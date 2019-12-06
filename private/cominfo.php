@@ -24,7 +24,7 @@ if(isset($table))
 ?>
 <div id="result"></div>
 <form id="com_info_form" action="<?php echo $root_path_3; ?>cominfo.php" method="post">
-<div style="min-height:650px">
+<div style="min-height:400px">
 	<div class="title"><p><b>Add specific information to a laptop</b></p></div>
 	
 	<div class="row irevtop">
@@ -50,7 +50,7 @@ if(isset($table))
 	<input type="submit" value="Submit" id="coms_form_btn" name="submit" style="display:inline-block; width: 150px; margin-left:108px;" >
 </div>
 </form>
-<br><br><div><span>Comments for linked models:</span><br><span id="models_msc"></span></div>
+<div><span>Comments for linked models:</span><br><span id="models_msc"></span></div>
 <script>var path_modifier="<?php echo $root_path_2; ?>"; $.getScript("<?php echo $root_path_3; ?>lib/js/cominfo.js");
 setTimeout(function (){
 <?php
@@ -65,8 +65,8 @@ if($error)
 }, 200);
 </script>
 <?php include_once($root_path_2."../etc/scripts_pages.php"); ?>
-<link rel="stylesheet" href="<?php echo $root_path_2; ?>../lib/css/bootstrap.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="<?php echo $root_path_2; ?>../admin/lib/css/bootstrap.min.css" crossorigin="anonymous">
 <link rel="stylesheet" href="<?php echo $root_path_2; ?>../lib/fonts/fontawesome/css/all.min.css" crossorigin="anonymous">
-<link rel="stylesheet" href="<?php echo $root_path_2; ?>../lib/css/select2.min.css" type="text/css" /> 
-<link href="<?php echo $root_path_2; ?>../model/model.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="<?php echo $root_path_2; ?>../admin/lib/css/select2.min.css" type="text/css" /> 
+<link href="<?php echo $root_path_2; ?>../admin/model/lib/css/model.css" rel="stylesheet" type="text/css" />
 </body>

@@ -237,7 +237,7 @@ div.ListElem:hover {
 
 .rating.currency .custom-select{
 	padding: 0 5px;        
-    background-color: #285f8f;
+    background-color: #0066cb;
     line-height: 18px;
     margin-top: 1px;    
 	border-top-left-radius: 0;
@@ -653,7 +653,7 @@ div.ListElem:hover {
 
 	.ptop.affix {
 		padding-top: 0px;
-		top:31px;
+		top:0px;
 	}
 
 	.rating p {

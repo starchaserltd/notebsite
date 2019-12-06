@@ -291,7 +291,7 @@ $('#s_prod_id').select2({
  
 //Function for form submissions left menu   
 $("#s_search_btn").on("mousedown",function(e) {
-	scrolltoid('content');
+	scrolltoid('content',1);
 	$("#howToUse").css('display', 'none');
 	$('#loadingNB').show();
 	trigger = 0; var addref="?sort_by="+global_sort_search; if(ref!=null&&ref!="") { addref=addref+"&ref="+ref; }

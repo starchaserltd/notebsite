@@ -9,9 +9,9 @@ $result = mysqli_query($GLOBALS['con'], "SELECT id,disp FROM notebro_db.REGIONS"
 while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 ?>
 
-<div class="row headerback" style="margin:0;">
+<div class="row headerback">
 	<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style="background-color:white; font-family:arial;padding:0px">
-		<div class="row">
+		<div class="row" style="margin:0;">
 			<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style="padding:3px 0px 5px 0px"> 
 				<div class="row">		
 					<div class="col-md-6 col-sm-6 col-xs-12 col-lg-6">
@@ -24,7 +24,7 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 		{
 			$usertag=""; if(isset($_GET["ref"])&&$_GET["ref"]!=""){ $usertag=mysqli_real_escape_string($con,filter_var($_GET["ref"], FILTER_SANITIZE_STRING)); }
 			?>
-				<div class="col-md-6 col-sm-6 col-xs-12 col-lg-6" style="padding:0px">
+				<div class="col-md-6 col-sm-6 col-xs-12 col-lg-6" style="">
 					<div class="btn-group" style="display: inline-block; float:right;width:auto!important;">
 						<a class="btn" style="text-decoration:none;color:black;font-weight:bold;padding:2px 0px 0px 0px;">Order by:</a>
 						<button type="button" class="btn btn-result<?php echo $value_button;?>" style="margin-left:10px;border-radius: 1px 0px 0px 1px;"  onmousedown="OpenPage(sortresults('value'),event)"><a style="color:white;text-decoration:none">value</a></button>	
@@ -48,7 +48,7 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 						</div>
 					</div>		 
 				  </div>	
-				</div><!-- row end-->
+				</div>
 			</div>
 		</div>
 		<?php include_once("../libnb/php/aff_modal.php"); ?>
@@ -67,7 +67,7 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 				<div class="col-md-6 col-sm-6 col-lg-3 col-6 col-xs-3" style="" >
 					<div class="searchresult">
 						<div class="searchresultJPG">
-							<a onmousedown="OpenPage('model/model.php?conf=<?php echo $rand['id']."_".$rand['model']."&ex=".$exchcode_model;?>',event); scrolltoid('content');">
+							<a onmousedown="OpenPage('model/model.php?conf=<?php echo $rand['id']."_".$rand['model']."&ex=".$exchcode_model;?>',event); scrolltoid('content',0);">
 								<img src="../res/img/models/thumb/<?php echo $t_img; ?>" class="img-responsive img-fluid" alt="Image for <?php echo $model; ?>">
 							</a>
 						</div>
@@ -143,8 +143,8 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 <div class="row" style="margin:0;">
 	<div class="col-md-12 col-sm-12 col-xs-12">
 		<ul class="pagination" style="margin:0px;padding-top:10px; float:right">
-			<li class="page-item"><a class="page-link" style="color:#000; cursor:pointer;" <?php echo 'onmousedown="OpenPage('."'".$absolute_url[0]."&page=1".$sortext."',event);".'scrolltoid('."'".'content'."'".');"'; ?> >&lt;&lt;</a></li>
-			<li class="page-item"><a class="page-link"<?php  $newpage=$page-1; if($newpage<1) {$newpage=1; } echo 'onmousedown="OpenPage('."'".$absolute_url[0]."&page=".$newpage.$sortext."',event);".'scrolltoid('."'".'content'."'".');"'; ?>  style="color:#000; cursor:pointer;">&lt;</a></li>
+			<li class="page-item"><a class="page-link" style="color:#000; cursor:pointer;" <?php echo 'onmousedown="OpenPage('."'".$absolute_url[0]."&page=1".$sortext."',event);".'scrolltoid('."'".'content'."'".',0);"'; ?> >&lt;&lt;</a></li>
+			<li class="page-item"><a class="page-link"<?php  $newpage=$page-1; if($newpage<1) {$newpage=1; } echo 'onmousedown="OpenPage('."'".$absolute_url[0]."&page=".$newpage.$sortext."',event);".'scrolltoid('."'".'content'."'".',0);"'; ?>  style="color:#000; cursor:pointer;">&lt;</a></li>
 			<?php
 				$count=ceil($count/20);
 				if($count<5)
@@ -152,9 +152,9 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 					for($i=1;$i<=$count;$i++)
 					{
 						if($i == $page)
-						{ echo '			<li class="page-item"><a  class="page-link" onmousedown="OpenPage('."'".$absolute_url[0]."&page=".$i.$sortext."',event);".'scrolltoid('."'".'content'."'".');" style="color:#000; cursor:pointer;"><b>'.$i.'</b></a></li>'; }
+						{ echo '			<li class="page-item"><a  class="page-link" onmousedown="OpenPage('."'".$absolute_url[0]."&page=".$i.$sortext."',event);".'scrolltoid('."'".'content'."'".',0);" style="color:#000; cursor:pointer;"><b>'.$i.'</b></a></li>'; }
 						else 
-						{ echo '			<li class="page-item"><a  class="page-link" onmousedown="OpenPage('."'".$absolute_url[0]."&page=".$i.$sortext."',event);".'scrolltoid('."'".'content'."'".');" style="color:#000; cursor:pointer;">'.$i.'</a></li>'; }
+						{ echo '			<li class="page-item"><a  class="page-link" onmousedown="OpenPage('."'".$absolute_url[0]."&page=".$i.$sortext."',event);".'scrolltoid('."'".'content'."'".',0);" style="color:#000; cursor:pointer;">'.$i.'</a></li>'; }
 					}
 				}
 				else
@@ -168,16 +168,16 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 					for($i=$min;$i<=$limit;$i++)
 					{ 
 						if($i==$page)
-						{ echo '			<li class="page-item"><a class="page-link" onmousedown="OpenPage('."'".$absolute_url[0]."&page=".$i.$sortext."',event);".'scrolltoid('."'".'content'."'".');" style="color:#000; cursor:pointer;"><b>'.$i.'</b></a></li>'; }
+						{ echo '			<li class="page-item"><a class="page-link" onmousedown="OpenPage('."'".$absolute_url[0]."&page=".$i.$sortext."',event);".'scrolltoid('."'".'content'."'".',0);" style="color:#000; cursor:pointer;"><b>'.$i.'</b></a></li>'; }
 						else
-						{ echo '			<li class="page-item"><a class="page-link" onmousedown="OpenPage('."'".$absolute_url[0]."&page=".$i.$sortext."',event);".'scrolltoid('."'".'content'."'".');" style="color:#000; cursor:pointer;">'.$i.'</a></li>'; }
+						{ echo '			<li class="page-item"><a class="page-link" onmousedown="OpenPage('."'".$absolute_url[0]."&page=".$i.$sortext."',event);".'scrolltoid('."'".'content'."'".',0);" style="color:#000; cursor:pointer;">'.$i.'</a></li>'; }
 					}
 				}
 			?>
-			<li class="page-item"><a class="page-link" <?php  $newpage=$page+1; if($newpage>$count) {$newpage=$count; } echo 'onmousedown="OpenPage('."'".$absolute_url[0]."&page=".$newpage.$sortext."',event);".'scrolltoid('."'".'content'."'".');"';; ?>  style="color:#000; cursor:pointer;">></a></li>
-			<li class="page-item"><a class="page-link" <?php echo 'onmousedown="OpenPage('."'".$absolute_url[0]."&page=".$count.$sortext."',event);".'scrolltoid('."'".'content'."'".');"'; ?> style="color:#000; cursor:pointer;" >>></a></li>
+			<li class="page-item"><a class="page-link" <?php  $newpage=$page+1; if($newpage>$count) {$newpage=$count; } echo 'onmousedown="OpenPage('."'".$absolute_url[0]."&page=".$newpage.$sortext."',event);".'scrolltoid('."'".'content'."'".',0);"';; ?>  style="color:#000; cursor:pointer;">></a></li>
+			<li class="page-item"><a class="page-link" <?php echo 'onmousedown="OpenPage('."'".$absolute_url[0]."&page=".$count.$sortext."',event);".'scrolltoid('."'".'content'."'".',0);"'; ?> style="color:#000; cursor:pointer;" >>></a></li>
 		</ul>
-		<button type="button" id="refinesearch" <?php $nosearch=0; $search_ref=str_replace("/advanced_search","/adv_search",$absolute_url[0],$nosearch); if(!($nosearch)){ $search_ref=str_replace("/search.php?","/adv_search.php?",$absolute_url[0]);} $text='onmousedown="OpenPage('."'".$search_ref; foreach($sortby as $sort) {} $text.="',event);".'scrolltoid('."'".'content'."'".');"'; echo $text ?> class="btn-result" style="float:right;margin-right:25px;border-radius:2px !important; height:30px; padding:2px 40px;margin-top:10px"><a style="color:white;text-decoration:none"> Refine results</a></button>
+		<button type="button" id="refinesearch" <?php $nosearch=0; $search_ref=str_replace("/advanced_search","/adv_search",$absolute_url[0],$nosearch); if(!($nosearch)){ $search_ref=str_replace("/search.php?","/adv_search.php?",$absolute_url[0]);} $text='onmousedown="OpenPage('."'".$search_ref; foreach($sortby as $sort) {} $text.="',event);".'scrolltoid('."'".'content'."'".',0);"'; echo $text ?> class="btn-result" style="float:right;margin-right:25px;border-radius:2px !important; height:30px; padding:2px 40px;margin-top:10px"><a style="color:white;text-decoration:none"> Refine results</a></button>
 	</div>	
 </div>
 	
@@ -248,7 +248,7 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 		}
 ?>
 <script type="text/javascript"> excode='<?php echo $_SESSION['exchcode']; ?>';
-$.getScript("../lib/js/jquery.matchHeight-min.js").done(function(){ $.getScript("search/lib/js/results.js"); });
+$.getScript("search/lib/js/results.js");
 <?php
 if (isset($browse_by)&&$browse_by!==0)
 { ?>

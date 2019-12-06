@@ -1,25 +1,45 @@
 	<footer class="footer-distributed">
-		<div class="footer-right">
-			<a style="cursor:pointer" href="https://www.facebook.com/Noteb-162949570886382/"><i class="socicon socicon-facebook"></i></a>
-			<a style="cursor:pointer" href="https://twitter.com/notebcom"><i class="socicon socicon-twitter"></i></a>
-			<a style="cursor:pointer" href="https://www.youtube.com/channel/UC7nnclcN7BZDn_FqKtzwBGQ"><i class="socicon socicon-youtube"></i></a>	
-		</div>
-		<div class="footer-left">
-			<h3 class="footer-links" style="font-size:18px; color:#fff; font-weight:bold;">
-				<span  style="cursor:pointer" onmousedown="OpenPage('content/home.php');">Home</span>
-				·
-				<span style="cursor:pointer" onmousedown="OpenPage('footer/howto.php',event);">How to Use</span>
-				·
-				<span  style="cursor:pointer" onmousedown="OpenPage('footer/about.php',event);">About</span>
-				·
-				<span style="cursor:pointer" onmousedown="OpenPage('footer/contact.php',event);">Contact Us</span>
-				·
-				<span style="cursor:pointer" onmousedown="OpenPage('footer/privacy_policy.php',event);">Privacy Policy</span>
-				·
-				<span style="cursor:pointer" onmousedown="OpenPage('footer/terms_of_use.php',event);">Terms of Use</span>
-			</h3>
-			<p><a class="starchaserLink" href="http://www.starchaser.ro/">© 2017-2019 Starchaser S.R.L. </a></p>
+		<div class="container">
+			<div class="row footerMenuContainer">
+				<div class=" col-lg-9 col-xl-10 col-md-12 col-sm-12 col-12">		
+					<div class="row footer-left">								
+						<div class="footerMenu footerMenuLogo col col-lg-2  col-md-4 col-12" style="cursor:pointer" onmousedown="go_to_top(); OpenPage('content/home.php');"><img class="footerLogo" src="../res/img/logo/white.svg"></div>	
+						<div class="footerMenu col col-lg-2 col-md-4 col-12" style="cursor:pointer" onmousedown="scrolltoid('content',0); OpenPage('footer/howto.php',event);"><p>How to Use</p></div>
+						<div class="footerMenu col col-lg-2 col-md-4 col-12" style="cursor:pointer" onmousedown="scrolltoid('content',0); OpenPage('footer/about.php',event);"><p>About</p></div>
+						<div class="footerMenu col  col-lg-2 col-md-4 col-12" style="cursor:pointer" onmousedown="scrolltoid('content',0); OpenPage('footer/contact.php',event);"><p>Contact Us</p></div>
+						<div class="footerMenu col col-lg-2 col-md-4 col-12" style="cursor:pointer" onmousedown="scrolltoid('content',0); OpenPage('footer/privacy_policy.php',event); scrolltoid('content',0);"><p>Privacy Policy</p></div>
+						<div class="footerMenu col col-lg-2 col-md-4 col-12" style="cursor:pointer" onmousedown="scrolltoid('content',0); OpenPage('footer/terms_of_use.php',event); scrolltoid('content',0);"><p>Terms of Use</p></div>						
+					</div>
+				</div>
+				<div class="footer-right col-lg-3 col-xl-2 col-md-12 col-sm-12 col-12">
+					<span class="socialMediaFooter">Social Media:</span>
+					<a style="cursor:pointer" href="https://www.facebook.com/Noteb-162949570886382/">	<span class="faSocial"><i class="fab fa-facebook-f"></i></span></a>
+					<a style="cursor:pointer" href="https://twitter.com/notebcom"><span class="faSocial"><i class="fab fa-twitter"></i></span></a>
+					<a style="cursor:pointer" href="https://www.youtube.com/channel/UC7nnclcN7BZDn_FqKtzwBGQ"><span class="faSocial"><i class="fab fa-youtube"></i></span></a>
+				</div>					
 			</div>
+			<div class="row">
+				<div class="col-12 donateContainer">
+					<div><span id="supportUs" class="supportUs">Support Us:</span></div>
+					<div><a href="https://paypal.me/notebcom" target="_blank"><span  class="donateFooter">Donate</span></a><a href="https://www.patreon.com/noteb" target="_blank"><span class="donateFooter">Become a patreon</span></a></div>
+					<div class="supportedPaiment">
+						<span><img class="img-fluid" src="../res/img/payment/visa.png" alt="visa"/></span>
+						<span><img class="img-fluid" src="../res/img/payment/mastercard.png" alt="mastercard"/></span>
+						<span><img class="img-fluid" src="../res/img/payment/paypal.png" alt="paypal"/></span>						
+					</div>
+					<div class="safeSecure"><img class="img-fluid" src="../res/img/shield.svg" /><span>Safe & Secure</span></div>
+				</div>
+			</div>			
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12 starchaserTrademark">
+					<p>
+						<a class="starchaserLink" href="http://www.starchaser.ro/">© 2017-2019 Starchaser S.R.L. All rights reserved.</a>
+					</p>
+				</div>
+			</div>
+		</div>
 	</footer>
 <link rel="stylesheet" href="../lib/css/footer-distributed.css" type="text/css" />
 <?php include_once("etc/scripts_gen.php"); ?>

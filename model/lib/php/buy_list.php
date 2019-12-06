@@ -78,7 +78,7 @@ if($ref_only==1&&count($tags)>0){ $included_sellers=" AND seller IN ( SELECT `no
 
 if($buy_regions=="0"){ $region_sel=""; }else{ $region_sel=", (SELECT `notebro_buy`.`SELLERS`.`region` FROM `notebro_buy`.`SELLERS` WHERE `notebro_buy`.`PRICES`.`seller`=`notebro_buy`.`SELLERS`.id AND `notebro_buy`.`SELLERS`.`region` IN (".$buy_regions.") LIMIT 1) as region"; }
 $sql="SELECT abs(`notebro_buy`.`PRICES`.`price`-".$price.") as diff, `notebro_buy`.`PRICES`.`seller`,`notebro_buy`.`PRICES`.`link`,`notebro_buy`.`PRICES`.`price`,(SELECT `notebro_buy`.`SELLERS`.`logo` FROM `notebro_buy`.`SELLERS` WHERE `notebro_buy`.`PRICES`.`seller`=`notebro_buy`.`SELLERS`.id LIMIT 1) as logo,(SELECT `notebro_buy`.`SELLERS`.`id` FROM `notebro_buy`.`SELLERS` WHERE `notebro_buy`.`PRICES`.`seller`=`notebro_buy`.`SELLERS`.id LIMIT 1) as seller_id,(SELECT `notebro_buy`.`SELLERS`.`exchrate` FROM `notebro_buy`.`SELLERS` WHERE `notebro_buy`.`PRICES`.`seller`=`notebro_buy`.`SELLERS`.id AND `notebro_buy`.`SELLERS`.`exchrate` IN (".$extended_lang.") LIMIT 1) as exch_test,(SELECT `notebro_site`.`exchrate`.`sign` FROM `notebro_site`.`exchrate` WHERE `notebro_site`.`exchrate`.`id`=(SELECT `notebro_buy`.`SELLERS`.`exchrate` FROM `notebro_buy`.`SELLERS` WHERE `notebro_buy`.`PRICES`.`seller`=`notebro_buy`.`SELLERS`.id LIMIT 1) LIMIT 1) as exch".$region_sel." FROM `notebro_buy`.`PRICES` WHERE `notebro_buy`.`PRICES`.`model_id` IN (".implode(",",$add_models).")".$included_sellers." ORDER BY diff ASC,`notebro_buy`.`PRICES`.`price`";
-
+$seller_count_links=array();
 $result=mysqli_query($con,$sql);
 if($result && mysqli_num_rows($result)>0)
 {
@@ -88,7 +88,33 @@ if($result && mysqli_num_rows($result)>0)
 		if($row["exch_test"]!==NULL&&((isset($row["region"])&&$row["region"]!==NULL)||(!isset($row["region"]))))
 		{
 			$generated_buy_list[]=["price"=>$row["exch"].$row["price"],"logo"=>$row["logo"],"type"=>1]; $link_list[]=$row["link"]; $seller_list[]=$row["seller_id"];
+			$seller_count_links[$row["seller"]][]=array_key_last($generated_buy_list);
 			$excluded_sellers[]=$row["seller"];
+		}
+	}
+}
+
+/* SOMETIMES WE MAY HAVE A VERY LONG LIST OF PRODUCTS FROM THE SAME RETAILER AND WE NEED TO TRIM IT DOWN */
+
+foreach($seller_count_links as $seller_name=>$links)
+{
+	if(is_countable($links))
+	{
+		$max_count=count($links);
+		if($max_count>4)
+		{
+			$replace_id=$seller_count_links[$seller_name][3]; $replace_with=$seller_count_links[$seller_name][($max_count-1)];
+			$generated_buy_list[$replace_id]=$generated_buy_list[$replace_with]; $link_list[$replace_id]=$link_list[$replace_with]; $seller_list[$replace_id]=$seller_list[$replace_with];
+			
+			$replace_id=$seller_count_links[$seller_name][2]; $replace_with=$seller_count_links[$seller_name][ceil($max_count/2)];
+			$generated_buy_list[$replace_id]=$generated_buy_list[$replace_with]; $link_list[$replace_id]=$link_list[$replace_with]; $seller_list[$replace_id]=$seller_list[$replace_with];
+			
+			unset($replace_with); unset($replace_id);
+		
+			for($i=4;$i<$max_count;$i++)
+			{ if(isset($generated_buy_list[$seller_count_links[$seller_name][$i]])){ $id_to_unset=$seller_count_links[$seller_name][$i];  unset($generated_buy_list[$id_to_unset]); unset($link_list[$id_to_unset]); unset($seller_list[$id_to_unset]); } }
+			
+			$generated_buy_list=array_values($generated_buy_list); $link_list=array_values($link_list); $seller_lis=array_values($seller_list);
 		}
 	}
 }
