@@ -69,7 +69,7 @@ require_once("etc/conf.php");
 			<div class="socialArea container-fluid">
 					<div class="container">
 						<div class="row">
-							<div class="col-12 col-sm-12 col-md-6 cssmenu"><a style="color:#1D94DA" onmousedown="OpenPage('content/brands.php',event); scrolltoid('content',1);"><span class="browseButton d-lg-inline-block d-md-inline-block d-sm-none col-3" style="font-weight: bold;">Browse laptops</span></a>							  							 
+							<div class="col-12 col-sm-12 col-md-6 cssmenu"><a style="color:#1D94DA" onmousedown="OpenPage('content/brands.php',event); scrolltoid('content',1);"><span class="browseButton d-lg-inline-block d-md-inline-block d-sm-none d-none col-3" style="font-weight: bold;">Browse laptops</span></a>							  							 
 									<ul class="browseLaptopClass">
 											<li class='has-sub'><a >By brand</a>
 												<ul>
@@ -160,7 +160,7 @@ require_once("etc/conf.php");
 			<div class="col-lg-3 col-md-4 col-xs-12 col-sm-12 firstContainer">		
 				<div class="row">
 					<nav class="navbar-collapse d-block">	
-						<div class="col-md-12 col-xs-12 col-sm-12 searchMenu" style="padding:0px">
+						<div style="cursor:pointer;" class="col-md-12 col-xs-12 col-sm-12 searchMenu" style="padding:0px">
 							<h3>Search for your laptop</h3>
 						</div>		
 						<div class="quickSearchContainer">
@@ -168,7 +168,7 @@ require_once("etc/conf.php");
 							<div class="SearchParameters" id="SearchParameters" style="display: block;">			
 								<?php include ("search/s_search.php");?>
 							</div>	
-							<div style="text-align:center;">
+							<div style="text-align:center;" class="advancedSearchBtn">
 								<button id="sadvsearch" onmousedown="OpenPage('search/adv_search.php',event); scrolltoid('content',0);" type="button" class="btn  leftMenuAdvSearch"><span style="text-decoration:none;color:white;">Advanced search</span></button>
 							</div>				
 						</div>						

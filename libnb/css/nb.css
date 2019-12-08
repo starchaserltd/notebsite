@@ -592,7 +592,7 @@ a {
 
 .loadingdiv {
     background: rgba(122, 130, 136, 0.2) !important;
-    position: fixed;    
+    position: absolute;    
     height: 100vh;
     vertical-align: middle;
     display: flex;
@@ -1493,8 +1493,7 @@ label.css-labelr {
 
 #modelfind span.select2-container {
     position: relative;
-    width: 100%!important;
-    padding-left: 10px;
+    width: 100%!important;    
 }
 
 #modelfind span.select2-container:after {
@@ -2699,6 +2698,7 @@ table#comparelist td.text-center.comparecell3 {
 
 .containerContentIndex {
 	align-items: flex-start;
+    position: relative;
 }
 
 .containerNavigation {
@@ -2811,7 +2811,7 @@ table#comparelist td.text-center.comparecell3 {
     background-color: #ffcc33;
     padding: 2px;
     position: absolute;
-    left: 0;
+    left: -10px;
     top: 0;
     padding: 7px;
     border-radius: 4px 0 0 4px;
@@ -3235,15 +3235,16 @@ ul.browseMobile:before {
 }
 
 .advanceBtnSelect {       
-    padding: 10px;
+    padding: 5px;
     background-color: #fff;
-    color: #0066cb!important;
+    color: #000!important;
     border: 1px solid #0066cb;
     border-radius: 4px;
     display: block;
     margin:15px auto;
     max-width: 150px;
     cursor: pointer;
+    font-weight: bold;
 }
 
 .select2-container--default .select2-results>.select2-results__options::-webkit-scrollbar-track {
@@ -3281,6 +3282,14 @@ div.menuItems.last .dropdown-content {
 .SearchParameters .select2-container--default .select2-search--inline .select2-search__field {
 	font-size: 14px;
 }
+
+.setRecommended:hover {
+    color: #000!important;
+    background-color: #fff!important;
+    transition: all 0.3s ease;
+}
+
+
 
 /* IE 11 Article fix*/
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
@@ -3359,6 +3368,10 @@ div.menuItems.last .dropdown-content {
 @media(max-width: 1600px) {
     .cssmenu>ul.browseLaptopClass >li>a {
         padding: 4px;
+    }
+
+    .footer-distributed .footer-left p {
+        text-align: left;
     }
 }
 
@@ -3571,9 +3584,17 @@ div.menuItems.last .dropdown-content {
     .socialButton .btn-sus {
         background-color: #575757;
     }
+
+    .footer-distributed .footer-right {
+        justify-content: center;
+    }
 }
 
 @media (max-width: 767px) {
+
+    .loadingdiv {
+        width: 100%; 
+    }
 
 	#s_search {
 		padding: 0 15px;
@@ -3799,6 +3820,15 @@ div.menuItems.last .dropdown-content {
 }
 
 @media(max-width:450px) {	
+
+    .advancedSearchBtn {
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    .footer-distributed .footer-left p {
+        text-align: left;
+    }
 
 	 .firstContainer h3::after {
 	  content: "\f063";

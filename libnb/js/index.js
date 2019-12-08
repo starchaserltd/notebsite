@@ -58,14 +58,10 @@ setInterval(function()
         locationHashChanged(set_adv_search(currentPage,siteroot+"?",1));
     }
 
-    if ($(window).width() < 992)
-	{
-        if (ismobile!=1) { ismobile = 1; state_ssearch(1); }
-    }
+    if ($(window).width() < 720)
+	{ if (ismobile!=1) { ismobile = 1; state_ssearch(1); } }
 	else
-	{
-		if (ismobile!=0) { ismobile=0; state_ssearch(0); }
-    }
+	{ if (ismobile!=0) { ismobile=0; state_ssearch(0); } }
 }, 50);
 
 function urlrequest(url,e,dontpush) {
@@ -449,7 +445,7 @@ function metakeys(metakeys) {
 }
 
 //SCROLLTOFUNCTION
-function scrolltoid(id,mobile) { var go=1; if(mobile && (document.documentElement.clientWidth > 750)){go=0;} if(go){ $('html,body').animate({ scrollTop: $("#" + id).offset().top }, 'slow'); } }
+function scrolltoid(id,mobile) { var go=1; if(mobile && (!ismobile)){go=0;} if(go){ $('html,body').animate({ scrollTop: $("#" + id).offset().top }, 'slow'); } }
 function go_to_top(){ $('html,body').animate({scrollTop:0},'slow'); }
 
 //ACTIVE  - DEACTIVE menu buttons
