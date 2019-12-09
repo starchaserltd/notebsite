@@ -762,7 +762,7 @@ function update_model_info(model_id)
 				mprod=new_model_data["prod"]; mfamily=new_model_data["fam"]+new_model_data["subfam"]; msubmodel=new_model_data["submodel"];
 				keywords=new_model_data["keywords"]; mmodel=new_model_data["model"];
 				exchsign=new_model_data["region"];
-				document.getElementById('model_title').innerHTML=mprod+" "+mfamily+" "+mmodel+" "+msubmodel+new_model_data["region"];
+				document.getElementById('model_title').innerHTML=mprod+" "+mfamily+" "+mmodel+""+msubmodel+new_model_data["region"];
 				document.getElementById('model_msc').innerHTML=new_model_data["msc"];
 				document.getElementById('dLabel').setAttribute("data-buyregions",new_model_data["regions"]);
 				document.getElementById('dLabel').setAttribute("data-idmodel",model_id); 

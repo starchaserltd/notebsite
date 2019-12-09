@@ -92,7 +92,7 @@ if($already)
 		$sql="SELECT families.fam, model.model, model.submodel, img_1 FROM notebro_db.MODEL model JOIN notebro_db.FAMILIES families on model.idfam=families.id WHERE model.id=".$conf_model;
 		$result = mysqli_query($con,$sql);
 		$currentconf["img"]="missing";
-		while ($row = mysqli_fetch_assoc($result)) { if(strlen($row["submodel"])>21 && !preg_match("/\(.*\)/",$row["submodel"])){ $row["submodel"]=substr($row["submodel"],0,20)."."; } $name=$row["fam"]." ".$row["model"]." ".$row["submodel"]; $currentconf["img"]=$row["img_1"]; } 
+		while ($row = mysqli_fetch_assoc($result)) { if(strlen($row["submodel"])>21 && !preg_match("/\(.*\)/",$row["submodel"])){ $row["submodel"]=substr($row["submodel"],0,20)."."; } $name=$row["fam"]." ".$row["model"]."".$row["submodel"]; $currentconf["img"]=$row["img_1"]; } 
 		mysqli_free_result($result);
 		$_SESSION['conf'.$i]=$currentconf;
 		$nrcheck++;
