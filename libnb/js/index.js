@@ -64,13 +64,15 @@ setInterval(function()
 	{ if (ismobile!=0) { ismobile=0; state_ssearch(0); } }
 }, 50);
 
+var content_load_fail=0;
 function urlrequest(url,e,dontpush) {
     trigger = 0;
     $('#loadingNB').show();
     $.get(url, function(response) {
+		content_load_fail=0;
         var urltitle = /([^\/]*).php/g.exec(url);
         urltitle = urltitle[1];
-        currentpage = url;        
+        currentpage = url;
         if ($('#content').html(response)) { $('#loadingNB').hide(); if(lightbox.$overlay[0].style.display=="block"){ lightbox.end(); } }
         if (!dontpush) {
             dontpush = 0;
@@ -79,7 +81,7 @@ function urlrequest(url,e,dontpush) {
                 first = 0;
             } else { history.pushState({}, 'NoteBrother' + ' ' + urltitle, "?" + url); }
         }
-    });
+    }).fail(function (){ if(content_load_fail==0){urlrequest("content/home.php",e,0); content_load_fail=1;}else{ $('#content').html("Unable to load the main content. Sorry for the inconvenience, please try again later."); }});
 }
 
 //Function for main content area
