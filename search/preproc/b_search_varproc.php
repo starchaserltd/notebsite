@@ -27,7 +27,7 @@ switch($browse_by)
 	{	
 		if($_GET['prod'])
 		{
-			$prod_model  = clean_string($_GET['prod']); $set_j_ssearch="$('#s_prod_id').val(null).trigger('change'); $('#s_prod_id').append('<option selected=".'"'."selected".'"'.'>'.$prod_model."</option>'); $('#type').multiselect('select', ['99']); $('#type').multiselect('refresh');";
+			$prod_model  = clean_string($_GET['prod']); $set_j_ssearch="$('#s_prod_id').val(null).trigger('change'); document.getElementById('s_dispsize').noUiSlider.reset(); $('#s_prod_id').append('<option selected=".'"'."selected".'"'.'>'.$prod_model."</option>'); $('#type').multiselect('select', ['99']); $('#type').multiselect('refresh');";
 			$sist_sist=["Windows+Home","Windows+Pro","Windows+S","Chrome OS","macOS","Linux Ubuntu","Android"]; 
 			$to_search["sist"]=1;	$filtercomp = array("sist");
 		}
@@ -56,7 +56,7 @@ switch($browse_by)
 		$to_search["chassis"]=1; $to_search["mdb"]=1; $to_search["cpu"]=1; $to_search["gpu"]=1;
 		$to_search["hdd"]=1; $to_search["mem"]=1; $to_search["display"]=1; $to_search["sist"]=1;
 		$filtercomp = array("cpu","chassis", "gpu", "mdb", "display","hdd","sist","mem");
-		$set_j_ssearch="$('#s_prod_id').empty().select2(); $('#type').multiselect('select', ['1']); $('#type').multiselect('refresh');";
+		$set_j_ssearch="$('#s_prod_id').empty().select2(); $('#type').multiselect('select', ['1']); document.getElementById('s_dispsize').noUiSlider.reset(); $('#type').multiselect('refresh');";
 		break;
 	}
 	case "ultraportable":
@@ -76,7 +76,7 @@ switch($browse_by)
 		$to_search["chassis"]=1; $to_search["cpu"]=1; $to_search["gpu"]=1;
 		$to_search["hdd"]=1; $to_search["mem"]=1; $to_search["display"]=1; $to_search["sist"]=1;
 		$filtercomp = array("cpu","chassis", "gpu", "display","hdd","sist","mem");
-		$set_j_ssearch="$('#s_prod_id').empty().select2(); $('#type').multiselect('select', ['2']); $('#type').multiselect('refresh');";
+		$set_j_ssearch="$('#s_prod_id').empty().select2(); $('#type').multiselect('select', ['2']); document.getElementById('s_dispsize').noUiSlider.reset(); $('#type').multiselect('refresh');";
 		break;
 	}
 	case "budget":
@@ -96,7 +96,7 @@ switch($browse_by)
 		$to_search["chassis"]=1; $to_search["cpu"]=1; $to_search["gpu"]=1; $to_search["mdb"]=1;
 		$to_search["mem"]=1; $to_search["display"]=1; $to_search["sist"]=1;
 		$filtercomp = array("cpu","chassis", "gpu","mdb", "display","sist","mem");
-		$set_j_ssearch="$('#s_prod_id').empty().select2(); $('#type').multiselect('select', ['99']); $('#type').multiselect('refresh');";
+		$set_j_ssearch="$('#s_prod_id').empty().select2(); $('#type').multiselect('select', ['99']); document.getElementById('s_dispsize').noUiSlider.reset(); $('#type').multiselect('refresh');";
 		break;
 	}
 	case "business":
@@ -119,7 +119,7 @@ switch($browse_by)
 		$to_search["chassis"]=1; $to_search["mdb"]=1; $to_search["cpu"]=1; $to_search["gpu"]=1;
 		$to_search["hdd"]=1; $to_search["mem"]=1; $to_search["display"]=1; $to_search["sist"]=1;
 		$filtercomp = array("cpu","chassis", "gpu", "mdb", "display","hdd","sist","mem");
-		$set_j_ssearch="$('#s_prod_id').empty().select2(); $('#type').multiselect('select', ['3']); $('#type').multiselect('refresh');";
+		$set_j_ssearch="$('#s_prod_id').empty().select2(); $('#type').multiselect('select', ['3']); document.getElementById('s_dispsize').noUiSlider.reset(); $('#type').multiselect('refresh');";
 		break;
 	}
 	case "gaming":
@@ -141,7 +141,7 @@ switch($browse_by)
 		$to_search["chassis"]=1; $to_search["cpu"]=1; $to_search["gpu"]=1; $to_search["mdb"]=1;
 		$to_search["hdd"]=1; $to_search["mem"]=1; $to_search["display"]=1; $to_search["sist"]=1;
 		$filtercomp = array("cpu","chassis", "gpu","mdb", "display","hdd","sist","mem");
-		$set_j_ssearch="$('#s_prod_id').empty().select2(); $('#type').multiselect('select', ['4']); $('#type').multiselect('refresh');";
+		$set_j_ssearch="$('#s_prod_id').empty().select2(); $('#type').multiselect('select', ['4']); document.getElementById('s_dispsize').noUiSlider.reset(); $('#type').multiselect('refresh');";
 		break;
 	}
 	case "professional":
@@ -163,7 +163,7 @@ switch($browse_by)
 		$to_search["chassis"]=1; $to_search["cpu"]=1; $to_search["gpu"]=1; $to_search["mdb"]=1;
 		$to_search["hdd"]=1; $to_search["mem"]=1; $to_search["display"]=1; $to_search["sist"]=1;
 		$filtercomp = array("cpu","chassis", "gpu","mdb", "display","hdd","sist","mem");
-		$set_j_ssearch="$('#s_prod_id').empty().select2(); $('#type').multiselect('select', ['5']); $('#type').multiselect('refresh');";
+		$set_j_ssearch="$('#s_prod_id').empty().select2(); $('#type').multiselect('select', ['5']); document.getElementById('s_dispsize').noUiSlider.reset(); $('#type').multiselect('refresh');";
 		break;
 	}
 	case "smalldisplay":
