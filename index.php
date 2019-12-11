@@ -201,7 +201,7 @@ require_once("etc/conf.php");
 				This website requires modern browsers, it will not work on IE 9.0 or earlier.	
 			</div>
 			<!-- loading animation -->
-			<div class="col-md-8 offset-md-3 col-sm-12 col-xs-12 loadingdiv col-lg-9" id="loadingNB">
+			<div class="col-md-8 offset-md-4 col-sm-12 col-xs-12 loadingdiv col-lg-9 offset-lg-3" id="loadingNB">
 				<div class="loadingdivsec" id="loadingNoteB">
 					<div id="loadingNoteB_1" class="loadingNoteB"></div>
 					<div id="loadingNoteB_2" class="loadingNoteB"></div>

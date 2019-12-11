@@ -598,8 +598,8 @@ a {
     display: flex;
     border-radius: 15px;
     z-index:999;
-	width: 75%;
-	max-width: 1095px;
+    right: 0;
+    left: 0;	
 	min-width: 350px;
 }
 

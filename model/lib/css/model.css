@@ -492,8 +492,7 @@ div.ListElem:hover {
   }
 
   .affix.ptop {
-  	text-align: left;
-  	margin-left: -5%;
+  	text-align: left;  	
   }
 }
 
@@ -575,10 +574,7 @@ div.ListElem:hover {
 	.officialSite {
 		text-align: center;
 	}
-
-	.ptop.affix {
-		top:28px;
-	}
+	
 }
 
 @media(max-width: 470px) {

@@ -775,5 +775,5 @@ else
 <?php  
 } } ?>
 </div>
-<link rel="stylesheet" href="model/lib/css/model.css?v=96" type="text/css"/>
+<link rel="stylesheet" href="model/lib/css/model.css?v=97" type="text/css"/>
 <?php include_once("../etc/scripts_pages.php"); ?>
