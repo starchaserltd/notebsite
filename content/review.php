@@ -30,6 +30,7 @@ echo preg_replace_callback('/\[ntab (.*)\](.*)(?=\[ntab .*\]|\Z)/Us',function ($
 	var istime=0;	
 </script>
 <link rel="stylesheet" href="content/lib/css/review_add.css">
+<link rel="stylesheet" href="content/lib/css/slider.css">
 <!--******pana aici -->
 
 	<div class="row" style="background-color:white;margin: -15px 0 0 0;">
@@ -91,6 +92,7 @@ echo preg_replace_callback('/\[ntab (.*)\](.*)(?=\[ntab .*\]|\Z)/Us',function ($
 			</div>
 		</div>
 	</div>
+	<?php include_once("../libnb/php/aff_modal.php"); ?>
 	<link rel="stylesheet" href="content/lib/css/review.css?v=1.3" type="text/css"/>
 	
 	<script type="text/javascript">
