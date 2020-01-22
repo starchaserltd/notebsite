@@ -70,7 +70,8 @@ else
 				{ ?>
 				<div class="row" style="display:flex;flex-wrap:wrap;">
 						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col-12 firstImageModel" style="align-self:center"><a href="res/img/models/<?php echo $imglist["img_1"];?>" data-lightbox="slider"><img class="pics" style="width:100%; height:auto;" src="res/img/models/<?php echo $imglist["img_1"];?>" alt="<?php $mmodel ?>"></a></div>
-		<?php 	}
+						<?php 	}
+
 				if($imglist["img_2"])
 				{ ?>
 					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-4 col-4" style="align-self:center"><a href="res/img/models/<?php echo $imglist["img_2"];?>" data-lightbox="slider" data-lightbox="slider"><img class="pics" style="width:100%; height:auto;" src="res/img/models/<?php echo $imglist["img_2"];?>" alt="<?php $mmodel ?>"></a></div>
@@ -82,6 +83,7 @@ else
 				if($imglist["img_4"])
 				{ ?>	
 					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-4 col-4" style="align-self:center"><a href="res/img/models/<?php echo $imglist["img_4"];?>" data-lightbox="slider" data-lightbox="slider"><img class="pics" style="width:100%; height:auto;" src="res/img/models/<?php echo $imglist["img_4"];?>" alt="<?php $mmodel ?>" data-lightbox="slider"></a></div>
+				
 		<?php 	} ?>
 					<div  class="officialSiteContainer rating">	
 						<div class="officialSite" style="padding:0px;">
@@ -738,7 +740,14 @@ else
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0px;text-align: center;">
 				<?php foreach($nb_reviews as $el) { ?>	
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ListElem">
+					<?php
+					if($el["video"]==1)
+					{ ?><a href="<?php echo $el["link"]; ?>"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="font-weight:bold;font-size:large;cursor: pointer;"><?php echo $el["title"]; ?></div></a>
+					<?php  }
+					else
+					{ ?>
 					<a onmousedown="OpenPage('<?php echo $el["link"]; ?>',event);"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="font-weight:bold;font-size:large;cursor: pointer;"><?php echo $el["title"]; ?></div></a>
+					<?php } ?>
 				</div>
 			<?php } ?>
 			</div>
@@ -771,7 +780,7 @@ else
 	<div id="leave_comment"></div>
 
  <script><?php include("lib/php/genjsmodel.php"); ?></script>
- <script>$.getScript("model/lib/js/model.js");</script>
+ <script>$.getScript("model/lib/js/model.js",function(){$.getScript("model/lib/js/sim_model.js");});</script>
 <?php  
 } } ?>
 </div>

@@ -6,7 +6,7 @@ var disqus_config = function () {
 };
 
 function set_model_info()
-{ var key; for(key in veto_mname) {mmodel=mmodel.replace(' '+veto_mname[key],'');} metakeys(mprod.replace(' ',',')+','+mfamily.replace(' ',',')+','+mmodel.replace(' ',',')+',notebook,laptop'); document.title = mprod+' '+mfamily+' '+mmodel; }
+{ var key; for(key in veto_mname) {mmodel=mmodel.replace(' '+veto_mname[key],'');} metakeys(mprod.replace(' ',',')+','+mfamily.replace(' ',',')+','+mmodel.replace(' ',',')+',notebook,laptop'); document.title = mprod+' '+mfamily+' '+mmodel;}
 
 function update_model_price(cprice,cperr)
 { if(document.getElementById('config_price1')!=null){document.getElementById('config_price1').innerHTML=parseInt((cprice-cperr/2)*exch); document.getElementById('config_price2').innerHTML=parseInt((cprice+cperr/2)*exch); document.getElementById('dLabel').setAttribute('data-price',parseInt(cprice)); } }

@@ -12,6 +12,7 @@ while($review=mysqli_fetch_array($query))
 		$review["link"]=str_replace($web_address."?","",$review["link"]);
 		$review["link"]=str_replace("https://noteb.com/?","",$review["link"]);
 		$nb_reviews[$nr_nb_reviews]["link"]=$review["link"];
+		$nb_reviews[$nr_nb_reviews]["video"]=intval($review["video"]);
 		$nr_nb_reviews++;
 	}
 	else
