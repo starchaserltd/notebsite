@@ -18,6 +18,7 @@ if($q>=0)
 	
 	if(isset($_GET['get_os_list'])) { $get_os=floatval($_GET['get_os_list']); }else{$q=-1;}
 	if(isset($_GET['m_family'])) { $model_id=clean_string($_GET['m_family']); }else{$q=-1;}
+	if(isset($_GET['regions_id'])) { foreach($_GET['regions_id'] as $el){ $regions_id[]=intval($el);} }else{$regions_id=[1];}
 	
 	$response=array();
 	
@@ -73,6 +74,12 @@ if($q>=0)
 			}
 			mysqli_free_result($result);
 		}
+		
+		$sql="SELECT DISTINCT `name` as `region_name` FROM `notebro_db`.`REGIONS` WHERE `valid`=1 AND `id` IN (".implode(",",$regions_id).")";
+		$result=mysqli_query($con,$sql);
+		$response["regions"]=array();
+		if($result&&mysqli_num_rows($result)>0)
+		{ $response["regions"]=mysqli_fetch_all($result,MYSQLI_ASSOC); mysqli_free_result($result);}
 	}
 	mysqli_close($con);
 	print json_encode($response);

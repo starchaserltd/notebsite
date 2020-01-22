@@ -68,9 +68,10 @@ function f_sim_mem()
 
 function f_sim_chassis()
 {
-	var component=[]; var range=1; component.minweight=0; component.maxweight=0; component.minthic=0; component.maxthic=0;
+	var component=[]; var range=1; component.minweight=0; component.maxweight=0; component.minthic=0; component.maxthic=0; component.twoinone="";
 	if(chassis.weight!=null&&chassis.weight!=undefined){ range=0.25; component.minweight=noteb_round(chassis.weight*(1-range),2); component.maxweight=noteb_round(chassis.weight*(1+range),2); }
 	if(chassis.thic!=null&&chassis.thic!=undefined){ range=0.5; component.minthic=noteb_round(chassis.thic*(1-range),2); component.maxthic=noteb_round(chassis.thic*(1+range),2); }
+	if(chassis.twoinone!=null&&chassis.twoinone!=undefined){ if(chassis.twoinone==1){component.twoinone="&twoinone-yes=on";} }
 	
 	return component;
 }
@@ -88,6 +89,10 @@ function similar_model_search()
 	if(model_ex!=null&&model_ex!=undefined){sim_exch=model_ex;}
 	if(document.getElementById("config_price1")!=null){price=(parseInt(document.getElementById("config_price1").innerText)+parseInt(document.getElementById("config_price2").innerText))/2;}else{sim_failer=1;}
 	if(config_batlife!=null&&config_batlife!=undefined){ var batlife=acum.cap/config_batlife; range=0.25; sim_minbat=noteb_round(batlife*(1-range),2); sim_maxbat=noteb_round(batlife*(1+range),2);}
+	if(document.getElementById('dLabel').dataset.buyregions!=null&&document.getElementById('dLabel').dataset.buyregions!=undefined&&document.getElementById('dLabel').dataset.buyregions!="")
+	{ var sim_regions=document.getElementById('dLabel').dataset.buyregions.split(","); }
+	else
+	{ var sim_regions=[1];}
 	var sim_display=f_sim_display(); if(sim_display.minvres<1){sim_failer=1;}
 	var sim_cpu=f_sim_cpu(); if(sim_cpu.max_tdp>900){sim_failer=1;}
 	var sim_gpu=f_sim_gpu(); if(sim_gpu.max_rating>900){sim_failer=1;}
@@ -109,8 +114,12 @@ function similar_model_search()
 				console.log(query_data);
 				var family_search_string="";
 				if(query_data.family_type!=null&&query_data.family_type!=undefined)
+				{ family_search_string="Family_fam[]="+query_data.family_type+"&"; }
+				var regions_search_string="";
+				if(query_data.regions!=null&&query_data.regions!=undefined)
 				{
-					family_search_string="Family_fam[]="+query_data.family_type+"&";
+					for (key in query_data.regions)
+					{ regions_search_string=regions_search_string+"Regions[]="+query_data.regions[key]["region_name"]+"&"; }
 				}
 				var cpu_search_string="";
 				for (key in query_data.cpu)
@@ -123,7 +132,7 @@ function similar_model_search()
 				gpu_search_string=gpu_search_string+"gputype="+query_data.gputype+"&";
 				
 				range=0.35; var price_min=parseInt(price*(1-range)); var price_max=parseInt(price*(1+range));
-				var search_string="search/search.php?advsearch=1&"+family_search_string+cpu_search_string+gpu_search_string+"verresmin="+sim_display.minvres+"&displaymin="+sim_display.minsize+"&displaymax="+sim_display.maxsize+sim_display.sRGB;
+				var search_string="search/search.php?advsearch=1&"+family_search_string+regions_search_string+cpu_search_string+gpu_search_string+"verresmin="+sim_display.minvres+"&displaymin="+sim_display.minsize+"&displaymax="+sim_display.maxsize+sim_display.sRGB;
 				search_string=search_string+"&capacitymax="+sim_stor.maxcap+"&capacitymin="+sim_stor.mincap+sim_stor.type+"&rammin="+sim_mem.mincap+"&rammax="+sim_mem.maxcap+"&batlifemin="+sim_minbat+"&batlifemax="+sim_maxbat;
 				search_string=search_string+"&weightmin="+sim_chassis.minweight+"&weightmax="+sim_chassis.maxweight+"&thicmin="+sim_chassis.minthic+"&thicmax="+sim_chassis.maxthic;
 				
@@ -147,8 +156,9 @@ function similar_model_search()
 	
 		var os_string_q=""; os_string_q="&get_os_list="+sim_os.getos;
 		var m_family_q=""; m_family_q="&m_family="+mid;
+		var regions_q=""; for(key in sim_regions){ regions_q=regions_q+"&regions_id[]="+sim_regions[key]; }
 		
-		xmlhttp.open("GET","model/lib/php/query/similar.php?q=1"+cpu_string_q+gpu_string_q+os_string_q+m_family_q,true);
+		xmlhttp.open("GET","model/lib/php/query/similar.php?q=1"+cpu_string_q+gpu_string_q+os_string_q+m_family_q+regions_q,true);
 		xmlhttp.send(); all_requests.push(xmlhttp);
 	}
 	else
