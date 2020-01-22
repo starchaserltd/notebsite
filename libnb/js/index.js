@@ -294,9 +294,6 @@ $(document).ready(function() {
     //Make dropdown for search filters
 	$(".navbar-header").click(function() { $('.navbar-collapse').slideToggle("slow"); });
 	
-	// if ($(window).width()<768) //Append Compare to FirstContainer
-	// { $(".quickSearchContainer").appendTo($(".firstContainer")); $(".compareDropdown").appendTo($(".firstContainer")); }
-
     //toggle more options for adv_search
     $('.toggleHiddenButtons').click(function() { $('.hiddenOptions').toggleClass('show'); });
 });
@@ -534,9 +531,6 @@ function listrange(list_comp)
 	return values;
 }
 
-// Only enable if the document has a long scroll bar
-// Note the window height + offset
-// if ( ($(window).height() + 100) < $(document).height() ) { $('#top-link-block').removeClass('hidden').affix({ offset: {top:100} }); }
 //Usermenu activate
 $('.addrev').click(function() {
 	$(this).siblings().removeClass('selected');
@@ -590,3 +584,5 @@ $('.searchMenu').click(function() {
    $('.searchMenu h3').toggleClass('open');
 
 });
+
+function noteb_round(value, precision) { var multiplier = Math.pow(10, precision || 0); return Math.round(value * multiplier) / multiplier; }
