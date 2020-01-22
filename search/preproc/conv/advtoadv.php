@@ -47,8 +47,8 @@
 	
 	if(isset($_GET['CPU_prod_id'])) { $valuetype[11] = $_GET['CPU_prod_id']; } // values for CPU producer
 	
-	if(isset($_GET['launchdatemin'])) { $cpumindate = $_GET['launchdatemin']; }
-	if(isset($_GET['launchdatemax'])) { $cpumaxdate = $_GET['launchdatemax']; }
+	if(isset($_GET['launchdatemin'])) { $cpumindate = $_GET['launchdatemin']; }else{$cpumindate=1900;}
+	if(isset($_GET['launchdatemax'])) { $cpumaxdate = $_GET['launchdatemax']; }else{$cpumaxdate=10500;}
 	if(isset($_GET['nrcoresmin']))	{ $cpucoremin = $_GET['nrcoresmin'];	}
 	if(isset($_GET['nrcoresmax'])) { $cpucoremax = $_GET['nrcoresmax']; }
 	
@@ -68,14 +68,14 @@
 			foreach ($_GET['gputype2'] as $element)
 			{ $gputypesel[$element]="selected"; } // values for GPU type
 		}
-		$gpumemmin = $_GET['gpumemmin'];
-		$gpumemmax = $_GET['gpumemmax'];
-		$gpumembusmin = $_GET['gpubusmin'];
-		$gpumembusmax = $_GET['gpubusmax'];
-		$gpupowermin = $_GET['gpupowermin'];
-		$gpupowermax = $_GET['gpupowermax'];
-		if($_GET['gpulaunchdatemin']) { $gpumindate = $_GET['gpulaunchdatemin']; }
-		if($_GET['gpulaunchdatemax']) { $gpumaxdate = $_GET['gpulaunchdatemax']; }
+		if(isset($_GET['gpumemmin'])){ $gpumemmin = $_GET['gpumemmin']; }
+		if(isset($_GET['gpumemmax'])){ $gpumemmax = $_GET['gpumemmax']; }
+		if(isset($_GET['gpubusmin'])){ $gpumembusmin = $_GET['gpubusmin']; }
+		if(isset($_GET['gpubusmax'])) { $gpumembusmax = $_GET['gpubusmax']; }
+		if(isset($_GET['gpupowermin'])){ $gpupowermin = $_GET['gpupowermin']; }
+		if(isset($_GET['gpupowermax'])) { $gpupowermax = $_GET['gpupowermax']; }
+		if(isset($_GET['gpulaunchdatemin'])) { $gpumindate = $_GET['gpulaunchdatemin']; }else{$gpumindate=1900; }
+		if(isset($_GET['gpulaunchdatemax'])) { $gpumaxdate = $_GET['gpulaunchdatemax']; }else{$gpumaxdate=10500;}
 		
 		if(isset($_GET['GPU_arch_id']))
 		{	foreach ($_GET['GPU_arch_id'] as $element)
@@ -95,8 +95,8 @@
 	else
 	{ }
 	
-	$displaysizemin = $_GET['displaymin'];	
-	$displaysizemax = $_GET['displaymax'];	
+	if(isset($_GET['displaymin'])){$displaysizemin = $_GET['displaymin'];}
+	if(isset($_GET['displaymax'])) { $displaysizemax = $_GET['displaymax'];	}
 	if(isset($_GET['DISPLAY_ratio']))
 	{ 
 		$valuetype[8] = $_GET['DISPLAY_ratio'];  // Display format
