@@ -742,7 +742,7 @@ else
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ListElem">
 					<?php
 					if($el["video"]==1)
-					{ ?><a href="<?php echo $el["link"]; ?>"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="font-weight:bold;font-size:large;cursor: pointer;"><?php echo $el["title"]; ?></div></a>
+					{ ?><a href="<?php echo $el["link"]; ?>" target="blank"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="font-weight:bold;font-size:large;cursor: pointer;"><?php echo $el["title"]; ?></div></a>
 					<?php  }
 					else
 					{ ?>
@@ -764,7 +764,7 @@ else
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ListBox" style="padding:0px;">
 				<?php foreach($int_reviews as $el) { ?>	
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ListElem">
-					<a href="<?php echo $el["link"]; ?>" target="blank" >
+					<a href="<?php echo $el["link"]; ?>" target="blank">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="font-weight:bold;font-size:medium;cursor: pointer;"><?php echo $el["site"]; ?></div>
 					</a>
 				</div>
