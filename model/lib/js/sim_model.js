@@ -5,7 +5,7 @@ function f_sim_cpu()
 	if(cpu.rating!=null&&cpu.rating!=undefined){ range=0.15; component.min_rating=noteb_round(cpu.rating*(1-range),4); component.max_rating=noteb_round(cpu.rating*(1+range+0.05),4); }
 		
 	component.min_tdp=0; component.max_tdp=999;
-	if(cpu.tdp!=null&&cpu.tdp!=undefined){ range=0.35; component.min_tdp=noteb_round(cpu.tdp*(1-range),2); component.max_tdp=noteb_round(cpu.tdp*(1+range),2); }
+	if(cpu.tdp!=null&&cpu.tdp!=undefined){ range=0.35; component.min_tdp=noteb_round(cpu.tdp*(1-range),2); component.max_tdp=noteb_round(cpu.tdp*(1+range),2); if(cpu.rating>65&&cpu.tdp>=45){component.max_tdp=component.max_tdp*2;}}
 
 	return component;
 }
@@ -33,13 +33,13 @@ function f_storage()
 	component.cap=0; component.mincap=0; component.maxcap=100000; component.type=null;
 	
 	if(hdd.cap!=null&&hdd.cap!=undefined){component.cap=hdd.cap;}
+	if(shdd.cap!=null&&shdd.cap!=undefined){component.cap=component.cap+shdd.cap;}
 	if(hdd.type!=null&&hdd.type!=undefined)
 	{
 		if((hdd.type="SSD")||(hdd.type=="EMMC"))
 		component.type="&typehdd[]=SSD&typehdd[]=EMMC";
 	}
 	if(component.cap>0){ range=0.35; component.mincap=noteb_round(component.cap*(1-range),2); if(component.cap<1100){ component.maxcap=noteb_round(component.cap*(1+1.1),2); } else { component.maxcap=noteb_round(component.cap*(1+range),2); } }
-	if(shdd.cap!=null&&shdd.cap!=undefined){component.cap=component.storcap+shdd.cap;}
 		
 	return component;
 }
