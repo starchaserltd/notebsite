@@ -48,9 +48,10 @@ function f_sim_display()
 {
 	var component=[]; var range=1;
 	component.minvres=0; component.minsize=0; component.maxsize=50; component.minsrgb=50; component.type=null; component.minhz=50;
-	
+	//DISPLAY_msc_id[]=240Hz
 	if(display.vres!=null&&display.vres!=undefined){ range=0; component.minvres=parseInt(display.vres*(1-range)); }
 	if(display.sRGB!=null&&display.sRGB!=undefined){ if(parseInt(display.sRGB)>=80){ component.sRGB="&DISPLAY_msc_id[]=80% sRGB or better";}else{component.sRGB="";} }
+	if(display.hz!=null&&display.hz!=undefined){ if(parseInt(display.hz)>60){ component.hz="&DISPLAY_msc_id[]="+display.hz+"Hz";}else{component.hz="";} }
 	if(display.size!=null&&display.size!=undefined){ range=0.05; component.minsize=noteb_round(display.size*(1-range),1); component.maxsize=noteb_round(display.size*(1+range),1); }
 	return component;
 }
@@ -128,9 +129,8 @@ function similar_model_search()
 				for (key in query_data.gputype2)
 				{ gpu_search_string=gpu_search_string+"gputype2[]="+query_data.gputype2[key]+"&"; }
 				gpu_search_string=gpu_search_string+"gputype="+query_data.gputype+"&";
-				
 				range=0.35; var price_min=parseInt(price*(1-range)); var price_max=parseInt(price*(1+range));
-				var search_string="search/search.php?advsearch=1&"+family_search_string+regions_search_string+cpu_search_string+gpu_search_string+"verresmin="+sim_display.minvres+"&displaymin="+sim_display.minsize+"&displaymax="+sim_display.maxsize+sim_display.sRGB;
+				var search_string="search/search.php?advsearch=1&"+family_search_string+regions_search_string+cpu_search_string+gpu_search_string+"verresmin="+sim_display.minvres+"&displaymin="+sim_display.minsize+"&displaymax="+sim_display.maxsize+sim_display.sRGB+sim_display.hz;
 				search_string=search_string+"&capacitymax="+sim_stor.maxcap+"&capacitymin="+sim_stor.mincap+sim_stor.type+"&rammin="+sim_mem.mincap+"&rammax="+sim_mem.maxcap+"&batlifemin="+sim_minbat+"&batlifemax="+sim_maxbat;
 				search_string=search_string+"&weightmin="+sim_chassis.minweight+"&weightmax="+sim_chassis.maxweight+"&thicmin="+sim_chassis.minthic+"&thicmax="+sim_chassis.maxthic;
 				

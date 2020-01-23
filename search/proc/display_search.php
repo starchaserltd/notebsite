@@ -189,9 +189,11 @@ function search_display ($model, $sizemin, $sizemax, $format, $hresmin, $hresmax
 		else
 		{
 			if($i>0) { $sel_display.=" AND "; }
+			if($x=="HDR"){$sel_display.="(";}
 			$sel_display.="FIND_IN_SET('";
 			$sel_display.=$x;
 			$sel_display.="',msc)>0";
+			if($x=="HDR"){$sel_display.=" OR `hdr`>0)";}
 		}
 		$i++;
 	}
@@ -260,15 +262,17 @@ function search_display ($model, $sizemin, $sizemax, $format, $hresmin, $hresmax
 
 	$result = mysqli_query($GLOBALS['con'], "$sel_display");
 	$display_return = array();
-
-	while($rand = mysqli_fetch_array($result)) 
-	{ 
-		if($selsize>0)
-		{ $display_return[intval($rand[0])]=array("price"=>intval($rand[1]),"rating"=>intval($rand[2]),"err"=>intval($rand[3]),"size"=>intval($rand[4])); }
-		else
-		{ $display_return[intval($rand[0])]=array("price"=>intval($rand[1]),"rating"=>intval($rand[2]),"err"=>intval($rand[3])); }
-	}
+	if($result&&mysqli_num_rows($result)>0)
+	{
+		while($rand = mysqli_fetch_array($result)) 
+		{ 
+			if($selsize>0)
+			{ $display_return[intval($rand[0])]=array("price"=>intval($rand[1]),"rating"=>intval($rand[2]),"err"=>intval($rand[3]),"size"=>intval($rand[4])); }
+			else
+			{ $display_return[intval($rand[0])]=array("price"=>intval($rand[1]),"rating"=>intval($rand[2]),"err"=>intval($rand[3])); }
+		}
 		mysqli_free_result($result);
+	}
 		return($display_return);
 }
 ?>

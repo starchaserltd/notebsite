@@ -1,7 +1,7 @@
 <?php
 //some variable initialisation
 $cpu_tdpmin = 0.01; $gpu_powermin = 0; $gpu_maxmemmin = 1; //$hdd_capmin = $totalcapmin;
-$war_yearsmin = 0.01; $acum_capmin = 0.01; $sist_pricemax = 1; $remove_sd=0; $remove_msd=0; $cpu_ldmin="1900"; $cpu_ldmax="5900"; $gpu_ldmin="1900"; $gpu_ldmax="5900";
+$war_yearsmin = 0.01; $acum_capmin = 0.01; $sist_pricemax = 1; $remove_sd=0; $remove_msd=0; $cpu_ldmin="1900"; $cpu_ldmax="5900"; $gpu_ldmin="1900"; $gpu_ldmax="5900"; $display_hz=30;
 $odd_speedmin = 0; $mem_capmin = 1; $mdb_ratemin = 0; $chassis_weightmin = 0.01; $addmsc=array(); $regions_name = array(); $display_srgb = 0; $chassis_addpi=array(); $regions=array(); $war_typewar=array(); $chassis_addpi=array();
 $isadvanced = 1; 
 
@@ -250,28 +250,12 @@ if(isset($_GET['DISPLAY_msc_id']))
 				unset($display_backt[$key]);
 				break;
 			}
-			case (stripos($el,"240Hz")!==FALSE):
+			case (strpos($el,"Hz")!==FALSE):
 			{
-				$display_hz=240;
-				unset($display_backt[$key]);
-				break;
-			}
-			case (stripos($el,"144Hz")!==FALSE):
-			{
-				$display_hz=144;
-				unset($display_backt[$key]);
-				break;
-				break;
-			}
-			case (stripos($el,"120Hz")!==FALSE):
-			{
-				$display_hz=120;
-				unset($display_backt[$key]);
-				break;
-			}
-			case (stripos($el,"75Hz")!==FALSE):
-			{
-				$display_hz=75;
+				$new_display_hz=intval(str_ireplace("Hz","",$el));
+				if($display_hz==30){$display_hz=$new_display_hz;}
+				elseif($display_hz>$new_display_hz){$display_hz=$new_display_hz;}
+				
 				unset($display_backt[$key]);
 				break;
 			}
@@ -284,15 +268,13 @@ if(isset($_GET['DISPLAY_msc_id']))
 			case $el=='80% sRGB or better':
 			{
 				$display_srgb=80; unset($display_backt[$key]); break;
-			}
-			
+			}	
 			case $el=='HDR':
 			{
 				$display_misc[]="HDR"; unset($display_backt[$key]); break;
 			}
 		}
 	}
-	if(isset($display_misc["Hz"])) { $display_misc["Hz"]=array_unique($display_misc["Hz"]); }
 	$display_misc=array_unique($display_misc);
 }
 

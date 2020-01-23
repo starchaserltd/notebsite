@@ -208,8 +208,7 @@ if(isset($_GET['display_type']))
 			case "2":
 			{
 				array_push($display_backt,"LED TN WVA");
-				$display_misc["Hz"]=array();
-				array_push($display_misc["Hz"],"120Hz","144Hz","240Hz");
+				$display_hz=120;
 				break;
 			}
 			case "3":
