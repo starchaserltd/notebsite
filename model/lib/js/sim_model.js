@@ -44,8 +44,6 @@ function f_storage()
 	return component;
 }
 
-//acum["cap"])/config_batlife)
-
 function f_sim_display()
 {
 	var component=[]; var range=1;

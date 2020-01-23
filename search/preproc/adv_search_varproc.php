@@ -252,39 +252,29 @@ if(isset($_GET['DISPLAY_msc_id']))
 			}
 			case (stripos($el,"240Hz")!==FALSE):
 			{
-				if(!isset($display_misc["Hz"])){ $display_misc["Hz"]=array(); }
-				$display_misc["Hz"][]="240Hz";
+				$display_hz=240;
 				unset($display_backt[$key]);
 				break;
 			}
 			case (stripos($el,"144Hz")!==FALSE):
 			{
-				if(!isset($display_misc["Hz"])){ $display_misc["Hz"]=array(); }
-				$display_misc["Hz"][]="240Hz";
-				$display_misc["Hz"][]="144Hz";
+				$display_hz=144;
 				unset($display_backt[$key]);
+				break;
 				break;
 			}
 			case (stripos($el,"120Hz")!==FALSE):
 			{
-				if(!isset($display_misc["Hz"])){ $display_misc["Hz"]=array(); }
-				$display_misc["Hz"][]="240Hz";
-				$display_misc["Hz"][]="144Hz";
-				$display_misc["Hz"][]="120Hz";
+				$display_hz=120;
 				unset($display_backt[$key]);
 				break;
 			}
 			case (stripos($el,"75Hz")!==FALSE):
 			{
-				if(!isset($display_misc["Hz"])){ $display_misc["Hz"]=array(); }
-				$display_misc["Hz"][]="240Hz";
-				$display_misc["Hz"][]="144Hz";
-				$display_misc["Hz"][]="120Hz";
-				$display_misc["Hz"][]="75Hz";
+				$display_hz=75;
 				unset($display_backt[$key]);
 				break;
 			}
-			
 			case ((stripos($el,"edgeless"))!==FALSE):
 			{ $chassis_stuff[]="Edgeless display"; unset($display_backt[$key]); break;}
 			

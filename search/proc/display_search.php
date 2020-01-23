@@ -2,7 +2,7 @@
 
 /* ********* SELECT DISPLAYS BASED ON FILTERS ***** */
 
-function search_display ($model, $sizemin, $sizemax, $format, $hresmin, $hresmax, $vresmin, $vresmax, $surft, $backt, $touch,  $misc, $resolutions, $ratingmin, $ratingmax, $pricemin, $pricemax, $selsize, $srgb)
+function search_display ($model, $sizemin, $sizemax, $format, $hresmin, $hresmax, $vresmin, $vresmax, $surft, $backt, $touch,  $misc, $resolutions, $ratingmin, $ratingmax, $pricemin, $pricemax, $selsize, $srgb, $hz, $hdr)
 {
 	//var_dump($srgb);
 	if($selsize>0)
@@ -204,6 +204,22 @@ function search_display ($model, $sizemin, $sizemax, $format, $hresmin, $hresmax
 		$sel_display.="sRGB>=";
 		$sel_display.=$srgb;	
 	}
+	
+	//Add Hz to filter
+	if($hz) 
+	{
+		$sel_display.=" AND ";
+		$sel_display.="hz>=";
+		$sel_display.=$hz;	
+	}
+	
+	//Ad HDR to filter
+	if($hdr) 
+	{
+		$sel_display.=" AND ";
+		$sel_display.="hdr>=";
+		$sel_display.=$hdr;	
+	}
 
 	// Add rating to filter	
 	if($ratingmin)
@@ -240,7 +256,7 @@ function search_display ($model, $sizemin, $sizemax, $format, $hresmin, $hresmax
 	// DO THE SEARCH
 	# echo "Query to select the DISPLAYs:";
     # echo "<br>";
-	# echo "<pre>" . $sel_display . "</pre>";
+#	echo "<pre>" . $sel_display . "</pre>";
 
 	$result = mysqli_query($GLOBALS['con'], "$sel_display");
 	$display_return = array();
