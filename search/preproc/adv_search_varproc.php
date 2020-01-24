@@ -271,7 +271,12 @@ if(isset($_GET['DISPLAY_msc_id']))
 			}	
 			case $el=='HDR':
 			{
-				$display_misc[]="HDR"; unset($display_backt[$key]); break;
+				$display_hdr=1; unset($display_backt[$key]); break;
+			}
+			
+			case $el=='60% DCI-P3 or better':
+			{
+				$display_dcip=60; unset($display_backt[$key]); break;
 			}
 		}
 	}

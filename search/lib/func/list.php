@@ -225,7 +225,7 @@ switch ($q)
 			case "msc":
 			{
 				$dis_msc='"%'.$keys.'%"';
-				$sel="SELECT id, name FROM notebro_site.nomen WHERE type=10 AND name LIKE $dis_msc ORDER BY name DESC";
+				$sel="SELECT `id`,`name` FROM `notebro_site`.`nomen` WHERE `type`=10 AND `name` LIKE $dis_msc ORDER BY CAST(`name` AS int) DESC";
 				$result = mysqli_query($con, $sel);
 				$list = array();
 				while($rand = mysqli_fetch_row($result)) 

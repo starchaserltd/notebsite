@@ -2,7 +2,7 @@
 
 /* ********* SELECT DISPLAYS BASED ON FILTERS ***** */
 
-function search_display ($model, $sizemin, $sizemax, $format, $hresmin, $hresmax, $vresmin, $vresmax, $surft, $backt, $touch,  $misc, $resolutions, $ratingmin, $ratingmax, $pricemin, $pricemax, $selsize, $srgb, $hz, $hdr)
+function search_display ($model, $sizemin, $sizemax, $format, $hresmin, $hresmax, $vresmin, $vresmax, $surft, $backt, $touch,  $misc, $resolutions, $ratingmin, $ratingmax, $pricemin, $pricemax, $selsize, $srgb, $dcip, $hz, $hdr)
 {
 	//var_dump($srgb);
 	if($selsize>0)
@@ -189,11 +189,9 @@ function search_display ($model, $sizemin, $sizemax, $format, $hresmin, $hresmax
 		else
 		{
 			if($i>0) { $sel_display.=" AND "; }
-			if($x=="HDR"){$sel_display.="(";}
 			$sel_display.="FIND_IN_SET('";
 			$sel_display.=$x;
 			$sel_display.="',msc)>0";
-			if($x=="HDR"){$sel_display.=" OR `hdr`>0)";}
 		}
 		$i++;
 	}
@@ -205,6 +203,14 @@ function search_display ($model, $sizemin, $sizemax, $format, $hresmin, $hresmax
 		$sel_display.=" AND ";
 		$sel_display.="sRGB>=";
 		$sel_display.=$srgb;	
+	}
+	
+	//Add dci-p3 to filter
+	if ($dcip) 
+	{
+		$sel_display.=" AND ";
+		$sel_display.="`dci-p3`>=";
+		$sel_display.=$dcip;	
 	}
 	
 	//Add Hz to filter
