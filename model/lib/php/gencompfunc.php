@@ -1,5 +1,6 @@
 <?php
 function normal_rating($x){ $x*=10; return(((1.25/1000000*pow($x,2))+1.305*$x+(-4.3/100000000000*pow($x,3)))/10); }
+function add_comma($x){ if(is_string($x)&&isset($x[0])){ return $x.=", "; }else{return $x;}}
 function show($tab, $id)
 {
 	if(stripos($tab,"JOIN")!==FALSE)
@@ -164,10 +165,12 @@ function show($tab, $id)
 			if ($resu['touch'] == 1) {$resu['touch'] = "YES";}
 			else {$resu['touch'] = "NO";}
 			$resu['msc']=str_replace(",", ", ",$resu['msc']);
-			if(intval($resu['sRGB'])>0){ $resu['msc'].=", ".$resu['sRGB']."% sRGB"; }
-			if(intval($resu['lum'])>0){ $resu['msc'].=", ".$resu['lum']." nits"; }
+			if(intval($resu['hz'])>0){ $resu['msc']=add_comma($resu['msc']).$resu['hz']."Hz"; }
+			if(intval($resu['hdr'])>0){ $resu['msc']=add_comma($resu['msc'])."HDR"; }
+			if(intval($resu['sRGB'])>0){ $resu['msc']=add_comma($resu['msc']).$resu['sRGB']."% sRGB"; }
+			if(intval($resu['lum'])>0){ $resu['msc']=add_comma($resu['msc']).$resu['lum']." nits"; }
 			break;
-		}
+		} 
 	
 		case 'MDB':
 		{

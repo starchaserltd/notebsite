@@ -20,11 +20,17 @@ if($q>=0)
 		}
 		
 		$rows[] = $r;
-		$rows[0]['msc']=str_replace(",", ", ",$rows[0]['msc']);
-		$msc=array(); $msc=explode(",",$rows[0]['msc']);
+		if($rows[0]['msc']!=null&&$rows[0]['msc']!="")
+		{
+			$rows[0]['msc']=str_replace(",", ", ",$rows[0]['msc']);
+			$msc=array(); $msc=explode(",",$rows[0]['msc']);
+		}
 		if(intval($rows[0]['hz'])>60){$msc["hz"]=$rows[0]['hz']."Hz";}
 		if(intval($rows[0]['hdr'])>0){$msc["hdr"]="HDR";}
-		$msc=array_unique($msc); $rows[0]['msc']=implode(", ",$msc);
+		if(count($msc)>0)
+		{ $msc=array_unique($msc); $rows[0]['msc']=implode(", ",$msc); }
+		else
+		{ $rows[0]['msc']="-";}
 		
 		switch ($rows[0]['touch'])
 		{
