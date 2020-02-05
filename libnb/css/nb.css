@@ -3216,7 +3216,7 @@ ul.browseMobile:before {
 }
 
 .detaliicomp2 b {
-        font-size: 22px!important;
+        /*font-size: 22px!important;*/
 }
 
 #tab5 .detaliicomp2 td {
@@ -3407,7 +3407,12 @@ div.menuItems.last .dropdown-content {
 @media(max-width: 1200px) {
     .topLaptops h2 {
         font-size: 16px;
-    }      
+    }   
+
+    .ssdHome {
+        float: none!important;
+        
+    }
 }
 
 @media (min-width: 991px) and (max-width: 1100px) {

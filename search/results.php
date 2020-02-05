@@ -14,7 +14,7 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 		<div class="row" style="margin:0;">
 			<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style="padding:3px 0px 5px 0px"> 
 				<div class="row">		
-					<div class="col-md-6 col-sm-6 col-xs-12 col-lg-6">
+					<div class="col-md-4 col-sm-4 col-xs-12 col-lg-4">
 						<button type="button" <?php $nosearch=0; $search_ref=str_replace("/advanced_search","/adv_search",$absolute_url[0],$nosearch); if(!($nosearch)){ $search_ref=str_replace("/search.php?","/adv_search.php?",$absolute_url[0]);} $text='onmousedown="OpenPage('."'".$search_ref; foreach($sortby as $sort) {} $text.="',event)".'"'; echo $text ?> class="btn btn-result" style="margin-right:24px;border-radius:1px !important; height:25px; padding:2px 15px;"> <a style="text-decoration:none;color:white">Refine results</a></button>
 					</div>
 
@@ -24,7 +24,7 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 		{
 			$usertag=""; if(isset($_GET["ref"])&&$_GET["ref"]!=""){ $usertag=mysqli_real_escape_string($con,filter_var($_GET["ref"], FILTER_SANITIZE_STRING)); }
 			?>
-				<div class="col-md-6 col-sm-6 col-xs-12 col-lg-6" style="">
+				<div class="col-md-8 col-sm-8 col-xs-12 col-lg-8" style="">
 					<div class="btn-group" style="display: inline-block; float:right;width:auto!important;">
 						<a class="btn" style="text-decoration:none;color:black;font-weight:bold;padding:2px 0px 0px 0px;">Order by:</a>
 						<button type="button" class="btn btn-result<?php echo $value_button;?>" style="margin-left:10px;border-radius: 1px 0px 0px 1px;"  onmousedown="OpenPage(sortresults('value'),event)"><a style="color:white;text-decoration:none">value</a></button>	
