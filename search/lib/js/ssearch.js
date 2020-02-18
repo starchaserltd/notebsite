@@ -87,12 +87,12 @@ $(document).ready(function()
 	if(document.getElementById('s_hdd').noUiSlider===undefined)
 	{
 		noUiSlider.create(document.getElementById('s_hdd'), {
-			start: [180, 2048],
+			start: [128, 2048],
 			connect: true,
 			step: 4,
 			direction: 'ltr',
 			format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
-			range: listrange([32,64,128,180,256,512,768,1024,2048])
+			range: listrange([32,64,128,256,512,768,1024,2048])
 		});
 	}
 	

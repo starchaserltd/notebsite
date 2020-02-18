@@ -626,7 +626,7 @@ if ($qsearchtype!=="p" && $qsearchtype!=="b")
 		$sist_sist[]="macOS";
 		if(count($display_backt)<1) { $display_backt = ["LED IPS","LED IPS PenTile","LED TN WVA","OLED"]; }
 		if($displayvresmin<1080) { $displayvresmin=1080; }
-		if($totalcapmin<179) { $totalcapmin =180; }
+		if($totalcapmin<249) { $totalcapmin =240; }
 		if($memcapmin<8){$memcapmin=8;}
 		
 		if($budgetmax>2100)
