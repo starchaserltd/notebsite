@@ -22,7 +22,7 @@ if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_n
 	<br>
 	or
 	<br>
-	<img src="res/img/logo/logo_noteb.png" width="149" height="149">
+	<img src="res/img/logo/powered_by_noteb.png" width="149" height="149">
 	<br>
 	<p style="font-size:18px"><b>Technical aspects</b></p>
 		The API of Noteb is based on POST requests to Noteb's web service, which replays with JSON structured data.<br>
