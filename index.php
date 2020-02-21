@@ -11,6 +11,8 @@ require_once("etc/conf.php");
 		<meta name="description" content="Looking for a laptop? Search, Compare or even take a Quiz with Noteb.com to find the perfect laptop for your work, home or suggest one to your friends from over 6.000.000 configurations derived from over 900 models.">
 		<meta name="keywords" content="find,cheap,best,laptop,notebook,gaming,ultraportable,business">
 		<meta name="author" content="Starchaser">	
+		<!-- CSS Libraries we want to load before everthing else -->
+		<link rel="stylesheet" href="lib/css/bootstrap.min.css" crossorigin="anonymous">
 		<!-- JavaScript libraries --> 
 		<script src="lib/js/jquery.min.js"></script> 	
 		<script src="lib/js/popper.min.js"></script>	
@@ -234,7 +236,6 @@ require_once("etc/conf.php");
 		<!-- end footer-->
 			
 		<!-- CSS FOR INDEX -->
-		<link rel="stylesheet" href="lib/css/bootstrap.min.css" crossorigin="anonymous">
 		<link rel="stylesheet" href="lib/fonts/fontawesome/css/all.min.css" crossorigin="anonymous">
 		<link rel="stylesheet" href="lib/css/select2.min.css" type="text/css" /> 
 		<link rel="stylesheet" href="lib/css/bootstrap-multiselect.css" type="text/css" />
