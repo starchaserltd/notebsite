@@ -99,16 +99,16 @@ switch ($q)
 				if($socktechmin)
 				{
 					$y.=" AND"; $b=1;
-					$y.=" prop1<='$socktechmin'";
+					$y.=" prop1<=".$socktechmin."";
 				}
 				
 				if($socktechmax)
 				{
 					$y.=" AND"; $b=1;
-					$y.=" prop1>='$socktechmax'";
+					$y.=" prop1>=".$socktechmax."";
 				}
 				$cpu_socket='"%'.$keys.'%"';
-				$sel="SELECT id, name FROM notebro_site.nomen WHERE type=1 AND name LIKE $cpu_socket".$y;
+				$sel="SELECT id, name FROM notebro_site.nomen WHERE type=1 AND name LIKE $cpu_socket".$y." ORDER BY `nomen`.`name` DESC";
 				$result = mysqli_query($con, $sel);
 				$list = array();
 				while($rand = mysqli_fetch_row($result)) 
