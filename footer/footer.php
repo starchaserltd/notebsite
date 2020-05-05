@@ -35,7 +35,7 @@
 			<div class="row">
 				<div class="col-12 starchaserTrademark">
 					<p>
-						<a class="starchaserLink" href="http://www.starchaser.ro/">© 2017-2019 Starchaser S.R.L. All rights reserved.</a>
+						<a class="starchaserLink" href="http://www.starchaser.ro/">© 2017-2020 Starchaser S.R.L. All rights reserved.</a>
 					</p>
 				</div>
 			</div>
