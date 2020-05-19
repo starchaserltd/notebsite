@@ -202,7 +202,7 @@ if(isset($_GET['display_type']))
 		{
 			case "1":
 			{
-				array_push($display_backt,"LED IPS","OLED","LED IPS PenTile");
+				array_push($display_backt,"LED IPS","OLED","mLED","LED IPS PenTile");
 				break;
 			}
 			case "2":

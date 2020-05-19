@@ -162,6 +162,7 @@ if(isset($_GET['display_type']))
 			{
 				$displaymsc.='<option selected="selected">LED IPS</option>';
 				$displaymsc.='<option selected="selected">OLED</option>';
+				$displaymsc.='<option selected="selected">mLED</option>';
 				$displaymsc.='<option selected="selected">LED IPS PenTile</option>';
 				break;
 			}

@@ -234,13 +234,13 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			{	if($display_sizemin<13) { $display_sizemin =13; }	if($display_sizemax>16.2) { $display_sizemax =16.2; } }
 								
 			if (isset($_GET['60srgb']) && $_GET['60srgb'] ==1) 
-			{	$display_backt = ["LED IPS","LED IPS PenTile","OLED"]; }
+			{	$display_backt = ["LED IPS","LED IPS PenTile","OLED","mLED"]; }
 																	
 			if (isset($_GET['90srgb']) && $_GET['90srgb']==1) 
-			{	$display_backt = ["LED IPS","LED IPS PenTile","OLED"]; $display_srgb = 80; }
+			{	$display_backt = ["LED IPS","LED IPS PenTile","OLED","mLED"]; $display_srgb = 80; }
 									
 			if (isset($_GET['media'])&& $_GET['media']==1 && !((isset($_GET['60srgb']) && $_GET['60srgb'] ==1) || (isset($_GET['90srgb']) && $_GET['90srgb']==1)) ) 
-			{	$display_backt = ["LED IPS","LED IPS PenTile","LED TN WVA","OLED"]; }
+			{	$display_backt = ["LED IPS","LED IPS PenTile","LED TN WVA","OLED","mLED"]; }
 		
 			if (isset($_GET['FHD'])&& $_GET['FHD']==1 ) 
 			{	$display_vresmin = 1080; }
@@ -250,7 +250,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			}
 			
 			if (isset($_GET['hrefresh']) && $_GET['hrefresh']==1) 
-			{ $display_backt = ["LED IPS","LED IPS PenTile","LED TN WVA","OLED"]; $display_hz=120; }
+			{ $display_backt = ["LED IPS","LED IPS PenTile","LED TN WVA","OLED","mLED"]; $display_hz=120; }
 			
 			if (isset($_GET['ntouch'])&& $_GET['ntouch']==1 ) 
 			{	$display_touch[] = "1"; }
@@ -747,7 +747,7 @@ if($qsearchtype!=="p" && $qsearchtype!=="b")
 	if($budgetmax>800)
 	{
 		$sist_sist[]="macOS";
-		if(count($display_backt)<1) { $display_backt = ["LED IPS","LED IPS PenTile","LED TN WVA","OLED"]; }
+		if(count($display_backt)<1) { $display_backt = ["LED IPS","LED IPS PenTile","LED TN WVA","OLED","mLED"]; }
 		if($display_vresmin<1080) { $display_vresmin=1080; }
 		if($totalcapmin<249) { $totalcapmin =240; }
 		if($mem_capmin<8){$mem_capmin=8;}

@@ -1,5 +1,5 @@
 body {
-	background-color: #f2f2f2;
+    background-color: #f2f2f2;
 }
 
 html {
@@ -10,6 +10,11 @@ html {
     min-height: 100vh;
     padding: 0px 15px 0px 15px;   
 
+}
+
+/* TO DO: to be discussed */
+.container {
+    max-width: 1300px;
 }
 
 img:focus {
@@ -46,7 +51,7 @@ a {
 
 .dropdown {
     position: relative;
-    display: inline-block;
+    /* display: inline-block; */
 }
 
 
@@ -55,6 +60,7 @@ a {
 .dropdown-content {
     display: none;
     position: absolute;
+    top: 100%;
     background-color: #f9f9f9;
     max-width: 175px;   
     z-index: 99999;
@@ -328,13 +334,13 @@ a {
 /* add to compare btn model */
 
 .compmod {
-    text-decoration: none;
+    /* text-decoration: none;
     color: #fff;
     background-color: #285f8f;
     padding: 2px 30px;
     border-radius: 2px;
     font-size: 14px;
-    font-weight: bold;
+    font-weight: bold; */
 }
 
 .compmod.active,
@@ -649,13 +655,13 @@ a {
 }
 
 .labelblue-s {
-    border: 1px solid #0066cb;
-    background-color: #fff !important;
+    border-bottom: 1px solid #0066cb;
+    /* background-color: #fff !important;
     color: #000 !important;
     padding-right: 3px !important;
     padding-top: 0px;
     padding-left: 3px;
-    border-radius: 3px !important;
+    border-radius: 3px !important; */
 }
 
 .labelred-s {
@@ -816,7 +822,6 @@ fieldset[disabled] .btn-result.active {
     cursor: pointer;
     border: 2px solid #575757;
     font-size: 14px;
-    font-weight: bold;
     transition: all 0.3s ease-in;
     background-color: #fff;
 }
@@ -1840,7 +1845,7 @@ nav:after {
 }
 
 .row.detaliicomp {
-    padding-bottom: 5px;    
+    /* padding-bottom: 5px;     */
 }
 
 .titlucomp {
@@ -2018,10 +2023,6 @@ table#comparelist td.text-center.comparecell3 {
     max-width: 300px;
 }
 
-.modelImageContainer {
-    margin-top:10px;
-}
-
 .ptop.affix .addtocpmp {
     padding: 2px 3px;
 
@@ -2032,17 +2033,17 @@ table#comparelist td.text-center.comparecell3 {
 }
 
 .ptop.affix .buy .btn {
-    font-size: 11px;
+    /* font-size: 11px; */
 }
 
 .affix .ratingContainer {
-    padding-top: 5px;
+    /* padding-top: 5px; */
 }
 
 .headerComponents {
-    display: block;
+    /* display: block;
     background-color: #ffcc33;
-    margin-bottom: 10px;
+    margin-bottom: 10px; */
 }
 
 .toggler {
@@ -2053,11 +2054,6 @@ table#comparelist td.text-center.comparecell3 {
 
 .glyphicon-chevron-down.resize:before {
     content: "\f106";
-}
-
-.toggler.compmod {  
-    float: left;
-    background-color: #fff;
 }
 
 .expandContainer {
@@ -2075,15 +2071,14 @@ table#comparelist td.text-center.comparecell3 {
     display: none;
 }
 
-.toggler.compmod .glyphicon-chevron-down{
+/* .toggler.compmod .glyphicon-chevron-down{
     padding: 0;
-}
+} */
 
 
 
 .showDetailsButton.show .showLessDetails  {
-    display: inline-block;
-    padding-left: 5px;  
+    display: inline;
 }
 
 
@@ -3080,7 +3075,7 @@ min-height:auto;
 padding-top:60px!important
 }
 
-.modal {
+.modal:not(.galleryModal) {
 opacity:0;
 transition:opacity .3s ease;
 display:block;
@@ -3276,7 +3271,7 @@ div.menuItems.last {
 
 
 div.menuItems.last .dropdown-content {
-	right: 0;
+	/* right: 0; */
 }
 
 .SearchParameters .select2-container--default .select2-search--inline .select2-search__field {
@@ -3800,10 +3795,6 @@ div.menuItems.last .dropdown-content {
 
     .compContainer .addtocpmp {
         min-width: 70px;
-    }
-
-    .addtocpmp>a {
-        font-size: 12px;
     }
 
     .toggler .glyphicon-chevron-down {

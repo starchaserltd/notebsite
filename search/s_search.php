@@ -62,7 +62,7 @@ require_once("etc/conf.php"); ?>
 			
 			<div style="margin-top:10px; font-size:14px;margin-bottom:2px;">Display quality</div>	
 			<select onchange="presearch('#s_search');" id="display_type" name="display_type[]" multiple>
-				<option value="1" data-name="IPS" selected="selected">IPS/OLED panel</option>
+				<option value="1" data-name="IPS" selected="selected">IPS/OLED/mLED panel</option>
 				<option value="2" data-name="120Hz+">120Hz+ panel</option>
 				<option value="3" data-name="FHD" selected="selected">FHD resolution</option>
 				<option value="4" data-name="2K">2K resolution</option>

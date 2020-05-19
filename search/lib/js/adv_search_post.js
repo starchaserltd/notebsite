@@ -933,7 +933,7 @@ function setrecommended()
 	var x = Math.round(495*t);	var y = Math.round(1200*t);
 	document.getElementById('budgetadv').noUiSlider.set([x,y]); $('#bdgminadv').val(roundlimitadv(x)); $('#bdgmaxadv').val(roundlimitadv(y));	
 	document.getElementById('display').noUiSlider.set([13.1,16.1]);  document.getElementById('verres').noUiSlider.set([1080,99999]);
-	var i=0; el=$('#DISPLAY_msc_id'); texttoapp='<option selected="selected">LED IPS</option><option selected="selected">LED IPS PenTile</option><option selected="selected">LED TN WVA</option><option selected="selected">OLED</option>';
+	var i=0; el=$('#DISPLAY_msc_id'); texttoapp='<option selected="selected">LED IPS</option><option selected="selected">LED IPS PenTile</option><option selected="selected">LED TN WVA</option><option selected="selected">OLED</option><option selected="selected">mLED</option>';
 	while( el.select2("val")[i]!==undefined)
 	{
 		switch(el.select2("val")[i])
@@ -946,6 +946,8 @@ function setrecommended()
 			{	texttoapp = texttoapp.replace('<option selected="selected">LED TN WVA</option>', ""); break; }
 			case "OLED":
 			{	texttoapp = texttoapp.replace('<option selected="selected">OLED</option>', ""); break; }
+			case "mLED":
+			{	texttoapp = texttoapp.replace('<option selected="selected">mLED</option>', ""); break; }
 		}
 		i++;
 	}

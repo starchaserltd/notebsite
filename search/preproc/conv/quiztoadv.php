@@ -150,13 +150,13 @@ if (isset($_GET['bag']) && $_GET['bag']==1)
 {	if($displaysizemin<13) { $displaysizemin =13; }	if($displaysizemax>16.2) { $displaysizemax =16.2; } }
 					
 if (isset($_GET['60srgb']) && $_GET['60srgb'] ==1) 
-{	$display_backt = ["LED IPS","LED IPS PenTile","OLED"]; }
+{	$display_backt = ["LED IPS","LED IPS PenTile","OLED","mLED"]; }
 														
 if (isset($_GET['90srgb']) && $_GET['90srgb']==1) 
-{	$display_backt = ["LED IPS","LED IPS PenTile","OLED"]; $display_srgb = 80; }
+{	$display_backt = ["LED IPS","LED IPS PenTile","OLED","mLED"]; $display_srgb = 80; }
 						
 if (isset($_GET['media'])&& $_GET['media']==1 && !((isset($_GET['60srgb']) && $_GET['60srgb'] ==1) || (isset($_GET['90srgb']) && $_GET['90srgb']==1)) ) 
-{	$display_backt = ["LED IPS","LED IPS PenTile","LED TN WVA","OLED"]; }
+{	$display_backt = ["LED IPS","LED IPS PenTile","LED TN WVA","OLED","mLED"]; }
 
 if (isset($_GET['FHD'])&& $_GET['FHD']==1 )
 {	$displayvresmin = 1080; }
@@ -168,7 +168,7 @@ else
 
 if (isset($_GET['hrefresh']) && $_GET['hrefresh']==1)
 {
-	$display_backt = ["LED IPS","LED IPS PenTile","LED TN WVA","OLED","120Hz","144Hz","240Hz"];
+	$display_backt = ["LED IPS","LED IPS PenTile","LED TN WVA","OLED","mLED","120Hz","144Hz","240Hz"];
 }
 
 /*de vazut daca ia touch*/
