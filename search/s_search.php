@@ -91,7 +91,7 @@ require_once("etc/conf.php"); ?>
 			</div>
 					
 			<?php $reset=0; include ("lib/php/currency.php");?>
-			<script type="text/javascript">
+			<script>
 				<?php echo $jscurrency; //these variables come from lib/currency.php ?>
 				var basevalueold=currency_val[<?php echo '"'.$basevalue.'"'; ?>];
 				var minbudgetnomen=<?php echo $minconfigprice; ?>;

@@ -20,10 +20,11 @@ if($q>=0)
 		}
 		
 		$rows[] = $r;
+		$msc=array(); 
 		if($rows[0]['msc']!=null&&$rows[0]['msc']!="")
 		{
 			$rows[0]['msc']=str_replace(",", ", ",$rows[0]['msc']);
-			$msc=array(); $msc=explode(",",$rows[0]['msc']);
+			$msc=explode(",",$rows[0]['msc']);
 		}
 		if(intval($rows[0]['hz'])>60){$msc["hz"]=$rows[0]['hz']."Hz";}
 		if(intval($rows[0]['hdr'])>0){$msc["hdr"]="HDR";}
@@ -42,7 +43,7 @@ if($q>=0)
 				break;
 		}
 		
-		if(stripos($rows[0]["backt"],"OLED")!==FALSE)
+		if(stripos($rows[0]["backt"],"OLED")!==FALSE || stripos($rows[0]["backt"],"mLED")!==FALSE)
 		{ $rows[0]['bat']=((floatval($rows[0]["size"])*0.10)+(pow((intval($rows[0]["hres"])*intval($rows[0]["vres"])),0.5)*0.00255-3.4))*0.6; }
 		else
 		{ $rows[0]['bat']=((floatval($rows[0]["size"])*0.10)+(pow((intval($rows[0]["hres"])*intval($rows[0]["vres"])),0.5)*0.00255-3.4))*0.7; }

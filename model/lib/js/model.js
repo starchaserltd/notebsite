@@ -29,7 +29,7 @@ function gpu_right_align()
 
 function char_indent(str,maxlength)
 {
-	x=str.split(' '); var short_length=0; var fudge=1;
+	x=str.split(' '); var short_length=0; var fudge=1.05;
 	for(var i=x.length-1;i>=0;i--)
 	{
 		short_length+=x[i].length+1;
@@ -80,89 +80,97 @@ $('#addcompare').click(function(e)
  
 $(".toggler").click(function(e){
 	e.preventDefault();
+
+	const togglerInfoButtons = $('.toggler.toolinfo .toolinfo-text');
+	
 	if($(this).attr('data-hide')=="all")
 	{
+
 		if(allshow)
 		{
-			$('.hide'+$(this).attr('data-hide')).slideUp(500);
+			$('.hide'+$(this).attr('data-hide')).slideUp(200);
 			$this=$('.toggler');
-			allshow=0; $('.glyphicon-chevron-down').removeClass('resize');
+			allshow=0;
+			$('.expandContainer .detailsArrow').removeClass('resize');
+			togglerInfoButtons.text('More Specs')
+
 		}
-		else
-		{  $('.hide'+$(this).attr('data-hide')).slideDown(500);	$this=$('.toggler'); allshow=1; $('.glyphicon-chevron-down').addClass('resize'); }	
+		else {
+			$('.hide'+$(this).attr('data-hide')).slideDown(200);	
+			$this=$('.toggler');
+			allshow=1;
+			$('.expandContainer .detailsArrow').addClass('resize');
+			togglerInfoButtons.text('Show less specs')
+		}	
 	}
 	else
 	{
-		$('.hide'+$(this).attr('data-hide')).slideToggle(500);
+		$('.hide'+$(this).attr('data-hide')).slideToggle(200);
 		$this=$(this);
-		if($this.text().toLowerCase().indexOf("more") > -1)
-		{ $this.text("Show less details"); }
+		const togglerInfoText = $this.children('.toolinfo-text');
+		if($this.text().toLowerCase().indexOf("more") > -1) {
+			$this.children('.expandContainer .detailsArrow').addClass('resize');
+			togglerInfoText.text("Show less specs"); 
+		}
 		else
 		{ 
-			if($this.text().toLowerCase().indexOf("less") > -1)
-			{ $this.text("Show more details"); }
+			if($this.text().toLowerCase().indexOf("less") > -1) {
+				$this.children('.expandContainer .detailsArrow').removeClass('resize');
+				togglerInfoText.text("More Specs");
+			}
 		}
 	}
 });
+
+// Function toggles bootstrap collapse based on window width.
+function toggleCollapse($win)
+{
+	if ($win.width() < 768)
+	{
+		$('.hide-spec-in-mobile').removeClass('show'); // some spect need to be uncollapsed in mobile
+	}
+	else if ($win.width() >= 768)
+	{  $('.collapse').addClass('show'); }
+}
+
+// Set progress bars size (to be called on document ready & resize)
+function setProgressBarsSize()
+{
+	const svgElementsList = [...document.querySelectorAll('.rating-element .progress-container svg')];
+	for (svgElement of svgElementsList)
+	{
+		const bars = [...svgElement.children];
+		if (window.innerWidth < 767)
+		{
+			svgElement.setAttribute('viewBox', '0, 0, 190, 12'); svgElement.style.height = '12px';
+			bars.forEach((bar, i) => { bar.setAttribute('height', '12'); bar.setAttribute('x', `${i * 16}`); });
+		}
+		else
+		{
+			svgElement.setAttribute('viewBox', '0, 0, 190, 20');
+			svgElement.style.height = '20px';
+			bars.forEach((bar, i) => { bar.setAttribute('height', '20'); bar.setAttribute('x', `${i * 19}`); });
+		}
+	}
+}
+
+// Color rating bars
+function setProgressBarsRating(ratingElementsList)
+{
+	for (ratingElement of ratingElementsList)
+	{
+		const ratingElementValue = Number(ratingElement.querySelector('.progress-value').innerHTML);
+		// dividing by 10 in order to transform the value to the same unit we use for the bars
+		const ratingElementTransformedValue = ratingElementValue > 10 ? Math.round(ratingElementValue / 10) : Math.round(ratingElementValue);
+		// should always have 10 bars since the rating system is 0-10
+		const progressBarsList = ratingElement.querySelectorAll('svg rect');
+		// get the number of bars to color
+		const coloredBars = [...progressBarsList].slice(0, ratingElementTransformedValue);
+		for (bar of coloredBars) { bar.classList.add('colored-bar') }
+	}
+};
 
 //change icon for resize information model
 $('.glyphicon-chevron-down').on('click', function() { $(this).toggleClass('resize'); });	
 $('.showDetailsButton').on('click', function() { $(this).toggleClass('show'); });
 $('#GPU').change(function() { gpu_right_align(); });
-
-$(document).ready(function() 
-{
-	$(function()
-	{
-		$('.pics').on('click', function() 
-		{
-			$('.enlargeImageModalSource').attr('src', $(this).attr('src'));
-			$('#enlargeImageModal').modal('show');
-		});		
-	});
-	
-	$(window).on('popstate', function()
-	{ $('.modal').modal('hide'); $( ".modal-backdrop" ).remove(); $( ".in" ).remove(); });
-	
-	lightbox.option({ 'resizeDuration': 200, 'fadeDuration' : 200, 'imageFadeDuration':200 });
-    $('meta[name=description]').attr('content', mprod + ' ' + mfamily + ' ' + mmodel);
-	gpu_right_align();
-
-	//Affix Bootstrap 4
-	if ($(window).width() >= 375)
-	{
-		var top = $('.ptop').offset().top;
-		$(window).scroll(function (event)
-		{
-			var y = $(this).scrollTop();
-			if (y >= top) { $('.ptop').addClass('affix'); }
-			else { $('.ptop').removeClass('affix'); }
-		});
-	}
- 
- 	/*DISQUE CODE*/
-	/**
-	* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-	* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
-	*/
-
-	(function() { // DON'T EDIT BELOW THIS LINE
-		if(window.disqusloaded)
-		{
-			var d = document; var s = d.createElement('script');
-			disqusloaded=0;
-			s.src = '//notebrointexim.disqus.com/embed.js';
-
-			s.setAttribute('data-timestamp', +new Date());
-			(d.head || d.body).appendChild(s);
-		}
-		else
-		{
-			DISQUS.reset({
-				reload: true,
-				config: window.disqus_config  
-			});
-		}
-	})();
-	setTimeout(function(){ show_comp_message=1; }, 3000);
-});

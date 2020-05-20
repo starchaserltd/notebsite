@@ -18,6 +18,8 @@ if(isset($_GET['ex']))
 else
 { if(isset($_SESSION['exchcode'])){ $exchcode=$_SESSION['exchcode']; } else { $exchcode="USD"; } }
 
+$rating_svg=file_get_contents("lib/images/rating.svg");
+
 $row=$exchange_list->{$exchcode};
 $ex_regions=$row["regions"];
 $country=implode(",",$ex_regions);

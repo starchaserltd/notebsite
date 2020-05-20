@@ -3,7 +3,7 @@
 			<div class="row footerMenuContainer">
 				<div class=" col-lg-9 col-xl-10 col-md-12 col-sm-12 col-12">		
 					<div class="row footer-left">								
-						<div class="footerMenu footerMenuLogo col col-lg-2  col-md-4 col-12" style="cursor:pointer" onmousedown="go_to_top(); OpenPage('content/home.php');"><img class="footerLogo" src="../res/img/logo/white.svg"></div>	
+						<div class="footerMenu footerMenuLogo col col-lg-2  col-md-4 col-12" style="cursor:pointer" onmousedown="go_to_top(); OpenPage('content/home.php');"><img class="footerLogo" src="../res/img/logo/white.svg" alt="Noteb"></div>	
 						<div class="footerMenu col col-lg-2 col-md-4 col-12" style="cursor:pointer" onmousedown="scrolltoid('content',0); OpenPage('footer/howto.php',event);"><p>How to Use</p></div>
 						<div class="footerMenu col col-lg-2 col-md-4 col-12" style="cursor:pointer" onmousedown="scrolltoid('content',0); OpenPage('footer/about.php',event);"><p>About</p></div>
 						<div class="footerMenu col  col-lg-2 col-md-4 col-12" style="cursor:pointer" onmousedown="scrolltoid('content',0); OpenPage('footer/contact.php',event);"><p>Contact Us</p></div>
@@ -27,7 +27,7 @@
 						<span><img class="img-fluid" src="../res/img/payment/mastercard.png" alt="mastercard"/></span>
 						<span><img class="img-fluid" src="../res/img/payment/paypal.png" alt="paypal"/></span>						
 					</div>
-					<div class="safeSecure"><img class="img-fluid" src="../res/img/shield.svg" /><span>Safe & Secure</span></div>
+					<div class="safeSecure"><img class="img-fluid" src="../res/img/shield.svg" alt="safe"><span>Safe & Secure</span></div>
 				</div>
 			</div>			
 		</div>

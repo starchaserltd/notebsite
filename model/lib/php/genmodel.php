@@ -257,7 +257,14 @@ function show_display($list)
 {
 	function replace_surft_type($target,$backt)
 	{
-		$surface_types=["matte","glossy"]; $backt_types=["IPS","TN WVA","TN","OLED"];
+		$get_map="SELECT GROUP_CONCAT(`word`) AS `words` FROM `notebro_db`.`WORD_MAPS` WHERE `type`='display_type' AND `action`='replace_phrase';";
+		$get_map.="SELECT GROUP_CONCAT(`word`) AS `words` FROM `notebro_db`.`WORD_MAPS` WHERE `type`='display_surface' AND `action`='replace_phrase';";
+		$result=nb_multiquery($GLOBALS['con'], $get_map);
+		if(isset($result[0][0]))
+		{ $backt_types=explode(",",$result[0][0]["words"]); }
+		if(isset($result[1][0]))
+		{ $surface_types=explode(",",$result[1][0]["words"]); }
+
 		foreach($backt_types as $el)
 		{
 			if(stripos($backt,$el)!==FALSE){ foreach($surface_types as $val){ if(stripos($target,$val)!==FALSE){ $target=str_ireplace($val,$el,$target); break(2); } } }

@@ -14,7 +14,7 @@ require_once("etc/conf.php");
 		<!-- CSS Libraries we want to load before everthing else -->
 		<link rel="stylesheet" href="lib/css/bootstrap.min.css" crossorigin="anonymous">
 		<!-- JavaScript libraries --> 
-		<script src="lib/js/jquery.min.js"></script> 	
+		<script src="lib/js/jquery.min.js"></script>
 		<script src="lib/js/popper.min.js"></script>	
 		<script src="lib/js/bootstrap.min.js"></script>
 		<script src="lib/js/select2.min.js"></script>
@@ -43,7 +43,7 @@ require_once("etc/conf.php");
 							<div class="col-md-12 col-xs-12 cod-sm-12 col-lg-12 searchDetailsFirstContainer">
 								<i class="fas fa-search d-lg-none d-sm-inline-block d-md-none d-inline-block searcButtonMobile"></i>			
 								<form action="javascript:void(0);" method="post" id="modelfind" style="text-align: -webkit-center;" class="d-lg-block d-sm-none d-md-block d-none">		
-									<a class="" style="cursor: pointer;" onmousedown="OpenPage('search/adv_search.php',event); scrolltoid('content',1);"><img class="controlSvg" src="../res/img/controls.svg"></a>
+									<a class="" style="cursor: pointer;" onmousedown="OpenPage('search/adv_search.php',event); scrolltoid('content',1);"><img class="controlSvg" src="../res/img/controls.svg" alt="Adv search ctrl"></a>
 									<select class="modelsearch js-example-responsive" id="model_id" name ="model_id" data-placeholder="Search a laptop model" data-initvalue="search for a model" style="width: 100%; margin:5px 0px 10px 0px; border-radius:1px;"> 
 									</select>
 								</form>
@@ -146,7 +146,7 @@ require_once("etc/conf.php");
 							<div class="socialButtons col-12 col-sm-12 col-md-6">
 								<span class="support">Support Us:</span> 
 								<a onclick="scrolltoid('supportUs',0);"><span class="donate">Donate</span></a>
-								<span class="faInfo"><a style="cursor:pointer;color: #fff;" onmousedown="OpenPage('footer/howto.php',event);"><i class="fas fa-info"></i></span><span class="faTutorial">Tutorial</span></a></span>
+								<span class="faInfo"><a style="cursor:pointer;color: #fff;" onmousedown="OpenPage('footer/howto.php',event);"><i class="fas fa-info"></i><span class="faTutorial"> Tutorial</span></a></span>
 								<span class="faSocial"><a style="cursor:pointer;color: #fff;" href="https://www.youtube.com/c/notebcom"><i class="fab fa-youtube"></i></a></span>
 								<span class="faSocial"><a style="cursor:pointer;color: #fff;" href="https://www.facebook.com/Noteb-162949570886382/"><i class="fab fa-facebook-f"></i></a></span>
 								<span class="faSocial"><a style="cursor:pointer;color: #fff;" href="https://twitter.com/notebcom"><i class="fab fa-twitter"></i></a></span>
@@ -162,7 +162,7 @@ require_once("etc/conf.php");
 			<div class="col-lg-3 col-md-4 col-xs-12 col-sm-12 firstContainer">		
 				<div class="row">
 					<nav class="navbar-collapse d-block">	
-						<div style="cursor:pointer;" class="col-md-12 col-xs-12 col-sm-12 searchMenu" style="padding:0px">
+						<div style="cursor:pointer; padding:0px;" class="col-md-12 col-xs-12 col-sm-12 searchMenu">
 							<h3>Search for your laptop</h3>
 						</div>		
 						<div class="quickSearchContainer">
@@ -179,13 +179,15 @@ require_once("etc/conf.php");
 							<ul>				
 								<li class='has-sub'><a style="color: #fff;">Compare</a>
 									<ul style="background-color: white;">
-										<table class="table" id="comparelist" style="margin-bottom:2px;">
-											<tbody>
-												<tr id="toptrcomp"><td colspan="1" style="text-align:center; background:#FFF; font-weight:600"></td></tr>
-												<!-- GENERATING COMPARE LIST FROM SESSION -->
-												<?php include("libnb/php/complist.php"); ?>
-											</tbody>
-										</table>
+										<li class="comparelistContainer">
+											<table class="table" id="comparelist" style="margin-bottom:2px;">
+												<tbody>
+												<tr id="toptrcomp"><td colspan="1" style="text-align:center; background:#FFF; font-weight:600"></td><td></td><td></td><td></td></tr>
+													<!-- GENERATING COMPARE LIST FROM SESSION -->
+													<?php include("libnb/php/complist.php"); ?>
+												</tbody>
+											</table>
+										</li>										
 									</ul>								
 								</li>
 							</ul>
