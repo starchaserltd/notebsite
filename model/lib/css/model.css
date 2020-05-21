@@ -536,8 +536,19 @@ h5 {
 	font-size: 1.125rem;
 }
 
+.ratingContainer .labelblue {
+	border: 0;
+	background-color: transparent !important;
+	color: unset;
+	padding-right: 0 !important;
+	padding-top: 0;
+	border-radius: 0 !important;
+	font-size: inherit;
+}
+
 .ratingContainer .rating-element:last-child {
-	margin-top: auto;
+	/* margin-top: auto; decomenteaza cand se afiseaza si restul ratingurilor */
+	margin-top: 10px;
 }
 
 .ptop.affix .ratingContainer {
@@ -793,7 +804,7 @@ h5 {
 }
 
 .owl-carousel .owl-item img {
-	width: auto;
+	width: auto !important;
 }
 
 .owl-dots {
@@ -825,6 +836,7 @@ h5 {
 .galleryModal .modal-header .close {
 	float: none;
 	margin: 0;
+	font-size: 42px;
 }
 .galleryModal img.pics {
 	max-width: initial;
@@ -982,10 +994,6 @@ h5 {
 
 	.buy li {
 		min-width: 20px;
-	}	
-
-	.labelblue {
-		font-size: 12px;		
 	}
 
 	.ratingContainer {
@@ -1060,10 +1068,6 @@ h5 {
 
 	.owl-carousel {
 		margin-bottom: 20px;
-	}
-
-	.galleryModal .modal-header .close {
-		font-size: 42px;
 	}
 
 	/* .progress-container svg rect {

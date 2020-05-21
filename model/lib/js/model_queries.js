@@ -30,11 +30,10 @@ function showCPU(str)
 				cpu_rate_new = cpu["confrate"];
 				config_rate = config_rate-cpu_rate_old+cpu_rate_new;
 				document.getElementById('notebro_rate').innerHTML=(Math.round(normal_rating(config_rate) * 10) / 10).toFixed(1);
-				
 				cpu_bat_old = cpu_bat_new;
 				cpu_bat_new = cpu["bat"];
 				config_batlife=config_batlife-cpu_bat_old+cpu_bat_new;
-				if(cpu_bat_old!=cpu_bat_new){ bat_animation(); }
+
 				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
 				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
 				document.getElementById('dLabel').setAttribute("data-cpu",str);
@@ -108,12 +107,11 @@ function showGPU(str)
 				gpu_rate_new = gpu["confrate"];				
 				config_rate = config_rate-gpu_rate_old+gpu_rate_new;
 				document.getElementById('notebro_rate').innerHTML=(Math.round(normal_rating(config_rate) * 10) / 10).toFixed(1);
-						
 				gpu_bat_old = gpu_bat_new;
 				gpu_bat_new = gpu["bat"];
 				if(mdb["optimus"] && gpu_bat_new>3){ gpu_bat_new=3; }
 				config_batlife=config_batlife-gpu_bat_old+gpu_bat_new;
-				if(gpu_bat_old!=gpu_bat_new){ bat_animation(); }
+
 				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
 				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
 				document.getElementById('dLabel').setAttribute("data-gpu",str); 
@@ -148,19 +146,18 @@ function showDISPLAY(str)
 				document.getElementById('display_backt').innerHTML = display["backt"];
 				document.getElementById('display_touch').innerHTML = display["touch"];
 				document.getElementById('display_misc').innerHTML = display["msc"];
-				if( parseInt(display["sRGB"]) > 0) { document.getElementById('display_misc').innerHTML=eliminate_first_line_desc(document.getElementById('display_misc').innerHTML)+' <span class="toolinfo" data-toolid=86 data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="top" data-original-title="Loading..."><span class="toolinfo1">'+ display["sRGB"] + "% sRGB</span></span>"; }
-				if( parseInt(display["lum"]) > 0) { document.getElementById('display_misc').innerHTML=eliminate_first_line_desc(document.getElementById('display_misc').innerHTML)+' <span class="toolinfo" data-toolid=87 data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="top" data-original-title="Loading..."><span class="toolinfo1">'+ display["lum"] + " nits</span></span>"; } 
+				if( parseInt(display["sRGB"]) > 0) { document.getElementById('display_misc').innerHTML=eliminate_first_line_desc(document.getElementById('display_misc').innerHTML)+' <span class="toolinfo" data-toolid=86 data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="left" data-original-title="Loading..."><span class="toolinfo1">'+ display["sRGB"] + "% sRGB</span></span>"; }
+				if( parseInt(display["lum"]) > 0) { document.getElementById('display_misc').innerHTML=eliminate_first_line_desc(document.getElementById('display_misc').innerHTML)+' <span class="toolinfo" data-toolid=87 data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="left" data-original-title="Loading..."><span class="toolinfo1">'+ display["lum"] + " nits</span></span>"; } 
 				document.getElementById('display_rating').innerHTML = display["rating"];
 			
 				display_rate_old = display_rate_new;
 				display_rate_new = display["confrate"];		
 				config_rate = config_rate-display_rate_old+display_rate_new;
 				document.getElementById('notebro_rate').innerHTML=(Math.round(normal_rating(config_rate) * 10) / 10).toFixed(1);
-				
 				display_bat_old = display_bat_new;
 				display_bat_new = display["bat"];
 				config_batlife=config_batlife-display_bat_old+display_bat_new;
-				if(display_bat_old!=display_bat_new){ bat_animation(); }
+
 				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
 				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
 				document.getElementById('dLabel').setAttribute("data-iddisplay",str);
@@ -198,11 +195,10 @@ function showHDD(str)
 				hdd_rate_new = hdd["confrate"];				
 				config_rate = config_rate-hdd_rate_old+hdd_rate_new;
 				document.getElementById('notebro_rate').innerHTML=(Math.round(normal_rating(config_rate) * 10) / 10).toFixed(1);
-		
 				hdd_bat_old = hdd_bat_new;
 				hdd_bat_new = hdd["bat"];
 				config_batlife=config_batlife-hdd_bat_old+hdd_bat_new;
-				if(hdd_bat_old!=hdd_bat_new){ bat_animation(); }
+
 				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
 				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
 				
@@ -255,11 +251,10 @@ function showSHDD(str)
 					shdd_rate_new = shdd["confrate"];					
 					config_rate = config_rate-shdd_rate_old+shdd_rate_new;
 					document.getElementById('notebro_rate').innerHTML=(Math.round(normal_rating(config_rate) * 10) / 10).toFixed(1);
-					
 					shdd_bat_old = shdd_bat_new;
 					shdd_bat_new = shdd["bat"];
 					config_batlife=config_batlife-shdd_bat_old+shdd_bat_new;
-					if(shdd_bat_old!=shdd_bat_new){ bat_animation(); }
+
 					document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
 					document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);						
 				}
@@ -294,7 +289,7 @@ function showMDB(str)
 				if(mdb["optimus"]&&gpu_bat_new>3)
 				{
 					gpu_bat_old = gpu_bat_new;	gpu_bat_new = 3; config_batlife=config_batlife-gpu_bat_old+gpu_bat_new;
-					if(gpu_bat_old!=gpu_bat_new){ bat_animation(); }
+
 					document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
 					document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
 				}
@@ -384,7 +379,6 @@ function showACUM(str)
 			if (xmlhttp.readyState==4 && xmlhttp.status==200 && document.getElementById('cpu_title')!=null)  
 			{
 				acum = JSON.parse(xmlhttp.responseText);
-				
 				document.getElementById('acum_cell').innerHTML = acum["nrc"];
 				document.getElementById('acum_tipc').innerHTML = acum["tipc"];
 				voltage=parseFloat(acum["volt"]); weight=parseFloat(acum["weight"]);
@@ -398,7 +392,7 @@ function showACUM(str)
 				acum_rate_new = acum["confrate"];
 				config_rate = config_rate-acum_rate_old+acum_rate_new;
 				document.getElementById('notebro_rate').innerHTML=(Math.round(normal_rating(config_rate) * 10) / 10).toFixed(1);
-				if(acum_rate_old!=acum_rate_new){ bat_animation(); }
+				if(acum_rate_old!=acum_rate_new){ model_label_animation(); }
 				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
 				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
 			}
@@ -538,23 +532,26 @@ function showSIST(str)
 
 				config_rate = config_rate-sist_rate_old+sist_rate_new;
 				document.getElementById('notebro_rate').innerHTML=(Math.round(normal_rating(config_rate) * 10) / 10).toFixed(1);
-				window.onload =  (function(){
-							var schemaData = {
-		 							 "@context": "http://schema.org",
-		  							 "@type": "Website",   
-		     						 "aggregateRating": {
-		     						 "@type": "AggregateRating",
-		     						 "ratingValue":  normal_rating(config_rate),
-		    						 "bestRating": "100",
-		     						 "worstRating": "1",
-	     							 "ratingCount": cpu_rate_new + 3
-	 								 }
-									}
-									var script = document.createElement('script');
-									script.type = "application/ld+json";
-									script.innerHTML = JSON.stringify(schemaData);
-									document.querySelector('.footer-distributed').appendChild(script);
-								})(document);
+				window.onload = (function()
+				{
+					var schemaData=
+					{
+						"@context": "http://schema.org",
+		  				"@type": "Website",   
+		     			"aggregateRating":
+						{
+							"@type": "AggregateRating",
+		     				"ratingValue":  normal_rating(config_rate),
+		    				"bestRating": "100",
+		     				"worstRating": "1",
+	     					"ratingCount": cpu_rate_new + 3
+	 					}
+					}
+					var script = document.createElement('script');
+					script.type = "application/ld+json";
+					script.innerHTML = JSON.stringify(schemaData);
+					document.querySelector('.footer-distributed').appendChild(script);
+				})(document);
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/sist.php?q="+str,true);
@@ -562,6 +559,9 @@ function showSIST(str)
 	}
 }
 
+const elementsWithFadeAnimation = document.querySelectorAll('.labelblue');
+const ratingElementsList = document.querySelectorAll('.rating-element .progress-container');
+const fade_timeout=500;
 function getconf(comp,id,exactconf) 
 {
 	gocomp=0;
@@ -686,7 +686,15 @@ function getconf(comp,id,exactconf)
 						{ showSIST(id); break; } 
 					}
 					
-					document.getElementsByClassName("labelblue")[0].classList.add('blueAnimation'); document.getElementsByClassName("labelblue")[1].classList.add('blueAnimation'); model_label_animation=setTimeout(function () {document.getElementsByClassName("labelblue")[0].classList.remove('blueAnimation'); document.getElementsByClassName("labelblue")[1].classList.remove('blueAnimation'); }, 1000);
+					for (element of [...elementsWithFadeAnimation]) { element.classList.add('blueAnimation'); }
+					model_label_animation=setTimeout(function ()
+					{
+						setProgressBarsRating(ratingElementsList);
+						setTimeout(function()
+						{	
+							for (element of [...elementsWithFadeAnimation]) { element.classList.remove('blueAnimation'); }
+						},fade_timeout/2);
+					}, fade_timeout/2);
 				}
 				else
 				{
@@ -788,7 +796,7 @@ function cpumisc(str)
 {
 	var msc_el = str.split(","); var msc="";
 	var text1='<span class="toolinfo" data-toolid="';
-	var text2='" data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="top" data-original-title="Loading..."><span class="toolinfo1">';
+	var text2='" data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="left" data-original-title="Loading..."><span class="toolinfo1">';
 	var text3='</span></span>';
 
 	var i, value;
@@ -816,7 +824,7 @@ function gpumisc(str)
 	var msc="";
 
 	var text1='<span class="toolinfo" data-toolid="';
-	var text2='" data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="top" data-original-title="Loading..."><span class="toolinfo1">';
+	var text2='" data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="left" data-original-title="Loading..."><span class="toolinfo1">';
 	var text3='</span></span>';
 
 	var i, value;
@@ -846,7 +854,7 @@ function wnetmisc(str)
 	var msc_el = str.split(",");
 	var msc="";
 	var text1='<span class="toolinfo" data-toolid="';
-	var text2='" data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="top" data-original-title="Loading..."><span class="toolinfo1">';
+	var text2='" data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="left" data-original-title="Loading..."><span class="toolinfo1">';
 	var text3='</span></span>';
 	var i, value;
 
@@ -912,6 +920,5 @@ function set_best_low(confid,array_values)
 
 function eliminate_first_line_desc(el){ var temp_el=el; if(temp_el==="-"){temp_el="";}else{temp_el=temp_el+",";} return temp_el;}
 function normal_rating(x){ x=x*1000; return (((1.25/1000000*Math.pow(x,2))+1.305*x+(-4.3/100000000000*Math.pow(x,3)))/1000); }
-function bat_animation(){ document.getElementsByClassName("labelblue")[2].classList.add('blueAnimation'); setTimeout(function () { var el=document.getElementsByClassName("labelblue")[2]; if(el!='undefined'&&el!=null){ el.classList.remove('blueAnimation');} }, 1000); }
 function change_exch(new_exchcode){ for(var key in document.getElementById("m_currency").options){ if(document.getElementById("m_currency").options[key].value==new_exchcode){document.getElementById("m_currency").selectedIndex=key;}}}
 function change_m_currency(el){ var selected=(el||el.options[el.selectedIndex]); getconf('EXCH',[selected.value,parseFloat(el.options[el.selectedIndex].getAttribute("data-exch"))]); }

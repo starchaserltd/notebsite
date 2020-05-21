@@ -111,9 +111,10 @@ else
 		<div class="row">
 			<div class="col-lg-5 col-xl-5 ratingContainer">
 				<div  class="rating">
-					<p class="bold-font">Battery: <span id="bat_life1"></span> - <span id="bat_life2"></span><span> <?php echo " h"; ?></span></p>
+					<p class="bold-font">Battery: <span id="bat_life1" class="labelblue"></span> - <span id="bat_life2" class="labelblue"></span><span> <?php echo " h"; ?></span></p>
 				</div>
-				<div class="rating-element productvity-rating hide-when-affix">
+				<!-- Comentate temporar -->
+				<!-- <div class="rating-element productvity-rating hide-when-affix">
 					<div class="rating-label">Productivity</div>
 					<div class="progress-container">
 						<?php echo $rating_svg ?>
@@ -133,12 +134,12 @@ else
 						<?php echo $rating_svg ?>
 						<span class="progress-value" id="notebro_mobility_rate">3.69</span>	
 					</div>
-				</div>
+				</div> -->
 				<div class="rating-element overall-rating hide-when-affix">
 					<div class="rating-label bold-font">Overall</div>
 					<div class="progress-container">
 						<?php echo $rating_svg ?>
-						<span class="progress-value bold-font" id="notebro_rate"></span>	
+						<span class="progress-value bold-font labelblue" id="notebro_rate"></span>	
 					</div>
 				</div>
 			</div>

@@ -85,12 +85,30 @@ if(!$components_found)
 /* SELECT MODEL IDs */
 if($idmodel)
 {
-	$p_model=$idmodel; $sel3="SELECT `notebro_db`.`MODEL`.`p_model`,`notebro_db`.`MODEL`.`regions` FROM `notebro_db`.`MODEL` WHERE `id`=$idmodel LIMIT 1";
-	$result=mysqli_query($con,$sel3); $change_model_region=false; if($result->num_rows){$row=mysqli_fetch_assoc($result); $p_model=intval($row["p_model"]); $change_model_region=true; foreach(explode(",",$row["regions"])	as $val){ if(($val=="0")||($val=="1")||in_array($val,$ex_regions)){ $change_model_region=false;} if(!isset($model_ex)){ $model_ex=$region_ex[intval($val)][0];} } unset($row); }
+	$p_model=$idmodel; $sel3="SELECT `notebro_db`.`MODEL`.`p_model`,`notebro_db`.`MODEL`.`regions` FROM `notebro_db`.`MODEL` WHERE `id`=".$idmodel." LIMIT 1";
+	$result=mysqli_query($con,$sel3); $change_model_region=false; if($result->num_rows){$row=mysqli_fetch_assoc($result); $p_model=intval($row["p_model"]); $change_model_region=true; $model_regions=array_map('strval', explode(",",$row["regions"])); foreach($model_regions as $val){ if(($val=="0")||($val=="1")||in_array($val,$ex_regions)){ $change_model_region=false;} if(!isset($model_ex)){ $model_ex=$region_ex[intval($val)][0];} } unset($row); }
 	?>
 	<script>var model_ex="<?php if($change_model_region){ echo $model_ex; $exch=floatval($exchange_list->{$model_ex}["convr"]); $selected_ex=$model_ex;} else{ echo $exchcode; $selected_ex=$exchcode; } ?>";  var exch=<?php echo $exch; ?>; </script>
 	<?php
-	$sel3="SELECT `model`.*,GROUP_CONCAT(`model`.`cpu`) as `gcpu`,GROUP_CONCAT(`model`.`display`) as `gdisplay`,GROUP_CONCAT(`model`.`mem`) as `gmem`,GROUP_CONCAT(`model`.`hdd`) as `ghdd`,GROUP_CONCAT(`model`.`shdd`) as `gshdd`,GROUP_CONCAT(`model`.`gpu`) as `ggpu`,GROUP_CONCAT(`model`.`wnet`) as `gwnet`,GROUP_CONCAT(`model`.`odd`) as `godd`,GROUP_CONCAT(`model`.`mdb`) as `gmdb`,GROUP_CONCAT(`model`.`chassis`) as `gchassis`,GROUP_CONCAT(`model`.`acum`) as `gacum`,GROUP_CONCAT(`model`.`warranty`) as `gwarranty`,GROUP_CONCAT(`model`.`sist`) as `gsist`,GROUP_CONCAT(CONCAT(`comments`.`type`,'+++',`comments`.`comment`)) as `gcomments` FROM `notebro_db`.`MODEL` model LEFT JOIN `notebro_db`.`COMMENTS` comments  ON `model`.`p_model`=`comments`.`model` WHERE `model`.`p_model`=$p_model LIMIT 1";
+	if(isset($model_ex))
+	{
+		$region_sel="SELECT `regions` FROM `notebro_site`.`exchrate` WHERE `code`='".$model_ex."' LIMIT 1";
+		$region_result=mysqli_query($con,$region_sel);
+		if(have_results($region_result))
+		{
+			$region_row=mysqli_fetch_assoc($region_result);
+			$model_regions=explode(",",$region_row["regions"]);
+			mysqli_free_result($region_result);
+		}
+	}
+	$model_regions=array_map('intval',$model_regions); $model_regions=array_unique($model_regions);
+	if(count($model_regions)<2 && $model_regions[0]==0){$model_regions[]=1; $model_regions[]=2; }
+	$sql_parts=[]; foreach($model_regions as $model_region){  $sql_parts[]="FIND_IN_SET(".$model_region.",`regions`)>0"; }
+	$sel3="SELECT `model`.*,GROUP_CONCAT(`model`.`cpu`) AS `gcpu`,GROUP_CONCAT(`model`.`display`) AS `gdisplay`,GROUP_CONCAT(`model`.`mem`) AS `gmem`,GROUP_CONCAT(`model`.`hdd`) AS `ghdd`,GROUP_CONCAT(`model`.`shdd`) AS `gshdd`,GROUP_CONCAT(`model`.`gpu`) AS `ggpu`,";
+	$sel3.="GROUP_CONCAT(`model`.`wnet`) AS `gwnet`,GROUP_CONCAT(`model`.`odd`) AS `godd`,GROUP_CONCAT(`model`.`mdb`) AS `gmdb`,GROUP_CONCAT(`model`.`chassis`) AS `gchassis`,GROUP_CONCAT(`model`.`acum`) AS `gacum`,";
+	$sel3.="GROUP_CONCAT(`model`.`warranty`) AS `gwarranty`,GROUP_CONCAT(`model`.`sist`) AS `gsist`,GROUP_CONCAT(CONCAT(`comments`.`type`,'+++',`comments`.`comment`)) AS `gcomments` FROM `notebro_db`.`MODEL` AS `model` LEFT JOIN `notebro_db`.`COMMENTS` AS `comments` ON `model`.`p_model`=`comments`.`model`";
+	$sel3.=" WHERE `model`.`p_model`=".$p_model." AND (".implode(" OR ",$sql_parts).") LIMIT 1";
+	unset($sql_parts);
 	$result=mysqli_query($con,$sel3);
 
 	if($result&&($result->num_rows)>0)

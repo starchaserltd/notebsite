@@ -78,14 +78,12 @@ $('#addcompare').click(function(e)
 	$("#howToUse").css('display', 'none');
 });
  
+const togglerInfoButtons = $('.toggler.toolinfo .toolinfo-text');
 $(".toggler").click(function(e){
 	e.preventDefault();
-
-	const togglerInfoButtons = $('.toggler.toolinfo .toolinfo-text');
 	
 	if($(this).attr('data-hide')=="all")
 	{
-
 		if(allshow)
 		{
 			$('.hide'+$(this).attr('data-hide')).slideUp(200);
@@ -108,16 +106,12 @@ $(".toggler").click(function(e){
 		$('.hide'+$(this).attr('data-hide')).slideToggle(200);
 		$this=$(this);
 		const togglerInfoText = $this.children('.toolinfo-text');
-		if($this.text().toLowerCase().indexOf("more") > -1) {
-			$this.children('.expandContainer .detailsArrow').addClass('resize');
-			togglerInfoText.text("Show less specs"); 
-		}
+		if($this.text().toLowerCase().indexOf("more") > -1)
+		{ $this.children('.expandContainer .detailsArrow').addClass('resize'); togglerInfoText.text("Show less specs");  }
 		else
 		{ 
-			if($this.text().toLowerCase().indexOf("less") > -1) {
-				$this.children('.expandContainer .detailsArrow').removeClass('resize');
-				togglerInfoText.text("More Specs");
-			}
+			if($this.text().toLowerCase().indexOf("less") > -1)
+			{ $this.children('.expandContainer .detailsArrow').removeClass('resize'); togglerInfoText.text("More Specs"); }
 		}
 	}
 });
@@ -164,9 +158,21 @@ function setProgressBarsRating(ratingElementsList)
 		const ratingElementTransformedValue = ratingElementValue > 10 ? Math.round(ratingElementValue / 10) : Math.round(ratingElementValue);
 		// should always have 10 bars since the rating system is 0-10
 		const progressBarsList = ratingElement.querySelectorAll('svg rect');
+		// get the number of currently colored bars
+		const currentlyColoredBars = document.querySelectorAll('.colored-bar');
 		// get the number of bars to color
-		const coloredBars = [...progressBarsList].slice(0, ratingElementTransformedValue);
-		for (bar of coloredBars) { bar.classList.add('colored-bar') }
+		const barsToColor = [...progressBarsList].slice(0, ratingElementTransformedValue);
+
+		if (currentlyColoredBars.length > barsToColor.length) {
+			const barsToRemoveColoring = [...currentlyColoredBars].filter((bar) => !barsToColor.includes(bar));
+			for (bar of barsToRemoveColoring) {
+				bar.classList.remove('colored-bar');
+			}
+		} else {
+			for (bar of barsToColor) {
+				bar.classList.add('colored-bar') 
+			}
+		}
 	}
 };
 
