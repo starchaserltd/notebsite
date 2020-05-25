@@ -392,7 +392,6 @@ function showACUM(str)
 				acum_rate_new = acum["confrate"];
 				config_rate = config_rate-acum_rate_old+acum_rate_new;
 				document.getElementById('notebro_rate').innerHTML=(Math.round(normal_rating(config_rate) * 10) / 10).toFixed(1);
-				if(acum_rate_old!=acum_rate_new){ model_label_animation(); }
 				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
 				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
 			}
