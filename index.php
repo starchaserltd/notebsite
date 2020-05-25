@@ -15,6 +15,10 @@ require_once("etc/conf.php");
 		<link rel="stylesheet" href="lib/css/bootstrap.min.css" crossorigin="anonymous">
 		<!-- JavaScript libraries --> 
 		<script src="lib/js/jquery.min.js"></script>
+		<script>
+			jQuery.event.special.touchstart = { setup: function( _, ns, handle ){ if ( ns.includes("noPreventDefault") ) { this.addEventListener("touchstart", handle, { passive: false }); } else { this.addEventListener("touchstart", handle, { passive: true }); } } };
+			jQuery.event.special.touchmove = { setup: function( _, ns, handle ){ if ( ns.includes("noPreventDefault") ) { this.addEventListener("touchstart", handle, { passive: false }); } else { this.addEventListener("touchstart", handle, { passive: true }); } } };
+		</script>
 		<script src="lib/js/popper.min.js"></script>	
 		<script src="lib/js/bootstrap.min.js"></script>
 		<script src="lib/js/select2.min.js"></script>
