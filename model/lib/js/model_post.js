@@ -17,7 +17,7 @@ $(document).ready(function()
 	gpu_right_align();
 
 	//Affix Bootstrap 4
-	if ($(window).width() >= 375)
+	if ($(window).width() >= 320)
 	{
 		var elementHeight = document.querySelector('.ptop').getBoundingClientRect().height;
 		var top = $('.ptop').offset().top + elementHeight;
