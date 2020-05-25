@@ -296,8 +296,8 @@ else
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="5" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><b><span  class="labelblue-s"><span id="cpu_rating" ></span> / 100</span></b></span></div>							
 									</div>	
 									<div class="expandContainer">
-										<a class="toggler toolinfo" data-hide="cpu" data-toolid="100" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="left" data-original-title="data-loading...">
-											<span class="toolinfo-text">More Specs</span>
+										<a class="toggler" data-hide="cpu">
+											<span class="more-specs-text">More Specs</span>
 											<span class="glyphicon glyphicon-menu-down fas fa-angle-down ml-2 detailsArrow"></span>
 										</a>					
 									</div>
@@ -372,8 +372,8 @@ else
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="30" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><b><span  class="labelblue-s"><span id="gpu_rating"></span> / 100</span></b></span></div>
 									</div>		
 									<div class="expandContainer">
-										<a class="toggler toolinfo" data-hide="gpu" data-toolid="100" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="left" data-original-title="data-loading...">
-											<span class="toolinfo-text">More Specs</span>
+										<a class="toggler toolinfo" data-hide="gpu">
+											<span class="more-specs-text">More Specs</span>
 											<span class="glyphicon glyphicon-menu-down fas fa-angle-down ml-2 detailsArrow"></span>
 										</a>					
 									</div>
@@ -428,8 +428,8 @@ else
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="48" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="display_rating"></span> / 100</span></div>
 									</div>
 									<div class="expandContainer">
-										<a class="toggler toolinfo" data-hide="dis" data-toolid="100" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="left" data-original-title="data-loading...">
-											<span class="toolinfo-text">More Specs</span>
+										<a class="toggler toolinfo" data-hide="dis">
+											<span class="more-specs-text">More Specs</span>
 											<span class="glyphicon glyphicon-menu-down fas fa-angle-down ml-2 detailsArrow"></span>
 										</a>					
 									</div>
@@ -472,8 +472,8 @@ else
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows" id ="hdd_misc"></div>
 									</div>
 									<div class="expandContainer">
-										<a class="toggler toolinfo" data-hide="sto" data-toolid="100" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="left" data-original-title="data-loading...">
-											<span class="toolinfo-text">More Specs</span>
+										<a class="toggler toolinfo" data-hide="sto">
+											<span class="more-specs-text">More Specs</span>
 											<span class="glyphicon glyphicon-menu-down fas fa-angle-down ml-2 detailsArrow"></span>
 										</a>					
 									</div>
@@ -517,8 +517,8 @@ else
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows" ><span id ="shdd_writes"></span> MB/s</div>
 									</div>
 									<div class="expandContainer">
-										<a class="toggler toolinfo" data-hide="sto1" data-toolid="100" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="left" data-original-title="data-loading...">
-											<span class="toolinfo-text">More Specs</span>
+										<a class="toggler toolinfo" data-hide="sto1">
+											<span class="more-specs-text">More Specs</span>
 											<span class="glyphicon glyphicon-menu-down fas fa-angle-down ml-2 detailsArrow"></span>
 										</a>					
 									</div>
@@ -570,8 +570,8 @@ else
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows" id="mdb_misc"></div>
 									</div>
 									<div class="expandContainer">
-										<a class="toggler toolinfo" data-hide="mdb" data-toolid="100" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="left" data-original-title="data-loading...">
-											<span class="toolinfo-text">More Specs</span>
+										<a class="toggler toolinfo" data-hide="mdb">
+											<span class="more-specs-text">More Specs</span>
 											<span class="glyphicon glyphicon-menu-down fas fa-angle-down ml-2 detailsArrow"></span>
 										</a>					
 									</div>
@@ -613,8 +613,8 @@ else
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows" id="mem_misc"></div>
 									</div>
 									<div class="expandContainer">
-										<a class="toggler toolinfo" data-hide="mem" data-toolid="100" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="left" data-original-title="data-loading...">
-											<span class="toolinfo-text">More Specs</span>
+										<a class="toggler toolinfo" data-hide="mem">
+											<span class="more-specs-text">More Specs</span>
 											<span class="glyphicon glyphicon-menu-down fas fa-angle-down ml-2 detailsArrow"></span>
 										</a>					
 									</div>
@@ -647,8 +647,8 @@ else
 											<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows" id="odd_misc"></div>
 										</div>
 										<div class="expandContainer">
-											<a class="toggler toolinfo" data-hide="odd" data-toolid="100" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="left" data-original-title="data-loading...">
-												<span class="toolinfo-text">More Specs</span>
+											<a class="toggler toolinfo" data-hide="odd">
+												<span class="more-specs-text">More Specs</span>
 												<span class="glyphicon glyphicon-menu-down fas fa-angle-down ml-2 detailsArrow"></span>
 											</a>					
 										</div>
@@ -692,8 +692,8 @@ else
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows" id="acum_misc"></div>
 									</div>
 									<div class="expandContainer">
-										<a class="toggler toolinfo" data-hide="acu" data-toolid="100" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="left" data-original-title="data-loading...">
-											<span class="toolinfo-text">More Specs</span>
+										<a class="toggler toolinfo" data-hide="acu">
+											<span class="more-specs-text">More Specs</span>
 											<span class="glyphicon glyphicon-menu-down fas fa-angle-down ml-2 detailsArrow"></span>
 										</a>					
 									</div>
@@ -773,8 +773,8 @@ else
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows" id="chassis_misc"></div>
 									</div>
 									<div class="expandContainer">
-										<a class="toggler toolinfo" data-hide="cha" data-toolid="100" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="left" data-original-title="data-loading...">
-										<span class="toolinfo-text">More Specs</span>
+										<a class="toggler toolinfo" data-hide="cha">
+										<span class="more-specs-text">More Specs</span>
 										<span class="glyphicon glyphicon-menu-down fas fa-angle-down ml-2 detailsArrow"></span>
 									</a>					
 									</div>
@@ -813,8 +813,8 @@ else
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows" id="wnet_misc"></div>
 									</div>
 									<div class="expandContainer">
-										<a class="toggler toolinfo" data-hide="wnet" data-toolid="100" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 700}' data-placement="left" data-original-title="data-loading...">
-											<span class="toolinfo-text">More Specs</span>
+										<a class="toggler toolinfo" data-hide="wnet">
+											<span class="more-specs-text">More Specs</span>
 											<span class="glyphicon glyphicon-menu-down fas fa-angle-down ml-2 detailsArrow"></span>
 										</a>					
 									</div>

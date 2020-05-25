@@ -3462,6 +3462,7 @@ div.menuItems.last .dropdown-content {
     }
     .firstImageModel {
         margin-bottom: 10px;
+        padding: 0;
     }
     .firstContainer {
         position: relative;

@@ -78,7 +78,7 @@ $('#addcompare').click(function(e)
 	$("#howToUse").css('display', 'none');
 });
  
-var model_togglerInfoButtons = $('.toggler.toolinfo .toolinfo-text');
+var model_togglerInfoButtons = $('.toggler.toolinfo .more-specs-text');
 $(".toggler").click(function(e){
 	e.preventDefault();
 	
@@ -105,7 +105,7 @@ $(".toggler").click(function(e){
 	{
 		$('.hide'+$(this).attr('data-hide')).slideToggle(200);
 		$this=$(this);
-		const togglerInfoText = $this.children('.toolinfo-text');
+		const togglerInfoText = $this.children('.more-specs-text');
 		if($this.text().toLowerCase().indexOf("more") > -1)
 		{ $this.children('.expandContainer .detailsArrow').addClass('resize'); togglerInfoText.text("Show less specs");  }
 		else

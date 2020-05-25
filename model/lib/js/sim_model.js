@@ -110,7 +110,7 @@ function similar_model_search()
 			if (xmlhttp.readyState==4 && xmlhttp.status==200 )
 			{
 				var query_data=JSON.parse(xmlhttp.responseText);
-				console.log(query_data);
+				//console.log(query_data);
 				var family_search_string="";
 				if(query_data.family_type!=null&&query_data.family_type!=undefined)
 				{ family_search_string="Family_fam[]="+query_data.family_type+"&"; }
