@@ -405,7 +405,7 @@ else
 									</div>
 									<div class="row detaliicomp">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="45" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Resolution:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="45" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span  class="labelblue-s"><span id="display_hres"></span> x <span id="display_vres"></span> pixels</span></span></div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="45" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="display_hres"></span> x <span id="display_vres"></span> pixels</span></div>
 									</div>
 									<div class="row hidedis hideall detaliicomp" style="display:none">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="46" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Surface type:</span></div>
