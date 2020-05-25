@@ -19,7 +19,8 @@ $(document).ready(function()
 	//Affix Bootstrap 4
 	if ($(window).width() >= 375)
 	{
-		var top = $('.ptop').offset().top;
+		var elementHeight = document.querySelector('.ptop').getBoundingClientRect().height;
+		var top = $('.ptop').offset().top + elementHeight;
 		$(window).scroll(function (event)
 		{
 			var y = $(this).scrollTop();

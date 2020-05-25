@@ -78,7 +78,7 @@ $('#addcompare').click(function(e)
 	$("#howToUse").css('display', 'none');
 });
  
-const togglerInfoButtons = $('.toggler.toolinfo .toolinfo-text');
+var model_togglerInfoButtons = $('.toggler.toolinfo .toolinfo-text');
 $(".toggler").click(function(e){
 	e.preventDefault();
 	
@@ -90,7 +90,7 @@ $(".toggler").click(function(e){
 			$this=$('.toggler');
 			allshow=0;
 			$('.expandContainer .detailsArrow').removeClass('resize');
-			togglerInfoButtons.text('More Specs')
+			model_togglerInfoButtons.text('More Specs')
 
 		}
 		else {
@@ -98,7 +98,7 @@ $(".toggler").click(function(e){
 			$this=$('.toggler');
 			allshow=1;
 			$('.expandContainer .detailsArrow').addClass('resize');
-			togglerInfoButtons.text('Show less specs')
+			model_togglerInfoButtons.text('Show less specs')
 		}	
 	}
 	else

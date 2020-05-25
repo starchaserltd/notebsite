@@ -559,9 +559,9 @@ function showSIST(str)
 	}
 }
 
-const elementsWithFadeAnimation = document.querySelectorAll('.labelblue');
-const ratingElementsList = document.querySelectorAll('.rating-element .progress-container');
-const fade_timeout=500;
+var elementsWithFadeAnimation = document.querySelectorAll('.labelblue');
+var model_ratingElementsList = document.querySelectorAll('.rating-element .progress-container');
+var fade_timeout=500;
 function getconf(comp,id,exactconf) 
 {
 	gocomp=0;
@@ -689,7 +689,7 @@ function getconf(comp,id,exactconf)
 					for (element of [...elementsWithFadeAnimation]) { element.classList.add('blueAnimation'); }
 					model_label_animation=setTimeout(function ()
 					{
-						setProgressBarsRating(ratingElementsList);
+						setProgressBarsRating(model_ratingElementsList);
 						setTimeout(function()
 						{	
 							for (element of [...elementsWithFadeAnimation]) { element.classList.remove('blueAnimation'); }

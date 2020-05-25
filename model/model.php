@@ -136,7 +136,7 @@ else
 					</div>
 				</div> -->
 				<div class="rating-element overall-rating hide-when-affix">
-					<div class="rating-label bold-font">Overall</div>
+					<div class="rating-label bold-font">Overall rating</div>
 					<div class="progress-container">
 						<?php echo $rating_svg ?>
 						<span class="progress-value bold-font labelblue" id="notebro_rate"></span>	

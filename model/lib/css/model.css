@@ -534,6 +534,7 @@ h5 {
 
 .ratingContainer .rating {
 	font-size: 1.125rem;
+	margin-top: 50px;
 }
 
 .ratingContainer .labelblue {
@@ -548,13 +549,18 @@ h5 {
 
 .ratingContainer .rating-element:last-child {
 	/* margin-top: auto; decomenteaza cand se afiseaza si restul ratingurilor */
-	margin-top: 10px;
+	margin-top: 25px;
+	/* margin-bottom: auto; */
 }
 
 .ptop.affix .ratingContainer {
 	flex: 0 1 15%;
 	border: 0;
 	text-align: right;
+}
+
+.ptop.affix .ratingContainer .rating {
+	margin-top: 0;
 }
 
 .ratingContainer .rating-label {
@@ -1111,13 +1117,13 @@ h5 {
 	.owl-carousel button.owl-dot {
 		width: 15px;
 		height: 15px;
-		background: var(--dark-grey);
+		background: var(--dark-grey) !important;
 		border-radius: 50%;
 		margin-right: 10px;
 	}
 
 	.owl-carousel button.owl-dot.active {
-		background: var(--main-color);
+		background: var(--main-color) !important;
 	}
  }
 
