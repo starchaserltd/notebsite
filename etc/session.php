@@ -1,8 +1,10 @@
 <?php 
 if (session_status() == PHP_SESSION_NONE)
- {
-      session_start();
- }
+{
+    ini_set('session.cookie_samesite', "Lax");
+	ini_set('session.name', "NOTEBSESSID");
+	session_start();
+}
  
 //THIS is a security key to prevent unauthorised access of code
 $_SESSION['auth']="kMuGLmlIzCWmkNbtksAh";

@@ -176,6 +176,12 @@ if(isset($_GET['cpu_type']))
 				if($cpu_coremin<4){$cpu_coremin=6;}
 				break;
 			}
+			case "10":
+			{
+				if($cpu_coremin<4){$cpu_coremin=8;}
+				break;
+			}
+			
 		}
 	}
 	$cpu_prod=array_unique($cpu_prod);

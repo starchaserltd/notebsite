@@ -135,6 +135,11 @@ if(isset($_GET['cpu_type']))
 				if($cpucoremin<4){$cpucoremin=6;}
 				break;
 			}
+			case "10":
+			{
+				if($cpucoremin<4){$cpucoremin=8;}
+				break;
+			}
 		}
 	}
 	$valuetype[11]= array_unique($valuetype[11]);
