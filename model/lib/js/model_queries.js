@@ -561,7 +561,7 @@ function showSIST(str)
 var elementsWithFadeAnimation = document.querySelectorAll('.labelblue');
 var model_ratingElementsList = document.querySelectorAll('.rating-element .progress-container');
 var fade_timeout=500;
-function getconf(comp,id,exactconf) 
+function getconf(comp,id,exactconf,new_page=false) 
 {
 	gocomp=0;
 	var cpu_id=cpu["id"]; var display_id=display["id"]; var mem_id=mem["id"]; var hdd_id=hdd["id"];  var shdd_id=shdd["id"]; var gpu_id=gpu["id"]; var wnet_id=wnet["id"]; var odd_id=odd["id"]; var mdb_id=mdb["id"]; var chassis_id=chassis["id"]; var acum_id=acum["id"]; var war_id=war["id"]; var sist_id=sist["id"]; var confdata = {}; var success=false; var go=false; var mdb_hdd=0; var new_excode=excode; new_exch_rate=exch;
@@ -654,7 +654,6 @@ function getconf(comp,id,exactconf)
 					}
 					update_url(confdata["cid"],mid,excode);
 					set_best_low(confdata["cid"],best_low);
-
 					switch(comp)
 					{
 						case "CPU":
@@ -682,7 +681,9 @@ function getconf(comp,id,exactconf)
 						case "WAR":
 						{ showWAR(id); break; } 
 						case "SIST":
-						{ showSIST(id); break; } 
+						{ showSIST(id); break; }
+						case "EXCH":
+						{ confdata["changes"]=undefined; OpenPage("model/model.php?conf="+confdata["cid"]+"_"+mid+"&ex="+excode); break; } 
 					}
 					
 					for (element of [...elementsWithFadeAnimation]) { element.classList.add('blueAnimation'); }
@@ -920,4 +921,4 @@ function set_best_low(confid,array_values)
 function eliminate_first_line_desc(el){ var temp_el=el; if(temp_el==="-"){temp_el="";}else{temp_el=temp_el+",";} return temp_el;}
 function normal_rating(x){ x=x*1000; return (((1.25/1000000*Math.pow(x,2))+1.305*x+(-4.3/100000000000*Math.pow(x,3)))/1000); }
 function change_exch(new_exchcode){ for(var key in document.getElementById("m_currency").options){ if(document.getElementById("m_currency").options[key].value==new_exchcode){document.getElementById("m_currency").selectedIndex=key;}}}
-function change_m_currency(el){ var selected=(el||el.options[el.selectedIndex]); getconf('EXCH',[selected.value,parseFloat(el.options[el.selectedIndex].getAttribute("data-exch"))]); }
+function change_m_currency(el){ var selected=(el||el.options[el.selectedIndex]); getconf('EXCH',[selected.value,parseFloat(el.options[el.selectedIndex].getAttribute("data-exch"))],undefined); }
