@@ -103,21 +103,24 @@ foreach($seller_count_links as $seller_name=>$links)
 		$max_count=count($links);
 		if($max_count>4)
 		{
-			$replace_id=$seller_count_links[$seller_name][3]; $replace_with=$seller_count_links[$seller_name][($max_count-1)];
-			$generated_buy_list[$replace_id]=$generated_buy_list[$replace_with]; $link_list[$replace_id]=$link_list[$replace_with]; $seller_list[$replace_id]=$seller_list[$replace_with];
+			$replace_id=$seller_count_links[$seller_name][3]; $replace_with=NULL; if(isset($seller_count_links[$seller_name][($max_count-1)])) { $replace_with=$seller_count_links[$seller_name][($max_count-1)]; }
+			if(isset($generated_buy_list[$replace_with])&&$generated_buy_list[$replace_with]) { $generated_buy_list[$replace_id]=$generated_buy_list[$replace_with]; $link_list[$replace_id]=$link_list[$replace_with]; $seller_list[$replace_id]=$seller_list[$replace_with]; }
 			
-			$replace_id=$seller_count_links[$seller_name][2]; $replace_with=$seller_count_links[$seller_name][ceil($max_count/2)];
-			$generated_buy_list[$replace_id]=$generated_buy_list[$replace_with]; $link_list[$replace_id]=$link_list[$replace_with]; $seller_list[$replace_id]=$seller_list[$replace_with];
+			$replace_id=$seller_count_links[$seller_name][2]; $replace_with=NULL; if(isset($seller_count_links[$seller_name][ceil($max_count/2)])) { $replace_with=$seller_count_links[$seller_name][ceil($max_count/2)]; }
+			if(isset($generated_buy_list[$replace_with])&&$generated_buy_list[$replace_with]) { $generated_buy_list[$replace_id]=$generated_buy_list[$replace_with]; $link_list[$replace_id]=$link_list[$replace_with]; $seller_list[$replace_id]=$seller_list[$replace_with]; }
 			
 			unset($replace_with); unset($replace_id);
-		
+			#var_dump($generated_buy_list); echo "<br><br>";
 			for($i=4;$i<$max_count;$i++)
-			{ if(isset($generated_buy_list[$seller_count_links[$seller_name][$i]])){ $id_to_unset=$seller_count_links[$seller_name][$i];  unset($generated_buy_list[$id_to_unset]); unset($link_list[$id_to_unset]); unset($seller_list[$id_to_unset]); } }
-			
+			{ 
+				if(isset($generated_buy_list[$seller_count_links[$seller_name][$i]]))
+				{ $id_to_unset=$seller_count_links[$seller_name][$i];  unset($generated_buy_list[$id_to_unset]); unset($link_list[$id_to_unset]); unset($seller_list[$id_to_unset]); }
+			}
 			$generated_buy_list=array_values($generated_buy_list); $link_list=array_values($link_list); $seller_lis=array_values($seller_list);
 		}
 	}
 }
+
 
 if(count($excluded_sellers)>0){ /*$excluded_sellers[]="3";*/ $excluded_sellers="AND id NOT IN (".implode(",",$excluded_sellers).")"; } else { $excluded_sellers=""; }
 
