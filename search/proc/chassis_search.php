@@ -239,7 +239,7 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 		$table="`vi`";
 		if(isset($x["alt"])){$table=$x["alt"];}
 
-		if(isset($x["prop"])&&$x["prop"]=="diffvisearch")
+		if(isset($x["prop"])&&isset($x["value"])&&$x["prop"]=="diffvisearch")
 		{ $sel_chassis.=$table." LIKE '%".$x["value"]."%'"; $add_part_link=true; }
 		else
 		{ $sel_chassis.="FIND_IN_SET('".$x["value"]."',".$table.")>0"; $add_part_link=true; }
