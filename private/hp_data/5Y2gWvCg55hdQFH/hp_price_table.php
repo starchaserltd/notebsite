@@ -21,11 +21,11 @@ if(strtotime($proc_date)<strtotime("2020-01-01")){ echo "Wrong date. Showing dat
 if(strtotime($proc_date)>strtotime("2050-01-01")){ echo "Wrong date. Showing data for the current date.<br>"; $proc_date=date("Y-m-d"); }
 
 $retailers_to_compare=["hp_store"=>"HP Store","market"=>"Market Median","amazoncom"=>"Amazon US","bhphotovideo"=>"B&H Photo Video","bestbuyus"=>"Best Buy"];
-mysqli_select_db($con, "stch_retail_data");
+mysqli_select_db($rcon, "stch_retail_data");
 ?>
 <?php
 $sql_select="SELECT * FROM `hp_price_data` WHERE `date`='".$proc_date."' AND `type`='p_model' AND `retailer`='hpcom'";
-$result=mysqli_query($con,$sql_select);
+$result=mysqli_query($rcon,$sql_select);
 $table_data=array();
 $add_table_data=array();
 $time_zone=constant("default_time_zone");
@@ -48,7 +48,7 @@ if(have_results($result))
 
 	#ADDING MODEL NAME INFO
 	$sql_select="SELECT `noteb_pid`,`retailer_pid`,`value`,`value_2` FROM `hp_price_data` WHERE `date`='".$proc_date."' AND `type`='model_name' AND `retailer`='hpcom'";
-	$result=mysqli_query($con,$sql_select);
+	$result=mysqli_query($rcon,$sql_select);
 	while($row=mysqli_fetch_assoc($result))
 	{
 		foreach($table_data as $key=>$val)
@@ -68,7 +68,7 @@ if(have_results($result))
 	
 	#ADDING HP PRICES
 	$sql_select="SELECT `noteb_pid`,`retailer_pid`,`value`,`time`,`value_2` FROM `hp_price_data` WHERE `date`='".$proc_date."' AND `type`='price' AND `retailer`='hpcom'";
-	$result=mysqli_query($con,$sql_select);
+	$result=mysqli_query($rcon,$sql_select);
 	while($row=mysqli_fetch_assoc($result))
 	{
 		foreach ($table_data as $key=>$val)
@@ -100,7 +100,7 @@ if(have_results($result))
 	foreach ($retailers_to_compare as $retailer=>$retailer_name)
 	{
 		$sql_select="SELECT `noteb_pid`,`retailer_pid`,`value`,`time`,`value_2` FROM `hp_price_data` WHERE `date`='".$proc_date."' AND `type`='min_price' AND `retailer`='".$retailer."'";
-		$result=mysqli_query($con,$sql_select);
+		$result=mysqli_query($rcon,$sql_select);
 		while($row=mysqli_fetch_assoc($result))
 		{
 			foreach ($table_data as $key=>$val)
@@ -127,7 +127,7 @@ if(have_results($result))
 		}
 		
 		$sql_select="SELECT `noteb_pid`,`retailer_pid`,`value`,`time`,`value_2` FROM `hp_price_data` WHERE `date`='".$proc_date."' AND `type`='median_price' AND `retailer`='".$retailer."'";
-		$result=mysqli_query($con,$sql_select);
+		$result=mysqli_query($rcon,$sql_select);
 		while($row=mysqli_fetch_assoc($result))
 		{
 			foreach ($table_data as $key=>$val)
@@ -154,7 +154,7 @@ if(have_results($result))
 		}
 	
 		$sql_select="SELECT `noteb_pid`,`retailer_pid`,`value`,`time`,`value_2`,`type` FROM `hp_price_data` WHERE `date`='".$proc_date."' AND `type` LIKE 'avg%' AND `retailer`='".$retailer."'";
-		$result=mysqli_query($con,$sql_select);
+		$result=mysqli_query($rcon,$sql_select);
 		if(have_results($result))
 		{
 			while($row=mysqli_fetch_assoc($result))
@@ -178,7 +178,7 @@ if($table_format!="excel_format")
 		<select name="date" id="date">
 	<?php
 	$SQL_dates="SELECT DISTINCT `date` FROM `hp_price_data` ORDER BY `date` DESC";
-	$dates_result=mysqli_query($con,$SQL_dates);
+	$dates_result=mysqli_query($rcon,$SQL_dates);
 	if(have_results($dates_result))
 	{
 		while($row=mysqli_fetch_assoc($dates_result))
