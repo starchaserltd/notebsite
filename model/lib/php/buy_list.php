@@ -148,6 +148,21 @@ if($function_replay!=null&&isset($function_replay[0])&&$function_replay[0]!=null
 	{ 	$link_list=$function_replay; }
 }
 
+# DELETING DUPLICATES
+$keys_to_unset=array();
+foreach($link_list as $key=>$el)
+{
+	foreach($link_list as $key_2=>$el_2)
+	{
+		if($el_2==$el && $key_2!=$key)
+		{ $keys_to_unset[]=$key; }
+	}
+}
+$keys_to_unset=array_unique($keys_to_unset);
+foreach($keys_to_unset as $key)
+{  unset($generated_buy_list[$key]); unset($link_list[$key]); unset($seller_list[$key]); }
+
+
 /* *** Finally the links are displayed *** */
 
 foreach($link_list as $key=>$el)
