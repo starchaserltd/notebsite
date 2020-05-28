@@ -30,7 +30,6 @@ echo preg_replace_callback('/\[ntab (.*)\](.*)(?=\[ntab .*\]|\Z)/Us',function ($
 	var istime=0;	
 </script>
 <link rel="stylesheet" href="content/lib/css/review_add.css">
-<link rel="stylesheet" href="content/lib/css/slider.css">
 <!--******pana aici -->
 
 	<div class="row" style="background-color:white;margin: -15px 0 0 0;">
