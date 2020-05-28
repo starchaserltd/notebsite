@@ -1,4 +1,4 @@
-/* Fonts */
+f/* Fonts */
 /* TO DO: move to general styles */
 /*
 @font-face {
@@ -537,7 +537,8 @@ h5 {
 	margin-top: 50px;
 }
 
-.ratingContainer .labelblue {
+.ratingContainer .labelblue,
+.modelContainer .labelblue-s {
 	border: 0;
 	background-color: transparent !important;
 	color: unset;
@@ -545,6 +546,10 @@ h5 {
 	padding-top: 0;
 	border-radius: 0 !important;
 	font-size: inherit;
+}
+
+.modelContainer .labelblue-s {
+	border-bottom: 1px solid #0066cb;
 }
 
 .ratingContainer .rating-element:last-child {
@@ -669,7 +674,7 @@ h5 {
     padding: 10px 100px;
 }
 
-.toggler .more-specs-text {
+.toggler .toolinfo-text {
 	font-size: 12px;
 	color: var(--main-color);
 }
