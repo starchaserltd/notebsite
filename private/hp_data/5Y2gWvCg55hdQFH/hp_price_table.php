@@ -175,7 +175,7 @@ if($table_format!="excel_format")
 {
 	?>
 	<form target="_self" action="hp_price_table.php" method="get">
-		<select name="date" id="date">
+		<select name="date" id="date" size="5">
 	<?php
 	$SQL_dates="SELECT DISTINCT `date` FROM `hp_price_data` ORDER BY `date` DESC";
 	$dates_result=mysqli_query($rcon,$SQL_dates);
