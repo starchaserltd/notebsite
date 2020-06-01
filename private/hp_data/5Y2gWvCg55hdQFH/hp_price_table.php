@@ -283,8 +283,11 @@ if($table_format=="normal_format" && isset($table_columns))
 				}
 				else
 				{ 
-					foreach($table_columns[$retailers_to_compare[$retailer_key]] as $column)
-					{echo "<td style='text-align:center;'>-</td>"; }
+					if(isset($table_columns[$retailers_to_compare[$retailer_key]]))
+					{
+						foreach($table_columns[$retailers_to_compare[$retailer_key]] as $column)
+						{echo "<td style='text-align:center;'>-</td>"; }
+					}
 				}
 			}
 			echo "</tr>";
