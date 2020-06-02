@@ -3,10 +3,12 @@ define("VERBOSE",0);
 define("default_time_zone",-10);
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<title>Daily HP laptop price data</title>
 <style>
 a:visited { color: blue; }
+td { border: 1px solid #000000; }
 </style>
 <?php
 if(constant("VERBOSE")>0){ echo "Program started!"."<br>"; }
@@ -193,7 +195,7 @@ if($table_format!="excel_format")
 		</select>
 		<button type="submit" name="format" value="normal_format">Select date</button>
 		<button type="submit" formtarget="_blank" name="format" formaction="hp_price_table.php" value="excel_format">Excel friendly</button>
-	<form>
+	</form>
 	<br><br>
 	<?php
 	if(constant("VERBOSE")>0){ echo "<br>Now displaying the table:"."<br>"; }
@@ -202,7 +204,7 @@ if($table_format!="excel_format")
 	echo "Prices collected between: ".date("Y-m-d H:i:s",(strtotime($min_time)+($time_zone*3600)))." and ".date("Y-m-d H:i:s",(strtotime($max_time)+($time_zone*3600)))." PST";
 }
 
-echo "<table border=1>";
+echo "<table style='border-collapse: collapse; border: 2px solid #000;'>";
 
 if($table_format=="normal_format" && isset($table_columns))
 {
