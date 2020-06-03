@@ -997,7 +997,10 @@ else
 			</div>
 		</div>
 	</div>
-<script>$.getScript("model/lib/js/model.js",function(){$.getScript("lib/js/owl.carousel.min.js",function(){ <?php include("lib/php/genjsmodel.php"); ?> getScripts(["model/lib/js/model_post.js","model/lib/js/sim_model.js"],function(){});});});</script>
+<script>
+<?php include("lib/php/genjsmodel.php"); ?>
+$.getScript("model/lib/js/model.js",function(){$.getScript("lib/js/owl.carousel.min.js",function(){ getScripts(["model/lib/js/model_post.js","model/lib/js/sim_model.js"],function(){});});});
+</script>
 <?php  
 } } ?>
 </div>
