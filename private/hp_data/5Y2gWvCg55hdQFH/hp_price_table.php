@@ -225,7 +225,7 @@ if(have_results($result))
 			}
 			else
 			{
-
+				$tr_style="style='display: none; background-color:#CCCCCC;' class='".$row["hp_pid"]."'";
 				if(isset($conf_info_array[$row["noteb_pid"]]))
 				{
 					$conf_info=$conf_info_array[$row["noteb_pid"]];
