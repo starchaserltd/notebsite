@@ -92,6 +92,18 @@ if($table_format=="normal_format" && isset($table_columns))
 
 if(have_results($result))
 {
+	$SELECT_CONF_INFO="SELECT `info`.* FROM `noteb_pid_info` AS `info` JOIN `daily_price_table` AS `price_table` ON `info`.`notebpid`=`price_table`.`noteb_pid` WHERE `proc_date`='".$proc_date."'";
+	$conf_info_result=mysqli_query($rcon,$SELECT_CONF_INFO);
+	$conf_info_array=array();
+	if(have_results($conf_info_result))
+	{
+		while($info_row=mysqli_fetch_assoc($conf_info_result))
+		{
+			$conf_info_array[$info_row["notebpid"]]=$info_row["conf_info"];
+		}
+		mysqli_free_result($conf_info_result);
+	}
+	
 	echo "<table style='border-collapse: collapse; border: 2px solid #000;'>";
 	if($table_format=="normal_format" && isset($table_columns))
 	{
@@ -122,17 +134,15 @@ if(have_results($result))
 			else
 			{
 				$tr_style="style='display: none; background-color:#CCCCCC;' class='".$row["hp_pid"]."'";
-				$SELECT_CONF_INFO="SELECT * FROM `noteb_pid_info` WHERE `notebpid`='".$row["noteb_pid"]."' LIMIT 1";
-				$conf_info_result=mysqli_query($rcon,$SELECT_CONF_INFO);
-				if(have_results($conf_info_result))
+				if(isset($conf_info_array[$row["noteb_pid"]]))
 				{
-					$conf_info=mysqli_fetch_assoc($conf_info_result);
-					if(strlen($conf_info["conf_info"])>10)
+					$conf_info=$conf_info_array[$row["noteb_pid"]];
+					if(strlen($conf_info)>10)
 					{
-						$conf_info["conf_info"]=str_replace('"{','{',$conf_info["conf_info"]);
-						$conf_info["conf_info"]=str_replace('}"','}',$conf_info["conf_info"]);
-						#var_dump($conf_info["conf_info"]);
-						$conf_data=json_decode($conf_info["conf_info"],true);
+						$conf_info=str_replace('"{','{',$conf_info);
+						$conf_info=str_replace('}"','}',$conf_info);
+						#var_dump($conf_info]);
+						$conf_data=json_decode($conf_info,true);
 						#var_dump($conf_data);
 						if($conf_data!=NULL)
 						{
@@ -154,7 +164,6 @@ if(have_results($result))
 						else
 						{ /*var_dump($conf_info["conf_info"]);*/ }
 					}
-					mysqli_free_result($conf_info_result);
 				}
 			}	
 			echo "<tr ".$tr_style.">";
