@@ -194,7 +194,7 @@ if($table_format!="excel_format")
 	?>
 		</select>
 		<button type="submit" name="format" value="normal_format">Select date</button>
-		<button type="submit" formtarget="_blank" name="format" formaction="hp_price_table.php" value="excel_format">Excel friendly</button>
+		<button type="submit" formtarget="_blank" name="format" formaction="hp_price_table_old.php" value="excel_format">Excel friendly</button>
 	</form>
 	<br><br>
 	<?php
