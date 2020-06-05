@@ -10,10 +10,24 @@ define("default_time_zone",-10);
 a:visited { color: blue; }
 td { border: 1px solid #000000; }
 </style>
+<script>
+function enable_all_conf(hp_pid)
+{
+	button_value=document.getElementById("main_"+hp_pid).innerHTML;
+	var x = document.getElementsByClassName(hp_pid);
+	if(button_value=="Show conf")
+	{	for (var i = 0; i < x.length; i++) { x[i].style.display = "table-row"; document.getElementById("main_"+hp_pid).innerHTML="Hide conf"; } }
+	else
+	{	for (var i = 0; i < x.length; i++) { x[i].style.display = "none"; document.getElementById("main_"+hp_pid).innerHTML="Show conf"; } }
+} 
+</script>
+</head>
+<body>
 <?php
 if(constant("VERBOSE")>0){ echo "Program started!"."<br>"; }
 require_once("../../../etc/con_hp_db.php");
 require_once("../../../libnb/php/show_error.php");
+
 ?>
 <?php
 
@@ -22,172 +36,27 @@ if(isset($_GET["format"])){ $table_format=strval($_GET["format"]); }else{ $table
 if(strtotime($proc_date)<strtotime("2020-01-01")){ echo "Wrong date. Showing data for the current date.<br>"; $proc_date=date("Y-m-d"); }
 if(strtotime($proc_date)>strtotime("2050-01-01")){ echo "Wrong date. Showing data for the current date.<br>"; $proc_date=date("Y-m-d"); }
 
-$retailers_to_compare=["hp_store"=>"HP Store","market"=>"Market Median","amazoncom"=>"Amazon US","bhphotovideo"=>"B&H Photo Video","bestbuyus"=>"Best Buy"];
-mysqli_select_db($rcon, "stch_retail_data");
-?>
-<?php
-$sql_select="SELECT * FROM `hp_price_data` WHERE `date`='".$proc_date."' AND `type`='p_model' AND `retailer`='hpcom'";
-$result=mysqli_query($rcon,$sql_select);
+$table_columns["retailers"]=["hpcom"=>"HP Store","market_price"=>"Market Median","amazoncom"=>"Amazon US","bhphotovideo"=>"B&H Photo Video","bestbuyus"=>"Best Buy"];
+$table_columns["price_types"]=["min_price","median_price"];
+$nr_table_columns=count($table_columns["retailers"])*count($table_columns["price_types"])+1;
 $table_data=array();
-$add_table_data=array();
-$time_zone=constant("default_time_zone");
-$min_time=date("3000-01-01"); $max_time=0;
-$red_color_threshold=-10;
-$green_color_threshold=10;
-if(have_results($result))
-{
-	#CREATING TABLE HEADERS AND ROWS
-	while($row=mysqli_fetch_assoc($result))
-	{
-		if(!isset($table_data[$row["value"]]))
-		{
-			$table_data[$row["value"]]=array(); 
-			$table_data[$row["value"]]["pid_info"]=array();
-		}
-		
-		$table_data[$row["value"]]["pid_info"][$row["noteb_pid"]]=array();
-	}
+mysqli_select_db($rcon, "stch_hp_data");
 
-	#ADDING MODEL NAME INFO
-	$sql_select="SELECT `noteb_pid`,`retailer_pid`,`value`,`value_2` FROM `hp_price_data` WHERE `date`='".$proc_date."' AND `type`='model_name' AND `retailer`='hpcom'";
-	$result=mysqli_query($rcon,$sql_select);
-	while($row=mysqli_fetch_assoc($result))
-	{
-		foreach($table_data as $key=>$val)
-		{
-			foreach($val["pid_info"] as $pid_key=>$pid_val)
-			{
-				if($pid_key==$row["noteb_pid"])
-				{ 
-					if(!isset($table_data[$key]["model_name"]))
-					{ $table_data[$key]["model_name"]=""; $table_data[$key]["fam_name"]=""; }
-					$table_data[$key]["model_name"]=$row["value"]; 
-					$table_data[$key]["fam_name"]=$row["value_2"]; 
-				}
-			}
-		}
-	}
-	
-	#ADDING HP PRICES
-	$sql_select="SELECT `noteb_pid`,`retailer_pid`,`value`,`time`,`value_2` FROM `hp_price_data` WHERE `date`='".$proc_date."' AND `type`='price' AND `retailer`='hpcom'";
-	$result=mysqli_query($rcon,$sql_select);
-	while($row=mysqli_fetch_assoc($result))
-	{
-		foreach ($table_data as $key=>$val)
-		{
-			foreach($val["pid_info"] as $pid_key=>$pid_val)
-			{
-				if($pid_key==$row["noteb_pid"])
-				{
-					$table_data[$key]["pid_info"][$pid_key]["hp_store"]["min_price"]=[$row["value"],$row["time"],$row["value_2"],$row["retailer_pid"]];
-					//if(date($row["time"])<$min_time)
-					//$min_time=date($row["time"]);
-					if(date($row["time"])>$max_time)
-					$max_time=date($row["time"]);
-				}
-			
-				if(!isset($table_columns[$retailers_to_compare["hp_store"]]))
-				{ $table_columns[$retailers_to_compare["hp_store"]]=array(); }
-				
-				if(!in_array("SKU",$table_columns[$retailers_to_compare["hp_store"]]))
-				{ array_push($table_columns[$retailers_to_compare["hp_store"]],"SKU"); }
-				
-				if(!in_array("min_price",$table_columns[$retailers_to_compare["hp_store"]]))
-				{ array_push($table_columns[$retailers_to_compare["hp_store"]],"min_price"); }
-			}
-		}
-	}
-	
-	#ADDING RETAILER PRICES
-	foreach ($retailers_to_compare as $retailer=>$retailer_name)
-	{
-		$sql_select="SELECT `noteb_pid`,`retailer_pid`,`value`,`time`,`value_2` FROM `hp_price_data` WHERE `date`='".$proc_date."' AND `type`='min_price' AND `retailer`='".$retailer."'";
-		$result=mysqli_query($rcon,$sql_select);
-		while($row=mysqli_fetch_assoc($result))
-		{
-			foreach ($table_data as $key=>$val)
-			{
-				foreach($val["pid_info"] as $pid_key=>$pid_val)
-				{
-					if($pid_key==$row["noteb_pid"])
-					{ 
-						if($retailer=="amazoncom"){ $url="https://www.amazon.com/gp/product/".$row["retailer_pid"]."/"; $row["value_2"]=$url; }
-						$table_data[$key]["pid_info"][$pid_key][$retailer]["min_price"]=[$row["value"],$row["time"],$row["value_2"],$row["retailer_pid"]];
-						
-						if(date($row["time"])<$min_time && date($row["time"])>date("2020-01-01"))
-						$min_time=date($row["time"]);
-						if(date($row["time"])>$max_time)
-						$max_time=date($row["time"]);
-						
-						if(!isset($table_columns[$retailers_to_compare[$retailer]]))
-						{ $table_columns[$retailers_to_compare[$retailer]]=array(); }
-						if(!in_array("min_price",$table_columns[$retailers_to_compare[$retailer]]))
-						{ array_push($table_columns[$retailers_to_compare[$retailer]],"min_price"); };
-					}
-				}
-			}
-		}
-		
-		$sql_select="SELECT `noteb_pid`,`retailer_pid`,`value`,`time`,`value_2` FROM `hp_price_data` WHERE `date`='".$proc_date."' AND `type`='median_price' AND `retailer`='".$retailer."'";
-		$result=mysqli_query($rcon,$sql_select);
-		while($row=mysqli_fetch_assoc($result))
-		{
-			foreach ($table_data as $key=>$val)
-			{
-				foreach($val["pid_info"] as $pid_key=>$pid_val)
-				{
-					if($pid_key==$row["noteb_pid"])
-					{ 
-						if($retailer=="amazoncom"){ $url="https://www.amazon.com/gp/product/".$row["retailer_pid"]."/"; $row["value_2"]=$url; }
-						$table_data[$key]["pid_info"][$pid_key][$retailer]["median_price"]=[$row["value"],$row["time"],$row["value_2"],$row["retailer_pid"]];
-						
-						if(date($row["time"])<$min_time  && date($row["time"])>date("2020-01-01"))
-						$min_time=date($row["time"]);
-						if(date($row["time"])>$max_time)
-						$max_time=date($row["time"]);
-						
-						if(!isset($table_columns[$retailers_to_compare[$retailer]]))
-						{ $table_columns[$retailers_to_compare[$retailer]]=array(); }
-						if(!in_array("median_price",$table_columns[$retailers_to_compare[$retailer]]))
-						{ array_push($table_columns[$retailers_to_compare[$retailer]],"median_price"); }
-					}
-				}
-			}
-		}
-	
-		$sql_select="SELECT `noteb_pid`,`retailer_pid`,`value`,`time`,`value_2`,`type` FROM `hp_price_data` WHERE `date`='".$proc_date."' AND `type` LIKE 'avg%' AND `retailer`='".$retailer."'";
-		$result=mysqli_query($rcon,$sql_select);
-		if(have_results($result))
-		{
-			while($row=mysqli_fetch_assoc($result))
-			{ $add_table_data[$retailer][$row["retailer_pid"]][$row["noteb_pid"]][$row["type"]]=[$row["value"],$row["value_2"]]; }
-		}
-	}
-	#var_dump($table_data);
-}
-
-?>
-<?php
-if(constant("VERBOSE")>0){ echo "Program executed!"."<br>"; }
-?>
-</head>
-<body>
-<?php 
 if($table_format!="excel_format")
 {
 	?>
 	<form target="_self" action="hp_price_table.php" method="get">
 		<select name="date" id="date" size="5">
 	<?php
-	$SQL_dates="SELECT DISTINCT `date` FROM `hp_price_data` ORDER BY `date` DESC";
+	$SQL_dates="SELECT DISTINCT DATE_FORMAT(`proc_date`,'%Y-%m-%d') AS `proc_date` FROM `daily_price_table` ORDER BY `proc_date` DESC";
 	$dates_result=mysqli_query($rcon,$SQL_dates);
 	if(have_results($dates_result))
 	{
 		while($row=mysqli_fetch_assoc($dates_result))
 		{
 			$selected="";
-			if($row["date"]==$proc_date){$selected="selected";}
-			echo "<option value='".$row["date"]."' ".$selected.">".$row["date"]."</option>"; 
+			if($row["proc_date"]==$proc_date){$selected="selected";}
+			echo "<option value='".$row["proc_date"]."' ".$selected.">".$row["proc_date"]."</option>"; 
 		}
 		mysqli_free_result($dates_result);
 	}
@@ -196,198 +65,224 @@ if($table_format!="excel_format")
 		<button type="submit" name="format" value="normal_format">Select date</button>
 		<button type="submit" formtarget="_blank" name="format" formaction="hp_price_table.php" value="excel_format">Excel friendly</button>
 	</form>
-	<br><br>
-	<?php
-	if(constant("VERBOSE")>0){ echo "<br>Now displaying the table:"."<br>"; }
-	?>
-	<?php
-	echo "Prices collected between: ".date("Y-m-d H:i:s",(strtotime($min_time)+($time_zone*3600)))." and ".date("Y-m-d H:i:s",(strtotime($max_time)+($time_zone*3600)))." PST";
+<?php
 }
 
-echo "<table style='border-collapse: collapse; border: 2px solid #000;'>";
+$sql_select="SELECT * FROM `daily_price_table` WHERE `proc_date`='".$proc_date."' ORDER BY `fam` ASC, `model` ASC, `hp_pid` ASC, `noteb_pid` ASC ";
+$result=mysqli_query($rcon,$sql_select);
+$table_data=array();
+$add_table_data=array();
+$time_zone=constant("default_time_zone");
+$min_time=date("3000-01-01"); $max_time=0;
+$red_color_threshold=-10;
+$green_color_threshold=10;
 
 if($table_format=="normal_format" && isset($table_columns))
 {
-	$nr_columns=0;
-	#var_dump($table_columns);
-	foreach($table_columns as $key=>$second_columns)
-	{  $nr_columns=$nr_columns+count($second_columns); }
-	
-	#Here we print the header
-	print_the_table_header($table_columns);
-	$print_header=0;
-
-	foreach($table_data as $t_key=>$t_val)
+	$select_time="SELECT MIN(`price_time`) AS `min_time`, MAX(`price_time`) AS `max_time` FROM `daily_price_data` WHERE `proc_date`='".$proc_date."' LIMIT 1";
+	$time_result=mysqli_query($rcon,$select_time);
+	if(have_results($time_result))
 	{
-		$nr_columns=10;
-		echo "<tr><th colspan='".$nr_columns."'><span style='padding-right:20%;'>".$t_val["fam_name"]." ".$t_val["model_name"]."</span><span style='padding-right:0%;'>".$t_val["fam_name"]." ".$t_val["model_name"]."</span><span style='padding-left:20%;'>".$t_val["fam_name"]." ".$t_val["model_name"]."</span></th></tr>";
-		foreach($t_val["pid_info"] as $nbpid_key=>$nbpid_val)
+		$data_times=mysqli_fetch_assoc($time_result);
+		echo "<br><br>Prices collected between: ".date("Y-m-d H:i:s",(strtotime($data_times["min_time"])+($time_zone*3600)))." and ".date("Y-m-d H:i:s",(strtotime($data_times["max_time"])+($time_zone*3600)))." PST";
+		echo "<br>";
+		mysqli_free_result($time_result);
+	}
+}
+
+if(have_results($result))
+{
+	echo "<table style='border-collapse: collapse; border: 2px solid #000;'>";
+	if($table_format=="normal_format" && isset($table_columns))
+	{
+		
+		$print_header=0;
+		$current_model_name="";
+		while($row=mysqli_fetch_assoc($result))
 		{
-			echo "<tr>";
-			#echo "<td>";
-			#var_dump($nbpid_key);
-			#echo "</td>";
-			foreach($retailers_to_compare as $retailer_key=>$retailer_name)
+			$tr_style="";
+			$conf_table="";
+			if($print_header==0)
 			{
-				if(isset($nbpid_val[$retailer_key])&&isset($nbpid_val["hp_store"]))
+				print_the_table_header($table_columns);
+				$print_header=10;
+			}
+			
+			if($row["noteb_pid"]=="0")
+			{
+				$new_model_name=$row["fam"]." ".$row["model"];
+				if($new_model_name!=$current_model_name)
 				{
-					$retailer_columns=[];
-					$column_nr=0;
-					foreach($table_columns[$retailers_to_compare[$retailer_key]] as $column)
-					{
-						$column_nr++;
-						$col_span[$column]=0;
-						$retailer_val=$nbpid_val[$retailer_key];
-						if(isset($retailer_val[$column][0]))
-						{
-							$url=str_replace("https //","https://",$retailer_val[$column][2]);
-							$time=date("Y-m-d H:i:s",(strtotime($retailer_val[$column][1])+($time_zone*3600)));
-							$hp_base_price=floatval($nbpid_val["hp_store"]["min_price"][0]);
-							if($hp_base_price!=0)
-							{ 
-								if(isset($add_table_data[$retailer_key][$retailer_val[$column][3]][$nbpid_key]["avg_".$column]) && $add_table_data[$retailer_key][$retailer_val[$column][3]][$nbpid_key]["avg_".$column]!=NULL)
-								{ 
-									$add_data=$add_table_data[$retailer_key][$retailer_val[$column][3]][$nbpid_key]["avg_".$column];
-									$delta=round(floatval($add_data[0])*100,2); $time=$time." (".$add_data[1]." vars)";
-								}
-								else
-								{ $delta=round((((floatval($retailer_val[$column][0])-$hp_base_price)/$hp_base_price)*100),2); }
-								$color_delta="color:blue;";
-								if($delta<$red_color_threshold){$color_delta="color:red;";}
-								else if($delta>$green_color_threshold){$color_delta="color:green;";}
-								if($delta>0){$delta="+".strval($delta);}
-							}	
-							else
-							{ $delta="N/A"; }
-							$show_delta="";
-							if($retailer_key!="hp_store")
-							{ $show_delta='<span style="'.$color_delta.'">  ['.$delta.'%]</span>'; }
-							
-							
-							if($retailer_key!="market")
-							{ $retailer_columns[$column_nr]="<td style='text-align:center;'>"; }
-							else
-							{ $retailer_columns[$column_nr]="<td style='text-align:center; background-color:#F8F8F8;'>"; }
-						
-							if($retailer_val[$column][2]!=NULL && strlen($retailer_val[$column][2])>10)
-							{ $retailer_columns[$column_nr].='<div title="'.$time.'"><a target="_blank" href="'.$url.'">$'.$retailer_val[$column][0].$show_delta.'</a></div>'; }
-							else
-							{ $retailer_columns[$column_nr].='<div title="'.$time.'">$'.$retailer_val[$column][0].$show_delta.'</div>'; }
-							
-							$retailer_columns[$column_nr].="</td>";
-						}
-						else if($column=="SKU")
-						{ $retailer_columns[$column_nr]="<td style='text-align:center;'>".$retailer_val["min_price"][3]."</td>"; }
-						else
-						{ $retailer_columns[$column_nr]="<td style='text-align:center;'>-</td>"; }
-					}
-					echo implode($retailer_columns);
+					echo "<tr><th colspan='".$nr_table_columns."'><span style='padding-right:20%;'>".$row["fam"]." ".$row["model"]."</span><span style='padding-right:0%;'>".$row["fam"]." ".$row["model"]."</span><span style='padding-left:20%;'>".$row["fam"]." ".$row["model"]."</span></th></tr>";
+					$current_model_name=$new_model_name;
 				}
-				else
-				{ 
-					if(isset($table_columns[$retailers_to_compare[$retailer_key]]))
+				$print_header--;
+				$tr_style="style='display: table-row;'";
+			}
+			else
+			{
+				$tr_style="style='display: none; background-color:#CCCCCC;' class='".$row["hp_pid"]."'";
+				$SELECT_CONF_INFO="SELECT * FROM `noteb_pid_info` WHERE `notebpid`='".$row["noteb_pid"]."' LIMIT 1";
+				$conf_info_result=mysqli_query($rcon,$SELECT_CONF_INFO);
+				if(have_results($conf_info_result))
+				{
+					$conf_info=mysqli_fetch_assoc($conf_info_result);
+					if(strlen($conf_info["conf_info"])>10)
 					{
-						foreach($table_columns[$retailers_to_compare[$retailer_key]] as $column)
-						{echo "<td style='text-align:center;'>-</td>"; }
+						$conf_info["conf_info"]=str_replace('"{','{',$conf_info["conf_info"]);
+						$conf_info["conf_info"]=str_replace('}"','}',$conf_info["conf_info"]);
+						#var_dump($conf_info["conf_info"]);
+						$conf_data=json_decode($conf_info["conf_info"],true);
+						#var_dump($conf_data);
+						if($conf_data!=NULL)
+						{
+							$conf_table="";
+							$conf_table_tr=array(); $conf_table_tr="|";
+							foreach($conf_data as $key=>$data)
+							{
+								$comp_desc=show_comp_info([$key=>$data]);
+								if($comp_desc!=NULL)
+								{
+									$conf_table_tr=$conf_table_tr."|".$key.": ".$comp_desc."|";
+								}
+							}
+							$conf_table_tr.="|"; 
+							$conf_table.=$conf_table_tr;
+							$conf_table.="";
+							#var_dump($conf_table);
+						}
+						else
+						{ /*var_dump($conf_info["conf_info"]);*/ }
+					}
+					mysqli_free_result($conf_info_result);
+				}
+			}	
+			echo "<tr ".$tr_style.">";
+			echo "<td style='text-align:center;'>".$row["hp_pid"]."</td>";
+			$row_data=json_decode($row["price_data"],true); $skipped=False;
+			foreach($table_columns["retailers"] as $retailer_key=>$retailer_name)
+			{
+				foreach($table_columns["price_types"] as $price_type)
+				{
+					if(isset($row_data[$retailer_key]))
+					{
+						#SKIPPING ONE PRICE AND PUTTING THE BUTTON
+						if($retailer_key=="hpcom" && !$skipped && $row["noteb_pid"]=="0")
+						{ echo "<td><button onclick='enable_all_conf(".'"'.$row["hp_pid"].'"'.")' id='main_".$row["hp_pid"]."'>Show conf</button></td>"; $skipped=True; continue;}
+						else if($retailer_key=="hpcom" && !$skipped && $row["noteb_pid"]!="0")
+						{ echo "<td>".$conf_table."</td>"; $skipped=True; continue;}
+						
+						$the_data=$row_data[$retailer_key][$price_type];
+						if(isset($the_data["count"])){ $vars="(".$the_data["count"]." vars)"; }else{$vars="(1 vars)";} 
+						$delta=round($the_data["diff"]*100,2);
+						$show_delta="";
+						if($retailer_key!="hpcom")
+						{
+							$color_delta="color:blue;";
+							if($delta<$red_color_threshold){$color_delta="color:red;";}
+							else if($delta>$green_color_threshold){$color_delta="color:green;";}
+							if($delta>0){$delta="+".strval($delta);}
+							$show_delta='<span style="'.$color_delta.'">  ['.$delta.'%]</span>';
+						}
+						$time=date("Y-m-d H:i:s",(strtotime($the_data["time"])+($time_zone*3600)));
+						if($retailer_key=="market_price")
+						{ echo "<td style='text-align:center; background-color:#F8F8F8;'>"; }
+						else
+						{ echo "<td style='text-align:center;'>"; }
+						echo '<div title="'.$time.' '.$vars.'"><a target="_blank" href="'.$the_data["url"].'">$'.$the_data["price"].$show_delta.'</a></div>';
+						echo '</td>';
+					}
+					else
+					{
+						echo "<td style='text-align:center;'>-</td>";
 					}
 				}
 			}
 			echo "</tr>";
 		}
-		if($print_header>10)
-		{
-			print_the_table_header($table_columns);
-			$print_header=0;
-		}
-		$print_header++;
 	}
-}
-else if($table_format=="excel_format" && isset($table_columns))
-{
-	$nr_columns=print_the_table_header_excel($table_columns);
-	foreach($table_data as $t_key=>$t_val)
+	else if($table_format=="excel_format" && isset($table_columns))
 	{
-		foreach($t_val["pid_info"] as $nbpid_key=>$nbpid_val)
+		print_the_table_header_excel($table_columns);
+		$current_model_name="";
+		while($row=mysqli_fetch_assoc($result))
 		{
-			echo "<tr>";
-			echo "<td><span style='padding-right:20%;'>".$t_val["fam_name"]."</span></td><td><span style='padding-right:0%;'>".$t_val["model_name"]."</span></td>";
-			#echo "<td>";
-			#var_dump($nbpid_key);
-			#echo "</td>";
-
-			foreach($retailers_to_compare as $retailer_key=>$retailer_name)
-			{
-				if(isset($nbpid_val[$retailer_key])&&isset($nbpid_val["hp_store"]))
-				{
-					$retailer_columns=[];
-					$column_nr=0;
-					foreach($table_columns[$retailers_to_compare[$retailer_key]] as $column)
-					{
-						$column_nr++;
-						$col_span[$column]=0;
-						$retailer_val=$nbpid_val[$retailer_key];
-						if(isset($retailer_val[$column][0]))
-						{
-							$url=str_replace("https //","https://",$retailer_val[$column][2]);
-							$time=date("Y-m-d H:i:s",(strtotime($retailer_val[$column][1])+($time_zone*3600)));
-							$hp_base_price=floatval($nbpid_val["hp_store"]["min_price"][0]);
-							if($hp_base_price!=0)
-							{ 
-								if(isset($add_table_data[$retailer_key][$retailer_val[$column][3]][$nbpid_key]["avg_".$column]) && $add_table_data[$retailer_key][$retailer_val[$column][3]][$nbpid_key]["avg_".$column]!=NULL)
-								{ 
-									$add_data=$add_table_data[$retailer_key][$retailer_val[$column][3]][$nbpid_key]["avg_".$column];
-									$delta=round(floatval($add_data[0])*100,2); $time=$time." (".$add_data[1]." vars)";
-								}
-								else
-								{ $delta=round((((floatval($retailer_val[$column][0])-$hp_base_price)/$hp_base_price)*100),2); }
-								$color_delta="color:blue;";
-								if($delta<$red_color_threshold){$color_delta="color:red;";}
-								else if($delta>$green_color_threshold){$color_delta="color:green;";}
-								if($delta>0){$delta="+".strval($delta);}
-							}	
-							else
-							{ $delta="N/A"; }
-							$show_delta="";
-							if($retailer_key!="hp_store")
-							{ $show_delta='<span style="'.$color_delta.'">  ['.$delta.'%]</span>'; }
-							
-							
-							if($retailer_key!="market")
-							{ $retailer_columns[$column_nr]="<td style='text-align:center;'>"; }
-							else
-							{ $retailer_columns[$column_nr]="<td style='text-align:center; background-color:#F8F8F8;'>"; }
-
-							if($retailer_val[$column][2]!=NULL && strlen($retailer_val[$column][2])>10)
-							{ $retailer_columns[$column_nr].='<div title="'.$time.'"><a target="_blank" href="'.$url.'">$'.$retailer_val[$column][0].'</a></div></td>'; if($show_delta!=""){ $retailer_columns[$column_nr].='<td style="text-align:center;">'.$show_delta.'</td>'; } }
-							else
-							{ $retailer_columns[$column_nr].='<div title="'.$time.'">$'.$retailer_val[$column][0].'</div></td>'; if($show_delta!=""){ $retailer_columns[$column_nr].='<td style="text-align:center;">'.$show_delta.'</td>'; } }
-						}
-						else if($column=="SKU")
-						{ $retailer_columns[$column_nr]="<td style='text-align:center;'>".$retailer_val["min_price"][3]."</td>"; }
-						else
-						{ $retailer_columns[$column_nr]="<td style='text-align:center;'></td>"; }
-
-					}
-					$to_show_string=implode($retailer_columns);
-					$to_replace=["$","[","]","+"];
-					foreach($to_replace as $word)
-					{ $to_show_string=str_replace($word,"",$to_show_string); }
+			$tr_style="";
 						
-					echo $to_show_string;
+			if($row["noteb_pid"]=="0")
+			{
+
+				$tr_style="style='display: table-row;'";
+			}
+			else
+			{
+				$tr_style="style='display: none; background-color:#CCCCCC;' class='".$row["hp_pid"]."'";
+				$SELECT_CONF_INFO="SELECT * FROM `noteb_pid_info` WHERE `notebpid`='".$row["noteb_pid"]."' LIMIT 1";
+				$conf_info_result=mysqli_query($rcon,$SELECT_CONF_INFO);
+				if(have_results($conf_info_result))
+				{
+					$conf_info=mysqli_fetch_assoc($conf_info_result);
+					$conf_data=json_decode($conf_info["conf_info"],true);
+					mysqli_free_result($conf_info_result);
 				}
-				else
-				{ 
-					foreach($table_columns[$retailers_to_compare[$retailer_key]] as $column)
-					{echo "<td style='text-align:center;'></td><td style='text-align:center;'></td>"; }
+			}	
+			echo "<tr ".$tr_style.">";
+			echo "<td><span style='padding-right:20%;'>".$row["fam"]."</span></td><td><span style='padding-right:0%;'>".$row["model"]."</span></td><td style='text-align:center;'>".$row["hp_pid"]."</td>";
+			$row_data=json_decode($row["price_data"],true); $skipped=False;
+			foreach($table_columns["retailers"] as $retailer_key=>$retailer_name)
+			{
+				foreach($table_columns["price_types"] as $price_type)
+				{
+					if(isset($row_data[$retailer_key]))
+					{
+						
+						#SKIPPING ONE PRICE AND PUTTING THE BUTTON
+						if($retailer_key=="hpcom" && !$skipped && $row["noteb_pid"]=="0")
+						{ echo "<td><button onclick='enable_all_conf(".'"'.$row["hp_pid"].'"'.")' id='main_".$row["hp_pid"]."'>Show conf</button></td>"; $skipped=True; continue;}
+						else if($retailer_key=="hpcom" && !$skipped && $row["noteb_pid"]!="0")
+						{ echo "<td>The configuration</td>"; $skipped=True; continue;}
+						
+						$the_data=$row_data[$retailer_key][$price_type];
+						if(isset($the_data["count"])){ $vars="(".$the_data["count"]." vars)"; }else{$vars="(1 vars)";} 
+						$delta=round($the_data["diff"]*100,2);
+						$show_delta="";
+						if($retailer_key!="hpcom")
+						{
+							$color_delta="color:blue;";
+							if($delta<$red_color_threshold){$color_delta="color:red;";}
+							else if($delta>$green_color_threshold){$color_delta="color:green;";}
+							if($delta>0){$delta="+".strval($delta);}
+							$show_delta='<span style="'.$color_delta.'">'.$delta.'</span>';
+						}
+						$time=date("Y-m-d H:i:s",(strtotime($the_data["time"])+($time_zone*3600)));
+						if($retailer_key=="market_price")
+						{ echo "<td style='text-align:center; background-color:#F8F8F8;'>"; }
+						else
+						{ echo "<td style='text-align:center;'>"; }
+						echo '<div title="'.$time.' '.$vars.'"><a target="_blank" href="'.$the_data["url"].'">'.$the_data["price"].'</a></div></td>';
+
+						if($retailer_key=="market_price")
+						{ echo "<td style='text-align:center; background-color:#F8F8F8;'>"; }
+						else
+						{ if($retailer_key!="hpcom"){echo "<td style='text-align:center;'>"; } }
+						echo ''.$show_delta.'</td>';
+					}
+					else
+					{
+						echo "<td style='text-align:center;'>-</td><td style='text-align:center;'>-</td>";
+					}
 				}
 			}
-		echo "</tr>";
+			echo "</tr>";
 		}
 	}
+	else
+	{
+		if(isset($table_columns)){ echo "<tr><td>Unknown table format selected.</td></tr>"; } else { echo "<tr><td>Not data available for ".$proc_date."</td></tr>"; }
+	}
+	echo "\n";
+	echo "</table>";
 }
-else
-{ if(isset($table_columns)){ echo "<tr><td>Unknown table format selected.</td></tr>"; } else { echo "<tr><td>Not data available for ".$proc_date."</td></tr>"; } }
-echo "</table>";
 ?>
 <?php
 if($table_format!="excel_format")
@@ -413,15 +308,16 @@ function print_the_table_header($table_columns)
 {
 	#Here we print the header
 	echo "<tr>";
-	foreach($table_columns as $key=>$second_columns)
-	{  echo "<td style='text-align:center;' colspan='".count($second_columns)."'><b>".$key."</b></td>"; }
+	foreach($table_columns["retailers"] as $retailer_key=>$retailer_name)
+	{ $colspan=count($table_columns["price_types"]); if($retailer_key=="hpcom"){$colspan++;}  echo "<td style='text-align:center;' colspan='".$colspan."'><b>".$retailer_name."</b></td>"; }
 	echo "</tr>";
 
 	echo "<tr>";
-	foreach($table_columns as $key=>$second_columns)
+	foreach($table_columns["retailers"] as $retailer_key=>$retailer_name)
 	{  
-		foreach($second_columns as $column)
-		{ echo "<td style='text-align:center;'>".$column."</td>";  }
+		if($retailer_key=="hpcom"){ echo "<td style='text-align:center;'>SKU</td>"; ; }
+		foreach($table_columns["price_types"] as $price_types)
+		{ echo "<td style='text-align:center;'>".$price_types."</td>";  }
 	}
 	echo "</tr>";
 }
@@ -430,21 +326,111 @@ function print_the_table_header_excel($table_columns)
 {
 	$to_return=0;
 	#Here we print the header
-	$skip_columns=["SKU"];
+	$skip_columns=array();
 	echo "<tr>";
 	echo "<td>Product line</td><td>Model</td><td>SKU</td>";
-	foreach($table_columns as $key=>$second_columns)
+	foreach($table_columns["retailers"] as $retailer_key=>$retailer_name)
 	{  
-		if(in_array($second_columns,$skip_columns)==False)
+		if(in_array($retailer_key,$skip_columns)==False)
 		{
-			foreach($second_columns as $column)
+			foreach($table_columns["price_types"] as $price_type)
 			{
-				if(in_array($column,$skip_columns)==False)
-				{ echo "<td style='text-align:center;'>".$key." ".$column."</td>"; $to_return++; if($key!="HP Store") { echo "<td style='text-align:center;'>".$key." ".$column." diff</td>"; $to_return++; } }
+				if(in_array($price_type,$skip_columns)==False)
+				{ echo "<td style='text-align:center;'>".$retailer_name." ".$price_type."</td>"; $to_return++; if($retailer_key!="hpcom") { echo "<td style='text-align:center;'>".$retailer_name." ".$price_type." diff</td>"; $to_return++; } }
 			}
 		}
 	}
 	echo "</tr>";
+	return $to_return;
+}
+function show_comp_info($comp)
+{
+	$to_return=NULL;
+	$comp_data=$comp[key($comp)];
+	switch(key($comp))
+	{
+		case "cpu":
+		{
+			if(isset($comp_data["prod"])&&isset($comp_data["model"]))
+			{ $to_return=$comp_data["prod"]." ".$comp_data["model"]; }
+			break;
+		}
+		case "display":
+		{
+			if(isset($comp_data["size"])&&isset($comp_data["backt"])&&isset($comp_data["hres"])&&isset($comp_data["vres"])&&isset($comp_data["touch"]))
+			{
+				if(intval($comp_data["touch"])==1){$touch="Touch";}else{$touch="Non-Touch";}
+				$to_return=$comp_data["size"].'" '.$comp_data["backt"]." ".$comp_data["hres"]."x".$comp_data["vres"]." ".$touch;
+			}
+			break;
+		}
+		case "mem":
+		{
+			if(isset($comp_data["cap"]))
+			{ $to_return=$comp_data["cap"]." GB"; }
+			break;
+		}
+		case "hdd":
+		{
+			if(isset($comp_data["cap"])&&isset($comp_data["type"]))
+			{ $to_return=$comp_data["type"]." ".$comp_data["cap"]." GB"; }
+			break;
+		}
+		case "shdd":
+		{
+			if(isset($comp_data["cap"])&&isset($comp_data["type"]))
+			{ $to_return=$comp_data["type"]." ".$comp_data["cap"]." GB"; }
+			break;
+		}
+		case "gpu":
+		{
+			if(isset($comp_data["prod"])&&isset($comp_data["model"]))
+			{ $to_return=$comp_data["prod"]." ".$comp_data["model"]; }
+			break;
+		}
+		case "wnet":
+		{
+			if(isset($comp_data["stand"])&&isset($comp_data["speed"]))
+			{ $to_return=$comp_data["speed"]." Mbps ".$comp_data["stand"]; }
+			break;
+		}
+		case "odd":
+		{
+			if(isset($comp_data["type"]))
+			{ $to_return=$comp_data["type"]; }
+			break;
+		}
+		case "mdb":
+		{
+			if(isset($comp_data["submodel"]))
+			{ $to_return=$comp_data["submodel"]; }
+			break;
+		}
+		case "chassis":
+		{
+			break;
+		}
+		case "acum":
+		{
+			if(isset($comp_data["cap"]))
+			{ $to_return=$comp_data["cap"]." Whr"; }
+			break;
+		}
+		case "warranty":
+		{
+			if(isset($comp_data["years"])&&isset($comp_data["prod"]))
+			{ $to_return=$comp_data["years"]." year(s) ".$comp_data["prod"]; }
+			break;
+		}
+		case "sist":
+		{
+			if(isset($comp_data["sist"])&&isset($comp_data["vers"])&&isset($comp_data["type"]))
+			{ $to_return=$comp_data["sist"]." ".$comp_data["vers"]." ".$comp_data["type"]; }
+			break;
+		}
+		default:
+		{ break; }
+	}
 	return $to_return;
 }
 
