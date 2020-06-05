@@ -240,7 +240,7 @@ if(have_results($result))
 						if($retailer_key=="hpcom" && !$skipped && $row["noteb_pid"]=="0")
 						{ echo "<td><button onclick='enable_all_conf(".'"'.$row["hp_pid"].'"'.")' id='main_".$row["hp_pid"]."'>Show conf</button></td>"; $skipped=True; continue;}
 						else if($retailer_key=="hpcom" && !$skipped && $row["noteb_pid"]!="0")
-						{ echo "<td>The configuration</td>"; $skipped=True; continue;}
+						{ echo "<td></td>"; $skipped=True; continue;}
 						
 						$the_data=$row_data[$retailer_key][$price_type];
 						if(isset($the_data["count"])){ $vars="(".$the_data["count"]." vars)"; }else{$vars="(1 vars)";} 
