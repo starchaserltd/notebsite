@@ -225,14 +225,11 @@ if(have_results($result))
 			}
 			else
 			{
-				$tr_style="style='display: none; background-color:#CCCCCC;' class='".$row["hp_pid"]."'";
-				$SELECT_CONF_INFO="SELECT * FROM `noteb_pid_info` WHERE `notebpid`='".$row["noteb_pid"]."' LIMIT 1";
-				$conf_info_result=mysqli_query($rcon,$SELECT_CONF_INFO);
-				if(have_results($conf_info_result))
+
+				if(isset($conf_info_array[$row["noteb_pid"]]))
 				{
-					$conf_info=mysqli_fetch_assoc($conf_info_result);
-					$conf_data=json_decode($conf_info["conf_info"],true);
-					mysqli_free_result($conf_info_result);
+					$conf_info=$conf_info_array[$row["noteb_pid"]];
+					$conf_data=json_decode($conf_info,true);
 				}
 			}	
 			echo "<tr ".$tr_style.">";
