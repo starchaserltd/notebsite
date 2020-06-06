@@ -31,10 +31,12 @@ require_once("../../../libnb/php/show_error.php");
 ?>
 <?php
 
-if(isset($_GET["date"])){ $proc_date=strval($_GET["date"]); }else{ $proc_date=date("Y-m-d"); }
+if(isset($_GET["date"])){ $proc_date=date('Y-m',strtotime(strval($_GET["date"]))); }else{ $proc_date=date("Y-m"); }
 if(isset($_GET["format"])){ $table_format=strval($_GET["format"]); }else{ $table_format="normal_format"; }
-if(strtotime($proc_date)<strtotime("2020-01-01")){ echo "Wrong date. Showing data for the current date.<br>"; $proc_date=date("Y-m-d"); }
-if(strtotime($proc_date)>strtotime("2050-01-01")){ echo "Wrong date. Showing data for the current date.<br>"; $proc_date=date("Y-m-d"); }
+if(strtotime($proc_date)<strtotime("2020-01")){ echo "Wrong date. Showing data for the current date.<br>"; $proc_date=date("Y-m"); }
+if(strtotime($proc_date)>strtotime("2050-01")){ echo "Wrong date. Showing data for the current date.<br>"; $proc_date=date("Y-m"); }
+
+if($proc_date==date("Y-m")){$proc_date=date('Y-m',strtotime("first day of previous month"));}
 
 $table_columns["retailers"]=["hpcom"=>"HP Store","market_price"=>"Market Median","amazoncom"=>"Amazon US","bhphotovideo"=>"B&H Photo Video","bestbuyus"=>"Best Buy"];
 $table_columns["price_types"]=["min_price","median_price"];
@@ -45,10 +47,10 @@ mysqli_select_db($rcon, "stch_hp_data");
 if($table_format!="excel_format")
 {
 	?>
-	<form target="_self" action="hp_price_table.php" method="get">
+	<form target="_self" action="hp_monthly_price_table.php" method="get">
 		<select name="date" id="date" size="5">
 	<?php
-	$SQL_dates="SELECT DISTINCT DATE_FORMAT(`proc_date`,'%Y-%m-%d') AS `proc_date` FROM `daily_price_table` ORDER BY `proc_date` DESC";
+	$SQL_dates="SELECT DISTINCT DATE_FORMAT(`proc_date`,'%Y-%m') AS `proc_date` FROM `monthly_price_table` ORDER BY `proc_date` DESC";
 	$dates_result=mysqli_query($rcon,$SQL_dates);
 	if(have_results($dates_result))
 	{
@@ -63,13 +65,13 @@ if($table_format!="excel_format")
 	?>
 		</select>
 		<button type="submit" name="format" value="normal_format">Select date</button>
-		<button type="submit" formtarget="_blank" name="format" formaction="hp_price_table.php" value="excel_format">Excel friendly</button>
-		<button type="submit" formtarget="_blank" name="format" formaction="hp_monthly_price_table.php" value="normal_format">Monthly table</button>
+		<button type="submit" formtarget="_blank" name="format" formaction="hp_monthly_price_table.php" value="excel_format">Excel friendly</button>
 	</form>
 <?php
 }
-
-$sql_select="SELECT * FROM `daily_price_table` WHERE `proc_date`='".$proc_date."' ORDER BY `fam` ASC, `model` ASC, `hp_pid` ASC, `noteb_pid` ASC ";
+$proc_date_max=$proc_date."-31";
+$proc_date=$proc_date."-01";
+$sql_select="SELECT * FROM `monthly_price_table` WHERE `proc_date`='".$proc_date."' ORDER BY `fam` ASC, `model` ASC, `hp_pid` ASC, `noteb_pid` ASC ";
 $result=mysqli_query($rcon,$sql_select);
 $table_data=array();
 $add_table_data=array();
@@ -80,7 +82,7 @@ $green_color_threshold=10;
 
 if($table_format=="normal_format" && isset($table_columns))
 {
-	$select_time="SELECT MIN(`price_time`) AS `min_time`, MAX(`price_time`) AS `max_time` FROM `daily_price_data` WHERE `proc_date`='".$proc_date."' LIMIT 1";
+	$select_time="SELECT MIN(`price_time`) AS `min_time`, MAX(`price_time`) AS `max_time` FROM `daily_price_data` WHERE `proc_date`>='".$proc_date."' AND `proc_date`<='".$proc_date_max."'  LIMIT 1";
 	$time_result=mysqli_query($rcon,$select_time);
 	if(have_results($time_result))
 	{
@@ -93,7 +95,7 @@ if($table_format=="normal_format" && isset($table_columns))
 
 if(have_results($result))
 {
-	$SELECT_CONF_INFO="SELECT `info`.* FROM `noteb_pid_info` AS `info` JOIN `daily_price_table` AS `price_table` ON `info`.`notebpid`=`price_table`.`noteb_pid` WHERE `proc_date`='".$proc_date."'";
+	$SELECT_CONF_INFO="SELECT `info`.* FROM `noteb_pid_info` AS `info` JOIN `monthly_price_table` AS `price_table` ON `info`.`notebpid`=`price_table`.`noteb_pid` WHERE `proc_date`='".$proc_date."'";
 	$conf_info_result=mysqli_query($rcon,$SELECT_CONF_INFO);
 	$conf_info_array=array();
 	if(have_results($conf_info_result))
@@ -199,7 +201,7 @@ if(have_results($result))
 						{ echo "<td style='text-align:center; background-color:#F8F8F8;'>"; }
 						else
 						{ echo "<td style='text-align:center;'>"; }
-						echo '<div title="'.$time.' '.$vars.'"><a target="_blank" href="'.$the_data["url"].'">$'.$the_data["price"].$show_delta.'</a></div>';
+						echo '<div title="'.$time.' '.$vars.'"><a target="_blank" href="'.$the_data["url"].'">$'.intval($the_data["price"]).$show_delta.'</a></div>';
 						echo '</td>';
 					}
 					else
@@ -266,7 +268,7 @@ if(have_results($result))
 						{ echo "<td style='text-align:center; background-color:#F8F8F8;'>"; }
 						else
 						{ echo "<td style='text-align:center;'>"; }
-						echo '<div title="'.$time.' '.$vars.'"><a target="_blank" href="'.$the_data["url"].'">'.$the_data["price"].'</a></div></td>';
+						echo '<div title="'.$time.' '.$vars.'"><a target="_blank" href="'.$the_data["url"].'">'.intval($the_data["price"]).'</a></div></td>';
 
 						if($retailer_key=="market_price")
 						{ echo "<td style='text-align:center; background-color:#F8F8F8;'>"; }
