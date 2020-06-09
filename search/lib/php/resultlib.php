@@ -63,12 +63,11 @@ function showsist($col, $tab, $id)
 	if(isset($item['vers']) && $item['vers']!=0 )
 	{
 		$item['vers']=floatval($item['vers']);
-		echo $item['vers']."";
+		echo $item['vers']." ";
 	}
 
 	if($item['type'])
 	{
-		echo " ";
 		echo $item['type']."";
 	}
 }
