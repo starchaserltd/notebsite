@@ -47,7 +47,7 @@ switch ($_GET['type'])
 		$chassis_thicmax=40;
 		$gpu_typelist=[0,1];
 		$hdd_type = ["HDD","SSD","SSHD"];
-		$sist_sist=["Windows+Home","Windows+Pro","Windows+S","Chrome OS","macOS","Linux Ubuntu"]; 
+		$sist_sist=["Windows+Home","Windows+Pro","Windows+S","Chrome OS","macOS","Linux"]; 
 		$to_search["chassis"]=1; $to_search["mdb"]=1; $to_search["cpu"]=1; $to_search["gpu"]=1;
 		$to_search["hdd"]=1; $to_search["mem"]=1; $to_search["display"]=1; $to_search["sist"]=1;
 		$filtercomp = array("cpu","chassis", "gpu", "mdb", "display","hdd","sist");
@@ -62,7 +62,7 @@ switch ($_GET['type'])
 		$chassis_thicmax = 23;
 		$gpu_typelist=[0,1,2];
 		$mdb_wwan = 0;
-		$sist_sist=["Windows+Home","Windows+Pro","Windows+S","Chrome OS","macOS","Linux Ubuntu"]; 
+		$sist_sist=["Windows+Home","Windows+Pro","Windows+S","Chrome OS","macOS","Linux"]; 
 		$to_search["chassis"]=1; $to_search["cpu"]=1; $to_search["gpu"]=1;
 		$to_search["hdd"]=1; $to_search["mem"]=1; $to_search["display"]=1; $to_search["sist"]=1;
 		$filtercomp = array("cpu","chassis", "gpu", "display","hdd","sist");
@@ -78,7 +78,7 @@ switch ($_GET['type'])
 		$gpu_powermax=30;
 		$gpu_typelist=[0,1,3];
 		$hdd_type = ["HDD","SSD","SSHD"];
-		$sist_sist=["Windows+Home","Windows+Pro","Windows+S","macOS","Linux Ubuntu"]; 
+		$sist_sist=["Windows+Home","Windows+Pro","Windows+S","macOS","Linux"]; 
 		$to_search["chassis"]=1; $to_search["mdb"]=1; $to_search["cpu"]=1; $to_search["gpu"]=1;
 		$to_search["hdd"]=1; $to_search["mem"]=1; $to_search["display"]=1; $to_search["sist"]=1;
 		$filtercomp = array("cpu","chassis", "gpu", "mdb", "display","hdd","sist","mem");
@@ -113,7 +113,7 @@ switch ($_GET['type'])
 		break;
 	
 	case "99":// All
-		$sist_sist=["Windows+Home","Windows+Pro","Windows+S","Chrome OS","macOS","Linux Ubuntu","Android"];
+		$sist_sist=["Windows+Home","Windows+Pro","Windows+S","Chrome OS","macOS","Linux","Android"];
 		$mdb_wwan = 0;
 		$filtercomp = array("sist");
 		break;

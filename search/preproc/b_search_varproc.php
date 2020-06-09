@@ -28,7 +28,7 @@ switch($browse_by)
 		if($_GET['prod'])
 		{
 			$prod_model  = clean_string($_GET['prod']); $set_j_ssearch="$('#s_prod_id').val(null).trigger('change'); document.getElementById('s_dispsize').noUiSlider.reset(); $('#s_prod_id').append('<option selected=".'"'."selected".'"'.'>'.$prod_model."</option>'); $('#type').multiselect('select', ['99']); $('#type').multiselect('refresh');";
-			$sist_sist=["Windows+Home","Windows+Pro","Windows+S","Chrome OS","macOS","Linux Ubuntu","Android"]; 
+			$sist_sist=["Windows+Home","Windows+Pro","Windows+S","Chrome OS","macOS","Linux","Android"]; 
 			$to_search["sist"]=1;	$filtercomp = array("sist");
 		}
 		break;
@@ -52,7 +52,7 @@ switch($browse_by)
 		$gpu_typelist=[0,1];
 		$hdd_type = ["HDD","SSD","SSHD"];
 		$totalcapmin = 120; 
-		$sist_sist=["Windows+Home","Windows+Pro","Windows+S","Chrome OS","macOS","Linux Ubuntu"]; 
+		$sist_sist=["Windows+Home","Windows+Pro","Windows+S","Chrome OS","macOS","Linux"]; 
 		$to_search["chassis"]=1; $to_search["mdb"]=1; $to_search["cpu"]=1; $to_search["gpu"]=1;
 		$to_search["hdd"]=1; $to_search["mem"]=1; $to_search["display"]=1; $to_search["sist"]=1;
 		$filtercomp = array("cpu","chassis", "gpu", "mdb", "display","hdd","sist","mem");
@@ -72,7 +72,7 @@ switch($browse_by)
 		$chassis_weightmax=2.1;
 		$chassis_thicmax = 23;
 		$gpu_typelist=[0,1,2];
-		$sist_sist=["Windows+Home","Windows+Pro","Windows+S","Chrome OS","macOS","Linux Ubuntu"]; 
+		$sist_sist=["Windows+Home","Windows+Pro","Windows+S","Chrome OS","macOS","Linux"]; 
 		$to_search["chassis"]=1; $to_search["cpu"]=1; $to_search["gpu"]=1;
 		$to_search["hdd"]=1; $to_search["mem"]=1; $to_search["display"]=1; $to_search["sist"]=1;
 		$filtercomp = array("cpu","chassis", "gpu", "display","hdd","sist","mem");
@@ -92,7 +92,7 @@ switch($browse_by)
 		$gpu_typelist=[0,1];
 		$mdb_wwan = 1;
 		$totalcapmin = 0;
-		$sist_sist=["Windows+Home","Android","Windows+S","Chrome OS","No OS","Linux Ubuntu"]; 
+		$sist_sist=["Windows+Home","Android","Windows+S","Chrome OS","No OS","Linux"]; 
 		$to_search["chassis"]=1; $to_search["cpu"]=1; $to_search["gpu"]=1; $to_search["mdb"]=1;
 		$to_search["mem"]=1; $to_search["display"]=1; $to_search["sist"]=1;
 		$filtercomp = array("cpu","chassis", "gpu","mdb", "display","sist","mem");
@@ -115,7 +115,7 @@ switch($browse_by)
 		$gpu_typelist=[0,1,3];
 		$hdd_type = ["HDD","SSD","SSHD"];
 		$totalcapmin = 120;
-		$sist_sist=["Windows+Home","Windows+Pro","Windows+S","macOS","Linux Ubuntu"]; 
+		$sist_sist=["Windows+Home","Windows+Pro","Windows+S","macOS","Linux"]; 
 		$to_search["chassis"]=1; $to_search["mdb"]=1; $to_search["cpu"]=1; $to_search["gpu"]=1;
 		$to_search["hdd"]=1; $to_search["mem"]=1; $to_search["display"]=1; $to_search["sist"]=1;
 		$filtercomp = array("cpu","chassis", "gpu", "mdb", "display","hdd","sist","mem");
@@ -173,7 +173,7 @@ switch($browse_by)
 		$display_touch[] = "1"; $display_touch[] ="2"; 
 		$to_search["display"]=1;  $to_search["sist"]=1;
 		$filtercomp = array("display","sist");
-		$sist_sist=["Windows+Home","Windows+Pro","Windows+S","Chrome OS","macOS","Linux Ubuntu","Android"];
+		$sist_sist=["Windows+Home","Windows+Pro","Windows+S","Chrome OS","macOS","Linux","Android"];
 		$set_j_ssearch="$('#s_prod_id').empty().select2(); $('#type').multiselect('select', ['99']); $('#type').multiselect('refresh'); document.getElementById('s_dispsize').noUiSlider.set([10,13.9]);";
 		break;
 	}
@@ -184,7 +184,7 @@ switch($browse_by)
 		$display_touch[] = "1"; $display_touch[] ="2"; 
 		$to_search["display"]=1; $to_search["sist"]=1;
 		$filtercomp = array("display","sist");
-		$sist_sist=["Windows+Home","Windows+Pro","Windows+S","Chrome OS","macOS","Linux Ubuntu","Android"];
+		$sist_sist=["Windows+Home","Windows+Pro","Windows+S","Chrome OS","macOS","Linux","Android"];
 		$set_j_ssearch="$('#s_prod_id').empty().select2(); $('#type').multiselect('select', ['99']); $('#type').multiselect('refresh'); document.getElementById('s_dispsize').noUiSlider.set([14,16.4]);";
 		break;
 	}
@@ -195,7 +195,7 @@ switch($browse_by)
 		$display_touch[] = "1"; $display_touch[] ="2"; 
 		$to_search["display"]=1; $to_search["sist"]=1;
 		$filtercomp = array("display","sist");
-		$sist_sist=["Windows+Home","Windows+Pro","Windows+S","Chrome OS","macOS","Linux Ubuntu","Android"];
+		$sist_sist=["Windows+Home","Windows+Pro","Windows+S","Chrome OS","macOS","Linux","Android"];
 		$set_j_ssearch="$('#s_prod_id').empty().select2(); $('#type').multiselect('select', ['99']); $('#type').multiselect('refresh'); document.getElementById('s_dispsize').noUiSlider.set([17,21]);";
 		break;
 	}	
