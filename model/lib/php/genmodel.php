@@ -662,11 +662,11 @@ function show_sist($list)
 	
 			if(is_numeric($row['vers']))
 			{ $row['vers']=floatval($row['vers']); }
-			if($row["vers"]==0){$row["vers"]="";}
+			if($row["vers"]==0){$row["vers"]="";}else{$row['vers']=" ".strval($row['vers']);}
 			if($id!=$GLOBALS['idsist'])
-			{ echo "<option value=".$id.">".$row["sist"]." ".$row["vers"]." ".$row["type"]."</option>"; }
+			{ echo "<option value=".$id.">".$row["sist"].$row["vers"]." ".$row["type"]."</option>"; }
 			else
-			{ echo "<option value=".$id." selected='selected'>".$row["sist"]." ".$row["vers"]." ".$row["type"]."</option>"; }
+			{ echo "<option value=".$id." selected='selected'>".$row["sist"].$row["vers"]." ".$row["type"]."</option>"; }
 		}
 		echo "</SELECT></form>";
 	}
