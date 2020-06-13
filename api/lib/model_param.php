@@ -78,7 +78,7 @@ function comp_details($comp,$id)
 		}
 		case "gpu":
 		{		
-			$sel="SELECT id,prod,model,arch as architecture,tech as lithography,pipe as shaders,cspeed as base_speed,bspeed as boost_speed,sspeed as shader_speed,mspeed as memory_speed,mbw as memory_bandwidth,maxmem as memory_size,mtype as memory_type,ROUND(power,0) as tdp,msc as other_info,ROUND(rating,1) as rating,typegpu FROM notebro_db.GPU WHERE id=".$id.""; 
+			$sel="SELECT `id`,`prod`,RTRIM(CONCAT(`model`,' ',IFNULL(variant,''))) AS `model`,arch as architecture,tech as lithography,pipe as shaders,cspeed as base_speed,bspeed as boost_speed,sspeed as shader_speed,mspeed as memory_speed,mbw as memory_bandwidth,maxmem as memory_size,mtype as memory_type,ROUND(power,0) as tdp,msc as other_info,ROUND(rating,1) as rating,typegpu FROM notebro_db.GPU WHERE id=".$id.""; 
 			$res=array(); $res=mysqli_fetch_assoc(mysqli_query($GLOBALS['con'], $sel));
 			$res["prod"]=ucfirst(strtolower($res["prod"]));
 			return $res; break;

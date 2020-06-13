@@ -180,7 +180,7 @@ if(have_results($result))
 					{
 						#SKIPPING ONE PRICE AND PUTTING THE BUTTON
 						if($retailer_key=="hpcom" && !$skipped && $row["noteb_pid"]=="0")
-						{ echo "<td><button onclick='enable_all_conf(".'"'.$row["hp_pid"].'"'.")' id='main_".$row["hp_pid"]."'>Show conf</button></td>"; $skipped=True; continue;}
+						{ echo "<td><button onclick='javascript:void(0);' id='main_".$row["hp_pid"]."'>No conf</button></td>"; $skipped=True; continue;}
 						else if($retailer_key=="hpcom" && !$skipped && $row["noteb_pid"]!="0")
 						{ echo "<td>".$conf_table."</td>"; $skipped=True; continue;}
 						
@@ -411,8 +411,13 @@ function show_comp_info($comp)
 		}
 		case "mdb":
 		{
+			$to_return="";
 			if(isset($comp_data["submodel"]))
 			{ $to_return=$comp_data["submodel"]; }
+			if(isset($comp_data["wwan"]) && intval($comp_data["wwan"])==1)
+			{ $to_return.=" WWAN: Yes"; }
+			else
+			{ $to_return.=" WWAN: No"; }
 			break;
 		}
 		case "chassis":
