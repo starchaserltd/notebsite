@@ -1,4 +1,5 @@
 <?php
+require_once("../../../etc/session.php");
 include 'CodexWorldCaptcha.php';
 $captchaConfig = array(
      'img_width' => '200',

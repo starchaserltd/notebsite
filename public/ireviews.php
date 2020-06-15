@@ -1,5 +1,6 @@
 <?php
 require_once("../etc/conf.php");
+require_once("../etc/session.php");
 
 if(isset($_GET['model_id'])) { $ex_model_id = intval($_GET['model_id']); }else{$ex_model_id=0;}
 if(isset($_POST['table'])) { $table = clean_string($_POST['table']); }

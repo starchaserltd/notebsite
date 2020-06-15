@@ -26,7 +26,8 @@ class CodexWorldCaptcha
     
 	public function __construct($config = array()){
 		ob_start();
-		session_start();
+		if (session_status() == PHP_SESSION_NONE)
+		{ session_start(); }
 		if (count($config) > 0){
 			foreach ($config as $key => $val){
                 if (isset($this->$key)){
