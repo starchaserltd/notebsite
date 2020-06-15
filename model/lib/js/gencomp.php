@@ -126,7 +126,7 @@ for($x = 0; $x <= $nrconf; $x++)
 	$maxminvalues=bluered(floatval($resu['rating']),$maxminvalues,$x,"gpurating",0);
 	if(intval($resu['power'])!=0){$resu['power'].=" W";}
 	$vars=array(
-		$resu['prod']." ".$resu['model'],
+		$resu['prod']." ".$resu['name'],
 		$resu['arch'],
 		$resu['tech']." nm",
 		$resu['pipe'],

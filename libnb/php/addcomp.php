@@ -39,7 +39,7 @@ if($config_id)
 	$r = mysqli_fetch_assoc($result2); 
 	$conf_cpu_name=$r["model"];
 
-	$sql2='SELECT prod,model FROM GPU WHERE id='.$row["gpu"];
+	$sql2='SELECT prod,name FROM GPU WHERE id='.$row["gpu"];
 	$result2 = mysqli_query($con,$sql2);
 	$r = mysqli_fetch_assoc($result2); 
 	$conf_gpu_name=$r["prod"]." ".$r["model"];

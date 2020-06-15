@@ -63,7 +63,7 @@ function removecomplink(idstring)
 // ADD TO COMPARE FUNCTION 
  function addcompare(idconf) {
 	if(idconf){ var thedata={ sendid: idconf}; }else { var thedata={sendcpu: cpu["id"],sendgpu: gpu["id"], senddisp: display["id"], sendhdd: hdd["id"], sendshdd: shdd["id"],
-	sendmem: mem["id"], sendchassis: chassis["id"], sendodd: odd["id"], sendwnet: wnet["id"], sendwar: war["id"], sendsis: sist["id"],sendacum: acum["id"], sendmdb: mdb["id"], sendmid: mid, sendcpuname: cpu["model"], sendgpuname: gpu["prod"]+" "+gpu["model"], senddissize: display["size"], senddisres: display["hres"]+"x"+display["vres"], sendmeminfo: mem["cap"]+"GB "+mem["type"], sendhddinfo: hdd["cap"]+"GB "+hdd["type"] };}
+	sendmem: mem["id"], sendchassis: chassis["id"], sendodd: odd["id"], sendwnet: wnet["id"], sendwar: war["id"], sendsis: sist["id"],sendacum: acum["id"], sendmdb: mdb["id"], sendmid: mid, sendcpuname: cpu["model"], sendgpuname: gpu["prod"]+" "+gpu["name"], senddissize: display["size"], senddisres: display["hres"]+"x"+display["vres"], sendmeminfo: mem["cap"]+"GB "+mem["type"], sendhddinfo: hdd["cap"]+"GB "+hdd["type"] };}
 	$.ajax({
 		type: "POST",
 		url: "libnb/php/addcomp.php",
@@ -74,8 +74,8 @@ function removecomplink(idstring)
 			var compinfo = data.split("++");
 			if(compinfo[3]!="0")
 			{
-				elementtext='<tr id="comprow'+compinfo[3]+'" class="items" style="background:#fff;"><td class="comparecell1"><div class="checkbox" style="margin:0px; width:0px;"><input type="checkbox" onclick="cchecks('+"'"+compinfo[3]+"'"+')" class="css-checkbox sme" id="checkbox'+compinfo[3]+'" '+compinfo[1]+' /><label style="font-weight:normal;min-height:16px;" for="checkbox'+compinfo[3]+'" class="css-label sme depressed"></label></div></td><td class="text-center comparecell3"><a  href="'+siteroot+'?model/model.php?conf='+compinfo[3]+'"><img class="img-responsive" src="res/img/models/thumb/t_'+compinfo[10]+'" alt="'+compinfo[9]+'"></a></td><td class="text-center comparecell2" ><a  href="'+siteroot+'?model/model.php?conf='+compinfo[3]+'" class="comparename">'+compinfo[0]+'<div class="menuhidden">'+compinfo[6]+'", '+compinfo[7]+', '+compinfo[4]+', '+compinfo[5]+', '+compinfo[8]+', '+compinfo[9]+'</div></a></td><td class="text-center" style="width:16px;padding-bottom:2px; padding-top:2px;"><a  style="color:#49505a;font-size:16px;padding:0px;background-color:#fff;" onclick="removecomp('+"'"+compinfo[3]+"'"+',0)"><span class="fas fa-times"></span></a></td></tr>';
-				document.getElementById("comparelist").insertAdjacentHTML('beforeend',elementtext);
+				elementtext='<tr id="comprow'+compinfo[3]+'" class="items" style="background:#fff;"><td class="comparecell1"><div class="checkbox" style="margin:0 0 0 5px; width:0px;height:16px"><input type="checkbox" onclick="cchecks('+"'"+compinfo[3]+"'"+')" class="css-checkbox sme" id="checkbox'+compinfo[3]+'" '+compinfo[1]+' /><label style="font-weight:normal;min-height:16px;" for="checkbox'+compinfo[3]+'" class="css-label sme depressed"></label></div></td><td class="text-center comparecell3"><a  href="'+siteroot+'?model/model.php?conf='+compinfo[3]+'"><img class="img-responsive" src="res/img/models/thumb/t_'+compinfo[10]+'" alt="'+compinfo[9]+'"></a></td><td class="comparecell2" ><a  href="'+siteroot+'?model/model.php?conf='+compinfo[3]+'" class="comparename">'+compinfo[0]+'<div class="menuhidden">'+compinfo[6]+'", '+compinfo[7]+', '+compinfo[4]+', '+compinfo[5]+', '+compinfo[8]+', '+compinfo[9]+'</div></a></td><td class="text-center" style="width:16px;padding-bottom:2px; padding-top:2px;"><a  style="color:#49505a;font-size:20px;padding:0px;background-color:#fff;" onclick="removecomp('+"'"+compinfo[3]+"'"+',0)"><span class="fas fa-times"></span></a></td></tr>';
+				document.querySelector("#comparelist tbody").insertAdjacentHTML('beforeend',elementtext);
 				nrcheck=parseInt(compinfo[2]);
 				if(firstcompare!=1)
 				{
@@ -113,7 +113,7 @@ setInterval(function()
 		}
 		else
 		{
-			elementtext='<tr id="toptrcomp"><td  colspan="4" style="border:0px;background-color:#fff; text-align:center; margin-top:-5px;"><button onmousedown="firstcompare=0; OpenPage('+"'model/comp.php?"+complink+"&ex="+excode+"',event); scrolltoid('content',0);"+'" style="padding:2% 25%;border-radius:5px; background-color:#fff; color:#0066cb; border:2px solid #0066cb;" type="button" class="btn btnc">Compare now</button></td></tr>';
+			elementtext='<tr id="toptrcomp"><td colspan="4" style="text-align:center;"><button onmousedown="firstcompare=0; OpenPage('+"'model/comp.php?"+complink+"&ex="+excode+"',event); scrolltoid('content',0);"+'" style="max-width: 150px; width: 100%;" type="button" class="btn btn-primary">Compare items</button></td></tr>';
 			$('table#comparelist tr#toptrcomp').replaceWith(elementtext);
 		}
 		nrcheckchange=nrcheck;
