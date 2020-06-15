@@ -238,7 +238,7 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 		
 		$table="`vi`";
 		if(isset($x["alt"])){$table=$x["alt"];}
-
+		
 		if(isset($x["value"]))
 		{
 			if(isset($x["prop"])&&$x["prop"]=="diffvisearch")
@@ -411,14 +411,16 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 	# echo "<br>";
 	# echo "<pre>" . $sel_chassis. "</pre>";
 
-	$result = mysqli_query($GLOBALS['con'], "$sel_chassis");
+	$result = mysqli_query($GLOBALS['con'], $sel_chassis);
 	$chassis_return = array();
-	
-	while($rand = mysqli_fetch_array($result)) 
-	{ 
-		$chassis_return[intval($rand[0])]=array("price"=>intval($rand[1]),"rating"=>intval($rand[2]),"err"=>intval($rand[3]));
+	if(have_results($result))
+	{
+		while($rand = mysqli_fetch_array($result)) 
+		{ 
+			$chassis_return[intval($rand[0])]=array("price"=>intval($rand[1]),"rating"=>intval($rand[2]),"err"=>intval($rand[3]));
+		}
+		mysqli_free_result($result);
 	}
-	mysqli_free_result($result);
 	return($chassis_return);
 	}
 ?>
