@@ -409,12 +409,13 @@ function show_comp_info($comp)
 		}
 		case "mdb":
 		{
+			$to_return="";
 			if(isset($comp_data["submodel"]))
 			{ $to_return=$comp_data["submodel"]; }
 			if(isset($comp_data["wwan"]) && intval($comp_data["wwan"])==1)
-			{ $to_return=$to_return." WWAN: Yes"; }
+			{ $to_return.=" WWAN: Yes"; }
 			else
-			{ $to_return=$to_return." WWAN: No"; }
+			{ $to_return.=" WWAN: No"; }
 			break;
 		}
 		case "chassis":
