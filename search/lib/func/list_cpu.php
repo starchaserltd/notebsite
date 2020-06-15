@@ -302,9 +302,9 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 	{ 
 
 		if($seltdp>0)
-		{ $cpu_return[]=["id"=>intval($rand[0]), "model"=>(strval($rand[2])." ".strval($rand[1])."  (".strval(round($rand[4])/10)."/10)"),"gpu"=>intval($rand[3]),"tdp"=>intval($rand[4])]; }
+		{ $cpu_return[]=["id"=>intval($rand[0]), "model"=>(strval($rand[2])." ".strval($rand[1])." (".strval(round($rand[4])/10)."/10)"),"gpu"=>intval($rand[3]),"tdp"=>intval($rand[4])]; }
 		else
-		{ $cpu_return[]=["id"=>intval($rand[0]),"model"=>(strval($rand[2])." ".strval($rand[1]). "   (".strval(round($rand[4])/10)."/10)"),"gpu"=>intval($rand[3])]; }
+		{ $cpu_return[]=["id"=>intval($rand[0]),"model"=>(strval($rand[2])." ".strval($rand[1]). " (".strval(round($rand[4])/10)."/10)"),"gpu"=>intval($rand[3])]; }
 	}
 	
 	mysqli_free_result($result);

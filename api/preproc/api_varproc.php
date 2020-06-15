@@ -198,12 +198,12 @@ foreach ($search_array as $v)
 			if (isset($param['gpu_name'])&& !empty($param['gpu_name']) && !$abort)
 			{
 				$param['gpu_name']=str_replace(" ","%",mysqli_real_escape_string($con,$param['gpu_name']));
-				$result = mysqli_query($GLOBALS['con'], "SELECT name FROM notebro_site.nomen WHERE type = 12 ORDER BY type ASC");
+				$result = mysqli_query($GLOBALS['con'], "SELECT `name` FROM `notebro_site`.`nomen` WHERE `type` = 12 ORDER BY `type` ASC");
 				while( $row=mysqli_fetch_array($result)){$gpu_prod[] = $row[0]; }
 				foreach($gpu_prod as $el) {	$param['gpu_name'] = trim(str_replace($el,"",$param['gpu_name'])," "); } $gpu_prod=array();
-				$sql = "SELECT RTRIM(CONCAT(`model`,' ',IFNULL(`variant`,''))) AS `model` FROM notebro_db.GPU WHERE RTRIM(CONCAT(`model`,' ',IFNULL(variant,''))) LIKE '%".$param['gpu_name']."%' ";
-				if (stripos($param['gpu_name'],"SLI")!==FALSE) { $sql.=' AND RTRIM(CONCAT(`model`," ",IFNULL(variant,""))) LIKE "%SLI%" ORDER BY rating DESC limit 1'; }
-				else { $sql.=' AND RTRIM(CONCAT(`model`," ",IFNULL(variant,""))) NOT LIKE "%SLI%" ORDER BY rating DESC LIMIT 1'; } 
+				$sql = "SELECT `name` AS `model` FROM `notebro_db`.`GPU` WHERE `name` '%".$param['gpu_name']."%' ";
+				if (stripos($param['gpu_name'],"SLI")!==FALSE) { $sql.=' AND `name` LIKE "%SLI%" ORDER BY rating DESC limit 1'; }
+				else { $sql.=' AND `name` NOT LIKE "%SLI%" ORDER BY `rating` DESC LIMIT 1'; } 
 				$gpu_name = mysqli_fetch_row(mysqli_query($GLOBALS['con'],$sql));
 				if($gpu_name && count($gpu_name)>0) 
 				{ $gpu_model = $gpu_name[0]; $to_search['gpu'] = 1; }

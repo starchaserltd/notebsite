@@ -40,7 +40,7 @@ if($q>=0)
 		
 		if(!$skip_sql)
 		{
-			$sql="SELECT `model` as `gpu_model` FROM `notebro_db`.`GPU` WHERE `valid`=1 AND `rating`>='".$gpu_min_rating."' AND `rating`<='".$gpu_max_rating."' AND ".$type_gpu_sql."";
+			$sql="SELECT `name` as `gpu_model` FROM `notebro_db`.`GPU` WHERE `valid`=1 AND `rating`>='".$gpu_min_rating."' AND `rating`<='".$gpu_max_rating."' AND ".$type_gpu_sql."";
 			$result=mysqli_query($con,$sql);
 			$response["gpu"]=array();
 			if($result&&mysqli_num_rows($result)>0)

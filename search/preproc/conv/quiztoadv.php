@@ -480,23 +480,23 @@ if($cadratemin!==0)
 {
 	$addgaming="";
 	if (isset($_GET['gaming']) && $_GET['gaming']==1) { if($gpu_powermax<1){$gpu_powermax=999999;} $addgaming=" AND (power>=".$gpu_powermin." AND power<=".$gpu_powermax.")"; }
-	$query = "SELECT DISTINCT model FROM notebro_db.GPU WHERE (rating>=".$cadratemin." AND rating<=".$cadratemax." AND typegpu=3) OR (rating>=".$gameratemin." AND rating<=".$gameratemax.$addgaming." AND typegpu IN (".implode(",",$gpu_typelist)."))";
+	$query = "SELECT DISTINCT `name` FROM `notebro_db`.`GPU` WHERE (rating>=".$cadratemin." AND rating<=".$cadratemax." AND typegpu=3) OR (rating>=".$gameratemin." AND rating<=".$gameratemax.$addgaming." AND typegpu IN (".implode(",",$gpu_typelist)."))";
 	$result = mysqli_query($GLOBALS['con'],$query);
 	array_push($gpu_typelist,"3");
-	while($row=mysqli_fetch_row($result)){	$gpu_model[]=$row[0]; }
-	if(count($gpu_model)<1)
+	while($row=mysqli_fetch_row($result)){	$gpu_name[]=$row[0]; }
+	if(count($gpu_name)<1)
 	{
 		if(isset($_GET['gaming']) && $_GET['gaming']==1)
 		{
 			if($gameratemin<$gpu_powermin)
-			{ $query = "SELECT DISTINCT model FROM notebro_db.GPU WHERE (".$addgaming." AND typegpu IN (1,2,3,4))"; }
+			{ $query = "SELECT DISTINCT `name` FROM `notebro_db`.`GPU` WHERE (".$addgaming." AND `typegpu` IN (1,2,3,4))"; }
 			else
-			{ $query = "SELECT DISTINCT model FROM notebro_db.GPU WHERE (rating>=".$cadratemin." AND rating<=".$cadratemax." AND typegpu=3) OR (rating>=".$gameratemin." AND rating<=".$gameratemax." AND typegpu IN (".implode(",",$gpu_typelist)."))"; }
+			{ $query = "SELECT DISTINCT `name` FROM `notebro_db`.`GPU` WHERE (`rating`>=".$cadratemin." AND `rating`<=".$cadratemax." AND typegpu=3) OR (rating>=".$gameratemin." AND rating<=".$gameratemax." AND typegpu IN (".implode(",",$gpu_typelist)."))"; }
 			
 			$result = mysqli_query($GLOBALS['con'],$query);
 			array_push($gpu_typelist,"3");
-			while($row=mysqli_fetch_row($result)){$gpu_model[]=$row[0];}
-			if(count($gpu_model)<1){ $gpu_typelist=["10"]; }
+			while($row=mysqli_fetch_row($result)){$gpu_name[]=$row[0];}
+			if(count($gpu_name)<1){ $gpu_typelist=["10"]; }
 		}
 		else
 		{
@@ -670,7 +670,7 @@ if ($model_minclass <= 0 && $model_maxclass>=3)
 else if (	$model_minclass>=1 && $model_maxclass>=3) {	$family.='<option selected="selected">All business families</option>'; }
 else if (	$model_minclass>=0 && $model_maxclass<=2) {	$family.='<option selected="selected">All consumer families</option>'; }
 
-foreach ($gpu_model as $element)
+foreach ($gpu_name as $element)
 {	$gpumodel.='<option selected="selected">'.$element.'</option>'; }
 			
 foreach ($cpu_misc as $element)

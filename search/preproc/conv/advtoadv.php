@@ -87,8 +87,8 @@
 			{	$gpumsc.='<option selected="selected">'.$element.'</option>'; }
 		}
 		
-		if(isset($_GET['GPU_model_id']))
-		{	foreach ($_GET['GPU_model_id'] as $element)
+		if(isset($_GET['GPU_name_id']))
+		{	foreach ($_GET['GPU_name_id'] as $element)
 			{	$gpumodel.='<option selected="selected">'.$element.'</option>'; }
 		}
 	}

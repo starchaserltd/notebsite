@@ -125,7 +125,7 @@ function similar_model_search()
 				{ cpu_search_string=cpu_search_string+"CPU_model_id[]="+query_data.cpu[key]["cpu_model"]+"&"; }
 				var gpu_search_string="";
 				for (key in query_data.gpu)
-				{ gpu_search_string=gpu_search_string+"GPU_model_id[]="+query_data.gpu[key]["gpu_model"]+"&"; }
+				{ gpu_search_string=gpu_search_string+"GPU_name_id[]="+query_data.gpu[key]["gpu_model"]+"&"; }
 				for (key in query_data.gputype2)
 				{ gpu_search_string=gpu_search_string+"gputype2[]="+query_data.gputype2[key]+"&"; }
 				gpu_search_string=gpu_search_string+"gputype="+query_data.gputype+"&";

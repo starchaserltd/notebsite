@@ -185,10 +185,12 @@ if (isset($_GET['gpupowermin']))
 if (isset($_GET['gpupowermax']))
 { $gpu_powermax = floatval($_GET['gpupowermax']); }
 
-if (isset($_GET['GPU_model_id']))
-{ array_walk($_GET['GPU_model_id'],'clean_string'); $gpu_model = $_GET['GPU_model_id']; 
-	foreach ($gpu_model as $key=>$x)
-	{ $gpu_model[$key]=preg_replace("/[ ]\([0-9\.]+\/10\)/", "", $x); }
+if (isset($_GET['GPU_name_id']))
+{
+	{ array_walk($_GET['GPU_name_id'],'clean_string'); $gpu_name = $_GET['GPU_name_id']; 
+		foreach ($gpu_name as $key=>$x)
+		{ $gpu_name[$key]=preg_replace("/[ ]\([0-9\.]+\/10\)/", "", $x); }
+	}
 }
 
 if (isset($_GET['GPU_arch_id']))

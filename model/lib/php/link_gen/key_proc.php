@@ -14,7 +14,7 @@ function standard_key_proc($keys,$idmodel,$submodel)
 	
 	if(stripos($submodel,"dGPU")!==FALSE)
 	{ 
-		$sql="SELECT `notebro_db`.`GPU`.`model` FROM `notebro_db`.`GPU` WHERE FIND_IN_SET(`notebro_db`.`GPU`.`id`,(SELECT `notebro_db`.`MODEL`.`gpu` FROM `notebro_db`.`MODEL` WHERE `notebro_db`.`MODEL`.`id`=".$idmodel." LIMIT 1))>0 AND `notebro_db`.`GPU`.`typegpu`>0 LIMIT 1"; 
+		$sql="SELECT `notebro_db`.`GPU`.`name` FROM `notebro_db`.`GPU` WHERE FIND_IN_SET(`notebro_db`.`GPU`.`id`,(SELECT `notebro_db`.`MODEL`.`gpu` FROM `notebro_db`.`MODEL` WHERE `notebro_db`.`MODEL`.`id`=".$idmodel." LIMIT 1))>0 AND `notebro_db`.`GPU`.`typegpu`>0 LIMIT 1"; 
 		$result=mysqli_query($GLOBALS['con'],$sql);
 		if($result && mysqli_num_rows($result)>0){ $gpu_name=mysqli_fetch_array($result)[0]; } else { $gpu_name=NULL; }
 		if(stripos($gpu_name,"radeon")!==FALSE) { $gpu_name=str_ireplace("radeon","",$gpu_name); }

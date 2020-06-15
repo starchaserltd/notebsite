@@ -160,7 +160,7 @@
 						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 								<div>Type</div>			
-								<select onchange="presearch('#advform');" id="gputype2" name="gputype2[]" data-lcom='GPU_model' data-lfield="gpu_type" multiple="multiple">
+								<select onchange="presearch('#advform');" id="gputype2" name="gputype2[]" data-lcom='GPU_name' data-lfield="gpu_type" multiple="multiple">
 								<option value="10" <?php echo $gputypesel[10] ?>>Integrated Pro</option>
 								<option value="0" <?php echo $gputypesel[0] ?>>Integrated + Basic</option>
 								<option value="1" <?php echo $gputypesel[1] ?>>Basic</option>
@@ -171,13 +171,13 @@
 							</div>
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hiddenOptionsGpu">
 								<div>Producer</div>
-								<select onchange="presearch('#advform');" id="GPU_prod_id" name="GPU_prod_id[]" data-lcom='GPU_model' data-lfield="gpu_prod" data-lcom2='GPU_arch' data-lfield2="prop" multiple="multiple">
+								<select onchange="presearch('#advform');" id="GPU_prod_id" name="GPU_prod_id[]" data-lcom='GPU_name' data-lfield="gpu_prod" data-lcom2='GPU_arch' data-lfield2="prop" multiple="multiple">
 								<?php if(isset($droplists[12])) { echo $droplists[12]; } ?>
 								</select>
 							</div>
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">	
 								<div>Graphics card model</div>
-								<select onchange="presearch('#advform');" class="multisearch js-example-responsive" id="GPU_model_id" name="GPU_model_id[]"  data-lcom='none' data-lfield="gpu_prod" data-placeholder="Graphics Card Models" data-initvalue="GPU Integrated" multiple="multiple" data-ajax--url="search/lib/func/list.php" style="width:100%;"></select>
+								<select onchange="presearch('#advform');" class="multisearch js-example-responsive" id="GPU_name_id" name="GPU_name_id[]"  data-lcom='none' data-lfield="gpu_prod" data-placeholder="Graphics Card Models" data-initvalue="GPU Integrated" multiple="multiple" data-ajax--url="search/lib/func/list.php" style="width:100%;"></select>
 							</div>
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 								<div style="margin-top:5px;"><span style="font-size:13.5px; margin-bottom:2px;">
@@ -189,7 +189,7 @@
 							</div>	
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hiddenOptionsGpu">	
 								<div style="margin-top:5px;">Architecture</div>
-								<select onchange="presearch('#advform');" class="multisearch js-example-responsive" name="GPU_arch_id[]" id="GPU_arch_id" data-lcom='GPU_model' data-lfield="gpu_arch" data-placeholder="Ex. GCN 1.3, Turing" data-initvalue="GPU Integrated" multiple="multiple" data-ajax--url="search/lib/func/list.php" style="width:100%;"></select>
+								<select onchange="presearch('#advform');" class="multisearch js-example-responsive" name="GPU_arch_id[]" id="GPU_arch_id" data-lcom='GPU_name' data-lfield="gpu_arch" data-placeholder="Ex. GCN 1.3, Turing" data-initvalue="GPU Integrated" multiple="multiple" data-ajax--url="search/lib/func/list.php" style="width:100%;"></select>
 							</div>
 						</div>	
 						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">		
@@ -207,8 +207,8 @@
 									Launch date:</span>  <span id="gpulaunchdateval"><?php echo $gpumindate; ?> - <?php echo $gpumaxdate; ?></span>
 								</div>	  
 								<div class="advslider" style="margin-top:5px;" id="gpulaunchdate"></div>
-								<input type="hidden" name="gpulaunchdatemin" id="gpulaunchdatemin" value="<?php echo $gpumindate; ?>" data-lcom='GPU_model' data-lfield="gpu_ldmin" >
-								<input type="hidden" name="gpulaunchdatemax" id="gpulaunchdatemax" value="<?php echo $gpumaxdate; ?>" data-lcom='GPU_model' data-lfield="gpu_ldmax" >
+								<input type="hidden" name="gpulaunchdatemin" id="gpulaunchdatemin" value="<?php echo $gpumindate; ?>" data-lcom='GPU_name' data-lfield="gpu_ldmin" >
+								<input type="hidden" name="gpulaunchdatemax" id="gpulaunchdatemax" value="<?php echo $gpumaxdate; ?>" data-lcom='GPU_name' data-lfield="gpu_ldmax" >
 							</div>
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 								<div style="margin-top:10px;"><span style="font-size:13.5px;">

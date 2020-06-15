@@ -58,7 +58,7 @@ function extrainfo(data, item)
 {
 	switch(item)
 	{
-		case "GPU_model":
+		case "GPU_name":
 		{ return data.typegpu; break; }
 		default:
 		{ return false; }	

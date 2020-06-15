@@ -90,7 +90,7 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 								<ul>
 									<li class="resulspace"><?php echo show('size','DISPLAY',$rand['display'] ).'" ('.show('hres','DISPLAY',$rand['display'])."x".show('vres','DISPLAY',$rand['display']).")";?></li>
 									<li class="resulspace"><?php echo show('prod','CPU',$rand['cpu'] )." ".show('model', 'CPU',$rand['cpu'] )." (".show('clocks', 'CPU',$rand['cpu'] )." GHz)"?></li>
-									<li class="resulspace"><?php echo show('prod','GPU',$rand['gpu'] )." ".show('model', 'GPU',$rand['gpu'] );?></li>
+									<li class="resulspace"><?php echo show('prod','GPU',$rand['gpu'] )." ".show('name', 'GPU',$rand['gpu'] );?></li>
 									<li class="resulspace"><?php echo showmem('cap, type, freq','MEM',$rand['mem'] );echo " ";?></li>
 									<li class="resulspace"><?php echo showhdd('cap,type,rpm','HDD',$rand['hdd'],$rand['shdd']);echo "";?></li>
 									<li class="resulspace"><?php $kgw=show('weight','CHASSIS',$rand['chassis']); echo round(floatval($kgw),2)." Kg / ".round(floatval($kgw*2.20462262),2)." lb";?></li>

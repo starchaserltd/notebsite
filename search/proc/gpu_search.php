@@ -1,13 +1,12 @@
 <?php
 
 /* ********* SELECT GPUS BASED ON FILTERS ***** */
-
-function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shadermin, $cspeedmin, $cspeedmax, $sspeedmin, $sspeedmax, $mspeedmin, $mspeedmax, $mbwmin, $mbwmax, $mtype, $maxmemmin, $maxmemmax, $sharem, $powermin, $powermax, $ldmin, $ldmax, $misc, $ratemin, $ratemax, $pricemin, $pricemax, $seltdp, $idlist)
+function search_gpu ($typelist, $prod, $model, $variant, $name, $arch, $techmin, $techmax, $shadermin, $cspeedmin, $cspeedmax, $sspeedmin, $sspeedmax, $mspeedmin, $mspeedmax, $mbwmin, $mbwmax, $mtype, $maxmemmin, $maxmemmax, $sharem, $powermin, $powermax, $ldmin, $ldmax, $misc, $ratemin, $ratemax, $pricemin, $pricemax, $seltdp, $idlist)
 {
 	if($seltdp>0)
-	{ $sel_gpu="SELECT id,typegpu,price,rating,err,power FROM notebro_db.GPU WHERE 1=1 AND valid=1"; }
+	{ $sel_gpu="SELECT `id`,`typegpu`,`price`,`rating`,`err`,`power` FROM `notebro_db`.`GPU` WHERE 1=1 AND `valid`=1"; }
 	else
-	{ $sel_gpu="SELECT id,typegpu,price,rating,err FROM notebro_db.GPU WHERE 1=1 AND valid=1"; }
+	{ $sel_gpu="SELECT `id`,`typegpu`,`price`,`rating`,`err` FROM `notebro_db`.`GPU` WHERE 1=1 AND `valid`=1"; }
 	
 	// Add Type filter (Integrated / Dedicated / Professional)
 	$i=0; $k=0; $dend=0;
@@ -29,7 +28,7 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 			{ $k=2; } 	//k verifies difference between integrated and dedicated GPUs
 		}
 
-		$sel_gpu.="typegpu='";
+		$sel_gpu.="`typegpu`='";
 		$sel_gpu.=$x;
 		$sel_gpu.="'";
 		if($x===0){ if($idlist && isset($idlist[0])){ $sel_gpu.=" AND `id` IN ("; $sel_gpu.=implode(",",$idlist); $sel_gpu.=")"; } }
@@ -45,14 +44,14 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 		if($powermin)
 		{
 			$sel_gpu.=" AND ";
-			$sel_gpu.="power>=";
+			$sel_gpu.="`power`>=";
 			$sel_gpu.=$powermin;
 		}
  
 		if($powermax)
 		{
 			$sel_gpu.=" AND ";
-			$sel_gpu.="power<=";
+			$sel_gpu.="`power`<=";
 			$sel_gpu.=$powermax;
 		}
 		
@@ -60,14 +59,14 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 		if($maxmemmin)
 		{
 			$sel_gpu.=" AND ";
-			$sel_gpu.="maxmem>=";
+			$sel_gpu.="`maxmem`>=";
 			$sel_gpu.=$maxmemmin;
 		}
 
 		if($maxmemmax)
 		{
 			$sel_gpu.=" AND ";
-			$sel_gpu.="maxmem<=";
+			$sel_gpu.="`maxmem`<=";
 			$sel_gpu.=$maxmemmax;
 		}
 		
@@ -91,7 +90,7 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 			$sel_gpu.=" AND ( ";
 		}
 
-		$sel_gpu.="prod='";
+		$sel_gpu.="`prod`='";
 		$sel_gpu.=$x;
 		$sel_gpu.="'";
 		$i++;
@@ -113,12 +112,52 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 			$sel_gpu.=" AND ( ";
 		}
 
-		$sel_gpu.="model='";
+		$sel_gpu.="`model`='";
+		$sel_gpu.=$x;
+		$sel_gpu.="'";
+		$i++;
+	}
+	if($i>0) { $sel_gpu.=" ) "; }
+	// Add models to filter	
+	$i=0;
+	if(gettype($variant)!="array") { $variant=(array)$variant; }
+	foreach($variant as $x)
+	{
+		if($i)
+		{  
+			$sel_gpu.=" OR ";
+		}
+		else
+		{
+			$sel_gpu.=" AND ( ";
+		}
+
+		$sel_gpu.="`variant`='";
 		$sel_gpu.=$x;
 		$sel_gpu.="'";
 		$i++;
 	}
 
+	if($i>0) { $sel_gpu.=" ) "; }
+	// Add names to filter	
+	$i=0;
+	if(gettype($name)!="array") { $name=(array)$name; }
+	foreach($name as $x)
+	{
+		if($i)
+		{  
+			$sel_gpu.=" OR ";
+		}
+		else
+		{
+			$sel_gpu.=" AND ( ";
+		}
+
+		$sel_gpu.="`name`='";
+		$sel_gpu.=$x;
+		$sel_gpu.="'";
+		$i++;
+	}
 	if($i>0) { $sel_gpu.=" ) "; }
 		
 	// Add gpu architecture to filter	
@@ -135,7 +174,7 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 			$sel_gpu.=" AND ( ";
 		}
 
-		$sel_gpu.="arch='";
+		$sel_gpu.="`arch`='";
 		$sel_gpu.=$x;
 		$sel_gpu.="'";
 		$i++;
@@ -147,14 +186,14 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 	if($techmin)
 	{
 		$sel_gpu.=" AND ";
-		$sel_gpu.="tech>=";
+		$sel_gpu.="`tech`>=";
 		$sel_gpu.=$techmin;
 	}
 
 	if($techmax)
 	{
 		$sel_gpu.=" AND ";
-		$sel_gpu.="tech<=";
+		$sel_gpu.="`tech`<=";
 		$sel_gpu.=$techmax;
 	}
 	
@@ -162,7 +201,7 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 	if($shadermin)
 	{
 		$sel_gpu.=" AND ";
-		$sel_gpu.="shader>=";
+		$sel_gpu.="`shader`>=";
 		$sel_gpu.=$shadermin;
 	}
 
@@ -170,14 +209,14 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 	if($cspeedmin)
 	{
 		$sel_gpu.=" AND ";
-		$sel_gpu.="cspeed>=";
+		$sel_gpu.="`cspeed`>=";
 		$sel_gpu.=$cspeedmin;
 	}
 
  	if($cspeedmax)
 	{
 		$sel_gpu.=" AND ";
-		$sel_gpu.="cspeed<=";
+		$sel_gpu.="`cspeed`<=";
 		$sel_gpu.=$cspeedmax;
 	}
 
@@ -185,14 +224,14 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 	if($sspeedmin)
 	{
 		$sel_gpu.=" AND ";
-		$sel_gpu.="sspeed>=";
+		$sel_gpu.="`sspeed`>=";
 		$sel_gpu.=$sspeedmin;
 	}
  
 	if($sspeedmax)
 	{
 		$sel_gpu.=" AND ";
-		$sel_gpu.="sspeed<=";
+		$sel_gpu.="`sspeed`<=";
 		$sel_gpu.=$sspeedmax;
 	}	
 
@@ -200,14 +239,14 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 	if($mspeedmin)
 	{
 		$sel_gpu.=" AND ";
-		$sel_gpu.="sspeed>=";
+		$sel_gpu.="`sspeed`>=";
 		$sel_gpu.=$mspeedmin;
 	}
 
 	if($mspeedmax)
 	{
 		$sel_gpu.=" AND ";
-		$sel_gpu.="sspeed<=";
+		$sel_gpu.="`sspeed`<=";
 		$sel_gpu.=$mspeedmax;
 	}
 	
@@ -215,14 +254,14 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 	if($mbwmin)
 	{
 		$sel_gpu.=" AND ";
-		$sel_gpu.="mbw>=";
+		$sel_gpu.="`mbw`>=";
 		$sel_gpu.=$mbwmin;
 	}
 	
 	if($mbwmax)
 	{
 		$sel_gpu.=" AND ";
-		$sel_gpu.="mbw<=";
+		$sel_gpu.="`mbw`<=";
 		$sel_gpu.=$mbwmax;
 	}
                    
@@ -240,7 +279,7 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 			$sel_gpu.=" AND ( ";
 		}
 
-		$sel_gpu.="mtype='";
+		$sel_gpu.="`mtype`='";
 		$sel_gpu.=$x;
 		$sel_gpu.="'";
 		$i++;
@@ -252,7 +291,7 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 	if($sharem!=NULL)
 	{
 		$sel_gpu.=" AND ";
-		$sel_gpu.="sharem=";
+		$sel_gpu.="`sharem`=";
 		$sel_gpu.=$sharem;
 	}
 	
@@ -261,14 +300,14 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 	{
 		$sel_gpu.=" AND";
 		$sel_gpu.=" (";
-		$sel_gpu.="ldate BETWEEN '";
+		$sel_gpu.="`ldate` BETWEEN '";
 		$sel_gpu.=$ldmin;
 	}
 	else
 	{
 		$sel_gpu.=" AND";
 		$sel_gpu.=" (";
-		$sel_gpu.="ldate BETWEEN ";
+		$sel_gpu.="`ldate` BETWEEN ";
 		$sel_gpu.="'0000-00-00";
 	}
 
@@ -301,17 +340,17 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 			$z=explode("/",$x);
 			$sel_gpu.="FIND_IN_SET('";
 			$sel_gpu.=$z[0];	
-			$sel_gpu.="',msc)>0";
+			$sel_gpu.="',`msc`)>0";
 			unset($z[0]);
 			foreach($z as $t)
-			{	$sel_gpu.=" OR "; $sel_gpu.="FIND_IN_SET('"; $sel_gpu.=$t;	$sel_gpu.="',msc)>0";	}
+			{	$sel_gpu.=" OR "; $sel_gpu.="FIND_IN_SET('"; $sel_gpu.=$t;	$sel_gpu.="',`msc`)>0";	}
 			$sel_gpu.=")";
 		}	
 		else
 		{
 			$sel_gpu.="FIND_IN_SET('";
 			$sel_gpu.=$x;
-			$sel_gpu.="',msc)>0";
+			$sel_gpu.="',`msc`)>0";
 		}
 		
 		$i++;
@@ -323,14 +362,14 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 	if($ratemin)
 	{
 		$sel_gpu.=" AND "; 
-		$sel_gpu.="rating>=";
+		$sel_gpu.="`rating`>=";
 		$sel_gpu.=$ratemin;
 	}
 
  	if($ratemax)
 	{
 		$sel_gpu.=" AND ";
-		$sel_gpu.="rating<=";
+		$sel_gpu.="`rating`<=";
 		$sel_gpu.=$ratemax;
 	}		
 			
@@ -338,7 +377,7 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 	if ($pricemin)
 	{
 		$sel_gpu.=" AND ";
-		$sel_gpu.="IF(err>0,(price-price*err)>=";
+		$sel_gpu.="IF(`err`>0,(`price`-`price`*`err`)>=";
 		$sel_gpu.=$pricemin;
 		$sel_gpu.=",1)";
 	}
@@ -346,7 +385,7 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 	if($pricemax)
 	{
 		$sel_gpu.=" AND ";
-		$sel_gpu.="IF(err>0,(price-price*err)<=";
+		$sel_gpu.="IF(`err`>0,(`price`-`price`*`err`)<=";
 		$sel_gpu.=$pricemax;
 		$sel_gpu.=",1)";
 	}
@@ -363,9 +402,9 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 		if(isset($model[0]))
 		{
 			if($seltdp>0)
-			{ $sel_gpu="SELECT id,typegpu,price,rating,err,power FROM notebro_db.GPU WHERE 1=1 AND valid=1"; }
+			{ $sel_gpu="SELECT `id`,`typegpu`,`price`,`rating`,`err`,`power` FROM `notebro_db`.`GPU` WHERE 1=1 AND `valid`=1"; }
 			else
-			{ $sel_gpu="SELECT id,typegpu,price,rating,err FROM notebro_db.GPU WHERE 1=1 AND valid=1"; }
+			{ $sel_gpu="SELECT `id`,`typegpu`,`price`,`rating`,`err` FROM `notebro_db`.`GPU` WHERE 1=1 AND `valid`=1"; }
 		
 			$i=0;
 			if(gettype($model)!="array") { $model=(array)$model; }
@@ -380,7 +419,7 @@ function search_gpu ($typelist, $prod, $model, $arch, $techmin, $techmax, $shade
 					$sel_gpu.=" AND ( ";
 				}
 
-				$sel_gpu.="model='";
+				$sel_gpu.="`name`='";
 				$sel_gpu.=$x;
 				$sel_gpu.="'";
 				$i++;

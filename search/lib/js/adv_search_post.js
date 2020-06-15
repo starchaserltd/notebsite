@@ -804,7 +804,7 @@ $(document).ready(function()
 	$('#gputype2').multiselect(btnsearch);
 	$('#gputype2').multiselect('disable');		
 	$("#GPU_prod_id").prop("disabled", true);
-	$("#GPU_model_id").prop("disabled", true);
+	$("#GPU_name_id").prop("disabled", true);
 	$("#GPU_arch_id").prop("disabled", true);
 	$("#GPU_msc_id").prop("disabled", true);
 	
@@ -820,7 +820,7 @@ $(document).ready(function()
 		{
 			$('#gputype2').multiselect('disable');
 			$('#GPU_prod_id').multiselect('disable');
-			$("#GPU_model_id").prop("disabled", true);
+			$("#GPU_name_id").prop("disabled", true);
 			$("#GPU_arch_id").prop("disabled", true);
 			$("#GPU_msc_id").prop("disabled", true);
 			document.getElementById('gpumem').setAttribute('disabled', true);
@@ -832,7 +832,7 @@ $(document).ready(function()
 		{
 			$('#gputype2').multiselect('enable');
 			$('#GPU_prod_id').multiselect('enable');
-			$("#GPU_model_id").prop("disabled", false);
+			$("#GPU_name_id").prop("disabled", false);
 			$("#GPU_arch_id").prop("disabled", false);
 			$("#GPU_msc_id").prop("disabled", false);
 			document.getElementById('gpumem').removeAttribute('disabled', true);
@@ -864,13 +864,13 @@ $(document).ready(function()
 		$(gpusel).each(function(index, gpusel){ selected.push(parseInt([$(this).val()].toString())); });
 		filtersearch(idgpu,selected,2);
 		
-		gpu_model_selected=$('#GPU_model_id').select2('data');
+		gpu_model_selected=$('#GPU_name_id').select2('data');
 		for (var key in gpu_model_selected)
 		{
 			var obj=gpu_model_selected[key];
 			if(selected.indexOf(obj["prop"])<0)
 			{
-				$('#GPU_model_id [value='+'"'+obj["text"]+'"'+']')[0].remove();
+				$('#GPU_name_id [value='+'"'+obj["text"]+'"'+']')[0].remove();
 			}
 		}
 	});

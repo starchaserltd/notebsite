@@ -10,7 +10,7 @@
 <?php echo "var cpufreqminset=".$cpufreqmin.";"; echo "var cpufreqmaxset=".$cpufreqmax.";"; ?>
 <?php echo "var cputechminset=".$cputechmax.";"; echo "var cputechmaxset=".$cputechmin.";"; ?>
 <?php if(isset($cpumsc)){ ?>$('#CPU_msc_id').append('<?php echo $cpumsc; ?>'); <?php } ?>
-<?php if(isset($gpumodel)){ ?>$('#GPU_model_id').append('<?php echo $gpumodel; ?>'); <?php } ?>
+<?php if(isset($gpumodel)){ ?>$('#GPU_name_id').append('<?php echo $gpumodel; ?>'); <?php } ?>
 <?php echo "var gpumemminset=".$gpumemmin.";"; echo "var gpumemmaxset=".$gpumemmax.";";   ?>
 <?php echo "var gpumembusminset=".$gpumembusmin.";"; echo "var gpumembusmaxset=".$gpumembusmax.";"; ?> 
 <?php if(isset($gpuarch)){ ?>$('#GPU_arch_id').append('<?php echo $gpuarch; ?>'); <?php } ?>

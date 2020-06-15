@@ -220,7 +220,7 @@ function show_gpu($list)
 {
 	$s_list=false; if(count($list)<2){$s_list=true;}
 	
-	$sel="SELECT `id`,`prod`,`model`,`typegpu` FROM `notebro_db`.`GPU` WHERE `id` IN (".implode(",",$list).") ORDER BY `typegpu` ASC, `rating` ASC";
+	$sel="SELECT `id`,`prod`,`name`,`typegpu` FROM `notebro_db`.`GPU` WHERE `id` IN (".implode(",",$list).") ORDER BY `typegpu` ASC, `rating` ASC";
 	if($s_list){$sel.=" LIMIT 1";}
 	
 	$a=false; $b=true; $havecpuint=0; $gpu_list=array(); $gpu_name=array(); $opt_nr=1; $gpulist=0; $no_select='var gpu_noselect=1;'; 
@@ -236,7 +236,7 @@ function show_gpu($list)
 				$gpulist=$row["id"];
 				if($row["typegpu"]>0)
 				{
-					$selected=""; if($row["id"]!=$GLOBALS['idcpu']){$selected=" selected='selected'";} $gpu_name[$opt_nr]=array(); $gpu_name[$opt_nr]["name"]=$row["prod"]." ".$row["model"]; $gpu_name[$opt_nr]["value"]=$row["id"];
+					$selected=""; if($row["id"]!=$GLOBALS['idcpu']){$selected=" selected='selected'";} $gpu_name[$opt_nr]=array(); $gpu_name[$opt_nr]["name"]=$row["prod"]." ".$row["name"]; $gpu_name[$opt_nr]["value"]=$row["id"];
 					$gpu_list[$opt_nr]="<option value='".$gpu_name[$opt_nr]["value"]."'".$selected.">".$gpu_name[$opt_nr]["name"]."</option>"; $opt_nr++;
 					if($b){ $gpulist=$row["id"]; $b=false; }
 				}
@@ -245,7 +245,7 @@ function show_gpu($list)
 			}
 		}
 		else
-		{ $row=mysqli_fetch_array($result); if($row["typegpu"]>0){ $gpu_name[$opt_nr]["value"]=$row["id"]; $gpu_name[$opt_nr]["name"]=$row["prod"]." ".$row["model"]; $opt_nr++; if($b){ $gpulist=$row["id"]; $b=false; } }else{ $havecpuint=1;} }
+		{ $row=mysqli_fetch_array($result); if($row["typegpu"]>0){ $gpu_name[$opt_nr]["value"]=$row["id"]; $gpu_name[$opt_nr]["name"]=$row["prod"]." ".$row["name"]; $opt_nr++; if($b){ $gpulist=$row["id"]; $b=false; } }else{ $havecpuint=1;} }
 	}
 	else
 	{ $havecpuint=1;}

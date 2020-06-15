@@ -52,7 +52,7 @@ function comp_details($comp,$id)
 			$sel="SELECT id,prod,model,tech as lithography,cache,ROUND(clocks,2) as base_speed,ROUND(maxtf,2) as boost_speed,cores,ROUND(tdp,0) as tdp,msc as other_info,ROUND(rating,1) as rating,gpu as integrated_video_id FROM notebro_db.CPU WHERE id=".$id."";
 			$res=array(); $res=mysqli_fetch_assoc(mysqli_query($GLOBALS['con'], $sel));
 			$res["prod"]=ucfirst(strtolower($res["prod"]));
-			$cpugpu = mysqli_fetch_row(mysqli_query($GLOBALS['con'],"SELECT prod,model FROM notebro_db.GPU WHERE id = ".$res['integrated_video_id'].""));
+			$cpugpu = mysqli_fetch_row(mysqli_query($GLOBALS['con'],"SELECT `prod`,`model_name` FROM `notebro_db`.`GPU` WHERE `id` = ".$res['integrated_video_id'].""));
 			$res['integrated_video'] = ucfirst(strtolower($cpugpu[0]))." ".$cpugpu[1];
 			return $res; break;
 		}
@@ -78,7 +78,7 @@ function comp_details($comp,$id)
 		}
 		case "gpu":
 		{		
-			$sel="SELECT `id`,`prod`,RTRIM(CONCAT(`model`,' ',IFNULL(variant,''))) AS `model`,arch as architecture,tech as lithography,pipe as shaders,cspeed as base_speed,bspeed as boost_speed,sspeed as shader_speed,mspeed as memory_speed,mbw as memory_bandwidth,maxmem as memory_size,mtype as memory_type,ROUND(power,0) as tdp,msc as other_info,ROUND(rating,1) as rating,typegpu FROM notebro_db.GPU WHERE id=".$id.""; 
+			$sel="SELECT `id`,`prod`,`name` AS `model`,`arch` AS `architecture`,`tech` AS `lithography`,`pipe` AS `shaders`,`cspeed` AS `base_speed`,bspeed as boost_speed,sspeed as shader_speed,mspeed as memory_speed,mbw as memory_bandwidth,maxmem as memory_size,mtype as memory_type,ROUND(power,0) as tdp,msc as other_info,ROUND(rating,1) as rating,typegpu FROM notebro_db.GPU WHERE id=".$id.""; 
 			$res=array(); $res=mysqli_fetch_assoc(mysqli_query($GLOBALS['con'], $sel));
 			$res["prod"]=ucfirst(strtolower($res["prod"]));
 			return $res; break;
