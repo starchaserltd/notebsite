@@ -144,7 +144,7 @@ switch ($q)
 				if($keys)
 				foreach($list as &$list2)
 				{
-					if(stripos($list2["name"],$keys) === false)
+					if(stripos($list2["model"],$keys) === false)
 					{ unset($list[$t]); }
 					$t++;
 				}
