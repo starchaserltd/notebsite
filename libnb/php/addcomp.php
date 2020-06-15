@@ -39,10 +39,10 @@ if($config_id)
 	$r = mysqli_fetch_assoc($result2); 
 	$conf_cpu_name=$r["model"];
 
-	$sql2='SELECT prod,name FROM GPU WHERE id='.$row["gpu"];
+	$sql2='SELECT `prod`,`name` FROM `notebro_db`.`GPU` WHERE `id`='.$row["gpu"];
 	$result2 = mysqli_query($con,$sql2);
 	$r = mysqli_fetch_assoc($result2); 
-	$conf_gpu_name=$r["prod"]." ".$r["model"];
+	$conf_gpu_name=$r["prod"]." ".$r["name"];
 
 	$sql2='SELECT size,hres,vres FROM DISPLAY WHERE id='.$row["display"];
 	$result2 = mysqli_query($con,$sql2);
