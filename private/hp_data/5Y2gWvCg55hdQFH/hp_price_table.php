@@ -19,7 +19,42 @@ function enable_all_conf(hp_pid)
 	{	for (var i = 0; i < x.length; i++) { x[i].style.display = "table-row"; document.getElementById("main_"+hp_pid).innerHTML="Hide conf"; } }
 	else
 	{	for (var i = 0; i < x.length; i++) { x[i].style.display = "none"; document.getElementById("main_"+hp_pid).innerHTML="Show conf"; } }
-} 
+}
+
+function search_fields(text)
+{
+	text=text.toString().trim().toUpperCase();
+	if(text.length>0)
+	{
+		var ele = document.getElementsByClassName('data_table_rows');
+		for (var i=0; i<ele.length; i++)
+		{ if(ele[i].style.display!="none") { ele[i].style.display="none"; } }
+	
+		var element_list=document.querySelectorAll("[name*="+'"'+text+'"'+"]");
+	
+		for (var key in element_list)
+		{
+			if(typeof element_list[key]!=="undefined" &&  typeof element_list[key].classList!=="undefined")
+			{
+				if(element_list[key].classList.contains("data_table_rows"))
+				{
+					if(element_list[key].style.display!="table-row") { element_list[key].style.display="table-row"; }
+				}
+			}
+		}
+	}
+	else
+	{
+		var ele = document.getElementsByClassName('data_table_rows');
+		for (var i=0; i<ele.length; i++)
+		{ if(ele[i].style.display!="table-row") { ele[i].style.display="table-row"; } }
+	}
+}
+
+setInterval(function() {
+	if(document.getElementById("filter_fields"))
+	{ search_fields(document.getElementById("filter_fields").value); }
+}, 300);//milliseconds
 </script>
 </head>
 <body>
@@ -66,6 +101,10 @@ if($table_format!="excel_format")
 		<button type="submit" formtarget="_blank" name="format" formaction="hp_price_table.php" value="excel_format">Excel friendly</button>
 		<button type="submit" formtarget="_blank" name="format" formaction="hp_monthly_price_table.php" value="normal_format">Monthly table</button>
 	</form>
+	<br>
+	<form target="_self" action="javascript:void(0);" method="get">
+	Filter models: <input id="filter_fields" type="text"></input>
+	</form>
 <?php
 }
 
@@ -85,7 +124,7 @@ if($table_format=="normal_format" && isset($table_columns))
 	if(have_results($time_result))
 	{
 		$data_times=mysqli_fetch_assoc($time_result);
-		echo "<br><br>Prices collected between: ".date("Y-m-d H:i:s",(strtotime($data_times["min_time"])+($time_zone*3600)))." and ".date("Y-m-d H:i:s",(strtotime($data_times["max_time"])+($time_zone*3600)))." PST";
+		echo "<br>Prices collected between: ".date("Y-m-d H:i:s",(strtotime($data_times["min_time"])+($time_zone*3600)))." and ".date("Y-m-d H:i:s",(strtotime($data_times["max_time"])+($time_zone*3600)))." PST";
 		echo "<br>";
 		mysqli_free_result($time_result);
 	}
@@ -110,6 +149,7 @@ if(have_results($result))
 	{
 		
 		$print_header=0;
+		$first_header=1;
 		$current_model_name="";
 		while($row=mysqli_fetch_assoc($result))
 		{
@@ -117,24 +157,28 @@ if(have_results($result))
 			$conf_table="";
 			if($print_header==0)
 			{
-				print_the_table_header($table_columns);
+				if($first_header){$hide_columns=False;}else{$hide_columns=True;}
+				print_the_table_header($table_columns,$hide_columns);
 				$print_header=10;
+				$first_header=0;
 			}
 			
 			if($row["noteb_pid"]=="0")
 			{
-				$new_model_name=$row["fam"]." ".$row["model"];
+				$new_model_name=trim($row["fam"]." ".$row["model"]);
 				if($new_model_name!=$current_model_name)
 				{
-					echo "<tr><th colspan='".$nr_table_columns."'><span style='padding-right:20%;'>".$row["fam"]." ".$row["model"]."</span><span style='padding-right:0%;'>".$row["fam"]." ".$row["model"]."</span><span style='padding-left:20%;'>".$row["fam"]." ".$row["model"]."</span></th></tr>";
 					$current_model_name=$new_model_name;
+					echo "<tr name='".$current_model_name."' class='data_table_rows'><th colspan='".$nr_table_columns."'><span style='padding-right:20%;'>".$row["fam"]." ".$row["model"]."</span><span style='padding-right:0%;'>".$row["fam"]." ".$row["model"]."</span><span style='padding-left:20%;'>".$row["fam"]." ".$row["model"]."</span></th></tr>";
 				}
 				$print_header--;
 				$tr_style="style='display: table-row;'";
+				$tr_class=[];
 			}
 			else
 			{
-				$tr_style="style='display: none; background-color:#CCCCCC;' class='".$row["hp_pid"]."'";
+				$tr_style="style='display: none; background-color:#CCCCCC;'";
+				$tr_class=[$row["hp_pid"]];
 				if(isset($conf_info_array[$row["noteb_pid"]]))
 				{
 					$conf_info=$conf_info_array[$row["noteb_pid"]];
@@ -167,7 +211,8 @@ if(have_results($result))
 					}
 				}
 			}	
-			echo "<tr ".$tr_style.">";
+			if($row["noteb_pid"]=="0"){$tr_class[]="data_table_rows";} else{$tr_class[]="data_table_subrows";}
+			echo "<tr ".$tr_style." name='".$current_model_name."' class='".implode(" ",$tr_class)."'>";
 			echo "<td style='text-align:center;'>".$row["hp_pid"]."</td>";
 			$row_data=json_decode($row["price_data"],true); $skipped=False;
 			foreach($table_columns["retailers"] as $retailer_key=>$retailer_name)
@@ -311,15 +356,17 @@ if($table_format!="excel_format")
 </html>
 <?php
 #RANDOM FUNCTIONS
-function print_the_table_header($table_columns)
+function print_the_table_header($table_columns,$hide_column=False)
 {
 	#Here we print the header
-	echo "<tr>";
+	$tr_to_print="<tr>";
+	if($hide_column){$tr_to_print="<tr class='data_table_rows'>"; }
+	echo $tr_to_print;
 	foreach($table_columns["retailers"] as $retailer_key=>$retailer_name)
 	{ $colspan=count($table_columns["price_types"]); if($retailer_key=="hpcom"){$colspan++;}  echo "<td style='text-align:center;' colspan='".$colspan."'><b>".$retailer_name."</b></td>"; }
 	echo "</tr>";
 
-	echo "<tr>";
+	echo $tr_to_print;
 	foreach($table_columns["retailers"] as $retailer_key=>$retailer_name)
 	{  
 		if($retailer_key=="hpcom"){ echo "<td style='text-align:center;'>SKU</td>"; ; }
@@ -329,7 +376,7 @@ function print_the_table_header($table_columns)
 	echo "</tr>";
 }
 
-function print_the_table_header_excel($table_columns)
+function print_the_table_header_excel($table_columns,$hide_column=False)
 {
 	$to_return=0;
 	#Here we print the header
