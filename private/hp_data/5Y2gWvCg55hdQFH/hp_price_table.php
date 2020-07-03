@@ -71,7 +71,7 @@ if(isset($_GET["format"])){ $table_format=strval($_GET["format"]); }else{ $table
 if(strtotime($proc_date)<strtotime("2020-01-01")){ echo "Wrong date. Showing data for the current date.<br>"; $proc_date=date("Y-m-d"); }
 if(strtotime($proc_date)>strtotime("2050-01-01")){ echo "Wrong date. Showing data for the current date.<br>"; $proc_date=date("Y-m-d"); }
 
-$table_columns["retailers"]=["hpcom"=>"HP Store","market_price"=>"Market Median","amazoncom"=>"Amazon US","bhphotovideo"=>"B&H Photo Video","bestbuyus"=>"Best Buy"];
+$table_columns["retailers"]=["hpcom"=>"HP Store","market_price"=>"Market Median","amazoncom"=>"Amazon US","newegg"=>"Newegg","bhphotovideo"=>"B&H Photo Video","bestbuyus"=>"Best Buy"];
 $table_columns["price_types"]=["min_price","median_price"];
 $nr_table_columns=count($table_columns["retailers"])*count($table_columns["price_types"])+1;
 $table_data=array();
