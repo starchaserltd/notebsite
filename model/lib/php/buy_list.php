@@ -79,6 +79,7 @@ if($ref_only==1&&count($tags)>0){ $included_sellers=" AND seller IN ( SELECT `no
 if($buy_regions=="0"){ $region_sel=""; }else{ $region_sel=", (SELECT `notebro_buy`.`SELLERS`.`region` FROM `notebro_buy`.`SELLERS` WHERE `notebro_buy`.`PRICES`.`seller`=`notebro_buy`.`SELLERS`.id AND `notebro_buy`.`SELLERS`.`region` IN (".$buy_regions.") LIMIT 1) as region"; }
 $sql="SELECT abs(`notebro_buy`.`PRICES`.`price`-".$price.") as diff, `notebro_buy`.`PRICES`.`seller`,`notebro_buy`.`PRICES`.`link`,`notebro_buy`.`PRICES`.`price`,(SELECT `notebro_buy`.`SELLERS`.`logo` FROM `notebro_buy`.`SELLERS` WHERE `notebro_buy`.`PRICES`.`seller`=`notebro_buy`.`SELLERS`.id LIMIT 1) as logo,(SELECT `notebro_buy`.`SELLERS`.`id` FROM `notebro_buy`.`SELLERS` WHERE `notebro_buy`.`PRICES`.`seller`=`notebro_buy`.`SELLERS`.id LIMIT 1) as seller_id,(SELECT `notebro_buy`.`SELLERS`.`exchrate` FROM `notebro_buy`.`SELLERS` WHERE `notebro_buy`.`PRICES`.`seller`=`notebro_buy`.`SELLERS`.id AND `notebro_buy`.`SELLERS`.`exchrate` IN (".$extended_lang.") LIMIT 1) as exch_test,(SELECT `notebro_site`.`exchrate`.`sign` FROM `notebro_site`.`exchrate` WHERE `notebro_site`.`exchrate`.`id`=(SELECT `notebro_buy`.`SELLERS`.`exchrate` FROM `notebro_buy`.`SELLERS` WHERE `notebro_buy`.`PRICES`.`seller`=`notebro_buy`.`SELLERS`.id LIMIT 1) LIMIT 1) as exch".$region_sel." FROM `notebro_buy`.`PRICES` WHERE `notebro_buy`.`PRICES`.`model_id` IN (".implode(",",$add_models).")".$included_sellers." ORDER BY diff ASC,`notebro_buy`.`PRICES`.`price`";
 $seller_count_links=array();
+
 $result=mysqli_query($con,$sql);
 if($result && mysqli_num_rows($result)>0)
 {
@@ -95,7 +96,7 @@ if($result && mysqli_num_rows($result)>0)
 }
 
 /* SOMETIMES WE MAY HAVE A VERY LONG LIST OF PRODUCTS FROM THE SAME RETAILER AND WE NEED TO TRIM IT DOWN */
-
+$ids_to_unset=array();
 foreach($seller_count_links as $seller_name=>$links)
 {
 	if(is_countable($links))
@@ -103,24 +104,32 @@ foreach($seller_count_links as $seller_name=>$links)
 		$max_count=count($links);
 		if($max_count>4)
 		{
+			#Replacing position 2 and 3 from the buy list with the medium values of the entire list.
 			$replace_id=$seller_count_links[$seller_name][3]; $replace_with=NULL; if(isset($seller_count_links[$seller_name][($max_count-1)])) { $replace_with=$seller_count_links[$seller_name][($max_count-1)]; }
 			if(isset($generated_buy_list[$replace_with])&&$generated_buy_list[$replace_with]) { $generated_buy_list[$replace_id]=$generated_buy_list[$replace_with]; $link_list[$replace_id]=$link_list[$replace_with]; $seller_list[$replace_id]=$seller_list[$replace_with]; }
 			
 			$replace_id=$seller_count_links[$seller_name][2]; $replace_with=NULL; if(isset($seller_count_links[$seller_name][ceil($max_count/2)])) { $replace_with=$seller_count_links[$seller_name][ceil($max_count/2)]; }
 			if(isset($generated_buy_list[$replace_with])&&$generated_buy_list[$replace_with]) { $generated_buy_list[$replace_id]=$generated_buy_list[$replace_with]; $link_list[$replace_id]=$link_list[$replace_with]; $seller_list[$replace_id]=$seller_list[$replace_with]; }
 			
+			#Setting keys for deletion for everything that is over 4 records.
 			unset($replace_with); unset($replace_id);
-			#var_dump($generated_buy_list); echo "<br><br>";
-			for($i=4;$i<$max_count;$i++)
+			#var_dump($generated_buy_list); echo "<br><br>"; var_dump($seller_count_links);
+			for($i=4;$i<10000;$i++)
 			{ 
 				if(isset($generated_buy_list[$seller_count_links[$seller_name][$i]]))
-				{ $id_to_unset=$seller_count_links[$seller_name][$i];  unset($generated_buy_list[$id_to_unset]); unset($link_list[$id_to_unset]); unset($seller_list[$id_to_unset]); }
+				{ /*var_dump($generated_buy_list[$seller_count_links[$seller_name][$i]]);*/ $ids_to_unset[]=$seller_count_links[$seller_name][$i]; }
+				else
+				{ break; }
 			}
-			$generated_buy_list=array_values($generated_buy_list); $link_list=array_values($link_list); $seller_lis=array_values($seller_list);
 		}
 	}
 }
-
+#DELETING the extra keys
+foreach($ids_to_unset as $id_to_unset)
+{
+	unset($generated_buy_list[$id_to_unset]); unset($link_list[$id_to_unset]); unset($seller_list[$id_to_unset]);
+}
+$generated_buy_list=array_values($generated_buy_list); $link_list=array_values($link_list); $seller_list=array_values($seller_list);
 
 if(count($excluded_sellers)>0){ /*$excluded_sellers[]="3";*/ $excluded_sellers="AND id NOT IN (".implode(",",$excluded_sellers).")"; } else { $excluded_sellers=""; }
 
