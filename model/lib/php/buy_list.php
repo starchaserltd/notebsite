@@ -129,6 +129,7 @@ foreach($ids_to_unset as $id_to_unset)
 {
 	unset($generated_buy_list[$id_to_unset]); unset($link_list[$id_to_unset]); unset($seller_list[$id_to_unset]);
 }
+#Rebuilding the arrayss
 $generated_buy_list=array_values($generated_buy_list); $link_list=array_values($link_list); $seller_list=array_values($seller_list);
 
 if(count($excluded_sellers)>0){ /*$excluded_sellers[]="3";*/ $excluded_sellers="AND id NOT IN (".implode(",",$excluded_sellers).")"; } else { $excluded_sellers=""; }
