@@ -113,14 +113,13 @@ setInterval(function()
 		}
 		else
 		{
-			elementtext='<tr id="toptrcomp"><td colspan="4" style="text-align:center;"><button onmousedown="firstcompare=0; OpenPage('+"'model/comp.php?"+complink+"&ex="+excode+"',event); scrolltoid('content',0);"+'" style="max-width: 150px; width: 100%;" type="button" class="btn btn-primary">Compare items</button></td></tr>';
+			elementtext='<tr id="toptrcomp"><td colspan="4" style="text-align:center;"><button onmousedown="firstcompare=0; OpenPage('+"'model/comp.php?"+complink+"&ex="+excode+"',event); scrolltoid('content',0);"+'" style="max-width: 150px; width: 100%;" onmouseup="setTimeout((e) => blur(), 1000)" type="button" class="btn btn-primary">Compare laptops</button></td></tr>';
 			$('table#comparelist tr#toptrcomp').replaceWith(elementtext);
 		}
 		nrcheckchange=nrcheck;
 		excodechange=excode;
 	}
 }, 100);
-	
 	
 function removecomp(nr,uncheck)
 {

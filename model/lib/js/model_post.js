@@ -42,7 +42,22 @@ $(document).ready(function()
 
     // Toggle collapsibles on resize. Optional if you want 
     // to be able to show/hide on window resize.
-    $(window).on('resize', function() {	var $win = $(this); toggleCollapse($win); setProgressBarsSize(); });
+    $(window).on('resize', function() {	
+		var $win = $(this); 
+		toggleCollapse($win); 
+		setProgressBarsSize(); 
+
+		var vw = window.innerWidth;
+
+		if ($(window).width() >= 900)
+		{
+			console.log('show reordered columns')
+			document.querySelector('body').classList.add('display-reorderd')
+		} else {
+			console.log('show initial order')
+			document.querySelector('body').classList.remove('display-reorderd')
+		}
+	});
 	
 	// need the timeout in order to wait for the rating values to be set
 	setProgressBarsSize();
@@ -86,14 +101,15 @@ $(document).ready(function()
 	});
 
 	// Remove specifications collapse functionality in desktop
-	const accordionHeaderElement = document.getElementsByClassName('headerComponents');
-
+	const accordionHeaderElement = document.getElementsByClassName('header-collapse');
 	[...accordionHeaderElement].forEach((element) =>
 	{
 		element.onclick = (e) =>
 		{
-			const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-			if (vw >= 768) { e.preventDefault(); e.stopPropagation(); }
+			var vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);			
+			if (vw >= 768 && e.target.classList.contains('header-collapse')) {
+				e.preventDefault();  e.stopImmediatePropagation();
+			}
 		}
 	});
 	

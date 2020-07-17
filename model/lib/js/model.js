@@ -36,7 +36,7 @@ $('#addcompare').click(function(e)
 	$("#howToUse").css('display', 'none');
 });
  
-var model_togglerInfoButtons = $('.toggler.toolinfo .more-specs-text');
+var model_togglerInfoButtons = $('.toggler .more-specs-text');
 $(".toggler").click(function(e){
 	e.preventDefault();
 	

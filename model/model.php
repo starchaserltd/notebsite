@@ -136,10 +136,14 @@ else
 					</div>
 				</div> -->
 				<div class="rating-element overall-rating hide-when-affix">
-					<div class="rating-label bold-font">Overall rating</div>
+					<div class="rating-label bold-font">
+						<span class="toolinfo" data-toolid="102" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+							Overall rating: <i class="fa fa-question toolinfo-icon"></i>
+						</span>
+					</div>
 					<div class="progress-container">
 						<?php echo $rating_svg ?>
-						<span class="progress-value bold-font labelblue" id="notebro_rate"></span>	
+							<span class="progress-value bold-font labelblue" id="notebro_rate" ></span>
 					</div>
 				</div>
 			</div>
@@ -164,7 +168,7 @@ else
 							}
 							if($aff_link&&isset($aff_link[0])&&$aff_link[0]!=NULL&&$aff_link[0]!=""){$show_vars["link"]=$aff_link[0];}
 							?>
-							<a href="<?php echo $show_vars["link"]; ?>" target="blank"><img src=res/<?php echo $imgprod["pic"]; ?> class="logoheightof" alt="Product consumer page"></a>
+							<a href="<?php echo $show_vars["link"]; ?>" target="blank"><img src="<?php echo str_replace("//","/","/res/".$imgprod["pic"]); ?>" class="logoheightof" alt="Product consumer page"></a>
 						</div>
 				</div>
 				<div class="rating currency d-flex btn btn-outline-secondary btn-lg actionButton">
@@ -186,7 +190,7 @@ else
 							Buy now
 							<span class="caret"></span>
 						</button>
-						<ul class="dropdown-menu" aria-labelledby="dLabel" id="buylist-0">
+						<ul class="dropdown-menu buyDropdownMenu" aria-labelledby="dLabel" id="buylist-0">
 							<li class="loaderContainer">
 								<span class="loader"></span>
 							</li>
@@ -223,7 +227,7 @@ else
 		<div class="row no-gutters">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 d-flex">
 					<h4>Technical Specification</h4>
-					<div class="btn btn-md btn-outline-primary d-none toggler compmod showDetailsButton ml-5" data-hide="all">
+					<div class="btn btn-md btn-outline-primary toggler compmod showDetailsButton ml-5" data-hide="all">
 						<span class="showDetails"> Expand all specs</span>
 						<span class="showLessDetails"> Collapse all specs</span>
 						<span class="glyphicon glyphicon-menu-down fas fa-angle-down ml-2 detailsArrow"></span>
@@ -236,19 +240,27 @@ else
 		<div class="row accordion" id="specificationsAccordion">
 			<!-- START FIRST HALF OF MODEL -->
 			<!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 specificationContainer"> -->
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+			<div id="firstCol" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 				<!-- CPU -->
 					<div class="specification-card">
 						<div class="row modelwidht" id="title-1">
-							<div class="col-md-12 titlucomp toolinfo text-center bold-font" data-toolid="0" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-load="1" data-original-title="data-loading...">
-								<span class="toolinfo1 headerComponents" data-toggle="collapse" data-target="#collapse-1" aria-expanded="true" aria-controls="collapse-1">Processor</span>
+							<div class="col-md-12 titlucomp text-center bold-font">
+							<div class="headerComponents">
+								<div class="header-collapse" data-toggle="collapse" data-target="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
+									Processor
+								</div>
+							</div>
 							</div>
 						</div>
 						<div id="collapse-1" class="collapse show specification-content" aria-labelledby="title-1">
 							<div class="row modelwidht">	
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">	
 									<div class="row detaliicomp">					
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Model:</div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="0" data-toggle="tooltip" data-delay='{"show": 600, "hide": 600}' data-placement="left" data-load="1" data-original-title="data-loading...">
+												Model: <i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 col-7 rows"><?php show_cpu($modelcpu);?></div>							
 									</div>
 									<div class="row detaliicomp">					
@@ -256,32 +268,81 @@ else
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows" id="cpu_ldate"></div>					
 									</div>	
 									<div class="row hidecpu hideall detaliicomp" style="display:none">					
-										<div class="col-md-5 col-xs-5 col-5 col-sm-5 col-lg-5 rows toolinfo" data-toolid="1" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left"  data-original-title="data-loading..."><span class="toolinfo1">Socket:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="1" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="cpu_socket"></span></span></div>
+										<div class="col-md-5 col-xs-5 col-5 col-sm-5 col-lg-5 rows">
+											<span class="toolinfo" data-toolid="1" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left"  data-original-title="data-loading...">
+												Socket:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="cpu_socket"></span>
+										</div>
 									</div>
 									<div class="row hidecpu hideall detaliicomp" style="display:none">					
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="6" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Technology:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="6" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="cpu_tech"></span> nm</span></div>							
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="6" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Technology:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="cpu_tech"></span> nm
+										</div>							
 									</div>	
 									<div class="row hidecpu hideall detaliicomp" style="display:none">					
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="7" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Cache:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 co7-sm-7 col-lg-7 rows toolinfo" data-toolid="7" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="cpu_cache"></span> MB</span></div>							
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="7" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Cache:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 co7-sm-7 col-lg-7 rows">
+											<span id="cpu_cache"></span> MB
+										</div>							
 									</div>	
 									<div class="row hidecpu hideall detaliicomp" style="display:none">					
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="2" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Base Speed:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="2" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="cpu_speed"></span> GHz</span></div>										
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="2" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Base Speed:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="cpu_speed"></span> GHz
+										</div>										
 									</div>
 									<div class="row detaliicomp">					
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="4" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Max. Speed:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="4" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="cpu_turbo"></span> GHz</span></div>							
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="4" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Max. Speed:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="cpu_turbo"></span> GHz
+										</div>							
 									</div>	
 									<div class="row hidecpu hideall detaliicomp" style="display:none">					
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="8" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">TDP:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="8" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="cpu_tdp"></span> W</span></div>							
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="8" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												TDP:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="cpu_tdp"></span> W
+										</div>							
 									</div>	
 									<div class="row detaliicomp">					
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="3" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Nr. of cores:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="3" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="cpu_cores"></span></span></div>	
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="3" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Nr. of cores:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="cpu_cores"></span>
+										</div>	
 									</div>
 									<div class="row hidecpu hideall detaliicomp" style="display:none">					
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Miscellaneous:</div>
@@ -292,8 +353,15 @@ else
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows" id="cpu_class"></div>
 									</div>
 									<div class="row detaliicomp">					
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="5" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Rating:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="5" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><b><span  class="labelblue-s"><span id="cpu_rating" ></span> / 100</span></b></span></div>							
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="5" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Rating:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span class="labelblue-s" id="cpu_rating" ></span><span class="labelblue-s">/ 100</span>
+										</div>							
 									</div>	
 									<div class="expandContainer">
 										<a class="toggler" data-hide="cpu">
@@ -308,56 +376,135 @@ else
 					<!-- Video Card -->
 					<div class="specification-card">
 						<div class="row modelwidht" id="title-2">
-							<div class="col-md-12 titlucomp toolinfo text-center bold-font" data-toolid="20" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
-								 <span class="toolinfo1 headerComponents" data-toggle="collapse" data-target="#collapse-2" aria-expanded="true" aria-controls="collapse-2">Video card</span>
+							<div class="col-md-12 titlucomp text-center bold-font">
+								<div class="headerComponents">
+									<div class="header-collapse" data-toggle="collapse" data-target="#collapse-2" aria-expanded="true" aria-controls="collapse-2">
+										Video card
+									</div> 
+								</div>
 							</div>
 						</div>
 						<div id="collapse-2" class="collapse show specification-content" aria-labelledby="title-2">
 							<div class="row modelwidht">				
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">	
 									<div class="row detaliicomp">					
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Model:</div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="20" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Model:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows gpuhddd"><?php show_gpu($modelgpu); ?></div>							
 									</div>	
 									<div class="row hidegpu hideall detaliicomp" style="display:none">					
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="22" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Architecture:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="22" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="gpu_arch"></span></span></div>					
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="22" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Architecture:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="gpu_arch"></span>
+										</div>					
 									</div>
 									<div class="row hidegpu hideall detaliicomp" style="display:none">					
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="32" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Technology:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="32" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="gpu_tech"></span> nm</span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="32" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Technology:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="gpu_tech"></span> nm
+										</div>
 									</div>
 									<div class="row hidegpu hideall detaliicomp" style="display:none">					
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="23" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Pipelines:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="23" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="gpu_shaders"></span> pipelines</span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="23" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Pipelines:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="gpu_shaders"></span> pipelines
+										</div>
 									</div>
 									<div class="row detaliicomp">					
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="21" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Core Speed:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="21" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="gpu_speed"></span> MHz</span></div>		
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="21" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Core Speed:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="gpu_speed"></span> MHz
+										</div>		
 									</div>	
 									<div class="row hidegpu hideall detaliicomp" style="display:none">					
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="24" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Shader model:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="24" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="gpu_shadermodel"></span></span></div>		
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="24" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Shader model:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="gpu_shadermodel"></span>
+										</div>		
 									</div>						
 									<div class="row detaliicomp" >					
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="25" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Memory speed:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="25" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="gpu_memspeed"></span> MHz</span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="25" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Memory speed:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="gpu_memspeed"></span> MHz
+										</div>
 									</div>
 									<div class="row hidegpu hideall detaliicomp" style="display:none">					
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="26" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Memory bus:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="26" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="gpu_bus"></span> bit</span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="26" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Memory bus:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="gpu_bus"></span> bit
+										</div>
 									</div>
 									<div class="row detaliicomp">					
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="28" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Memory size:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="28" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="gpu_mem"></span></span></div>		
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="28" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Memory size:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="gpu_mem"></span>
+										</div>		
 									</div>			
 									<div class="row hidegpu hideall detaliicomp" style="display:none">					
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="27" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Shared memory:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="27" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><b><span id="gpu_smem"></span></b></span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="27" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Shared memory:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="gpu_smem"></span>
+										</div>
 									</div>
 									<div class="row hidegpu hideall detaliicomp" style="display:none">					
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="29" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">TDP:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="29" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="gpu_tdp"></span> W</span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="29" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												TDP:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="gpu_tdp"></span> W
+										</div>
 									</div>
 									<div class="row hidegpu hideall detaliicomp" style="display:none">					
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Miscellaneous:</div>
@@ -368,11 +515,18 @@ else
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows" id="gpu_class"></div>		
 									</div>	
 									<div class="row detaliicomp">
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="30" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Rating:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="30" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><b><span  class="labelblue-s"><span id="gpu_rating"></span> / 100</span></b></span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="30" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Rating:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span class="labelblue-s" id="gpu_rating"></span><span class="labelblue-s"> / 100</span>
+										</div>
 									</div>		
 									<div class="expandContainer">
-										<a class="toggler toolinfo" data-hide="gpu">
+										<a class="toggler" data-hide="gpu">
 											<span class="more-specs-text">More Specs</span>
 											<span class="glyphicon glyphicon-menu-down fas fa-angle-down ml-2 detailsArrow"></span>
 										</a>					
@@ -384,8 +538,12 @@ else
 					<!-- Display Mobile-->
 					<div class="specification-card">
 						<div class="row modelwidht" id="title-3">
-							<div class="col-md-12 titlucomp toolinfo text-center bold-font" data-toolid="42" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
-								<span class="toolinfo1 headerComponents" data-toggle="collapse" data-target="#collapse-3" aria-expanded="true" aria-controls="collapse-3">Display</span>
+							<div class="col-md-12 titlucomp text-center bold-font">
+								<div class="headerComponents">
+									<div class="header-collapse" data-toggle="collapse" data-target="#collapse-3" aria-expanded="true" aria-controls="collapse-3">
+										Display
+									</div>
+								</div>
 							</div>
 						</div>
 						<div id="collapse-3" class="collapse show specification-content" aria-labelledby="title-3">
@@ -396,24 +554,59 @@ else
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows"><?php show_display($modeldisplay); ?></div>					
 									</div>
 									<div class="row detaliicomp">
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="43" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Size:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="43" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="display_size"></span> inch</span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="43" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Size:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="display_size"></span> inch
+										</div>
 									</div>
 									<div class="row hidedis hideall detaliicomp" style="display:none">
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="44" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Format:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="44" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="display_format"></span></span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="44" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Format:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="display_format"></span>
+										</div>
 									</div>
 									<div class="row detaliicomp">
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="45" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Resolution:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="45" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="display_hres"></span> x <span id="display_vres"></span> pixels</span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="45" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Resolution:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="display_hres"></span> x <span id="display_vres"></span> pixels
+										</div>
 									</div>
 									<div class="row hidedis hideall detaliicomp" style="display:none">
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="46" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Surface type:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="46" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="display_surft"></span></span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="46" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Surface type:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="display_surft"></span>
+										</div>
 									</div>
 									<div class="row detaliicomp">
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="47" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Technology:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="47" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="display_backt"></span></span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="47" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Technology:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="display_backt"></span>
+										</div>
 									</div>
 									<div class="row detaliicomp">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Touchscreen:</div>
@@ -424,11 +617,18 @@ else
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows" id="display_misc"></div>
 									</div>
 									<div class="row hidedis hideall detaliicomp" style="display:none">
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="48" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Rating:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="48" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="display_rating"></span> / 100</span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="48" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Rating:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="display_rating"></span> / 100
+										</div>
 									</div>
 									<div class="expandContainer">
-										<a class="toggler toolinfo" data-hide="dis">
+										<a class="toggler" data-hide="dis">
 											<span class="more-specs-text">More Specs</span>
 											<span class="glyphicon glyphicon-menu-down fas fa-angle-down ml-2 detailsArrow"></span>
 										</a>					
@@ -441,23 +641,46 @@ else
 					<div class="specification-card">
 						<div class="row modelwidht" id="title-4">
 							<div class="col-md-12 titlucomp text-center bold-font">
-								<span class="headerComponents" data-toggle="collapse" data-target="#collapse-4" aria-expanded="true" aria-controls="collapse-4">Storage</span>
+								<div class="headerComponents">
+									<div class="header-collapse" data-toggle="collapse" data-target="#collapse-4" aria-expanded="true" aria-controls="collapse-4">
+										Storage
+									</div>
+								</div>
 							</div>
 							</div>
 						<div id="collapse-4" class="collapse show specification-content" aria-labelledby="title-4">
 							<div class="row modelwidht">						
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<div class="row detaliicomp">
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="50" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Model/Capacity:</span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="50" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Model/Capacity:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows gpuhdd"><?php show_hdd($modelhdd); ?></div>
 									</div>
 									<div class="row hidesto hideall detaliicomp" style="display:none">
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="49" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">RPM:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="49" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id ="hdd_rpm"></span></span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="49" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												RPM:
+											</span>
+											<i class="fa fa-question toolinfo-icon"></i>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id ="hdd_rpm"></span>
+										</div>
 									</div>
 									<div class="row hidesto hideall detaliicomp" style="display:none">					
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="51" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Type:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="51" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id ="hdd_type"></span></span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="51" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Type:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id ="hdd_type"></span>
+										</div>
 									</div>
 									<div class="row detaliicomp">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Read Speed:</div>
@@ -472,7 +695,7 @@ else
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows" id ="hdd_misc"></div>
 									</div>
 									<div class="expandContainer">
-										<a class="toggler toolinfo" data-hide="sto">
+										<a class="toggler" data-hide="sto">
 											<span class="more-specs-text">More Specs</span>
 											<span class="glyphicon glyphicon-menu-down fas fa-angle-down ml-2 detailsArrow"></span>
 										</a>					
@@ -490,23 +713,46 @@ else
 					<div class="specification-card">	
 						<div class="row modelwidht" id="title-5">					
 							<div class="col-md-12 titlucomp text-center bold-font">
-								<span class="headerComponents" data-toggle="collapse" data-target="#collapse-5" aria-expanded="true" aria-controls="collapse-5">Secondary Storage</span>
+								<div class="headerComponents">
+									<div class="header-collapse" data-toggle="collapse" data-target="#collapse-5" aria-expanded="true" aria-controls="collapse-5">
+										Secondary Storage
+									</div>
+								</div>
 							</div>
 						</div>
 						<div id="collapse-5" class="collapse show specification-content" aria-labelledby="title-5">
 							<div class="row modelwidht">						
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<div class="row detaliicomp">
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="50" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Capacity:</span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="50" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Capacity:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows"><?php echo $shddtext; ?></div>
 									</div>
 									<div class="row hidesto1 hideall detaliicomp" style="display:none">	
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="49" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">RPM:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="49" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..." ><span class="toolinfo1"><span id ="shdd_rpm"></span></span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="49" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												RPM:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id ="shdd_rpm"></span>
+										</div>
 									</div>
 									<div class="row hidesto1 hideall detaliicomp" style="display:none">						
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="51" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Type:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="51" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..." ><span class="toolinfo1"><span id ="shdd_type"></span></span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="51" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Type:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id ="shdd_type"></span>
+										</div>
 									</div>
 									<div class="row hidesto1 hideall detaliicomp" style="display:none">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Read Speed:</div>
@@ -517,7 +763,7 @@ else
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows" ><span id ="shdd_writes"></span> MB/s</div>
 									</div>
 									<div class="expandContainer">
-										<a class="toggler toolinfo" data-hide="sto1">
+										<a class="toggler" data-hide="sto1">
 											<span class="more-specs-text">More Specs</span>
 											<span class="glyphicon glyphicon-menu-down fas fa-angle-down ml-2 detailsArrow"></span>
 										</a>					
@@ -530,47 +776,98 @@ else
 					<!-- Motherboard -->	
 					<div class="specification-card">	
 						<div class="row modelwidht" id="title-6">	
-							<div class="col-md-12 titlucomp toolinfo text-center bold-font" data-toolid="53" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
-								<span class="toolinfo1 headerComponents" data-toggle="collapse" data-target="#collapse-6" aria-expanded="true" aria-controls="collapse-6">Motherboard</span>
+							<div class="col-md-12 titlucomp text-center bold-font">
+							<div class="headerComponents">
+								<div class="header-collapse" data-toggle="collapse" data-target="#collapse-6" aria-expanded="true" aria-controls="collapse-6">
+									Motherboard
+								</div>
+							</div>
 							</div>
 						</div>
 						<div id="collapse-6" class="collapse specification-content hide-spec-in-mobile" aria-labelledby="title-6">
 							<div class="row modelwidht">
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<div class="row detaliicomp">
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Submodel:</div>
-											<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows"><?php show_mdb($modelmdb); ?></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="53" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Submodel:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows"><?php show_mdb($modelmdb); ?></div>
 									</div>
 									<div class="row detaliicomp">
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="54" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Memory Slots:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="54" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="mdb_ram"></span></span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="54" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Memory Slots:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="mdb_ram"></span>
+										</div>
 									</div>
 									<div class="row detaliicomp hideall hidemdb" style="display:none">
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="52" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Video on board:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="52" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="mdb_gpu"></span></span></div>					
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="52" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Video on board:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="mdb_gpu"></span>
+										</div>					
 									</div>
 									<div class="row detaliicomp">
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="55" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Chipset:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="55" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="mdb_chipset"></span></span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="55" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Chipset:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="mdb_chipset"></span>
+										</div>
 									</div>
 									<div class="row hidemdb hideall detaliicomp" style="display:none">
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="56" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Int. Interfaces:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="56" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="mdb_interface"></span></span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="56" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Int. Interfaces:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="mdb_interface"></span>
+										</div>
 									</div>
 									<div class="row detaliicomp">
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="58" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Network:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="58" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="mdb_netw"></span></span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="58" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Network:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="mdb_netw"></span>
+										</div>
 									</div>
 									<div class="row hidemdb hideall detaliicomp" style="display:none">
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="57" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">HDD Interfaces:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="57" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="mdb_hdd"></span></span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="57" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												HDD Interfaces:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="mdb_hdd"></span>
+										</div>
 									</div>
 									<div class="row hidemdb hideall detaliicomp" style="display:none">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Miscellaneous:</div>
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows" id="mdb_misc"></div>
 									</div>
 									<div class="expandContainer">
-										<a class="toggler toolinfo" data-hide="mdb">
+										<a class="toggler" data-hide="mdb">
 											<span class="more-specs-text">More Specs</span>
 											<span class="glyphicon glyphicon-menu-down fas fa-angle-down ml-2 detailsArrow"></span>
 										</a>					
@@ -582,38 +879,68 @@ else
 			</div>
 			<!-- END FIRST HALF OF MODEL -->
 			<!-- START SECOND HALF OF MODEL -->
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+			<div id="secondCol" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 					<div class="specification-card">
 						<div class="row modelwidht" id="title-7">
-							<div class="col-md-12 titlucomp toolinfo text-center bold-font" data-toolid="59" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
-								<span class="toolinfo1 headerComponents" data-toggle="collapse" data-target="#collapse-7" aria-expanded="true" aria-controls="collapse-7">Memory</span>
+							<div class="col-md-12 titlucomp text-center bold-font">
+							<div class="headerComponents">
+								<div class="header-collapse" data-toggle="collapse" data-target="#collapse-7" aria-expanded="true" aria-controls="collapse-7">
+									Memory
+								</div>
+							</div>
 							</div>
 						</div>
 						<div id="collapse-7" class="collapse show specification-content" aria-labelledby="title-7">
 							<div class="row modelwidht">						
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<div class="row detaliicomp">
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="62" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Capacity:</span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="62" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Capacity:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows"><?php show_mem($modelmem); ?></div>
 									</div>
 									<div class="row hidemem hideall detaliicomp" style="display:none">
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="61" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Standard:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="61" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="mem_stan"></span></span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="61" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Standard:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="mem_stan"></span>
+										</div>
 									</div>
 									<div class="row detaliicomp">
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="60" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Type:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="60" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="mem_type"></span> - <span id="mem_freq"></span> MHz</span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="60" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Type:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="mem_type"></span> - <span id="mem_freq"></span> MHz
+										</div>
 									</div>
 									<div class="row hidemem hideall detaliicomp" style="display:none">
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="63" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">CAS Latency :</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="63" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="mem_lat"></span></span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="63" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												CAS Latency :
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="mem_lat"></span>
+										</div>
 									</div>
 									<div class="row hidemem hideall detaliicomp" style="display:none">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Miscellaneous:</div>
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows" id="mem_misc"></div>
 									</div>
 									<div class="expandContainer">
-										<a class="toggler toolinfo" data-hide="mem">
+										<a class="toggler" data-hide="mem">
 											<span class="more-specs-text">More Specs</span>
 											<span class="glyphicon glyphicon-menu-down fas fa-angle-down ml-2 detailsArrow"></span>
 										</a>					
@@ -625,29 +952,48 @@ else
 					<!--Optical Drive (if exists) -->		
 					<div class="specification-card">
 						<div class="row modelwidht" id="title-8">
-							<div class="col-md-12 titlucomp toolinfo text-center bold-font" data-toolid="64" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
-								<span class="toolinfo1 headerComponents" data-toggle="collapse" data-target="#collapse-8" aria-expanded="true" aria-controls="collapse-8">Optical drive</span>
+							<div class="col-md-12 titlucomp text-center bold-font">
+								<div class="headerComponents">
+									<div class="header-collapse" data-toggle="collapse" data-target="#collapse-8" aria-expanded="true" aria-controls="collapse-8">
+										Optical drive
+									</div>
+								</div>
 							</div>
 						</div>
 						<div id="collapse-8" class="collapse show specification-content" aria-labelledby="title-8">
 							<div class="row modelwidht">					
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<div class="row detaliicomp">					
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="65" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Type:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="65" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><?php $showodd=show_odd($modelodd); ?></span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="65" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Type:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+												<?php $showodd=show_odd($modelodd); ?>
+											</span>
+										</div>
 									</div>
 			<?php					if($showodd) 
 									{ ?>
 										<div class="row hideodd hideall detaliicomp" style="display:none">
-											<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="66" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Speed:</span></div>
-											<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="66" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="odd_speed"></span>X</span></div>
+											<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+												<span class="toolinfo" data-toolid="66" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+													Speed:
+													<i class="fa fa-question toolinfo-icon"></i>
+												</span>
+											</div>
+											<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+												<span id="odd_speed"></span>X
+											</div>
 										</div>					
 										<div class="row hideodd hideall detaliicomp" style="display:none">
 											<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Miscellaneous:</div>
 											<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows" id="odd_misc"></div>
 										</div>
 										<div class="expandContainer">
-											<a class="toggler toolinfo" data-hide="odd">
+											<a class="toggler" data-hide="odd">
 												<span class="more-specs-text">More Specs</span>
 												<span class="glyphicon glyphicon-menu-down fas fa-angle-down ml-2 detailsArrow"></span>
 											</a>					
@@ -661,14 +1007,23 @@ else
 					<div class="specification-card">
 						<div class="row modelwidht" id="title-9">
 							<div class="col-md-12 titlucomp text-center bold-font">
-								<span class="headerComponents" data-toggle="collapse" data-target="#collapse-9" aria-expanded="true" aria-controls="collapse-9">Battery</span>
+								<div class="headerComponents">
+									<div class="header-collapse" data-toggle="collapse" data-target="#collapse-9" aria-expanded="true" aria-controls="collapse-9">
+										Battery
+									</div>
+								</div>
 							</div>
 						</div>
 						<div id="collapse-9" class="collapse specification-content hide-spec-in-mobile" aria-labelledby="title-9">
 							<div class="row modelwidht">					
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<div class="row detaliicomp">
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="67" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Capacity:</span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="67" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Capacity:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows"><?php show_acum($modelacum); ?></div>
 									</div>
 									<div class="row detaliicomp">
@@ -692,7 +1047,7 @@ else
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows" id="acum_misc"></div>
 									</div>
 									<div class="expandContainer">
-										<a class="toggler toolinfo" data-hide="acu">
+										<a class="toggler" data-hide="acu">
 											<span class="more-specs-text">More Specs</span>
 											<span class="glyphicon glyphicon-menu-down fas fa-angle-down ml-2 detailsArrow"></span>
 										</a>					
@@ -704,8 +1059,12 @@ else
 					<!-- Chassis -->	
 					<div class="specification-card">
 						<div class="row modelwidht" id="title-10">
-								<div class="col-md-12 titlucomp toolinfo text-center bold-font" data-toolid="69" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
-									<span class="toolinfo1 headerComponents" data-toggle="collapse" data-target="#collapse-10" aria-expanded="true" aria-controls="collapse-10">Chassis</span>
+								<div class="col-md-12 titlucomp text-center bold-font">
+									<div class="headerComponents">
+										<div class="header-collapse" data-toggle="collapse" data-target="#collapse-10" aria-expanded="true" aria-controls="collapse-10">
+											Chassis
+										</div>
+									</div>
 								</div>
 							</div>
 						<div id="collapse-10" class="collapse show specification-content" aria-labelledby="title-10">
@@ -716,21 +1075,42 @@ else
 								if($chassistext && (strcasecmp($chassistext,"standard")!=0))
 								{ ?>
 									<div class="row hidecha hideall detaliicomp" style="display:none">
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows"><span class="toolinfo1">Type:</span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Type:</div>
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows"><?php echo $chassistext; ?></div>
 									</div>				
 			<?php				 } ?>									
 									<div class="row detaliicomp">
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="70" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Peripheral Interfaces:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="70" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="chassis_pi"></span></span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="70" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Peripheral Interfaces:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="chassis_pi"></span>
+										</div>
 									</div>
 									<div class="row hidecha hideall detaliicomp" style="display:none">
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="77" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Video Interfaces:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="77" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="chassis_vi"></span></span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="77" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Video Interfaces:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="chassis_vi"></span>
+										</div>
 									</div>
 									<div class="row hidecha hideall detaliicomp" style="display:none">
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="76" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Webcam:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="76" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="chassis_web"></span></span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="76" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Webcam:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="chassis_web"></span>
+										</div>
 									</div>
 									<div class="row hidecha hideall detaliicomp" style="display:none">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Touchpad:</div>
@@ -745,12 +1125,26 @@ else
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows"><span id="chassis_charger"></span></div>
 									</div>				
 									<div class="row detaliicomp">
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="84" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-load="1" data-original-title="data-loading..."><span class="toolinfo1">Weight:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="84" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-load="1" data-original-title="data-loading..."><span class="toolinfo1"><span id="chassis_weight"></span> Kg (<span id="chassis_weight_i"></span> lb)</span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="84" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-load="1" data-original-title="data-loading...">
+												Weight:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="chassis_weight"></span> Kg (<span id="chassis_weight_i"></span> lb)
+										</div>
 									</div>
 									<div class="row detaliicomp">
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="85" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-load="1" data-original-title="data-loading..."><span class="toolinfo1">Thickness:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="85" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-load="1" data-original-title="data-loading..."><span class="toolinfo1"><span id="chassis_thic"></span> cm (<span id="chassis_thic_i"></span>")</span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="85" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-load="1" data-original-title="data-loading...">
+												Thickness:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="chassis_thic"></span> cm (<span id="chassis_thic_i"></span>")
+										</div>
 									</div>
 									<div class="row detaliicomp">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Depth:</div>
@@ -773,7 +1167,7 @@ else
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows" id="chassis_misc"></div>
 									</div>
 									<div class="expandContainer">
-										<a class="toggler toolinfo" data-hide="cha">
+										<a class="toggler" data-hide="cha">
 										<span class="more-specs-text">More Specs</span>
 										<span class="glyphicon glyphicon-menu-down fas fa-angle-down ml-2 detailsArrow"></span>
 									</a>					
@@ -785,8 +1179,12 @@ else
 					<!-- Wireless card -->	
 					<div class="specification-card">
 						<div class="row modelwidht" id="title-11">
-							<div class="col-md-12 titlucomp toolinfo text-center bold-font" data-toolid="71" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
-								<span class="toolinfo1 headerComponents" data-toggle="collapse" data-target="#collapse-11" aria-expanded="true" aria-controls="collapse-11">Wireless card</span>
+							<div class="col-md-12 titlucomp text-center bold-font">
+							<div class="headerComponents">
+								<div class="header-collapse" data-toggle="collapse" data-target="#collapse-11" aria-expanded="true" aria-controls="collapse-11">
+									Wireless card
+								</div>
+							</div>
 							</div>
 						</div>
 						<div id="collapse-11" class="collapse specification-content hide-spec-in-mobile" aria-labelledby="title-11">
@@ -801,19 +1199,33 @@ else
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows"><span id="wnet_slot"></span></div>
 									</div>					
 									<div class="row hidewnet hideall detaliicomp" style="display:none">
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="72" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Speed:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="72" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="wnet_speed"></span></span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="72" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Speed:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="wnet_speed"></span>
+										</div>
 									</div>
 									<div class="row detaliicomp">
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="73" data-load="1" data-html="true" data-toggle="tooltip1" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Standard:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="73" data-load="1" data-html="true" data-toggle="tooltip1" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="wnet_stand"></span></span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="73" data-load="1" data-html="true" data-toggle="tooltip1" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Standard:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="wnet_stand"></span>
+										</div>
 									</div>
 									<div class="row hidewnet hideall detaliicomp" style="display:none">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Miscellaneous:</div>
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows" id="wnet_misc"></div>
 									</div>
 									<div class="expandContainer">
-										<a class="toggler toolinfo" data-hide="wnet">
+										<a class="toggler" data-hide="wnet">
 											<span class="more-specs-text">More Specs</span>
 											<span class="glyphicon glyphicon-menu-down fas fa-angle-down ml-2 detailsArrow"></span>
 										</a>					
@@ -826,7 +1238,11 @@ else
 					<div class="specification-card">	
 						<div class="row modelwidht" id="title-12">
 							<div class="col-md-12 titlucomp text-center bold-font">
-								<span class="headerComponents" data-toggle="collapse" data-target="#collapse-12" aria-expanded="true" aria-controls="collapse-12">Warranty</span>
+								<div class="headerComponents">
+									<div class="header-collapse" data-toggle="collapse" data-target="#collapse-12" aria-expanded="true" aria-controls="collapse-12">
+										Warranty
+									</div>
+								</div>
 							</div>
 						</div>
 						<div id="collapse-12" class="collapse specification-content hide-spec-in-mobile" aria-labelledby="title-12">
@@ -837,8 +1253,15 @@ else
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows"><?php show_war($modelwar); ?></div>					
 									</div>
 									<div class="row detaliicomp">
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows toolinfo" data-toolid="74" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1">Miscellaneous:</span></div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows toolinfo" data-toolid="74" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading..."><span class="toolinfo1"><span id="war_misc"></span></span></div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="74" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												Miscellaneous:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span id="war_misc"></span>
+										</div>
 									</div>
 								</div>				
 							</div>
@@ -847,15 +1270,24 @@ else
 					<!-- Operating System -->
 					<div class="specification-card">	
 						<div class="row modelwidht" id="title-13">
-							<div class="col-md-12 titlucomp toolinfo text-center bold-font" data-toolid="75" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
-								<span class="toolinfo1 headerComponents" data-toggle="collapse" data-target="#collapse-13" aria-expanded="true" aria-controls="collapse-13">Operating System</span>
+							<div class="col-md-12 titlucomp text-center bold-font">
+							<div class="headerComponents">
+								<div class="header-collapse" data-toggle="collapse" data-target="#collapse-13" aria-expanded="true" aria-controls="collapse-13">
+									Operating System
+								</div>
+							</div>
 							</div>
 						</div>
 						<div id="collapse-13" class="collapse specification-content hide-spec-in-mobile" aria-labelledby="title-13">
 							<div class="row modelwidht">					
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<div class="row detaliicomp">
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">System:</div>
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="75" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												System:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows"><?php show_sist($modelsist); ?></div>
 									</div>
 								</div>
@@ -870,7 +1302,11 @@ else
 					<div class="specification-card">	
 						<div class="row modelwidht" id="title-13">
 							<div class="col-md-12 titlucomp text-center bold-font">
-								<span class="headerComponents" data-toggle="collapse" data-target="#collapse-14" aria-expanded="true" aria-controls="collapse-14">Miscellaneous</span>
+								<div class="headerComponents">
+									<div class="header-collapse" data-toggle="collapse" data-target="#collapse-14" aria-expanded="true" aria-controls="collapse-14">
+										Miscellaneous
+									</div>
+								</div>
 							</div>
 						</div>
 						<div id="collapse-14" class="collapse show specification-content hide-spec-in-mobile" aria-labelledby="title-14">
@@ -884,7 +1320,7 @@ else
 							</div>
 						</div>
 					</div>
-	<?php 			} ?>
+	<?php 		} ?>
 				
 			</div> 
 			<!-- END SECOND HALF OF MODEL -->
@@ -923,7 +1359,7 @@ else
 	{
 		?>
 	
-	<div class="container bg-white modelContainer">
+	<div class="container bg-white modelContainer reviewsListContainer">
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ListBox">
 				<ul class="list-group ListElem">
@@ -983,16 +1419,23 @@ else
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
+					<button type="button" class="close fa fa-times" data-dismiss="modal" aria-label="Close">
 					</button>
 				</div>
 				<div class="modal-body">
 				<i class="fas fa-chevron-left imgControl prevImage"></i>
 				<i class="fas fa-chevron-right imgControl nextImage"></i>
-					<!-- <span class="material-icons">
-						navigate_next
-					</span> -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- NOTOFICATIONS MODAL -->
+	<div class="modal fade notificationsModal" id="notificationsModal" tabindex="-1" role="dialog" aria-labelledby="notificationsModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="notification-message"></div>
+					<button type="button" class="btn btn-outline-primary btn-md" data-dismiss="modal" aria-label="Close">OK</button>
 				</div>
 			</div>
 		</div>

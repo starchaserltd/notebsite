@@ -186,10 +186,12 @@ require_once("etc/conf.php");
 										<li class="comparelistContainer">
 											<table class="table" id="comparelist" style="margin-bottom:2px;">
 												<tbody>
-												<tr id="toptrcomp"><td colspan="1" style="text-align:center; background:#FFF; font-weight:600"></td><td></td><td></td><td></td></tr>
 													<!-- GENERATING COMPARE LIST FROM SESSION -->
 													<?php include("libnb/php/complist.php"); ?>
 												</tbody>
+												<tfoot>
+													<tr id="toptrcomp"><td colspan="1" style="text-align:center; background:#FFF; font-weight:600"></td><td></td><td></td><td></td></tr>
+												</tfoot>
 											</table>
 										</li>										
 									</ul>								

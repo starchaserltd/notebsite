@@ -20,7 +20,7 @@ function gettoolid($tname)
 }
 
 function maketooltip($tooltipid,$text)
-{ return	'<span class="toolinfo" data-toolid="'.$tooltipid.'" data-load="1" data-html="true" data-toggle="tooltip" data-delay=\'{"show": 600, "hide": 800}\' data-placement="top" data-original-title="Loading..."><span class="toolinfo1">'.$text."</span></span>"; }
+{ return '<span class="toolinfo" data-toolid="'.$tooltipid.'" data-load="1" data-html="true" data-toggle="tooltip" data-delay=\'{"show": 600, "hide": 800}\' data-placement="top" data-original-title="Loading...">'.$text.' <i class="fa fa-question toolinfo-icon"></i></span>'; }
 
 include("../libnb/php/urlproc.php");
 

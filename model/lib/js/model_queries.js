@@ -1,5 +1,55 @@
 var gocomp=1; var old_rate=""; var old_price=""; var old_bat=""; var best_low_array=["lowest_price","best_value","best_performance"];
 var cpu = {}; var cpu_price_old=0; var cpu_price_new=0; var cpu_err_new=0; var cpu_err_old=0; var cpu_rate_new=0; var cpu_rate_old=0; var cpu_gpu=0; var cpu_bat_new=0; var cpu_bat_old=0; cpu["clocks"]=""; var success=false;
+var notificationTypes = {
+	info: {
+		iconClass: 'fa-info-circle'
+	},
+	warning: {
+		iconClass: 'fa-exclamation-triangle'
+	}
+}
+var notificationsModalBody = document.querySelector('#notificationsModal .modal-body');
+var notificationsModalMessage = document.querySelector('#notificationsModal .notification-message');
+var notificationsModalIcon = document.querySelector('#notificationsModal .notification-icon');
+
+function showNotification(notificationType, message, componentsList) {
+	const iconElement = document.createElement('div');
+	const messageElement = document.createElement('div');
+
+	iconElement.classList.add('notification-icon', 'fa', `${notificationTypes[notificationType].iconClass}`);
+
+	messageElement.classList.add('notification-message-text')
+	notificationsModalMessage.appendChild(iconElement); 
+	notificationsModalMessage.appendChild(messageElement).innerHTML = message; 
+
+	if (componentsList) {
+		notificationsModalMessage.insertAdjacentElement('afterend', document.createElement('ul'));
+		const componentsListElement = document.querySelector('#notificationsModal .modal-body ul');
+
+		for (component of componentsList) {
+			componentsListElement.appendChild(document.createElement('li')).innerHTML = component;
+		}
+	}
+
+	$('#notificationsModal').modal('toggle');
+}
+
+// reset the message and the icon class when closing the notification
+function closeNotificationModal() {
+	const listElement = notificationsModalBody.querySelector('ul');
+	
+	notificationsModalMessage.innerHTML = '';
+	if (listElement) {
+		notificationsModalBody.removeChild(listElement);
+	}
+}
+
+$('#notificationsModal').on('hidden.bs.modal', function (e)
+{
+	closeNotificationModal();
+});
+
+
 function showCPU(str) 
 {
 	if (str === "") { cpu = {}; return; }
@@ -54,7 +104,7 @@ function showCPU(str)
 		xmlhttp.send(); all_requests.push(xmlhttp);
 	}
 }
-
+	
 var gpu = {}; var gpu_price_old=0; var gpu_price_new=0; var gpu_err_new=0; var gpu_err_old=0; var gpu_rate_new=0; var gpu_rate_old=0; var gpu_bat_old=0; var gpu_bat_new=0;
 var gpu_type=4; var gpu_previous=0; 
 function showGPU(str) 
@@ -64,7 +114,8 @@ function showGPU(str)
 	{
 		if(!cpu_gpu)
 		{
-			alert("This processor does not have an integrated graphics controller, please choose a different processor first!")
+			var message = "This processor does not have an integrated graphics controller, please choose a different processor first!";
+			showNotification('warning', message);
 			str=gpu_previous;
 			if(gpu_noselect>0){ document.querySelector('#GPU [value="' + str + '"]').selected = true; gpu_right_align(); }
 		}
@@ -146,8 +197,8 @@ function showDISPLAY(str)
 				document.getElementById('display_backt').innerHTML = display["backt"];
 				document.getElementById('display_touch').innerHTML = display["touch"];
 				document.getElementById('display_misc').innerHTML = display["msc"];
-				if( parseInt(display["sRGB"]) > 0) { document.getElementById('display_misc').innerHTML=eliminate_first_line_desc(document.getElementById('display_misc').innerHTML)+' <span class="toolinfo" data-toolid=86 data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="left" data-original-title="Loading..."><span class="toolinfo1">'+ display["sRGB"] + "% sRGB</span></span>"; }
-				if( parseInt(display["lum"]) > 0) { document.getElementById('display_misc').innerHTML=eliminate_first_line_desc(document.getElementById('display_misc').innerHTML)+' <span class="toolinfo" data-toolid=87 data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="left" data-original-title="Loading..."><span class="toolinfo1">'+ display["lum"] + " nits</span></span>"; } 
+				if( parseInt(display["sRGB"]) > 0) { document.getElementById('display_misc').innerHTML=eliminate_first_line_desc(document.getElementById('display_misc').innerHTML)+' <span class="toolinfo" data-toolid=86 data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="left" data-original-title="Loading..."><span>'+ display["sRGB"] + '% sRGB</span> <i class="fa fa-question toolinfo-icon"></i></span>'; }
+				if( parseInt(display["lum"]) > 0) { document.getElementById('display_misc').innerHTML=eliminate_first_line_desc(document.getElementById('display_misc').innerHTML)+' <span class="toolinfo" data-toolid=87 data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="left" data-original-title="Loading..."><span>'+ display["lum"] + ' nits</span> <i class="fa fa-question toolinfo-icon"></i></span>'; } 
 				document.getElementById('display_rating').innerHTML = display["rating"];
 			
 				display_rate_old = display_rate_new;
@@ -649,9 +700,19 @@ function getconf(comp,id,exactconf,new_page=false)
 						for (var key in confdata["changes"])
 						{
 							if(key!=="txt") { window['show'+key](confdata["changes"][key]); setselectedcomp(key,confdata["changes"][key]); if(key=="GPU"){ gpu_right_align();} }
-							else { if(show_comp_message){ alert("This component is only available in combination with a different "+confdata["changes"][key]+"."); }else{show_comp_message=1;} }
+							else
+							{ 
+								if(show_comp_message)
+								{ 
+									var componentsList = confdata["changes"][key].split(',');
+									var message = "This component is only available in combination with a different:";
+									showNotification('info', message, componentsList);
+								}
+								else{show_comp_message=1;}
+							}
 						}
 					}
+
 					update_url(confdata["cid"],mid,excode);
 					set_best_low(confdata["cid"],best_low);
 					switch(comp)
@@ -729,7 +790,8 @@ function getconf(comp,id,exactconf,new_page=false)
 							case "SIST":
 							{ setselectedcomp("SIST",prev_id); break; } 
 						}
-						alert("We are sorry, but this configuration is not available on the market.");
+						var message = "We are sorry, but this configuration is not available on the market.";
+						showNotification('warning', message);
 					}
 				}
 			}			
@@ -795,9 +857,9 @@ function setselectedcomp(comp,value)
 function cpumisc(str) 
 {
 	var msc_el = str.split(","); var msc="";
-	var text1='<span class="toolinfo" data-toolid="';
-	var text2='" data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="left" data-original-title="Loading..."><span class="toolinfo1">';
-	var text3='</span></span>';
+	var text1 = '<span class="toolinfo" data-toolid="';
+	var text2 = '"  data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="left" data-original-title="Loading..."><span>';
+	var text3 = '</span> <i class="fa fa-question toolinfo-icon"></i></span>';
 
 	var i, value;
 	for (i = 0; i < msc_el.length; ++i)
@@ -805,16 +867,18 @@ function cpumisc(str)
 		value = msc_el[i];
 		value = $.trim(value);
 
-		if(value.match("SSE")){ msc=msc+text1+"10"+text2+value+", "+text3; }
-		if(value.match("64")) { msc=msc+text1+"11"+text2+value+", "+text3; }
-		if(value.match("AVX")) { if(value.match("AVX 2.0")) { msc=msc+text1+"13"+text2+value+", "+text3; } else { msc=msc+text1+"12"+text2+value+", "+text3; }}
-		if(value.match("HT") || value.match("SMT")) {	msc=msc+text1+"15"+text2+value+", "+text3; }
-		if(value.match("VT-x") || value.match("AMD-V")) { msc=msc+text1+"16"+text2+value+", "+text3; }
-		if(value.match("VT-d") || value.match("AMD-Vi")) { msc=msc+text1+"17"+text2+value+", "+text3; }
-		if(value.match("VT-c")) { msc=msc+text1+"18"+text2+value+", "+text3; }
-		if(value.match("TBT") || value.match("AMD XFR") || value.match("Turbo Boost") || value.match("TC") || value.match("BPT")) { msc=msc+text1+"19"+text2+value+", "+text3; }
+		if(value.match("SSE")){ msc=msc+text1+"10"+text2+value+text3+', '; }
+		if(value.match("64")) { msc=msc+text1+"11"+text2+value+text3+', '; }
+		if(value.match("AVX")) { if(value.match("AVX 2.0")) { msc=msc+text1+"13"+text2+value+text3+', '; } else { msc=msc+text1+"12"+text2+value+text3+', '; }}
+		if(value.match("HT") || value.match("SMT")) {	msc=msc+text1+"15"+text2+value+text3+', '; }
+		if(value.match("VT-x") || value.match("AMD-V")) { msc=msc+text1+"16"+text2+value+text3+', '; }
+		if(value.match("VT-d") || value.match("AMD-Vi")) { msc=msc+text1+"17"+text2+value+text3+', '; }
+		if(value.match("VT-c")) { msc=msc+text1+"18"+text2+value+text3+', '; }
+		if(value.match("TBT") || value.match("AMD XFR") || value.match("Turbo Boost") || value.match("TC") || value.match("BPT")) { msc=msc+text1+"19"+text2+value+text3+', '; }
 	}
-	msc  = msc.substr(0, (msc.length - 16)) + msc.substr((msc.length - 15) + 1);	
+	msc=msc.trim();
+	if(msc[msc.length-1]==","){ msc=msc.slice(0,-1) }
+	
 	return msc;
 }
 	
@@ -823,9 +887,9 @@ function gpumisc(str)
 	var msc_el = str.split(",");
 	var msc="";
 
-	var text1='<span class="toolinfo" data-toolid="';
-	var text2='" data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="left" data-original-title="Loading..."><span class="toolinfo1">';
-	var text3='</span></span>';
+	var text1 = '<span class="toolinfo" data-toolid="';
+	var text2 = '"  data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="left" data-original-title="Loading..."><span>';
+	var text3 = '</span> <i class="fa fa-question toolinfo-icon"></i></span>';
 
 	var i, value;
 	for (i = 0; i < msc_el.length; ++i)
@@ -843,9 +907,13 @@ function gpumisc(str)
 		if((value.indexOf("Optimus")>=0)||(value.indexOf("Enduro")>=0)){ msc=msc+text1+"39"+text2+value+text3+", "; } else
 		if(value.indexOf("BatteryBoost")>=0){ msc=msc+text1+"40"+text2+value+text3+", "; } else
 		if(value.indexOf("ZeroCore")>=0){ msc=msc+text1+"41"+text2+value+text3+", "; } else
+		if(value.indexOf("Ray tracing")>=0){ msc=msc+text1+"88"+text2+value+text3+", "; } else
+		if(value.indexOf("DLSS")>=0){ msc=msc+text1+"89"+text2+value+text3+", "; } else
 		{ msc=msc+"<span>"+value+"</span>"+", "; }
 	}
-	msc  = msc.substr(0, (msc.length -2));
+	msc=msc.trim();
+	if(msc[msc.length-1]==","){ msc=msc.slice(0,-1) }
+
 	return msc;
 }
 
@@ -853,9 +921,11 @@ function wnetmisc(str)
 {
 	var msc_el = str.split(",");
 	var msc="";
-	var text1='<span class="toolinfo" data-toolid="';
-	var text2='" data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="left" data-original-title="Loading..."><span class="toolinfo1">';
-	var text3='</span></span>';
+	
+	var text1 = '<span class="toolinfo" data-toolid="';
+	var text2 = '"  data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="left" data-original-title="Loading..."><span>';
+	var text3 = '</span> <i class="fa fa-question toolinfo-icon"></i></span>';
+
 	var i, value;
 
 	for (i = 0; i < msc_el.length; ++i)
@@ -866,8 +936,9 @@ function wnetmisc(str)
 		if((value.indexOf("Wireless Display")>=0)||(value.indexOf("Wireless Display")>=0)){ msc=msc+text1+"79"+text2+value+text3+", "; } else
 		{ msc=msc+"<span>"+value+"</span>"+", "; }
 	}
+	msc=msc.trim();
+	if(msc[msc.length-1]==","){ msc=msc.slice(0,-1) }
 
-	msc  = msc.substr(0, (msc.length -2));
 	return msc;
 }
 

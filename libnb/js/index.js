@@ -73,7 +73,7 @@ function urlrequest(url,e,dontpush) {
         var urltitle = /([^\/]*).php/g.exec(url);
         urltitle = urltitle[1];
         currentpage = url;
-        if ($('#content').html(response)) { $('#loadingNB').hide(); if(lightbox.$overlay[0].style.display=="block"){ lightbox.end(); } }
+        if ($('#content').html(response)) { $('#loadingNB').hide(); }
         if (!dontpush) {
             dontpush = 0;
             if (first) {
