@@ -590,4 +590,6 @@ $('.searchMenu').click(function() {
 
 });
 
+const sync_sleep = ms => { const end = Date.now() + ms; while (Date.now() < end) { continue; } }
+function async_sleep(ms){ return new Promise(resolve => setTimeout(resolve, ms)); }
 function noteb_round(value, precision) { var multiplier = Math.pow(10, precision || 0); return Math.round(value * multiplier) / multiplier; }

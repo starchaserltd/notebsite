@@ -137,7 +137,7 @@ else
 				</div> -->
 				<div class="rating-element overall-rating hide-when-affix">
 					<div class="rating-label bold-font">
-						<span class="toolinfo" data-toolid="102" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+						<span class="toolinfo" data-toolid="102" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 							Overall rating: <i class="fa fa-question toolinfo-icon"></i>
 						</span>
 					</div>
@@ -257,7 +257,7 @@ else
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">	
 									<div class="row detaliicomp">					
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="0" data-toggle="tooltip" data-delay='{"show": 600, "hide": 600}' data-placement="left" data-load="1" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="0" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-load="1" data-original-title="data-loading...">
 												Model: <i class="fa fa-question toolinfo-icon"></i>
 											</span>
 										</div>
@@ -269,7 +269,7 @@ else
 									</div>	
 									<div class="row hidecpu hideall detaliicomp" style="display:none">					
 										<div class="col-md-5 col-xs-5 col-5 col-sm-5 col-lg-5 rows">
-											<span class="toolinfo" data-toolid="1" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left"  data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="1" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left"  data-original-title="data-loading...">
 												Socket:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -280,7 +280,7 @@ else
 									</div>
 									<div class="row hidecpu hideall detaliicomp" style="display:none">					
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="6" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="6" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Technology:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -291,7 +291,7 @@ else
 									</div>	
 									<div class="row hidecpu hideall detaliicomp" style="display:none">					
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="7" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="7" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Cache:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -302,7 +302,7 @@ else
 									</div>	
 									<div class="row hidecpu hideall detaliicomp" style="display:none">					
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="2" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="2" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Base Speed:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -313,7 +313,7 @@ else
 									</div>
 									<div class="row detaliicomp">					
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="4" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="4" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Max. Speed:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -324,7 +324,7 @@ else
 									</div>	
 									<div class="row hidecpu hideall detaliicomp" style="display:none">					
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="8" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="8" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												TDP:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -335,7 +335,7 @@ else
 									</div>	
 									<div class="row detaliicomp">					
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="3" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="3" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Nr. of cores:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -354,7 +354,7 @@ else
 									</div>
 									<div class="row detaliicomp">					
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="5" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="5" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Rating:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -389,7 +389,7 @@ else
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">	
 									<div class="row detaliicomp">					
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="20" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="20" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Model:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -398,7 +398,7 @@ else
 									</div>	
 									<div class="row hidegpu hideall detaliicomp" style="display:none">					
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="22" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="22" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Architecture:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -409,7 +409,7 @@ else
 									</div>
 									<div class="row hidegpu hideall detaliicomp" style="display:none">					
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="32" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="32" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Technology:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -420,7 +420,7 @@ else
 									</div>
 									<div class="row hidegpu hideall detaliicomp" style="display:none">					
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="23" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="23" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Pipelines:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -431,7 +431,7 @@ else
 									</div>
 									<div class="row detaliicomp">					
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="21" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="21" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Core Speed:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -442,7 +442,7 @@ else
 									</div>	
 									<div class="row hidegpu hideall detaliicomp" style="display:none">					
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="24" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="24" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Shader model:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -453,7 +453,7 @@ else
 									</div>						
 									<div class="row detaliicomp" >					
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="25" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="25" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Memory speed:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -464,7 +464,7 @@ else
 									</div>
 									<div class="row hidegpu hideall detaliicomp" style="display:none">					
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="26" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="26" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Memory bus:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -475,7 +475,7 @@ else
 									</div>
 									<div class="row detaliicomp">					
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="28" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="28" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Memory size:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -486,7 +486,7 @@ else
 									</div>			
 									<div class="row hidegpu hideall detaliicomp" style="display:none">					
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="27" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="27" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Shared memory:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -497,7 +497,7 @@ else
 									</div>
 									<div class="row hidegpu hideall detaliicomp" style="display:none">					
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="29" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="29" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												TDP:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -516,7 +516,7 @@ else
 									</div>	
 									<div class="row detaliicomp">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="30" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="30" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Rating:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -555,7 +555,7 @@ else
 									</div>
 									<div class="row detaliicomp">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="43" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="43" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Size:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -566,7 +566,7 @@ else
 									</div>
 									<div class="row hidedis hideall detaliicomp" style="display:none">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="44" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="44" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Format:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -577,7 +577,7 @@ else
 									</div>
 									<div class="row detaliicomp">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="45" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="45" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Resolution:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -588,7 +588,7 @@ else
 									</div>
 									<div class="row hidedis hideall detaliicomp" style="display:none">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="46" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="46" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Surface type:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -599,7 +599,7 @@ else
 									</div>
 									<div class="row detaliicomp">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="47" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="47" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Technology:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -618,7 +618,7 @@ else
 									</div>
 									<div class="row hidedis hideall detaliicomp" style="display:none">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="48" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="48" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Rating:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -653,7 +653,7 @@ else
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<div class="row detaliicomp">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="50" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="50" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Model/Capacity:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -662,7 +662,7 @@ else
 									</div>
 									<div class="row hidesto hideall detaliicomp" style="display:none">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="49" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="49" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												RPM:
 											</span>
 											<i class="fa fa-question toolinfo-icon"></i>
@@ -673,7 +673,7 @@ else
 									</div>
 									<div class="row hidesto hideall detaliicomp" style="display:none">					
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="51" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="51" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Type:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -725,7 +725,7 @@ else
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<div class="row detaliicomp">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="50" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="50" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Capacity:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -734,7 +734,7 @@ else
 									</div>
 									<div class="row hidesto1 hideall detaliicomp" style="display:none">	
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="49" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="49" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												RPM:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -745,7 +745,7 @@ else
 									</div>
 									<div class="row hidesto1 hideall detaliicomp" style="display:none">						
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="51" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="51" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Type:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -789,7 +789,7 @@ else
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<div class="row detaliicomp">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="53" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="53" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Submodel:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -798,7 +798,7 @@ else
 									</div>
 									<div class="row detaliicomp">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="54" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="54" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Memory Slots:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -809,7 +809,7 @@ else
 									</div>
 									<div class="row detaliicomp hideall hidemdb" style="display:none">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="52" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="52" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Video on board:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -820,7 +820,7 @@ else
 									</div>
 									<div class="row detaliicomp">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="55" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="55" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Chipset:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -831,7 +831,7 @@ else
 									</div>
 									<div class="row hidemdb hideall detaliicomp" style="display:none">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="56" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="56" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Int. Interfaces:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -842,7 +842,7 @@ else
 									</div>
 									<div class="row detaliicomp">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="58" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="58" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Network:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -853,7 +853,7 @@ else
 									</div>
 									<div class="row hidemdb hideall detaliicomp" style="display:none">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="57" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="57" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												HDD Interfaces:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -895,7 +895,7 @@ else
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<div class="row detaliicomp">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="62" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="62" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Capacity:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -904,7 +904,7 @@ else
 									</div>
 									<div class="row hidemem hideall detaliicomp" style="display:none">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="61" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="61" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Standard:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -915,7 +915,7 @@ else
 									</div>
 									<div class="row detaliicomp">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="60" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="60" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Type:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -926,7 +926,7 @@ else
 									</div>
 									<div class="row hidemem hideall detaliicomp" style="display:none">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="63" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="63" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												CAS Latency :
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -965,7 +965,7 @@ else
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<div class="row detaliicomp">					
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="65" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="65" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Type:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -979,7 +979,7 @@ else
 									{ ?>
 										<div class="row hideodd hideall detaliicomp" style="display:none">
 											<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-												<span class="toolinfo" data-toolid="66" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+												<span class="toolinfo" data-toolid="66" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 													Speed:
 													<i class="fa fa-question toolinfo-icon"></i>
 												</span>
@@ -1019,7 +1019,7 @@ else
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<div class="row detaliicomp">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="67" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="67" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Capacity:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -1081,7 +1081,7 @@ else
 			<?php				 } ?>									
 									<div class="row detaliicomp">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="70" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="70" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Peripheral Interfaces:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -1092,7 +1092,7 @@ else
 									</div>
 									<div class="row hidecha hideall detaliicomp" style="display:none">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="77" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="77" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Video Interfaces:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -1103,7 +1103,7 @@ else
 									</div>
 									<div class="row hidecha hideall detaliicomp" style="display:none">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="76" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="76" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Webcam:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -1126,7 +1126,7 @@ else
 									</div>				
 									<div class="row detaliicomp">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="84" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-load="1" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="84" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-load="1" data-original-title="data-loading...">
 												Weight:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -1137,7 +1137,7 @@ else
 									</div>
 									<div class="row detaliicomp">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="85" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-load="1" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="85" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-load="1" data-original-title="data-loading...">
 												Thickness:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -1200,7 +1200,7 @@ else
 									</div>					
 									<div class="row hidewnet hideall detaliicomp" style="display:none">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="72" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="72" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Speed:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -1211,7 +1211,7 @@ else
 									</div>
 									<div class="row detaliicomp">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="73" data-load="1" data-html="true" data-toggle="tooltip1" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="73" data-load="1" data-html="true" data-toggle="tooltip1" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Standard:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -1254,7 +1254,7 @@ else
 									</div>
 									<div class="row detaliicomp">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="74" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="74" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												Miscellaneous:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
@@ -1283,7 +1283,7 @@ else
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<div class="row detaliicomp">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="75" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600}' data-placement="left" data-original-title="data-loading...">
+											<span class="toolinfo" data-toolid="75" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
 												System:
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>

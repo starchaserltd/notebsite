@@ -71,7 +71,7 @@ if(isset($_GET["format"])){ $table_format=strval($_GET["format"]); }else{ $table
 if(strtotime($proc_date)<strtotime("2020-01-01")){ echo "Wrong date. Showing data for the current date.<br>"; $proc_date=date("Y-m-d"); }
 if(strtotime($proc_date)>strtotime("2050-01-01")){ echo "Wrong date. Showing data for the current date.<br>"; $proc_date=date("Y-m-d"); }
 
-$table_columns["retailers"]=["hpcom"=>"HP Store","market_price"=>"Market Median","amazoncom"=>"Amazon US","newegg"=>"Newegg","bhphotovideo"=>"B&H Photo Video","bestbuyus"=>"Best Buy"];
+$table_columns["retailers"]=["hpcom"=>"HP Store","market_price"=>"Market Median","amazoncom"=>"Amazon US","newegg"=>"Newegg","bhphotovideo"=>"B&H Photo Video","bestbuyus"=>"Best Buy","tigerdirect"=>"TigerDirect"];
 $table_columns["price_types"]=["min_price","median_price"];
 $nr_table_columns=count($table_columns["retailers"])*count($table_columns["price_types"])+1;
 $table_data=array();
@@ -227,25 +227,28 @@ if(have_results($result))
 						else if($retailer_key=="hpcom" && !$skipped && $row["noteb_pid"]!="0")
 						{ echo "<td>".$conf_table."</td>"; $skipped=True; continue;}
 						
-						$the_data=$row_data[$retailer_key][$price_type];
-						if(isset($the_data["count"])){ $vars="(".$the_data["count"]." vars)"; }else{$vars="(1 vars)";} 
-						$delta=round($the_data["diff"]*100,2);
-						$show_delta="";
-						if($retailer_key!="hpcom")
+						if(isset($row_data[$retailer_key][$price_type]))
 						{
-							$color_delta="color:blue;";
-							if($delta<$red_color_threshold){$color_delta="color:red;";}
-							else if($delta>$green_color_threshold){$color_delta="color:green;";}
-							if($delta>0){$delta="+".strval($delta);}
-							$show_delta='<span style="'.$color_delta.'">  ['.$delta.'%]</span>';
+							$the_data=$row_data[$retailer_key][$price_type];
+							if(isset($the_data["count"])){ $vars="(".$the_data["count"]." vars)"; }else{$vars="(1 vars)";} 
+							$delta=round($the_data["diff"]*100,2);
+							$show_delta="";
+							if($retailer_key!="hpcom")
+							{
+								$color_delta="color:blue;";
+								if($delta<$red_color_threshold){$color_delta="color:red;";}
+								else if($delta>$green_color_threshold){$color_delta="color:green;";}
+								if($delta>0){$delta="+".strval($delta);}
+								$show_delta='<span style="'.$color_delta.'">  ['.$delta.'%]</span>';
+							}
+							$time=date("Y-m-d H:i:s",(strtotime($the_data["time"])+($time_zone*3600)));
+							if($retailer_key=="market_price")
+							{ echo "<td style='text-align:center; background-color:#F8F8F8;'>"; }
+							else
+							{ echo "<td style='text-align:center;'>"; }
+							echo '<div title="'.$time.' '.$vars.'"><a target="_blank" href="'.$the_data["url"].'">$'.$the_data["price"].$show_delta.'</a></div>';
+							echo '</td>';
 						}
-						$time=date("Y-m-d H:i:s",(strtotime($the_data["time"])+($time_zone*3600)));
-						if($retailer_key=="market_price")
-						{ echo "<td style='text-align:center; background-color:#F8F8F8;'>"; }
-						else
-						{ echo "<td style='text-align:center;'>"; }
-						echo '<div title="'.$time.' '.$vars.'"><a target="_blank" href="'.$the_data["url"].'">$'.$the_data["price"].$show_delta.'</a></div>';
-						echo '</td>';
 					}
 					else
 					{

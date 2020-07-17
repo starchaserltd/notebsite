@@ -1,17 +1,20 @@
 var cleantips=1;
 //tooltip ajax function
-$('.toolinfo').trigger('click')
+$('.toolinfo').trigger('click');
 
 $(document).on({
 	click: showTooltip,
 	mouseenter: (e) => e.preventDefault(),
-	mouseleave: hideTooltip
+	mouseleave: (e) => { hideTooltip(e,1500); }
 }, '.toolinfo');
 
 function showTooltip(e)
 {
+	var hide_time=4000;
 	var vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 	if (vw >= 768) { e.stopImmediatePropagation(); }
+	if(e.type=="click" && cleantips==0){cleantips=1;}
+
 	if(istime && cleantips)
 	{
 		cleantips=0;
@@ -23,11 +26,13 @@ function showTooltip(e)
 	
 		if(f==1)
 		{
+			autoclose_tooltip($this,vw,hide_time);
 			$.post('libnb/php/tooltip.php?id='+id+'&lan='+lang+'&prop='+prop, {
 				html: 'some server response',
 				data1: data1
 			}, function(data){
 				$this.attr('data-original-title', data);
+				if(data!=undefined && data.length>100) { hide_time=data.length*45; autoclose_tooltip($this,vw,hide_time); }
 				$this.tooltip('show'); 
 				$this.attr('data-load',"2");
 				$this.on('shown.bs.tooltip', function()
@@ -37,33 +42,46 @@ function showTooltip(e)
 					if (arrowPlacement === 'left') { arrowElement.classList.add(arrowPlacement); }
 				});
 			}); 
-			// hide the tooltip in mobile
-			if (vw < 768)
-			{
-				var timer = setTimeout(() => { hideTooltip(e) }, 5000);
-				$this.data('timer', timer);
-			}
 		}
+	}
+	
+	function autoclose_tooltip(some_el,vw,hide_time)
+	{
+		var set_timer=hide_time;
+		if(typeof(timer)!=="undefined") { clearTimeout(timer); }
+		if (vw < 768){ set_timer=hide_time*1.1; }
+		timer = setTimeout(() => { hideTooltip(e,0) }, set_timer);
+		some_el.data('timer', timer);
 	}
 }
 
 
-function hideTooltip(e) {
-	// $this should always be the .toolinfo element in order to dispose of it
-	var $this = !e.target.classList.contains('toolinfo')
-		? $(e.target.parentNode)
-		: $(e.target);
+function get_tooltip_el(e)
+{
+	var to_return=null;
+	to_return = !e.target.classList.contains('toolinfo') ? $(e.target.parentNode) : $(e.target);
+	return to_return;
+}
 
+function hideTooltip(e,delay) {
+	// $this should always be the .toolinfo element in order to dispose of it
+	var $this = get_tooltip_el(e);
 	// Dispose only if tooltip is visible
-	if (document.querySelector('.tooltip'))
-	{
+	if(typeof($this.attr('aria-describedby'))!=="undefined")
+	{	
+		cleantips=1;
+		if(parseFloat(delay)>0)
+		{
+			$this.tooltip({trigger: 'manual'}).tooltip('show');
+			sync_sleep(delay);
+			$this.tooltip({trigger: 'click'});
+		}
+		
 		$this.tooltip('hide');
-		setTimeout(() => { $this.tooltip('dispose'); }, 600);
 		$this.attr("data-load", '1');
 		$this.removeAttr("aria-describedby");
-		cleantips=1;
 		
 		// Timer is set only in mobile
-		if ($this.data('timer')) { clearTimeout($this.data('timer'));  }
+		if ($this.data('timer')) { clearTimeout($this.data('timer')); }
 	}
 }
