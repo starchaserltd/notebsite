@@ -455,10 +455,6 @@
   .modelContainer .specification-card > .row {
 	margin: 0;
   }
-
-  .modelContainer .specification-card .toolinfo {
-	cursor: pointer;
-  }
   
   .modelContainer .specification-card .titlucomp {
 	padding: 0;
@@ -823,7 +819,51 @@
   .modal.notificationsModal .modal-body .notification-message .notification-message-text {
 	padding-left: 10px;
   }
-    
+  
+  /* TOOLTIP
+  .toolinfo {
+	cursor: pointer;
+  }
+  
+  .toolinfo-icon {
+	width: 10px;
+	height: 10px;
+	position: relative;
+	top: -5px;
+  }
+  
+  .toolinfo-icon:hover {
+	cursor: pointer;
+  }
+  
+  .toolinfo-icon:before {
+	height: 10px;
+	text-align: center;
+	border: 1px solid #0066cb;
+	border-radius: 50%;
+	display: block;
+	color: #0066cb;
+	font-size: 6px;
+	line-height: 8px;
+  }
+  
+  .tooltip {
+	opacity: 1;
+  }
+  
+  .tooltip .arrow:before {
+	top: -6px;
+	border-left: 12px solid rgba(0, 0, 0, 0.9);
+	border-top-width: 12px;
+	border-bottom-width: 12px;
+  }
+  
+  .tooltip .tooltip-inner {
+	padding: 10px;
+	background: rgba(0, 0, 0, 0.9);
+	text-align: left;
+  } */
+  
   .pics {
 	cursor: pointer;
 	max-width: 300px;

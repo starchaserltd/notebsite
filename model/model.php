@@ -561,7 +561,7 @@ else
 											</span>
 										</div>
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
-											<span id="display_size"></span> inch
+											<span class="display_size" id="display_size"></span> inch
 										</div>
 									</div>
 									<div class="row hidedis hideall detaliicomp" style="display:none">
@@ -572,7 +572,7 @@ else
 											</span>
 										</div>
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
-											<span id="display_format"></span>
+											<span class="display_format" id="display_format"></span>
 										</div>
 									</div>
 									<div class="row detaliicomp">
@@ -583,7 +583,7 @@ else
 											</span>
 										</div>
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
-											<span id="display_hres"></span> x <span id="display_vres"></span> pixels
+											<span class="display_hres" id="display_hres"></span> x <span class="display_vres" id="display_vres"></span> pixels
 										</div>
 									</div>
 									<div class="row hidedis hideall detaliicomp" style="display:none">
@@ -594,7 +594,7 @@ else
 											</span>
 										</div>
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
-											<span id="display_surft"></span>
+											<span class="display_surft" id="display_surft"></span>
 										</div>
 									</div>
 									<div class="row detaliicomp">
@@ -605,16 +605,16 @@ else
 											</span>
 										</div>
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
-											<span id="display_backt"></span>
+											<span class="display_backt" id="display_backt"></span>
 										</div>
 									</div>
 									<div class="row detaliicomp">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Touchscreen:</div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows" id="display_touch"></div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows" class="display_touch" id="display_touch"></div>
 									</div>
 									<div class="row detaliicomp"> 
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Miscellaneous:</div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows" id="display_misc"></div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows" class="display_misc" id="display_misc"></div>
 									</div>
 									<div class="row hidedis hideall detaliicomp" style="display:none">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
@@ -624,7 +624,7 @@ else
 											</span>
 										</div>
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
-											<span id="display_rating"></span> / 100
+											<span class="display_rating" id="display_rating"></span> / 100
 										</div>
 									</div>
 									<div class="expandContainer">
@@ -985,12 +985,12 @@ else
 												</span>
 											</div>
 											<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
-												<span id="odd_speed"></span>X
+												<span class="odd_speed" id="odd_speed"></span>X
 											</div>
 										</div>					
 										<div class="row hideodd hideall detaliicomp" style="display:none">
 											<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Miscellaneous:</div>
-											<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows" id="odd_misc"></div>
+											<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows odd_misc" id="odd_misc"></div>
 										</div>
 										<div class="expandContainer">
 											<a class="toggler" data-hide="odd">
@@ -1028,23 +1028,23 @@ else
 									</div>
 									<div class="row detaliicomp">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Cell Number:</div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows" id="acum_cell"></div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows acum_cell" id="acum_cell"></div>
 									</div>
 									<div class="row hideacu hideall detaliicomp" style="display:none">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Cell Type:</div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows" id="acum_tipc"></div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows acum_tipc" id="acum_tipc"></div>
 									</div>
 									<div class="row hideacu hideall detaliicomp" style="display:none">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Voltage:</div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows"><span id="acum_volt"></span></div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows acum_volt"><span id="acum_volt"></span></div>
 									</div>	
 									<div class="row hideacu hideall detaliicomp" style="display:none">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Weight:</div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows"><span id="acum_weight"></span><span id="acum_weight_i"></span></div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows acum_weight"><span id="acum_weight"></span><span id="acum_weight_i"></span></div>
 									</div>
 									<div class="row hideacu hideall detaliicomp" style="display:none">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Miscellaneous:</div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows" id="acum_misc"></div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows acum_misc" id="acum_misc"></div>
 									</div>
 									<div class="expandContainer">
 										<a class="toggler" data-hide="acu">

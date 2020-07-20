@@ -1,12 +1,20 @@
 var cleantips=1;
+var is_over_tooltip=false;
+var active_tooltip=null;
+
 //tooltip ajax function
 $('.toolinfo').trigger('click');
 
 $(document).on({
 	click: showTooltip,
 	mouseenter: (e) => e.preventDefault(),
-	mouseleave: (e) => { hideTooltip(e,1500); }
+	mouseleave: (e) => { hideTooltip(e,null,1500); }
 }, '.toolinfo');
+
+$(document).on({
+	mouseenter: (e) => { is_over_tooltip=true; },
+	mouseleave: (e) => { is_over_tooltip=false; hideTooltip(null,active_tooltips,1500);}
+}, '.tooltip');
 
 function showTooltip(e)
 {
@@ -23,7 +31,7 @@ function showTooltip(e)
 		id=$this.attr("data-toolid");
 		f=$this.attr("data-load");
 		prop=$this.attr("data-prop");
-	
+
 		if(f==1)
 		{
 			autoclose_tooltip($this,vw,hide_time);
@@ -34,6 +42,8 @@ function showTooltip(e)
 				$this.attr('data-original-title', data);
 				if(data!=undefined && data.length>100) { hide_time=data.length*45; autoclose_tooltip($this,vw,hide_time); }
 				$this.tooltip('show'); 
+				$this.unbind("mouseleave");
+				active_tooltips=$this;
 				$this.attr('data-load',"2");
 				$this.on('shown.bs.tooltip', function()
 				{
@@ -50,7 +60,7 @@ function showTooltip(e)
 		var set_timer=hide_time;
 		if(typeof(timer)!=="undefined") { clearTimeout(timer); }
 		if (vw < 768){ set_timer=hide_time*1.1; }
-		timer = setTimeout(() => { hideTooltip(e,0) }, set_timer);
+		timer = setTimeout(() => { hideTooltip(e,null,0) }, set_timer);
 		some_el.data('timer', timer);
 	}
 }
@@ -63,23 +73,24 @@ function get_tooltip_el(e)
 	return to_return;
 }
 
-function hideTooltip(e,delay) {
+async function hideTooltip(e,$this,delay) {
 	// $this should always be the .toolinfo element in order to dispose of it
-	var $this = get_tooltip_el(e);
-	// Dispose only if tooltip is visible
+	
+	if($this==null){ var $this = get_tooltip_el(e); }
 	if(typeof($this.attr('aria-describedby'))!=="undefined")
 	{	
-		cleantips=1;
-		if(parseFloat(delay)>0)
+		setTimeout(function()
 		{
-			$this.tooltip({trigger: 'manual'}).tooltip('show');
-			sync_sleep(delay);
-			$this.tooltip({trigger: 'click'});
-		}
-		
-		$this.tooltip('hide');
-		$this.attr("data-load", '1');
-		$this.removeAttr("aria-describedby");
+			cleantips=1;
+			$this.attr("data-load",'1');
+			if(is_over_tooltip==false)
+			{
+				$this.tooltip('hide');
+				active_tooltip=null;
+				$this.removeAttr("aria-describedby");
+				$this.tooltip('dispose');
+			}
+		},delay);
 		
 		// Timer is set only in mobile
 		if ($this.data('timer')) { clearTimeout($this.data('timer')); }

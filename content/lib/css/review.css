@@ -78,9 +78,9 @@
 .table_gb {
 	width: 100%; 
 	line-height: 1.2; 
-	margin-top: -10px; 
-	margin-bottom: 10px;
- }
+	/*margin-top: -10px; 
+	margin-bottom: 10px;*/
+ } 
 
  .containerGamingBenchmark {
  	text-align: center;

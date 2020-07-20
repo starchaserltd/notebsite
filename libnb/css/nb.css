@@ -767,6 +767,10 @@ fieldset[disabled] .btn-result.active {
 }
 
   /* TOOLTIP */
+  .toolinfo {
+	cursor: pointer;
+  }
+  
   .toolinfo-icon {
 	width: 10px;
 	height: 10px;
