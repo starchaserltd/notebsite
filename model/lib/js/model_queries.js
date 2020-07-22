@@ -1007,7 +1007,7 @@ function update_schema_rating_info(field_1,field_2,value)
 	var script = document.createElement('script');
 	script.type = "application/ld+json";
 	script.innerHTML = JSON.stringify(model_page_schema_data);
-	document.querySelector('.footer-distributed').appendChild(script);
+	document.querySelector('#model_page_schema').appendChild(script);
 }
 update_schema_rating_info("name",null,(mprod+" "+mfamily+" "+mmodel+""+msubmodel));
 update_schema_rating_info("image",null,ref_model_image);

@@ -1623,4 +1623,5 @@ $.getScript("model/lib/js/model.js",function(){$.getScript("lib/js/owl.carousel.
 <link rel="stylesheet" href="model/lib/css/model.css?v=97" type="text/css"/>
 <link rel="stylesheet" href="lib/css/owl.carousel.min.css" type="text/css"/>
 <link rel="stylesheet" href="lib/css/owl.theme.default.min.css" type="text/css"/>
+<div id="model_page_schema"></div>
 <?php include_once("../etc/scripts_pages.php"); ?>
