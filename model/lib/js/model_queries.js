@@ -715,7 +715,7 @@ function getconf(comp,id,exactconf,new_page=false)
 							else
 							{ 
 								if(show_comp_message)
-								{ console.log('ccc', confdata);
+								{
 									var componentsList = confdata["changes"][key].split(',');
 									var message = "This component is only available in combination with a different:";
 									showNotification('info', message, componentsList);
@@ -1020,7 +1020,8 @@ var notificationsModalMessage = document.querySelector('#notificationsModal .not
 var notificationsListContainer = document.querySelector('#notificationsModal .list-container');
 var notificationsModalIcon = document.querySelector('#notificationsModal .notification-icon');
 
-function showNotification(notificationType, message, componentsList) {
+function showNotification(notificationType, message, componentsList)
+{
 	var iconElement = document.createElement('div');
 	var messageElement = document.createElement('div');
 
@@ -1028,47 +1029,41 @@ function showNotification(notificationType, message, componentsList) {
 	messageElement.classList.add('notification-message-text')
 	notificationsModalMessage.appendChild(iconElement); 
 	notificationsModalMessage.appendChild(messageElement).innerHTML = message; 
-	console.log('componentsList', componentsList);
-	if (componentsList) {
-		if (componentsList.length > 4) {
+
+	if (componentsList)
+	{
+		if (componentsList.length > 4)
+		{
 			var firstList = componentsList.splice(0, componentsList.length / 2);
-			console.log('firstList', firstList, componentsList);
 			var firstListElem = notificationsListContainer.appendChild(document.createElement('ul'));
-			// var firstListElem = notificationsModalMessage.insertAdjacentElement('afterend', document.createElement('ul'));
 			firstListElem.classList.add('first');
 			var secondListElem = firstListElem.insertAdjacentElement('afterend', document.createElement('ul'));
 			secondListElem.classList.add('second');
 
 			var componentsFirstListElement = document.querySelector('#notificationsModal .modal-body ul.first');
 			var componentsSecondListElement = document.querySelector('#notificationsModal .modal-body ul.second');
-			for (component of firstList) {
-				componentsFirstListElement.appendChild(document.createElement('li')).innerHTML = component;
-			}
-			for (component of componentsList) {
-				componentsSecondListElement.appendChild(document.createElement('li')).innerHTML = component;
-			}
-		} else {
-			// notificationsModalMessage.insertAdjacentElement('afterend', document.createElement('ul'));
+			for (component of firstList) { componentsFirstListElement.appendChild(document.createElement('li')).innerHTML = component; }
+			for (component of componentsList) { componentsSecondListElement.appendChild(document.createElement('li')).innerHTML = component; }
+		}
+		else
+		{
 			notificationsListContainer.appendChild(document.createElement('ul'));
 			var componentsListElement = document.querySelector('#notificationsModal .modal-body ul');
-			for (component of componentsList) {
-				componentsListElement.appendChild(document.createElement('li')).innerHTML = component;
-			}
+			for (component of componentsList)
+			{ componentsListElement.appendChild(document.createElement('li')).innerHTML = component; }
 		}
 	}
 	$('#notificationsModal').modal('toggle');
 }
 
 // reset the message and the icon class when closing the notification
-function closeNotificationModal() {
+function closeNotificationModal()
+{
 	var listElements = notificationsListContainer.querySelectorAll('ul');
-	console.log('closee', listElements);
 	notificationsModalMessage.innerHTML = '';
 	if (listElements.length) { for (elem of listElements) {notificationsListContainer.removeChild(elem); }}
 }
-
-$('#notificationsModal').on('hidden.bs.modal', function (e)
-{ closeNotificationModal(); });
+$('#notificationsModal').on('hidden.bs.modal', function (e){ closeNotificationModal(); });
 
 function eliminate_first_line_desc(el){ var temp_el=el; if(temp_el==="-"){temp_el="";}else{temp_el=temp_el+",";} return temp_el;}
 function normal_rating(x){ x=x*1000; return (((1.25/1000000*Math.pow(x,2))+1.305*x+(-4.3/100000000000*Math.pow(x,3)))/1000); }

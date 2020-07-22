@@ -923,6 +923,9 @@
 	.modelContainer .actionsContainer .buy .dropdown-menu li {
 	  line-height: 15px;
 	}
+	.modelContainer .actionsContainer .buy .btn {
+		margin-bottom: 0;
+	}
 	.modelContainer .ratingContainer {
 	  border: 0;
 	  margin-bottom: 10px;
