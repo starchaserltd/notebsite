@@ -826,7 +826,8 @@ function update_model_info(model_id)
 				keywords=new_model_data["keywords"]; mmodel=new_model_data["model"];
 				exchsign=new_model_data["region"];
 				document.getElementById('model_title').innerHTML=mprod+" "+mfamily+" "+mmodel+""+msubmodel+new_model_data["region"];
-				update_schema_rating_info("name",null,(mprod+" "+mfamily+" "+mmodel+""+msubmodel));
+				update_schema_rating_info("name",null,null,(mprod+" "+mfamily+" "+mmodel+""+msubmodel));
+				update_schema_rating_info("aggregateRating","itemReviewed","name",(mprod+" "+mfamily+" "+mmodel+""+msubmodel));
 				if(new_model_data["msc"].length>0)
 				{ 
 					document.getElementById('model_msc').innerHTML=new_model_data["msc"];
@@ -992,14 +993,22 @@ function set_best_low(confid,array_values)
 	if(i) { set_active_confopt(-1); }
 }
 
-function update_schema_rating_info(field_1,field_2,value)
+function update_schema_rating_info(field_1,field_2,field_3,value)
 {
 	if(field_1!=null && typeof(model_page_schema_data[field_1])!=="undefined")
 	{ 
 		if(field_2!=null)
 		{ 
-			if(typeof(model_page_schema_data[field_1][field_2])!=="undefined")
-			{ model_page_schema_data[field_1][field_2]=value; }
+			if(field_3!=null)
+			{ 
+				if(typeof(model_page_schema_data[field_1][field_2][field_3])!=="undefined")
+				{ model_page_schema_data[field_1][field_2][field_3]=value; }
+			}
+			else
+			{
+				if(typeof(model_page_schema_data[field_1][field_2])!=="undefined")
+				{ model_page_schema_data[field_1][field_2]=value; }
+			}
 		}
 		else { model_page_schema_data[field_1]=value; }
 	}
@@ -1009,11 +1018,13 @@ function update_schema_rating_info(field_1,field_2,value)
 	script.innerHTML = JSON.stringify(model_page_schema_data);
 	document.querySelector('#model_page_schema').appendChild(script);
 }
-update_schema_rating_info("name",null,(mprod+" "+mfamily+" "+mmodel+""+msubmodel));
-update_schema_rating_info("image",null,ref_model_image);
-update_schema_rating_info("brand",null,mprod);
+update_schema_rating_info("aggregateRating","itemReviewed","name",(mprod+" "+mfamily+" "+mmodel+""+msubmodel));
+update_schema_rating_info("aggregateRating","itemReviewed","image",ref_model_image);
+update_schema_rating_info("name",null,null,(mprod+" "+mfamily+" "+mmodel+""+msubmodel));
+update_schema_rating_info("image",null,null,ref_model_image);
+update_schema_rating_info("brand",null,null,mprod);
 
-function update_model_rating(value){ var new_rating=normal_rating(config_rate); document.getElementById('notebro_rate').innerHTML=new_rating;	update_schema_rating_info("aggregateRating","ratingValue",new_rating); }
+function update_model_rating(value){ var new_rating=normal_rating(config_rate); document.getElementById('notebro_rate').innerHTML=new_rating;	update_schema_rating_info("aggregateRating","ratingValue",null,new_rating); }
 
 var notificationTypes=
 {
