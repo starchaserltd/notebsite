@@ -606,7 +606,7 @@ else
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Touchscreen:</div>
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows display_touch"></div>
 									</div>
-									<div class="row detaliicomp"> 
+									<div class="row detaliicomp">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Miscellaneous:</div>
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows display_msc"></div>
 									</div>
@@ -763,8 +763,8 @@ else
 						</div>
 					</div>	
 	<?php			} ?>
-<!--Optical Drive (if exists) Desktop-->		
-<div class="specification-card d-none d-md-block">
+					<!--Optical Drive (if exists) Desktop-->		
+					<div class="specification-card d-none d-md-block">
 						<div class="row modelwidht" id="title-8">
 							<div class="col-md-12 titlucomp text-center bold-font">
 								<div class="headerComponents header-collapse" data-toggle="collapse" data-target="#collapse-8" aria-expanded="true" aria-controls="collapse-8">
@@ -1113,7 +1113,7 @@ else
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Touchscreen:</div>
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows display_touch"></div>
 									</div>
-									<div class="row detaliicomp"> 
+									<div class="row detaliicomp">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Miscellaneous:</div>
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows display_msc"></div>
 									</div>
