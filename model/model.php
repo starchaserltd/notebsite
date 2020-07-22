@@ -69,36 +69,37 @@ else
 		</div>
 
 <?php 
-	echo "<script> var mprod='".$mprod."'; var mfamily='".$mfam."';  var mmodel='".$mmodel."'; var msubmodel='".$msubmodel."'; var mid='".$idmodel."'; var pmodel='".$p_model."'; var keywords='".$keywords."'; var veto_mname='".$veto_mname."'.split(',');</script>";
+	echo "<script> var mprod='".$mprod."'; var mfamily='".$mfam."';  var mmodel='".$mmodel."'; var msubmodel='".$msubmodel."'; var mid='".$idmodel."'; var pmodel='".$p_model."'; var keywords='".$keywords."'; var veto_mname='".$veto_mname."'.split(','); var ref_model_image='';</script>";
 ?>
 		<!-- Pictures -->
 <?php
 		show_vars('img_1,img_2,img_3,img_4','MODEL',$idmodel);
 		$imglist=$show_vars;
+		$js_ref_image=false;
 ?> 		<div class="row ">
 				<div class="col-lg-5 col-xl-5">
 		<?php	if(isset($imglist["img_1"]))
-				{ ?>
+				{ if(!$js_ref_image){ echo "<script>ref_model_image='".$web_address."res/img/models/".$imglist["img_1"]."';</script>"; $js_ref_image=true; }?>
 				<div id="model-carousel" class="row owl-carousel">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 firstImageModel" data-dot="<img class='pics' src='res/img/models/<?php echo $imglist["img_1"];?>' alt='<?php $mmodel ?>'>" data-toggle="modal" data-target="#galleryModal">
 							<img class="pics" src="res/img/models/<?php echo $imglist["img_1"];?>" alt="<?php $mmodel ?>">
 						</div>
-						<?php 	}
+		<?php 	}
 
 				if($imglist["img_2"])
-				{ ?>
+				{ if(!$js_ref_image){ echo "<script>ref_model_image='".$web_address."res/img/models/".$imglist["img_2"]."';</script>"; $js_ref_image=true;} ?>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 firstImageModel" data-dot="<img class='pics' src='res/img/models/<?php echo $imglist["img_2"];?>' alt='<?php $mmodel ?>'>" data-toggle="modal" data-target="#galleryModal">
 						<img class="pics" src="res/img/models/<?php echo $imglist["img_2"];?>" alt="<?php $mmodel ?>">
 					</div>
 		<?php 	}
 				if($imglist["img_3"])
-				{ ?>
+				{ if(!$js_ref_image){ echo "<script>ref_model_image='".$web_address."res/img/models/".$imglist["img_3"]."';</script>"; $js_ref_image=true;} ?>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 firstImageModel" data-dot="<img class='pics' src='res/img/models/<?php echo $imglist["img_3"];?>' alt='<?php $mmodel ?>'>" data-toggle="modal" data-target="#galleryModal">
 					<img class="pics" src="res/img/models/<?php echo $imglist["img_3"];?>" alt="<?php $mmodel ?>">
 				</div>
 		<?php 	} 
 				if($imglist["img_4"])
-				{ ?>	
+				{ if(!$js_ref_image){ echo "<script>ref_model_image='".$web_address."res/img/models/".$imglist["img_4"]."';</script>"; $js_ref_image=true;}?>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 firstImageModel" data-dot="<img class='pics' src='res/img/models/<?php echo $imglist["img_4"];?>' alt='<?php $mmodel ?>'>" data-toggle="modal" data-target="#galleryModal">
 						<img class="pics" src="res/img/models/<?php echo $imglist["img_4"];?>" alt="<?php $mmodel ?>">
 					</div>
