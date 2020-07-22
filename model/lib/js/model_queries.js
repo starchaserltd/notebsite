@@ -845,7 +845,16 @@ function update_model_info(model_id)
 				keywords=new_model_data["keywords"]; mmodel=new_model_data["model"];
 				exchsign=new_model_data["region"];
 				document.getElementById('model_title').innerHTML=mprod+" "+mfamily+" "+mmodel+""+msubmodel+new_model_data["region"];
-				document.getElementById('model_msc').innerHTML=new_model_data["msc"];
+				if(new_model_data["msc"].length>0)
+				{ 
+					document.getElementById('model_msc').innerHTML=new_model_data["msc"];
+					document.getElementById('model_msc_card').style.display='block';
+				}
+				else
+				{
+					document.getElementById('model_msc').innerHTML="";
+					document.getElementById('model_msc_card').style.display='none';
+				}
 				document.getElementById('dLabel').setAttribute("data-buyregions",new_model_data["regions"]);
 				document.getElementById('dLabel').setAttribute("data-idmodel",model_id); 
 				set_model_info();

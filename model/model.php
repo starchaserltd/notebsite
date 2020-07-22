@@ -1417,14 +1417,14 @@ else
 					</div>
 					<!-- Operating System -->
 					<div class="specification-card">	
-						<div class="row modelwidht" id="title-13">
+						<div class="row modelwidht" id="title-12">
 							<div class="col-md-12 titlucomp text-center bold-font">
-							<div class="headerComponents header-collapse" data-toggle="collapse" data-target="#collapse-13" aria-expanded="true" aria-controls="collapse-13">
+							<div class="headerComponents header-collapse" data-toggle="collapse" data-target="#collapse-12" aria-expanded="true" aria-controls="collapse-12">
 								Operating System
 							</div>
 							</div>
 						</div>
-						<div id="collapse-13" class="collapse specification-content hide-spec-in-mobile" aria-labelledby="title-13">
+						<div id="collapse-12" class="collapse specification-content hide-spec-in-mobile" aria-labelledby="title-12">
 							<div class="row modelwidht">					
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<div class="row detaliicomp">
@@ -1442,14 +1442,14 @@ else
 					</div>
 					<!-- Warranty -->		
 					<div class="specification-card">	
-						<div class="row modelwidht" id="title-12">
+						<div class="row modelwidht" id="title-13">
 							<div class="col-md-12 titlucomp text-center bold-font">
-								<div class="headerComponents header-collapse" data-toggle="collapse" data-target="#collapse-12" aria-expanded="true" aria-controls="collapse-12">
+								<div class="headerComponents header-collapse" data-toggle="collapse" data-target="#collapse-13" aria-expanded="true" aria-controls="collapse-13">
 									Warranty
 								</div>
 							</div>
 						</div>
-						<div id="collapse-12" class="collapse specification-content hide-spec-in-mobile" aria-labelledby="title-12">
+						<div id="collapse-13" class="collapse specification-content hide-spec-in-mobile" aria-labelledby="title-13">
 							<div class="row modelwidht">					
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<div class="row detaliicomp">
@@ -1472,12 +1472,8 @@ else
 						</div>
 					</div>
 					<!-- Miscellaneous -->
-	<?php
-					$msctext=show_msc($idmodel); 
-					if($msctext)
-					{ ?>
-					<div class="specification-card">	
-						<div class="row modelwidht" id="title-13">
+					<div class="specification-card" id="model_msc_card">	
+						<div class="row modelwidht" id="title-14">
 							<div class="col-md-12 titlucomp text-center bold-font">
 								<div class="headerComponents header-collapse" data-toggle="collapse" data-target="#collapse-14" aria-expanded="true" aria-controls="collapse-14">
 									Miscellaneous
@@ -1489,13 +1485,13 @@ else
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<div class="row detaliicomp">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows" data-placement="left" title="data-loading...">About:</div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows"><span><?php if(isset($msctext["p_model"]["com"])&&$msctext["p_model"]["com"]!=NULL) { echo $msctext["p_model"]["com"]." "; } if(isset($msctext["p_model"]["src"])&&$msctext["p_model"]["src"]!=NULL) { $src_msc_parts=array(); $src_msc_parts=explode(" ",$msctext["p_model"]["src"]); $k=0; foreach($src_msc_parts as $val){$k++; echo "<a target='_blank' href='".$val."'>[".$k."]</a>"; } } ?></span><span id="model_msc"><?php echo $msctext["model_msc"]; ?></span></div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows"><span><?php $msctext=show_msc($idmodel); $msc_has_content=false; if(isset($msctext)) { if(isset($msctext["p_model"]["com"])&&$msctext["p_model"]["com"]!=NULL) { echo $msctext["p_model"]["com"]." "; $msc_has_content=true; } if(isset($msctext["p_model"]["src"])&&$msctext["p_model"]["src"]!=NULL) { $src_msc_parts=array(); $src_msc_parts=explode(" ",$msctext["p_model"]["src"]); $k=0; foreach($src_msc_parts as $val){$k++; echo "<a target='_blank' href='".$val."'>[".$k."]</a>"; } } ?></span><span id="model_msc"><?php if(isset($msctext["model_msc"]) && strlen($msctext["model_msc"])>0){ echo $msctext["model_msc"];  $msc_has_content=true; } }?></span></div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-	<?php 		} ?>
+			<?php  if(!(isset($msctext) && $msc_has_content)){ echo "<script>document.getElementById('model_msc_card').style.display='none';</script>";} ?>
 				
 			</div> 
 			<!-- END SECOND HALF OF MODEL -->
