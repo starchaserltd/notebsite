@@ -1010,7 +1010,8 @@ function update_schema_rating_info(field_1,field_2,value)
 	document.querySelector('.footer-distributed').appendChild(script);
 }
 update_schema_rating_info("name",null,(mprod+" "+mfamily+" "+mmodel+""+msubmodel));
-update_schema_rating_info("name",null,ref_model_image);
+update_schema_rating_info("image",null,ref_model_image);
+update_schema_rating_info("brand",null,mprod);
 
 function update_model_rating(value){ var new_rating=normal_rating(config_rate); document.getElementById('notebro_rate').innerHTML=new_rating;	update_schema_rating_info("aggregateRating","ratingValue",new_rating); }
 

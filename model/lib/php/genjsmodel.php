@@ -5,22 +5,7 @@ var disqus_config = function () {
  this.page.title = mprod+' '+mmodel;
 };
 
-var model_page_schema_data=
-{
-  "@context": "https://schema.org/",
-  "@type": "Product",
-  "name":"",
-  "aggregateRating":
-  {
-	"@type":"AggregateRating",
-	"ratingValue": "",
-	"bestRating": "100",
-	"worstRating": "1",
-	"ratingCount": "1",
-	"reviewCount": "1"
-  }
-}
-
+var model_page_schema_data={"@context":"https://schema.org/","@type":"Product",name:"",brand:"",image:"",aggregateRating:{"@type":"AggregateRating",ratingValue:"",bestRating:"100",worstRating:"1",ratingCount:"1",reviewCount:"1"}};
 
 function set_model_info()
 { var key; for(key in veto_mname) {mmodel=mmodel.replace(' '+veto_mname[key],'');} metakeys(mprod.replace(' ',',')+','+mfamily.replace(' ',',')+','+mmodel.replace(' ',',')+',notebook,laptop'); document.title = mprod+' '+mfamily+' '+mmodel;}
