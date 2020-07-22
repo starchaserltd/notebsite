@@ -73,7 +73,8 @@ function showCPU(str)
 				cpu_rate_old = cpu_rate_new;
 				cpu_rate_new = cpu["confrate"];
 				config_rate = config_rate-cpu_rate_old+cpu_rate_new;
-				document.getElementById('notebro_rate').innerHTML=(Math.round(normal_rating(config_rate) * 10) / 10).toFixed(1);
+				update_model_rating(config_rate);
+				
 				cpu_bat_old = cpu_bat_new;
 				cpu_bat_new = cpu["bat"];
 				config_batlife=config_batlife-cpu_bat_old+cpu_bat_new;
@@ -151,7 +152,7 @@ function showGPU(str)
 				gpu_rate_old = gpu_rate_new;
 				gpu_rate_new = gpu["confrate"];				
 				config_rate = config_rate-gpu_rate_old+gpu_rate_new;
-				document.getElementById('notebro_rate').innerHTML=(Math.round(normal_rating(config_rate) * 10) / 10).toFixed(1);
+				update_model_rating(config_rate);
 				gpu_bat_old = gpu_bat_new;
 				gpu_bat_new = gpu["bat"];
 				if(mdb["optimus"] && gpu_bat_new>3){ gpu_bat_new=3; }
@@ -202,7 +203,7 @@ function showDISPLAY(str)
 				display_rate_old = display_rate_new;
 				display_rate_new = display["confrate"];		
 				config_rate = config_rate-display_rate_old+display_rate_new;
-				document.getElementById('notebro_rate').innerHTML=(Math.round(normal_rating(config_rate) * 10) / 10).toFixed(1);
+				update_model_rating(config_rate);
 				display_bat_old = display_bat_new;
 				display_bat_new = display["bat"];
 				config_batlife=config_batlife-display_bat_old+display_bat_new;
@@ -243,7 +244,7 @@ function showHDD(str)
 				hdd_rate_old = hdd_rate_new;
 				hdd_rate_new = hdd["confrate"];				
 				config_rate = config_rate-hdd_rate_old+hdd_rate_new;
-				document.getElementById('notebro_rate').innerHTML=(Math.round(normal_rating(config_rate) * 10) / 10).toFixed(1);
+				update_model_rating(config_rate);
 				hdd_bat_old = hdd_bat_new;
 				hdd_bat_new = hdd["bat"];
 				config_batlife=config_batlife-hdd_bat_old+hdd_bat_new;
@@ -299,7 +300,7 @@ function showSHDD(str)
 					shdd_rate_old = shdd_rate_new;
 					shdd_rate_new = shdd["confrate"];					
 					config_rate = config_rate-shdd_rate_old+shdd_rate_new;
-					document.getElementById('notebro_rate').innerHTML=(Math.round(normal_rating(config_rate) * 10) / 10).toFixed(1);
+					update_model_rating(config_rate);
 					shdd_bat_old = shdd_bat_new;
 					shdd_bat_new = shdd["bat"];
 					config_batlife=config_batlife-shdd_bat_old+shdd_bat_new;
@@ -346,7 +347,7 @@ function showMDB(str)
 				mdb_rate_new = mdb["confrate"];
 				
 				config_rate = config_rate-mdb_rate_old+mdb_rate_new;
-				document.getElementById('notebro_rate').innerHTML=(Math.round(normal_rating(config_rate) * 10) / 10).toFixed(1);
+				update_model_rating(config_rate);
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/mdb.php?q="+str,true);
@@ -378,7 +379,7 @@ function showMEM(str)
 				mem_rate_new = mem["confrate"];
 	
 				config_rate = config_rate-mem_rate_old+mem_rate_new;
-				document.getElementById('notebro_rate').innerHTML=(Math.round(normal_rating(config_rate) * 10) / 10).toFixed(1);
+				update_model_rating(config_rate);
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/mem.php?q="+str,true);
@@ -415,7 +416,7 @@ function showODD(str)
 				odd_rate_new = odd["confrate"];
 
 				config_rate = config_rate-odd_rate_old+odd_rate_new;
-				document.getElementById('notebro_rate').innerHTML=(Math.round(normal_rating(config_rate) * 10) / 10).toFixed(1);
+				update_model_rating(config_rate);
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/odd.php?q="+str,true);
@@ -454,7 +455,7 @@ function showACUM(str)
 				acum_rate_old = acum_rate_new;
 				acum_rate_new = acum["confrate"];
 				config_rate = config_rate-acum_rate_old+acum_rate_new;
-				document.getElementById('notebro_rate').innerHTML=(Math.round(normal_rating(config_rate) * 10) / 10).toFixed(1);
+				update_model_rating(config_rate);
 				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
 				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
 			}
@@ -507,7 +508,7 @@ function showCHASSIS(str)
 				chassis_rate_new = chassis["confrate"];
 				
 				config_rate = config_rate-chassis_rate_old+chassis_rate_new;
-				document.getElementById('notebro_rate').innerHTML=(Math.round(normal_rating(config_rate) * 10) / 10).toFixed(1);
+				update_model_rating(config_rate);
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/chassis.php?q="+str,true);
@@ -537,7 +538,7 @@ function showWNET(str)
 				wnet_rate_new = wnet["confrate"];
 			
 				config_rate = config_rate-wnet_rate_old+wnet_rate_new;
-				document.getElementById('notebro_rate').innerHTML=(Math.round(normal_rating(config_rate) * 10) / 10).toFixed(1);
+				update_model_rating(config_rate);
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/wnet.php?q="+str,true);
@@ -564,7 +565,7 @@ function showWAR(str)
 				war_rate_new = war["confrate"];
 
 				config_rate = config_rate-war_rate_old+war_rate_new;
-				document.getElementById('notebro_rate').innerHTML=(Math.round(normal_rating(config_rate) * 10) / 10).toFixed(1);
+				update_model_rating(config_rate);
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/war.php?q="+str,true);
@@ -593,27 +594,7 @@ function showSIST(str)
 				sist_rate_new = sist["confrate"];
 
 				config_rate = config_rate-sist_rate_old+sist_rate_new;
-				document.getElementById('notebro_rate').innerHTML=(Math.round(normal_rating(config_rate) * 10) / 10).toFixed(1);
-				window.onload = (function()
-				{
-					var schemaData=
-					{
-						"@context": "http://schema.org",
-		  				"@type": "Website",   
-		     			"aggregateRating":
-						{
-							"@type": "AggregateRating",
-		     				"ratingValue":  normal_rating(config_rate),
-		    				"bestRating": "100",
-		     				"worstRating": "1",
-	     					"ratingCount": cpu_rate_new + 3
-	 					}
-					}
-					var script = document.createElement('script');
-					script.type = "application/ld+json";
-					script.innerHTML = JSON.stringify(schemaData);
-					document.querySelector('.footer-distributed').appendChild(script);
-				})(document);
+				update_model_rating(config_rate);
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/sist.php?q="+str,true);
@@ -845,6 +826,7 @@ function update_model_info(model_id)
 				keywords=new_model_data["keywords"]; mmodel=new_model_data["model"];
 				exchsign=new_model_data["region"];
 				document.getElementById('model_title').innerHTML=mprod+" "+mfamily+" "+mmodel+""+msubmodel+new_model_data["region"];
+				update_schema_info("itemReviewed",(mprod+" "+mfamily+" "+mmodel+""+msubmodel));
 				if(new_model_data["msc"].length>0)
 				{ 
 					document.getElementById('model_msc').innerHTML=new_model_data["msc"];
@@ -1010,6 +992,19 @@ function set_best_low(confid,array_values)
 	if(i) { set_active_confopt(-1); }
 }
 
+function update_schema_info(field,value)
+{
+	if(typeof(model_page_schema_data["aggregateRating"][field])!=="undefined")
+	{ model_page_schema_data["aggregateRating"][field]=value; }
+	var script = document.createElement('script');
+	script.type = "application/ld+json";
+	script.innerHTML = JSON.stringify(model_page_schema_data);
+	document.querySelector('.footer-distributed').appendChild(script);
+}
+update_schema_info("itemReviewed",(mprod+" "+mfamily+" "+mmodel+""+msubmodel));
+
+function update_model_rating(value){ var new_rating=normal_rating(config_rate); document.getElementById('notebro_rate').innerHTML=new_rating;	update_schema_info("ratingValue",new_rating); }
+
 var notificationTypes=
 {
 	info: { iconClass: 'fa-info-circle' },
@@ -1066,6 +1061,6 @@ function closeNotificationModal()
 $('#notificationsModal').on('hidden.bs.modal', function (e){ closeNotificationModal(); });
 
 function eliminate_first_line_desc(el){ var temp_el=el; if(temp_el==="-"){temp_el="";}else{temp_el=temp_el+",";} return temp_el;}
-function normal_rating(x){ x=x*1000; return (((1.25/1000000*Math.pow(x,2))+1.305*x+(-4.3/100000000000*Math.pow(x,3)))/1000); }
+function normal_rating(x){ x=x*1000; x=(((1.25/1000000*Math.pow(x,2))+1.305*x+(-4.3/100000000000*Math.pow(x,3)))/1000); x=((Math.round(x)*10)/10).toFixed(1); return x; }
 function change_exch(new_exchcode){ for(var key in document.getElementById("m_currency").options){ if(document.getElementById("m_currency").options[key].value==new_exchcode){document.getElementById("m_currency").selectedIndex=key;}}}
 function change_m_currency(el){ var selected=(el||el.options[el.selectedIndex]); getconf('EXCH',[selected.value,parseFloat(el.options[el.selectedIndex].getAttribute("data-exch"))],undefined); }

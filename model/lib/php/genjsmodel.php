@@ -5,6 +5,8 @@ var disqus_config = function () {
  this.page.title = mprod+' '+mmodel;
 };
 
+const model_page_schema_data={"@context":"http://schema.org","@type":"Website",aggregateRating:{"@type":"AggregateRating",itemReviewed:"",ratingValue:"",bestRating:"100",worstRating:"1",ratingCount:"3"}};
+
 function set_model_info()
 { var key; for(key in veto_mname) {mmodel=mmodel.replace(' '+veto_mname[key],'');} metakeys(mprod.replace(' ',',')+','+mfamily.replace(' ',',')+','+mmodel.replace(' ',',')+',notebook,laptop'); document.title = mprod+' '+mfamily+' '+mmodel;}
 
