@@ -819,50 +819,23 @@
   .modal.notificationsModal .modal-body .notification-message .notification-message-text {
 	padding-left: 10px;
   }
-  
-  /* TOOLTIP
-  .toolinfo {
-	cursor: pointer;
+
+  .modal.notificationsModal .modal-body .list-container {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-pack: distribute;
+		justify-content: space-around;
+  }
+
+  .modal.notificationsModal .modal-body .list-container ul {
+	  flex: 1;
   }
   
-  .toolinfo-icon {
-	width: 10px;
-	height: 10px;
-	position: relative;
-	top: -5px;
+  .modal.notificationsModal .modal-body .list-container ul.first,
+  .modal.notificationsModal .modal-body .list-container ul.second {
+	  flex: unset;
   }
-  
-  .toolinfo-icon:hover {
-	cursor: pointer;
-  }
-  
-  .toolinfo-icon:before {
-	height: 10px;
-	text-align: center;
-	border: 1px solid #0066cb;
-	border-radius: 50%;
-	display: block;
-	color: #0066cb;
-	font-size: 6px;
-	line-height: 8px;
-  }
-  
-  .tooltip {
-	opacity: 1;
-  }
-  
-  .tooltip .arrow:before {
-	top: -6px;
-	border-left: 12px solid rgba(0, 0, 0, 0.9);
-	border-top-width: 12px;
-	border-bottom-width: 12px;
-  }
-  
-  .tooltip .tooltip-inner {
-	padding: 10px;
-	background: rgba(0, 0, 0, 0.9);
-	text-align: left;
-  } */
   
   .pics {
 	cursor: pointer;
@@ -935,15 +908,6 @@
 	.modelContainer .bringIntoView {
 	  padding-top: 30px;
 	}
-	.tooltip .arrow:before {
-	  border-left: 0;
-	  border-width: 12px 12px 12px 0;
-	  border-right-color: rgba(0, 0, 0, 0.9);
-	}
-	.tooltip .arrow.left:before {
-	  -webkit-transform: rotate(180deg);
-			  transform: rotate(180deg);
-	}
   }
   
   @media all and (max-width: 575.98px) {
@@ -961,6 +925,7 @@
 	}
 	.modelContainer .ratingContainer {
 	  border: 0;
+	  margin-bottom: 10px;
 	}
 	.modelContainer .ptop {
 	  display: -webkit-box;

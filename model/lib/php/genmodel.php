@@ -273,22 +273,25 @@ function show_gpu($list)
 /* MAKE DISPLAY */
 function show_display($list)
 {
-	function replace_surft_type($target,$backt)
+	if(!function_exists("replace_surft_type"))
 	{
-		$get_map="SELECT GROUP_CONCAT(`word`) AS `words` FROM `notebro_db`.`WORD_MAPS` WHERE `type`='display_type' AND `action`='replace_phrase';";
-		$get_map.="SELECT GROUP_CONCAT(`word`) AS `words` FROM `notebro_db`.`WORD_MAPS` WHERE `type`='display_surface' AND `action`='replace_phrase';";
-		$result=nb_multiquery($GLOBALS['con'], $get_map);
-		if(isset($result[0][0]))
-		{ $backt_types=explode(",",$result[0][0]["words"]); }
-		if(isset($result[1][0]))
-		{ $surface_types=explode(",",$result[1][0]["words"]); }
-
-		foreach($backt_types as $el)
+		function replace_surft_type($target,$backt)
 		{
-			if(stripos($backt,$el)!==FALSE){ foreach($surface_types as $val){ if(stripos($target,$val)!==FALSE){ $target=str_ireplace($val,$el,$target); break(2); } } }
+			$get_map="SELECT GROUP_CONCAT(`word`) AS `words` FROM `notebro_db`.`WORD_MAPS` WHERE `type`='display_type' AND `action`='replace_phrase';";
+			$get_map.="SELECT GROUP_CONCAT(`word`) AS `words` FROM `notebro_db`.`WORD_MAPS` WHERE `type`='display_surface' AND `action`='replace_phrase';";
+			$result=nb_multiquery($GLOBALS['con'], $get_map);
+			if(isset($result[0][0]))
+			{ $backt_types=explode(",",$result[0][0]["words"]); }
+			if(isset($result[1][0]))
+			{ $surface_types=explode(",",$result[1][0]["words"]); }
+
+			foreach($backt_types as $el)
+			{
+				if(stripos($backt,$el)!==FALSE){ foreach($surface_types as $val){ if(stripos($target,$val)!==FALSE){ $target=str_ireplace($val,$el,$target); break(2); } } }
+			}
+			$target=preg_replace("/([^ ]* )([0-9.]+)(.*)/", "$1$2".'"'."$3", $target);
+			return $target;
 		}
-		$target=preg_replace("/([^ ]* )([0-9.]+)(.*)/", "$1$2".'"'."$3", $target);
-		return $target;
 	}
 	if(count($list)>1) 
 	{

@@ -13,8 +13,10 @@ $(document).on({
 
 $(document).on({
 	mouseenter: (e) => { is_over_tooltip=true; },
-	mouseleave: (e) => { is_over_tooltip=false; hideTooltip(null,active_tooltips,1500);}
+	mouseleave: (e) => { is_over_tooltip=false; hideTooltip(null,active_tooltip,1500);}
 }, '.tooltip');
+
+$('body').on('touchstart', function(e){ is_over_tooltip=false; hideTooltip(null,active_tooltip,1500); });
 
 function showTooltip(e)
 {
@@ -43,7 +45,7 @@ function showTooltip(e)
 				if(data!=undefined && data.length>100) { hide_time=data.length*45; autoclose_tooltip($this,vw,hide_time); }
 				$this.tooltip('show'); 
 				$this.unbind("mouseleave");
-				active_tooltips=$this;
+				active_tooltip=$this;
 				$this.attr('data-load',"2");
 				$this.on('shown.bs.tooltip', function()
 				{
@@ -88,7 +90,7 @@ async function hideTooltip(e,$this,delay) {
 				$this.tooltip('hide');
 				active_tooltip=null;
 				$this.removeAttr("aria-describedby");
-				$this.tooltip('dispose');
+				setTimeout(function(){ $this.tooltip('dispose'); },600);
 			}
 		},delay);
 		

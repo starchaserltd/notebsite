@@ -151,7 +151,7 @@ require_once("etc/conf.php");
 								<span class="support">Support Us:</span> 
 								<a onclick="scrolltoid('supportUs',0);"><span class="donate">Donate</span></a>
 								<span class="faInfo"><a style="cursor:pointer;color: #fff;" onmousedown="OpenPage('footer/howto.php',event);"><i class="fas fa-info"></i><span class="faTutorial"> Tutorial</span></a></span>
-								<span class="faSocial"><a style="cursor:pointer;color: #fff;" href="https://www.youtube.com/c/notebcom"><i class="fab fa-youtube"></i></a></span>
+								<span class="faSocial"><a style="cursor:pointer;color: #fff;" href="https://www.youtube.com/notebcom"><i class="fab fa-youtube"></i></a></span>
 								<span class="faSocial"><a style="cursor:pointer;color: #fff;" href="https://www.facebook.com/Noteb-162949570886382/"><i class="fab fa-facebook-f"></i></a></span>
 								<span class="faSocial"><a style="cursor:pointer;color: #fff;" href="https://twitter.com/notebcom"><i class="fab fa-twitter"></i></a></span>
 							</div>

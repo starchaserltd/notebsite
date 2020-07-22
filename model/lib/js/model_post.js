@@ -46,17 +46,6 @@ $(document).ready(function()
 		var $win = $(this); 
 		toggleCollapse($win); 
 		setProgressBarsSize(); 
-
-		var vw = window.innerWidth;
-
-		if ($(window).width() >= 900)
-		{
-			console.log('show reordered columns')
-			document.querySelector('body').classList.add('display-reorderd')
-		} else {
-			console.log('show initial order')
-			document.querySelector('body').classList.remove('display-reorderd')
-		}
 	});
 	
 	// need the timeout in order to wait for the rating values to be set

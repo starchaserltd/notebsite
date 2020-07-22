@@ -181,19 +181,23 @@ function showDISPLAY(str)
 			if(xmlhttp.readyState==4 && xmlhttp.status==200 && document.getElementById('cpu_title')!=null) 
 			{
 				display = JSON.parse(xmlhttp.responseText);
-				
-				document.getElementById('display_size').innerHTML = display["size"];
 				document.getElementById('display_title').innerHTML = display["size"];
-				document.getElementById('display_format').innerHTML = display["format"];
-				document.getElementById('display_hres').innerHTML = display["hres"];
-				document.getElementById('display_vres').innerHTML = display["vres"];
-				document.getElementById('display_surft').innerHTML = display["surft"];
-				document.getElementById('display_backt').innerHTML = display["backt"];
-				document.getElementById('display_touch').innerHTML = display["touch"];
-				document.getElementById('display_misc').innerHTML = display["msc"];
-				if( parseInt(display["sRGB"]) > 0) { document.getElementById('display_misc').innerHTML=eliminate_first_line_desc(document.getElementById('display_misc').innerHTML)+' <span class="toolinfo" data-toolid=86 data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="left" data-original-title="Loading..."><span>'+ display["sRGB"] + '% sRGB</span> <i class="fa fa-question toolinfo-icon"></i></span>'; }
-				if( parseInt(display["lum"]) > 0) { document.getElementById('display_misc').innerHTML=eliminate_first_line_desc(document.getElementById('display_misc').innerHTML)+' <span class="toolinfo" data-toolid=87 data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="left" data-original-title="Loading..."><span>'+ display["lum"] + ' nits</span> <i class="fa fa-question toolinfo-icon"></i></span>'; } 
-				document.getElementById('display_rating').innerHTML = display["rating"];
+				var display_elements=['display_size','display_format','display_hres','display_vres','display_surft','display_backt','display_touch','display_msc','display_rating'];
+				for(var x in display_elements)
+				{
+					var subelement=display_elements[x].split("_");
+					var subelements_by_class=document.getElementsByClassName(display_elements[x]);
+					for(var nr_el in subelements_by_class)
+					{ subelements_by_class[nr_el].innerHTML = display[subelement[1]]; }
+				}
+				
+				var subelements_by_class=document.getElementsByClassName('display_msc');
+				for(var nr_el in subelements_by_class)
+				{
+					if( parseInt(display["sRGB"]) > 0) { subelements_by_class[nr_el].innerHTML=eliminate_first_line_desc(subelements_by_class[nr_el].innerHTML)+' <span class="toolinfo" data-toolid=86 data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="left" data-original-title="Loading..."><span>'+ display["sRGB"] + '% sRGB</span> <i class="fa fa-question toolinfo-icon"></i></span>'; }
+					if( parseInt(display["lum"]) > 0) { subelements_by_class[nr_el].innerHTML=eliminate_first_line_desc(subelements_by_class[nr_el].innerHTML)+' <span class="toolinfo" data-toolid=87 data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="left" data-original-title="Loading..."><span>'+ display["lum"] + ' nits</span> <i class="fa fa-question toolinfo-icon"></i></span>'; }
+				}
+			
 			
 				display_rate_old = display_rate_new;
 				display_rate_new = display["confrate"];		
@@ -396,9 +400,17 @@ function showODD(str)
 			{
 				odd = JSON.parse(xmlhttp.responseText);
 				if((odd["type"]).toUpperCase()!="NONE") { document.getElementById('odd_title').innerHTML = ", "+odd["type"]; } else { document.getElementById('odd_title').innerHTML = ""; }
-				if(odd["speed"] && odd["speed"]!=0){document.getElementById('odd_speed').innerHTML = odd["speed"]};
-				if(odd["msc"] && odd["msc"]!="-"){document.getElementById('odd_misc').innerHTML = odd["msc"];}
-
+				var odd_elements=['odd_speed','odd_msc'];
+				for(var x in odd_elements)
+				{
+					var subelement=odd_elements[x].split("_");
+					var subelements_by_class=document.getElementsByClassName(odd_elements[x]);
+					for(var nr_el in subelements_by_class)
+					{
+						subelements_by_class[nr_el].innerHTML = odd[subelement[1]];
+					}
+				}
+				
 				odd_rate_old = odd_rate_new;
 				odd_rate_new = odd["confrate"];
 
@@ -424,14 +436,20 @@ function showACUM(str)
 			if (xmlhttp.readyState==4 && xmlhttp.status==200 && document.getElementById('cpu_title')!=null)  
 			{
 				acum = JSON.parse(xmlhttp.responseText);
-				document.getElementById('acum_cell').innerHTML = acum["nrc"];
-				document.getElementById('acum_tipc').innerHTML = acum["tipc"];
 				voltage=parseFloat(acum["volt"]); weight=parseFloat(acum["weight"]);
-				if(!isNaN(voltage) && voltage>0) { document.getElementById('acum_volt').innerHTML=voltage+" V"; } else { document.getElementById('acum_volt').innerHTML="-"; }
-				if(!isNaN(weight)&& weight>0) { document.getElementById('acum_weight').innerHTML = weight+"Kg ("; document.getElementById('acum_weight_i').innerHTML = (weight*2.20462262).toFixed(2)+" lb)"; }
-				else{ document.getElementById('acum_weight').innerHTML = "-"; document.getElementById('acum_weight_i').innerHTML=""; }
 				
-				document.getElementById('acum_misc').innerHTML = acum["msc"];
+				var subelements_by_class=document.getElementsByClassName('acum_cell');
+				for(var nr_el in subelements_by_class){ subelements_by_class[nr_el].innerHTML=acum["nrc"]; }
+				var subelements_by_class=document.getElementsByClassName('acum_tipc');
+				for(var nr_el in subelements_by_class){ subelements_by_class[nr_el].innerHTML=acum["tipc"]; }
+				var subelements_by_class=document.getElementsByClassName('acum_volt');
+				for(var nr_el in subelements_by_class){ if(!isNaN(voltage) && voltage>0) { subelements_by_class[nr_el].innerHTML=voltage+" V"; } else { subelements_by_class[nr_el].innerHTML="-"; } }
+				var subelements_by_class=document.getElementsByClassName('acum_weight');
+				for(var nr_el in subelements_by_class){ if(!isNaN(weight) && weight>0) { subelements_by_class[nr_el].innerHTML=weight+" Kg ("; }else{ subelements_by_class[nr_el]="-"; } }
+				var subelements_by_class=document.getElementsByClassName('acum_weight_i');
+				for(var nr_el in subelements_by_class){ if(!isNaN(weight) && weight>0) { subelements_by_class[nr_el].innerHTML = (weight*2.20462262).toFixed(2)+" lb)"; }else{ subelements_by_class[nr_el]=""; } }
+				var subelements_by_class=document.getElementsByClassName('acum_msc');
+				for(var nr_el in subelements_by_class){ subelements_by_class[nr_el].innerHTML=acum["msc"]; }
 
 				acum_rate_old = acum_rate_new;
 				acum_rate_new = acum["confrate"];
@@ -697,7 +715,7 @@ function getconf(comp,id,exactconf,new_page=false)
 							else
 							{ 
 								if(show_comp_message)
-								{ 
+								{ console.log('ccc', confdata);
 									var componentsList = confdata["changes"][key].split(',');
 									var message = "This component is only available in combination with a different:";
 									showNotification('info', message, componentsList);
@@ -990,6 +1008,7 @@ var notificationTypes=
 }
 var notificationsModalBody = document.querySelector('#notificationsModal .modal-body');
 var notificationsModalMessage = document.querySelector('#notificationsModal .notification-message');
+var notificationsListContainer = document.querySelector('#notificationsModal .list-container');
 var notificationsModalIcon = document.querySelector('#notificationsModal .notification-icon');
 
 function showNotification(notificationType, message, componentsList) {
@@ -1000,12 +1019,32 @@ function showNotification(notificationType, message, componentsList) {
 	messageElement.classList.add('notification-message-text')
 	notificationsModalMessage.appendChild(iconElement); 
 	notificationsModalMessage.appendChild(messageElement).innerHTML = message; 
-
+	console.log('componentsList', componentsList);
 	if (componentsList) {
-		notificationsModalMessage.insertAdjacentElement('afterend', document.createElement('ul'));
-		var componentsListElement = document.querySelector('#notificationsModal .modal-body ul');
-		for (component of componentsList) {
-			componentsListElement.appendChild(document.createElement('li')).innerHTML = component;
+		if (componentsList.length > 4) {
+			var firstList = componentsList.splice(0, componentsList.length / 2);
+			console.log('firstList', firstList, componentsList);
+			var firstListElem = notificationsListContainer.appendChild(document.createElement('ul'));
+			// var firstListElem = notificationsModalMessage.insertAdjacentElement('afterend', document.createElement('ul'));
+			firstListElem.classList.add('first');
+			var secondListElem = firstListElem.insertAdjacentElement('afterend', document.createElement('ul'));
+			secondListElem.classList.add('second');
+
+			var componentsFirstListElement = document.querySelector('#notificationsModal .modal-body ul.first');
+			var componentsSecondListElement = document.querySelector('#notificationsModal .modal-body ul.second');
+			for (component of firstList) {
+				componentsFirstListElement.appendChild(document.createElement('li')).innerHTML = component;
+			}
+			for (component of componentsList) {
+				componentsSecondListElement.appendChild(document.createElement('li')).innerHTML = component;
+			}
+		} else {
+			// notificationsModalMessage.insertAdjacentElement('afterend', document.createElement('ul'));
+			notificationsListContainer.appendChild(document.createElement('ul'));
+			var componentsListElement = document.querySelector('#notificationsModal .modal-body ul');
+			for (component of componentsList) {
+				componentsListElement.appendChild(document.createElement('li')).innerHTML = component;
+			}
 		}
 	}
 	$('#notificationsModal').modal('toggle');
@@ -1013,9 +1052,10 @@ function showNotification(notificationType, message, componentsList) {
 
 // reset the message and the icon class when closing the notification
 function closeNotificationModal() {
-	var listElement = notificationsModalBody.querySelector('ul');
+	var listElements = notificationsListContainer.querySelectorAll('ul');
+	console.log('closee', listElements);
 	notificationsModalMessage.innerHTML = '';
-	if (listElement) { notificationsModalBody.removeChild(listElement); }
+	if (listElements.length) { for (elem of listElements) {notificationsListContainer.removeChild(elem); }}
 }
 
 $('#notificationsModal').on('hidden.bs.modal', function (e)

@@ -798,10 +798,8 @@ fieldset[disabled] .btn-result.active {
   }
   
   .tooltip .arrow:before {
-	top: -6px;
-	border-left: 12px solid rgba(0, 0, 0, 0.9);
-	border-top-width: 12px;
-	border-bottom-width: 12px;
+    top: -6px;
+    border-width: 12px;
   }
   
   .tooltip .tooltip-inner {
@@ -3580,7 +3578,9 @@ div.menuItems.last {
         justify-content: center;
     }
 }
+@media all and (max-width: 767.98px) {
 
+}
 @media (max-width: 767px) {
 
     .loadingdiv {

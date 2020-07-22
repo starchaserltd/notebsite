@@ -245,10 +245,8 @@ else
 					<div class="specification-card">
 						<div class="row modelwidht" id="title-1">
 							<div class="col-md-12 titlucomp text-center bold-font">
-							<div class="headerComponents">
-								<div class="header-collapse" data-toggle="collapse" data-target="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
-									Processor
-								</div>
+							<div class="headerComponents header-collapse header-collapse" data-toggle="collapse" data-target="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
+								Processor
 							</div>
 							</div>
 						</div>
@@ -377,10 +375,8 @@ else
 					<div class="specification-card">
 						<div class="row modelwidht" id="title-2">
 							<div class="col-md-12 titlucomp text-center bold-font">
-								<div class="headerComponents">
-									<div class="header-collapse" data-toggle="collapse" data-target="#collapse-2" aria-expanded="true" aria-controls="collapse-2">
-										Video card
-									</div> 
+								<div class="headerComponents header-collapse header-collapse" data-toggle="collapse" data-target="#collapse-2" aria-expanded="true" aria-controls="collapse-2">
+									Video card
 								</div>
 							</div>
 						</div>
@@ -536,13 +532,11 @@ else
 						</div>
 					</div>
 					<!-- Display Mobile-->
-					<div class="specification-card">
+					<div class="specification-card d-xs-block d-md-none">
 						<div class="row modelwidht" id="title-3">
 							<div class="col-md-12 titlucomp text-center bold-font">
-								<div class="headerComponents">
-									<div class="header-collapse" data-toggle="collapse" data-target="#collapse-3" aria-expanded="true" aria-controls="collapse-3">
-										Display
-									</div>
+								<div class="headerComponents header-collapse" data-toggle="collapse" data-target="#collapse-3" aria-expanded="true" aria-controls="collapse-3">
+									Display
 								</div>
 							</div>
 						</div>
@@ -561,7 +555,7 @@ else
 											</span>
 										</div>
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
-											<span class="display_size" id="display_size"></span> inch
+											<span class="display_size"></span> inch
 										</div>
 									</div>
 									<div class="row hidedis hideall detaliicomp" style="display:none">
@@ -572,7 +566,7 @@ else
 											</span>
 										</div>
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
-											<span class="display_format" id="display_format"></span>
+											<span class="display_format"></span>
 										</div>
 									</div>
 									<div class="row detaliicomp">
@@ -583,7 +577,7 @@ else
 											</span>
 										</div>
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
-											<span class="display_hres" id="display_hres"></span> x <span class="display_vres" id="display_vres"></span> pixels
+											<span class="display_hres"></span> x <span class="display_vres"></span> pixels
 										</div>
 									</div>
 									<div class="row hidedis hideall detaliicomp" style="display:none">
@@ -594,7 +588,7 @@ else
 											</span>
 										</div>
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
-											<span class="display_surft" id="display_surft"></span>
+											<span class="display_surft"></span>
 										</div>
 									</div>
 									<div class="row detaliicomp">
@@ -605,16 +599,16 @@ else
 											</span>
 										</div>
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
-											<span class="display_backt" id="display_backt"></span>
+											<span class="display_backt"></span>
 										</div>
 									</div>
 									<div class="row detaliicomp">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Touchscreen:</div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows" class="display_touch" id="display_touch"></div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows display_touch"></div>
 									</div>
 									<div class="row detaliicomp"> 
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Miscellaneous:</div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows" class="display_misc" id="display_misc"></div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows display_msc"></div>
 									</div>
 									<div class="row hidedis hideall detaliicomp" style="display:none">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
@@ -624,7 +618,7 @@ else
 											</span>
 										</div>
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
-											<span class="display_rating" id="display_rating"></span> / 100
+											<span class="display_rating"></span> / 100
 										</div>
 									</div>
 									<div class="expandContainer">
@@ -641,10 +635,8 @@ else
 					<div class="specification-card">
 						<div class="row modelwidht" id="title-4">
 							<div class="col-md-12 titlucomp text-center bold-font">
-								<div class="headerComponents">
-									<div class="header-collapse" data-toggle="collapse" data-target="#collapse-4" aria-expanded="true" aria-controls="collapse-4">
-										Storage
-									</div>
+								<div class="headerComponents header-collapse" data-toggle="collapse" data-target="#collapse-4" aria-expanded="true" aria-controls="collapse-4">
+									Storage
 								</div>
 							</div>
 							</div>
@@ -713,10 +705,8 @@ else
 					<div class="specification-card">	
 						<div class="row modelwidht" id="title-5">					
 							<div class="col-md-12 titlucomp text-center bold-font">
-								<div class="headerComponents">
-									<div class="header-collapse" data-toggle="collapse" data-target="#collapse-5" aria-expanded="true" aria-controls="collapse-5">
-										Secondary Storage
-									</div>
+								<div class="headerComponents header-collapse" data-toggle="collapse" data-target="#collapse-5" aria-expanded="true" aria-controls="collapse-5">
+									Secondary Storage
 								</div>
 							</div>
 						</div>
@@ -773,14 +763,115 @@ else
 						</div>
 					</div>	
 	<?php			} ?>
+<!--Optical Drive (if exists) Desktop-->		
+<div class="specification-card d-none d-md-block">
+						<div class="row modelwidht" id="title-8">
+							<div class="col-md-12 titlucomp text-center bold-font">
+								<div class="headerComponents header-collapse" data-toggle="collapse" data-target="#collapse-8" aria-expanded="true" aria-controls="collapse-8">
+									Optical drive
+								</div>
+							</div>
+						</div>
+						<div id="collapse-8" class="collapse show specification-content" aria-labelledby="title-8">
+							<div class="row modelwidht">					
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<div class="row detaliicomp">					
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="65" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
+												Type:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+												<?php $showodd=show_odd($modelodd); ?>
+											</span>
+										</div>
+									</div>
+			<?php					if($showodd) 
+									{ ?>
+										<div class="row hideodd hideall detaliicomp" style="display:none">
+											<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+												<span class="toolinfo" data-toolid="66" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
+													Speed:
+													<i class="fa fa-question toolinfo-icon"></i>
+												</span>
+											</div>
+											<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+												<span class="odd_speed" id="odd_speed"></span>X
+											</div>
+										</div>					
+										<div class="row hideodd hideall detaliicomp" style="display:none">
+											<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Miscellaneous:</div>
+											<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows odd_msc" id="odd_msc"></div>
+										</div>
+										<div class="expandContainer">
+											<a class="toggler" data-hide="odd">
+												<span class="more-specs-text">More Specs</span>
+												<span class="glyphicon glyphicon-menu-down fas fa-angle-down ml-2 detailsArrow"></span>
+											</a>					
+										</div>
+			<?php					} ?>
+								</div>			
+							</div>
+						</div>
+					</div>
+					<!-- Battery Desktop-->	
+					<div class="specification-card d-none d-md-block">
+						<div class="row modelwidht" id="title-9">
+							<div class="col-md-12 titlucomp text-center bold-font">
+								<div class="headerComponents header-collapse" data-toggle="collapse" data-target="#collapse-9" aria-expanded="true" aria-controls="collapse-9">
+									Battery
+								</div>
+							</div>
+						</div>
+						<div id="collapse-9" class="collapse specification-content hide-spec-in-mobile" aria-labelledby="title-9">
+							<div class="row modelwidht">					
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<div class="row detaliicomp">
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="67" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
+												Capacity:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows"><?php show_acum($modelacum); ?></div>
+									</div>
+									<div class="row detaliicomp">
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Cell Number:</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows acum_cell" id="acum_cell"></div>
+									</div>
+									<div class="row hideacu hideall detaliicomp" style="display:none">
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Cell Type:</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows acum_tipc" id="acum_tipc"></div>
+									</div>
+									<div class="row hideacu hideall detaliicomp" style="display:none">
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Voltage:</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows acum_volt"><span id="acum_volt"></span></div>
+									</div>	
+									<div class="row hideacu hideall detaliicomp" style="display:none">
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Weight:</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows"><span class="acum_weight" id="acum_weight"></span><span class="acum_weight_i" id="acum_weight_i"></span></div>
+									</div>
+									<div class="row hideacu hideall detaliicomp" style="display:none">
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Miscellaneous:</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows acum_msc" id="acum_msc"></div>
+									</div>
+									<div class="expandContainer">
+										<a class="toggler" data-hide="acu">
+											<span class="more-specs-text">More Specs</span>
+											<span class="glyphicon glyphicon-menu-down fas fa-angle-down ml-2 detailsArrow"></span>
+										</a>					
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 					<!-- Motherboard -->	
 					<div class="specification-card">	
 						<div class="row modelwidht" id="title-6">	
 							<div class="col-md-12 titlucomp text-center bold-font">
-							<div class="headerComponents">
-								<div class="header-collapse" data-toggle="collapse" data-target="#collapse-6" aria-expanded="true" aria-controls="collapse-6">
-									Motherboard
-								</div>
+							<div class="headerComponents header-collapse" data-toggle="collapse" data-target="#collapse-6" aria-expanded="true" aria-controls="collapse-6">
+								Motherboard
 							</div>
 							</div>
 						</div>
@@ -883,10 +974,8 @@ else
 					<div class="specification-card">
 						<div class="row modelwidht" id="title-7">
 							<div class="col-md-12 titlucomp text-center bold-font">
-							<div class="headerComponents">
-								<div class="header-collapse" data-toggle="collapse" data-target="#collapse-7" aria-expanded="true" aria-controls="collapse-7">
-									Memory
-								</div>
+							<div class="headerComponents header-collapse" data-toggle="collapse" data-target="#collapse-7" aria-expanded="true" aria-controls="collapse-7">
+								Memory
 							</div>
 							</div>
 						</div>
@@ -949,14 +1038,112 @@ else
 							</div>
 						</div>
 					</div>
-					<!--Optical Drive (if exists) -->		
-					<div class="specification-card">
+					<!-- Display Desktop-->
+					<div class="specification-card d-none d-md-block">
+						<div class="row modelwidht" id="title-3">
+							<div class="col-md-12 titlucomp text-center bold-font">
+								<div class="headerComponents header-collapse" data-toggle="collapse" data-target="#collapse-3" aria-expanded="true" aria-controls="collapse-3">
+									Display
+								</div>
+							</div>
+						</div>
+						<div id="collapse-3" class="collapse show specification-content" aria-labelledby="title-3">
+							<div class="row modelwidht">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<div class="row detaliicomp">
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Model:</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows"><?php show_display($modeldisplay); ?></div>					
+									</div>
+									<div class="row detaliicomp">
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="43" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
+												Size:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span class="display_size"></span> inch
+										</div>
+									</div>
+									<div class="row hidedis hideall detaliicomp" style="display:none">
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="44" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
+												Format:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span class="display_format"></span>
+										</div>
+									</div>
+									<div class="row detaliicomp">
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="45" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
+												Resolution:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span class="display_hres"></span> x <span class="display_vres"></span> pixels
+										</div>
+									</div>
+									<div class="row hidedis hideall detaliicomp" style="display:none">
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="46" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
+												Surface type:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span class="display_surft"></span>
+										</div>
+									</div>
+									<div class="row detaliicomp">
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="47" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
+												Technology:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span class="display_backt"></span>
+										</div>
+									</div>
+									<div class="row detaliicomp">
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Touchscreen:</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows display_touch"></div>
+									</div>
+									<div class="row detaliicomp"> 
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Miscellaneous:</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows display_msc"></div>
+									</div>
+									<div class="row hidedis hideall detaliicomp" style="display:none">
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="48" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
+												Rating:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
+											<span class="display_rating"></span> / 100
+										</div>
+									</div>
+									<div class="expandContainer">
+										<a class="toggler" data-hide="dis">
+											<span class="more-specs-text">More Specs</span>
+											<span class="glyphicon glyphicon-menu-down fas fa-angle-down ml-2 detailsArrow"></span>
+										</a>					
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--Optical Drive (if exists) Mobile-->		
+					<div class="specification-card d-xs-block d-md-none">
 						<div class="row modelwidht" id="title-8">
 							<div class="col-md-12 titlucomp text-center bold-font">
-								<div class="headerComponents">
-									<div class="header-collapse" data-toggle="collapse" data-target="#collapse-8" aria-expanded="true" aria-controls="collapse-8">
-										Optical drive
-									</div>
+								<div class="headerComponents header-collapse" data-toggle="collapse" data-target="#collapse-8" aria-expanded="true" aria-controls="collapse-8">
+									Optical drive
 								</div>
 							</div>
 						</div>
@@ -990,7 +1177,7 @@ else
 										</div>					
 										<div class="row hideodd hideall detaliicomp" style="display:none">
 											<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Miscellaneous:</div>
-											<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows odd_misc" id="odd_misc"></div>
+											<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows odd_msc" id="odd_msc"></div>
 										</div>
 										<div class="expandContainer">
 											<a class="toggler" data-hide="odd">
@@ -1003,14 +1190,12 @@ else
 							</div>
 						</div>
 					</div>	
-					<!-- Battery -->	
-					<div class="specification-card">
+					<!-- Battery Mobile-->	
+					<div class="specification-card d-xs-block d-md-none">
 						<div class="row modelwidht" id="title-9">
 							<div class="col-md-12 titlucomp text-center bold-font">
-								<div class="headerComponents">
-									<div class="header-collapse" data-toggle="collapse" data-target="#collapse-9" aria-expanded="true" aria-controls="collapse-9">
-										Battery
-									</div>
+								<div class="headerComponents header-collapse" data-toggle="collapse" data-target="#collapse-9" aria-expanded="true" aria-controls="collapse-9">
+									Battery
 								</div>
 							</div>
 						</div>
@@ -1040,11 +1225,11 @@ else
 									</div>	
 									<div class="row hideacu hideall detaliicomp" style="display:none">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Weight:</div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows acum_weight"><span id="acum_weight"></span><span id="acum_weight_i"></span></div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows"><span class="acum_weight" id="acum_weight"></span><span class="acum_weight_i" id="acum_weight_i"></span></div>
 									</div>
 									<div class="row hideacu hideall detaliicomp" style="display:none">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Miscellaneous:</div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows acum_misc" id="acum_misc"></div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows acum_msc" id="acum_msc"></div>
 									</div>
 									<div class="expandContainer">
 										<a class="toggler" data-hide="acu">
@@ -1060,10 +1245,8 @@ else
 					<div class="specification-card">
 						<div class="row modelwidht" id="title-10">
 								<div class="col-md-12 titlucomp text-center bold-font">
-									<div class="headerComponents">
-										<div class="header-collapse" data-toggle="collapse" data-target="#collapse-10" aria-expanded="true" aria-controls="collapse-10">
-											Chassis
-										</div>
+									<div class="headerComponents header-collapse" data-toggle="collapse" data-target="#collapse-10" aria-expanded="true" aria-controls="collapse-10">
+										Chassis
 									</div>
 								</div>
 							</div>
@@ -1180,10 +1363,8 @@ else
 					<div class="specification-card">
 						<div class="row modelwidht" id="title-11">
 							<div class="col-md-12 titlucomp text-center bold-font">
-							<div class="headerComponents">
-								<div class="header-collapse" data-toggle="collapse" data-target="#collapse-11" aria-expanded="true" aria-controls="collapse-11">
-									Wireless card
-								</div>
+							<div class="headerComponents header-collapse" data-toggle="collapse" data-target="#collapse-11" aria-expanded="true" aria-controls="collapse-11">
+								Wireless card
 							</div>
 							</div>
 						</div>
@@ -1234,14 +1415,37 @@ else
 							</div>
 						</div>
 					</div>
+					<!-- Operating System -->
+					<div class="specification-card">	
+						<div class="row modelwidht" id="title-13">
+							<div class="col-md-12 titlucomp text-center bold-font">
+							<div class="headerComponents header-collapse" data-toggle="collapse" data-target="#collapse-13" aria-expanded="true" aria-controls="collapse-13">
+								Operating System
+							</div>
+							</div>
+						</div>
+						<div id="collapse-13" class="collapse specification-content hide-spec-in-mobile" aria-labelledby="title-13">
+							<div class="row modelwidht">					
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<div class="row detaliicomp">
+										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
+											<span class="toolinfo" data-toolid="75" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
+												System:
+												<i class="fa fa-question toolinfo-icon"></i>
+											</span>
+										</div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows"><?php show_sist($modelsist); ?></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 					<!-- Warranty -->		
 					<div class="specification-card">	
 						<div class="row modelwidht" id="title-12">
 							<div class="col-md-12 titlucomp text-center bold-font">
-								<div class="headerComponents">
-									<div class="header-collapse" data-toggle="collapse" data-target="#collapse-12" aria-expanded="true" aria-controls="collapse-12">
-										Warranty
-									</div>
+								<div class="headerComponents header-collapse" data-toggle="collapse" data-target="#collapse-12" aria-expanded="true" aria-controls="collapse-12">
+									Warranty
 								</div>
 							</div>
 						</div>
@@ -1267,33 +1471,6 @@ else
 							</div>
 						</div>
 					</div>
-					<!-- Operating System -->
-					<div class="specification-card">	
-						<div class="row modelwidht" id="title-13">
-							<div class="col-md-12 titlucomp text-center bold-font">
-							<div class="headerComponents">
-								<div class="header-collapse" data-toggle="collapse" data-target="#collapse-13" aria-expanded="true" aria-controls="collapse-13">
-									Operating System
-								</div>
-							</div>
-							</div>
-						</div>
-						<div id="collapse-13" class="collapse specification-content hide-spec-in-mobile" aria-labelledby="title-13">
-							<div class="row modelwidht">					
-								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-									<div class="row detaliicomp">
-										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
-											<span class="toolinfo" data-toolid="75" data-load="1" data-html="true" data-toggle="tooltip" data-delay='{"show": 600, "hide": 400}' data-placement="left" data-original-title="data-loading...">
-												System:
-												<i class="fa fa-question toolinfo-icon"></i>
-											</span>
-										</div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows"><?php show_sist($modelsist); ?></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
 					<!-- Miscellaneous -->
 	<?php
 					$msctext=show_msc($idmodel); 
@@ -1302,10 +1479,8 @@ else
 					<div class="specification-card">	
 						<div class="row modelwidht" id="title-13">
 							<div class="col-md-12 titlucomp text-center bold-font">
-								<div class="headerComponents">
-									<div class="header-collapse" data-toggle="collapse" data-target="#collapse-14" aria-expanded="true" aria-controls="collapse-14">
-										Miscellaneous
-									</div>
+								<div class="headerComponents header-collapse" data-toggle="collapse" data-target="#collapse-14" aria-expanded="true" aria-controls="collapse-14">
+									Miscellaneous
 								</div>
 							</div>
 						</div>
@@ -1435,6 +1610,7 @@ else
 			<div class="modal-content">
 				<div class="modal-body">
 					<div class="notification-message"></div>
+					<div class="list-container"></div>
 					<button type="button" class="btn btn-outline-primary btn-md" data-dismiss="modal" aria-label="Close">OK</button>
 				</div>
 			</div>
