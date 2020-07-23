@@ -162,26 +162,4 @@ $published_posts = $count_posts->publish;
 	} ?>	
 	<div class="readMoreArticles col-lg-12 col-sm-12 col-xs-12 col-lg-offset-12"><a onmousedown="OpenPage('content/articles.php');">View more articles</a></div>
 	</article>
-	
-	<script type="application/ld+json">	
-		{
-		  "@context": "http://schema.org",
-		  "graph": [
-		  	{
-		  		 "@type": "Organization",
-				  "url": "https://www.noteb.com",
-				  "logo": "https://noteb.com/res/img/logo/noteb-main-logo.svg"
-				},
-			{		 
-			  "@type": "WebSite",
-			  "url": "https://www.noteb.com",
-			  "potentialAction": {
-			    "@type": "SearchAction",
-			    "target": "https://noteb.com?search/search.php?browse_by=model_name&sort_by=value&keywords={search_term_string}",
-			    "query-input": "required name=search_term_string"
-			  }
-			}			
-		  ]
-		}
-	</script>
 	<?php include_once("../etc/scripts_pages.php"); ?>

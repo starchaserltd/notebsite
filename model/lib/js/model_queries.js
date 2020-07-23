@@ -1013,10 +1013,9 @@ function update_schema_rating_info(field_1,field_2,field_3,value)
 		else { model_page_schema_data[field_1]=value; }
 	}
 
-	var script = document.createElement('script');
-	script.type = "application/ld+json";
-	script.innerHTML = JSON.stringify(model_page_schema_data);
-	document.querySelector('#model_page_schema').appendChild(script);
+	var script="";
+	script = '<script type="application/ld+json">'+JSON.stringify(model_page_schema_data)+"</script>";
+	document.querySelector('#model_page_schema').innerHTML=script;
 }
 update_schema_rating_info("aggregateRating","itemReviewed","name",(mprod+" "+mfamily+" "+mmodel+""+msubmodel));
 update_schema_rating_info("aggregateRating","itemReviewed","image",ref_model_image);

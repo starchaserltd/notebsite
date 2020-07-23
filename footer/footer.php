@@ -45,6 +45,8 @@
 <script type="application/ld+json">	
 {
    "@context":"http://schema.org",
+   "graph": [
+   {
    "@type":"Organization",
    "name": "Noteb.com",
    "url":"https://www.noteb.com",
@@ -52,6 +54,17 @@
       "@type":"ImageObject",
       "url":"https://noteb.com/res/img/logo/noteb-main-logo.svg"
 	}
+   },
+	{		 
+  "@type": "WebSite",
+  "url": "https://www.noteb.com",
+  "potentialAction": {
+	"@type": "SearchAction",
+	"target": "https://noteb.com?search/search.php?browse_by=model_name&sort_by=value&keywords={search_term_string}",
+	"query-input": "required name=search_term_string"
+	}
+	}	
+	]
 }
 </script>
 <?php include_once("etc/scripts_gen.php"); ?>
