@@ -24,6 +24,8 @@ $tabnames=array();
 $content=str_replace($wp_address.$wp_rmimg,$new_wp_address,$content);
 $content=preg_replace_callback('/\[tooltip (.*)\](.*)\[tooltip\]/U',function ($m) {return maketooltip(gettoolid($m[1]),$m[2]);},apply_filters('the_content',get_post_field('post_content', $echoid, 'display')));
 echo preg_replace_callback('/\[ntab (.*)\](.*)(?=\[ntab .*\]|\Z)/Us',function ($m) {return maketab($m[1],$m[2]);},$content);
+$display_all_content="";
+$conclusion="";
 ?>
 <script type="text/javascript">
 	var lang = <?php echo $lang; ?>;
@@ -39,7 +41,7 @@ echo preg_replace_callback('/\[ntab (.*)\](.*)(?=\[ntab .*\]|\Z)/Us',function ($
 		<div class="col-md-12 col-sm-12 col-xs-12">
 			<p style="font-style:italic;">
 			<?php $user_info = get_userdata(get_post_field('post_author', $echoid));
-				echo "by "; echo $user_info->display_name;; echo " - "; echo get_the_date(  'd M Y', $echoid ); ?>
+				echo "by "; echo $user_info->display_name; echo " - "; echo get_the_date(  'd M Y', $echoid ); ?>
 			</p>
 		</div>
 		<div class="col-md-8 col-sm-8 col-xs-8">
@@ -69,7 +71,11 @@ echo preg_replace_callback('/\[ntab (.*)\](.*)(?=\[ntab .*\]|\Z)/Us',function ($
 						else
 							{ echo '<div id="tab'.$i.'" class="tab">'; }
 	
-						echo "<p class='contentoftab'>".str_replace($wp_address.$wp_rmimg,$new_wp_address,$tabcontent[$i])."</p>";
+						$display_content=str_replace($wp_address.$wp_rmimg,$new_wp_address,$tabcontent[$i]);
+						$display_all_content.="<br><br><br>".$display_content;
+						$current_tab_name=strtolower($tabnames[$i]);
+						if($current_tab_name=="conclusions" || $current_tab_name=="conclusion"){ $conclusion=$display_content;} 
+						echo "<p class='contentoftab'>".$display_content."</p>";
 						echo "</div>";
 					}
 				?>
@@ -121,5 +127,37 @@ echo preg_replace_callback('/\[ntab (.*)\](.*)(?=\[ntab .*\]|\Z)/Us',function ($
 			{ istime=1; },1000);
 		});
 	});
-</script>
+	</script>
+	<script type="application/ld+json">	
+		{
+		  "@context": "http://schema.org",
+		  "graph": [
+		  	{
+		  		 "@type": "Organization",
+				  "url": "https://www.noteb.com",
+				  "logo": "https://noteb.com/res/img/logo/noteb-main-logo.svg"
+				},
+			{
+			  "@type": "Review",
+			  "itemReviewed": {
+				"@type": "Product",
+				"image": "<?php echo $url; ?>",
+				"name": "<?php $content_title=str_replace('"',' ',$content_title); echo $content_title; ?>",
+				}
+			  },
+			  "name": "<?php echo $content_title; ?>",
+			  "author": {
+				"@type": "Person",
+				"name": "<?php echo $user_info->display_name; ?>"
+			  },
+			  "description": "<?php echo str_replace('"',' ',$conclusion); ?>",
+			  "reviewBody": "<?php echo str_replace('"',' ',$content); ?>",
+			  "publisher": {
+				"@type": "Organization",
+				"name": "Noteb.com"
+				}
+			}		
+		  ]
+		}
+	</script>
 <?php include_once("../etc/scripts_pages.php"); ?>
