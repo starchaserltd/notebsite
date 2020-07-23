@@ -50,11 +50,10 @@ $(document).ready(function()
 	
 	// need the timeout in order to wait for the rating values to be set
 	setProgressBarsSize();
-	setTimeout(() =>
-	{
-		const ratingElementsList = document.querySelectorAll('.rating-element .progress-container');
-		setProgressBarsRating(ratingElementsList);
-	}, 250);
+	const ratingElementsList = document.querySelectorAll('.rating-element .progress-container');
+
+	var old_rating=-100;
+	var set_rating_timer = setInterval(function(){if(old_rating!=config_rate){old_rating=config_rate;}else{setProgressBarsRating(ratingElementsList); clearInterval(set_rating_timer); set_rating_timer = false;}}, 350);
 	
 	//OWL MODAL CAROUSEL
 	let owl = $("#model-carousel").owlCarousel({ items: 1, loop: true, responsive: { 0: { dots: true}, 768: { dotsData: true } } });
