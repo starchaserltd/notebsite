@@ -42,4 +42,16 @@
 		</div>
 	</footer>
 <link rel="stylesheet" href="../lib/css/footer-distributed.css" type="text/css" />
+<script type="application/ld+json">	
+{
+   "@context":"http://schema.org",
+   "@type":"Organization",
+   "name": "Noteb.com",
+   "url":"https://www.noteb.com",
+   "logo":{
+      "@type":"ImageObject",
+      "url":"https://noteb.com/res/img/logo/noteb-main-logo.svg"
+	}
+}
+</script>
 <?php include_once("etc/scripts_gen.php"); ?>
