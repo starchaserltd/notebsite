@@ -15,7 +15,7 @@ $absolute_url = full_url( $_SERVER );
 $ad=explode("/article.php?", $absolute_url);
 $ad[1]=preg_replace("/\/&[azAZ]?.*($)/","/",$wp_address."wp/article.php/article".$ad[1]);
 $echoid = url_to_postid($ad[1]); //echo $echoid; 
-
+$post_date="1990-01-01";
 ?>
 <script type="text/javascript">
 var lang = <?php echo $lang; ?>;
@@ -30,8 +30,8 @@ var istime=0;
 				<a  style="text-decoration:none;color:black;"><?php $content_title=""; $content_title=get_post_field('post_title', $echoid); echo $content_title;?></a>
 				<div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;">
 					<p style="font-style:italic;font-size:14px;">
-					<?php echo "by "; $user_info = get_userdata(get_post_field('post_author', $echoid)); echo $user_info->display_name;;?>
-					<?php echo " - ";echo get_post_field('post_date', $echoid);?>
+					<?php echo "by "; $user_info = get_userdata(get_post_field('post_author', $echoid)); echo $user_info->display_name;?>
+					<?php echo " - "; $post_date=get_post_field('post_date', $echoid); echo $post_date; ?>
 					</p>
 				</div>
 		
@@ -43,7 +43,7 @@ var istime=0;
 			-->
 			<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 detaliicomp2" style= "font-size:16px; line-height:30px; padding:0px; text-align:justify;">
 				<div>
-					<div><?php  echo preg_replace_callback('/\[tooltip (.*)\](.*)\[tooltip\]/U',function ($m) {return maketooltip(gettoolid($m[1]),$m[2]);},str_replace($wp_address.$wp_rmimg,$new_wp_address,apply_filters('the_content',get_post_field('post_content', $echoid, 'display')))); 
+					<div><?php  $content=preg_replace_callback('/\[tooltip (.*)\](.*)\[tooltip\]/U',function ($m) {return maketooltip(gettoolid($m[1]),$m[2]);},str_replace($wp_address.$wp_rmimg,$new_wp_address,apply_filters('the_content',get_post_field('post_content', $echoid, 'display')))); echo $content;
 					echo "<br>"; ?> </div>
 				</div>
 			</div>
@@ -80,5 +80,35 @@ $(document).ready(function()
 	document.title = "Noteb - <?php echo $content_title; ?> - Article";
 	$('meta[name=description]').attr('content', "Laptop article.");
 });
+</script>
+<script type="application/ld+json">
+{
+"@context": "http://schema.org",
+"@type": "BlogPosting",
+"mainEntityOfPage":{
+"@type":"WebPage",
+"@id":"https://www.noteb.com"
+},
+"headline": "<?php $content_title=str_replace('"',' ',$content_title); echo $content_title; ?>",
+"image": {
+"@type": "ImageObject",
+"url": "<?php echo $url; ?>"
+},
+"datePublished": "<?php echo $post_date; ?>"
+"author": {
+"@type": "Person",
+"name": "<?php echo $user_info->display_name; ?>"
+},
+"publisher": {
+"@type": "Organization",
+"name": "Noteb.com"
+"logo": {
+"@type": "ImageObject",
+"url": "https://noteb.com/res/img/logo/noteb-main-logo.svg"
+}
+},
+"description": "<?php echo $content_title; ?>",
+"articleBody": "<?php echo str_replace('"',' ',$content); ?>"
+}
 </script>
 <?php include_once("../etc/scripts_pages.php"); ?>

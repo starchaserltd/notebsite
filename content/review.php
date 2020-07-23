@@ -26,6 +26,7 @@ $content=preg_replace_callback('/\[tooltip (.*)\](.*)\[tooltip\]/U',function ($m
 echo preg_replace_callback('/\[ntab (.*)\](.*)(?=\[ntab .*\]|\Z)/Us',function ($m) {return maketab($m[1],$m[2]);},$content);
 $display_all_content="";
 $conclusion="";
+$post_date="1990-01-01";
 ?>
 <script type="text/javascript">
 	var lang = <?php echo $lang; ?>;
@@ -41,7 +42,7 @@ $conclusion="";
 		<div class="col-md-12 col-sm-12 col-xs-12">
 			<p style="font-style:italic;">
 			<?php $user_info = get_userdata(get_post_field('post_author', $echoid));
-				echo "by "; echo $user_info->display_name; echo " - "; echo get_the_date(  'd M Y', $echoid ); ?>
+				echo "by "; echo $user_info->display_name; echo " - "; $post_date=get_the_date('d M Y', $echoid ); echo $post_date; ?>
 			</p>
 		</div>
 		<div class="col-md-8 col-sm-8 col-xs-8">
@@ -135,7 +136,10 @@ $conclusion="";
 		  	{
 		  		 "@type": "Organization",
 				  "url": "https://www.noteb.com",
-				  "logo": "https://noteb.com/res/img/logo/noteb-main-logo.svg"
+				  "logo": {
+					"@type": "ImageObject",
+					"url": "https://noteb.com/res/img/logo/noteb-main-logo.svg"
+					}
 				},
 			{
 			  "@type": "Review",
@@ -145,6 +149,7 @@ $conclusion="";
 				"name": "<?php $content_title=str_replace('"',' ',$content_title); echo $content_title; ?>",
 				}
 			  },
+			  "datePublished": "<?php echo $post_date; ?>"
 			  "name": "<?php echo $content_title; ?>",
 			  "author": {
 				"@type": "Person",
