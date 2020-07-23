@@ -94,14 +94,14 @@ $(document).ready(function()
 "@type": "ImageObject",
 "url": "<?php echo $url; ?>"
 },
-"datePublished": "<?php echo $post_date; ?>"
+"datePublished": "<?php echo $post_date; ?>",
 "author": {
 "@type": "Person",
 "name": "<?php echo $user_info->display_name; ?>"
 },
 "publisher": {
 "@type": "Organization",
-"name": "Noteb.com"
+"name": "Noteb.com",
 "logo": {
 "@type": "ImageObject",
 "url": "https://noteb.com/res/img/logo/noteb-main-logo.svg"

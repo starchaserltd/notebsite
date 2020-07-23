@@ -130,39 +130,39 @@ $post_date="1990-01-01";
 	});
 	</script>
 	<script type="application/ld+json">	
+	{
+	  "@context": "http://schema.org",
+	  "graph": [
 		{
-		  "@context": "http://schema.org",
-		  "graph": [
-		  	{
-		  		 "@type": "Organization",
-				  "url": "https://www.noteb.com",
-				  "logo": {
-					"@type": "ImageObject",
-					"url": "https://noteb.com/res/img/logo/noteb-main-logo.svg"
-					}
-				},
-			{
-			  "@type": "Review",
-			  "itemReviewed": {
-				"@type": "Product",
-				"image": "<?php echo $url; ?>",
-				"name": "<?php $content_title=str_replace('"',' ',$content_title); echo $content_title; ?>",
+			 "@type": "Organization",
+			  "url": "https://www.noteb.com",
+			  "name": "Noteb.com",
+			  "logo": {
+				"@type": "ImageObject",
+				"url": "https://noteb.com/res/img/logo/noteb-main-logo.svg"
 				}
-			  },
-			  "datePublished": "<?php echo $post_date; ?>"
-			  "name": "<?php echo $content_title; ?>",
-			  "author": {
-				"@type": "Person",
-				"name": "<?php echo $user_info->display_name; ?>"
-			  },
-			  "description": "<?php echo str_replace('"',' ',$conclusion); ?>",
-			  "reviewBody": "<?php echo str_replace('"',' ',$content); ?>",
-			  "publisher": {
-				"@type": "Organization",
-				"name": "Noteb.com"
-				}
-			}		
-		  ]
-		}
+			},
+		{
+		  "@type": "Review",
+		  "itemReviewed": {
+			"@type": "Product",
+			"image": "<?php echo $url; ?>",
+			"name": "<?php $content_title=str_replace('"',' ',$content_title); echo $content_title; ?>"
+			},
+		  "datePublished": "<?php echo $post_date; ?>",
+		  "name": "<?php echo $content_title; ?>",
+		  "author": {
+			"@type": "Person",
+			"name": "<?php echo $user_info->display_name; ?>"
+		  },
+		  "description": "<?php echo str_replace('"',' ',$conclusion); ?>",
+		  "reviewBody": "<?php echo str_replace('"',' ',$content); ?>",
+		  "publisher": {
+			"@type": "Organization",
+			"name": "Noteb.com"
+			}
+		}		
+	  ]
+	}
 	</script>
 <?php include_once("../etc/scripts_pages.php"); ?>
