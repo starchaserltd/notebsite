@@ -15,7 +15,7 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 	if($to_search["model"])
     {
 		require_once($root."proc/model_search.php");
-		$comp_lists["model"] = search_model ($model_model, $prod_model, $fam_model,$msc_model, $regions_id, $model_minclass, $model_maxclass, $model_advclass);
+		$comp_lists["model"] = search_model ($search_ids_model,$model_model, $prod_model, $fam_model,$msc_model, $regions_id, $model_minclass, $model_maxclass, $model_advclass);
 	}
 
     /* FIRST LETS GET THE COMPONENT FILTER LIST */

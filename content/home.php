@@ -170,14 +170,14 @@ $published_posts = $count_posts->publish;
 		  	{
 		  		 "@type": "Organization",
 				  "url": "https://www.noteb.com",
-				  "logo": "https://www.noteb.com/res/img/logo/logo_white.png"
+				  "logo": "https://noteb.com/res/img/logo/noteb-main-logo.svg"
 				},
 			{		 
 			  "@type": "WebSite",
 			  "url": "https://www.noteb.com",
 			  "potentialAction": {
 			    "@type": "SearchAction",
-			    "target": "https://query.noteb.com/search?q={search_term_string}",
+			    "target": "https://noteb.com?search/search.php?browse_by=model_name&sort_by=value&keywords={search_term_string}",
 			    "query-input": "required name=search_term_string"
 			  }
 			}			

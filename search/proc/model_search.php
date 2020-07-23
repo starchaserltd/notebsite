@@ -2,10 +2,16 @@
 
 /* ********* SELECT MODEL BASED ON FILTERS ***** */
 
-function search_model ($mmodel,$prodmodel,$fammodel,$msc,$regions,$minclass,$maxclass,$advclass)
+function search_model ($ids,$mmodel,$prodmodel,$fammodel,$msc,$regions,$minclass,$maxclass,$advclass)
 {
-	$sel_model="SELECT id FROM notebro_db.MODEL WHERE 1=1";
+	$sel_model="SELECT `id` FROM `notebro_db`.`MODEL` WHERE 1=1";
 
+	// Add ids to filter
+	$i=0;
+	if(gettype($ids)!="array") { $ids=(array)$ids; }
+	if(count($ids)>0)
+	{ $sel_model.=" AND `id` IN ('".implode("','",$ids)."') "; }
+	
 	// Add models to filter
 	$i=0;
 	if(gettype($mmodel)!="array") { $mmodel=(array)$mmodel; }
@@ -33,7 +39,7 @@ function search_model ($mmodel,$prodmodel,$fammodel,$msc,$regions,$minclass,$max
 		else
 		{ $sel_model.=" AND ( "; }
 		
-		$sel_model.="prod='";
+		$sel_model.="`prod`='";
 		$sel_model.=$x;
 		$sel_model.="'";
 		$i++;
@@ -50,7 +56,7 @@ function search_model ($mmodel,$prodmodel,$fammodel,$msc,$regions,$minclass,$max
 		{ $sel_model.=" OR "; }
 		else
 		{
-			$sel_model.=" AND idfam IN ( SELECT id FROM `FAMILIES` WHERE ";
+			$sel_model.=" AND `idfam` IN ( SELECT `id` FROM `FAMILIES` WHERE ";
 		}
 		
 		$sel_model.=" ( `FAMILIES`.`fam`='";
@@ -120,14 +126,14 @@ function search_model ($mmodel,$prodmodel,$fammodel,$msc,$regions,$minclass,$max
     # echo "<br>";
 	# echo "<pre>" . $sel_model . "</pre>";
 	
-	$result = mysqli_query($GLOBALS['con'], "$sel_model");
+	$result = mysqli_query($GLOBALS['con'],$sel_model);
 	$model_return = array();
 	
-	while($rand = mysqli_fetch_array($result)) 
+	while($rand=mysqli_fetch_array($result)) 
 	{
 		$model_return[intval($rand[0])]=array("id"=>intval($rand[0]));
 	}
-		mysqli_free_result($result);
-		return($model_return);
+	mysqli_free_result($result);
+	return($model_return);
 }
 ?>

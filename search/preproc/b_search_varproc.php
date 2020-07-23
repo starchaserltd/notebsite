@@ -25,11 +25,11 @@ switch($browse_by)
 {
 	case "prod":
 	{	
-		if($_GET['prod'])
+		if(isset($_GET['prod']) && $_GET['prod'])
 		{
-			$prod_model  = clean_string($_GET['prod']); $set_j_ssearch="$('#s_prod_id').val(null).trigger('change'); document.getElementById('s_dispsize').noUiSlider.reset(); $('#s_prod_id').append('<option selected=".'"'."selected".'"'.'>'.$prod_model."</option>'); $('#type').multiselect('select', ['99']); $('#type').multiselect('refresh');";
+			$prod_model=clean_string($_GET['prod']); $set_j_ssearch="$('#s_prod_id').val(null).trigger('change'); document.getElementById('s_dispsize').noUiSlider.reset(); $('#s_prod_id').append('<option selected=".'"'."selected".'"'.'>'.$prod_model."</option>'); $('#type').multiselect('select', ['99']); $('#type').multiselect('refresh');";
 			$sist_sist=["Windows+Home","Windows+Pro","Windows+S","Chrome OS","macOS","Linux","Android"]; 
-			$to_search["sist"]=1;	$filtercomp = array("sist");
+			$to_search["sist"]=1; $filtercomp = array("sist");
 		}
 		break;
 	}	
@@ -198,7 +198,21 @@ switch($browse_by)
 		$sist_sist=["Windows+Home","Windows+Pro","Windows+S","Chrome OS","macOS","Linux","Android"];
 		$set_j_ssearch="$('#s_prod_id').empty().select2(); $('#type').multiselect('select', ['99']); $('#type').multiselect('refresh'); document.getElementById('s_dispsize').noUiSlider.set([17,21]);";
 		break;
-	}	
+	}
+	case "model_name":
+	{
+		$mem_capmax=0;
+		if(isset($_GET['keywords']) && $_GET['keywords'])
+		{
+			$model_name=clean_string($_GET['keywords']); $set_j_ssearch="document.getElementById('s_dispsize').noUiSlider.reset(); $('#s_prod_id').empty().select2(); $('#type').multiselect('select', ['99']); $('#type').multiselect('refresh');";
+			$sist_sist=["Windows+Home","Windows+Pro","Windows+S","Chrome OS","macOS","Linux","Android"]; 
+			$to_search["sist"]=1;	$filtercomp = array("sist");
+			$_POST["keys"]=$model_name;
+			$m_search_included=true; $relativepath="../"; $close_con=0; require_once("lib/func/m_search.php");
+			foreach($m_search_included as $val){ $search_ids_model[]=intval($val["id"]); }
+		}
+		break;
+	}
 }
 
 ?>
