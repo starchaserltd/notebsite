@@ -9,8 +9,7 @@ $(document).ready(function()
 		});		
 	});
 	
-	$(window).on('popstate', function()
-	{ $('.modal').modal('hide'); $( ".modal-backdrop" ).remove(); $( ".in" ).remove(); });
+	$(window).on('popstate', function()	{ $('.modal').modal('hide'); $( ".modal-backdrop" ).remove(); $(".in").remove(); });
 	
 	lightbox.option({ 'resizeDuration': 200, 'fadeDuration' : 200, 'imageFadeDuration':200 });
     $('meta[name=description]').attr('content', mprod + ' ' + mfamily + ' ' + mmodel);

@@ -1601,18 +1601,6 @@ else
 			</div>
 		</div>
 	</div>
-	<!-- NOTOFICATIONS MODAL -->
-	<div class="modal fade notificationsModal" id="notificationsModal" tabindex="-1" role="dialog" aria-labelledby="notificationsModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-body">
-					<div class="notification-message"></div>
-					<div class="list-container"></div>
-					<button type="button" class="btn btn-outline-primary btn-md" data-dismiss="modal" aria-label="Close">OK</button>
-				</div>
-			</div>
-		</div>
-	</div>
 <script>
 <?php include("lib/php/genjsmodel.php"); ?>
 $.getScript("model/lib/js/model.js",function(){$.getScript("lib/js/owl.carousel.min.js",function(){ getScripts(["model/lib/js/model_post.js","model/lib/js/sim_model.js"],function(){});});});

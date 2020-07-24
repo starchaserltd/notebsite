@@ -1044,12 +1044,11 @@ function showNotification(notificationType, message, componentsList)
 	messageElement.classList.add('notification-message-text')
 	notificationsModalMessage.appendChild(iconElement); 
 	notificationsModalMessage.appendChild(messageElement).innerHTML = message; 
-
 	if (componentsList)
 	{
 		if (componentsList.length > 4)
 		{
-			var firstList = componentsList.splice(0, componentsList.length / 2);
+			var firstList = componentsList.splice(0,Math.round(componentsList.length/2));
 			var firstListElem = notificationsListContainer.appendChild(document.createElement('ul'));
 			firstListElem.classList.add('first');
 			var secondListElem = firstListElem.insertAdjacentElement('afterend', document.createElement('ul'));
