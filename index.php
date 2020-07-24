@@ -238,6 +238,18 @@ require_once("etc/conf.php");
 			<!--left promotional space-->
 			<div class="col-md-2 hidden-xs hidden-sm" style="float: right; position: relative"><!-- <img src="someimage.png" class="img-responsive"> --></div>
 		<!-- end left promotional space-->
+		<!-- NOTOFICATIONS MODAL -->
+		<div class="modal fade notificationsModal" id="notificationsModal" tabindex="-1" role="dialog" aria-labelledby="notificationsModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<div class="notification-message"></div>
+						<div class="list-container"></div>
+						<button type="button" class="btn btn-outline-primary btn-md" data-dismiss="modal" aria-label="Close">OK</button>
+					</div>
+				</div>
+			</div>
+		</div>
 		</div>
 	</div>
 		<!-- footer-->

@@ -546,7 +546,7 @@ else
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 									<div class="row detaliicomp">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Model:</div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows"><?php show_display($modeldisplay); ?></div>					
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows"><?php show_display($modeldisplay,"_m"); ?></div>					
 									</div>
 									<div class="row detaliicomp">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">
@@ -702,7 +702,7 @@ else
 					if($shddtext)
 					{ 
 	?>	
-						<!-- Secondary Storage (if exists) -->
+					<!-- Secondary Storage (if exists) -->
 					<div class="specification-card">	
 						<div class="row modelwidht" id="title-5">					
 							<div class="col-md-12 titlucomp text-center bold-font">
@@ -1159,7 +1159,7 @@ else
 											</span>
 										</div>
 										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows">
-												<?php $showodd=show_odd($modelodd); ?>
+												<?php $showodd=show_odd($modelodd,"_m"); ?>
 											</span>
 										</div>
 									</div>
@@ -1210,7 +1210,7 @@ else
 												<i class="fa fa-question toolinfo-icon"></i>
 											</span>
 										</div>
-										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows"><?php show_acum($modelacum); ?></div>
+										<div class="col-md-7 col-xs-7 col-7 col-sm-7 col-lg-7 rows"><?php show_acum($modelacum,"_m"); ?></div>
 									</div>
 									<div class="row detaliicomp">
 										<div class="col-md-5 col-xs-5 col-sm-5 col-lg-5 col-5 rows">Cell Number:</div>

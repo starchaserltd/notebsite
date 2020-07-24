@@ -71,7 +71,8 @@ function showTooltip(e)
 function get_tooltip_el(e)
 {
 	var to_return=null;
-	to_return = !e.target.classList.contains('toolinfo') ? $(e.target.parentNode) : $(e.target);
+	if(typeof(e)!=="undefined" && e)
+	{ to_return = !e.target.classList.contains('toolinfo') ? $(e.target.parentNode) : $(e.target); }
 	return to_return;
 }
 
@@ -79,7 +80,7 @@ async function hideTooltip(e,$this,delay) {
 	// $this should always be the .toolinfo element in order to dispose of it
 	
 	if($this==null){ var $this = get_tooltip_el(e); }
-	if(typeof($this.attr('aria-describedby'))!=="undefined")
+	if(typeof($this)!=="undefined" && $this && typeof($this.attr('aria-describedby'))!=="undefined")
 	{	
 		setTimeout(function()
 		{

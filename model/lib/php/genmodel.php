@@ -271,7 +271,7 @@ function show_gpu($list)
 
 
 /* MAKE DISPLAY */
-function show_display($list)
+function show_display($list,$diff_id="")
 {
 	if(!function_exists("replace_surft_type"))
 	{
@@ -295,7 +295,7 @@ function show_display($list)
 	}
 	if(count($list)>1) 
 	{
-		echo '<form><SELECT id="DISPLAY" name="DISPLAY" onchange="getconf('."'".'DISPLAY'."'".',this.value)">';
+		echo '<form><SELECT id="DISPLAY'.$diff_id.'" name="DISPLAY" onchange="getconf('."'".'DISPLAY'."'".',this.value);">';
 		$sel="SELECT id,model,touch,backt,lum FROM notebro_db.DISPLAY WHERE id IN (".implode(",",$list).") ORDER BY `rating` ASC";
 		$result=mysqli_query($GLOBALS['con'], $sel);
 
@@ -366,13 +366,13 @@ function show_hdd ($list)
 }
 
 /* MAKE SHDD */
-function show_shdd ($list)
+function show_shdd ($list,$diff_id="")
 {
 	$text="";	
 	sort($list); $nrel=count($list); $lastrow="N/A";
 	if($nrel<1){ $list=array("0"); $nrel=1; }
 	
-	$text='<form><SELECT name="SHDD" onchange="getconf('."'".'SHDD'."'".',this.value)">';
+	$text='<form><SELECT name="SHDD'.$diff_id.'" onchange="getconf('."'".'SHDD'."'".',this.value)">';
 
 	$sel="SELECT `id`,`model`,`cap`,`rpm`,`type` FROM `notebro_db`.`HDD` WHERE `id` IN (".implode(",",$list).") ORDER BY `readspeed` ASC,`rating` ASC"; 
 	$result = mysqli_query($GLOBALS['con'], $sel);
@@ -474,14 +474,14 @@ function show_mem($list)
 }
 
 /* MAKE ODD */
-function show_odd($list)
+function show_odd($list,$diff_id="")
 {
 	$x=1;
 	$nrel=count($list);
 	
 	if(count($list)>1) 
 	{
-		echo '<form><SELECT name="ODD" onchange="getconf('."'".'ODD'."'".',this.value)">';
+		echo '<form><SELECT name="ODD'.$diff_id.'" onchange="getconf('."'".'ODD'."'".',this.value)">';
 		foreach($list as $key=>$id)
 		{
 			$sel="SELECT type FROM notebro_db.ODD WHERE id=$id ORDER BY `rating` ASC"; 
@@ -514,11 +514,11 @@ function show_odd($list)
 }
 
 /* MAKE BAT */
-function show_acum($list)
+function show_acum($list,$diff_id="")
 {
 	if(count($list)>1)
 	{
-		echo '<form><SELECT name="ACUM" onchange="getconf('."'".'ACUM'."'".',this.value)">';
+		echo '<form><SELECT name="ACUM'.$diff_id.'" onchange="getconf('."'".'ACUM'."'".',this.value)">';
 		
 		$sel="SELECT `id`,`model`,`nrc`,`cap` FROM `notebro_db`.`ACUM` WHERE `id` IN (".implode(",",$list).") ORDER BY `rating` ASC";
 		$result = mysqli_query($GLOBALS['con'], $sel);

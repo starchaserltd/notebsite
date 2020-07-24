@@ -615,7 +615,7 @@ function getconf(comp,id,exactconf,new_page=false)
 		case "CPU":
 		{ prev_id=cpu_id; cpu_id=id; if(cpu["id"]===undefined) { go=true; } if(gpu["typegpu"]<1){ cpu_el=document.getElementsByName("CPU")[0]; for ( var i = 0; i < cpu_el.options.length; i++ ) { if ( cpu_el.options[i].value == cpu_id) { gpu_id=cpu_el.options[i].getAttribute("data-gpu"); } } }  break; }
 		case "DISPLAY":
-		{ prev_id=display_id; display_id=id; if(display["id"]===undefined) { go=true; } break; }
+		{ prev_id=display_id; display_id=id; setselectedcomp("DISPLAY",display_id); if(display["id"]===undefined) { go=true; } break; }
 		case "MEM":
 		{ prev_id=mem_id; mem_id=id; if(mem["id"]===undefined) { go=true; }  break; }
 		case "HDD":
@@ -627,13 +627,13 @@ function getconf(comp,id,exactconf,new_page=false)
 		case "WNET":
 		{ prev_id=wnet_id; wnet_id=id; if(wnet["id"]===undefined) { go=true; }  break; }
 		case "ODD":
-		{ prev_id=odd_id; odd_id=id; if(odd["id"]===undefined) { go=true; }  break; }
+		{ prev_id=odd_id; odd_id=id; setselectedcomp("ODD",odd_id); if(odd["id"]===undefined) { go=true; }  break; }
 		case "MDB":
 		{ prev_id=mdb_id; mdb_id=id; if(mdb["id"]===undefined) { go=true; }  break; }
 		case "CHASSIS":
 		{ prev_id=chassis_id; chassis_id=id; if(chassis["id"]===undefined) { go=true; }  break; }
 		case "ACUM":
-		{ prev_id=acum_id; acum_id=id; if(acum["id"]===undefined) { go=true; }  break; }
+		{ prev_id=acum_id; acum_id=id; setselectedcomp("ACUM",acum_id); if(acum["id"]===undefined) { go=true; }  break; }
 		case "WAR":
 		{ prev_id=war_id; war_id=id; if(war["id"]===undefined) { go=true; }  break; }
 		case "SIST":
@@ -850,11 +850,15 @@ function update_model_info(model_id)
 
 function setselectedcomp(comp,value)
 {
-	comp=document.getElementsByName(comp)[0];
-	if(comp!==undefined&&comp.options!==undefined)
+	var comp_list=document.getElementsByName(comp);
+	for(var x in comp_list)
 	{
-		for ( var i = 0; i < comp.options.length; i++ )
-		{ if ( comp.options[i].value == value ) { comp.options[i].selected = true; return; } }
+		var comp=comp_list[x];
+		if(comp!==undefined&&comp.options!==undefined)
+		{
+			for (var i=0; i<comp.options.length; i++)
+			{ if ( comp.options[i].value == value ) { comp.options[i].selected = true; break; } }
+		}
 	}
 }
 
