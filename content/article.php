@@ -108,7 +108,7 @@ $(document).ready(function()
 }
 },
 "description": "<?php echo $content_title; ?>",
-"articleBody": "<?php echo str_replace('"',' ',$content); ?>"
+"articleBody": "<?php echo strip_tags(str_replace('"',' ',$content)); ?>"
 }
 </script>
 <?php include_once("../etc/scripts_pages.php"); ?>

@@ -142,7 +142,7 @@ $post_date="1990-01-01";
 				"url": "https://noteb.com/res/img/logo/noteb-main-logo.svg"
 				}
 			},
-		{
+		"review":[{
 		  "@type": "Review",
 		  "itemReviewed": {
 			"@type": "Product",
@@ -161,7 +161,7 @@ $post_date="1990-01-01";
 			"@type": "Organization",
 			"name": "Noteb.com"
 			}
-		}		
+		}]		
 	  ]
 	}
 	</script>
