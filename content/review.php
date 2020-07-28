@@ -156,7 +156,7 @@ $post_date="1990-01-01";
 			"name": "<?php echo $user_info->display_name; ?>"
 		  },
 		  "description": "<?php echo str_replace('"',' ',$conclusion); ?>",
-		  "reviewBody": "<?php echo str_replace('"',' ',$content); ?>",
+		  "reviewBody": "<?php echo str_replace('"',' ',$display_all_content); ?>",
 		  "publisher": {
 			"@type": "Organization",
 			"name": "Noteb.com"
