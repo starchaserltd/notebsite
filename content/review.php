@@ -141,7 +141,7 @@ $post_date="1990-01-01";
 				"@type": "ImageObject",
 				"url": "https://noteb.com/res/img/logo/noteb-main-logo.svg"
 				}
-			},
+			}],
 		"review":[
 		{
 		  "@type": "Review",
@@ -164,7 +164,6 @@ $post_date="1990-01-01";
 			}
 		}
 		]		
-	  ]
 	}
 	</script>
 <?php include_once("../etc/scripts_pages.php"); ?>
