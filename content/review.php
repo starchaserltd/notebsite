@@ -131,39 +131,40 @@ $post_date="1990-01-01";
 	</script>
 	<script type="application/ld+json">	
 	{
-	  "@context": "http://schema.org",
-	  "graph": [
+		"@context": "http://schema.org",
+		"graph": [
 		{
-			 "@type": "Organization",
-			  "url": "https://www.noteb.com",
-			  "name": "Noteb.com",
-			  "logo": {
-				"@type": "ImageObject",
-				"url": "https://noteb.com/res/img/logo/noteb-main-logo.svg"
-				}
-			}],
-		"review":[
+		  "@type": "Organization",
+		  "url": "https://www.noteb.com",
+		  "name": "Noteb.com",
+		  "logo": {
+			"@type": "ImageObject",
+			"url": "https://noteb.com/res/img/logo/noteb-main-logo.svg"
+		  }
+		},
 		{
-		  "@type": "Review",
-		  "itemReviewed": {
-			"@type": "Product",
-			"image": "<?php echo $url; ?>",
-			"name": "<?php $content_title=str_replace('"',' ',$content_title); echo $content_title; ?>"
-			},
-		  "datePublished": "<?php echo $post_date; ?>",
-		  "name": "<?php echo $content_title; ?>",
-		  "author": {
-			"@type": "Person",
-			"name": "<?php echo $user_info->display_name; ?>"
-		  },
+		  "@type": "Product",
+		  "name": "<?php $content_title=str_replace('"',' ',$content_title); echo $content_title; ?>",
+		  "image": [
+			"<?php echo $url; ?>"
+		  ],
 		  "description": "<?php echo str_replace('"',' ',$conclusion); ?>",
-		  "reviewBody": "<?php echo strip_tags(str_replace('"',' ',$display_all_content)); ?>",
-		  "publisher": {
-			"@type": "Organization",
-			"name": "Noteb.com"
+		  "review": {
+			"@type": "Review",
+			"author": {
+			  "@type": "Person",
+			  "name": "<?php echo $user_info->display_name; ?>"
+			},
+			"datePublished": "<?php echo $post_date; ?>",
+			"description": "<?php echo str_replace('"',' ',$conclusion); ?>",
+			"reviewBody": "<?php echo strip_tags(str_replace('"',' ',$display_all_content)); ?>",
+			"publisher": {
+			  "@type": "Organization",
+			  "name": "Noteb.com"
+				}
+			  }
 			}
-		}
-		]		
+		]
 	}
 	</script>
 <?php include_once("../etc/scripts_pages.php"); ?>
