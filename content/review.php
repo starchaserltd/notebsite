@@ -155,6 +155,7 @@ $post_date="1990-01-01";
 			  "@type": "Person",
 			  "name": "<?php echo $user_info->display_name; ?>"
 			},
+			"inLanguage": "en",
 			"datePublished": "<?php echo $post_date; ?>",
 			"description": "<?php echo str_replace('"',' ',$conclusion); ?>",
 			"reviewBody": "<?php echo strip_tags(str_replace('"',' ',$display_all_content)); ?>",

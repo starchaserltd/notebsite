@@ -99,6 +99,7 @@ $(document).ready(function()
 "@type": "Person",
 "name": "<?php echo $user_info->display_name; ?>"
 },
+"inLanguage": "en",
 "publisher": {
 "@type": "Organization",
 "name": "Noteb.com",
