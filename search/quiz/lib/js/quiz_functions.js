@@ -571,3 +571,8 @@ $('.label_intro2').click(function() {
    $('.label_intro1').addClass('hidden');
    $('.label_intro2').addClass('hidden')
 });
+
+$('.tab1_intro').click(function() {
+   $('.label_intro1').addClass('hidden');
+   $('.label_intro2').addClass('hidden')
+});

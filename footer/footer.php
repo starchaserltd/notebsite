@@ -1,7 +1,7 @@
 	<footer class="footer-distributed">
 		<div class="container">
 			<div class="row footerMenuContainer">
-				<div class=" col-lg-9 col-xl-10 col-md-12 col-sm-12 col-12">		
+				<div class=" col-lg-8 col-xl-9 col-md-12 col-sm-12 col-12">		
 					<div class="row footer-left">								
 						<div class="footerMenu footerMenuLogo col col-lg-2  col-md-4 col-12" style="cursor:pointer" onmousedown="go_to_top(); OpenPage('content/home.php');"><img class="footerLogo" src="../res/img/logo/white.svg" alt="Noteb"></div>	
 						<div class="footerMenu col col-lg-2 col-md-4 col-12" style="cursor:pointer" onmousedown="scrolltoid('content',0); OpenPage('footer/howto.php',event);"><p>How to Use</p></div>
@@ -11,11 +11,13 @@
 						<div class="footerMenu col col-lg-2 col-md-4 col-12" style="cursor:pointer" onmousedown="scrolltoid('content',0); OpenPage('footer/terms_of_use.php',event); scrolltoid('content',0);"><p>Terms of Use</p></div>						
 					</div>
 				</div>
-				<div class="footer-right col-lg-3 col-xl-2 col-md-12 col-sm-12 col-12">
+				<div class="footer-right col-lg-4 col-xl-3 col-md-12 col-sm-12 col-12">
 					<span class="socialMediaFooter">Social Media:</span>
 					<a style="cursor:pointer" href="https://www.youtube.com/notebcom"><span class="faSocial"><i class="fab fa-youtube"></i></span></a>
 					<a style="cursor:pointer" href="https://www.facebook.com/Noteb-162949570886382/">	<span class="faSocial"><i class="fab fa-facebook-f"></i></span></a>
 					<a style="cursor:pointer" href="https://twitter.com/notebcom"><span class="faSocial"><i class="fab fa-twitter"></i></span></a>
+					<a style="cursor:pointer" href="https://www.instagram.com/notebcom/"><span class="faSocial"><i class="fab fa-instagram"></i></span></a>
+					<a style="cursor:pointer" href="https://discord.com/invite/aXqPsz4"><span class="faSocial"><i class="fab fa-discord"></i></span></a>
 				</div>					
 			</div>
 			<div class="row">
