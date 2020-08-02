@@ -81,6 +81,8 @@ $(document).ready(function()
 	$('meta[name=description]').attr('content', "Laptop article.");
 });
 </script>
+<?php function clean_text($text){return(str_replace('"',' ',strip_tags($text)));}
+$content_title=clean_text($content_title); $conclusion=clean_text($conclusion); $content=clean_text($content); ?>
 <script type="application/ld+json">
 {
 "@context": "http://schema.org",
@@ -89,7 +91,7 @@ $(document).ready(function()
 "@type":"WebPage",
 "@id":"https://www.noteb.com"
 },
-"headline": "<?php $content_title=str_replace('"',' ',$content_title); echo $content_title; ?>",
+"headline": "<?php echo $content_title; ?>",
 "image": {
 "@type": "ImageObject",
 "url": "<?php echo $url; ?>"
@@ -109,7 +111,7 @@ $(document).ready(function()
 }
 },
 "description": "<?php echo $content_title; ?>",
-"articleBody": "<?php echo strip_tags(str_replace('"',' ',$content)); ?>"
+"articleBody": "<?php echo $content; ?>"
 }
 </script>
 <?php include_once("../etc/scripts_pages.php"); ?>

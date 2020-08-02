@@ -129,6 +129,8 @@ $post_date="1990-01-01";
 		});
 	});
 	</script>
+	<?php function clean_text($text){return(str_replace('"',' ',strip_tags($text)));}
+	$content_title=clean_text($content_title); $conclusion=clean_text($conclusion); $display_all_content=clean_text($display_all_content); ?>
 	<script type="application/ld+json">	
 	{
 		"@context": "http://schema.org",
@@ -144,11 +146,11 @@ $post_date="1990-01-01";
 		},
 		{
 		  "@type": "Product",
-		  "name": "<?php $content_title=str_replace('"',' ',$content_title); echo $content_title; ?>",
+		  "name": "<?php echo $content_title; ?>",
 		  "image": [
 			"<?php echo $url; ?>"
 		  ],
-		  "description": "<?php echo str_replace('"',' ',$conclusion); ?>",
+		  "description": "<?php echo $conclusion; ?>",
 		  "review": {
 			"@type": "Review",
 			"author": {
@@ -157,8 +159,8 @@ $post_date="1990-01-01";
 			},
 			"inLanguage": "en",
 			"datePublished": "<?php echo $post_date; ?>",
-			"description": "<?php echo str_replace('"',' ',$conclusion); ?>",
-			"reviewBody": "<?php echo strip_tags(str_replace('"',' ',$display_all_content)); ?>",
+			"description": "<?php echo $conclusion; ?>",
+			"reviewBody": "<?php echo $display_all_content; ?>",
 			"publisher": {
 			  "@type": "Organization",
 			  "name": "Noteb.com"
