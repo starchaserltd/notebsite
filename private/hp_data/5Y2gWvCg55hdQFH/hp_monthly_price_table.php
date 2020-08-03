@@ -269,7 +269,7 @@ if(have_results($result))
 						$show_delta="";
 						if($retailer_key!="hpcom")
 						{
-							$color_delta="color:blue;";
+							$color_delta="color:#2c3134;";
 							if($delta<$red_color_threshold){$color_delta="color:red;";}
 							else if($delta>$green_color_threshold){$color_delta="color:green;";}
 							if($delta>0){$delta="+".strval($delta);}
