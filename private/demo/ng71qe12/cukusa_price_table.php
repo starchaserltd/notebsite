@@ -71,7 +71,7 @@ if(isset($_GET["format"])){ $table_format=strval($_GET["format"]); }else{ $table
 if(strtotime($proc_date)<strtotime("2020-01-01")){ echo "Wrong date. Showing data for the current date.<br>"; $proc_date=date("Y-m-d"); }
 if(strtotime($proc_date)>strtotime("2050-01-01")){ echo "Wrong date. Showing data for the current date.<br>"; $proc_date=date("Y-m-d"); }
 if(isset($_GET["ref_retailer"])){ $ref_retailer=strval($_GET["ref_retailer"]); }else{ $ref_retailer=NULL; }
-$ref_retailer="hpcom";
+$ref_retailer="cukusa";
 if($ref_retailer==NULL){ echo "Reference retailer improperly set."; }
 
 
@@ -116,7 +116,7 @@ mysqli_select_db($rcon, "stch_laptop_price");
 if($table_format!="excel_format")
 {
 	?>
-	<form target="_self" action="<?php echo "hp"."_"; ?>price_table.php" method="get">
+	<form target="_self" action="<?php echo $ref_retailer."_"; ?>price_table.php" method="get">
 		<select name="date" id="date" size="5">
 	<?php
 	$SQL_dates="SELECT DISTINCT DATE_FORMAT(`proc_date`,'%Y-%m-%d') AS `proc_date` FROM `daily_price_table_".$ref_retailer."` WHERE 1=1 ORDER BY `proc_date` DESC";
@@ -134,8 +134,8 @@ if($table_format!="excel_format")
 	?>
 		</select>
 		<button type="submit" name="format" value="normal_format">Select date</button>
-		<button type="submit" formtarget="_blank" name="format" formaction="<?php echo "hp"."_"; ?>price_table.php" value="excel_format">Excel friendly</button>
-		<button type="submit" formtarget="_blank" name="format" formaction="<?php echo "hp"."_"; ?>monthly_price_table.php" value="normal_format">Monthly table</button>
+		<button type="submit" formtarget="_blank" name="format" formaction="<?php echo $ref_retailer."_"; ?>price_table.php" value="excel_format">Excel friendly</button>
+		<button type="submit" formtarget="_blank" name="format" formaction="<?php echo $ref_retailer."_"; ?>monthly_price_table.php" value="normal_format">Monthly table</button>
 	</form>
 	<br>
 	<form target="_self" action="javascript:void(0);" method="get">

@@ -72,8 +72,42 @@ if(strtotime($proc_date)<strtotime("2020-01")){ echo "Wrong date. Showing data f
 if(strtotime($proc_date)>strtotime("2050-01")){ echo "Wrong date. Showing data for the current date.<br>"; $proc_date=date("Y-m"); }
 
 if($proc_date==date("Y-m")){$proc_date=date('Y-m',strtotime("first day of previous month"));}
+if(isset($_GET["ref_retailer"])){ $ref_retailer=strval($_GET["ref_retailer"]); }else{ $ref_retailer=NULL; }
+$ref_retailer="hpcom";
+if($ref_retailer==NULL){ echo "Reference retailer improperly set."; }
 
-$table_columns["retailers"]=["hpcom"=>"HP Store","market_price"=>"Market Median","amazoncom"=>"Amazon US","bhphotovideo"=>"B&H Photo Video","bestbuyus"=>"Best Buy"];
+$table_columns["retailers"]=[$ref_retailer=>"Ref Store","market_price"=>"Market Median"];
+
+$SELECT_RETAILER_TO_COMPARE="SELECT `data` FROM `stch_laptop_price`.`retailer_config` WHERE `conf_name`='".$ref_retailer."' LIMIT 1";
+$result_r_t_comp=mysqli_query($rcon,$SELECT_RETAILER_TO_COMPARE);
+if(have_results($result_r_t_comp))
+{
+	$retailers_to_compare_row=mysqli_fetch_assoc($result_r_t_comp);
+	if(isset($retailers_to_compare_row["data"]))
+	{
+		$retailer_names=array();
+		$retailers_to_compare=array_unique(explode(",",$retailers_to_compare_row["data"]));
+		$SELECT_RETAILER_NAMES="SELECT `data` FROM `stch_laptop_price`.`retailer_config` WHERE `conf_name`='retailer_name_map' LIMIT 1";
+		$result_r_names=mysqli_query($rcon,$SELECT_RETAILER_NAMES);
+		if(have_results($result_r_names))
+		{	
+			$retailer_names_row=mysqli_fetch_assoc($result_r_names);
+			if(isset($retailer_names_row["data"]))
+			{
+				$retailer_to_names=explode(",",$retailer_names_row["data"]);
+				$nr_retailers=intval(count($retailer_to_names));
+				for($i=0;$i<=$nr_retailers;$i+=2)
+				{
+					if(isset($retailer_to_names[$i+1])){ $retailer_names[$retailer_to_names[$i]]=$retailer_to_names[$i+1]; }
+				}
+			}
+			mysqli_free_result($result_r_names);
+		}
+		foreach($retailers_to_compare as $retailer) { $table_columns["retailers"][$retailer]=$retailer_names[$retailer]; }
+	}
+	mysqli_free_result($result_r_t_comp);
+}
+
 $table_columns["price_types"]=["min_price","median_price"];
 $nr_table_columns=count($table_columns["retailers"])*count($table_columns["price_types"])+1;
 $table_data=array();
