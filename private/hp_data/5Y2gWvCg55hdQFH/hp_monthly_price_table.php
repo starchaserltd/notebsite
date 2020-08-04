@@ -11,14 +11,14 @@ a:visited { color: blue; }
 td { border: 1px solid #000000; }
 </style>
 <script>
-function enable_all_conf(hp_pid)
+function enable_all_conf(ref_pid)
 {
-	button_value=document.getElementById("main_"+hp_pid).innerHTML;
-	var x = document.getElementsByClassName(hp_pid);
+	button_value=document.getElementById("main_"+ref_pid).innerHTML;
+	var x = document.getElementsByClassName(ref_pid);
 	if(button_value=="Show conf")
-	{	for (var i = 0; i < x.length; i++) { x[i].style.display = "table-row"; document.getElementById("main_"+hp_pid).innerHTML="Hide conf"; } }
+	{	for (var i = 0; i < x.length; i++) { x[i].style.display = "table-row"; document.getElementById("main_"+ref_pid).innerHTML="Hide conf"; } }
 	else
-	{	for (var i = 0; i < x.length; i++) { x[i].style.display = "none"; document.getElementById("main_"+hp_pid).innerHTML="Show conf"; } }
+	{	for (var i = 0; i < x.length; i++) { x[i].style.display = "none"; document.getElementById("main_"+ref_pid).innerHTML="Show conf"; } }
 }
 
 function search_fields(text)
@@ -111,7 +111,7 @@ if(have_results($result_r_t_comp))
 $table_columns["price_types"]=["min_price","median_price"];
 $nr_table_columns=count($table_columns["retailers"])*count($table_columns["price_types"])+1;
 $table_data=array();
-mysqli_select_db($rcon, "stch_hp_data");
+mysqli_select_db($rcon, "stch_laptop_price");
 
 if($table_format!="excel_format")
 {
@@ -119,7 +119,7 @@ if($table_format!="excel_format")
 	<form target="_self" action="hp_monthly_price_table.php" method="get">
 		<select name="date" id="date" size="5">
 	<?php
-	$SQL_dates="SELECT DISTINCT DATE_FORMAT(`proc_date`,'%Y-%m') AS `proc_date` FROM `monthly_price_table` ORDER BY `proc_date` DESC";
+	$SQL_dates="SELECT DISTINCT DATE_FORMAT(`proc_date`,'%Y-%m') AS `proc_date` FROM `monthly_price_table_".$ref_retailer."` ORDER BY `proc_date` DESC";
 	$dates_result=mysqli_query($rcon,$SQL_dates);
 	if(have_results($dates_result))
 	{
@@ -144,7 +144,7 @@ if($table_format!="excel_format")
 }
 $proc_date_max=$proc_date."-31";
 $proc_date=$proc_date."-01";
-$sql_select="SELECT * FROM `monthly_price_table` WHERE `proc_date`='".$proc_date."' ORDER BY `fam` ASC, `model` ASC, `hp_pid` ASC, `noteb_pid` ASC ";
+$sql_select="SELECT * FROM `monthly_price_table_".$ref_retailer."` WHERE `proc_date`='".$proc_date."' ORDER BY `fam` ASC, `model` ASC, `ref_pid` ASC, `noteb_pid` ASC ";
 $result=mysqli_query($rcon,$sql_select);
 $table_data=array();
 $add_table_data=array();
@@ -155,7 +155,7 @@ $green_color_threshold=10;
 
 if($table_format=="normal_format" && isset($table_columns))
 {
-	$select_time="SELECT MIN(`price_time`) AS `min_time`, MAX(`price_time`) AS `max_time` FROM `daily_price_data` WHERE `proc_date`>='".$proc_date."' AND `proc_date`<='".$proc_date_max."'  LIMIT 1";
+	$select_time="SELECT MIN(`price_time`) AS `min_time`, MAX(`price_time`) AS `max_time` FROM `daily_price_data_".$ref_retailer."` WHERE `proc_date`>='".$proc_date."' AND `proc_date`<='".$proc_date_max."'  LIMIT 1";
 	$time_result=mysqli_query($rcon,$select_time);
 	if(have_results($time_result))
 	{
@@ -168,7 +168,7 @@ if($table_format=="normal_format" && isset($table_columns))
 
 if(have_results($result))
 {
-	$SELECT_CONF_INFO="SELECT `info`.* FROM `noteb_pid_info` AS `info` JOIN `monthly_price_table` AS `price_table` ON `info`.`notebpid`=`price_table`.`noteb_pid` WHERE `proc_date`='".$proc_date."'";
+	$SELECT_CONF_INFO="SELECT `info`.* FROM `noteb_pid_info` AS `info` JOIN `monthly_price_table_".$ref_retailer."` AS `price_table` ON `info`.`notebpid`=`price_table`.`noteb_pid` WHERE `proc_date`='".$proc_date."'";
 	$conf_info_result=mysqli_query($rcon,$SELECT_CONF_INFO);
 	$conf_info_array=array();
 	if(have_results($conf_info_result))
@@ -214,7 +214,7 @@ if(have_results($result))
 			else
 			{
 				$tr_style="style='display: none; background-color:#CCCCCC;'";
-				$tr_class=[$row["hp_pid"]];
+				$tr_class=[$row["ref_pid"]];
 				if(isset($conf_info_array[$row["noteb_pid"]]))
 				{
 					$conf_info=$conf_info_array[$row["noteb_pid"]];
@@ -249,7 +249,7 @@ if(have_results($result))
 			}	
 			if($row["noteb_pid"]=="0"){$tr_class[]="data_table_rows";} else{$tr_class[]="data_table_subrows";}
 			echo "<tr ".$tr_style." name='".$current_model_name."' class='".implode(" ",$tr_class)."'>";
-			echo "<td style='text-align:center;'>".$row["hp_pid"]."</td>";
+			echo "<td style='text-align:center;'>".$row["ref_pid"]."</td>";
 			$row_data=json_decode($row["price_data"],true); $skipped=False;
 			foreach($table_columns["retailers"] as $retailer_key=>$retailer_name)
 			{
@@ -259,7 +259,7 @@ if(have_results($result))
 					{
 						#SKIPPING ONE PRICE AND PUTTING THE BUTTON
 						if($retailer_key=="hpcom" && !$skipped && $row["noteb_pid"]=="0")
-						{ echo "<td><button onclick='javascript:void(0);' id='main_".$row["hp_pid"]."'>No conf</button></td>"; $skipped=True; continue;}
+						{ echo "<td><button onclick='javascript:void(0);' id='main_".$row["ref_pid"]."'>No conf</button></td>"; $skipped=True; continue;}
 						else if($retailer_key=="hpcom" && !$skipped && $row["noteb_pid"]!="0")
 						{ echo "<td>".$conf_table."</td>"; $skipped=True; continue;}
 						
@@ -307,7 +307,7 @@ if(have_results($result))
 			}
 			else
 			{
-				$tr_style="style='display: none; background-color:#CCCCCC;' class='".$row["hp_pid"]."'";
+				$tr_style="style='display: none; background-color:#CCCCCC;' class='".$row["ref_pid"]."'";
 				if(isset($conf_info_array[$row["noteb_pid"]]))
 				{
 					$conf_info=$conf_info_array[$row["noteb_pid"]];
@@ -315,7 +315,7 @@ if(have_results($result))
 				}
 			}	
 			echo "<tr ".$tr_style.">";
-			echo "<td><span style='padding-right:20%;'>".$row["fam"]."</span></td><td><span style='padding-right:0%;'>".$row["model"]."</span></td><td style='text-align:center;'>".$row["hp_pid"]."</td>";
+			echo "<td><span style='padding-right:20%;'>".$row["fam"]."</span></td><td><span style='padding-right:0%;'>".$row["model"]."</span></td><td style='text-align:center;'>".$row["ref_pid"]."</td>";
 			$row_data=json_decode($row["price_data"],true); $skipped=False;
 			foreach($table_columns["retailers"] as $retailer_key=>$retailer_name)
 			{
