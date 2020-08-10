@@ -54,7 +54,7 @@ function comp_details($comp,$id)
 			if(have_results($some_query))
 			{
 				$res=mysqli_fetch_assoc($some_query);
-				$res["prod"]=ucfirst(strtolower($res["prod"])); $res['integrated_video']="None";
+				$res["prod"]=ucfirst(strtolower($res["prod"])); $res['integrated_video']="Unknown";
 				$some_query_2=mysqli_query($GLOBALS['con'],"SELECT `prod`,`model_name` FROM `notebro_db`.`GPU` WHERE `id`='".$res['integrated_video_id']."'");
 				if(have_results($some_query_2))
 				{
