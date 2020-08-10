@@ -49,11 +49,21 @@ function comp_details($comp,$id)
 		}
 		case "cpu":
 		{
-			$sel="SELECT id,prod,model,tech as lithography,cache,ROUND(clocks,2) as base_speed,ROUND(maxtf,2) as boost_speed,cores,ROUND(tdp,0) as tdp,msc as other_info,ROUND(rating,1) as rating,gpu as integrated_video_id FROM notebro_db.CPU WHERE id=".$id."";
-			$res=array(); $res=mysqli_fetch_assoc(mysqli_query($GLOBALS['con'], $sel));
-			$res["prod"]=ucfirst(strtolower($res["prod"]));
-			$cpugpu = mysqli_fetch_row(mysqli_query($GLOBALS['con'],"SELECT `prod`,`model_name` FROM `notebro_db`.`GPU` WHERE `id` = ".$res['integrated_video_id'].""));
-			$res['integrated_video'] = ucfirst(strtolower($cpugpu[0]))." ".$cpugpu[1];
+			$sel="SELECT `id`,`prod`,`model`,`tech` AS `lithography`,`cache`,ROUND(`clocks`,2) AS `base_speed`,ROUND(`maxtf`,2) AS `boost_speed`,`cores`,ROUND(`tdp`,0) AS `tdp`,`msc` AS `other_info`,ROUND(`rating`,1) AS `rating`,`gpu` AS `integrated_video_id` FROM `notebro_db`.`CPU` WHERE `id`='".$id."'";
+			$res=array(); $some_query=mysqli_query($GLOBALS['con'], $sel);
+			if(have_results($some_query))
+			{
+				$res=mysqli_fetch_assoc($some_query);
+				$res["prod"]=ucfirst(strtolower($res["prod"])); $res['integrated_video']="None";
+				$some_query_2=mysqli_query($GLOBALS['con'],"SELECT `prod`,`model_name` FROM `notebro_db`.`GPU` WHERE `id`='".$res['integrated_video_id']."'");
+				if(have_results($some_query_2))
+				{
+					$cpugpu = mysqli_fetch_row($some_query_2);
+					$res['integrated_video']=ucfirst(strtolower($cpugpu[0]))." ".$cpugpu[1];
+					mysqli_free_result($some_query_2);
+				}
+				mysqli_free_result($some_query);
+			}
 			return $res; break;
 		}
 		case "display":

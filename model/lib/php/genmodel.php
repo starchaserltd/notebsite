@@ -101,6 +101,7 @@ if($idmodel)
 			mysqli_free_result($region_result);
 		}
 	}
+	if(!(isset($model_regions) && $model_regions!=NULL)){ $model_regions=array(); }
 	$model_regions=array_map('intval',$model_regions); $model_regions=array_unique($model_regions);
 	if(count($model_regions)<2 && $model_regions[0]==0){$model_regions[]=1; $model_regions[]=2; }
 	$sql_parts=[]; foreach($model_regions as $model_region){  $sql_parts[]="FIND_IN_SET(".$model_region.",`regions`)>0"; }
@@ -155,11 +156,15 @@ if($idmodel)
 			require_once("../etc/con_sdb.php"); $cons=dbs_connect();
 			
 			$sel3="SELECT * FROM notebro_temp.m_map_table WHERE model_id=".$idmodel." LIMIT 1";
-			$row=mysqli_fetch_array(mysqli_query($cons,$sel3));
 			$model_ex_list=array();
-			foreach($row as $key=>$el){ if($key!="model_id"&&$key!="pmodel"&&$el!=NULL&&$el!=""){ if(isset($region_ex[$key])){ $model_ex_list=array_merge($model_ex_list,$region_ex[$key]);} } }
-			$model_ex_list=array_unique($model_ex_list);
-			
+			$some_result=mysqli_query($cons,$sel3);
+			if(have_results($some_result))
+			{
+				$row=mysqli_fetch_array(mysqli_query($cons,$sel3));
+				foreach($row as $key=>$el){ if($key!="model_id"&&$key!="pmodel"&&$el!=NULL&&$el!=""){ if(isset($region_ex[$key])){ $model_ex_list=array_merge($model_ex_list,$region_ex[$key]);} } }
+				$model_ex_list=array_unique($model_ex_list);
+				mysqli_free_result($some_result);
+			}
 			if(isset($rows["best_low"])){$best_low=$rows["best_low"];}
 			if(!(isset($best_low["best_value"])&&$best_low["best_value"]!=""&&$best_low["best_value"]!=NULL))
 			{

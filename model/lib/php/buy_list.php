@@ -116,7 +116,7 @@ foreach($seller_count_links as $seller_name=>$links)
 			#var_dump($generated_buy_list); echo "<br><br>"; var_dump($seller_count_links);
 			for($i=4;$i<10000;$i++)
 			{ 
-				if(isset($generated_buy_list[$seller_count_links[$seller_name][$i]]))
+				if(isset($seller_count_links[$seller_name][$i]) && isset($generated_buy_list[$seller_count_links[$seller_name][$i]]))
 				{ /*var_dump($generated_buy_list[$seller_count_links[$seller_name][$i]]);*/ $ids_to_unset[]=$seller_count_links[$seller_name][$i]; }
 				else
 				{ break; }
