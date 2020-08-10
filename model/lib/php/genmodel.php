@@ -13,7 +13,7 @@ if(!$components_found)
 		$sel3="SELECT * FROM notebro_temp.all_conf_".$t[1]." WHERE id=".$t[0]." LIMIT 1";
 		$cons=dbs_connect();
 		$result=mysqli_query($cons,$sel3);
-		if($result && mysqli_num_rows($result)>0)
+		if(have_results($result))
 		{
 			$row=mysqli_fetch_assoc($result);
 			$idcpu=$row["cpu"]; 
@@ -68,7 +68,7 @@ if(!$components_found)
 				require_once("lib/php/query/get_best_low.php");
 				$best_low=get_best_low($cons,$ex_regions,$idmodel);
 			}
-			if($result){ mysqli_free_result($result); }
+			mysqli_free_result($result);
 		}
 		mysqli_close($cons);
 	} 

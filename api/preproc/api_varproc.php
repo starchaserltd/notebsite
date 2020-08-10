@@ -54,7 +54,7 @@ foreach ($search_array as $v)
 					else
 					{  $response->code=29; $response->message.=" Unable to identify model by ID, falling back to name search."; }
 				}
-				if(!$id_set){ $param['model_name']=mysqli_real_escape_string($con,$param['model_name']); $_POST["keys"]=str_replace(" ","%",$param['model_name']); } else { $_POST["keys"]=""; }
+				if(!$id_set){ if(isset($param['model_name'])){ $param['model_name']=mysqli_real_escape_string($con,$param['model_name']); $_POST["keys"]=str_replace(" ","%",$param['model_name']); }else{ $_POST["keys"]=""; } } else { $_POST["keys"]=""; }
 				$relativepath="../"; $close_con=0; $m_search_included=1;
 				require_once('../search/lib/func/m_search.php'); if(!isset($nr_models)){$nr_models=0;}
 				foreach($m_search_included as $el){ $comp_lists_api["model"][]["id"]=$el["id"]; $nr_models++; }
