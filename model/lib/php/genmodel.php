@@ -61,7 +61,7 @@ if(!$components_found)
 					$conf=$rows["cid"];
 				}
 				else
-				{ $conf=$t[0]; $result=null; }
+				{ $conf=$t[0]; }
 			}
 			else
 			{

@@ -480,15 +480,18 @@ foreach($org_chassis_vports as $key => $x)
 			$chassis_vports[$c_key]["prop"]="diffvisearch";
 			$chassis_vports[$c_key]["or"]=true;
 			$c_key++;
-			foreach($chassis_e_ports[$port] as $val)
+			if(isset($chassis_e_ports[$port]))
 			{
-				if(!isset($chassis_e_ports[$val]))
+				foreach($chassis_e_ports[$port] as $val)
 				{
-					$chassis_vports[$c_key]["value"]=$val;
-					$chassis_vports[$c_key]["prop"]="diffvisearch";
-					$chassis_vports[$c_key]["or"]=true;
-					if($val=="Thunderbolt"){ $chassis_vports[$c_key]["alt"]="`CHASSIS`.`pi`"; }
-					$c_key++;
+					if(!isset($chassis_e_ports[$val]))
+					{
+						$chassis_vports[$c_key]["value"]=$val;
+						$chassis_vports[$c_key]["prop"]="diffvisearch";
+						$chassis_vports[$c_key]["or"]=true;
+						if($val=="Thunderbolt"){ $chassis_vports[$c_key]["alt"]="`CHASSIS`.`pi`"; }
+						$c_key++;
+					}
 				}
 			}
 			$chassis_vports[$c_key]="ungroup"; $c_key++;
