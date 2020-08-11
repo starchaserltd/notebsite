@@ -1,5 +1,5 @@
 <?php
-function have_results($result){ $to_return=False;if($result and mysqli_num_rows($result)>0) { $to_return=True; } return $to_return; }
+function have_results($result){ $to_return=False; if($result && mysqli_num_rows($result)>0) { $to_return=True; } return $to_return; }
 
 function nb_multiquery($con,$sql_query)
 {
