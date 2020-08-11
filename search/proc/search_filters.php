@@ -6,6 +6,11 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
     $comp_lists = array(); $shdd_search_cond="";
 
 	/* FILTER BY REGION, MODEL , FMAILY, PRODUCER */
+	if(!isset($to_search))
+	{
+		$to_search=array(); foreach(["regions","model","cpu","display","mem","hdd","shdd","gpu","wnet","odd","mdb","chassis","acum","war","sist"] as $some_temp_var){ $to_search[$some_temp_var]=0;} unset($some_temp_var);
+	}
+		
 	if($to_search["regions"])
 	{
 		require_once($root."proc/regions_search.php");
