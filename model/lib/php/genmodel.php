@@ -112,7 +112,7 @@ if($idmodel)
 	unset($sql_parts);
 	$result=mysqli_query($con,$sel3);
 
-	if($result&&($result->num_rows)>0)
+	if(have_results($result))
 	{
 		$row=mysqli_fetch_array($result);
 		if(isset($row[0])&&$row[0]!=NULL)
@@ -173,6 +173,7 @@ if($idmodel)
 			}
 			mysqli_close($cons);
 		}
+		mysqli_free_result($result);
 	}
 }
 
@@ -204,7 +205,7 @@ function show_cpu($list)
 			{
 				if(strcasecmp($row['prod'],"INTEL")==0){$row['prod']=ucfirst(strtolower($row['prod'])); }
 				
-				$selected=""; if($row["id"]==$GLOBALS['idcpu']){$selected=" selected='selected'";}
+				$selected=""; if($row["id"]==$GLOBALS['idcpu']){$selected=" selected ";}
 				if(isset($row["id"])){ echo "<option value=".$row["id"].$selected." data-gpu='".$row["gpu"]."' >".$row["prod"]." ".$row["model"]."</option>"; } 
 			}
 			echo "</SELECT></form>";
@@ -236,12 +237,12 @@ function show_gpu($list)
 		{
 			while($row=mysqli_fetch_array($result))
 			{
-				$selected=""; if($row["id"]==$GLOBALS['idcpu']){$selected=" selected='selected'"; $a=true;}
+				$selected=""; if($row["id"]==$GLOBALS['idcpu']){$selected=" selected "; $a=true;}
 				
 				$gpulist=$row["id"];
 				if($row["typegpu"]>0)
 				{
-					$selected=""; if($row["id"]!=$GLOBALS['idcpu']){$selected=" selected='selected'";} $gpu_name[$opt_nr]=array(); $gpu_name[$opt_nr]["name"]=$row["prod"]." ".$row["name"]; $gpu_name[$opt_nr]["value"]=$row["id"];
+					$selected=""; if($row["id"]!=$GLOBALS['idcpu']){$selected=" selected ";} $gpu_name[$opt_nr]=array(); $gpu_name[$opt_nr]["name"]=$row["prod"]." ".$row["name"]; $gpu_name[$opt_nr]["value"]=$row["id"];
 					$gpu_list[$opt_nr]="<option value='".$gpu_name[$opt_nr]["value"]."'".$selected.">".$gpu_name[$opt_nr]["name"]."</option>"; $opt_nr++;
 					if($b){ $gpulist=$row["id"]; $b=false; }
 				}
@@ -261,7 +262,7 @@ function show_gpu($list)
 		$gpu_name[$opt_nr]["value"]=-1;
 		$gpu_list[$opt_nr]="<option value='".$gpu_name[$opt_nr]["value"]."' ";
 		if(!$a)
-		{ $gpu_list[$opt_nr].="selected='selected'"; }
+		{ $gpu_list[$opt_nr].="selected "; }
 		$gpu_list[$opt_nr].=" >CPU Integrated</option>";
 		$gpu_name[$opt_nr]["name"]="CPU Integrated";
 		$opt_nr++;
@@ -315,7 +316,7 @@ function show_display($list,$diff_id="")
 				if($row["id"]!=$GLOBALS['iddisplay'])
 				{ echo "<option value=".$row["id"].">".$prodm." ".$row["model"].$touch.$lum."</option>"; }
 				else
-				{ echo "<option value=".$row["id"]." selected='selected'>".$prodm." ".$row["model"].$touch.$lum."</option>"; }
+				{ echo "<option value=".$row["id"]." selected >".$prodm." ".$row["model"].$touch.$lum."</option>"; }
 			}
 		}
 		echo "</SELECT></form>";
@@ -342,7 +343,7 @@ function show_hdd ($list)
 	if($s_list){$sel.=" LIMIT 1";}
 	
 	$result=mysqli_query($GLOBALS['con'], $sel);
-	if($result&&mysqli_num_rows($result)>0)
+	if(have_results($result))
 	{
 		if(mysqli_num_rows($result)>1)
 		{
@@ -353,7 +354,7 @@ function show_hdd ($list)
 				if($row["rpm"])
 				{ $rpm=" ".round((floatval($row["rpm"])/1000),1)."K"; }
 				
-				if($id==$GLOBALS['idhdd']){$selected=" selected='selected'";}
+				if($id==intval($GLOBALS['idhdd'])){$selected=" selected ";}
 				if(isset($id)){ echo "<option value=".$id.$selected.">".$row["model"]." - ".$row["cap"]."GB".$rpm."</option>"; }
 			}
 			echo "</SELECT></form>";
@@ -365,6 +366,7 @@ function show_hdd ($list)
 			{ $rpm=" ".round((floatval($row["rpm"])/1000),1)."K"; }
 			echo $row["model"]." - ".$row["cap"]."GB".$rpm;
 		}
+		mysqli_free_result($result);
 	}
 	else
 	{ echo "Error. Sorry."; }
@@ -377,12 +379,12 @@ function show_shdd ($list,$diff_id="")
 	sort($list); $nrel=count($list); $lastrow="N/A";
 	if($nrel<1){ $list=array("0"); $nrel=1; }
 	
-	$text='<form><SELECT name="SHDD'.$diff_id.'" onchange="getconf('."'".'SHDD'."'".',this.value)">';
+	$text='<form><SELECT id="SHDD'.$diff_id.'" name="SHDD" onchange="getconf('."'".'SHDD'."'".',this.value)">';
 
 	$sel="SELECT `id`,`model`,`cap`,`rpm`,`type` FROM `notebro_db`.`HDD` WHERE `id` IN (".implode(",",$list).") ORDER BY `readspeed` ASC,`rating` ASC"; 
 	$result = mysqli_query($GLOBALS['con'], $sel);
 
-	if($result&&mysqli_num_rows($result)>0)
+	if(have_results($result))
 	{
 		while($row=mysqli_fetch_array($result))
 		{
@@ -392,23 +394,23 @@ function show_shdd ($list,$diff_id="")
 			{ $rpm=" ".round((floatval($row["rpm"])/1000),1)."K"; }
 			else
 			{  $rpm=" ".$row["type"]; }
-			
 			if($id!=0)
 			{			
-				if($id!=$GLOBALS['idshdd'])
+				if($id!=intval($GLOBALS['idshdd']))
 				{ $text.="<option value=".$id.">".$row["cap"]."GB".$rpm."</option>"; }
 				else
-				{ $text.="<option value=".$id." selected='selected'>".$row["cap"]."GB".$rpm."</option>"; }
+				{ $text.="<option value=".$id." selected>".$row["cap"]."GB".$rpm."</option>"; }
 			}
 			else
 			{
-				if($id!=$GLOBALS['idshdd'])
+				if($id!=intval($GLOBALS['idshdd']))
 				{ $text.="<option value="."0".">"."None"."</option>"; }
 				else
-				{ $text.="<option value="."0"." selected='selected'>"."None"."</option>"; }	
+				{ $text.="<option value="."0"." selected>"."None"."</option>"; }	
 			}
 			$lastrow=$row["model"];
 		}
+		mysqli_free_result($result);
 	}
 	$text.="</SELECT></form>";
 
@@ -432,7 +434,7 @@ function show_mdb($list)
 			if($id!=$GLOBALS['idmdb'])
 			{ echo "<option value=".$id.">".$row["submodel"]."</option>"; }
 			else
-			{ echo "<option value=".$id." selected='selected'>".$row["submodel"]."</option>"; }
+			{ echo "<option value=".$id." selected >".$row["submodel"]."</option>"; }
 		}
 		echo "</SELECT></form>";
 	}
@@ -464,7 +466,7 @@ function show_mem($list)
 				if($row["id"]!=$GLOBALS['idmem'])
 				{ echo "<option value=".$row["id"].">".$extra." ".$row["cap"]." GB ".$row["type"]."</option>"; }
 				else
-				{ echo "<option value=".$row["id"]." selected='selected'>".$extra." ".$row["cap"]." GB ".$row["type"]."</option>"; }
+				{ echo "<option value=".$row["id"]." selected >".$extra." ".$row["cap"]." GB ".$row["type"]."</option>"; }
 			}
 		}
 		echo "</SELECT></form>";
@@ -486,7 +488,7 @@ function show_odd($list,$diff_id="")
 	
 	if(count($list)>1) 
 	{
-		echo '<form><SELECT name="ODD'.$diff_id.'" onchange="getconf('."'".'ODD'."'".',this.value)">';
+		echo '<form><SELECT id="ODD'.$diff_id.'" name="ODD" onchange="getconf('."'".'ODD'."'".',this.value)">';
 		foreach($list as $key=>$id)
 		{
 			$sel="SELECT type FROM notebro_db.ODD WHERE id=$id ORDER BY `rating` ASC"; 
@@ -496,7 +498,7 @@ function show_odd($list,$diff_id="")
 			if($id!=$GLOBALS['idodd']) 
 			{ echo "<option value=".$id.">".$row["type"]."</option>"; }
 			else
-			{ echo "<option value=".$id." selected='selected'>".$row["type"]."</option>"; }
+			{ echo "<option value=".$id." selected >".$row["type"]."</option>"; }
 		}
 		echo "</SELECT></form>";
 	}
@@ -523,7 +525,7 @@ function show_acum($list,$diff_id="")
 {
 	if(count($list)>1)
 	{
-		echo '<form><SELECT name="ACUM'.$diff_id.'" onchange="getconf('."'".'ACUM'."'".',this.value)">';
+		echo '<form><SELECT name="ACUM" id="ACUM'.$diff_id.'" onchange="getconf('."'".'ACUM'."'".',this.value)">';
 		
 		$sel="SELECT `id`,`model`,`nrc`,`cap` FROM `notebro_db`.`ACUM` WHERE `id` IN (".implode(",",$list).") ORDER BY `rating` ASC";
 		$result = mysqli_query($GLOBALS['con'], $sel);
@@ -535,7 +537,7 @@ function show_acum($list,$diff_id="")
 				if($row["id"]!=$GLOBALS['idacum'])
 				{ echo "<option value=".$row["id"].">".$row["cap"]." WHr</option>"; }
 				else
-				{ echo "<option value=".$row["id"]." selected='selected'>".$row["cap"]." Whr</option>"; }
+				{ echo "<option value=".$row["id"]." selected >".$row["cap"]." Whr</option>"; }
 			}
 		}
 		echo "</SELECT></form>";
@@ -572,7 +574,7 @@ function show_chassis($list)
 				if($id!=$GLOBALS['idchassis'])
 				{ $chassistext.="<option value=".$id.">".$row["submodel"]."</option>"; }
 				else
-				{ $chassistext.="<option value=".$id." selected='selected'>".$row["submodel"]."</option>"; }
+				{ $chassistext.="<option value=".$id." selected >".$row["submodel"]."</option>"; }
 			}
 		}
 		$chassistext.="</SELECT></form>";
@@ -608,7 +610,7 @@ function show_wnet($list)
 				if($id!=$GLOBALS['idwnet'])
 				{ echo "<option value=".$id.">".$row["prod"]." ".$row["model"]."</option>"; }
 				else
-				{ echo "<option value=".$id." selected='selected'>".$row["prod"]." ".$row["model"]."</option>"; }
+				{ echo "<option value=".$id." selected >".$row["prod"]." ".$row["model"]."</option>"; }
 			}
 		}
 		echo "</SELECT></form>";
@@ -640,7 +642,7 @@ function show_war($list)
 			if($id!=$GLOBALS['idwar'])
 			{ echo "<option value=".$id.">".$row["years"]." - ".$row["prod"]."</option>"; }
 			else
-			{ echo "<option value=".$id." selected='selected'>".$row["years"]." - ".$row["prod"]."</option>"; }
+			{ echo "<option value=".$id." selected >".$row["years"]." - ".$row["prod"]."</option>"; }
 		}
 		echo "</SELECT></form>";
 	}
@@ -674,7 +676,7 @@ function show_sist($list)
 			if($id!=$GLOBALS['idsist'])
 			{ echo "<option value=".$id.">".$row["sist"].$row["vers"]." ".$row["type"]."</option>"; }
 			else
-			{ echo "<option value=".$id." selected='selected'>".$row["sist"].$row["vers"]." ".$row["type"]."</option>"; }
+			{ echo "<option value=".$id." selected >".$row["sist"].$row["vers"]." ".$row["type"]."</option>"; }
 		}
 		echo "</SELECT></form>";
 	}
