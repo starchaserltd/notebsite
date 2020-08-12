@@ -98,6 +98,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			{
 				if(isset($exchange_list->{"code"}->{"USD"}))
 				{
+					if(!isset($value["dregion"])){$value["dregion"]="United States";}
 					$value=$exchange_list->{"code"}->{"USD"};
 					$_SESSION['regional_type']="region";
 					$_SESSION['exchcode']="USD";

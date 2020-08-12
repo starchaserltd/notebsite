@@ -1,9 +1,9 @@
 <?php
 	$valuetype[11]=array();
 	$hdd_type = array(); $displayhresmin = "1";	$displayhresmax = "99999"; 	$displayvresmin = "1"; 	$displayvresmax = "99999"; 	$mdbslotsel0 = 'selected="selected"';
-	$sel="SELECT `name`,`type` FROM `notebro_site`.`nomen` WHERE `type`='25' OR `type`='13'"; $result = mysqli_query($con, $sel); $valuetype[25]=array(); $valuetype[51]=[150]; $valuetype[13]=2;
-	while($rand = mysqli_fetch_assoc($result)) { $valuetype[intval($rand["type"])][]=$rand["name"]; } mysqli_free_result($result);
-	$cpucoremin=intval($valuetype[13]);
+	$sel="SELECT `name`,`type` FROM `notebro_site`.`nomen` WHERE `type`='25' OR `type`='13'"; $result = mysqli_query($con, $sel); $valuetype[25]=array(); $valuetype[51]=[150]; $valuetype[13]=array(); $valuetype[13][0]=2;
+	while($rand = mysqli_fetch_assoc($result)) { $valuetype[intval($rand["type"])][]=rand["name"]; } mysqli_free_result($result);
+	$cpucoremin=intval($valuetype[13][0]);
 	if(isset($_GET['s_prod']))
 	{	foreach ($_GET['s_prod'] as $element)
 		{	$producer.='<option selected="selected">'.$element.'</option>'; }
