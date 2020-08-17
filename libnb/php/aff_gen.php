@@ -29,7 +29,6 @@ if(isset($_POST["links"])&&$_POST["links"]!=""&&$_POST["links"]!=null)
 		$links_list[$key]=mysqli_real_escape_string($con,filter_var($val,FILTER_SANITIZE_STRING)); 
 		if(isset($sellerid_list[0])){ if(stripos($links_list[$key],$sellerid_list[$key]["website"])===FALSE){ $unmatched_links[$key]=$links_list[$key];}}
 	}
-	
 	if(!isset($sellerid_list[0])){ $sellerid_list=get_link_sellerid($links_list,null,$con); }
 	if(isset($unmatched_links[0])){ $rematch_links=get_link_sellerid($unmatched_links,null,$con); $i=0; foreach($unmatched_links as $key=>$val){$sellerid_list[$key]=$rematch_links[$i]; $i++;}}
 	$go++;

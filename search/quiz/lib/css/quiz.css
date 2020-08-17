@@ -452,7 +452,8 @@ _:-ms-lang(x),
     display: inline-block;
     background-color: rgb(40, 95, 143);
     position: absolute;
-    top: -40px;
+    /* top: -40px; */
+    bottom: 100%;
     left: 50%;
     margin-left: -75px;
     padding: 10px 15px;
@@ -909,14 +910,11 @@ _:-ms-lang(x),
         margin-bottom: 15px;
     }
     .submit_quiz {
-        top: -38px;
         margin-left: -55px;
         padding: 9px 10px;
         width: 135px;
     }
-    .footer_quiz {
-        bottom: -6px;
-    }
+
     .nextTextTail {
         width: 9px;
         height: 9px;

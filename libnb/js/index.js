@@ -10,6 +10,7 @@ var urlold = ""; var searchurl="";
 var hh = 1;
 var ismobile = 0; var global_sort_search="value"; var global_sort_browse="value"; var pause_presearch=1; var nquiz="";
 var currentPage = window.location.href; var ref=null; var all_requests=[]; var model_label_animation=function(){}; var model_bat_animation=function(){};
+const laptop_comp_list=["cpu","display","mem","hdd","shdd","gpu","mdb","wnet","odd","sist","chassis","acum","war"];
 
 function locationHashChanged(pagetopen) {
     if (trigger){
@@ -86,6 +87,10 @@ function urlrequest(url,e,dontpush) {
 
 //Function for main content area
 function OpenPage(url, e, dontpush) {
+    if (!window.location.href.includes('search') && $('.searchMenu h3').hasClass('open')) {
+        $('.quickSearchContainer').slideToggle();
+        $('.searchMenu h3').removeClass('open');
+    }
 	for(var i in all_requests){ all_requests[i].abort();} all_requests=[]; clearTimeout(model_label_animation);
 	url=set_adv_search(url,"",0);
 	if(url.indexOf("search.php")>0&&url.indexOf("sort_by")<0&&url.indexOf("adv_search")<0){if(url.indexOf("browse_by")>0){url=url+"&sort_by="+global_sort_browse;}else{url=url+"&sort_by="+global_sort_search;}}
@@ -116,16 +121,10 @@ function OpenPage(url, e, dontpush) {
 }
 
 //Function for toolbox area
-function OpenPageMenu(url) 
-{
-    $.get(url, function(response) { $('#leftmenu').html(response); });
-}
+function OpenPageMenu(url) { $.get(url, function(response) { $('#leftmenu').html(response); }); }
 
 //Function for toolbox area
-function OpenQuiz(url)
-{
-    $.get(url, function(response) { $('#quiz').html(response); });
-}
+function OpenQuiz(url){ $.get(url, function(response) { $('#quiz').html(response); }); }
 
 function delete_ref_url(url)
 {
@@ -237,14 +236,10 @@ $(document).ready(function() {
 			xmlhttp.send();
 		}
 		else
-		{
-			first = 1; OpenPage(currentpage);
-		}
+		{ first = 1; OpenPage(currentpage); }
 	}
 	else
-	{
-		first = 1; OpenPage(currentpage);
-	}
+	{ first = 1; OpenPage(currentpage); }
 
     /* HERE we have the script for quick model search */
 
@@ -580,9 +575,7 @@ function getScripts(scripts, callback)
 }
 
 /*make vissible search modbile */
-$('.searcButtonMobile').click(function() {
-   $('#modelfind').toggleClass('vissible');
-});
+$('.searcButtonMobile').click(function() { $('#modelfind').toggleClass('vissible'); });
 
 $('.searchMenu').click(function() {
    $('.quickSearchContainer').slideToggle();

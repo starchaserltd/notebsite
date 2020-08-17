@@ -2401,6 +2401,7 @@ table#comparelist td.text-center.comparecell3 {
     bottom: 5px;
     right: 235px;
     z-index: 99;
+    /* width: 38px; */
     background-color: #333333;
     padding: 10px;
     border-radius: 16px;
@@ -2421,8 +2422,12 @@ table#comparelist td.text-center.comparecell3 {
 
 
 #back-to-top i {
-    display: inline-block;
-    margin-right: 5px;
+    /* display: inline-block;
+    margin-right: 5px; */
+}
+
+.backTop {
+    margin-left: 5px;
 }
 
 
@@ -3116,7 +3121,7 @@ border-top:0
 /*-------- End Model modal popup css ---------*/ 
 
 .slickMobile .slick-dots li button:before {
-	font-size: 48px;
+	font-size: 24px;
 }
 
 .slickMobile  .slick-dots li.slick-active button:before {
@@ -3766,7 +3771,7 @@ div.menuItems.last {
     }
 
     .navbar-collapse {
-        
+        overflow-y: visible;
     }  
 
     .compContainer .resultsShopBtn.buy {

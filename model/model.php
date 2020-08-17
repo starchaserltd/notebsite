@@ -81,26 +81,26 @@ else
 		<?php	if(isset($imglist["img_1"]))
 				{ if(!$js_ref_image){ echo "<script>ref_model_image='".$web_address."res/img/models/".$imglist["img_1"]."';</script>"; $js_ref_image=true; }?>
 				<div id="model-carousel" class="row owl-carousel">
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 firstImageModel" data-dot="<img class='pics' src='res/img/models/<?php echo $imglist["img_1"];?>' alt='<?php $mmodel ?>'>" data-toggle="modal" data-target="#galleryModal">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 firstImageModel" data-dot="<img class='pics' src='res/img/models/<?php echo $imglist["img_1"];?>' alt='<?php $mmodel ?>'>" data-toggle="modal" data-target="#notificationsModal">
 							<img class="pics" src="res/img/models/<?php echo $imglist["img_1"];?>" alt="<?php $mmodel ?>">
 						</div>
 		<?php 	}
 
 				if($imglist["img_2"])
 				{ if(!$js_ref_image){ echo "<script>ref_model_image='".$web_address."res/img/models/".$imglist["img_2"]."';</script>"; $js_ref_image=true;} ?>
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 firstImageModel" data-dot="<img class='pics' src='res/img/models/<?php echo $imglist["img_2"];?>' alt='<?php $mmodel ?>'>" data-toggle="modal" data-target="#galleryModal">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 firstImageModel" data-dot="<img class='pics' src='res/img/models/<?php echo $imglist["img_2"];?>' alt='<?php $mmodel ?>'>" data-toggle="modal" data-target="#notificationsModal">
 						<img class="pics" src="res/img/models/<?php echo $imglist["img_2"];?>" alt="<?php $mmodel ?>">
 					</div>
 		<?php 	}
 				if($imglist["img_3"])
 				{ if(!$js_ref_image){ echo "<script>ref_model_image='".$web_address."res/img/models/".$imglist["img_3"]."';</script>"; $js_ref_image=true;} ?>
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 firstImageModel" data-dot="<img class='pics' src='res/img/models/<?php echo $imglist["img_3"];?>' alt='<?php $mmodel ?>'>" data-toggle="modal" data-target="#galleryModal">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 firstImageModel" data-dot="<img class='pics' src='res/img/models/<?php echo $imglist["img_3"];?>' alt='<?php $mmodel ?>'>" data-toggle="modal" data-target="#notificationsModal">
 					<img class="pics" src="res/img/models/<?php echo $imglist["img_3"];?>" alt="<?php $mmodel ?>">
 				</div>
 		<?php 	} 
 				if($imglist["img_4"])
 				{ if(!$js_ref_image){ echo "<script>ref_model_image='".$web_address."res/img/models/".$imglist["img_4"]."';</script>"; $js_ref_image=true;}?>
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 firstImageModel" data-dot="<img class='pics' src='res/img/models/<?php echo $imglist["img_4"];?>' alt='<?php $mmodel ?>'>" data-toggle="modal" data-target="#galleryModal">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12 firstImageModel" data-dot="<img class='pics' src='res/img/models/<?php echo $imglist["img_4"];?>' alt='<?php $mmodel ?>'>" data-toggle="modal" data-target="#notificationsModal">
 						<img class="pics" src="res/img/models/<?php echo $imglist["img_4"];?>" alt="<?php $mmodel ?>">
 					</div>
 				
@@ -187,7 +187,7 @@ else
 						<span class="price-range bold-font"><span id="config_price1"></span> - <span id="config_price2"></span></span>
 					</div>
 					<div class="dropdown actionButton">
-						<button id="dLabel" class="btn btn-primary btn-lg addtocpmp buyBtn bold-font" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-ref="<?php if(isset($usertag)&&$usertag!=""){ echo $usertag; } else { echo "";} ?>" data-target="buylist-0" data-price="0" data-idmodel="<?php echo $idmodel; ?>" data-idmodel="<?php echo $idmodel; ?>" data-buyregions="<?php echo $buy_regions; ?>" data-lang="<?php echo $lang; ?>" data-cpu="" data-gpu="" data-iddisplay="" data-pmodel="<?php echo $p_model; ?>" onclick="get_buy_list(this);">
+						<button id="dLabel" class="btn btn-primary btn-lg addtocpmp buyBtn bold-font" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-ref="<?php if(isset($usertag)&&$usertag!=""){ echo $usertag; } else { echo "";} ?>" data-target="buylist-0" data-price="0" data-idmodel="<?php echo $idmodel; ?>" data-mprod="<?php echo $mprod; ?>" data-idmodel="<?php echo $idmodel; ?>" data-buyregions="<?php echo $buy_regions; ?>" data-lang="<?php echo $lang; ?>" data-idcpu="" data-idgpu="" data-iddisplay="" data-pmodel="<?php echo $p_model; ?>" onclick="get_buy_list(this);">
 							Buy now
 							<span class="caret"></span>
 						</button>
@@ -1586,21 +1586,6 @@ else
 			</div>
 		</div>
 	</div> -->
-	<!-- GALLERY MODAL -->
-	<div class="modal fade galleryModal" id="galleryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close fa fa-times" data-dismiss="modal" aria-label="Close">
-					</button>
-				</div>
-				<div class="modal-body">
-				<i class="fas fa-chevron-left imgControl prevImage"></i>
-				<i class="fas fa-chevron-right imgControl nextImage"></i>
-				</div>
-			</div>
-		</div>
-	</div>
 <script>
 <?php include("lib/php/genjsmodel.php"); ?>
 $.getScript("model/lib/js/model.js",function(){$.getScript("lib/js/owl.carousel.min.js",function(){ getScripts(["model/lib/js/model_post.js","model/lib/js/sim_model.js"],function(){});});});

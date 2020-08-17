@@ -56,36 +56,30 @@ $(document).ready(function()
 	
 	//OWL MODAL CAROUSEL
 	let owl = $("#model-carousel").owlCarousel({ items: 1, loop: true, responsive: { 0: { dots: true}, 768: { dotsData: true } } });
-
+	
 	$('.owl-dot').click(function() { owl.trigger('to.owl.carousel', [$(this).index(), 1000]); })
 	
-	$('#galleryModal').on('show.bs.modal', function (event) {
-		var button = $(event.relatedTarget) // Button that triggered the modal
-		var recipient = button.data('dot') // Extract info from data-* attributes
-		var modal = $(this)
-		modal.find('.modal-body').append(recipient);
-	})
-
-	$('#galleryModal .modal-body').on('click', function (e) {
-		const modal = $(this);
-		const isNext = e.target.classList.contains('nextImage');
-		const picElement = document.querySelector('#galleryModal .modal-body img');
-
-		picElement.remove();
-
-		if (isNext) { owl.trigger('next.owl.carousel'); }
-		else { owl.trigger('prev.owl.carousel'); }
-
-		const activeImage = document.querySelector('.owl-carousel .owl-item.active .firstImageModel').getAttribute('data-dot');
-
-		if (activeImage) { modal.append(activeImage); }
-	})
-
-	$('#galleryModal').on('hidden.bs.modal', function (e)
-	{
-		const picElement = document.querySelector('#galleryModal .modal-body img.pics');
-		picElement.remove();
+	$('.firstImageModel').on('click', function () {
+		showNotification('model-gallery', null,  null, $(this));
 	});
+
+	$('#notificationsModal').on('click', function (e) {
+		if ($(this).hasClass('galleryModal')) {
+			var modal = $(this).find('.modal-body');
+			var isNext = e.target.classList.contains('nextImage');
+			var isPrev = e.target.classList.contains('prevImage');
+			var picElement = document.querySelector('#notificationsModal .modal-content img');
+	
+			picElement.remove();
+	
+			if (isNext) { owl.trigger('next.owl.carousel'); }
+			else if (isPrev) { owl.trigger('prev.owl.carousel'); }
+	
+			var activeImage = document.querySelector('.owl-carousel .owl-item.active .firstImageModel').getAttribute('data-dot');
+	
+			if (activeImage) { modal.append(activeImage); }
+		}
+	})
 
 	// Remove specifications collapse functionality in desktop
 	const accordionHeaderElement = document.getElementsByClassName('header-collapse');

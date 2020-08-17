@@ -68,7 +68,7 @@ if(!$components_found)
 				require_once("lib/php/query/get_best_low.php");
 				$best_low=get_best_low($cons,$ex_regions,$idmodel);
 			}
-			if(have_results($result)){mysqli_free_result($result);}
+			if($result && have_results($result)){mysqli_free_result($result);}
 		}
 		mysqli_close($cons);
 	} 

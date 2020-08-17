@@ -81,7 +81,7 @@ function showCPU(str)
 
 				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
 				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
-				document.getElementById('dLabel').setAttribute("data-cpu",str);
+				document.getElementById('dLabel').setAttribute("data-idcpu",str);
 				cpu_gpu=parseInt(cpu["gpu"]);
 
 				if(((typeof $("#GPU").val()==="string" && $("#GPU").val()==-1)||gpu_noselect===-1)&&prevent_cpu_gpu_load<1)
@@ -160,7 +160,7 @@ function showGPU(str)
 
 				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
 				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
-				document.getElementById('dLabel').setAttribute("data-gpu",str); 
+				document.getElementById('dLabel').setAttribute("data-idgpu",str); 
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/gpu.php?q="+str,true);
@@ -251,6 +251,7 @@ function showHDD(str)
 
 				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
 				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
+				document.getElementById('dLabel').setAttribute("data-idhdd",str);
 				
 				var mdb_hdd=0
 				if( document.getElementById("mdb_hdd").innerText.toLowerCase().indexOf("2 x sata") >= 0) { mdb_hdd=1; } 
@@ -306,7 +307,8 @@ function showSHDD(str)
 					config_batlife=config_batlife-shdd_bat_old+shdd_bat_new;
 
 					document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
-					document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);						
+					document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
+					document.getElementById('dLabel').setAttribute("data-idshdd",str);					
 				}
 			}
 		}
@@ -343,6 +345,7 @@ function showMDB(str)
 					document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
 					document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
 				}
+				document.getElementById('dLabel').setAttribute("data-idmdb",str);
 				mdb_rate_old = mdb_rate_new;
 				mdb_rate_new = mdb["confrate"];
 				
@@ -377,7 +380,7 @@ function showMEM(str)
 
 				mem_rate_old = mem_rate_new;
 				mem_rate_new = mem["confrate"];
-	
+				document.getElementById('dLabel').setAttribute("data-idmem",str);
 				config_rate = config_rate-mem_rate_old+mem_rate_new;
 				update_model_rating(config_rate);
 			}
@@ -414,7 +417,7 @@ function showODD(str)
 				
 				odd_rate_old = odd_rate_new;
 				odd_rate_new = odd["confrate"];
-
+				document.getElementById('dLabel').setAttribute("data-idodd",str);
 				config_rate = config_rate-odd_rate_old+odd_rate_new;
 				update_model_rating(config_rate);
 			}
@@ -458,6 +461,7 @@ function showACUM(str)
 				update_model_rating(config_rate);
 				document.getElementById('bat_life1').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*0.96);
 				document.getElementById('bat_life2').innerHTML=hourminutes((parseFloat(acum["cap"])/config_batlife)*1.03);
+				document.getElementById('dLabel').setAttribute("data-idacum",str);
 			}
 		}
 		xmlhttp.open("GET","model/lib/php/query/acum.php?q="+str,true);
@@ -503,6 +507,7 @@ function showCHASSIS(str)
 				document.getElementById('chassis_thic_i').innerHTML = (chassis["thic"]*0.0393700787).toFixed(2);
 				document.getElementById('chassis_depth_i').innerHTML = (chassis["depth"]*0.0393700787).toFixed(2);
 				document.getElementById('chassis_width_i').innerHTML = (chassis["width"]*0.0393700787).toFixed(2);
+				document.getElementById('dLabel').setAttribute("data-idchassis",str);
 
 				chassis_rate_old = chassis_rate_new;
 				chassis_rate_new = chassis["confrate"];
@@ -536,7 +541,7 @@ function showWNET(str)
 
 				wnet_rate_old = wnet_rate_new;
 				wnet_rate_new = wnet["confrate"];
-			
+				document.getElementById('dLabel').setAttribute("data-idwnet",str);
 				config_rate = config_rate-wnet_rate_old+wnet_rate_new;
 				update_model_rating(config_rate);
 			}
@@ -563,6 +568,7 @@ function showWAR(str)
 
 				war_rate_old = war_rate_new;
 				war_rate_new = war["confrate"];
+				document.getElementById('dLabel').setAttribute("data-idwar",str);
 
 				config_rate = config_rate-war_rate_old+war_rate_new;
 				update_model_rating(config_rate);
@@ -589,7 +595,7 @@ function showSIST(str)
 				if(sist["vers"]==0){sist["vers"]="";}
 				if(sist["sist"].localeCompare("No OS")!=0)
 				{ document.getElementById('sist_title').innerHTML = ", "+sist["sist"]+" "+sist["vers"]+" "+sist["type"]; }
-
+				document.getElementById('dLabel').setAttribute("data-idsist",str);
 				sist_rate_old = sist_rate_new;
 				sist_rate_new = sist["confrate"];
 
@@ -627,13 +633,13 @@ function getconf(comp,id,exactconf,new_page=false)
 		case "WNET":
 		{ prev_id=wnet_id; wnet_id=id; if(wnet["id"]===undefined) { go=true; }  break; }
 		case "ODD":
-		{ prev_id=odd_id; odd_id=id; setselectedcomp("ODD",odd_id); if(odd["id"]===undefined) { go=true; }  break; }
+		{ prev_id=odd_id; odd_id=id; if(odd["id"]===undefined) { go=true; }  break; }
 		case "MDB":
 		{ prev_id=mdb_id; mdb_id=id; if(mdb["id"]===undefined) { go=true; }  break; }
 		case "CHASSIS":
 		{ prev_id=chassis_id; chassis_id=id; if(chassis["id"]===undefined) { go=true; }  break; }
 		case "ACUM":
-		{ prev_id=acum_id; acum_id=id; setselectedcomp("ACUM",acum_id); if(acum["id"]===undefined) { go=true; }  break; }
+		{ prev_id=acum_id; acum_id=id; if(acum["id"]===undefined) { go=true; }  break; }
 		case "WAR":
 		{ prev_id=war_id; war_id=id; if(war["id"]===undefined) { go=true; }  break; }
 		case "SIST":
@@ -840,6 +846,7 @@ function update_model_info(model_id)
 				}
 				document.getElementById('dLabel').setAttribute("data-buyregions",new_model_data["regions"]);
 				document.getElementById('dLabel').setAttribute("data-idmodel",model_id); 
+				document.getElementById('dLabel').setAttribute("data-mprod",mprod); 
 				set_model_info();
 			}
 		}
@@ -850,14 +857,14 @@ function update_model_info(model_id)
 
 function setselectedcomp(comp,value)
 {
-	var comp_list=document.getElementsByName(comp);
-	for(var x in comp_list)
+	var local_comp_list=document.getElementsByName(comp);
+	for(var x in local_comp_list)
 	{
-		var comp=comp_list[x];
+		var comp=local_comp_list[x];
 		if(comp!==undefined&&comp.options!==undefined)
 		{
-			for (var i=0; i<comp.options.length; i++)
-			{ if ( comp.options[i].value == value ) { comp.options[i].selected = true; break; } }
+			for ( var i = 0; i < comp.options.length; i++ )
+			{ if ( comp.options[i].value == value ) { comp.options[i].selected = true; return; } }
 		}
 	}
 }
@@ -1028,61 +1035,6 @@ update_schema_rating_info("image",null,null,ref_model_image);
 update_schema_rating_info("brand",null,null,mprod);
 
 function update_model_rating(value){ var new_rating=normal_rating(config_rate); document.getElementById('notebro_rate').innerHTML=new_rating;	update_schema_rating_info("aggregateRating","ratingValue",null,new_rating); }
-
-var notificationTypes=
-{
-	info: { iconClass: 'fa-info-circle' },
-	warning: { iconClass: 'fa-exclamation-triangle' }
-}
-var notificationsModalBody = document.querySelector('#notificationsModal .modal-body');
-var notificationsModalMessage = document.querySelector('#notificationsModal .notification-message');
-var notificationsListContainer = document.querySelector('#notificationsModal .list-container');
-var notificationsModalIcon = document.querySelector('#notificationsModal .notification-icon');
-
-function showNotification(notificationType, message, componentsList)
-{
-	var iconElement = document.createElement('div');
-	var messageElement = document.createElement('div');
-
-	iconElement.classList.add('notification-icon', 'fa', `${notificationTypes[notificationType].iconClass}`);
-	messageElement.classList.add('notification-message-text')
-	notificationsModalMessage.appendChild(iconElement); 
-	notificationsModalMessage.appendChild(messageElement).innerHTML = message; 
-	if (componentsList)
-	{
-		if (componentsList.length > 4)
-		{
-			var firstList = componentsList.splice(0,Math.round(componentsList.length/2));
-			var firstListElem = notificationsListContainer.appendChild(document.createElement('ul'));
-			firstListElem.classList.add('first');
-			var secondListElem = firstListElem.insertAdjacentElement('afterend', document.createElement('ul'));
-			secondListElem.classList.add('second');
-
-			var componentsFirstListElement = document.querySelector('#notificationsModal .modal-body ul.first');
-			var componentsSecondListElement = document.querySelector('#notificationsModal .modal-body ul.second');
-			for (component of firstList) { componentsFirstListElement.appendChild(document.createElement('li')).innerHTML = component; }
-			for (component of componentsList) { componentsSecondListElement.appendChild(document.createElement('li')).innerHTML = component; }
-		}
-		else
-		{
-			notificationsListContainer.appendChild(document.createElement('ul'));
-			var componentsListElement = document.querySelector('#notificationsModal .modal-body ul');
-			for (component of componentsList)
-			{ componentsListElement.appendChild(document.createElement('li')).innerHTML = component; }
-		}
-	}
-	$('#notificationsModal').modal('toggle');
-}
-
-// reset the message and the icon class when closing the notification
-function closeNotificationModal()
-{
-	var listElements = notificationsListContainer.querySelectorAll('ul');
-	notificationsModalMessage.innerHTML = '';
-	if (listElements.length) { for (elem of listElements) {notificationsListContainer.removeChild(elem); }}
-}
-$('#notificationsModal').on('hidden.bs.modal', function (e){ closeNotificationModal(); });
-
 function eliminate_first_line_desc(el){ var temp_el=el; if(temp_el==="-"){temp_el="";}else{temp_el=temp_el+",";} return temp_el;}
 function normal_rating(x){ x=x*1000; x=(((1.25/1000000*Math.pow(x,2))+1.305*x+(-4.3/100000000000*Math.pow(x,3)))/1000); x=((Math.round(x)*10)/10).toFixed(1); return x; }
 function change_exch(new_exchcode){ for(var key in document.getElementById("m_currency").options){ if(document.getElementById("m_currency").options[key].value==new_exchcode){document.getElementById("m_currency").selectedIndex=key;}}}

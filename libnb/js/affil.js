@@ -54,6 +54,7 @@ function create_affil_modal(set_link) {
 
 function get_aff_link(set_link)
 {
+	set_link=escape(set_link);
 	var ref=''; var storedRef = getCookie('ref'); var unique_nr=make_r_int(); var store_window=window.open('','_blank');
 	if (storedRef) { ref = storedRef; }else{ if(window.ref!=null){ref=window.ref;} }
 	if (window.XMLHttpRequest) { var xmlhttp = new XMLHttpRequest(); }
@@ -78,7 +79,8 @@ function make_r_int(){ return Math.floor((Math.random()*100)+1); }
 
 function close_popup_extra(affil_popup){ if(document.getElementById('affil-popup')!==null&&document.getElementById('affil-popup').classList.contains('width')){$('#learn-more-affil-btn').html(org_learnMoreEl); affil_popup.removeClass('width');} affil_popup.removeClass("visible"); }
 
-function show_buy_dropdown(el) {
+function show_buy_dropdown(el)
+{
 	if (window.XMLHttpRequest) { var xmlhttp = new XMLHttpRequest(); }
 	var ref = ''; var storedRef = getCookie('ref');
 
@@ -102,7 +104,9 @@ function show_buy_dropdown(el) {
 	}
 	xmlhttp.open("POST", "model/lib/php/buy_list.php", true);
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	xmlhttp.send('idmodel=' + el.dataset.idmodel + '&buyregions=' + el.dataset.buyregions + '&lang=' + el.dataset.lang + '&usertag=' + ref + '&price=' + el.dataset.price + '&cpu=' + el.dataset.cpu + '&gpu=' + el.dataset.gpu + '&display=' + el.dataset.iddisplay + '&pmodel=' + el.dataset.pmodel);
+	var conf_info=""; for(var key in laptop_comp_list){ if(typeof(el.dataset["id"+laptop_comp_list[key]])!=="undefined"){ conf_info=conf_info+"&"+laptop_comp_list[key]+"="+el.dataset["id"+laptop_comp_list[key]]; } }
+	if(typeof(el.dataset.conf)!=="undefined"){ conf_info=conf_info+"&conf="+el.dataset.conf; }
+	xmlhttp.send('idmodel=' + el.dataset.idmodel + '&mprod=' + el.dataset.mprod + '&buyregions=' + el.dataset.buyregions + '&lang=' + el.dataset.lang + '&usertag=' + ref + '&price=' + el.dataset.price + '&pmodel=' + el.dataset.pmodel + conf_info);
 }
 
 

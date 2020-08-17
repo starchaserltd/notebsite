@@ -50,20 +50,20 @@ for($x = 0; $x <= $nrconf; $x++)
 	if($nrgetconfs>0) { $confid=$getconfs[$x]; }
 	else { $confid = $_SESSION['conf'.$session_idconf[$x]]['id']; }
 	$row = $_SESSION['compare_list'][$confid];
-	$conf_model = $row['model'];
-	$cpu_conf_cpu= $row['cpu'];
-	$disp_conf_display = $row['display'];
-	$gpu_conf_gpu = $row['gpu'];
-	$hdd_conf_hdd = $row['hdd'];
-	$shdd_conf_shdd = $row['shdd'];
-	$acum_conf_acum = $row['acum'];
-	$mdb_conf_mdb = $row['mdb'];
-	$mem_conf_mem = $row['mem'];
-	$odd_conf_odd = $row['odd'];
-	$chassis_conf_chassis = $row['chassis'];
-	$wnet_conf_wnet = $row['wnet'];
-	$war_conf_war = $row['war'];
-	$sist_conf_sist = $row['sist'];
+	$conf_model = trim($row['model']);
+	$cpu_conf_cpu= trim($row['cpu']);
+	$display_conf_display = trim($row['display']);
+	$gpu_conf_gpu = trim($row['gpu']);
+	$hdd_conf_hdd = trim($row['hdd']);
+	$shdd_conf_shdd = trim($row['shdd']);
+	$acum_conf_acum = trim($row['acum']);
+	$mdb_conf_mdb = trim($row['mdb']);
+	$mem_conf_mem = trim($row['mem']);
+	$odd_conf_odd = trim($row['odd']);
+	$chassis_conf_chassis = trim($row['chassis']);
+	$wnet_conf_wnet = trim($row['wnet']);
+	$war_conf_war = trim($row['war']);
+	$sist_conf_sist = trim($row['sist']);
 	$rate_conf_rate = normal_rating(floatval($row['rating']));
 	$price_conf_price = floatval($row['price']);
 	$err_conf_err = $row['err'];
@@ -79,7 +79,9 @@ for($x = 0; $x <= $nrconf; $x++)
 	$maxminvalues=bluered($batlife_conf_batlife,$maxminvalues,$x,"batlife",0); 
 	$model_title='<a href="javascript:void(0)" onmousedown="OpenPage('."\'model/model.php?conf=".$confid."\'".',event)"><span class="tbltitle">'.$resu['prod']." ".$resu['fam']." ".$resu['model']."".$resu['submodel'].$resu['mdbname']." ".$resu['region'].'</span></a>'; $model_msc=$resu['msc'];
 	$buytext='<div class="buy resultsShopBtn"><div class="dropdown"><button id="dLabel" class="btn buyBtn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-ref="';
-	if(isset($_SESSION['java_usertag'])&&$_SESSION['java_usertag']!=""){ $buytext=$buytext.$_SESSION['java_usertag']; } else { $buytext=$buytext.'';} $buytext=$buytext.'" data-target="buylist-'.$x.'" data-idmodel="'.$conf_model.'" data-buyregions="'.$buy_regions.'" data-lang="'.$lang.'" data-cpu="'.$cpu_conf_cpu.'" data-gpu="'.$gpu_conf_gpu.'" data-iddisplay="'.$disp_conf_display.'" data-pmodel="'.$resu["p_model"].'" onclick="get_buy_list(this);"><i class="fas fa-shopping-cart"></i><i class="fas fa-caret-down"></i></button><ul class="dropdown-menu" aria-labelledby="dLabel" id="buylist-'.$x.'"><li class="loaderContainer"><span class="loader"></span></li></ul></div></div>';
+	if(isset($_SESSION['java_usertag'])&&$_SESSION['java_usertag']!=""){ $buytext=$buytext.$_SESSION['java_usertag']; } else { $buytext=$buytext.'';}
+	 $conf_data=""; foreach($laptop_comp_list as $comp){ $conf_data=$conf_data.' data-id'.$comp.'="'.${$comp."_conf_".$comp}.'"'; }
+	$buytext=$buytext.'" data-target="buylist-'.$x.'" data-idmodel="'.$conf_model.'" data-buyregions="'.$buy_regions.'" data-lang="'.$lang.'"'.$conf_data.' data-mprod="'.$resu['prod'].'"'.' data-pmodel="'.$resu["p_model"].'" onclick="get_buy_list(this);"><i class="fas fa-shopping-cart"></i><i class="fas fa-caret-down"></i></button><ul class="dropdown-menu" aria-labelledby="dLabel" id="buylist-'.$x.'"><li class="loaderContainer"><span class="loader"></span></li></ul></div></div>';
 	$vars=array(
 		'<a style="align-items:center; margin:0 auto" href="javascript:void(0)" onmousedown="OpenPage('."\'model/model.php?conf=".$confid."\'".',event)"><img src="res/img/models/thumb/t_'.$img.'.jpg" class="img-responsive img-fluid comparejpg" alt="Image for '.$resu['model'].'"></a>',
 		$model_title,
@@ -149,7 +151,7 @@ for($x = 0; $x <= $nrconf; $x++)
 	addcolumn(array_var,"GPU_table",""); 
 	<!-- Display -->
 <?php
-	show('DISPLAY',$disp_conf_display);
+	show('DISPLAY',$display_conf_display);
 	$maxminvalues=bluered(floatval($resu['hres'])*floatval($resu['vres']),$maxminvalues,$x,"resol",0);
 	$addblue=""; if($resu['touch']=="YES") { $addblue='class="labelblue-s"'; }
 	$vars=array(

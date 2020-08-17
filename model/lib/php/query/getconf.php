@@ -93,7 +93,7 @@ if($c)
 		if($rows["cid"]==0 && !$conf_only_search)
 		{
 			$result=mysqli_query($cons,"SELECT * FROM `notebro_temp`.`m_map_table` WHERE `model_id`=".$conf[0]." LIMIT 1");
-			if($result!==FALSE&&mysqli_num_rows($result)>0)
+			if(have_results($result))
 			{
 				$m_map=mysqli_fetch_assoc($result);
 				
@@ -160,8 +160,8 @@ if($c)
 						else
 						{$rows=search_any_config($models_in_region,$exclude_war);}
 					}
-					mysqli_free_result($result);
 				}
+				mysqli_free_result($result);
 			}
 		}
 	}
@@ -214,11 +214,12 @@ function search_valid_config($models,$cpu,$display,$mem,$hdd,$shdd,$gpu,$wnet,$o
 		$sql=substr($sql, 0, -6); $sql.="ORDER BY abs(value - ".$cf.") LIMIT 1";
 		$result = mysqli_query($cons,$sql);
 		
-		if($result!==FALSE&&mysqli_num_rows($result)>0)
+		if(have_results($result))
 		{
 			$confdata=mysqli_fetch_assoc($result);
 			$rows["cid"]=$confdata["id"]; $rows["cprice"]=$confdata["price"]; $rows["cerr"]=$confdata["err"]; $rows["cmodel"]=$confdata["model"]; $a=array();if(intval($cpu)!=intval($confdata["cpu"])){ $a[]="processor"; $rows["changes"]["CPU"]=intval($confdata["cpu"]); } if(intval($display)!=intval($confdata["display"])){ $a[]="display"; $rows["changes"]["DISPLAY"]=intval($confdata["display"]); } if(intval($mem)!=intval($confdata["mem"])){ $a[]="memory"; $rows["changes"]["MEM"]=intval($confdata["mem"]); } if(intval($hdd)!=intval($confdata["hdd"])){ $a[]="hard drive"; $rows["changes"]["HDD"]=intval($confdata["hdd"]); }if(intval($shdd)!=intval($confdata["shdd"])){ $a[]="secondary hard drive"; $rows["changes"]["SHDD"]=intval($confdata["shdd"]); } if(intval($gpu)!=intval($confdata["gpu"])){ $a[]="video card"; $rows["changes"]["GPU"]=intval($confdata["gpu"]); } if(intval($wnet)!=intval($confdata["wnet"])){ $a[]="wireless"; $rows["changes"]["WNET"]=intval($confdata["wnet"]); } if(intval($odd)!=intval($confdata["odd"])){ $a[]="optical drive"; $rows["changes"]["ODD"]=intval($confdata["odd"]); }if(intval($mdb)!=intval($confdata["mdb"])){ $a[]="motherboard"; $rows["changes"]["MDB"]=intval($confdata["mdb"]); } if(intval($chassis)!=intval($confdata["chassis"])){ $a[]="chassis"; $rows["changes"]["CHASSIS"]=intval($confdata["chassis"]); } if(intval($acum)!=intval($confdata["acum"])){ $a[]="battery"; $rows["changes"]["ACUM"]=intval($confdata["acum"]); } if(intval($war)!=intval($confdata["war"])){ $a[]="warranty"; $rows["changes"]["WAR"]=intval($confdata["war"]); } if(intval($sist)!=intval($confdata["sist"])){ $a[]="operating system"; $rows["changes"]["SIST"]=intval($confdata["sist"]); }if(count(array_diff($GLOBALS['current_region'],$s_regions))>0){ $rows["newregion"]=true;  if(count(array_diff($GLOBALS['current_ex_region'],$s_regions))>0){ $a["region"]="region";}} if($war_to_exclude&&$exclude_war==""){$rows["invalid_ex_war"]=true;}if(count($a)>0){ $rows["changes"]["txt"]=implode(",",$a);}if($GLOBALS['getall']){$rows["all"]=$confdata;}
 			$run=-1;
+			mysqli_free_result($result);
 		}
 		else
 		{
@@ -275,12 +276,13 @@ function search_any_config($models,$exclude_war)
 		$sql=substr($sql, 0, -6); $sql.="ORDER BY ABS(value) LIMIT 1";
 
 		$result = mysqli_query($cons,$sql);
-		if($result!==FALSE&&mysqli_num_rows($result)>0)
+		if(have_results($result))
 		{
 			$confdata=mysqli_fetch_assoc($result);
 			$rows["cid"]=$confdata["id"]; $rows["cprice"]=$confdata["price"]; $rows["cerr"]=$confdata["err"]; $rows["cmodel"]=$confdata["model"];
 			if($GLOBALS['getall']){$rows["all"]=$confdata;}
 			$run=-1;
+			mysqli_free_result($result);
 		}
 		else
 		{

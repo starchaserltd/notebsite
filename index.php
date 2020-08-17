@@ -155,6 +155,8 @@ require_once("etc/conf.php");
 								<span class="faSocial"><a style="cursor:pointer;color: #fff;" href="https://www.youtube.com/notebcom"><i class="fab fa-youtube"></i></a></span>
 								<span class="faSocial"><a style="cursor:pointer;color: #fff;" href="https://www.facebook.com/Noteb-162949570886382/"><i class="fab fa-facebook-f"></i></a></span>
 								<span class="faSocial"><a style="cursor:pointer;color: #fff;" href="https://twitter.com/notebcom"><i class="fab fa-twitter"></i></a></span>
+								<span class="faSocial"><a style="cursor:pointer;color: #fff;" href=""><i class="fab fa-instagram"></i></a></span>
+								<span class="faSocial"><a style="cursor:pointer;color: #fff;" href=""><i class="fab fa-discord"></i></a></span>
 							</div>
 						</div>
 					</div>				
@@ -242,11 +244,6 @@ require_once("etc/conf.php");
 		<div class="modal fade notificationsModal" id="notificationsModal" tabindex="-1" role="dialog" aria-labelledby="notificationsModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
-					<div class="modal-body">
-						<div class="notification-message"></div>
-						<div class="list-container"></div>
-						<button type="button" class="btn btn-outline-primary btn-md" data-dismiss="modal" aria-label="Close">OK</button>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -282,6 +279,7 @@ require_once("etc/conf.php");
 		<script src="libnb/js/tooltip.js" async></script>
 		<script src="libnb/js/affil.js" async></script>
 		<script src="libnb/js/index.js"></script>
+		<script src="libnb/js/notifications-modal.js"></script>
 		<script src="libnb/js/presearch.js"></script>
 	</body>
 </html>
