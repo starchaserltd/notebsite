@@ -556,7 +556,7 @@ if (isset($_GET['metal']) && $_GET['metal']==1 )
 {	$chassis_made[] = "Metal"; 	$chassis_made[] = "Aluminium"; $chassis_made[] = "Hard plastic"; $chassis_made[] = "Lithium";  $chassis_made[] = "Carbon"; $chassis_made[] = "Magnesium"; $chassis_made[] = "Glass fiber"; $chassis_made[] = "Shock-absorbing ultra-polymer";}		
 
 if (isset($_GET['media']) && $_GET['media']==1) 
-{ $chassis_vports[] = "Any video port"; } 
+{ $chassis_vports[] = "1 X HDMI"; } 
 
 if (isset($_GET['stylus']) && $_GET['stylus']==1) 
 { $chassis_misc[] = "Stylus";} 

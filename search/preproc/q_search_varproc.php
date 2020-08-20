@@ -11,7 +11,7 @@ $mdbslots = 0;
 $isquiz = 1;
 $hdd_type = array();$chassis_made= array(); $chassis_msc=array();
 $chassis_ports=array();$gpu_name = array();$cpu_misc = array();
-$chassis_vports=array();
+$org_chassis_vports=array();
 $fam_model = array();
 
 // BUDGET val min and max
@@ -652,7 +652,7 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			{	$chassis_made[] = "Metal"; 	$chassis_made[] = "Aluminium"; $chassis_made[] = "Hard plastic"; $chassis_made[] = "Lithium";  $chassis_made[] = "Carbon"; $chassis_made[] = "Magnesium"; $chassis_made[] = "Glass fiber"; $chassis_made[] = "Shock-absorbing ultra-polymer";}		
 			
 			if (isset($_GET['media']) && $_GET['media']==1) 
-			{	$chassis_vports[] = "HDMI"; $diffvisearch=2;} 
+			{	$org_chassis_vports[]="HDMI"; $chassis_e_ports["HDMI"]=["mini HDMI","micro HDMI"]; } 
 			
 			if (isset($_GET['stylus']) && $_GET['stylus']==1) 
 			{	$chassis_stuff[] = "stylus";} 
@@ -733,6 +733,30 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			break ;	
 		}
 	}
+}
+$c_key=0; $chassis_vports=array();
+foreach($org_chassis_vports as $some_key=>$port)
+{
+	$chassis_vports[$c_key]="group"; $c_key++;
+	$chassis_vports[$c_key]["value"]=$port;
+	$chassis_vports[$c_key]["prop"]="diffvisearch";
+	$chassis_vports[$c_key]["or"]=true;
+	$c_key++;
+	if(isset($chassis_e_ports[$port]))
+	{
+		foreach($chassis_e_ports[$port] as $val)
+		{
+			if(!isset($chassis_e_ports[$val]))
+			{
+				$chassis_vports[$c_key]["value"]=$val;
+				$chassis_vports[$c_key]["prop"]="diffvisearch";
+				$chassis_vports[$c_key]["or"]=true;
+				if($val=="Thunderbolt"){ $chassis_vports[$c_key]["alt"]="`CHASSIS`.`pi`"; }
+				$c_key++;
+			}
+		}
+	}
+	$chassis_vports[$c_key]="ungroup"; $c_key++;
 }
 
 /* some adjustments based on budget*/

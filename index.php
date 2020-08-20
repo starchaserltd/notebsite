@@ -155,8 +155,8 @@ require_once("etc/conf.php");
 								<span class="faSocial"><a style="cursor:pointer;color: #fff;" href="https://www.youtube.com/notebcom"><i class="fab fa-youtube"></i></a></span>
 								<span class="faSocial"><a style="cursor:pointer;color: #fff;" href="https://www.facebook.com/Noteb-162949570886382/"><i class="fab fa-facebook-f"></i></a></span>
 								<span class="faSocial"><a style="cursor:pointer;color: #fff;" href="https://twitter.com/notebcom"><i class="fab fa-twitter"></i></a></span>
-								<span class="faSocial"><a style="cursor:pointer;color: #fff;" href=""><i class="fab fa-instagram"></i></a></span>
-								<span class="faSocial"><a style="cursor:pointer;color: #fff;" href=""><i class="fab fa-discord"></i></a></span>
+								<span class="faSocial"><a style="cursor:pointer;color: #fff;" href="https://www.instagram.com/notebcom/"><i class="fab fa-instagram"></i></a></span>
+								<span class="faSocial"><a style="cursor:pointer;color: #fff;" href="https://discord.com/invite/aXqPsz4"><i class="fab fa-discord"></i></a></span>
 							</div>
 						</div>
 					</div>				
