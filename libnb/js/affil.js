@@ -20,8 +20,9 @@ function deleteCookie(cname) { document.cookie = `${cname}=; expires=Thu, 01 Jan
 
 var learnMoreEl = `
     <p>
-	For sales originating from noteb.com, some stores give to noteb 0 to 3% commission from the value of those sales.<br><br>This system is called affiliate marketing, and for the buyer, it has <b>zero impact on the price</b>.
-<br><br>Also, while noteb.com employes no tracking cookies, some of these programs may employ cookies for tracking purchase referral.<br><br>As an Amazon Associate and member of other affiliate programs, noteb.com earns from qualifying purchases.</p>
+	For sales originating from noteb.com, some stores may give to noteb 0 to 3% commission from the value of those sales.<br><br>This system is called affiliate marketing, and for the buyer, it has <b>zero impact on the price</b>.
+<br><br>Also, while noteb.com employes no tracking cookies, some of these programs may employ cookies for tracking purchase referral. These tracking cookies can last between 1 to 30 days, depending on the retailer.<br><br>As an Amazon Associate and member of other affiliate programs, noteb.com earns from qualifying purchases.
+<br><br>Noteb.com keeps for ten days your option of following store links with or without affiliation.</p>
 `
 var org_learnMoreEl=`<a href=\"#\" style="color: #000000;">Learn more</a>`;
 var listeners_set = false;
