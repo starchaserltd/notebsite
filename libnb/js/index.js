@@ -12,6 +12,12 @@ var ismobile = 0; var global_sort_search="value"; var global_sort_browse="value"
 var currentPage = window.location.href; var ref=null; var all_requests=[]; var model_label_animation=function(){}; var model_bat_animation=function(){};
 const laptop_comp_list=["cpu","display","mem","hdd","shdd","gpu","mdb","wnet","odd","sist","chassis","acum","war"];
 
+$(window).resize(function() {
+    if (window.innerWidth > 767) {
+        $('.quickSearchContainer').removeAttr('style');
+    }
+});
+
 function locationHashChanged(pagetopen) {
     if (trigger){
         var urlParts = pagetopen.split('?');
@@ -90,7 +96,7 @@ function OpenPage(url, e, dontpush) {
     if (!window.location.href.includes('search') && $('.searchMenu h3').hasClass('open')) {
         $('.quickSearchContainer').slideToggle();
         $('.searchMenu h3').removeClass('open');
-    }
+    } 
 	for(var i in all_requests){ all_requests[i].abort();} all_requests=[]; clearTimeout(model_label_animation);
 	url=set_adv_search(url,"",0);
 	if(url.indexOf("search.php")>0&&url.indexOf("sort_by")<0&&url.indexOf("adv_search")<0){if(url.indexOf("browse_by")>0){url=url+"&sort_by="+global_sort_browse;}else{url=url+"&sort_by="+global_sort_search;}}
