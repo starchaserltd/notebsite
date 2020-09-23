@@ -48,6 +48,7 @@ if($new_prices)
 	$sql_price_q="SELECT `PRICES`.*,`SELLERS`.*,`SELLERS`.`id` AS `seller_id`,`PRICES`.`id` AS `price_id`,`EXCH`.`sign` AS `exch_sign` FROM `notebro_buy`.`FIXED_CONF_PRICES` AS `PRICES` JOIN `notebro_buy`.`SELLERS` AS `SELLERS` ON `PRICES`.`retailer`=`SELLERS`.`name` JOIN `notebro_site`.`exchrate` AS `EXCH` ON `SELLERS`.`exchrate`=`EXCH`.`id` WHERE `PRICES`.`model`='".$id_model."' ORDER BY `PRICES`.`price` ASC";
 	#var_dump($sql_price_q);
 	$price_data_q_r=mysqli_query($con,$sql_price_q);
+	$id_modifiers=array();
 	if(have_results($price_data_q_r))
 	{
 		while($some_row=mysqli_fetch_assoc($price_data_q_r))
@@ -111,6 +112,26 @@ if($new_prices)
 			{ 
 				$price_values=$new_price[0];
 				$generated_buy_list[]=["price"=>($some_row["exch_sign"].intval($price_values[0])),"logo"=>$some_row["logo"],"type"=>1]; $link_list[]=$some_row["url"]; $seller_list[]=$some_row["seller_id"];
+			}
+			else
+			{
+				if(isset($conf_price_data["wnet"]))
+				{
+					asort($conf_price_data["wnet"]);
+					foreach($conf_price_data["wnet"] as $key=>$val)
+					{
+						$conf_to_calc["wnet"]=$key;
+						$new_price=calc_conf_price($conf_to_calc,$noteb_pid=NULL,$retailer_pid=NULL,$retailer=NULL,$set_price_list=$conf_price_data,$con=$con);
+						if(isset($new_price[0]))
+						{ 
+							$price_values=$new_price[0];
+							$generated_buy_list[]=["price"=>($some_row["exch_sign"].intval($price_values[0])),"logo"=>$some_row["logo"],"type"=>1]; $link_list[]=$some_row["url"]; $seller_list[]=$some_row["seller_id"];
+							break;
+						}
+						else
+						{ }
+					}
+				}
 			}
 		}
 		unset($some_row);
