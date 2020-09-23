@@ -117,7 +117,7 @@ function comp_details($comp,$id)
 		}			
 		case "chassis":
 		{
-			$sel="SELECT id,ROUND(thic/10,2) as height_cm, ROUND(thic*0.0393701,2) as height_inch,ROUND(depth/10,2) as depth_cm, ROUND(depth*0.0393701,2) as depth_inch, ROUND(width/10,2) as width_cm, ROUND(width*0.0393701,2) as width_inch, color as colors,made as build_materials,pi as peripheral_interfaces, vi as video_interfaces, web as webcam_mp,keyboard as keyboard_type,charger,msc as other_info FROM notebro_db.CHASSIS WHERE id=".$id.""; 
+			$sel="SELECT `id`,ROUND(`thic`/10,2) AS `height_cm`, ROUND(`thic`*0.0393701,2) AS `height_inch`,ROUND(`depth`/10,2) AS `depth_cm`, ROUND(`depth`*0.0393701,2) AS `depth_inch`, ROUND(`width`/10,2) AS `width_cm`, ROUND(`width`*0.0393701,2) AS `width_inch`,ROUND(`weight`,2) AS `weight_kg`, ROUND(`weight`*2.20462262,2) AS `weight_lb`, `color` AS `colors`,`made` AS `build_materials`,`pi` AS `peripheral_interfaces`, `vi` AS `video_interfaces`, `web` AS `webcam_mp`,`keyboard` AS `keyboard_type`,`charger`,`msc` AS `other_info` FROM `notebro_db`.`CHASSIS` WHERE `id`=".$id.""; 
 			$res=array(); $res=mysqli_fetch_assoc(mysqli_query($GLOBALS['con'], $sel));
 			return $res; break;
 		}
