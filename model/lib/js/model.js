@@ -137,4 +137,9 @@ function setProgressBarsRating(ratingElementsList)
 //change icon for resize information model
 $('.glyphicon-chevron-down').on('click', function() { $(this).toggleClass('resize'); });	
 $('.showDetailsButton').on('click', function() { $(this).toggleClass('show'); });
-$('#GPU').change(function() { gpu_right_align(); });
+async function model_execut_when_istime()
+{
+    await await_until_function_1(_ => istime == 1);
+	$('#GPU').change(function() { gpu_right_align(); });
+}
+model_execut_when_istime();

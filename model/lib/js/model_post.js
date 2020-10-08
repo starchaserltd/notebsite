@@ -13,7 +13,12 @@ $(document).ready(function()
 	
 	lightbox.option({ 'resizeDuration': 200, 'fadeDuration' : 200, 'imageFadeDuration':200 });
     $('meta[name=description]').attr('content', mprod + ' ' + mfamily + ' ' + mmodel);
-	gpu_right_align();
+	async function model_execut_when_istime_2()
+	{
+		await await_until_function_1(_ => istime == 1);
+		gpu_right_align();
+	}
+	model_execut_when_istime_2();
 
 	//Affix Bootstrap 4
 	if ($(window).width() >= 320)

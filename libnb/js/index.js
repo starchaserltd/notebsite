@@ -438,6 +438,16 @@ function occur(string, subString, allowOverlapping) {
     return n;
 }
 
+function await_until_function_1(conditionFunction)
+{
+	const poll_1 = resolve =>
+	{
+		if(conditionFunction()) {  resolve(); }
+		else { setTimeout(_ => poll_1(resolve), 300); }
+	}
+	return new Promise(poll_1);
+}
+
 // ADDING METADATA TO A PAGE FOR SEO
 function metakeys(metakeys) {
     $('meta[name=keywords]').remove();
