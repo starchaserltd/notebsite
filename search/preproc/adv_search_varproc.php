@@ -101,6 +101,7 @@ if(isset($_GET['CPU_msc_id']))
 foreach($cpu_misc  as $key=>$el)
 {
 	if(stripos($el,"threading")!==FALSE){$cpu_misc[$key]="HT/SMT";}
+	if(stripos($el,"business features")!==FALSE){$cpu_misc[$key]="AMD PRO/vPRO";}
 }
 // CPU Launch date
 if(isset($_GET['launchdatemin']))
