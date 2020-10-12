@@ -834,7 +834,7 @@ function update_model_info(model_id)
 				document.getElementById('model_title').innerHTML=mprod+" "+mfamily+" "+mmodel+""+msubmodel+new_model_data["region"];
 				update_schema_rating_info("name",null,null,(mprod+" "+mfamily+" "+mmodel+""+msubmodel));
 				update_schema_rating_info("aggregateRating","itemReviewed","name",(mprod+" "+mfamily+" "+mmodel+""+msubmodel));
-				if(new_model_data["msc"].length>0)
+				if(new_model_data["msc"]!=null && new_model_data["msc"].length>0)
 				{ 
 					document.getElementById('model_msc').innerHTML=new_model_data["msc"];
 					document.getElementById('model_msc_card').style.display='block';
