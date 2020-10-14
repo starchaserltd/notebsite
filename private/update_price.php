@@ -59,10 +59,10 @@ if(isset($_GET["id"])&&isset($_GET["price"]))
 	{ $ok_to_go=False; }
 
 	$price_try=False;
-	if(isset($_GET["retailer_pid"]))
+	if(isset($_GET["retailer_pid"]) && $ok_to_go)
 	{
 		$retailer_pid=strval($_GET["retailer_pid"]);
-		$SELECT_TEST="SELECT * FROM `notebro_buy`.`FIXED_CONF_PRICES` WHERE `retailer`='".$retailer."' AND `retailer_pid`='".$retailer_pid."' LIMIT 1";
+		$SELECT_TEST="SELECT * FROM `notebro_buy`.`FIXED_CONF_PRICES` WHERE `model`='".$model_id."' AND `retailer`='".$retailer."' AND `retailer_pid`='".$retailer_pid."' LIMIT 1";
 		$temp_result=mysqli_query($con,$SELECT_TEST);
 		if(have_results($temp_result))
 		{
@@ -83,14 +83,18 @@ if(isset($_GET["id"])&&isset($_GET["price"]))
 		if(isset($_GET["org_price"]))
 		{
 			$org_price=intval($_GET["org_price"]);
-			$SELECT_TEST="SELECT `retailer_pid` FROM `notebro_buy`.`FIXED_CONF_PRICES` WHERE `retailer`='".$retailer."' AND `price`='".$org_price."'";
+			$SELECT_TEST="SELECT `retailer_pid` FROM `notebro_buy`.`FIXED_CONF_PRICES` WHERE `model`='".$model_id."' AND `retailer`='".$retailer."' AND `price`='".$org_price."'";
 			$temp_result=mysqli_query($con,$SELECT_TEST);
 			if(have_results($temp_result))
 			{
+				echo mysqli_num_rows($temp_result);
 				if(mysqli_num_rows($temp_result)!=1)
 				{
 					$ok_to_go=False;
 					echo "More than one retailer pid identified with this price.<br>";
+					echo "<br>";
+					echo $SELECT_TEST;
+					echo "<br>";
 				}
 				else
 				{
