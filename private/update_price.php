@@ -183,7 +183,10 @@ if(isset($_GET["id"])&&isset($_GET["price"]))
 					echo "Update succesful fixed server!<br>";
 				}
 				else
-				{ echo "Unable to update, some parameters are not set correctly, e.g. retailer_pid does not match config id! OR the price is the same as the old one<br>"; }
+				{
+					echo "Unable to update, some parameters are not set correctly, e.g. retailer_pid does not match config id! OR the price is the same as the old one<br>"; 
+					echo "<br>"; echo $SQL_UPDATE; echo "<br>"; 
+				}
 		}
 		else
 		{
