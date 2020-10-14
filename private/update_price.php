@@ -158,7 +158,7 @@ if(isset($_GET["id"])&&isset($_GET["price"]))
 					echo "Update succesful on ssever!<br>";
 				}
 				else
-				{ echo "Unable to update, some parameters are not set correctly"; }
+				{ echo "Unable to update, some parameters are not set correctly OR the price is the same as the old one"; echo "<br>"; echo $SQL_UPDATE; echo "<br>"; }
 			}
 			else
 			{
@@ -175,7 +175,7 @@ if(isset($_GET["id"])&&isset($_GET["price"]))
 		{
 			$SQL_UPDATE=$SQL_UPDATE." AND `".$comp."`='".$conf_data[$comp]."'";
 		}
-		echo $SQL_UPDATE; echo "<br>";
+		#echo $SQL_UPDATE; echo "<br>";
 		if(mysqli_query($con,$SQL_UPDATE))
 		{
 				if(mysqli_affected_rows($con)>0)
@@ -183,7 +183,7 @@ if(isset($_GET["id"])&&isset($_GET["price"]))
 					echo "Update succesful fixed server!<br>";
 				}
 				else
-				{ echo "Unable to update, some parameters are not set correctly, e.g. retailer_pid does not match config id!<br>"; }
+				{ echo "Unable to update, some parameters are not set correctly, e.g. retailer_pid does not match config id! OR the price is the same as the old one<br>"; }
 		}
 		else
 		{
@@ -198,9 +198,3 @@ else
 { echo "Missing price and/or conf!"; }
 ?>
 </html>
-
-
-
-
-
-
