@@ -75,26 +75,39 @@ if($new_prices)
 	}
 	$prices_list=array(); $i=0;
 	
-	foreach($price_data as $price_values)
+	$tries=2;
+	while($tries>0)
 	{
-		$ok_to_add=True;
-		foreach($laptop_comp_list as $comp)
+		foreach($price_data as $price_values)
 		{
-			if(!(in_array(${"id_".$comp},$price_values[$comp])))
-			{ $ok_to_add=False; /*var_dump(${"id_".$comp}); var_dump($comp); var_dump($price_values); echo "<br><br>";*/ break; }
-		}
-		if($ok_to_add)
-		{ 
-			if(!(isset($prices_list[$price_values["seller_id"]]) && count($prices_list[$price_values["seller_id"]])>2))
-			{ 
-				$generated_buy_list[$i]=["price"=>($price_values["exch_sign"].intval($price_values["price"])),"logo"=>$price_values["logo"],"type"=>1]; $link_list[$i]=$price_values["url"]; $seller_list[$i]=$price_values["seller_id"]; $i++;
-				$prices_list[$price_values["seller_id"]][$i]=intval($price_values["price"]);
-			}
-			else
+			$ok_to_add=True;
+			foreach($laptop_comp_list as $comp)
 			{
-				/*put_smallest_price($price_values["seller_id"],intval($price_values["price"]),$price_values["url"]);*/ //Since prices are selected by smallest to highest, just display the first 3.
+				if($tries==1 && $comp=="war")
+				{ continue; }
+				else
+				{	
+					if(!(in_array(${"id_".$comp},$price_values[$comp])))
+					{ $ok_to_add=False; /*var_dump(${"id_".$comp}); var_dump($comp); var_dump($price_values); echo "<br><br>";*/ break; }
+				}
+			}
+			if($ok_to_add)
+			{ 
+				if(!(isset($prices_list[$price_values["seller_id"]]) && count($prices_list[$price_values["seller_id"]])>2))
+				{ 
+					$generated_buy_list[$i]=["price"=>($price_values["exch_sign"].intval($price_values["price"])),"logo"=>$price_values["logo"],"type"=>1]; $link_list[$i]=$price_values["url"]; $seller_list[$i]=$price_values["seller_id"]; $i++;
+					$prices_list[$price_values["seller_id"]][$i]=intval($price_values["price"]);
+				}
+				else
+				{
+					/*put_smallest_price($price_values["seller_id"],intval($price_values["price"]),$price_values["url"]);*/ //Since prices are selected by smallest to highest, just display the first 3.
+				}
 			}
 		}
+		if(isset($prices_list)&&count($prices_list)>0)
+		{ $tries=-1; }
+		else
+		{ $tries--; }
 	}
 
 	//GETTING VAR PRICES
