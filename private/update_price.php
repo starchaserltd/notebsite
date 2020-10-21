@@ -57,7 +57,7 @@ if(isset($_GET["id"])&&isset($_GET["price"]))
 	}
 	else
 	{ $ok_to_go=False; }
-
+	$insert_try=False;
 	$price_try=False;
 	if(isset($_GET["retailer_pid"]) && $ok_to_go)
 	{
@@ -71,8 +71,16 @@ if(isset($_GET["id"])&&isset($_GET["price"]))
 		}
 		else
 		{
-			$price_try=True;
-			echo "Could not identify the retailer_pid, trying by price.<br>";
+			if(isset($_GET["insert_price"])&&intval($_GET["insert_price"])>0)
+			{
+				$insert_try=True;
+				echo "Looks like we are going to insert the price.<br>";
+			}
+			else
+			{
+				$price_try=True;
+				echo "Could not identify the retailer_pid, trying by price.<br>";
+			}
 		}
 	}
 	else
@@ -174,23 +182,34 @@ if(isset($_GET["id"])&&isset($_GET["price"]))
 		}
 		
 		#UPDATE BUY LINK
-		$SQL_UPDATE="UPDATE `notebro_buy`.`FIXED_CONF_PRICES` SET `price`='".$price."' WHERE `model`='".$model_id."' AND `retailer`='".$retailer."' AND `retailer_pid`='".$retailer_pid."' ";
-		foreach($comp_list as $comp)
+		if($insert_try)
 		{
-			$SQL_UPDATE=$SQL_UPDATE." AND `".$comp."`='".$conf_data[$comp]."'";
+			$SQL_UPDATE="INSERT INTO `notebro_buy`.`FIXED_CONF_PRICES` SET `price`='".$price."' WHERE `model`='".$model_id."' AND `retailer`='".$retailer."' AND `retailer_pid`='".$retailer_pid."' ";
+			foreach($comp_list as $comp)
+			{
+				$SQL_UPDATE=$SQL_UPDATE." AND `".$comp."`='".$conf_data[$comp]."'";
+			}
+		}
+		else
+		{
+			$SQL_UPDATE="UPDATE `notebro_buy`.`FIXED_CONF_PRICES` SET `price`='".$price."' WHERE `model`='".$model_id."' AND `retailer`='".$retailer."' AND `retailer_pid`='".$retailer_pid."' ";
+			foreach($comp_list as $comp)
+			{
+				$SQL_UPDATE=$SQL_UPDATE." AND `".$comp."`='".$conf_data[$comp]."'";
+			}
 		}
 		#echo $SQL_UPDATE; echo "<br>";
 		if(mysqli_query($con,$SQL_UPDATE))
 		{
-				if(mysqli_affected_rows($con)>0)
-				{
-					echo "Update succesful fixed server!<br>";
-				}
-				else
-				{
-					echo "Unable to update, some parameters are not set correctly, e.g. retailer_pid does not match config id! OR the price is the same as the old one<br>"; 
-					echo "<br>"; echo $SQL_UPDATE; echo "<br>"; 
-				}
+			if(mysqli_affected_rows($con)>0)
+			{
+				echo "Update succesful fixed server!<br>";
+			}
+			else
+			{
+				echo "Unable to update, some parameters are not set correctly, e.g. retailer_pid does not match config id! OR the price is the same as the old one<br>"; 
+				echo "<br>"; echo $SQL_UPDATE; echo "<br>"; 
+			}
 		}
 		else
 		{
