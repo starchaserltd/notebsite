@@ -86,7 +86,7 @@ if(isset($_GET["id"])&&isset($_GET["price"]))
 	else
 	{ $price_try=True; }
 	
-	if($ok_to_go and $price_try)
+	if($ok_to_go && $price_try)
 	{
 		if(isset($_GET["org_price"]))
 		{
@@ -121,6 +121,17 @@ if(isset($_GET["id"])&&isset($_GET["price"]))
 		{ $ok_to_go=False; echo "No original price provided.<br>"; }
 	}
 	
+	if($ok_to_go && $insert_try)
+	{
+		if(isset($_GET["url"]))
+		{
+			$url=strval($_GET["url"]);
+			if(strlen($url<6))
+			{ $ok_to_go=False; echo "URL is way too short.<br>"; }
+		}
+		else
+		{ $ok_to_go=False; echo "No url provided.<br>"; }
+	}
 	
 	$conf_data=NULL;
 	if($ok_to_go)
