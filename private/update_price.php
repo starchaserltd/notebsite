@@ -126,7 +126,7 @@ if(isset($_GET["id"])&&isset($_GET["price"]))
 		if(isset($_GET["url"]))
 		{
 			$url=strval($_GET["url"]);
-			if(strlen($url<6))
+			if(strlen($url)<6)
 			{ $ok_to_go=False; echo "URL is way too short.<br>"; }
 		}
 		else
