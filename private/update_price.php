@@ -200,6 +200,7 @@ if(isset($_GET["id"])&&isset($_GET["price"]))
 			{
 				$SQL_UPDATE=$SQL_UPDATE." , `".$comp."`='".$conf_data[$comp]."'";
 			}
+			$SQL_UPDATE=$SQL_UPDATE." , `url`='".$url."'";
 		}
 		else
 		{
