@@ -184,10 +184,10 @@ if(isset($_GET["id"])&&isset($_GET["price"]))
 		#UPDATE BUY LINK
 		if($insert_try)
 		{
-			$SQL_UPDATE="INSERT INTO `notebro_buy`.`FIXED_CONF_PRICES` SET `price`='".$price."' AND `model`='".$model_id."' AND `retailer`='".$retailer."' AND `retailer_pid`='".$retailer_pid."' ";
+			$SQL_UPDATE="INSERT INTO `notebro_buy`.`FIXED_CONF_PRICES` SET `price`='".$price."' , `model`='".$model_id."' , `retailer`='".$retailer."' , `retailer_pid`='".$retailer_pid."' ";
 			foreach($comp_list as $comp)
 			{
-				$SQL_UPDATE=$SQL_UPDATE." AND `".$comp."`='".$conf_data[$comp]."'";
+				$SQL_UPDATE=$SQL_UPDATE." , `".$comp."`='".$conf_data[$comp]."'";
 			}
 		}
 		else
