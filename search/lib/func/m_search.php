@@ -75,7 +75,7 @@ if((!$result)||($result&&mysqli_num_rows($result)<=0))
 		}
 	}
 }
-error_log($sel);
+#error_log($sel);
 unset($p_model); $list=array();
 if($result&&mysqli_num_rows($result)>0)
 {
