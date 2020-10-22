@@ -24,7 +24,7 @@ if(isset($_GET["model_id"])&&isset($_GET["seller"]))
 		else
 		{$result_s=NULL;}
 		
-		if(have_results($result_s)){ $seller_info=mysqli_fetch_assoc($result_s); $region=intval($seller_info["region"]); } else { $seller_info["name"]="unknown"; $seller_info["logo"]="generic_seller_logo.png"; $seller_info["region"]=1; $seller_info["exchsign"]="$"; mysqli_free_result($result_s); }
+		if(have_results($result_s)){ $seller_info=mysqli_fetch_assoc($result_s); $region=intval($seller_info["region"]); mysqli_free_result($result_s); } else { $seller_info["name"]="unknown"; $seller_info["logo"]="generic_seller_logo.png"; $seller_info["region"]=1; $seller_info["exchsign"]="$"; }
 		
 		switch($seller_info["name"])
 		{	
