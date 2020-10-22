@@ -150,7 +150,7 @@ function calc_conf_price($conf,$noteb_pid=NULL,$retailer_pid=NULL,$retailer=NULL
 						$no_disc_price=$no_disc_price+$price_info["chassis"][$conf["chassis"]]+$price_info["acum"][$conf["acum"]]+$price_info["sist"][$conf["sist"]]+$price_info["gpu"][$conf["gpu"]];
 						
 						$conf_price=intval($no_disc_price)*$discount;
-						#if($retailer_pid=="5HC96AV_MB"){	echo "<br>"; var_dump($conf_price); echo " "; var_dump($conf); echo $abort; echo "<br>"; }
+						#if($retailer_pid=="cto02l9510us"){	echo "<br>"; var_dump($conf_price); echo " "; var_dump($conf); echo $abort; echo "<br>"; }
 						#Calculate warranty price based on retailer rules
 						switch($prod)
 						{
