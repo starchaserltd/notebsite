@@ -4,6 +4,35 @@ require_once("../etc/con_sdb.php");
 
 $cons=dbs_connect(); $conds = array();
 $results = array(); $queries = array(); $final_comp_list=array();
+function sdb_query($cons,$query_search)
+{
+	$result=NULL;
+	if(mysqli_multi_query($cons,implode("; ",$query_search)))
+	{
+		do
+		{
+			if($result=mysqli_store_result($cons))
+			{ 
+				if(mysqli_num_rows($result)>0)
+				{ $row=mysqli_fetch_assoc($result); $GLOBALS["results"][$row["model"]]=$row; }
+			}
+			mysqli_free_result($result);
+		}while (mysqli_next_result($cons));
+	}
+	else
+	{
+		foreach($query_search as $query)
+		{
+			if($result=mysqli_query($cons,$query))
+			{
+				if(mysqli_num_rows($result)>0)
+				{ $row=mysqli_fetch_assoc($result); $GLOBALS["results"][$row["model"]]=$row; }
+				mysqli_free_result($result);
+			}		
+		}
+	}
+	return array();
+}
 
 $conds["price"]="(price > 0)"; 
 if($browse_by)
@@ -65,29 +94,19 @@ foreach($comp_lists["model"] as $mkey=>$m)
 		}
 	}
 	/* DEBUGGING CODE */
-	# echo "<pre>" . var_dump($query_search) . "</pre>";
-	# $time_start_query = microtime(true);
-	# echo "<pre>"; var_dump($query_search); echo "<br>"; echo "</pre>";
+	#echo "<pre>" . var_dump($i) ." : ". var_dump($query_search[$i]) . "</pre>"; echo "<br>";
+	#$time_start_query = microtime(true);
+	#echo "<pre>"; var_dump($query_search[$i]); echo "</pre>"; echo "<br><br>";
 
 	$i++;
 	if($i%$search_batch_size==0||$count_comp_list<=$i)
 	{
-		$result=NULL;
-		if(mysqli_multi_query($cons,implode("; ",$query_search)))
-		{
-			do
-			{
-				if($result=mysqli_store_result($cons))
-				{ 
-					if(mysqli_num_rows($result)>0)
-					{ $row=mysqli_fetch_assoc($result); $results[$row["model"]]=$row; }
-				}
-				mysqli_free_result($result);
-			}while (mysqli_next_result($cons));
-		}
-		$query_search=array();
+		$query_search=sdb_query($cons,$query_search);
+		//SDB QUERY RESETS query_search and puts data in $GLOBALS["results"]
 	}
 }
+
+if(count($query_search)>0){ $query_search=sdb_query($cons,$query_search); }
 
 $query_search_pmodel="SELECT * FROM `notebro_temp`.`m_map_table` WHERE `notebro_temp`.`m_map_table`.`model_id` IN (".implode(",",array_keys($results)).")";
 $result_pmodel_r=mysqli_query($cons,$query_search_pmodel);
