@@ -69,7 +69,7 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 	}
 	
 	/*GET exchange rate list*/
-	$sel2="SELECT id,convr,code,sign,ROUND(convr,5) as rconvr,regions as region,country_long,(SELECT GROUP_CONCAT(regions) as regions FROM notebro_site.exchrate) as regions,(SELECT GROUP_CONCAT(`name`) from `notebro_db`.`REGIONS` WHERE FIND_IN_SET(`id`,`notebro_site`.`exchrate`.`default_regions`)>0) as `default_regions` FROM notebro_site.exchrate";
+	$sel2="SELECT `id`,`convr`,`code`,`sign`,ROUND(`convr`,5) AS `rconvr`,`regions` AS `region`,`country_long`,(SELECT GROUP_CONCAT(`regions`) AS `regions` FROM `notebro_site`.`exchrate`) AS `regions`,(SELECT GROUP_CONCAT(`name`) FROM `notebro_db`.`REGIONS` WHERE FIND_IN_SET(`id`,`notebro_site`.`exchrate`.`default_regions`)>0 AND `valid`=1) AS `default_regions` FROM `notebro_site`.`exchrate` WHERE 1=1 AND `valid`=1";
 	$result = mysqli_query($con,$sel2); $exchange_list=new stdClass(); $exchange_list->{"code"}=new stdClass(); $exchange_list->{"country"}=new stdClass();  $region_ex=array(); $region_ex[0]="USD"; $always_model_region=false;
 	while($row=mysqli_fetch_assoc($result))
 	{
