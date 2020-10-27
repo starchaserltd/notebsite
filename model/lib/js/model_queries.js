@@ -614,7 +614,7 @@ var fade_timeout=500;
 function getconf(comp,id,exactconf,new_page=false) 
 {
 	gocomp=0;
-	var cpu_id=cpu["id"]; var display_id=display["id"]; var mem_id=mem["id"]; var hdd_id=hdd["id"];  var shdd_id=shdd["id"]; var gpu_id=gpu["id"]; var wnet_id=wnet["id"]; var odd_id=odd["id"]; var mdb_id=mdb["id"]; var chassis_id=chassis["id"]; var acum_id=acum["id"]; var war_id=war["id"]; var sist_id=sist["id"]; var confdata = {}; var success=false; var go=false; var mdb_hdd=0; var new_excode=excode; new_exch_rate=exch;
+	var cpu_id=cpu["id"]; var display_id=display["id"]; var mem_id=mem["id"]; var hdd_id=hdd["id"];  var shdd_id=shdd["id"]; var gpu_id=gpu["id"]; var wnet_id=wnet["id"]; var odd_id=odd["id"]; var mdb_id=mdb["id"]; var chassis_id=chassis["id"]; var acum_id=acum["id"]; var war_id=war["id"]; var sist_id=sist["id"]; var confdata = {}; var success=false; var go=false; var mdb_hdd=0; var new_excode=excode; new_exch_rate=exch; var force_new_ex="";
 	
 	switch(comp)
 	{
@@ -645,7 +645,7 @@ function getconf(comp,id,exactconf,new_page=false)
 		case "SIST":
 		{ prev_id=sist_id; sist_id=id; if(sist["id"]===undefined) { go=true; }  break; }
 		case "EXCH":
-		{ new_excode=id[0]; new_exch_rate=id[1]; go=true; break; }
+		{ new_excode=id[0]; force_new_ex="&force_new_ex=1"; new_exch_rate=id[1]; go=true; break; }
 	}
 	
 	if(exactconf!==undefined) { cpu_id=exactconf[0]; display_id=exactconf[1]; mem_id=exactconf[2]; hdd_id=exactconf[3]; shdd_id=exactconf[4]; gpu_id=exactconf[5]; wnet_id=exactconf[6]; odd_id=exactconf[7]; mdb_id=exactconf[8]; chassis_id=exactconf[9]; acum_id=exactconf[10]; war_id=exactconf[11]; sist_id=exactconf[12]; go=true; }
@@ -789,14 +789,14 @@ function getconf(comp,id,exactconf,new_page=false)
 							case "SIST":
 							{ setselectedcomp("SIST",prev_id); break; } 
 						}
-						var message = "We are sorry, but this configuration is not available on the market.";
+						var message = "We are sorry, but this configuration is not available on this regional market.";
 						showNotification('warning', message);
 					}
 				}
 			}			
 		}
 	}
-	xmlhttp.open("GET","model/lib/php/query/getconf.php?c="+mid+"-"+cpu_id+"-"+display_id+"-"+mem_id+"-"+hdd_id+"-"+shdd_id+"-"+gpu_id+"-"+wnet_id+"-"+odd_id+"-"+mdb_id+"-"+chassis_id+"-"+acum_id+"-"+war_id+"-"+sist_id+"&cf="+config_rate+"&comp="+comp+"&ex="+new_excode,true);
+	xmlhttp.open("GET","model/lib/php/query/getconf.php?c="+mid+"-"+cpu_id+"-"+display_id+"-"+mem_id+"-"+hdd_id+"-"+shdd_id+"-"+gpu_id+"-"+wnet_id+"-"+odd_id+"-"+mdb_id+"-"+chassis_id+"-"+acum_id+"-"+war_id+"-"+sist_id+"&cf="+config_rate+"&comp="+comp+"&ex="+new_excode+force_new_ex,true);
 	xmlhttp.send(); all_requests.push(xmlhttp);
 }
 

@@ -1,5 +1,6 @@
 <?php function var_error_log($object=null){ob_start(); var_dump($object); $contents=ob_get_contents(); ob_end_clean(); error_log($contents);}
-if(!isset($any_conf_search)){$any_conf_search=false;} if(!isset($change_model_region)){$change_model_region=false;} if(!isset($try_for_exact_model)){$try_for_exact_model=false;}
+if(!isset($any_conf_search)){$any_conf_search=false;} 
+if(!isset($change_model_region)){ $change_model_region=false; } if(!isset($try_for_exact_model)){$try_for_exact_model=false;}
 if(isset($include_getconf)){$include_getconf=true; $getall=true; $c=true; if(!isset($conf_only_search)){$conf_only_search=false;} }
 else
 {
@@ -8,13 +9,14 @@ else
 	if(isset($_GET['comp'])){ $comp=preg_replace('~[\x00\x0A\x0D\x1A\x22\x27\x5C]~u', '\\\$0', filter_var($_GET['comp'],FILTER_SANITIZE_STRING)); if(stripos($comp,"undefined")!==FALSE){ $comp=NULL; } }
 	if(isset($_GET['cf'])&&($_GET['cf']!="undefined")){ $cf=floatval($_GET['cf']); } else {$cf=0;} /* config rating */
 	if(isset($_GET['ex'])){ $excode=preg_replace('~[\x00\x0A\x0D\x1A\x22\x27\x5C]~u', '\\\$0', filter_var($_GET['ex'],FILTER_SANITIZE_STRING)); if(stripos($excode,"undefined")!==FALSE){ $excode="USD"; } }
+	if(isset($_GET['force_new_ex'])){ $force_new_ex=intval($_GET['force_new_ex']); } else {$force_new_ex=0; }
 }
 $get_best_low_func=false;
 if($c)
 {
 	$rows=array(); $rows["cmodel"]=$conf[0]; $rows["newregion"]=false; if(!$include_getconf){ require("../../../../etc/con_sdb.php"); require("../../../../etc/session.php"); } $result=FALSE; $rows["cid"]=0;
 	require_once("get_best_low.php");
-	if(!$change_model_region){ $change_model_region=!model_in_region($cons,$conf[0],$excode); }
+	if(!$change_model_region){ if($force_new_ex){ $change_model_region=model_in_region($cons,$conf[0],$excode); }else{ $change_model_region=false;} }
 	if($getall){$all="*,";}else{$all="";} if(!isset($conf[1])){for($i=1;$i<14;$i++){if(!isset($conf[$i])){$conf[$i]="";}}}
 	$sql="SELECT ".$all."id,price,model,err FROM notebro_temp.all_conf_".$conf[0]." WHERE model=".$conf[0]." AND cpu=".$conf[1]." AND display=".$conf[2]." AND mem=".$conf[3]." AND hdd=".$conf[4]." AND shdd=".$conf[5]." AND gpu=".$conf[6]." AND wnet=".$conf[7]." AND odd=".$conf[8]." AND mdb=".$conf[9]." AND chassis=".$conf[10]." AND acum=".$conf[11]." AND war".$warnotin." IN (".$conf[12].") AND sist=".$conf[13]." LIMIT 1";
 	
@@ -25,7 +27,7 @@ if($c)
 	if($result!==FALSE)
 	{
 		$confdata = mysqli_fetch_array($result);
-		if(intval($confdata["price"])>0)
+		if(isset($confdata["price"]) && intval($confdata["price"])>0)
 		{
 			$rows["cid"]=$confdata["id"];
 			$rows["cprice"]=$confdata["price"];
@@ -56,7 +58,7 @@ if($c)
 				case "ACUM": { $filter="acum=".$conf[11]; $presearch_filter["acum"]=$conf[11]; $no_avb_search=false; break; } 
 				case "WAR":	{ $filter="war=".$conf[12]; $presearch_filter["war"]=$conf[12]; $no_avb_search=false; break; }  
 				case "SIST": { $filter="sist=".$conf[13]; $presearch_filter["sist"]=$conf[13]; $no_avb_search=false; break; }
-				case "EXCH": { $filter="1=1"; $change_model_region=true; $only_exch_regions=true; break; }
+				case "EXCH": { $filter="1=1";  if($force_new_ex){ $change_model_region=true; }else{$change_model_region=false;} $only_exch_regions=true; break; }
 				default: { $filter="1=1"; break; }
 			}
 		}

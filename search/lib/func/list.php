@@ -345,7 +345,7 @@ switch ($q)
 	{
 		$search='"%'.$keys.'%"';
 		$y="WHERE";
-		$sel="SELECT id, name, valid FROM notebro_db.REGIONS ".$y." name LIKE $search AND valid = 1";
+		$sel="SELECT `id`,`name`,`valid` FROM `notebro_db`.`REGIONS` ".$y." `name` LIKE".$search." AND `valid`=1";
 		$sel.=" AND id>0";
 		$result = mysqli_query($con, $sel);
 		$list = array();

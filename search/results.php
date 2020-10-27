@@ -3,7 +3,7 @@ ini_set('max_execution_time', 8);
 require_once("lib/php/resultlib.php");
 $temp_table = "all_conf";
 /* GETTING EXCHANGE LIST */
-$result = mysqli_query($GLOBALS['con'], "SELECT code,sign,ROUND(convr,5) convr FROM notebro_site.exchrate"); 
+$result = mysqli_query($GLOBALS['con'], "SELECT `code`,`sign`,ROUND(`convr`,5) AS `convr` FROM `notebro_site`.`exchrate` WHERE `valid`=1"); 
 $exchangelist = mysqli_fetch_all($result);
 $result = mysqli_query($GLOBALS['con'], "SELECT id,disp FROM notebro_db.REGIONS"); 
 while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }

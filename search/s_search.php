@@ -81,6 +81,7 @@ require_once("etc/conf.php"); ?>
 				<option value="3">High-end</option>
 			</select>
 				
+			<!--
 			<div class="row margin">
 				<div class="col-md-6 col-sm-6 col-xs-6 col-xl-8 col-lg-7" style="margin-top:10px;padding:0;">Available in</div>	
 				<div class="col-md-6 col-sm-6 col-xs-6 col-xl-4 col-lg-5" style="margin-top:15px;padding: 0;">
@@ -90,6 +91,7 @@ require_once("etc/conf.php"); ?>
 					</select>
 				</div>
 			</div>
+			-->
 					
 			<?php $reset=0; include ("lib/php/currency.php");?>
 			<script>

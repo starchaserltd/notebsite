@@ -1,12 +1,12 @@
 <?php
-$idmodel=''; $conf=''; $nonexistent=1; $lang=-1; $components_found=false; $pos_ex_change=false; $afismodel=0; $cprice=0; $init_conf=null;
+$idmodel=''; $conf=''; $nonexistent=1; $lang=-1; $components_found=false; $pos_ex_change=false; $afismodel=0; $cprice=0; $init_conf=null; $exch_valid=array();
 
-$sel2="SELECT id,convr,code,sign,regions,ex_war FROM notebro_site.exchrate";
+$sel2="SELECT `id`,`convr`,`code`,`sign`,`regions`,`ex_war`,`valid` FROM `notebro_site`.`exchrate`";
 $result=mysqli_query($con,$sel2); $exchange_list=new stdClass(); $region_ex=array();
 while($row=mysqli_fetch_assoc($result))
 {
 	$exchange_list->{$row["code"]}=array("id"=>$row["id"],"convr"=>floatval($row["convr"]),"sign"=>$row["sign"],"regions"=>explode(",",$row["regions"]),"ex_war"=>$row["ex_war"]);
-	foreach($exchange_list->{$row["code"]}["regions"] as $el){ $el=intval($el); $region_ex[$el][]=$row["code"];}
+	foreach($exchange_list->{$row["code"]}["regions"] as $el){ $el=intval($el); $region_ex[$el][]=$row["code"]; $exch_valid[$row["code"]]=intval($row["valid"]);}
 }
 mysqli_free_result($result);
 

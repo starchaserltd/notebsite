@@ -8,7 +8,7 @@ if(!$components_found)
 		require_once("../etc/con_sdb.php");
 		$t=table($conf); $conf=$t[0];
 
-		$change_model_region=true;
+		if(isset($allow_model_region_change)){$change_model_region=$allow_model_region_change;}else{$change_model_region=false;}
 		foreach(get_regions_model($con,$t[1]) as $val){if(($val=="0")||($val=="1")||in_array($val,$ex_regions)){$change_model_region=false;} }
 		$sel3="SELECT * FROM notebro_temp.all_conf_".$t[1]." WHERE id=".$t[0]." LIMIT 1";
 		$cons=dbs_connect();
@@ -86,7 +86,8 @@ if(!$components_found)
 if($idmodel)
 {
 	$p_model=$idmodel; $sel3="SELECT `notebro_db`.`MODEL`.`p_model`,`notebro_db`.`MODEL`.`regions` FROM `notebro_db`.`MODEL` WHERE `id`=".$idmodel." LIMIT 1";
-	$result=mysqli_query($con,$sel3); $change_model_region=false; if($result->num_rows){$row=mysqli_fetch_assoc($result); $p_model=intval($row["p_model"]); $change_model_region=true; $model_regions=array_map('strval', explode(",",$row["regions"])); foreach($model_regions as $val){ if(($val=="0")||($val=="1")||in_array($val,$ex_regions)){ $change_model_region=false;} if(!isset($model_ex)){ $model_ex=$region_ex[intval($val)][0];} } unset($row); }
+	$result=mysqli_query($con,$sel3); $change_model_region=false; if($result->num_rows){$row=mysqli_fetch_assoc($result); $p_model=intval($row["p_model"]); if(isset($force_new_ex) && $force_new_ex){ $change_model_region=true;}else{$change_model_region=false;} $model_regions=array_map('strval', explode(",",$row["regions"])); foreach($model_regions as $val){ if(($val=="0")||($val=="1")||in_array($val,$ex_regions)){ $change_model_region=false;} if(!isset($model_ex)){ $model_ex=$region_ex[intval($val)][0];} } unset($row); }
+	if($model_ex!=$exchcode){ $change_model_region=true; }
 	?>
 	<script>var model_ex="<?php if($change_model_region){ echo $model_ex; $exch=floatval($exchange_list->{$model_ex}["convr"]); $selected_ex=$model_ex;} else{ echo $exchcode; $selected_ex=$exchcode; } ?>";  var exch=<?php echo $exch; ?>; </script>
 	<?php
@@ -101,6 +102,7 @@ if($idmodel)
 			mysqli_free_result($region_result);
 		}
 	}
+	$change_model_region=false;
 	if(!(isset($model_regions) && $model_regions!=NULL)){ $model_regions=array(); }
 	$model_regions=array_map('intval',$model_regions); $model_regions=array_unique($model_regions);
 	if(count($model_regions)<2 && $model_regions[0]==0){$model_regions[]=1; $model_regions[]=2; }
@@ -154,8 +156,8 @@ if($idmodel)
 			}
 
 			require_once("../etc/con_sdb.php"); $cons=dbs_connect();
-			
-			$sel3="SELECT * FROM notebro_temp.m_map_table WHERE model_id=".$idmodel." LIMIT 1";
+
+			$sel3="SELECT * FROM `notebro_temp`.`m_map_table` WHERE `model_id`=".$idmodel." LIMIT 1";
 			$model_ex_list=array();
 			$some_result=mysqli_query($cons,$sel3);
 			if(have_results($some_result))
@@ -165,6 +167,9 @@ if($idmodel)
 				$model_ex_list=array_unique($model_ex_list);
 				mysqli_free_result($some_result);
 			}
+			foreach($model_ex_list as $temp_ex_key=>$temp_ex_code)
+			{ if(isset($exch_valid[$temp_ex_code])){ if(!$exch_valid[$temp_ex_code] && $temp_ex_code!=$get_ex && $temp_ex_code!=$exchcode){ unset($model_ex_list[$temp_ex_key]);} }else{ unset($model_ex_list[$temp_ex_key]);}}
+			
 			if(isset($rows["best_low"])){$best_low=$rows["best_low"];}
 			if(!(isset($best_low["best_value"])&&$best_low["best_value"]!=""&&$best_low["best_value"]!=NULL))
 			{
