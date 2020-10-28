@@ -23,10 +23,16 @@ $conditions_model=""; $conditions_altmodel=""; $conditions="";
 
 if($excode)
 {
-	$ex_result=mysqli_query($con,"SELECT `notebro_site`.`exchrate`.`regions` FROM `notebro_site`.`exchrate` WHERE `notebro_site`.`exchrate`.`code`='".$excode."' LIMIT 1");
+	$ex_result=mysqli_query($con,"SELECT `notebro_site`.`exchrate`.`regions` FROM `notebro_site`.`exchrate` WHERE `notebro_site`.`exchrate`.`code`='".$excode."' AND `valid`=1 LIMIT 1");
 	if($ex_result && mysqli_num_rows($ex_result)>0)
-	{ $regions=mysqli_fetch_assoc($ex_result)["regions"]; $current_regions_array=explode(",",$regions); $reg_sql=" AND ("; foreach($current_regions_array as $val){ $reg_sql.="FIND_IN_SET(".$val.",`regions`)>0 OR "; } $reg_sql=substr($reg_sql,0,-4).")"; }
+	{ $regions=mysqli_fetch_assoc($ex_result)["regions"]; $current_regions_array=explode(",",$regions); $reg_sql=" AND ("; foreach($current_regions_array as $val){ $reg_sql.="FIND_IN_SET(".$val.",`regions`)>0 OR "; } $reg_sql=substr($reg_sql,0,-4).")"; mysqli_free_result($ex_result); }
 }
+
+#get_valid_regions
+$valid_reg_sql="";
+$temp_results=mysqli_query($con,"SELECT GROUP_CONCAT(`notebro_site`.`exchrate`.`regions`) AS `regions` FROM `notebro_site`.`exchrate` WHERE `valid`=1");
+if(have_results($temp_results))
+{ $valid_regions=mysqli_fetch_assoc($temp_results)["regions"]; $default_regions_array=explode(",",$valid_regions); $valid_reg_sql=" AND ("; foreach($default_regions_array as $val){ $valid_reg_sql.="FIND_IN_SET(".$val.",`regions`)>0 OR "; } $valid_reg_sql=substr($valid_reg_sql,0,-4).")"; mysqli_free_result($temp_results); }
 
 if(isset($keysparts))
 {
@@ -41,6 +47,7 @@ $conditions_model=substr($conditions_model,0,-5); $conditions_altmodel=substr($c
 
 if(isset($id_set) && $id_set){ $and=""; if(isset($conditions_model[1])){ $and=" AND";} $conditions_model.=$and." `MODEL`.`id` IN ($id_set)"; }
 elseif(isset($m_search_included)&&isset($from_date)){ $conditions_model.=" AND `MODEL`.`ldate` >= '".$from_date."'"; $conditions_altmodel.=" AND `model`.`ldate` >= '".$from_date."'"; }
+$conditions_model.=$valid_reg_sql;
 
 if($p_model_only){ $conditions_model.=" GROUP BY `p_model`,`show_smodel`"; $conditions_altmodel.=" GROUP BY `model`.`p_model`"; }
 
@@ -55,7 +62,7 @@ if(!(isset($id_set) && $id_set))
 //DOING THE SEARCH;
 $p_model_count=0; $p_model=0;
 $result=mysqli_query($con, $sel);
-
+#error_log($sel);
 //IF NO RESULTS FOUND, MAYBE WE ARE SEARCHING FOR A SUBMODEL
 if((!$result)||($result&&mysqli_num_rows($result)<=0))
 {
@@ -85,7 +92,7 @@ if($result&&mysqli_num_rows($result)>0)
 		if(strlen($rand["submodel"])>6 && !preg_match("/\(.*\)/",$rand["submodel"])){ if(isset($rand["submodel"][7])){ if($rand["submodel"][6]!=' '){  if($rand["submodel"][5]!=' '){$rand["submodel"]=substr($rand["submodel"],0,6).".";}else{$rand["submodel"]=substr($rand["submodel"],0,5)."";}}else{$rand["submodel"]=substr($rand["submodel"],0,6)."";} } }
 		$regions=array(); $regions=array_unique(explode(",",$rand["regions"])); $show_reg=1;  $region=array(); $region["disp"]=""; if(isset($rand["np"])&&$rand["np"]=="nop"){$add_np="_np";}else{$add_np="";}
 		foreach($regions as $el) { if(intval($el)===1 || intval($el)===0 ){ $show_reg=0; } else { foreach($current_regions_array as $el2) {if(intval($el)==intval($el2)){$show_reg=0;} } } }
-		if($show_reg) { $sel_r="SELECT disp FROM notebro_db.REGIONS WHERE id=".$regions[0]." LIMIT 1"; $result_r = mysqli_query($con, $sel_r); $region=mysqli_fetch_array($result_r); $region["disp"]="(".$region["disp"].")"; }
+		if($show_reg) { $sel_r="SELECT `disp` FROM `notebro_db`.`REGIONS` WHERE `id`=".$regions[0]." LIMIT 1"; $result_r = mysqli_query($con, $sel_r); $region=mysqli_fetch_array($result_r); $region["disp"]="(".$region["disp"].")"; }
 		if(isset($rand["extra_modelname"])&&$rand["extra_modelname"]!==NULL&&$rand["extra_modelname"]!=""){ $extra_name=" (".strval($rand["extra_modelname"]).")"; }
 		//SENDING THE RESULTS
 		if(!isset($m_search_included)){ $rand["submodel"]=""; $pre_name=strval($rand["name"]." ".$rand["submodel"].$mdb_submodel); if(substr($pre_name,-1)!=" "&&isset($region["disp"])&&$region["disp"]!=""){ $pre_name.=" "; } $list[]=["id"=>intval($rand["id"]).$add_np,"model"=>strval($pre_name.$extra_name.$region["disp"])]; }
