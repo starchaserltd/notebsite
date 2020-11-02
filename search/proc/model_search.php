@@ -93,7 +93,7 @@ function search_model ($ids,$mmodel,$prodmodel,$fammodel,$msc,$regions,$minclass
 	if(gettype($regions)!="array") { $regions=(array)$regions; }
 	foreach($regions as $x)
 	{
-		if($GLOBALS['dispregion']==1)
+		if($GLOBALS['dispregion']==1 && count($regions)<1)
 		{
 			if(!$i)
 			{
@@ -123,7 +123,7 @@ function search_model ($ids,$mmodel,$prodmodel,$fammodel,$msc,$regions,$minclass
 	
 	// DO THE SEARCH
 	# echo "Query to select the MODELS:";
-    # echo "<br>";
+	# echo "<br>";
 	# echo "<pre>" . $sel_model . "</pre>";
 	
 	$result = mysqli_query($GLOBALS['con'],$sel_model);

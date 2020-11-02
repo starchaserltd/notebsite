@@ -12,15 +12,18 @@ function search_regions ($name,$valid)
 	if(gettype($name)!="array") { $name=(array)$name; }
 	foreach($name as $x)
 	{ 
-		if($i)
-		{ $sel_regions.=" OR "; }
-		else
-		{ $sel_regions.=" AND ( "; }
-		
-		$sel_regions.="name='";
-		$sel_regions.=$x;
-		$sel_regions.="'";
-		$i++;
+		if(strlen($x)>0)
+		{
+			if($i)
+			{ $sel_regions.=" OR "; }
+			else
+			{ $sel_regions.=" AND ( "; }
+			
+			$sel_regions.="name='";
+			$sel_regions.=$x;
+			$sel_regions.="'";
+			$i++;
+		}
 	}
 	if($i>0)
 	{ $sel_regions.=" ) "; }
