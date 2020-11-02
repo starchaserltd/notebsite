@@ -2,13 +2,14 @@
 
 /* ********* SELECT REGIONS BASED ON FILTERS ***** */
 
-function search_regions ($name)
+function search_regions ($name,$valid)
 {
-	$sel_regions="SELECT id, code, name, disp, valid FROM REGIONS WHERE 1=1";
+	$sel_regions="SELECT `id`,`code`,`name`,`disp`,`valid` FROM REGIONS WHERE 1=1";
 	// Add models to filter
+	$sel_regions=$sel_regions." AND `valid`='".$valid."'";
+	
 	$i=0;
 	if(gettype($name)!="array") { $name=(array)$name; }
-
 	foreach($name as $x)
 	{ 
 		if($i)
@@ -24,8 +25,9 @@ function search_regions ($name)
 	if($i>0)
 	{ $sel_regions.=" ) "; }
 	
+	
 	// DO THE SEARCH
-	# echo "Query to select the WARRANTYs:";
+	# echo "Query to select the REGIONS:";
     # echo "<br>";
 	# echo "<pre>" . $sel_regions . "</pre>";
 	

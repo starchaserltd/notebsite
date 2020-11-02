@@ -14,8 +14,14 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 	if($to_search["regions"])
 	{
 		require_once($root."proc/regions_search.php");
-		$regions_id = search_regions ($regions_name);
-	}	else {	$dispregion=1;	}
+		$regions_id = search_regions ($regions_name,$regions_valid);
+	}
+	else
+	{	
+		require_once($root."proc/regions_search.php");
+		$regions_id = search_regions ("",1);
+		$dispregion=1;
+	}
 	
 	if($to_search["model"])
     {
