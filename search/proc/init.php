@@ -18,5 +18,5 @@ $chassis_prod=array(); $chassis_model=array(); $chassis_thicmin=0; $chassis_thic
 $pricemin=0; $budgetmin=1; $budgetmax=2147483647; $battery_life=0;
 $browse_by=0;
 $sortby=array(); $sort_by="value"; $diffpisearch=0; $dispregion=0;
-$mdb_list=array(); $mem_list=array(); $shdd_list=array(); $wnet_list=array(); $odd_list=array(); $chassis_list=array(); $regions_id=array(); $regions_name=array(); $regions_valid=0;
+$mdb_list=array(); $mem_list=array(); $shdd_list=array(); $wnet_list=array(); $odd_list=array(); $chassis_list=array(); $regions_id=array(); $regions_name=array(); $regions_valid=1;
 ?>

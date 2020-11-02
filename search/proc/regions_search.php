@@ -6,7 +6,7 @@ function search_regions ($name,$valid)
 {
 	$sel_regions="SELECT `id`,`code`,`name`,`disp`,`valid` FROM REGIONS WHERE 1=1";
 	// Add models to filter
-	$sel_regions=$sel_regions." AND `valid`='".$valid."'";
+	if(intval($valid)>0){ $sel_regions=$sel_regions." AND `valid`='".$valid."'"; }
 	
 	$i=0;
 	if(gettype($name)!="array") { $name=(array)$name; }
@@ -19,14 +19,14 @@ function search_regions ($name,$valid)
 			else
 			{ $sel_regions.=" AND ( "; }
 			
-			$sel_regions.="name='";
+			$sel_regions.="`name`='";
 			$sel_regions.=$x;
 			$sel_regions.="'";
 			$i++;
 		}
 	}
 	if($i>0)
-	{ $sel_regions.=" ) "; }
+	{ $sel_regions.=" OR `id`=1) "; }
 	
 	
 	// DO THE SEARCH
