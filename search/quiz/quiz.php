@@ -1,7 +1,7 @@
 <?php if(!isset($quiz_css_addr)){ $quiz_css_addr="search/quiz/"; } else { $quiz_css_addr=""; } ?>
 <div class="quiz_container">
 	<input id="tab1" type="checkbox"><label for="tab1" class="label_intro1"><span class="startQuiz"><span class="findLaptop">Find your laptop </span><strong class="strongText">in 6 easy steps!</strong></span></label>
-	<input id="tab2" type="checkbox"><label for="tab2" class="label_intro2"><span class="startQuiz buttonStartQuiz">Start Quiz!</span></label>		
+	<input id="tab2" type="checkbox"><label for="tab2" class="label_intro2"><span class="startQuiz buttonStartQuiz">Start Here!</span></label>		
 	<section class="tab1_intro"><!-- <p class="h2 text-center quizParagraf1">Find your laptop match</p> --></section>
 	<section class="tab2_intro">
 		<!-- <p class="h2 text-center quizParagraf2">How to use our Quiz</p> -->
