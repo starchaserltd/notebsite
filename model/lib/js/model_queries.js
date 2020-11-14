@@ -333,10 +333,10 @@ function showMDB(str)
 				document.getElementById('mdb_ram').innerHTML = mdb["ram"];
 				document.getElementById('mdb_gpu').innerHTML = mdb["gpu"];
 				document.getElementById('mdb_chipset').innerHTML = mdb["chipset"];
-				document.getElementById('mdb_interface').innerHTML = mdb["interface"];
+				document.getElementById('mdb_interface').innerHTML = mdbmisc(mdb["interface"]);
 				document.getElementById('mdb_netw').innerHTML = mdb["netw"];
 				document.getElementById('mdb_hdd').innerHTML = mdb["hdd"];
-				document.getElementById('mdb_misc').innerHTML = mdb["msc"];
+				document.getElementById('mdb_misc').innerHTML = mdbmisc(mdb["msc"]);
 				
 				if(mdb["optimus"]&&gpu_bat_new>3)
 				{
@@ -895,6 +895,30 @@ function cpumisc(str)
 	msc=msc.trim();
 	if(msc[msc.length-1]==","){ msc=msc.slice(0,-1) }
 	
+	return msc;
+}
+
+function mdbmisc(str) 
+{
+	var msc_el = str.split(",");
+	var msc="";
+
+	var text1 = '<span class="toolinfo" data-toolid="';
+	var text2 = '"  data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="left" data-original-title="Loading..."><span>';
+	var text3 = '</span> <i class="fa fa-question toolinfo-icon"></i></span>';
+
+	var i, value;
+	for (i = 0; i < msc_el.length; ++i)
+	{
+		value = msc_el[i];
+		value = $.trim(value);
+		if(value.indexOf("MXM")>=0){ msc=msc+text1+"104"+text2+value+text3+", "; } else
+		if((value.indexOf("DGFF")>=0)||(value.indexOf("PGFF")>=0)){ msc=msc+text1+"105"+text2+value+text3+", "; } else
+		{ msc=msc+"<span>"+value+"</span>"+", "; }
+	}
+	msc=msc.trim();
+	if(msc[msc.length-1]==","){ msc=msc.slice(0,-1) }
+
 	return msc;
 }
 	
