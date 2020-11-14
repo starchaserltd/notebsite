@@ -199,7 +199,7 @@ if (isset($_GET['GPU_arch_id']))
 
 if (isset($_GET['GPU_msc_id']))
 { 	array_walk($_GET['GPU_msc_id'],'clean_string'); $gpu_misc = $_GET['GPU_msc_id'];
-	foreach($gpu_misc as $key=>$el){ if(stripos($el,"mxm")!==FALSE){ $mdb_interface[]="group"; $mdb_interface[]='1 X MXM 3.0'; $mdb_interface[]='2 X MXM 3.0'; $mdb_interface[]='1 X DGFF'; $mdb_interface[]="ungroup"; unset($gpu_misc[$key]);} }
+	foreach($gpu_misc as $key=>$el){ if(stripos($el,"mxm")!==FALSE){ $mdb_interface[]="group"; $mdb_interface[]='1 X PGFF'; $mdb_interface[]='1 X MXM 3.0'; $mdb_interface[]='2 X MXM 3.0'; $mdb_interface[]='1 X DGFF'; $mdb_interface[]="ungroup"; unset($gpu_misc[$key]);} }
 }
  
 // GPU Maxmem
