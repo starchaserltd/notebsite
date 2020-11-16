@@ -147,10 +147,7 @@ if(document.getElementById('cpufreq')!=null)
 			step: 0.1,
 			direction: 'ltr',
 			format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
-			range: {
-				'min': [cpufreqmin],
-				'max': [cpufreqmax]		
-			}
+			range: listrange(list_cputdp)
 		});
 	}
 
@@ -270,12 +267,7 @@ if(document.getElementById('gpupower')!=null)
 			step: 2,
 			direction: 'ltr',
 			format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
-			range: {
-				'min': [gpupowermin,1],
-				'30%': [30,2],
-				'60%': [55,5],
-				'max': [gpupowermax]		
-				}
+			range: listrange(list_gputdp)
 		});
 	}
 

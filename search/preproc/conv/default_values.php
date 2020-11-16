@@ -59,7 +59,9 @@ $sel.=" (SELECT name FROM notebro_site.nomen WHERE type=78) AS list_chassisweb,"
 $sel.=" (SELECT name FROM notebro_site.nomen WHERE type=79) AS list_verres,";
 $sel.=" (SELECT name FROM notebro_site.nomen WHERE type=80) AS gpu_lmin,";
 $sel.=" (SELECT name FROM notebro_site.nomen WHERE type=81) AS gpu_lmax,";
-$sel.=" (SELECT name FROM notebro_site.nomen WHERE type=83) AS list_hddsize";
+$sel.=" (SELECT name FROM notebro_site.nomen WHERE type=83) AS list_hddsize,";
+$sel.=" (SELECT name FROM notebro_site.nomen WHERE type=84) AS list_gputdp,";
+$sel.=" (SELECT name FROM notebro_site.nomen WHERE type=85) AS list_cputdp";
 
 //echo $sel;
 mysqli_multi_query($con, $sel);
@@ -128,6 +130,8 @@ $gpumindatei=date('Y', $time);
 if(!isset($gpumindate)) { $gpumindate=$gpumindatei;}
 $time = strtotime($rand[0][55]);
 $list_hddsize = $rand[0][56];
+$list_gputdp = $rand[0][57];
+$list_cputdp = $rand[0][58];
 $gpumaxdatei=date('Y', $time); if(!isset($gpumaxdate)) { $gpumaxdate=$gpumaxdatei;}
 
 mysqli_free_result($result);
@@ -197,6 +201,8 @@ echo "list_memfreq='".$list_memfreq."'.split(','); ";
 echo "list_chassisweb='".$list_chassisweb."'.split(','); ";
 echo "list_verres='".$list_verres."'.split(','); ";
 echo "list_hddsize='".$list_hddsize."'.split(','); ";
+echo "list_gputdp='".$list_gputdp."'.split(','); ";
+echo "list_cputdp='".$list_cputdp."'.split(','); ";
 echo "</script>";
 
 //CODE FOR LIST IN SEARCH   
