@@ -150,13 +150,13 @@ foreach (array("model","cpu", "display", "gpu", "acum", "war", "hdd", "shdd", "w
 			{ }
 		
 			if (isset($_GET['vmsmall']) && $_GET['vmsmall']==1)
-			{	if($cores<2) { $cpu_coremin = 2; $cores=2.5; array_push($cpu_misc,"HT/SMT","VT-d/AMD-Vi"); } }
+			{	if($cores<2) { $cpu_coremin = 2; $cores=2.5; array_push($cpu_misc,"HT/SMT","VT-d/AMD-Vi/ARM-V"); } }
 		
 			if (isset($_GET['vmmedium']) && $_GET['vmmedium']==1)
-			{	if($cores<4) { $cpu_coremin = 4; $cores=4; $cpu_misc=array_diff($cpu_misc,["HT/SMT"]); array_push($cpu_misc,"VT-d/AMD-Vi"); } }
+			{	if($cores<4) { $cpu_coremin = 4; $cores=4; $cpu_misc=array_diff($cpu_misc,["HT/SMT"]); array_push($cpu_misc,"VT-d/AMD-Vi/ARM-V"); } }
 		
 			if (isset($_GET['vmheavy']) && $_GET['vmheavy']==1)
-			{	if($cores<5) { $cpu_coremin = 4; $cores=5; array_push($cpu_misc,"HT/SMT","VT-d/AMD-Vi"); } }
+			{	if($cores<5) { $cpu_coremin = 4; $cores=5; array_push($cpu_misc,"HT/SMT","VT-d/AMD-Vi/ARM-V"); } }
 		
 			if (isset($_GET['lvedit']) && $_GET['lvedit']==1 && $cpu_coremin < 2)
 			{	$cpu_coremin = 2;  $cpu_misc[]="HT/SMT"; $cores=2.5; }

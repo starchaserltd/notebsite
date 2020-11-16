@@ -67,13 +67,13 @@ if (isset($_GET['vmnone']) && $_GET['vmnone']==1)
 {	}
 
 if (isset($_GET['vmsmall']) && $_GET['vmsmall']==1)
-{	if($cores<2) { $cpucoremin = 2; $cores=2.5; array_push($cpu_misc,"Multithreading","VT-d/AMD-Vi"); } }
+{	if($cores<2) { $cpucoremin = 2; $cores=2.5; array_push($cpu_misc,"Multithreading","Virtualization"); } }
 
 if (isset($_GET['vmmedium']) && $_GET['vmmedium']==1)
-{	if($cores<4) { $cpucoremin = 4; $cores=4; $cpu_misc=array_diff($cpu_misc,["Multithreading"]); array_push($cpu_misc,"VT-d/AMD-Vi"); } }
+{	if($cores<4) { $cpucoremin = 4; $cores=4; $cpu_misc=array_diff($cpu_misc,["Multithreading"]); array_push($cpu_misc,"Virtualization"); } }
 
 if (isset($_GET['vmheavy']) && $_GET['vmheavy']==1)
-{	if($cores<5) { $cpucoremin = 4; $cores=5; array_push($cpu_misc,"Multithreading","VT-d/AMD-Vi"); } }
+{	if($cores<5) { $cpucoremin = 4; $cores=5; array_push($cpu_misc,"Multithreading","Virtualization"); } }
 
 if (isset($_GET['lvedit']) && $_GET['lvedit']==1 && $cpucoremin < 2)
 {	$cpucoremin = 2;  $cpu_misc[]="Multithreading"; $cores=2.5; }
