@@ -111,13 +111,7 @@ if(document.getElementById('cputdp')!=null)
 			//step: 1,
 			direction: 'ltr',
 			format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
-			range: {
-				'min': [cputdpmin,0.5],
-				'25%': [10,1],
-				'50%': [35,2],
-				'70%': [60,5],
-				'max': [cputdpmax,5]		
-			}
+			range: listrange(list_cputdp)
 		});
 	}
 
@@ -147,7 +141,10 @@ if(document.getElementById('cpufreq')!=null)
 			step: 0.1,
 			direction: 'ltr',
 			format: { to: function(value){ return parseFloat(parseFloat(value).toFixed(1)); }, from: function(value){ return parseFloat(parseFloat(value).toFixed(1)); } },
-			range: listrange(list_cputdp)
+			range: {
+				'min': [cpufreqmin],
+				'max': [cpufreqmax]		
+			}
 		});
 	}
 
