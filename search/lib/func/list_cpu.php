@@ -297,10 +297,14 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 	// DO THE SEARCH
 
 	$result = mysqli_query($GLOBALS['con'], "$sel_cpu");
-	$cpu_return = array();
+	$cpu_return=array(); $cpu_model_proc=array(); 
 	while($rand = mysqli_fetch_row($result)) 
 	{ 
-
+		if(in_array(strval($rand[2])." ".strval($rand[1]),$cpu_model_proc))
+		{ continue; }
+		else
+		{ $cpu_model_proc[]=strval($rand[2])." ".strval($rand[1]); }
+		
 		if($seltdp>0)
 		{ $cpu_return[]=["id"=>intval($rand[0]), "model"=>(strval($rand[2])." ".strval($rand[1])." (".strval(round($rand[4])/10)."/10)"),"gpu"=>intval($rand[3]),"tdp"=>intval($rand[4])]; }
 		else
