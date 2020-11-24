@@ -294,18 +294,33 @@ if($function_replay!=null&&isset($function_replay[0])&&$function_replay[0]!=null
 }
 
 # DELETING DUPLICATES
-$keys_to_unset=array();
+$links_to_delete=array();
 foreach($link_list as $key=>$el)
 {
 	foreach($link_list as $key_2=>$el_2)
 	{
 		if($el_2==$el && $key_2!=$key)
-		{ $keys_to_unset[]=$key; }
+		{
+			if(isset($links_to_delete[$el_2]))
+			{ $links_to_delete[$el_2]++; }
+			else
+			{ $links_to_delete[$el_2]=1; }
+		}
 	}
 }
-$keys_to_unset=array_unique($keys_to_unset);
-foreach($keys_to_unset as $key)
-{ unset($generated_buy_list[$key]); unset($link_list[$key]); unset($seller_list[$key]); }
+
+$links_to_delete=array_unique($links_to_delete);
+foreach($links_to_delete as $link_to_del=>$nr_to_delete)
+{
+	foreach($link_list as $key=>$el)
+	{
+		if($el==$link_to_del && $nr_to_delete>1)
+		{
+			unset($generated_buy_list[$key]); unset($link_list[$key]); unset($seller_list[$key]);
+			$nr_to_delete--;
+		}
+	}
+}
 
 
 /* *** Finally the links are displayed *** */
