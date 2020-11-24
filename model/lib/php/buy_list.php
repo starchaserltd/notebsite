@@ -301,6 +301,7 @@ foreach($link_list as $key=>$el)
 	{
 		if($el_2==$el && $key_2!=$key)
 		{
+			$el_2=md5($el_2);
 			if(isset($links_to_delete[$el_2]))
 			{ $links_to_delete[$el_2]++; }
 			else
@@ -314,7 +315,7 @@ foreach($links_to_delete as $link_to_del=>$nr_to_delete)
 {
 	foreach($link_list as $key=>$el)
 	{
-		if($el==$link_to_del && $nr_to_delete>1)
+		if(md5($el)==$link_to_del && $nr_to_delete>1)
 		{
 			unset($generated_buy_list[$key]); unset($link_list[$key]); unset($seller_list[$key]);
 			$nr_to_delete--;
