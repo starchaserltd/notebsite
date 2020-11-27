@@ -49,7 +49,7 @@ if(isset($_GET["id"])&&isset($_GET["price"]))
 	
 	$price=intval($_GET["price"]);
 	if($price<100)
-	{ $ok_to_go=False; echo "Wrong price!<br>"; }
+	{ if($price!=-1) { $ok_to_go=False; echo "Wrong price!<br>"; } }
 	
 	if(isset($_GET["retailer"]))
 	{
