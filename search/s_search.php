@@ -104,11 +104,11 @@ require_once("etc/conf.php"); ?>
 				<div>
 					<span style="margin-top:30px; margin-bottom:2px;">Budget:<br></span>						
 					<div class="row margin">
-						<div class="col-md-8 col-xs-6 col-sm-6 col-lg-7 col-xl-8" style="padding:0px!important;" >
+						<div class="col col-md-8 col-xs-6 col-sm-6 col-lg-7 col-xl-8" style="padding:0px!important;" >
 						<div id="2"><input type="tel" name="bdgmin" id="bdgmin" value="300" size="1" maxlength="5" onchange="checkmin();"  onkeydown="if (event.keyCode == 13) { checkmin(); return false; }" class="budget"> - 
 						<input type="tel" name="bdgmax" id="bdgmax" value="2000" size="1" maxlength="5" onchange="checkmax();" onkeydown="if (event.keyCode == 13) { checkmax(); return false; }" class="budget" ></div> 
 						</div>
-						<div class="col-md-4 col-xs-3 col-sm-2 col-lg-5 col-xl-4" style="padding: 0;">
+						<div class="col col-md-4 col-xs-3 col-sm-2 col-lg-5 col-xl-4" style="padding: 0;">
 							<select name ="exchange" id="currency" onchange="sliderrange(this); this.oldvalue = this.value; console.log(this);">
 							<?php echo $var_currency;  //these variables come from lib/currency.php ?>
 							</select>	

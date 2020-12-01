@@ -2,6 +2,7 @@ var set_quiz_data=window.location.href;
 pagetomake=0;
 for(var qkey in quiz)
 {
+	console.log('here')
 	quiz[qkey]['selected']=0;
 	for(var qkey2 in quiz[qkey]['options'])
 	{
@@ -19,8 +20,11 @@ for(var qkey in quiz)
 }
 if(pagetomake!=0)
 {
+	console.log('here2', document.getElementsByClassName('startQuiz'))
 	document.getElementsByClassName('tab1_intro')[0].style.display='none';
 	document.getElementsByClassName('tab2_intro')[0].style.display='none';
-	document.getElementsByClassName('startQuiz')[0].style.display='none';
+	[...document.getElementsByClassName('startQuiz')].forEach((button) => {
+		button.style.display='none'
+	});
 }
 remodel();
