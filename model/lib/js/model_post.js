@@ -1,5 +1,6 @@
 $(document).ready(function() 
 {
+	const topContainerHeight = document.querySelector('.top-container');
 	$(function()
 	{
 		$('.pics').on('click', function() 
@@ -23,20 +24,23 @@ $(document).ready(function()
 	//Affix Bootstrap 4
 	if ($(window).width() >= 320)
 	{
-		var elementHeight = document.querySelector('.ptop').getBoundingClientRect().height;
+		var elementHeight = document.querySelector('.ptop').offsetHeight;
+		console.log('elementHeight', elementHeight)
 		var top = $('.ptop').offset().top + elementHeight;
 		$(window).scroll(function (event)
 		{
-			var y = $(this).scrollTop();
+			var y = $(this).scrollTop() - (elementHeight / 2);
+			console.log('top', {top, y});
 			if (y >= top)
 			{
 				$('.ptop').addClass('affix');
-				$('#specificationsAccordion').addClass('bringIntoView');
+				topContainerHeight.style.height = `${607}px`;
+				// $('#specificationsAccordion').addClass('bringIntoView');
 			}
 			else
 			{
 				$('.ptop').removeClass('affix');
-				$('#specificationsAccordion').removeClass('bringIntoView');
+				// $('#specificationsAccordion').removeClass('bringIntoView');
 			}
 		});
 	}

@@ -76,7 +76,7 @@ else
 		show_vars('img_1,img_2,img_3,img_4','MODEL',$idmodel);
 		$imglist=$show_vars;
 		$js_ref_image=false;
-?> 		<div class="row ">
+?> 		<div class="row top-container">
 				<div class="col-lg-5 col-xl-5">
 		<?php	if(isset($imglist["img_1"]))
 				{ if(!$js_ref_image){ echo "<script>ref_model_image='".$web_address."res/img/models/".$imglist["img_1"]."';</script>"; $js_ref_image=true; }?>
