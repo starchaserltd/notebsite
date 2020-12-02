@@ -113,7 +113,6 @@ if($new_prices)
 		else
 		{ $tries--; }
 	}
-
 	//GETTING VAR PRICES
 	$sql_price_q="SELECT `PRICES`.*,`SELLERS`.*,`SELLERS`.`id` AS `seller_id`,`EXCH`.`sign` AS `exch_sign` FROM `notebro_buy`.`VAR_CONF_PRICES` AS `PRICES` JOIN `notebro_buy`.`SELLERS` AS `SELLERS` ON `PRICES`.`retailer`=`SELLERS`.`name` JOIN `notebro_site`.`exchrate` AS `EXCH` ON `SELLERS`.`exchrate`=`EXCH`.`id` WHERE `PRICES`.`model`='".$id_model."' AND (".$disabled_cond.") ORDER BY `PRICES`.`time` ASC";
 	$price_data_q_r=mysqli_query($con,$sql_price_q);

@@ -1984,6 +1984,18 @@ table#HEADER_table {
     content: "\f107";
 }
 
+@supports (-webkit-overflow-scrolling: touch) {
+    .compareDropdown {
+        bottom: 10px;
+        background: transparent;
+    }
+
+    .compareDropdown ul li a {
+        background: #0066cb;
+        border-radius: 10px 10px 0 0;
+    }
+}
+
 td.text-center.comparecell3 {
     width: 60px;
     margin-left: 10px;

@@ -1,6 +1,6 @@
 $(document).ready(function() 
 {
-	const topContainerHeight = document.querySelector('.top-container');
+	const topContainerElement = document.querySelector('.top-container');
 	$(function()
 	{
 		$('.pics').on('click', function() 
@@ -25,22 +25,21 @@ $(document).ready(function()
 	if ($(window).width() >= 320)
 	{
 		var elementHeight = document.querySelector('.ptop').offsetHeight;
-		console.log('elementHeight', elementHeight)
 		var top = $('.ptop').offset().top + elementHeight;
+
+
 		$(window).scroll(function (event)
 		{
 			var y = $(this).scrollTop() - (elementHeight / 2);
-			console.log('top', {top, y});
 			if (y >= top)
 			{
 				$('.ptop').addClass('affix');
-				topContainerHeight.style.height = `${607}px`;
-				// $('#specificationsAccordion').addClass('bringIntoView');
+				topContainerElement.style.height = `${607}px`;
 			}
 			else
 			{
 				$('.ptop').removeClass('affix');
-				// $('#specificationsAccordion').removeClass('bringIntoView');
+				topContainerElement.style.height = 'auto';
 			}
 		});
 	}
