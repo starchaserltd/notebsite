@@ -27,17 +27,20 @@ if(have_results($select_q_r))
 				$var_conf_enabled[$temp_row["id"]]["part_2"]=array();
 				$var_conf_enabled[$temp_row["id"]]["all_part"]=array();
 				$var_conf_enabled[$temp_row["id"]]["retailer"]=$temp_row["retailer"]; $var_conf_enabled[$temp_row["id"]]["retailer_pid"]=$temp_row["retailer_pid"]; 
-				
+
 				$comp_order_row=explode(",",$temp_row["comp_order"]);
-				$i=1;
+				$start_count=false;
 				foreach($comp_order_row as $key=>$val)
 				{
-					$var_conf_enabled[$temp_row["id"]]["all_part"][]=$val;
-					if($i==1)
-					{ $var_conf_enabled[$temp_row["id"]]["part_1"][]=$val; }
-					else
-					{ $var_conf_enabled[$temp_row["id"]]["part_2"][]=$val; }
-					$i++; 
+					if(strlen($val)>1)
+					{
+						if(strtoupper($val)=="ENABLEDBY"){ $start_count=true; continue; }					
+						$var_conf_enabled[$temp_row["id"]]["all_part"][]=$val;
+						if(!$start_count)
+						{ $var_conf_enabled[$temp_row["id"]]["part_1"][]=$val; }
+						else
+						{ $var_conf_enabled[$temp_row["id"]]["part_2"][]=$val; }
+					}
 				}
 				$var_conf_enabled[$temp_row["id"]]["all_part"]["nr"]=count($var_conf_enabled[$temp_row["id"]]["all_part"]);
 				$var_conf_enabled[$temp_row["id"]]["part_1"]["nr"]=count($var_conf_enabled[$temp_row["id"]]["part_1"]);
@@ -79,7 +82,7 @@ if(have_results($select_q_r))
 		{
 			if($disabled_data[$comp_name]!=NULL)
 			{
-				if(in_array(strval(${"id_".$comp_name}),$disabled_data[$comp]))
+				if($disabled_data[$comp] && in_array(strval(${"id_".$comp_name}),$disabled_data[$comp]))
 				{ $disb_vote++; }
 				else
 				{ $disb_vote=-99999; break; }
@@ -88,7 +91,7 @@ if(have_results($select_q_r))
 			{ $disabled_confs[$disabled_key]=["retailer"=>$disabled_data["retailer"],"retailer_pid"=>$disabled_data["retailer_pid"]]; break; }
 		}
 	}
-	
+
 	//CHECK ENABLED CONF
 	$d_enabled_confs=array();
 	foreach($var_conf_enabled as $enabled_key=>$enabled_data)
@@ -133,14 +136,14 @@ if(have_results($select_q_r))
 		unset($d_enabled_confs);
 		unset($some_data);
 	}
-	
+
 	$sql_parts=array();
 	foreach($disabled_confs as $disabled_conf)
 	{
 		if($disabled_conf["retailer_pid"]==NULL || empty($disabled_conf["retailer_pid"]) || strlen($disabled_conf["retailer_pid"])<3)
 		{ $sql_parts[]="(`retailer`!='".$disabled_conf["retailer"]."')"; }
 		else
-		{ $sql_parts[]="(`retailer`!='".$retailer."' AND `retailer_pid`!='".$disabled_conf["retailer_pid"]."')"; }
+		{ $sql_parts[]="(`retailer`!='".$disabled_conf["retailer"]."' AND `retailer_pid`!='".$disabled_conf["retailer_pid"]."')"; }
 	}
 	if(count($sql_parts)>0) { $disabled_cond=implode(" AND ",$sql_parts); }
 	unset($sql_parts);
