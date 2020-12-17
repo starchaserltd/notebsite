@@ -264,6 +264,8 @@ else
 #Rebuilding the arrayss
 $generated_buy_list=array_values($generated_buy_list); $link_list=array_values($link_list); $seller_list=array_values($seller_list);
 
+if($new_prices && count($generated_buy_list)>0) { $excluded_sellers[]="4"; }
+
 if(count($excluded_sellers)>0){ /*$excluded_sellers[]="3";*/ $excluded_sellers="AND id NOT IN (".implode(",",$excluded_sellers).")"; } else { $excluded_sellers=""; }
 
 if(($buy_regions=="3" || $org_buy_regions=="3")&&$lang!=1&&$lang!=3){$lang=1;}
@@ -272,7 +274,9 @@ else { $result=mysqli_query($con,"SELECT GROUP_CONCAT(`notebro_buy`.`SELLERS`.`i
 if(!(have_results($result))){ $result=mysqli_query($con,"SELECT GROUP_CONCAT(`notebro_buy`.`SELLERS`.`id`) AS `id` FROM `notebro_buy`.`SELLERS` WHERE `region` IN (".$buy_regions.") AND id IN (2,3,4,5,6,7,8,9,10) ".$excluded_sellers." ORDER BY `priority` DESC"); }
 if(!(have_results($result))){ $result=mysqli_query($con,"SELECT GROUP_CONCAT(`notebro_buy`.`SELLERS`.`id`) AS `id` FROM `notebro_buy`.`SELLERS` WHERE `region` IN (1,2) AND id IN (2,3,4,5,6,7,8,9,10) ".$excluded_sellers." ORDER BY `priority` DESC"); }
 $sellers=array(); if(have_results($result)){ $sellers=array_unique(explode(",",mysqli_fetch_assoc($result)["id"])); mysqli_free_result($result);}
-$_GET["model_id"]=$id_model; $_GET["seller"]=$sellers; $_GET["keys"]=0;
+
+$_GET["seller"]=NULL; if(count($sellers)==1 && isset($sellers[0]) && $sellers[0]!="") {  $_GET["seller"]=$sellers;  }
+$_GET["model_id"]=$id_model; $_GET["keys"]=0;
 include("buy_links.php");
 
 foreach($return as $el)

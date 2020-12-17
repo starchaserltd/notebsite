@@ -26,8 +26,10 @@ if($q>=0)
 		$rows[0]['msc']=str_replace(",", ", ",$rows[0]['msc']);
 		$rows[0]['ldate'] = date('F Y', strtotime($rows[0]['ldate']));
 		$rows[0]['confrate'] = round($rows[0]['rating'],3)*$cpu_i/100;
-		$rows[0]['bat']=0.5+(floatval($rows[0]['tdp'])/7);
 		if(strcasecmp($rows[0]['prod'],"INTEL")==0){$rows[0]['prod']=ucfirst(strtolower($rows[0]['prod'])); }
+		$float_tdp=floatval($rows[0]['tdp']);
+		if(stripos($rows[0]['prod'],"ARM")!==FALSE){ $float_tdp=$float_tdp/2;}
+		$rows[0]['bat']=0.5+($float_tdp/7);
 		if(!$rows[0]['msc']) { $rows[0]['msc']="N/A"; }
 		
 		switch (true)
