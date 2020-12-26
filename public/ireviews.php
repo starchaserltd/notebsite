@@ -68,7 +68,8 @@ if($ex_model_id&&!isset($_POST['model_name_ireviews']))
 <div class="col-md-6 offset-md-1">	<img src="<?php echo $web_address;?>public/lib/php/captcha.php?<?php echo mt_rand(); ?>" id="capImage"/></br><p style="font-size:10px">Can't read the image? click here to<a style="margin-left:2px;text-decoration:none" href="javascript:void(0);" onclick="javascript:$('#capImage').attr('src','<?php echo $web_address;?>public/lib/php/captcha.php?'+new Date().getTime());">refresh</a></p>Enter the code: <input name="captcha_code" type="text" value=""></div>
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align: center;"><input class="btn blue bsub" type="submit" value="Submit" id="ireviews_form_btn" name="submit" style="display:inline-block;width: 150px;color:white;" >
 </div>
-	</form>
+</form>
+
 <link rel="stylesheet" href="public/lib/css/ireviews.css" type="text/css" />
 <script>$.getScript("public/lib/js/ireviews.js");
 actbtn("USER");
