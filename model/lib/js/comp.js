@@ -114,4 +114,4 @@ addcolumn(array_var,"OS_table",'style="vertical-align:middle"');
 var array_var=["Miscellaneous"];
 addcolumn(array_var,"MSC_table",'style="vertical-align:middle"');
 
-$(document).ready(function(){ actbtn(""); });
+$(document).ready(function(){ actbtn(""); show_buy_list=1; });

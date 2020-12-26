@@ -8,6 +8,7 @@ var previousurl = "";
 var disqusloaded = 1;
 var urlold = ""; var searchurl="";
 var hh = 1;
+var show_buy_list=0;
 var ismobile = 0; var global_sort_search="value"; var global_sort_browse="value"; var pause_presearch=1; var nquiz="";
 var currentPage = window.location.href; var ref=null; var all_requests=[]; var model_label_animation=function(){}; var model_bat_animation=function(){};
 const laptop_comp_list=["cpu","display","mem","hdd","shdd","gpu","mdb","wnet","odd","sist","chassis","acum","war"];

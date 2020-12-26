@@ -141,5 +141,6 @@ async function model_execut_when_istime()
 {
     await await_until_function_1(_ => istime == 1);
 	$('#GPU').change(function() { gpu_right_align(); });
+	show_buy_list=1;	
 }
 model_execut_when_istime();

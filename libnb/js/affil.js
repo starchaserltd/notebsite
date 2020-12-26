@@ -88,17 +88,22 @@ function show_buy_dropdown(el)
 	if (storedRef) { ref = storedRef; }
 	else { ref = el.dataset.ref; }
 
-	xmlhttp.onreadystatechange = function () {
-		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			if(document.getElementById(el.dataset.target)!==null)
-			{
-				document.getElementById(el.dataset.target).innerHTML = xmlhttp.responseText;
+	if(show_buy_list == 0)
+	{ window.setTimeout(get_buy_list(document.getElementById(el.id)), 100); }
+	else
+	{
+		xmlhttp.onreadystatechange = function () {
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				if(document.getElementById(el.dataset.target)!==null)
+				{
+					document.getElementById(el.dataset.target).innerHTML = xmlhttp.responseText;
 
-				// set click listener for links to modify when its done
-				if (!ref && !getCookie('ref')) {
-					$('#' + el.dataset.target).on('click', 'a', function (event) {
-						if (!ref && !getCookie('ref')) { event.preventDefault(); var set_link = $(this).attr('href'); create_affil_modal(set_link) }
-					});
+					// set click listener for links to modify when its done
+					if (!ref && !getCookie('ref')) {
+						$('#' + el.dataset.target).on('click', 'a', function (event) {
+							if (!ref && !getCookie('ref')) { event.preventDefault(); var set_link = $(this).attr('href'); create_affil_modal(set_link) }
+						});
+					}
 				}
 			}
 		}

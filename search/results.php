@@ -8,7 +8,7 @@ $exchangelist = mysqli_fetch_all($result);
 $result = mysqli_query($GLOBALS['con'], "SELECT id,disp FROM notebro_db.REGIONS"); 
 while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 ?>
-
+<script>var show_buy_list=1;</script>
 <div class="row headerback">
 	<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style="background-color:white; font-family:arial;padding:0px">
 		<div class="row" style="margin:0;">
@@ -249,6 +249,7 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 ?>
 <script type="text/javascript"> excode='<?php echo $_SESSION['exchcode']; ?>';
 $.getScript("search/lib/js/results.js");
+var show_buy_list=1;
 <?php
 if (isset($browse_by)&&$browse_by!==0)
 { ?>
