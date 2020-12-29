@@ -1,5 +1,5 @@
 <?php
-$return=array(); $key=0;
+$return=array(); $key=0; $show_keys=0;
 if(isset($_GET["model_id"])&&isset($_GET["seller"]))
 {
 	if(isset($keys) && $keys) { require_once("../../../etc/con_db.php"); } else { }
