@@ -25,8 +25,8 @@ function showhdd($col, $tab, $id, $shdd)
 		$item['cap,type,rpm']="";
 
 		echo $item[$col];
-		echo $item['cap']." GB ("; if($item['rpm']>0) echo $item['rpm']."rpm ";
-		echo ""; echo $item['type'].")";
+		echo $item['cap']." GB - "; if($item['rpm']>0) echo $item['rpm']."rpm ";
+		echo ""; echo $item['type']."";
 	}
 	else
 	{
@@ -39,7 +39,7 @@ function showhdd($col, $tab, $id, $shdd)
 		$item2 = mysqli_fetch_array($result);
 		$item2['cap,type,rpm']="";
 		
-		echo (intval($item['cap'])+intval($item2['cap']))." GB (".$item['type']." + ".$item2['type'].")";
+		echo (intval($item['cap'])+intval($item2['cap']))." GB - ".$item['type']." + ".$item2['type']."";
 	}
 }
 
@@ -49,8 +49,8 @@ function showmem($col, $tab, $id)
 	$item = mysqli_fetch_array($result);
 	
 	echo $item['cap']." GB ";
-	echo $item['type']." (";
-	echo $item['freq']." MHz)";
+	echo $item['type']."";
+	//echo $item['freq']." MHz)";
 }
 
 function showsist($col, $tab, $id)

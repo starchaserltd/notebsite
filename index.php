@@ -8,7 +8,7 @@ require_once("etc/conf.php");
 		<title>Noteb</title>
 		<meta charset="utf-8"/>	
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="google-site-verification" content="PQ0veZ95sl3yWgW6VzZBHR_lUwq43gQdR6xkkTaxPWc" />
+		<!-- <script data-ad-client="ca-pub-6919058555572408" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
 		<meta name="description" content="Looking for a laptop? Search, Compare or even take a Quiz with Noteb.com to find the perfect laptop for your work, home or suggest one to your friends from over 6.000.000 configurations derived from over 900 models.">
 		<meta name="keywords" content="find,cheap,best,laptop,notebook,gaming,ultraportable,business">
 		<meta name="author" content="Starchaser">	

@@ -5,7 +5,7 @@ require_once("../etc/con_db.php");
 //HERE WE PROCESS THE CONFIGURATIONS FROM GET AND SESSION
 $getconfs=array();	$nrgetconfs=0;
 if(isset($_GET['ex'])){ $_SESSION['excomp']=strtoupper(mysqli_real_escape_string($con,filter_var($_GET["ex"],FILTER_SANITIZE_STRING))); }
-$addtojava="<script> show_buy_list=0; $(document).ready(function() { if(firstcompare) {";
+$addtojava="<script>show_buy_list=0; $(document).ready(function() { if(firstcompare) {";
 $_SESSION['compare_list']=array(); $_SESSION['toalert']=array();
 $cons=dbs_connect();
 for($i=0;$i<10;$i++)
