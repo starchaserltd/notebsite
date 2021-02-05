@@ -2,7 +2,7 @@ function f_sim_cpu()
 {
 	var component=[]; var range=1;
 	component.min_rating=0; component.max_rating=1000;
-	if(cpu.rating!=null&&cpu.rating!=undefined){ range=0.15; component.min_rating=noteb_round(cpu.rating*(1-range),4); component.max_rating=noteb_round(cpu.rating*(1+range+0.05),4); }
+	if(cpu.rating!=null&&cpu.rating!=undefined){ range=0.15; component.min_rating=noteb_round(cpu.rating*(1-range),4); component.max_rating=noteb_round(cpu.rating*(1+range*2+0.05),4); }
 		
 	component.min_tdp=0; component.max_tdp=999;
 	if(cpu.tdp!=null&&cpu.tdp!=undefined){ range=0.35; component.min_tdp=noteb_round(cpu.tdp*(1-range),2); component.max_tdp=noteb_round(cpu.tdp*(1+range),2); if(cpu.rating>65&&cpu.tdp>=45){component.max_tdp=component.max_tdp*2;}}
@@ -87,7 +87,7 @@ function similar_model_search()
 	var sim_exch="USD"; var sim_failer=0; var price=0; var range=0; var key=null;
 	if(model_ex!=null&&model_ex!=undefined){sim_exch=model_ex;}
 	if(document.getElementById("config_price1")!=null){price=(parseInt(document.getElementById("config_price1").innerText)+parseInt(document.getElementById("config_price2").innerText))/2;}else{sim_failer=1;}
-	if(config_batlife!=null&&config_batlife!=undefined){ var batlife=acum.cap/config_batlife; range=0.25; sim_minbat=noteb_round(batlife*(1-range),2); sim_maxbat=noteb_round(batlife*(1+range),2);}
+	if(config_batlife!=null&&config_batlife!=undefined){ var batlife=acum.cap/config_batlife; range=0.25; sim_minbat=noteb_round(batlife*(1-range),2); sim_maxbat=noteb_round(batlife*(1+range*20),2);}
 	if(document.getElementById('dLabel').dataset.buyregions!=null&&document.getElementById('dLabel').dataset.buyregions!=undefined&&document.getElementById('dLabel').dataset.buyregions!="")
 	{ var sim_regions=document.getElementById('dLabel').dataset.buyregions.split(","); }
 	else
