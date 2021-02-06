@@ -856,10 +856,13 @@ fieldset[disabled] .btn-result.active {
     line-height: 2;
 }
 
-.searchresult .buttons-area .buy:hover .resultsBuyText {
-    border-color: #fff;
-    border-radius: 4px;
-}
+@supports not (-webkit-touch-callout: none) {
+    /* CSS for other than iOS devices */ 
+    .searchresult .buttons-area .buy:hover .resultsBuyText {
+        border-color: #fff;
+        border-radius: 4px;
+    }
+  }
 
 .searchresult .buttons-area .buy {
     padding: 0;

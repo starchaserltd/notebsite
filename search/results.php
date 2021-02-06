@@ -14,7 +14,7 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 		<div class="row" style="margin:0;">
 			<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style="padding:0px"> 
 				<div class="row justify-content-center">		
-					<div class="refineResultsContainer col-md-12 col-sm-2 col-xs-12 col-lg-4 col-xl-2">
+					<div class="refineResultsContainer col-md-12 col-sm-2 col-xs-9 col-lg-4 col-xl-2">
 						<button type="button" <?php $nosearch=0; $search_ref=str_replace("/advanced_search","/adv_search",$absolute_url[0],$nosearch); if(!($nosearch)){ $search_ref=str_replace("/search.php?","/adv_search.php?",$absolute_url[0]);} $text='onmousedown="OpenPage('."'".$search_ref; foreach($sortby as $sort) {} $text.="',event)".'"'; echo $text ?> class="btn btn-primary btn-md">Refine results</button>
 					</div>
 
@@ -62,16 +62,16 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 					getdetails($rand['model']);
 					$value=array(); $m_region=""; $exchcode_model=$exchcode; $exch_model=$exch; $exchsign_model=$exchsign; if(isset($region_ex[$region_m_id])&&(!in_array($region_m_id,$search_regions_array)||($always_model_region&&$region_m_id!=1&&$region_m_id!=0))){ $exchcode_model=$region_ex[$region_m_id]; $value=$exchange_list->{"code"}->{$exchcode_model}; $exch_model=$value["convr"]; $exchsign_model=$value["sign"]; if(!isset($regions_name[$region_m_id])){$regions_name[$region_m_id]=show('disp','REGIONS',$region_m_id);} $m_region="(".$regions_name[$region_m_id].")";}else{if($region_m_id==0){$m_region="(NoAvb)";}}
 				?>
-				<div class="col-md-6 col-sm-6 col-lg-4 col-xs-12 col-xl-3" style="padding-bottom: 30px;">
+				<div class="col-md-6 col-sm-6 col-lg-4 col-xs-12 col-xl-3" style="padding-bottom: 30px;" onmousedown="OpenPage('model/model.php?conf=<?php echo $rand['id']."_".$rand['model']."&ex=".$exchcode_model;?>',event); scrolltoid('content',0);">
 					<div class="searchresult">
 						<div class="searchresult-content">
 							<div class="searchresultJPG">
-								<a onmousedown="OpenPage('model/model.php?conf=<?php echo $rand['id']."_".$rand['model']."&ex=".$exchcode_model;?>',event); scrolltoid('content',0);">
+								<a>
 									<img src="../res/img/models/thumb/<?php echo $t_img; ?>" class="img-responsive img-fluid" alt="Image for <?php echo $model; ?>">
 								</a>
 							</div>
 							<div class="searchresultitlu">
-								<a onmousedown="OpenPage('model/model.php?conf=<?php echo $rand['id']."_".$rand['model']."&ex=".$exchcode_model;?>',event);">
+								<a>
 									<p>
 										<?php
 											echo $prod." ";
@@ -84,7 +84,7 @@ while($row=mysqli_fetch_array($result)){ $regions[$row[0]]=$row[1]; }
 								</a>
 							</div>
 							<div class="searchresultdesc">
-								<a onmousedown="OpenPage('model/model.php?conf=<?php echo $rand['id']."_".$rand['model']."&ex=".$exchcode_model;?>',event);">
+								<a>
 									<ul>
 										<li class="resulspace"><?php echo show('size','DISPLAY',$rand['display'] ).'" - '.show('hres','DISPLAY',$rand['display'])."x".show('vres','DISPLAY',$rand['display'])."";?></li>
 										<li class="resulspace"><?php echo show('prod','CPU',$rand['cpu'] )." ".show('model', 'CPU',$rand['cpu'] ).""; ?></li>
