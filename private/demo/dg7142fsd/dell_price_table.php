@@ -71,7 +71,7 @@ if(isset($_GET["format"])){ $table_format=strval($_GET["format"]); }else{ $table
 if(strtotime($proc_date)<strtotime("2020-01-01")){ echo "Wrong date. Showing data for the current date.<br>"; $proc_date=date("Y-m-d"); }
 if(strtotime($proc_date)>strtotime("2050-01-01")){ echo "Wrong date. Showing data for the current date.<br>"; $proc_date=date("Y-m-d"); }
 if(isset($_GET["ref_retailer"])){ $ref_retailer=strval($_GET["ref_retailer"]); }else{ $ref_retailer=NULL; }
-$ref_retailer="cukusa";
+$ref_retailer="dellcom";
 if($ref_retailer==NULL){ echo "Reference retailer improperly set."; }
 
 
