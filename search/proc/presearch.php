@@ -80,6 +80,7 @@ foreach($comp_lists as $key=>$val)
 
 $sql_presearch.=$shdd_search_cond."((`min_price`<=".$budgetmax." AND `max_price`>=".$budgetmin.") OR `min_price`=0) AND ((`min_batlife`<=".$batlife_max." AND `max_batlife`>=".$batlife_min.") OR `min_batlife`=0) AND ((`min_cap`<=".$hdd_capmax." AND `max_cap`>=".$totalcapmin.") OR `min_cap`=0)";
 $sql_presearch=str_replace("AND () "," ",$sql_presearch);
+$sql_presearch=$sql_presearch." AND ((`max_price`-`min_price`)!=999999)";
 
 $result=mysqli_query($cons,$sql_presearch); $valid_ids=array(); $count_p_models=array(); $pre_min_bat_life=9999999;
 if($result&&mysqli_num_rows($result)>0)

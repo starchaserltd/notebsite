@@ -246,6 +246,7 @@ require_once("etc/conf.php");
 		</div>
 	</div>
 		<!-- footer-->
+		<!-- Testing for changes -->
 		<?php include ("footer/footer.php");?>
 		<!-- end footer-->
 			
