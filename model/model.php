@@ -29,7 +29,7 @@ button.close {padding:2px 7px 0px 10px!important}
 .btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {outline:none!important}
 .rating.currency select {
 	color: #fff;
-	background: var(--main-color) url("<?php echo $web_address; ?>/lib/fonts/fontawesome/svgs/solid/caret-down-white.svg") no-repeat right .75rem center;
+	background: var(--main-color) url("<?php echo $web_address; ?>lib/fonts/fontawesome/svgs/solid/caret-down.svg") no-repeat right .75rem center;
 	background-size: 12px;
 }
 </style>

@@ -584,6 +584,14 @@ div.searchresultdesc a {
     flex-wrap: wrap;
   }
 
+  @supports not (flex-wrap: wrap) {
+    div.resultsBar {
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: center;
+    }
+  }
+
   div.refineResultsContainer {
     margin-bottom: 10px;
     width: 100%;

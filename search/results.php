@@ -152,13 +152,11 @@ while ($row = mysqli_fetch_array($result)) {
 																																				echo $exchsign_model . " " . $conf_price_text; ?>
 						</div>
 
-
-						<!-- BACKUP Result actions -->
-						<!--
+						<!-- Result actions -->
 						<div class="buttons-area row justify-content-between">
 							<div class="buy btn btn-primary buyBtn col-lg-6 col-md-5 col-sm-6 col-xs-6 col-xxs-12">
 								<div class="dropdown">
-									<div id="dLabel" class="" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-ref="<?php if (isset($usertag) && $usertag != "") {
+									<div id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-ref="<?php if (isset($usertag) && $usertag != "") {
 																																																																				echo $usertag;
 																																																																			} else {
 																																																																				echo "";
@@ -175,37 +173,6 @@ while ($row = mysqli_fetch_array($result)) {
 										</li>
 									</ul>
 								</div>
-							</div>
-							<div class="btn btn-outline-primary col-xs-6 col-sm-6 col-md-7 addtocpmp col-xxs-12 col-lg-6" onclick="addcompare('<?php echo $rand['id'] . "_" . $rand['model']; ?>')">Compare</div>
-						</div>-->
-						<!-- BACKUP END Result actions -->
-
-						<!-- Result actions -->
-						<div class="buttons-area row justify-content-between">
-							<div class="buy buyBtn btn btn-primary col-lg-6 col-md-5 col-sm-6 col-xs-6 col-xxs-12">
-								<div class="dropdown">
-
-									<div id="dLabel" class="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-ref="<?php if (isset($usertag) && $usertag != "") {
-																																																																				echo $usertag;
-																																																																			} else {
-																																																																				echo "";
-																																																																			} ?>" data-target="buylist-<?php echo $i; ?>" data-price="<?php echo $conf_price; ?>" data-mprod="<?php echo $prod; ?>" data-idmodel="<?php echo $rand['model']; ?>" data-buyregions="<?php echo $region_m_id; ?>" data-pmodel="<?php echo $p_model; ?>" data-lang="<?php echo $exch_id; ?>" <?php foreach ($laptop_comp_list as $comp) {
-																																																																																																																																																																																																																			echo " data-id" . $comp . "=" . '"' . $rand[$comp] . '"';
-																																																																																																																																																																																																																		} ?> onclick="get_buy_list(this);">
-										<!-- <span class="fas fa-shopping-cart"></span> -->
-										<span class="resultsBuyText">Buy</span>
-										<span class="caret"></span>
-									</div>
-
-									<ul class="dropdown-menu" aria-labelledby="dLabel" id="buylist-<?php echo $i;
-																																									$i++; ?>">
-										<li class="loaderContainer">
-											<span class="loader"></span>
-										</li>
-										
-									</ul>
-									
-								</div><!-- Dropdown end div-->
 							</div>
 							<div class="btn btn-outline-primary col-xs-6 col-sm-6 col-md-7 addtocpmp col-xxs-12 col-lg-6" onclick="addcompare('<?php echo $rand['id'] . "_" . $rand['model']; ?>')">Compare</div>
 						</div>
@@ -287,9 +254,10 @@ while ($row = mysqli_fetch_array($result)) {
 <?php
 				mysqli_close($cons);
 			} else {
-				echo "</div></div>";
+				echo "</div>";
 ?>
-	<div class="col-md-8 col-md-offset-2 " style="border:1px solid #ddd; background-color:#f6f6f6; border-radius:5px;margin-top:20px; text-align:center; font-weight:bold;padding:10px;">
+	<div class="match-info">
+		<div class="match-info__container">
 		<?php
 				if ($presearch_models_nr > 0) {
 
@@ -421,6 +389,7 @@ while ($row = mysqli_fetch_array($result)) {
 				}
 
 		?>
+		</div>
 	</div>
 <?php
 			}

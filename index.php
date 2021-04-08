@@ -21,7 +21,7 @@ require_once("etc/conf.php");
 		<script src="lib/js/select2.min.js"></script>
 		<script src="lib/js/classList.min.js"></script>
 		<!-- Bootstrap Mutliselect JavaScript -->
-		<script src="lib/js/bootstrap-multiselect.js"></script>
+		<script src="lib/js/bootstrap-multiselect.min.js"></script>
 		<script src="lib/js/nouislider.min.js"></script>
 		<!-- Lightbox js -->
 		<script src="lib/js/lightbox.min.js"></script> 
@@ -43,9 +43,11 @@ require_once("etc/conf.php");
 							<!-- <a class="btn btn-sus blue menuItems" onmousedown="OpenPage('search/adv_search.php',event);">Search</a> -->
 							<div class="col-md-12 col-xs-12 cod-sm-12 col-lg-12 searchDetailsFirstContainer">
 								<i class="fas fa-search d-lg-none d-sm-inline-block d-md-none d-inline-block searcButtonMobile"></i>			
-								<form action="javascript:void(0);" method="post" id="modelfind" style="text-align: -webkit-center;" class="d-lg-block d-sm-none d-md-block d-none">		
-									<a class="" style="cursor: pointer;" onmousedown="OpenPage('search/adv_search.php',event); scrolltoid('content',1);"><img class="controlSvg" src="../res/img/controls.svg" alt="Adv search ctrl"></a>
-									<select class="modelsearch js-example-responsive" id="model_id" name ="model_id" data-placeholder="Search a laptop model" data-initvalue="search for a model" style="width: 100%; margin:5px 0px 10px 0px; border-radius:1px;"> 
+								<form action="javascript:void(0);" method="post" id="modelfind" class="d-lg-block d-sm-none d-md-block d-none">		
+									<a class="" style="cursor: pointer;" onmousedown="OpenPage('search/adv_search.php',event); scrolltoid('content',1);">
+										<img class="controlSvg" src="../res/img/controls.svg" alt="Adv search ctrl">
+									</a>
+									<select class="modelsearch js-example-responsive" id="model_id" name="model_id" data-placeholder="Search a laptop model" data-initvalue="search for a model" style="width: 100%; margin:5px 0px 10px 0px; border-radius:1px;"> 
 									</select>
 								</form>
 							</div>
@@ -246,14 +248,13 @@ require_once("etc/conf.php");
 		</div>
 	</div>
 		<!-- footer-->
-		<!-- Testing for changes -->
 		<?php include ("footer/footer.php");?>
 		<!-- end footer-->
 			
 		<!-- CSS FOR INDEX -->
 		<link rel="stylesheet" href="lib/fonts/fontawesome/css/all.min.css" crossorigin="anonymous">
 		<link rel="stylesheet" href="lib/css/select2.min.css" type="text/css" /> 
-		<link rel="stylesheet" href="lib/css/bootstrap-multiselect.css" type="text/css" />
+		<link rel="stylesheet" href="lib/css/bootstrap-multiselect.min.css" type="text/css" />
 		<!-- for multiselect forms --> 
 		<link rel="stylesheet" href="lib/css/extra-fonts.css" type="text/css" />
 		<!-- menu fonts -->
@@ -267,8 +268,8 @@ require_once("etc/conf.php");
 		<!--Lightbox css	-->
 		<link rel="stylesheet" href="lib/css/lightbox.min.css" type="text/css"/>
 		<!--SLick slider css	-->
-		<link rel="stylesheet" href="lib/css/slick.css" type="text/css" />
-		<link rel="stylesheet" href="lib/css/slick-theme.css" type="text/css" />
+		<link rel="stylesheet" href="lib/css/slick.min.css" type="text/css" />
+		<link rel="stylesheet" href="lib/css/slick-theme.min.css" type="text/css" />
 		<!--custom css	-->
 		<link rel="stylesheet" href="libnb/css/nb.css" type="text/css" />
 		<!-- Custom Theme JavaScript -->
