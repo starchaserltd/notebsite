@@ -2,56 +2,74 @@
 /* HERE WE GENERATE THE ACTUAL COMPARE INFORMATION USING JAVASCRIPT */
 header('Content-Type: application/javascript');
 
-require_once("../../../etc/session.php"); 
+require_once("../../../etc/session.php");
 require_once("../../../etc/conf.php");
 require_once("../../../etc/con_db.php");
 require_once("../../../etc/con_sdb.php");
 require_once("../php/gencompfunc.php");
-$buy_regions=array();
-if(isset($_SESSION['excomp']))
+$buy_regions = array();
+if (isset($_SESSION['excomp']))
 {
-	$exchcode=$_SESSION['excomp']; $_SESSION['exchcode']=$exchcode;
-	$query=mysqli_query($con,"SELECT * FROM notebro_site.exchrate");
+	$exchcode = $_SESSION['excomp'];
+	$_SESSION['exchcode'] = $exchcode;
+	$query = mysqli_query($con, "SELECT * FROM notebro_site.exchrate");
 
-	while($row=mysqli_fetch_assoc($query))
+	while ($row = mysqli_fetch_assoc($query))
 	{
-		$buy_regions=array_merge($buy_regions,explode(",",$row["regions"]));
-		if($row["code"]==$exchcode)
+		$buy_regions = array_merge($buy_regions, explode(",", $row["regions"]));
+		if ($row["code"] == $exchcode)
 		{
-			$buy_regions=$row["regions"];
-			$lang=$row["id"]; $_SESSION['lang']=$lang;
-			$exch=floatval($row["convr"]); $_SESSION['exch']=$exch;
-			$exchsign=$row["sign"]; $_SESSION['exchsign']=$exchsign;
+			$buy_regions = $row["regions"];
+			$lang = $row["id"];
+			$_SESSION['lang'] = $lang;
+			$exch = floatval($row["convr"]);
+			$_SESSION['exch'] = $exch;
+			$exchsign = $row["sign"];
+			$_SESSION['exchsign'] = $exchsign;
 			break;
 		}
 	}
-	
-	if(!isset($exch))
-	{
-		$lang=0; $exchcode="USD"; $exchsign="$"; $exch=1; $buy_regions=implode(",",array_unique($buy_regions));
-		$_SESSION['lang']=$lang;  $_SESSION['exch']=$exch; $_SESSION['exchsign']=$exchsign; $_SESSION['exchcode']=$exchcode;
-	}
-}
-else 
-{ 
-	$query=mysqli_query($con,"SELECT GROUP_CONCAT(regions) as regions FROM notebro_site.exchrate LIMIT 1");
-	$row=mysqli_fetch_assoc($query); $buy_regions=implode(",",array_unique(explode($row["regions"])));
-	if(isset($_SESSION['lang'])) { $lang=$_SESSION['lang']; } else { $lang=0; }
-	if(isset($_SESSION['exchcode'])){ $exchcode=$_SESSION['exchcode']; } else {$exchcode="USD";} 
-	if(isset($_SESSION['exchsign'])){ $exchsign=$_SESSION['exchsign']; } else {$exchsign="$";} 
-	if(isset($_SESSION['exch'])){ $exch=$_SESSION['exch']; } else { $exch=1; }
-} 
 
-$delshdd=1; $delodd=1; $maxminvalues=(object)[]; $delmsc=1;
-$nrconf= $_SESSION['java_nrconf']; $nrgetconfs=$_SESSION['java_nrgetconfs']; $getconfs=$_SESSION['java_getconfs']; $session_idconf=$_SESSION['java_session_idconf'];
-if($nrgetconfs>0) { $nrconf=$nrgetconfs-1; }
-for($x = 0; $x <= $nrconf; $x++) 
+	if (!isset($exch))
+	{
+		$lang = 0;
+		$exchcode = "USD";
+		$exchsign = "$";
+		$exch = 1;
+		$buy_regions = implode(",", array_unique($buy_regions));
+		$_SESSION['lang'] = $lang;
+		$_SESSION['exch'] = $exch;
+		$_SESSION['exchsign'] = $exchsign;
+		$_SESSION['exchcode'] = $exchcode;
+	}
+} 
+else
 {
-	if($nrgetconfs>0) { $confid=$getconfs[$x]; }
-	else { $confid = $_SESSION['conf'.$session_idconf[$x]]['id']; }
+	$query = mysqli_query($con, "SELECT GROUP_CONCAT(regions) as regions FROM notebro_site.exchrate LIMIT 1");
+	$row = mysqli_fetch_assoc($query);
+	$buy_regions = implode(",", array_unique(explode($row["regions"])));
+	if (isset($_SESSION['lang'])){ $lang = $_SESSION['lang']; } else { $lang = 0; }
+	if (isset($_SESSION['exchcode'])) { $exchcode = $_SESSION['exchcode']; } else { $exchcode = "USD"; }
+	if (isset($_SESSION['exchsign'])) {	$exchsign = $_SESSION['exchsign']; } else { $exchsign = "$"; }
+	if (isset($_SESSION['exch'])) {	$exch = $_SESSION['exch']; } else { $exch = 1; }
+}
+
+$delshdd = 1;
+$delodd = 1;
+$delmsc = 1;
+$nrconf = $_SESSION['java_nrconf'];
+$nrgetconfs = $_SESSION['java_nrgetconfs'];
+$getconfs = $_SESSION['java_getconfs'];
+$session_idconf = $_SESSION['java_session_idconf'];
+if ($nrgetconfs > 0) {$nrconf = $nrgetconfs - 1; }
+
+for ($x = 0; $x <= $nrconf; $x++)
+{
+	if ($nrgetconfs > 0) { $confid = $getconfs[$x]; } else { $confid = $_SESSION['conf'.$session_idconf[$x]]['id']; }
+
 	$row = $_SESSION['compare_list'][$confid];
 	$conf_model = trim($row['model']);
-	$cpu_conf_cpu= trim($row['cpu']);
+	$cpu_conf_cpu = trim($row['cpu']);
 	$display_conf_display = trim($row['display']);
 	$gpu_conf_gpu = trim($row['gpu']);
 	$hdd_conf_hdd = trim($row['hdd']);
@@ -70,378 +88,332 @@ for($x = 0; $x <= $nrconf; $x++)
 	$batlife_conf_batlife = floatval($row['batlife']);
 ?>
 	<!-- HEADER CSS -->
-<?php 
-	show('notebro_db.MODEL model JOIN notebro_db.FAMILIES families on model.idfam=families.id',$conf_model ); 
-	preg_match('/(.*)\.(jpg|png)/', $resu["img_1"],$img);
-	$img=$img[1]; $resu['mdbname']="";
-	$maxminvalues=bluered($rate_conf_rate,$maxminvalues,$x,"rating",0);
-	$maxminvalues=bluered($price_conf_price,$maxminvalues,$x,"price",1);
-	$maxminvalues=bluered($batlife_conf_batlife,$maxminvalues,$x,"batlife",0); 
-	$model_title='<a href="javascript:void(0)" onmousedown="OpenPage('."\'model/model.php?conf=".$confid."\'".',event)"><span class="tbltitle">'.$resu['prod']." ".$resu['fam']." ".$resu['model']."".$resu['submodel'].$resu['mdbname']." ".$resu['region'].'</span></a>'; $model_msc=$resu['msc'];
-	$buytext='<div class="buy resultsShopBtn"><div class="dropdown"><button id="dLabel" class="btn buyBtn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-ref="';
-	if(isset($_SESSION['java_usertag'])&&$_SESSION['java_usertag']!=""){ $buytext=$buytext.$_SESSION['java_usertag']; } else { $buytext=$buytext.'';}
-	 $conf_data=""; foreach($laptop_comp_list as $comp){ $conf_data=$conf_data.' data-id'.$comp.'="'.${$comp."_conf_".$comp}.'"'; }
-	$buytext=$buytext.'" data-target="buylist-'.$x.'" data-idmodel="'.$conf_model.'" data-buyregions="'.$buy_regions.'" data-lang="'.$lang.'"'.$conf_data.' data-mprod="'.$resu['prod'].'"'.' data-pmodel="'.$resu["p_model"].'" onclick="get_buy_list(this);"><i class="fas fa-shopping-cart"></i><i class="fas fa-caret-down"></i></button><ul class="dropdown-menu" aria-labelledby="dLabel" id="buylist-'.$x.'"><li class="loaderContainer"><span class="loader"></span></li></ul></div></div>';
-	$vars=array(
-		'<a style="align-items:center; margin:0 auto" href="javascript:void(0)" onmousedown="OpenPage('."\'model/model.php?conf=".$confid."\'".',event)"><img src="res/img/models/thumb/t_'.$img.'.jpg" class="img-responsive img-fluid comparejpg" alt="Image for '.$resu['model'].'"></a>',
-		$model_title,
-		'<span class="col-sm-12 col-md-12 col-xs-12 col-lg-12 nopding"><span style="color:black; font-weight:bold;">Rating: </span><br class="brk"><span id="rating'.$x.'">'.round($rate_conf_rate/100,1)." / 100</span></span>",
-		'<span class="col-sm-12 col-md-12 col-xs-12 col-lg-12 nopding" style="color:black;"><span style="color:black; font-weight:bold;">Price: </span><br class="brk"><span id="price'.$x.'">'.$exchsign." ".round(($price_conf_price-$err_conf_err/2)*$exch,0)." - ".round(($price_conf_price+$err_conf_err/2)*$exch,0)."</span></span>",
-		'<span class="col-sm-12 col-md-12 col-xs-12 col-lg-12 nopding" style="color:black;"><span style="color:black; font-weight:bold;">Battery:  </span><br class="brk"><span id="batlife'.$x.'">'.round(($batlife_conf_batlife*0.95),1)." - ".round(($batlife_conf_batlife*1.02),1)." h</span></span>",
-		'<button style="padding:2px 0px" class="addtocpmp" onclick="removecomp('."-+-".$confid ."-+-".',1)"><a>Remove</a></button>'.$buytext
-	);
+	var comp_conf_to_gen=<?php echo $x ?>;
+	if(array_var_new==null || comp_conf_to_gen==0){ var array_var_new={}; }
+	array_var_new[comp_conf_to_gen]={};
+	array_var_new[comp_conf_to_gen]["INFO"]={};
+	array_var_new[comp_conf_to_gen]["MODEL"]={};
+	<?php
+	show('notebro_db.MODEL model JOIN notebro_db.FAMILIES families on model.idfam=families.id', $conf_model);
+	preg_match('/(.*)\.(jpg|png)/', $resu["img_1"], $img);
+	$img = $img[1];
+	$resu['mdbname'] = "";
+	?>
+	array_var_new[comp_conf_to_gen]["INFO"]["CONF_ID"]='<?php echo $confid ?>';
+	<?php
+	$model_comp_name = $resu['prod'] . " " . $resu['fam'] . " " . $resu['model'] . "" . $resu['submodel'] . $resu['mdbname'] . " " . $resu['region'];
+	$model_msc = $resu['msc'];
+	$ref_tag = "";
+	$conf_data="";
+	$conf_data='data-idmodel="'.$conf_model.'"';
+	foreach ($laptop_comp_list as $comp) { $conf_data=$conf_data.' data-id'.$comp.'="'.${$comp."_conf_".$comp}.'"'; }
+	?>
+	array_var_new[comp_conf_to_gen]["MODEL"]["COMP_NAME"]='<?php echo $model_comp_name; ?>';
+	array_var_new[comp_conf_to_gen]["MODEL"]["SIMPLE_NAME"]='<?php echo $resu['prod'] . " " . $resu['fam'] . " " . $resu['model']; ?>';
+	array_var_new[comp_conf_to_gen]["MODEL"]["MSC_INFO"]='<?php echo $model_msc; ?>';
+	array_var_new[comp_conf_to_gen]["MODEL"]["IMG"]='<?php echo $img; ?>';
+	array_var_new[comp_conf_to_gen]["MODEL"]["ID"]='<?php echo $conf_model; ?>';
+	array_var_new[comp_conf_to_gen]["MODEL"]["BUY"]={};
+	array_var_new[comp_conf_to_gen]["MODEL"]["BUY"]["buyregions"]='<?php echo $buy_regions; ?>';
+	array_var_new[comp_conf_to_gen]["MODEL"]["BUY"]["lang"]='<?php echo $lang; ?>';
+	array_var_new[comp_conf_to_gen]["MODEL"]["BUY"]["conf_data"]='<?php echo $conf_data; ?>';
+	array_var_new[comp_conf_to_gen]["MODEL"]["BUY"]["mprod"]='<?php echo $resu['prod']; ?>';
+	array_var_new[comp_conf_to_gen]["MODEL"]["BUY"]["pmodel"]='<?php echo $resu["p_model"]; ?>';
+	array_var_new[comp_conf_to_gen]["MODEL"]["BUY"]["ref"]='<?php echo $ref_tag; ?>';
+	array_var_new[comp_conf_to_gen]["MODEL"]["PRICE_MIN"]='<?php echo round(($price_conf_price - $err_conf_err / 2) * $exch, 0); ?>';
+	array_var_new[comp_conf_to_gen]["MODEL"]["PRICE_MAX"]='<?php echo round(($price_conf_price + $err_conf_err / 2) * $exch, 0); ?>';
+	array_var_new[comp_conf_to_gen]["MODEL"]["BATLIFE"]='<?php echo $batlife_conf_batlife; ?>';
+	array_var_new[comp_conf_to_gen]["MODEL"]["RATING"]='<?php echo round($rate_conf_rate / 100, 1); ?>';
+	array_var_new[comp_conf_to_gen]["MODEL"]["EXCH_SIGN"]='<?php echo $exchsign; ?>';
 
-	$danvar=implode("','",$vars);
-	$danvar="'".$danvar."'"; if($x==0){ echo 'document.title="Noteb - ";' ; }
-?>
-	var array_var=[<?php echo $danvar; ?>];
-	document.title = document.title + <?php if($x>0) { echo "' vs '";} else { echo "' '"; } ?> + '<?php echo $resu['prod']." ".$resu['fam']." ".$resu['model']; ?> '; excode='<?php echo  $exchcode ?>';
-	addcolumn(<?php echo "['".$model_title."']"; ?>,"title_MODEL",'style="border-top: 0px;"');
-	addcolumn(array_var,"HEADER_table",""); 
-	<!-- CPU -->
-<?php 
-	show('CPU',$cpu_conf_cpu);
-	$maxminvalues=bluered(floatval($resu['rating']),$maxminvalues,$x,"cpurating",0);
-	$vars=array(
-		$resu['prod']." ".$resu['model'],
-		$resu['ldate'],
-		$resu['socket'],
-		$resu['tech']." nm",
-		$resu['cache']." MB",
-		number_format(round($resu['clocks'],2),2)." GHz",
-		number_format(round($resu['maxtf'],2),2)." GHz",
-		$resu['cores'],
-		$resu['tdp']." W",
-		$resu['msc'],
-		$resu['class'],
-		'<span id="cpurating'.$x.'">'.$resu['rating'].'</span>',
-	);
-		 
-	$danvar=implode("','",$vars);
-	$danvar="'".$danvar."'";
-?>
-	var array_var=[<?php echo $danvar; ?>];
-	addcolumn(array_var,"CPU_table",""); 
-	<!-- GPU -->
-<?php
-	show('GPU',$gpu_conf_gpu);
-	$maxminvalues=bluered(floatval($resu['rating']),$maxminvalues,$x,"gpurating",0);
-	if(intval($resu['power'])!=0){$resu['power'].=" W";}
-	$vars=array(
-		$resu['prod']." ".$resu['name'],
-		$resu['arch'],
-		$resu['tech']." nm",
-		$resu['pipe'],
-		$resu['cspeed']." MHz",
-		$resu['shader'],
-		$resu['mspeed']." MHz",
-		$resu['mbw']." bit",
-		$resu['maxmem']." MB ".$resu["mtype"],
-		$resu['sharem'],
-		$resu['power'],
-		$resu['msc'],
-		$resu['gpuclass'],
-		'<span id="gpurating'.$x.'">'.$resu['rating'].'</span>',
-	);
-		 
-	$danvar=implode("','",$vars);
-	$danvar="'".$danvar."'";
-?>
-	var array_var=[<?php echo $danvar; ?>];
-	addcolumn(array_var,"GPU_table",""); 
-	<!-- Display -->
-<?php
-	show('DISPLAY',$display_conf_display);
-	$maxminvalues=bluered(floatval($resu['hres'])*floatval($resu['vres']),$maxminvalues,$x,"resol",0);
-	$addblue=""; if($resu['touch']=="YES") { $addblue='class="labelblue-s"'; }
-	$vars=array(
-		// $resu['model'],
-		$resu['size'].' "',
-		$resu['format'],
-		'<span id="resol'.$x.'">'.$resu['hres']."x".$resu['vres'].'</span>',
-		$resu['surft'],
-		$resu['backt'],
-		'<span id="touch'.$x.'" '.$addblue.' >'.$resu['touch'].'</span>',
-		$resu['msc'],
-		// $resu['rating'],
-	);
+	<?php
 	
-	$danvar=implode("','",$vars);
-	$danvar="'".$danvar."'";
-?>
-	var array_var=[<?php echo $danvar; ?>];
-	addcolumn(array_var,"DISPLAY_table",""); 
-	<!-- Storage -->
-<?php 
-	show('HDD',$hdd_conf_hdd);
-	$maxminvalues=bluered(floatval($resu['rating']),$maxminvalues,$x,"storcap",0);
-//	$maxminvalues=bluered(floatval($resu['readspeed']),$maxminvalues,$x,"storspeed",0);
-	if(!$resu['msc']){$resu['msc']="-";}
-	$vars=array(
-		// $resu['model'],
-		'<span id="storcap'.$x.'">'.$resu['cap']." GB".'</span>',
-		$resu['rpm'],
-		$resu['type'],
-		'<span id="storspeed'.$x.'">'.$resu['readspeed']." MB/s".'</span>',
-		$resu['writes']." MB/s",
-		$resu['msc'],
-	);
-		 
-	$danvar=implode("','",$vars);
-	$danvar="'".$danvar."'";
-?>
-	var array_var=[<?php echo $danvar; ?>];
-	addcolumn(array_var,"STORAGE_table",""); 
-	<!-- Secondary Storage -->
-<?php
-	show('HDD',$shdd_conf_shdd);
-	if (!($shdd_conf_shdd == "0" || $shdd_conf_shdd ==""))
+	if (!function_exists("gen_js_object"))
 	{
-		$maxminvalues=bluered(floatval($resu['cap']),$maxminvalues,$x,"storcap2",0);
-		$delshdd=0;
-		$vars=array(
-			'<span id="storcap2'.$x.'">'.$resu['cap']." GB".'</span>',
-			$resu['rpm'],
-			$resu['type'],
-			$resu['readspeed']." MB/s",
-			$resu['writes']." MB/s",
-		);
+
+		function gen_js_object($array)
+		{
+			$object = "{";
+			$object_parts = array();
+			foreach ($array as $key => $val) {
+				$val = str_replace('"', '\"', $val);
+				$object_parts[] = $key . ':' . '"' . $val . '"';
+			}
+			$object_parts[] = "tags" . ':' . '[]';
+			$object .= implode(",", $object_parts);
+			$object .= "}";
+			return $object;
+		}
+	}
+	
+	if ($x == 0) {
+		echo 'document.title="Noteb - ";';
+	}
+	?>
+	document.title = document.title +
+	<?php
+	
+	if ($x > 0) {
+		echo "' vs '";
+	} else {
+		echo "' '";
+	} ?> + '<?php echo $resu['prod'] . " " . $resu['fam'] . " " . $resu['model']; ?> '; excode='<?php echo  $exchcode ?>';
+	
+
+	<!-- CPU -->
+	<?php
+	$new_to_add = NULL;
+	show('CPU', $cpu_conf_cpu);
+
+	$resu['model'] = $resu['prod'] . " " . $resu['model'];
+	$resu['clocks'] = number_format(round($resu['clocks'], 2), 2) . " GHz";
+	$resu['maxtf'] = number_format(round($resu['maxtf'], 2), 2) . " GHz";
+	$resu['tech'] = $resu['tech'] . " nm";
+	$resu['cache'] = $resu['cache'] . " MB";
+	$resu['tdp'] = $resu['tdp'] . " W";
+
+	$new_to_add = gen_js_object($resu);
+
+	?>
+	array_var_new[comp_conf_to_gen]["CPU"]=<?php echo $new_to_add ?>;
+	proc_min_max_val("CPU","rating",array_var_new[comp_conf_to_gen]["CPU"]["rating"],0);
+	<!-- addcolumn(array_var,"CPU_table",""); -->
+	<!-- GPU -->
+	<?php
+	$new_to_add = NULL;
+	show('GPU', $gpu_conf_gpu);
+	
+	if(intval($resu['power'])!=0) { $resu['power'].=" W"; }
+
+	$resu['model'] = $resu['prod']." ".$resu['name'];
+	$resu['tech'] = $resu['tech']." nm";
+	$resu['cspeed'] = $resu['cspeed']." MHz";
+	$resu['mspeed'] = $resu['mspeed']." MHz";
+	$resu['mbw'] = $resu['mbw']." bit";
+	$resu['vmem'] = $resu['maxmem']." MB ".$resu["mtype"];
+
+	$new_to_add = gen_js_object($resu);
+	?>
+	array_var_new[comp_conf_to_gen]["GPU"]=<?php echo $new_to_add ?>;
+	proc_min_max_val("GPU","rating",array_var_new[comp_conf_to_gen]["GPU"]["rating"],0);
+	<!-- addcolumn(array_var,"GPU_table",""); -->
+	<!-- Display -->
+	<?php
+	$new_to_add = NULL;
+	show('DISPLAY', $display_conf_display);
+	$addblue = ""; if ($resu['touch'] == "YES") { $addblue = 'class="labelblue-s"'; }
+
+	$resu['dcip3'] = $resu['dci-p3'];
+	unset($resu['dci-p3']);
+	$resu['size'] = $resu['size'] . ' "';
+	$resu['resolution'] = $resu['hres'] . "x" . $resu['vres'];
+	$resu["touch_addblue"] = $addblue;
+
+	$new_to_add = gen_js_object($resu);
+	?>
+	array_var_new[comp_conf_to_gen]["DISPLAY"]=<?php echo $new_to_add ?>;
+	<!-- addcolumn(array_var,"DISPLAY_table",""); -->
+	<!-- Storage -->
+	<?php
+	$new_to_add = NULL;
+	show('HDD', $hdd_conf_hdd);
+	if (!$resu['msc']) { $resu['msc'] = "-"; }
+
+	$resu['cap'] = $resu['cap']." GB";
+	$resu['readspeed'] = $resu['readspeed']." MB/s";
+	$resu['writes'] = $resu['writes']." MB/s";
+
+	$new_to_add = gen_js_object($resu);
+	?>
+	array_var_new[comp_conf_to_gen]["STORAGE"]=<?php echo $new_to_add ?>;
+	<!-- addcolumn(array_var,"STORAGE_table",""); -->
+	<!-- Secondary Storage -->
+	<?php
+	$new_to_add = NULL;
+	show('HDD', $shdd_conf_shdd);
+	$resu['cap'] = "-";
+	$resu['rpm'] = "-";
+	$resu['type'] = "-";
+	$resu['readspeed'] = "-";
+	$resu['writes'] = "-";
+
+	if (!($shdd_conf_shdd == "0" || $shdd_conf_shdd == ""))
+	{
+		$delshdd = 0;
+
+		$resu['cap'] = $resu['cap']." GB";
+		$resu['readspeed'] = $resu['readspeed']." MB/s";
+		$resu['writes'] = $resu['writes']." MB/s";
 	}
 	else
-	{
-		$vars=array(
-			"-",
-			"-",
-			"-",
-			"-",
-			"-",
-		);
-	}
-	$danvar=implode("','",$vars);
-	$danvar="'".$danvar."'";
-?>
-	var array_var=[<?php echo $danvar; ?>];
-	addcolumn(array_var,"SSTORAGE_table",""); 
-	<!-- Motherboard -->	
-<?php
-	show('MDB',$mdb_conf_mdb);
-	$vars=array(
-		//	$resu['model'],
-		$resu['ram'],
-		$resu['chipset'],
-		$resu['interface'],
-		$resu['netw'],
-		$resu['hdd'],
-		$resu['msc'],
-	);
-		 
-	$danvar=implode("','",$vars);
-	$danvar="'".$danvar."'";
-?>
-	var array_var=[<?php echo $danvar; ?>];
-	addcolumn(array_var,"MDB_table",""); 
+	{	}
+	$new_to_add = gen_js_object($resu);
+	?>
+	array_var_new[comp_conf_to_gen]["SSTORAGE"]=<?php echo $new_to_add ?>;
+	<!-- addcolumn(array_var,"SSTORAGE_table",""); -->
+	<!-- Motherboard -->
+	<?php
+	$new_to_add = NULL;
+	show('MDB', $mdb_conf_mdb);
+
+	$new_to_add = gen_js_object($resu);
+	?>
+	array_var_new[comp_conf_to_gen]["MDB"]=<?php echo $new_to_add ?>;
+	<!-- addcolumn(array_var,"MDB_table",""); -->
+
 	<!-- Memory -->
-<?php
-	show('MEM',$mem_conf_mem);
-	$maxminvalues=bluered(floatval($resu['cap']),$maxminvalues,$x,"memcap",0);
-	$vars=array(
-		'<span id="memcap'.$x.'">'.$resu['cap']." GB".'</span>',
-		$resu['stan'],
-		$resu['type']." MHz",
-		$resu['lat'],
-		$resu['msc'],
-	);
-		 
-	$danvar=implode("','",$vars);
-	$danvar="'".$danvar."'";
-?>
-	var array_var=[<?php echo $danvar; ?>];
-	addcolumn(array_var,"MEM_table",""); 
+	<?php
+	$new_to_add = NULL;
+	show('MEM', $mem_conf_mem);
+
+	$resu['cap'] = $resu['cap'] . " GB";
+	$resu['type'] = $resu['type'] . " MHz";
+
+	$new_to_add = gen_js_object($resu);
+	?>
+	array_var_new[comp_conf_to_gen]["MEM"]=<?php echo $new_to_add ?>;
+	<!-- addcolumn(array_var,"MEM_table",""); -->
 	<!--ODD-->
-<?php
-	show('ODD',$odd_conf_odd);
-	if($resu['type']!="-") { $delodd=0;}
-	$vars=array(
-		$resu['type'],
-		$resu['speed'],
-		$resu['msc'],
-	);
-		 
-	$danvar=implode("','",$vars);
-	$danvar="'".$danvar."'";
-?>
-	var array_var=[<?php echo $danvar; ?>];
-	addcolumn(array_var,"ODD_table",""); 
+	<?php
+	$new_to_add = NULL;
+	show('ODD', $odd_conf_odd);
+	if ($resu['type'] != "-") {	$delodd = 0; }
+
+	$new_to_add = gen_js_object($resu);
+	?>
+	array_var_new[comp_conf_to_gen]["ODD"]=<?php echo $new_to_add ?>;
+	<!-- addcolumn(array_var,"ODD_table",""); -->
 	<!--Acumulator-->
-<?php
-	show('ACUM',$acum_conf_acum);
-	$vars=array(
-		$resu['cap']." Whr",
-		$resu['tipc'],
-		$resu['weight'],
-		$resu['msc'],
-	);
-		 
-	$danvar=implode("','",$vars);
-	$danvar="'".$danvar."'";
-?>
-	var array_var=[<?php echo $danvar; ?>];
-	addcolumn(array_var,"ACUM_table",""); 
+	<?php
+	$new_to_add = NULL;
+	show('ACUM', $acum_conf_acum);
+
+	$resu['cap'] = $resu['cap'] . " Whr";
+
+	$new_to_add = gen_js_object($resu);
+	?>
+	array_var_new[comp_conf_to_gen]["ACUM"]=<?php echo $new_to_add ?>;
+	<!-- addcolumn(array_var,"ACUM_table",""); -->
 	<!--Chassis-->
-<?php
-	show('CHASSIS',$chassis_conf_chassis);
-	$maxminvalues=bluered(floatval($resu['weight']),$maxminvalues,$x,"weight",1);
-	if(floatval($resu['web'])>0.05){$resu['web'].=" MP";}
-	$vars=array(
-		'<span style="margin: 0px 0px 8px 8px;">'.$resu['pi'].'</span>',
-		$resu['vi'],
-		$resu['web'],
-		$resu['touch'],
-		$resu['keyboard'],
-		$resu['charger'],
-		'<span id="weight'.$x.'">'.$resu['weight'].'</span>',
-		$resu['thic'],
-		$resu['depth'],
-		$resu['width'],
-		$resu['color'],
-		$resu['made'],
-		$resu['msc'],
-	);
-		 
-	$danvar=implode("','",$vars);
-	$danvar="'".$danvar."'";
-?>
-	var array_var=[<?php echo $danvar; ?>];
-	addcolumn(array_var,"CHASSIS_table",""); 
-	<!--Wnet-->		
-<?php
-	show('WNET',$wnet_conf_wnet);
-	if(intval($resu['speed'])>0){$resu['speed'].=" Mbps";} else { $resu['speed']="-";}
-	$vars=array(
-		$resu['model'],
-		$resu['slot'],
-		$resu['speed'],
-		$resu['stand'],
-		$resu['msc'],
-	);
-	 
-	$danvar=implode("','",$vars);
-	$danvar="'".$danvar."'";
-?>
-	var array_var=[<?php echo $danvar; ?>];
-	addcolumn(array_var,"WNET_table",""); 
+	<?php
+	$new_to_add = NULL;
+	show('CHASSIS', $chassis_conf_chassis);
+	if (floatval($resu['web']) > 0.05) { $resu['web'] .= " MP"; }
+
+	$new_to_add = gen_js_object($resu);
+	?>
+	array_var_new[comp_conf_to_gen]["CHASSIS"]=<?php echo $new_to_add ?>;
+	proc_min_max_val("CHASSIS","weight",array_var_new[comp_conf_to_gen]["CHASSIS"]["weight"],1);
+	<!-- addcolumn(array_var,"CHASSIS_table",""); -->
+	<!--Wnet-->
+	<?php
+	$new_to_add = NULL;
+	show('WNET', $wnet_conf_wnet);
+	if (intval($resu['speed']) > 0) { $resu['speed'] .= " Mbps"; }
+	else { $resu['speed'] = "-"; }
+
+	$new_to_add = gen_js_object($resu);
+	?>
+	array_var_new[comp_conf_to_gen]["WNET"]=<?php echo $new_to_add ?>;
+	<!-- addcolumn(array_var,"WNET_table",""); -->
 	<!--Warranty-->
-<?php
-	show('WAR',$war_conf_war);
-	$maxminvalues=bluered(floatval($resu['years']),$maxminvalues,$x,"war",0);
-	$vars=array(
-		'<span id="war'.$x.'">'.$resu['years'].'</span>',
-		$resu['msc'],
-	);
-		 
-	$danvar=implode("','",$vars);
-	$danvar="'".$danvar."'";
-?>
-	var array_var=[<?php echo $danvar; ?>];
-	addcolumn(array_var,"WARA_table",""); 
+	<?php
+	$new_to_add = NULL;
+	show('WAR', $war_conf_war);
+
+	$new_to_add = gen_js_object($resu);
+	?>
+	array_var_new[comp_conf_to_gen]["WAR"]=<?php echo $new_to_add ?>;
+	<!-- addcolumn(array_var,"WARA_table",""); -->
 	<!--Operating System-->
-<?php
-	show('SIST',$sist_conf_sist);
-	$vars=array(
-		$resu['sist']." ".$resu['vers']." ".$resu['type']
-	);
-		 
-	$danvar=implode("','",$vars);
-	$danvar="'".$danvar."'";
-?>
-	var array_var=[<?php echo $danvar; ?>];
-	addcolumn(array_var,"OS_table","");
+	<?php
+	$new_to_add = NULL;
+	show('SIST', $sist_conf_sist);
+
+	$new_to_add = gen_js_object($resu);
+	?>
+	array_var_new[comp_conf_to_gen]["OS"]=<?php echo $new_to_add ?>;
+	<!-- addcolumn(array_var,"OS_table",""); -->
 	<!-- Model Miscellaneous -->
-<?php
-	if($model_msc!="") { $delmsc=0;}
-	$danvar="'<b>".$model_msc."</b>'";
-?>
-	var array_var=[<?php echo $danvar; ?>];
-	addcolumn(array_var,"MSC_table",""); 
+	<?php
+	$new_to_add = NULL;
+	if ($model_msc != "") { $delmsc = 0; }
+
+	$new_to_add = $model_msc;
+	?>
+	array_var_new[comp_conf_to_gen]["MSC"]="<b><?php echo trim($new_to_add); ?></b>";
+	<!-- addcolumn(array_var,"MSC_table",""); -->
 <?php
 }
 
-/* APPLYING BLUE/RED LABELS */
+/* DELETING FIELDS WITHOUT DATA */
 echo "\r\n";
 
-foreach ($maxminvalues as $key => $value)
-{
-	if($value[0]!=$value[1])
-	{
-		foreach($value[0] as $val){ echo '$(document).ready(function(){ if(document.getElementById("'.$key.$val.'")!=null){ document.getElementById("'.$key.$val.'").className = "labelblue-s"; } });'; }
-		foreach($value[1] as $val){ echo '$(document).ready(function(){ if(document.getElementById("'.$key.$val.'")!=null){ document.getElementById("'.$key.$val.'").className = "labelred-s"; } });'; }
-	}
-}
+if ($delshdd){ echo '(function() { Object.keys(array_var_new).forEach(function(key) { delete window.array_var_new[key]["SSTORAGE"] }) })();'; }
+if ($delodd){ echo '(function() { Object.keys(array_var_new).forEach(function(key) { delete window.array_var_new[key]["ODD"] }) })();'; }
+if ($delmsc){ echo '(function() { Object.keys(array_var_new).forEach(function(key) { delete window.array_var_new[key]["MSC"] }) })();'; }
 
-if($delshdd)
-{
-	echo '$(document).ready(function(){ if(document.getElementById("SSTORAGE_table")!=null){ mytbl = document.getElementById("SSTORAGE_table");
-	mytbl.parentNode.removeChild(mytbl);
-	mytbl = document.getElementById("title_SS");
-	mytbl.parentNode.removeChild(mytbl); } });';
-}
-
-if($delodd)
-{
-	echo '$(document).ready(function(){ if(document.getElementById("ODD_table")!=null){ mytbl = document.getElementById("ODD_table");
-	mytbl.parentNode.removeChild(mytbl);
-	mytbl = document.getElementById("title_BAT");
-	mytbl.parentNode.removeChild(mytbl);
-	document.getElementById("title_ODD").innerHTML = "Battery"; } });';
-}
-
-if($delmsc)
-{
-	echo '$(document).ready(function(){ if(document.getElementById("MSC_table")!=null){ mytbl = document.getElementById("MSC_table");
-	mytbl.parentNode.removeChild(mytbl);
-	mytbl = document.getElementById("title_MSC");
-	mytbl.parentNode.removeChild(mytbl); } });';
-}
-
-//var_dump($maxminvalues);
 ?>
-$(document).ready(function(){
-var nrrcomp=document.getElementsByClassName("addtocpmp").length;
-for(var i = 0; i < nrrcomp; i++)
+function proc_min_max_val(component, field, new_val, rev)
 {
-value=document.getElementsByClassName("addtocpmp")[i].getAttribute('onclick').replace(/\-\+\-/g,"'"); 
-document.getElementsByClassName("addtocpmp")[i].setAttribute('onclick',value);
-}
+	new_val = parseFloat(new_val);
+	var local_min_value = new_val;
+	var local_max_value = new_val;
 
-//STRIPE THE TABLES
-stripeme("CPU_table");
-stripeme("GPU_table");
-stripeme("DISPLAY_table");
-stripeme("STORAGE_table");
-stripeme("SSTORAGE_table");
-stripeme("MDB_table");
-stripeme("MEM_table");
-stripeme("ODD_table");
-stripeme("ACUM_table");
-stripeme("CHASSIS_table");
-stripeme("WNET_table");
-stripeme("WARA_table");
-stripeme("OS_table");
+	var comp_css_max = "labelblue-s";
+	var comp_css_min = "labelred-s";
 
-var confstoremove=["<?php echo implode('","',$_SESSION['toalert']);?>"];
-
-if(confstoremove[0]!=="")
-{	
-	for(var key in confstoremove)
+	for (var key in array_var_new)
 	{
-		var notreplaced=1;
-		if(notreplaced){ currentPage=currentPage.replace(new RegExp("&conf[\\d+]="+confstoremove[key],'i'),function replacing(){ notreplaced=0; return "";}) }
-		if(notreplaced){ currentPage=currentPage.replace(new RegExp("conf[\\d+]="+confstoremove[key]+"&",'i'),function replacing(){ notreplaced=0; return "";}) }
-		if(notreplaced){ currentPage=currentPage.replace(new RegExp("conf[\\d+]="+confstoremove[key],'i'),function replacing(){ notreplaced=0; return "";}) }	
+		if (array_var_new[key][component] != null)
+		{
+			if (array_var_new[key][component].tags == null)
+			{
+				array_var_new[key][component].tags = {};
+			}
+			if (array_var_new[key][component].tags[field] == null)
+			{
+				array_var_new[key][component].tags[field] = [comp_css_min, comp_css_max];
+			}
+
+			if (array_var_new[key][component].tags[field].indexOf(comp_css_min) > -1)
+			{
+				if (((local_min_value < parseFloat(array_var_new[key][component][field])) && (!rev)) || ((local_min_value> parseFloat(array_var_new[key][component][field])) && (rev)))
+				{
+					array_var_new[key][component].tags[field].splice(array_var_new[key][component].tags[field].indexOf(comp_css_min), 1);
+				}
+				else
+				{ local_min_value = parseFloat(array_var_new[key][component][field]); }
+			}
+
+			if (array_var_new[key][component].tags[field].indexOf(comp_css_max) > -1)
+			{
+				if (((local_max_value > parseFloat(array_var_new[key][component][field])) && (!rev)) || ((parseFloat(array_var_new[key][component][field] > local_max_value )) && (rev)))
+				{ array_var_new[key][component].tags[field].splice(array_var_new[key][component].tags[field].indexOf(comp_css_max), 1); } else { local_max_value=parseFloat(array_var_new[key][component][field]); }
+			}
+		}
 	}
 }
+	
+$(document).ready(function()
+{
+	var nrrcomp=document.getElementsByClassName("addtocpmp").length;
+	for (var i=0; i < nrrcomp; i++) { value=document.getElementsByClassName("addtocpmp")[i].getAttribute('onclick').replace(/\-\+\-/g, "'" ); document.getElementsByClassName("addtocpmp")[i].setAttribute('onclick', value); }
+	var confstoremove=["<?php echo implode('","', $_SESSION['toalert']); ?>"];
+	if (confstoremove[0] !=="" )
+	{
+		for (var key in confstoremove)
+		{
+			var notreplaced=1; if (notreplaced) { currentPage=currentPage.replace(new RegExp("&conf[\\d+]=" + confstoremove[key], 'i'), function replacing() { notreplaced = 0; return ""; }) }
+			if (notreplaced)
+			{ currentPage = currentPage.replace(new RegExp(" conf[\\d+]=" + confstoremove[key] + " &", 'i' ), function replacing() { notreplaced=0; return "" ; }) }
+				
+			if (notreplaced) { currentPage=currentPage.replace(new RegExp("conf[\\d+]=" + confstoremove[key], 'i'), function replacing() { notreplaced = 0; return ""; }) }
+		}
 
-var stateObj = { no: "empty" }; setTimeout(function(){ gocomp=1;}, 10);
-history.replaceState(stateObj,document.title,currentPage);
+		var stateObj = { no: " empty" }; setTimeout(function() { gocomp=1; }, 10);
+		history.replaceState(stateObj, document.title, currentPage);
+	}
 });
-var lang = <?php echo $lang; ?>;
+
+var lang=<?php echo $lang; ?>;

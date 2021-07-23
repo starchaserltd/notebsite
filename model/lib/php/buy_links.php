@@ -123,9 +123,8 @@ if(isset($_GET["model_id"])&&isset($_GET["seller"]))
 				}
 				case (stripos($row["prod"],"Dell")!==FALSE):
 				{
-					
 					if(stripos($row["fam"]," rugged")!==FALSE) { $row["fam"]=str_ireplace(" rugged","",$row["fam"]); }
-					if(stripos($row["fam"],"alienware")!==FALSE) { $row["prod"]="Alienware"; $row["fam"]=""; $matches=array(); preg_match("/[0-99]* R[0-99]*/i",$row["model"],$matches);  $row["model"]="AW".str_ireplace($matches[0],str_replace(" ","",$matches[0]),$row["model"]); }
+					if(stripos($row["fam"],"alienware")!==FALSE) { $row["prod"]="Alienware"; $row["fam"]=""; $matches=array(); preg_match("/[0-99]* R[0-99]*/i",$row["model"],$matches);  if(isset($matches[0])) { $row["model"]="AW".str_ireplace($matches[0],str_replace(" ","",$matches[0]),$row["model"]); } }
 					switch($region)
 					{
 						case 3:

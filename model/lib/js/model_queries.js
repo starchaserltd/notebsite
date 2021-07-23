@@ -982,17 +982,6 @@ function wnetmisc(str)
 	return msc;
 }
 
-function hourminutes(str)
-{
-	str=parseFloat(str);
-	hours=parseInt(str);
-	minutes=Math.round((((str-hours)*60)/5),0)*5;
-	if(minutes==60)
-	{hours++; minutes=0;}
-	if(minutes<10){zero="0";}else{zero="";}
-	return hours+":"+zero+minutes;
-}
-
 function set_best_low(confid,array_values)
 {
 	function set_active_confopt(key)

@@ -10,7 +10,7 @@ function show($tab, $id)
 
 	$rea = mysqli_query($GLOBALS['con'], $sel2); 
 	global $resu; global $buy_regions_model;
-	$resu = mysqli_fetch_array($rea);
+	$resu = mysqli_fetch_assoc($rea);
 
 	if(isset($resu['rating'])){ $resu['rating']=round(floatval($resu['rating']),1)." / 100";}
 	
@@ -226,30 +226,6 @@ function show($tab, $id)
 		default:
 		{ break; }
 	}
-}
-
-function bluered($value,$maxmin,$x,$field,$rev)
-{
-	if(!isset($maxmin->$field[2])){ $maxmin->$field[0]=array(); $maxmin->$field[2]=$value; }
-	if(!isset($maxmin->$field[3])){ $maxmin->$field[1]=array(); $maxmin->$field[3]=$value; }
-	
-		if((($value>=$maxmin->$field[2]) && (!$rev))||(($value<=$maxmin->$field[2])&& ($rev)))
-		{ 
-			if($value==$maxmin->$field[2])
-			{ $maxmin->$field[0][]=$x; }
-			else
-			{ unset($maxmin->$field[0]); $maxmin->$field[0][]=$x; $maxmin->$field[2]=$value; }
-		}
-
-		if((($value<=$maxmin->$field[3])&& (!$rev)) || (($value>=$maxmin->$field[3])&& ($rev)))
-		{ 
-			if($value==$maxmin->$field[3])
-			{ $maxmin->$field[1][]=$x; }
-			else
-			{ unset($maxmin->$field[1]); $maxmin->$field[1][]=$x; $maxmin->$field[3]=$value; }
-		}
-
-	return $maxmin;
 }
 
 require_once("query/show_msc.php");

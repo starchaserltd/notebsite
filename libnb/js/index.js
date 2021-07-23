@@ -603,3 +603,10 @@ $('.searchMenu').click(function() {
 const sync_sleep = ms => { const end = Date.now() + ms; while (Date.now() < end) { continue; } }
 function async_sleep(ms){ return new Promise(resolve => setTimeout(resolve, ms)); }
 function noteb_round(value, precision) { var multiplier = Math.pow(10, precision || 0); return Math.round(value * multiplier) / multiplier; }
+function hourminutes(str)
+{ 
+	str=parseFloat(str); hours=parseInt(str); minutes=Math.round((((str-hours)*60)/5),0)*5;
+	if(minutes==60){hours++; minutes=0;}
+	if(minutes<10){zero="0";}else{zero="";}
+	return hours+":"+zero+minutes;
+}
