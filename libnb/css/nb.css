@@ -868,38 +868,6 @@ fieldset[disabled] .btn-result.active {
   padding: 5px;
 }
 
-/* .addtocpmp {
-    border-radius: 20px !important;
-    height: auto;
-    padding: 3px 3px;
-    margin-top: 5px;
-    color: #575757;
-    cursor: pointer;
-    border: 2px solid #575757;
-    font-size: 14px;
-    transition: all 0.3s ease-in;
-    background-color: #fff;
-}
-
-.addtocpmp>a {
-    color: #575757;
-    padding: 0px 35px;
-    text-decoration: none
-}
-
-.addtocpmp:hover>a {
-    color: #fff;
-    text-decoration: none;
-    transition: all 0.3s ease-in;
-}
-
-.addtocpmp:hover {
-    background-color: #999999;
-    color: #fff;
-    border-color: #575757;
-} */
-/* end */
-
 .imgcrop {
   position: relative;
 }
@@ -2096,37 +2064,13 @@ table#comparelist td.text-center.comparecell3 {
 }
 
 .resultsShopBtn .buyBtn {
-  /* border-radius: 20px !important; */
-  /* height: auto; */
   padding: 3px 3px;
-  /* margin-top: 5px; */
-  /* color: #575757; */
   cursor: pointer;
-  /* border: 2px solid #575757; */
   font-size: 14px;
   font-weight: bold;
   transition: all 0.3s ease-in;
-  /* background-color: #fff; */
   -webkit-appearance: none;
 }
-
-/* .resultsShopBtn .buyBtn > a {
-  color: #575757;
-  padding: 0px 35px;
-  text-decoration: none;
-} */
-
-/* .resultsShopBtn .buyBtn:hover > a {
-  color: #fff;
-  text-decoration: none;
-  transition: all 0.3s ease-in;
-} */
-
-/* .resultsShopBtn .buyBtn:hover {
-  background-color: #999999;
-  color: #fff;
-  border-color: #575757;
-} */
 
 .searchLink {
   text-transform: capitalize;
@@ -2382,19 +2326,7 @@ table#comparelist td.text-center.comparecell3 {
 }
 
 .resultsShopBtn a:hover {
-  background-color: #e8e8e8;
-  background-image: -webkit-linear-gradient(top, #f5f5f5 0, #e8e8e8 100%);
-  background-image: -o-linear-gradient(top, #f5f5f5 0, #e8e8e8 100%);
-  background-image: -webkit-gradient(
-    linear,
-    left top,
-    left bottom,
-    from(#f5f5f5),
-    to(#e8e8e8)
-  );
-  background-image: linear-gradient(to bottom, #f5f5f5 0, #e8e8e8 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5', endColorstr='#ffe8e8e8', GradientType=0);
-  background-repeat: repeat-x;
+  text-decoration: underline;
 }
 
 .compContainer .buyBtn {
