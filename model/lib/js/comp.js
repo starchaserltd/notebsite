@@ -276,13 +276,12 @@ function modelGen(data)
 			} = laptop[infoKey];
 			cols += `
         <td class="compare__data compare__img">
-          <img
-            src="res/img/models/thumb/t_${IMG}.jpg"
-            alt="${COMP_NAME}"
+          <div
+			style="background-image: url(res/img/models/thumb/t_${IMG}.jpg)"
             onclick="OpenPage('model/model.php?conf=${CONF_ID}',event)"
             role="button"
             tabIndex="0"
-          />
+          ></div>
         </td>
       `;
 		});
