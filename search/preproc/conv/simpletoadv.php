@@ -117,7 +117,9 @@ if(isset($_GET['cpu_type']))
 			case "6":
 			{
 				array_push($valuetype[11],"AMD");
-				$cpumsc.='<option selected="selected">AMD Ryzen</option>';
+				$cpumsc.='<option selected="selected">AMD Ryzen 3</option>';
+				$cpumsc.='<option selected="selected">AMD Ryzen 5</option>';
+				$cpumsc.='<option selected="selected">AMD Ryzen 7</option>';
 				break;
 			}
 			case "7":

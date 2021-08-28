@@ -251,6 +251,36 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 			{ $sel_cpu.="model LIKE '%".$x."%'"; }
 			$i++;
 		}
+		elseif(stripos($x,"Ryzen 3")!==FALSE)
+		{
+			if($i)
+			{ $sel_cpu.=" OR "; }
+			else
+			{ $sel_cpu.=" AND ("; }
+			
+			$sel_cpu.="model LIKE '%"."Ryzen 3"."%'";	
+			$i++;
+		}
+		elseif(stripos($x,"Ryzen 5")!==FALSE)
+		{
+			if($i)
+			{ $sel_cpu.=" OR "; }
+			else
+			{ $sel_cpu.=" AND ("; }
+			
+			$sel_cpu.="model LIKE '%"."Ryzen 3"."%'";	
+			$i++;
+		}
+		elseif(stripos($x,"Ryzen 7")!==FALSE)
+		{
+			if($i)
+			{ $sel_cpu.=" OR "; }
+			else
+			{ $sel_cpu.=" AND ("; }
+			
+			$sel_cpu.="model LIKE '%"."Ryzen 7"."%'";	
+			$i++;
+		}
 		elseif(stripos($x,"Ryzen")!==FALSE)
 		{
 			if($i)
@@ -299,7 +329,7 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 	// DO THE SEARCH
 	# echo "Query to select the CPUs:";
     # echo "<br>";
-	# echo "<pre>" . $sel_cpu . "</pre>";
+    #echo "<pre>" . $sel_cpu . "</pre>";
 
 	$result=mysqli_query($GLOBALS['con'],$sel_cpu);
 	$cpu_return = array();
