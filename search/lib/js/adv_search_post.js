@@ -941,9 +941,9 @@ function setrecommended()
 		i++;
 	}
 	$('#DISPLAY_msc_id').append(texttoapp);
-	document.getElementById('capacity').noUiSlider.set([239,99999]); $('#typehdd').multiselect('select',"SSD"); $('#nrhdd').val(1); $("#nrhdd").multiselect("refresh");
-	document.getElementById('ram').noUiSlider.set([8,99999]);
-	var opsist_multiselect=$('#opsist option'); var opsist_list_select=["Windows 10","macOS","Chrome OS"];
+	document.getElementById('capacity').noUiSlider.set([490,99999]); $('#typehdd').multiselect('select',"SSD"); $('#nrhdd').val(1); $("#nrhdd").multiselect("refresh");
+	document.getElementById('ram').noUiSlider.set([16,99999]);
+	var opsist_multiselect=$('#opsist option'); var opsist_list_select=["Windows 11","Windows 10","macOS","Chrome OS"];
 	for(var key in opsist_multiselect)
 	{
 		if(opsist_multiselect[key].value!=undefined&&opsist_multiselect[key].value!=""&&opsist_multiselect[key].value!=null)
