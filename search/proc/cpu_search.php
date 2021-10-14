@@ -268,7 +268,7 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 			else
 			{ $sel_cpu.=" AND ("; }
 			
-			$sel_cpu.="model LIKE '%"."Ryzen 3"."%'";	
+			$sel_cpu.="model LIKE '%"."Ryzen 5"."%'";	
 			$i++;
 		}
 		elseif(stripos($x,"Ryzen 7")!==FALSE)
