@@ -12,7 +12,7 @@ function show($tab, $id)
 	global $resu; global $buy_regions_model;
 	$resu = mysqli_fetch_assoc($rea);
 
-	if(isset($resu['rating'])){ $resu['rating']=round(floatval($resu['rating']),1)." / 100";}
+	if(isset($resu['rating'])){ $resu['rating']=round(floatval($resu['rating']),1); }
 	
 	switch($tab)
 	{

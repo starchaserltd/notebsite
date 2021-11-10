@@ -3303,6 +3303,52 @@ div.menuItems.last {
   background-color: #0066cb;
 }
 
+/* PRESEARCH POPUP */
+#presearch-modal {
+  display: none;
+  /* display flex on show */
+  align-items: center;
+  /* background-color: #0066cb; */
+  background-color: #fff;
+  color: #000;
+  border-radius: 5px;
+  z-index: 9999999;
+
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: calc(100% - 20px);
+  padding: 10px;
+}
+
+#presearch-modal.show {
+  display: flex;
+}
+
+#presearch-modal-close {
+  cursor: pointer;
+}
+
+#presearch-modal__wrapper {
+  flex: 1;
+}
+
+@media only screen and (max-width: 767px) {
+  #presearch-modal {
+    position: fixed;
+    bottom: unset;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 280px;
+    -webkit-box-shadow: 0px 2px 20px 0px rgba(0, 102, 203, 0.35);
+    -moz-box-shadow: 0px 2px 20px 0px rgba(0, 102, 203, 0.35);
+    box-shadow: 0px 2px 20px 0px rgba(0, 102, 203, 0.35);
+  }
+}
+
+/* END PRESEARCH POPUP */
+
 /**********************************
 ***********************************
 ** MEDIA QUERIES
@@ -3387,6 +3433,55 @@ div.menuItems.last {
   .topLaptopsDate {
     font-size: 12px;
   }
+}
+
+.progressBar {
+  display: flex;
+  align-items: center;
+  max-width: 300px;
+}
+
+.progressBar__bar {
+  flex: 1;
+  margin-right: 10px;
+
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.progressBar__block {
+  flex: 1;
+  background-color: #595959;
+}
+
+.progressBar__block::before {
+  content: "";
+  display: block;
+  width: 100%;
+  padding-bottom: 100%;
+}
+
+.progressBar__block.colored {
+  background-color: #ffcc33;
+}
+
+.progressBar__percent {
+  font-weight: 800;
+}
+
+.progressBar__error {
+  flex: 1;
+}
+
+.progressBar--center {
+  margin: 0 auto;
+}
+.progressBar--right {
+  margin-left: auto;
+}
+.progressbar--left {
+  margin-right: auto;
 }
 
 @media (max-width: 1600px) {

@@ -101,30 +101,6 @@ $(document).ready(function()
 			}
 		}
 	});
-	
- 	/*DISQUE CODE*/
-	/**
-	* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-	* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
-	*/
-
-	(function() { // DON'T EDIT BELOW THIS LINE
-		if(window.disqusloaded)
-		{
-			var d = document; var s = d.createElement('script');
-			disqusloaded=0;
-			s.src = '//notebrointexim.disqus.com/embed.js';
-
-			s.setAttribute('data-timestamp', +new Date());
-			(d.head || d.body).appendChild(s);
-		}
-		else
-		{
-			DISQUS.reset({
-				reload: true,
-				config: window.disqus_config  
-			});
-		}
-	})();
-	setTimeout(function(){ show_comp_message=1; }, 3000);
 });
+
+//# sourceURL=model_post.js

@@ -5,7 +5,6 @@ var first = 1; var cleanurl=20;
 var firstcompare = 1;
 var nocomperrormess = 0;
 var previousurl = "";
-var disqusloaded = 1;
 var urlold = ""; var searchurl="";
 var hh = 1;
 var show_buy_list=0;
@@ -498,29 +497,6 @@ function state_ssearch(type)
     if (type == 1) { button_el.setAttribute("aria-expanded", "false"); }
 }
 
-// function adjust_ssearch(page) {
-    
-// 	var button_el=document.getElementsByClassName("btn-title")[0];
-	
-// 	if(button_el.getAttribute("aria-expanded")==null)
-// 	{ if ($(window).width() < 992){ ismobile = 1; state_ssearch(1); } else { ismobile = 0; state_ssearch(0); } }
-
-// 	if (page.indexOf("adv_search.php") > -1 || page.indexOf("advsearch=1") > -1)
-// 	{
-//         document.querySelector(".SearchParameters").style.display = "none";
-//         button_el.setAttribute("aria-expanded", "permanentfalse");
-//     }
-// 	else
-// 	{ 	if (page.indexOf("home.php") > -1&& button_el.getAttribute("aria-expanded")=="permanentfalse" &&!ismobile)
-// 		{ button_el.setAttribute("aria-expanded", "false"); button_el.click(); }
-// 		else if (button_el.getAttribute("aria-expanded") == "false" && !ismobile) { button_el.click();}
-// 	}
-
-//     if (page.indexOf("home.php") > -1)
-// 	{ $('.headerback').addClass('home'); }
-// 	else
-// 	{$('.headerback').removeClass('home'); }
-// }
 
 //THIS FUNCTION IS FOR GENERATING PROPER MAX MIN FOR SLIDERS
 function listrange(list_comp)
@@ -610,3 +586,172 @@ function hourminutes(str)
 	if(minutes<10){zero="0";}else{zero="";}
 	return hours+":"+zero+minutes;
 }
+
+function setCookie(cname, cvalue, exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+  var expires = "expires=" + d.toUTCString();
+  document.cookie =
+    cname + "=" + cvalue + ";" + expires + "; samesite=lax; path=/";
+}
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var ca = document.cookie.split(";");
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == " ") {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+function deleteCookie(cname) {
+  document.cookie = `${cname}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+}
+
+function get_url_params(url = window.location.toString()) {
+  let params = {};
+  url = url.replace(siteroot + "?", siteroot);
+  params = new URL(url).searchParams;
+  return params;
+}
+
+function proc_search_param_to_array(param_array) {
+  var saved_array = {};
+  for (var key in param_array) {
+    var new_key_parts = param_array[key]["name"].toLowerCase().split("_");
+    if (new_key_parts[0] !== undefined && new_key_parts[1] !== undefined) {
+      if (saved_array[new_key_parts[0]] === undefined) {
+        saved_array[new_key_parts[0]] = {};
+      }
+      if (param_array[key]["name"].indexOf("[]") >= 0) {
+        if (saved_array[new_key_parts[0]][new_key_parts[1]] == undefined) {
+          saved_array[new_key_parts[0]][new_key_parts[1]] = [];
+        }
+        saved_array[new_key_parts[0]][new_key_parts[1]].push(
+          param_array[key]["value"]
+        );
+      } else {
+        saved_array[new_key_parts[0]][new_key_parts[1]] =
+          param_array[key]["value"];
+      }
+    }
+  }
+  return saved_array;
+}
+
+// PROGRESS BAR
+
+var PROGRESSBAR = (function () {
+  var DEFAULT_MIN = 0;
+  var DEFAULT_MAX = 100;
+
+  function getPercentage(value, min, max)
+  {
+    if (min === undefined){ min = DEFAULT_MIN; }
+    if (max === undefined){ max = DEFAULT_MAX; }
+    return Math.round(((value - min) / (max - min)) * 100);
+  }
+
+  function mock_error(content) { return `<div class="progressBar__error">${content}</div>`; }
+  function mock_bar(blocks, percent)
+  {
+    return `
+      <div class="progressBar__bar">${blocks}</div>
+      <div class="progressBar__percent">${percent}%</div>
+    `;
+  }
+
+  // Create blocks in bar
+  function createRatingBlocks(percentage)
+  {
+    var BLOCK_COUNT = 10;
+	var coloredCount = Math.round(percentage / BLOCK_COUNT);
+
+    var result = new Array(BLOCK_COUNT)
+      .fill(undefined)
+      .map(function (_, index) {
+        return `<div class="progressBar__block ${
+          index < coloredCount ? "colored" : ""
+        }"></div>`;
+      });
+    return result.join("");
+  }
+
+  function create({ target, value, min, max, maxWidth, align })
+  {
+    var result = "";
+
+    if (min === undefined) { min = DEFAULT_MIN; }
+    if (max === undefined) { max = DEFAULT_MAX; }
+
+    if (value === undefined || value < min || value > max)
+	{ result = mock_error("Not available."); }
+	else
+	{
+      var percent = getPercentage(value, min, max);
+      result = mock_bar(createRatingBlocks(percent), percent);
+    }
+
+    function alignIsValid(type) { return ["left", "center", "right"].includes(type); }
+
+    // Handle if target exists
+    if (target)
+	{
+      var element = document.querySelector(target);
+
+      if (!element.classList.contains("progressBar")) { element.classList.add("progressBar"); }
+
+      if (alignIsValid(align)) { element.classList.add(`progressBar--${align}`); }
+
+      if (maxWidth) { element.style.maxWidth = maxWidth; }
+
+      element.innerHTML = result;
+      return;
+    }
+
+    // Handle string output
+    var maxWidthStyle = `${maxWidth ? `max-width: ${maxWidth}` : ""}`;
+    var alignClass = alignIsValid(align) ? `progressBar--${align}` : "";
+
+    return `<div class="progressBar ${alignClass}" style="${maxWidthStyle}">${result}</div>`;
+  }
+
+  function update({ target, value, min, max })
+  {
+    if (target == null || value == null)
+	{
+		throw new Error(`Target or value cannot be null`);
+    }
+
+    var elements = document.querySelectorAll(target);
+	if(elements)
+	{
+		for( var key in elements)
+		{
+			if (!elements[key])
+			{
+			  throw new Error(`Progress bar ${target} not found.`);
+			}
+
+			var percent = getPercentage(value, min, max);
+			var result = mock_bar(createRatingBlocks(percent), percent);
+
+			elements[key].innerHTML = result;
+		}
+	}
+	else
+	{ throw new Error(`Progress bar ${target} not found.`); }
+	
+    return;
+  }
+
+  return { create, update };
+})();
+
+//# sourceURL=index.js

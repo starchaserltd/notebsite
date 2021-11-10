@@ -67,7 +67,6 @@ function showTooltip(e)
 	}
 }
 
-
 function get_tooltip_el(e)
 {
 	var to_return=null;

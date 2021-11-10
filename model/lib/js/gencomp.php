@@ -176,7 +176,7 @@ for ($x = 0; $x <= $nrconf; $x++)
 
 	?>
 	array_var_new[comp_conf_to_gen]["CPU"]=<?php echo $new_to_add ?>;
-	proc_min_max_val("CPU","rating",array_var_new[comp_conf_to_gen]["CPU"]["rating"],0);
+	//proc_min_max_val("CPU","rating",array_var_new[comp_conf_to_gen]["CPU"]["rating"],0);
 	<!-- addcolumn(array_var,"CPU_table",""); -->
 	<!-- GPU -->
 	<?php
@@ -195,7 +195,7 @@ for ($x = 0; $x <= $nrconf; $x++)
 	$new_to_add = gen_js_object($resu);
 	?>
 	array_var_new[comp_conf_to_gen]["GPU"]=<?php echo $new_to_add ?>;
-	proc_min_max_val("GPU","rating",array_var_new[comp_conf_to_gen]["GPU"]["rating"],0);
+	//proc_min_max_val("GPU","rating",array_var_new[comp_conf_to_gen]["GPU"]["rating"],0);
 	<!-- addcolumn(array_var,"GPU_table",""); -->
 	<!-- Display -->
 	<?php

@@ -138,24 +138,6 @@
   content: "Remove";
 }
 
-.compare__rating {
-  display: flex;
-  gap: 2%;
-  max-width: 200px;
-  padding: 3px 5px 0 5px;
-  margin: 0 auto;
-}
-
-.compare__ratingBlock {
-  flex: 1;
-  height: 20px;
-  background-color: #595959;
-}
-
-.compare__ratingBlock.colored {
-  background-color: #ffcc33;
-}
-
 @media only screen and (max-width: 768px) {
   .compare__container {
     font-size: 90%;

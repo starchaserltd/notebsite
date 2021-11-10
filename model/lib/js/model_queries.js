@@ -67,7 +67,7 @@ function showCPU(str)
 				document.getElementById('cpu_turbo').innerHTML = cpu["maxtf"];
 				document.getElementById('cpu_cores').innerHTML = cpu["cores"];
 				document.getElementById('cpu_misc').innerHTML = cpumisc(cpu["msc"]);
-				document.getElementById('cpu_rating').innerHTML = cpu["rating"];
+				if (document.getElementById('progress-cpu') != null ){ PROGRESSBAR.update({target:"#progress-cpu",value:cpu["rating"]}); }
 				document.getElementById('cpu_class').innerHTML = cpu["class"];
 				
 				cpu_rate_old = cpu_rate_new;
@@ -143,7 +143,7 @@ function showGPU(str)
 				gpu_right_align();
 				document.getElementById('gpu_shadermodel').innerHTML = parseFloat(gpu["shader"]).toFixed(1);
 				document.getElementById('gpu_memspeed').innerHTML = gpu["mspeed"];
-				document.getElementById('gpu_rating').innerHTML = gpu["rating"];
+				if (document.getElementById('progress-gpu') != null ){ PROGRESSBAR.update({target:"#progress-gpu",value:gpu["rating"]}); }
 				document.getElementById('gpu_bus').innerHTML = gpu["mbw"];
 				document.getElementById('gpu_mem').innerHTML = gpu["maxmem"]+" MB "+gpu["mtype"];
 				document.getElementById('gpu_smem').innerHTML = gpu["sharem"];
@@ -183,7 +183,7 @@ function showDISPLAY(str)
 			{
 				display = JSON.parse(xmlhttp.responseText);
 				document.getElementById('display_title').innerHTML = display["size"];
-				var display_elements=['display_size','display_format','display_hres','display_vres','display_surft','display_backt','display_touch','display_msc','display_rating'];
+				var display_elements=['display_size','display_format','display_hres','display_vres','display_surft','display_backt','display_touch','display_msc'];
 				for(var x in display_elements)
 				{
 					var subelement=display_elements[x].split("_");
@@ -199,9 +199,9 @@ function showDISPLAY(str)
 					if( parseInt(display["lum"]) > 0) { subelements_by_class[nr_el].innerHTML=eliminate_first_line_desc(subelements_by_class[nr_el].innerHTML)+' <span class="toolinfo" data-toolid=87 data-load="1" data-html="true" data-toggle="tooltip" data-delay='+"'"+'{"show": 600}'+"'"+' data-placement="left" data-original-title="Loading..."><span>'+ display["lum"] + ' nits</span> <i class="fa fa-question toolinfo-icon"></i></span>'; }
 				}
 			
-			
+				if (document.getElementById('progress-display-desktop') != null &&  document.getElementById('progress-display-mobile') != null){ PROGRESSBAR.update({target:".progress-display",value:display["rating"]}); }
 				display_rate_old = display_rate_new;
-				display_rate_new = display["confrate"];		
+				display_rate_new = display["confrate"];
 				config_rate = config_rate-display_rate_old+display_rate_new;
 				update_model_rating(config_rate);
 				display_bat_old = display_bat_new;
@@ -1045,11 +1045,14 @@ function update_schema_rating_info(field_1,field_2,field_3,value)
 update_schema_rating_info("aggregateRating","itemReviewed","name",(mprod+" "+mfamily+" "+mmodel+""+msubmodel));
 update_schema_rating_info("aggregateRating","itemReviewed","image",ref_model_image);
 update_schema_rating_info("name",null,null,(mprod+" "+mfamily+" "+mmodel+""+msubmodel));
+update_schema_rating_info("name",null,null,(mprod+" "+mfamily+" "+mmodel+""+msubmodel));
 update_schema_rating_info("image",null,null,ref_model_image);
 update_schema_rating_info("brand",null,null,mprod);
 
-function update_model_rating(value){ var new_rating=normal_rating(config_rate); document.getElementById('notebro_rate').innerHTML=new_rating;	update_schema_rating_info("aggregateRating","ratingValue",null,new_rating); }
+function update_model_rating(value){ var new_rating=normal_rating(config_rate); if (document.getElementById('progress-overall') != null ){ PROGRESSBAR.update({target:"#progress-overall",value:new_rating}); update_schema_rating_info("aggregateRating","ratingValue",null,new_rating); } }
 function eliminate_first_line_desc(el){ var temp_el=el; if(temp_el==="-"){temp_el="";}else{temp_el=temp_el+",";} return temp_el;}
 function normal_rating(x){ x=x*1000; x=(((1.25/1000000*Math.pow(x,2))+1.305*x+(-4.3/100000000000*Math.pow(x,3)))/1000); x=((Math.round(x)*10)/10).toFixed(1); return x; }
 function change_exch(new_exchcode){ for(var key in document.getElementById("m_currency").options){ if(document.getElementById("m_currency").options[key].value==new_exchcode){document.getElementById("m_currency").selectedIndex=key;}}}
 function change_m_currency(el){ var selected=(el||el.options[el.selectedIndex]); getconf('EXCH',[selected.value,parseFloat(el.options[el.selectedIndex].getAttribute("data-exch"))],undefined); }
+
+//# sourceURL=model_queries.js
