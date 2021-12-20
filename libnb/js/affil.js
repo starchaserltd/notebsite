@@ -1,23 +1,3 @@
-function setCookie(cname,cvalue,exdays) {
-	var d = new Date();
-	d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-	var expires = "expires=" + d.toUTCString();
-	document.cookie = cname + "=" + cvalue + ";" + expires + "; samesite=lax; path=/";
-}
-
-function getCookie(cname) {
-	var name = cname + "="; var ca = document.cookie.split(';');
-	for (var i = 0; i < ca.length; i++)
-	{
-		var c = ca[i];
-		while (c.charAt(0) == ' ') { c = c.substring(1); }
-		if (c.indexOf(name) == 0) { return c.substring(name.length, c.length); }
-	}
-	return "";
-}
-
-function deleteCookie(cname) { document.cookie = `${cname}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`; }
-
 var learnMoreEl = `
     <p>
 	For sales originating from noteb.com, some stores may give to noteb 0 to 3% commission from the value of those sales.<br><br>This system is called affiliate marketing, and for the buyer, it has <b>zero impact on the price</b>.

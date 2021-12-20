@@ -592,6 +592,13 @@
 		</div> <!-- End Col -->	
 	</div> <!-- End row -->	
 	<input type="hidden" name="sort_by" value="<?php echo $sort_by;?>">
-	</form>	
+	<div id="adv-presearch-modal">
+		<div id="adv-presearch-modal__wrapper">
+			<span id="adv-presearch-modal-counter"></span>
+			laptops match your search
+		</div>
+		<div id="adv-presearch-modal-close">&#10060;</div>
+	</div>
+	</form>		
 	<?php if($gputype==1){ echo '<script>$(document).ready(function(){ $("#r-no").click(); });</script>'; }?>
 	<?php include_once("../etc/scripts_pages.php"); ?>
