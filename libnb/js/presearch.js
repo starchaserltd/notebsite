@@ -6,18 +6,15 @@ var cur_qss = "";
 var presearch_modal_timeout = 0;
 
 // DOM ELEMENTS
-var presearch_modal, presearch_modal_counter, presearch_modal_close;
-var adv_presearch_modal, adv_presearch_modal_counter, adv_presearch_modal_close;
+var presearch_modal, presearch_modal_counter, presearch_modal_close, presearch_anchor;
+var adv_presearch_modal, adv_presearch_modal_counter, adv_presearch_modal_close, adv_presearch_anchor;
 
 // SET DOM ELEMENTS
 function getPreserachElements() {
   presearch_modal = document.getElementById("presearch-modal");
   presearch_modal_counter = document.getElementById("presearch-modal-counter");
   presearch_modal_close = document.getElementById("presearch-modal-close");
-
-  $(window).on("scroll", function() {
-    setModalTop("sidebar");
-  })
+  presearch_anchor = presearch_modal.closest('.presearch-modal-anchor');
 }
 
 function getAdvPreserachElements() {
@@ -28,35 +25,31 @@ function getAdvPreserachElements() {
   adv_presearch_modal_close = document.getElementById(
     "adv-presearch-modal-close"
   );
-
-  // $(window).on("scroll", function() {
-  //   setModalTop("advanced");
-  // })
+  adv_presearch_anchor = adv_presearch_modal.closest('.presearch-modal-anchor');
 }
-
-
-var contentElement = document.querySelector(".row.containerContentIndex");
-var contentOffset = 0;
-function getContentOffset() {
-  if (contentElement) {
-    contentOffset = contentElement.offsetTop;
-  }
-}
-$(window).on("scroll", getContentOffset);
 
 function setModalTop(type) {
   var modal = getModal(type);
+  var presearchAnchor = getAnchor(type);
+
+  if (!presearchAnchor || !modal) {
+    return;
+  }
+
+  var contentOffset = presearchAnchor.getBoundingClientRect().top + window.scrollY;
 
   if (document.documentElement.scrollTop <= contentOffset) {
     modal.style.top = '10px';
-
   } else {
     var windowOffset = document.documentElement.scrollTop;
     modal.style.top = `${10 + windowOffset - contentOffset}px`
   }
 }
-// Set on scroll function handlers on get modal function;
 
+$(window).on("scroll", function() {
+  setModalTop("sidebar");
+  setModalTop("advanced");
+});
 
 // SELECTING
 function getModal(type) {
@@ -72,6 +65,11 @@ function getClose(type) {
     ? adv_presearch_modal_close
     : presearch_modal_close;
 }
+function getAnchor(type) {
+  return type === "advanced"
+    ? adv_presearch_anchor
+    : presearch_anchor;
+}
 
 setTimeout(function () {
   pause_presearch = 0;
@@ -80,6 +78,7 @@ setTimeout(function () {
 // SIDEBAR PRESEARCH
 function displayPresearchModal(type) {
   var modal = getModal(type);
+  setModalTop(type);
 
   if (!modal.classList.contains("show")) {
     modal.classList.add("show");

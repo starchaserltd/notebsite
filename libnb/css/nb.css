@@ -2592,6 +2592,7 @@ div.orderByContainer span {
 
 .firstContainer h3 {
   text-align: center;
+  margin-bottom: none;
 }
 
 .firstContainer .noUi-target {
@@ -3351,6 +3352,7 @@ div.menuItems.last {
 #adv-presearch-modal {
   display: none;
   /* display flex on show */
+  gap: 10px;
   align-items: center;
   background-color: #fff;
   box-shadow: 0 5px 5px 0 rgba(0, 102, 203, 0.2);
@@ -3707,9 +3709,9 @@ div.menuItems.last {
     width: 100%;
   }
 
-  .firstContainer {
+  /* .firstContainer {
     margin-top: 30px;
-  }
+  } */
   .socialButton .shareText {
     display: none;
   }
@@ -3913,9 +3915,9 @@ div.menuItems.last {
     margin-top: 3px;
   }
 
-  .navbar-collapse {
+  /* .navbar-collapse {
     overflow-y: visible;
-  }
+  } */
 
   .compContainer .resultsShopBtn.buy {
     width: 100%;
@@ -3960,9 +3962,9 @@ div.menuItems.last {
     min-height: 36px;
   }
 
-  .firstContainer {
+  /* .firstContainer {
     margin-top: 0px;
-  }
+  } */
 }
 
 @media (max-width: 450px) {

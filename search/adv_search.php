@@ -18,7 +18,7 @@
 		var minbudgetset=<?php if(!isset($bdgmin)){ $bdgmin=$minconfigprice*4.5; }else{if($bdgmin==-10){$bdgmin=$minconfigprice;}} echo $bdgmin; ?>;
 		var maxbudgetset=<?php if(!isset($bdgmax)){ $bdgmax=$minconfigprice*11; }else{if($bdgmax<-5){$bdgmax=$maxconfigprice;}} echo $bdgmax; ?>;
 	</script>
-	<form  method="post" id="advform" name="advform" style="background-color: #fff; padding: 0 15px;">
+	<form  method="post" id="advform" class="presearch-modal-anchor" name="advform" style="background-color: #fff; padding: 0 15px;">
 	<input type="hidden" name="advsearch" value="1">
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
