@@ -76,7 +76,7 @@ if(document.getElementById('nrcores')!=null)
 		noUiSlider.create(document.getElementById('nrcores'), {
 			start: [cpucoreminset, cpucoremaxset],
 			connect: true,
-			step: 2,
+			step: 1,
 			direction: 'ltr',
 			format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
 			range: {
