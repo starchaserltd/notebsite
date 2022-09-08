@@ -1,25 +1,21 @@
-# Template PHP Build
+image: maven:3.3.9
 
-# This template allows you to validate your PHP application.
-# The workflow allows running tests and code linting on the default branch.
+definitions:
+  steps:
+    - step: &build-step
+        name: SonarQube analysis
+        script:
+          - pipe: sonarsource/sonarqube-scan:1.0.0
+            variables:
+              SONAR_HOST_URL: ${SONAR_HOST_URL} # Get the value from the repository/workspace variable.
+              SONAR_TOKEN: ${SONAR_TOKEN} # Get the value from the repository/workspace variable. You shouldn't set secret in clear text here.
+  caches:
+    sonar: ~/.sonar
 
-image: composer:2.0
-
+clone:
+  depth: full
 
 pipelines:
-  default:
-    - parallel:
-        - step:
-            name: Test
-            script:
-              - composer install
-              -  ./vendor/bin/phpunit test
-            caches:
-              - composer
-        - step:
-            name: Lint
-            script:
-              - composer install
-              - ./vendor/bin/phplint . --exclude=vendor
-            caches:
-              - composer
+  branches:
+    '{master}': # or the name of your main branch
+      - step: *build-step
