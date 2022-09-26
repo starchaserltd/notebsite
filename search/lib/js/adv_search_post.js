@@ -78,7 +78,7 @@ if(document.getElementById('nrcores')!=null)
 			connect: true,
 			step: 1,
 			direction: 'ltr',
-			format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
+			format: { to: function(value){ console.log(value); return Math.round(parseFloat(value));  }, from: function(value){ return Math.round(parseFloat(value)); } },
 			range: {
 				'min': [cpumincore],
 				'max': [cpumaxcore]		
