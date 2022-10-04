@@ -53,7 +53,7 @@ $current_type="Business";
 			<input type="hidden" name="id" value="<?php echo $row[0]; ?>"/>
 			<input type="submit" class="button2"  name="action" onclick="if(!confirm('Are you sure to update this line')){return false;}"value="Update"/>
 			<input type="submit" class="button2"  name="action" onclick="if(!confirm('Are you trying to delete this laptop<?php echo " ".$row[6]." from top ".$row[1];  ?>')){return false;}" value="Delete"/>
-			<input type="submit" class="button2"  name="action" onclick="window.open('https://noteb.com/?model/model.php?conf= <?php echo $row[4]; ?> &ex=USD')" value="Go to"/>
+			<input type="submit" class="button2"  name="action" onclick="event.preventDefault(); window.open('https://noteb.com/?model/model.php?conf= <?php echo $row[4]; ?> &ex=USD');" value="Go to"/>
 			<?php echo "</td></form><td>".$pricegood[0]."</td>"; ?>
 			<?php 
 			if(intval($row[25]))
