@@ -12,7 +12,7 @@
 			</div>
 			<div style="margin-top: 10px;" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<div>Features</div>
-				<select onchange="presearch('#<?php echo $search_form_id;?>')"; class="multisearch js-example-responsive" id="<?php echo $search_form_id;?>_CPU_msc_id" name="CPU_msc_id[]" data-lcom='CPU_model' data-lfield="cpu_misc" data-placeholder="Ex. Intel Core i7, Multithreading " data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
+				<select onchange="presearch('#<?php echo $search_form_id;?>')"; class="multisearch js-example-responsive" id="<?php echo $search_form_id;?>_CPU_msc_id" name="CPU_msc_id[]" data-lcom='CPU_model' data-lfield="cpu_misc" data-placeholder="Ex. Intel Core 7, Multithreading " data-ajax--url="search/lib/func/list.php" multiple="multiple" style="width:100%;"></select>
 			</div>	
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">		
 				<div style="margin-top:5px">

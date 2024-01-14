@@ -103,7 +103,10 @@ foreach($cpu_misc  as $key=>$el)
 	if(stripos($el,"threading")!==FALSE){$cpu_misc[$key]="HT/SMT";}
 	if(stripos($el,"business features")!==FALSE){$cpu_misc[$key]="AMD PRO/vPRO";}
 	if(stripos($el,"virtualization")!==FALSE){$cpu_misc[$key]="VT-d/AMD-Vi/ARM-V";}
+	if(stripos($el,"Intel")!==FALSE){$cpu_prod[]="INTEL";}
+	if(stripos($el,"AMD")!==FALSE){$cpu_prod[]="AMD";}
 }
+if(isset($cpu_prod)){$cpu_prod=array_unique($cpu_prod);}
 // CPU Launch date
 if(isset($_GET['launchdatemin']))
 { $cpu_ldmin = $_GET['launchdatemin']; }

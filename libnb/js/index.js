@@ -91,6 +91,13 @@ function urlrequest(url,e,dontpush) {
     }).fail(function (){ if(content_load_fail==0){urlrequest("content/home.php",e,0); content_load_fail=1;}else{ $('#content').html("Unable to load the main content. Sorry for the inconvenience, please try again later."); }});
 }
 
+//No Index params
+var set_noindex=0;
+const nb_metaRobots = document.createElement('meta');
+nb_metaRobots.name = 'robots';
+nb_metaRobots.content = 'noindex';
+
+
 //Function for main content area
 function OpenPage(url, e, dontpush) {
     if (!window.location.href.includes('search') && $('.searchMenu h3').hasClass('open')) {
@@ -123,7 +130,13 @@ function OpenPage(url, e, dontpush) {
     }
 	
     if (go == 1) { urlrequest(url,e,dontpush); }
-    if (go == 2) { wopen=window.open(siteroot + "?" + url, "_blank"); if (wopen==null||typeof(wopen)=='undefined'){alert("Turn off your pop-up blocker!");} }
+    if (go == 2)
+    { 
+        document.head.removeChild(nb_metaRobots); 
+        wopen=window.open(siteroot + "?" + url, "_blank"); if (wopen==null||typeof(wopen)=='undefined'){alert("Turn off your pop-up blocker!");}
+    }
+    if ( go>0 ) { try { document.head.removeChild(nb_metaRobots); } catch {} if(set_noindex == 1) { console.log("adding noindex"); document.head.appendChild(nb_metaRobots); } }
+    set_noindex=0;
 }
 
 //Function for toolbox area
@@ -648,7 +661,7 @@ function proc_search_param_to_array(param_array) {
 // PROGRESS BAR
 
 var PROGRESSBAR = (function () {
-  var DEFAULT_MIN = 0;
+  var DEFAULT_MIN = 0; 
   var DEFAULT_MAX = 100;
 
   function getPercentage(value, min, max)

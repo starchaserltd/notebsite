@@ -93,19 +93,19 @@ if(isset($_GET['cpu_type']))
 			case "2":
 			{
 				array_push($valuetype[11],"INTEL");
-				$cpumsc.='<option selected="selected">Intel Core i3</option>';
+				$cpumsc.='<option selected="selected">Intel Core 3/i3</option>';
 				break;
 			}
 			case "3":
 			{
 				array_push($valuetype[11],"INTEL");
-				$cpumsc.='<option selected="selected">Intel Core i5</option>';
+				$cpumsc.='<option selected="selected">Intel Core 5/i5</option>';
 				break;
 			}
 			case "4":
 			{
 				array_push($valuetype[11],"INTEL");
-				$cpumsc.='<option selected="selected">Intel Core i7/i9</option>';
+				$cpumsc.='<option selected="selected">Intel Core 7/9/i7/i9</option>';
 				$cpumsc.='<option selected="selected">Intel Xeon</option>';
 				break;
 			}

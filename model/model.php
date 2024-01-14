@@ -65,6 +65,7 @@ if ($underwork) {
 		if ($nonexistent) {
 			echo "<b>The model you are looking for doesn't exist.</b><br>";
 			echo "<a href='../index.php' target='_self'> Let's go back to the home page, shall we?</a>";
+			//http_response_code(410);
 		} else {
 		?>
 

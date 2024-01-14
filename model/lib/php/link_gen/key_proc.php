@@ -5,6 +5,13 @@ function standard_key_proc($keys,$idmodel,$submodel)
 	if(stripos($submodel,"i3")!==FALSE) { $keys.="+i3"; }
 	if(stripos($submodel,"i5")!==FALSE) { $keys.="+i5"; }
 	if(stripos($submodel,"i7")!==FALSE) { $keys.="+i7"; }
+	if(stripos($submodel,"i9")!==FALSE) { $keys.="+i9"; }
+	if(stripos($submodel,"Core 3")!==FALSE) { $keys.="+Core 3"; }
+	if(stripos($submodel,"Core 5")!==FALSE) { $keys.="+Core 5"; }
+	if(stripos($submodel,"Core 7")!==FALSE) { $keys.="+Core 7"; }
+	if(stripos($submodel,"Ultra 5")!==FALSE) { $keys.="+Ultra 5"; }
+	if(stripos($submodel,"Ultra 7")!==FALSE) { $keys.="+Ultra 7"; }
+	if(stripos($submodel,"Ultra 9")!==FALSE) { $keys.="+Ultra 9"; }
 	if(stripos($submodel,"Xeon")!==FALSE) { $keys.="+Xeon"; }
 	if(stripos($submodel,"DDR3")!==FALSE) { $keys.="+DDR3"; }
 	if(stripos($submodel,"DDR4")!==FALSE) { $keys.="+DDR4"; }

@@ -21,9 +21,9 @@ require_once("etc/conf.php"); ?>
 			<div style="margin-top:10px; font-size:14px; margin-bottom:2px;">Processor type</div>
 			<select onchange="presearch('#s_search');" id="cpu_type" name="cpu_type[]" multiple>
 				<option value="1" data-name="Intel">Intel any</option>
-				<option value="2" data-name="Core i3">Intel Core i3</option>
-				<option value="3" data-name="Core i5">Intel Core i5</option>
-				<option value="4" data-name="Core i7/i9">Intel Core i7/i9</option>
+				<option value="2" data-name="Intel 3">Intel 3</option>
+				<option value="3" data-name="Intel 5">Intel 5</option>
+				<option value="4" data-name="Intel 7/9">Intel 7/9</option>
 				<option value="5" data-name="AMD">AMD any</option>
 				<option value="6" data-name="Ryzen">AMD Ryzen</option>
 				<option value="7" data-name="HT/SMT">Multithreading</option>

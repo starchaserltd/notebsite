@@ -202,7 +202,7 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 	if(gettype($misc)!="array") { $misc=(array)$misc; }
 	foreach($misc as $x)
 	{
-		if(stripos($x,"Intel Core i")===FALSE && stripos($x,"Ryzen")===FALSE && stripos($x,"Intel Xeon")===FALSE)
+		if(stripos($x,"Intel Core")===FALSE && stripos($x,"Ryzen")===FALSE && stripos($x,"Intel Xeon")===FALSE)
 		{
 			if($i)
 			{ $sel_cpu.=" AND "; }
@@ -237,7 +237,7 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 	if(gettype($misc)!="array") { $misc=(array)$misc; }
 	foreach($misc as $x)
 	{
-		if(stripos($x,"Intel Core i")!==FALSE||stripos($x,"Intel Xeon")!==FALSE)
+		if(stripos($x,"Intel Core")!==FALSE||stripos($x,"Intel Xeon")!==FALSE)
 		{
 			if($i)
 			{ $sel_cpu.=" OR "; }
@@ -246,9 +246,18 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 			
 			if(stripos($x,"Xeon")!==FALSE){$x="Xeon";}else{$x=str_ireplace("Intel Core ","",$x);}
 			if(stripos($x,"/")!==FALSE)
-			{ $x=explode("/",$x); $sel_cpu.="(model LIKE '%".$x[0]."%' OR model LIKE '%".$x[1]."%')"; }
+			{ 
+				$x=explode("/",$x);
+				$sel_cpu.="(";
+				foreach($x as $part_of_x)
+				{
+					$sel_cpu.="model LIKE '%".$part_of_x." %' OR model LIKE '%".$part_of_x."-%' OR ";
+				}
+				$sel_cpu=substr($sel_cpu, 0, -3); //REMOVING trailing OR
+				$sel_cpu.=")";
+			}
 			else
-			{ $sel_cpu.="model LIKE '%".$x."%'"; }
+			{ $sel_cpu.="model LIKE '%".$x." %'"; }
 			$i++;
 		}
 		elseif(stripos($x,"Ryzen 3")!==FALSE)
