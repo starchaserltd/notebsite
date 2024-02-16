@@ -61,12 +61,12 @@ $(document).ready(function()
 	if(document.getElementById('s_mem').noUiSlider===undefined)
 	{
 		noUiSlider.create(document.getElementById('s_mem'), {
-			start: [8, 16],
+			start: [16, 32],
 			connect: true,
-			step: 4,
+			step: 8,
 			direction: 'ltr',
 			format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
-			range: listrange([2,4,8,16,24,32])
+			range: listrange([2,4,8,16,24,32,64])
 		});
 	}
 
@@ -87,12 +87,12 @@ $(document).ready(function()
 	if(document.getElementById('s_hdd').noUiSlider===undefined)
 	{
 		noUiSlider.create(document.getElementById('s_hdd'), {
-			start: [128, 2048],
+			start: [513, 2048],
 			connect: true,
 			step: 4,
 			direction: 'ltr',
 			format: { to: function(value){ return parseInt(value); }, from: function(value){ return parseInt(value); } },
-			range: listrange([32,64,128,256,512,768,1024,2048])
+			range: listrange([32,64,128,256,512,768,1024,2048,4096])
 		});
 	}
 	
