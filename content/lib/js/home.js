@@ -1,3 +1,4 @@
+if (typeof populate_noteb_data !== 'function') {
  function populate_noteb_data() {
 	get_nom_search_data().then(() => {
 	if (nb_search_data) {
@@ -15,19 +16,15 @@
         // Handle any errors here
     });
 }
+}
 
 //Top sliders area
 // Select sliders and indicators
-// Declare your variables.
-let $slider, $indicators, slideWidth, currentIndex, totalItems;
-
-// Check if your variables is already defined. If not, initialize them.
-$slider = $slider || $('.category');
-$indicators = $indicators || $('.category-indicators .indicator');
-slideWidth = slideWidth || $slider.find('.category-item:first').outerWidth(true);
-currentIndex = currentIndex || 0;
-totalItems = totalItems || $indicators.length;
-
+if(typeof $slider === 'undefined') var $slider = $('.category');
+if(typeof $indicators === 'undefined') var $indicators = $('.category-indicators .indicator');
+if(typeof slideWidth === 'undefined') var slideWidth = $slider.find('.category-item:first').outerWidth(true);
+if(typeof currentIndex === 'undefined') var currentIndex = 0;
+if(typeof totalItems === 'undefined') var totalItems = $indicators.length;
 
     //Updates indicators 
     function update_indicators() {
