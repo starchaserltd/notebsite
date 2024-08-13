@@ -37,14 +37,17 @@ $args = array(
     'post_type' => 'post',
     'post_status' => 'publish',
     'suppress_filters' => true );
-	
+try {	
 $recent_posts = wp_get_recent_posts( $args, ARRAY_A );
 $category = get_category(2);
 $count_posts = wp_count_posts();//echo $count_posts;
 $published_posts = $count_posts->publish;	
+} catch (Exception $e) {
+    echo 'Could not get articles data from the CMS: ',  $e->getMessage(), "\n";
+}
 ?>
 <link rel="stylesheet" href="content/lib/css/home.css?v=0.48" type="text/css"/>
-<script>$.getScript("content/lib/js/home.js?v=0.2");document.title = "Noteb - Search, Compare and Find the Best Laptop for You";$(document).ready(function(){
+<script>$.getScript("content/lib/js/home.js?v=0.21", function() {  }); document.title = "Noteb - Search, Compare and Find the Best Laptop for You";$(document).ready(function(){
     $('meta[name=description]').attr('content', "Looking for a laptop? Search, Compare or even take a Quiz with Noteb.com to find the perfect laptop for your work, home or suggest one to your friends from over 6.000.000 configurations derived from over 900 models.");
     $('head').append('<link rel="alternate" hreflang="en-US" href="https://noteb.com" />');
 });</script>
@@ -59,57 +62,89 @@ $published_posts = $count_posts->publish;
 	<div class="clearfix"></div>
 	
 	<!-- Top 10 laptops area -->
-	<?php $query=mysqli_query($con,"SELECT * FROM `notebro_site`.`top_laptops` WHERE `valid`=1 ORDER BY TYPE,ORD ASC,PRICE"); $tops=array(); $topshead=array(); if(have_results($query)) { while ($row=mysqli_fetch_assoc($query)) { $tops[$row['type']][$row['id']] = array('id' => $row['c_id'],'img' => $row['img'], 'name' => $row['name'], 'price' => $row['price'], 'min_price' => $row['min_price'], 'max_price' => $row['max_price'], 'price_range' => intval($row['price_range'])); if(isset($topshead[$row['type']]["count"])) { $topshead[$row['type']]["count"]++; } else {$topshead[$row['type']]["count"]=1; } $topdate= strtotime($row["date"]); if(isset($topshead[$row['type']]["maxdate"])){ if($topshead[$row['type']]["maxdate"] < $topdate) { $topshead[$row['type']]["maxdate"]=$topdate; } } else { $topshead[$row['type']]["maxdate"]=$topdate; } } mysqli_free_result($query); }?>
-	<section class="row topLaptops  slickMobile">
-		<div class="col-lg-4 col-md-4 col-12 studentTopLaptops">
-			<h2 class="h2TopLaptopsStudent">Top <?php echo $topshead["HomeStudent"]["count"]; ?> Home & Student <span class="topLaptopsDate d-lg-none d-md-none d-sm-none d-xs-block"><?php echo date('M Y',$topshead["HomeStudent"]["maxdate"]); ?></span></h2>
-			
-			<?php foreach ($tops['HomeStudent'] as $el) { ?>			
-			<div class="row infoLaptop">
-				<a class="col-12" href="javascript:void(0)" onmousedown="OpenPage('<?php echo "model/model.php?conf=".$el["id"]."&ex=USD"; ?>',event)">
-					<div class="row imgTopLaptop">
-						<div class="col-xl-4 col-lg-5 col-5"><img  class="img-responsive img-fluid " src="<?php echo $el["img"]; ?>" alt="imgStudent"/></div>
-						<div class="col-xl-8 col-lg-7 col-7"><p class="topLaptopsName"><?php echo $el["name"]; ?> <span class="pretTopLaptops"><?php if($el["price_range"]==0){ echo "$".$el["price"]."</span></p>"; }else{ echo "$".$el["min_price"]." - $".$el["max_price"]."</span></p>";} ?></div>
-					</div>	
-				</a>					
-			</div>											
-			<?php } ?>
+	<link rel="stylesheet" href="content/lib/css/infoarea.css?v=0.01" type="text/css"/>
+	<?php
+	try {
+    $query = mysqli_query($con, "SELECT * FROM notebro_site.top_laptops WHERE valid=1 ORDER BY TYPE,ORD ASC,PRICE");
+    // Initialising arrays for the laptop tops
+    $tops = array();
+    $topshead = array();
+    //Populating the tops array with query data
+    if (mysqli_num_rows($query) > 0) {
+        while ($row = mysqli_fetch_assoc($query)) {
+            if (!isset($tops[$row['type']])) {
+                // Adauga datele laptopului in array-ul corespunzator tipului
+                $tops[$row['type']] = array(
+                    'id' => $row['c_id'],
+                    'img' => $row['img'],
+                    'name' => $row['name'],
+                    'price' => $row['price'],
+                    'min_price' => $row['min_price'],
+                    'max_price' => $row['max_price'],
+                    'price_range' => intval($row['price_range'])
+                );
+            }
+        }
+        mysqli_free_result($query);
+    }
+} catch (Exception $e) {
+    echo 'Could not get information on laptop tops ',  $e->getMessage(), "\n";
+}
+	?>
+	<!-- Info area start --!>
+	<div class="main-container">
+		<div class="info-container">
+			<h1>Noteb data</h1>
+			<div class="info-item">
+				<i class="fas fa-calendar-alt"></i>
+				<p><span>Last updated:</span> <span class="value" id="latest-update"></span></p>
+			</div>
+			<div class="info-item">
+				<i class="fas fa-store"></i>
+				<p><span>On-line shops:</span> <span class="value" id="num-retailers"></span></p>
+			</div>
+			<div class="info-item">
+				<i class="fas fa-laptop"></i>
+				<p><span>Unique laptop configurations:</span> <span class="value" id="num-configurations"></span></p>
+			</div>
+			<div class="info-item">
+				<i class="fas fa-list-alt"></i>
+				<p><span>Laptop models:</span> <span class="value" id="num-models"></span></p>
+			</div>
 		</div>
-
-
-		<div class="col-lg-4 col-md-4 col-12 gamingTopLaptops">
-			<h2 class="h2TopLaptopsGaming">Top <?php echo $topshead["Gaming"]["count"]; ?> Gaming <span class="topLaptopsDate d-lg-none d-md-none d-sm-none d-xs-block"><?php echo date('M Y',$topshead["Gaming"]["maxdate"]); ?></span></h2>
-			
-			<?php foreach ($tops['Gaming'] as $el) { ?>				
-			<div class="row infoLaptop">
-				<a class="col-12" href="javascript:void(0)" onmousedown="OpenPage('<?php echo "model/model.php?conf=".$el["id"]."&ex=USD"; ?>',event)">
-					<div class="row imgTopLaptop">
-						<div class="col-xl-4 col-lg-5 col-5"><img  class="img-responsive img-fluid " src="<?php echo $el["img"]; ?>" alt="imgGaming"/></div>
-						<div class="col-xl-8 col-lg-7 col-7 "><p class="topLaptopsName"><?php echo $el["name"]; ?>  <span class="pretTopLaptops"><?php if($el["price_range"]==0){ echo "$".$el["price"]."</span></p>"; }else{ echo "$".$el["min_price"]." - $".$el["max_price"]."</span></p>";} ?></div>			 
-					</div>							
-				</a>
-			</div>											
-			<?php } ?>
-		</div>	
-		
-			
-		<div class="col-lg-4 col-md-4  col-12 businessTopLaptops">
-			<h2 class="h2TopLaptopsBusiness">Top <?php echo $topshead["Business"]["count"]; ?> Business <span class="topLaptopsDate d-lg-none d-md-none d-sm-none d-xs-block"><?php echo date('M Y',$topshead["Business"]["maxdate"]); ?></span></h2>
-			
-			<?php foreach ($tops['Business'] as $el) { ?>				
-			<div class="row infoLaptop">
-				<a class="col-12" href="javascript:void(0)" onmousedown="OpenPage('<?php echo "model/model.php?conf=".$el["id"]."&ex=USD"; ?>',event)">
-					<div class="row imgTopLaptop">
-						<div class="col-xl-4 col-lg-5 col-5"><img  class="img-responsive img-fluid " src="<?php echo $el["img"]; ?>" alt="imgBusiness"/></div>
-						<div class="col-xl-8 col-lg-7 col-7"><p class="topLaptopsName"><?php echo $el["name"]; ?>  <span class="pretTopLaptops"><?php if($el["price_range"]==0){ echo "$".$el["price"]."</span></p>"; }else{ echo "$".$el["min_price"]." - $".$el["max_price"]."</span></p>";} ?>	</div>					 
+		<div class="category-container">
+			<h2>Recommended</h2>
+			<div class="arrow-swipe left-arrow">
+				<i class="fas fa-chevron-left arrow left"></i>
+			</div>
+			<div class="category">
+				<?php foreach ($tops as $category_label => $laptop): ?>
+					<div class="category-item" data-category="<?php echo strtolower(str_replace(' & ', '-', $category_label)); ?>">
+						<h3><?php echo $category_label; ?></h3>
+						<div class="items">
+							<div class="item" onmousedown="OpenPage('<?php echo "model/model.php?conf=" . $laptop['id'] . "&ex=USD"; ?>', event)">
+								<img src="<?php echo $laptop['img']; ?>" alt="<?php echo $laptop['name']; ?>">
+								<div class="info">
+									<p><?php echo $laptop['name']; ?></p>
+									<span>$<?php echo number_format($laptop['min_price']); ?> - $<?php echo number_format($laptop['max_price']); ?></span>
+								</div>
+							</div>
+						</div>
 					</div>
-				</a>
-			</div>											
-			<?php } ?>
-		</div>		
-	</section>
-	<div class="showMore"><span class="showMoreSpan">Show All</span></div>
-
+				<?php endforeach; ?>
+			</div>
+			<div class="arrow-swipe right-arrow">
+				<i class="fas fa-chevron-right arrow right"></i>
+			</div>
+			<div class="category-indicators">
+				<?php $index = 0; foreach ($tops as $category_label => $laptop): ?>
+					<div class="indicator" data-index="<?php echo $index; ?>" data-category="<?php echo strtolower(str_replace(' & ', '-', $category_label)); ?>"></div>
+				<?php $index++; endforeach; ?>
+			</div>
+		</div>
+	</div>
+	<!-- Info area end --!>
+	
 	<!-- articles & reviews -->
 	<article class="articleMobile row"> 
 		<h2 class="h2Articles col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">Articles</h2>
