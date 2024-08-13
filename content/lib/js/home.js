@@ -5,9 +5,9 @@
             $('#latest-update').text(nb_search_data.site.gentime[0]);
         }
         if (nb_search_data.site && nb_search_data.site.info && nb_search_data.site.info.length >= 4) {
-            $('#num-retailers').text(nb_search_data.site.info[5]);
-            $('#num-configurations').text(nb_search_data.site.info[3]);
-            $('#num-models').text(nb_search_data.site.info[2]);
+            $('#num-retailers').text(nb_search_data.site.info[3]);
+            $('#num-configurations').text(nb_search_data.site.info[0]);
+            $('#num-models').text(nb_search_data.site.info[1]);
         }
     }
     }).catch((err) => {
