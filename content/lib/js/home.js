@@ -18,13 +18,15 @@
 
 //Top sliders area
 // Select sliders and indicators
-let [$slider, $indicators, slideWidth, currentIndex, totalItems] = 
-    [ typeof $slider !== 'undefined' ? $slider : $('.category'),
-      typeof $indicators !== 'undefined' ? $indicators : $('.category-indicators .indicator'),
-      typeof slideWidth !== 'undefined' ? slideWidth : $('.category').find('.category-item:first').outerWidth(true),
-      typeof currentIndex !== 'undefined' ? currentIndex : 0,
-      typeof totalItems !== 'undefined' ? totalItems : $('.category-indicators .indicator').length];
+// Declare your variables.
+let $slider, $indicators, slideWidth, currentIndex, totalItems;
 
+// Check if your variables is already defined. If not, initialize them.
+$slider = $slider || $('.category');
+$indicators = $indicators || $('.category-indicators .indicator');
+slideWidth = slideWidth || $slider.find('.category-item:first').outerWidth(true);
+currentIndex = currentIndex || 0;
+totalItems = totalItems || $indicators.length;
 
 
     //Updates indicators 
