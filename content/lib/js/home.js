@@ -16,13 +16,14 @@
     });
 }
 
-	//Top sliders area
-    // Select sliders and indicators
-    let $slider = $('.category');
-    let $indicators = $('.category-indicators .indicator');
-    let slideWidth = $slider.find('.category-item:first').outerWidth(true);
-    let currentIndex = 0;
-    let totalItems = $indicators.length;
+//Top sliders area
+// Select sliders and indicators
+let $slider = typeof $slider !== 'undefined' ? $slider : $('.category');
+let $indicators = typeof $indicators !== 'undefined' ? $indicators : $('.category-indicators .indicator');
+let slideWidth = typeof slideWidth !== 'undefined' ? slideWidth : $slider.find('.category-item:first').outerWidth(true);
+let currentIndex = typeof currentIndex !== 'undefined' ? currentIndex : 0;
+let totalItems = typeof totalItems !== 'undefined' ? totalItems : $indicators.length;
+
 
     //Updates indicators 
     function update_indicators() {
