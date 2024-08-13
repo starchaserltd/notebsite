@@ -18,11 +18,13 @@
 
 //Top sliders area
 // Select sliders and indicators
-let $slider = typeof $slider !== 'undefined' ? $slider : $('.category');
-let $indicators = typeof $indicators !== 'undefined' ? $indicators : $('.category-indicators .indicator');
-let slideWidth = typeof slideWidth !== 'undefined' ? slideWidth : $slider.find('.category-item:first').outerWidth(true);
-let currentIndex = typeof currentIndex !== 'undefined' ? currentIndex : 0;
-let totalItems = typeof totalItems !== 'undefined' ? totalItems : $indicators.length;
+let [$slider, $indicators, slideWidth, currentIndex, totalItems] = 
+    [ typeof $slider !== 'undefined' ? $slider : $('.category'),
+      typeof $indicators !== 'undefined' ? $indicators : $('.category-indicators .indicator'),
+      typeof slideWidth !== 'undefined' ? slideWidth : $('.category').find('.category-item:first').outerWidth(true),
+      typeof currentIndex !== 'undefined' ? currentIndex : 0,
+      typeof totalItems !== 'undefined' ? totalItems : $('.category-indicators .indicator').length];
+
 
 
     //Updates indicators 
