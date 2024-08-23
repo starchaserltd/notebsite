@@ -106,7 +106,7 @@ try {
                 <div class="icon">
                     <i class="fas fa-calendar-check"></i>
                 </div>
-                <div class="main-info">Last Updated: <span class="highlight" id="latest-update">0</span></div>
+                <div class="main-info">Last Updated: <span class="highlight" id="latest-update">0</span> (UTC)</div>
             </div>
 
             <div class="row">
