@@ -142,13 +142,15 @@ try {
                         <input type="radio" name="carousel" id="slide<?php echo $index; ?>" <?php if($index === 1) echo 'checked'; ?>>
                         <div class="carousel-slide" id="carousel-slide<?php echo $index; ?>">
                             <h3><?php echo (stripos($category_label, "home") !== FALSE) ? "Home & Student" : $category_label; ?></h3>
-                            <div class="image-container">
-                                <img src="<?php echo $laptop['img']; ?>" alt="<?php echo $laptop['name']; ?>">
-                            </div>
-                            <div class="product-info">
-                                <h3><?php echo $laptop['name']; ?></h3>
-                                <p>$<?php echo number_format($laptop['min_price']); ?> - $<?php echo number_format($laptop['max_price']); ?></p>
-                            </div>
+                            <a class="" href="javascript:void(0)" onmousedown="OpenPage('<?php echo "model/model.php?conf=".$laptop["id"]."&ex=USD"; ?>',event)">
+                                <div class="image-container">
+                                    <img src="<?php echo $laptop['img']; ?>" alt="<?php echo $laptop['name']; ?>">
+                                </div>
+                                <div class="product-info">
+                                    <h3><?php echo $laptop['name']; ?></h3>
+                                    <p>$<?php echo number_format($laptop['min_price']); ?> - $<?php echo number_format($laptop['max_price']); ?></p>
+                                </div>
+                            </a>
                         </div>
                         <?php $index++; ?>
                     <?php endforeach; ?>

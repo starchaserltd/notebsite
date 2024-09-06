@@ -285,6 +285,15 @@
     overflow: hidden;
 }
 
+.carousel-slide a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none; 
+    width: 100%; 
+}
+
 input[name="carousel"] {
     display: none;
 }
@@ -297,7 +306,7 @@ input[name="carousel"]:checked + .carousel-slide {
 
 .image-container {
     width: 100%;
-    max-width: 220px; 
+    max-width: 200px; 
     height: 150px; 
     background-color: #f5f5f5; 
     display: flex;
@@ -305,13 +314,11 @@ input[name="carousel"]:checked + .carousel-slide {
     justify-content: center;
     border-radius: 12px;
     margin-bottom: 10px;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); 
     overflow: hidden; 
 }
 
 .carousel-slide img {
-    width: 100%;
-    height: 100%;
+    width: 90%;
     object-fit: cover; 
 }
 
