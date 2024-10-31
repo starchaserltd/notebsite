@@ -769,7 +769,7 @@ var PROGRESSBAR = (function () {
 
 // Update this time to decide the hidden time for the snackbar 
 // Currently the time is 15 days
-const timeToStayHidden = 15;
+const timeToStayHidden = 8;
 
 const hideSnackbarCookie = getCookie("hideSnackbar");
 
