@@ -15,6 +15,7 @@ require_once("etc/conf.php");
 	<meta name="author" content="Starchaser">
 	<!-- CSS Libraries we want to load before everthing else -->
 	<link rel="stylesheet" href="lib/css/bootstrap.min.css" crossorigin="anonymous">
+	<link rel="stylesheet" href="lib/css/bootstrap-icons.min.css" type="text/css" />
 	<!-- JavaScript libraries -->
 	<script src="lib/js/jquery.min.js"></script>
 	<script src="lib/js/popper.min.js"></script>
@@ -35,19 +36,11 @@ require_once("etc/conf.php");
 	}
 	echo "';</script>"; ?>
 	<style>
-		btn.active.focus,
-		.btn.active:focus,
-		.btn.focus,
-		.btn:active.focus,
-		.btn:active:focus,
-		.btn:focus {
-			outline: none !important;
-			outline-offset: initial !important
-		}
 	</style>
 </head>
 
 <body>
+	<?php require_once("libnb/php/nb_closing.php"); ?>
 	<!-- upper buttons desktop -->
 	<div class="container-fluid containerNavigation">
 		<div class="navigation container">

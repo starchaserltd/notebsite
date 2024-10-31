@@ -767,4 +767,26 @@ var PROGRESSBAR = (function () {
   return { create, update };
 })();
 
+// Update this time to decide the hidden time for the snackbar 
+// Currently the time is 15 days
+const timeToStayHidden = 15;
+
+const hideSnackbarCookie = getCookie("hideSnackbar");
+
+// Function to show the snackbar
+function showSnackbar() {
+	var snackbar = document.getElementById('snackbar');
+	snackbar.classList.add('show');
+}
+
+// Function to dismiss the snackbar
+function dismissSnackbar() {
+	var snackbar = document.getElementById('snackbar');
+	snackbar.classList.remove('show');
+	setCookie("hideSnackbar", "true", timeToStayHidden);
+}
+
+if (!hideSnackbarCookie) {
+	showSnackbar();
+}
 //# sourceURL=index.js
