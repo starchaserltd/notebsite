@@ -40,7 +40,7 @@ require_once("etc/conf.php");
 </head>
 
 <body>
-	<?php require_once("libnb/php/nb_closing.php"); ?>
+	<?php //require_once("libnb/php/nb_closing.php"); ?>
 	<!-- upper buttons desktop -->
 	<div class="container-fluid containerNavigation">
 		<div class="navigation container">
