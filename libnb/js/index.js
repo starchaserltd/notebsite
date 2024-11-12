@@ -768,25 +768,22 @@ var PROGRESSBAR = (function () {
 })();
 
 // Update this time to decide the hidden time for the snackbar 
-// Currently the time is 15 days
+// Currently the time is 8 days
 const timeToStayHidden = 8;
 
-const hideSnackbarCookie = getCookie("hideSnackbar");
+var hideSnackbarCookie = getCookie("hideSnackbar");
 
 // Function to show the snackbar
 function showSnackbar() {
-	var snackbar = document.getElementById('snackbar');
-	snackbar.classList.add('show');
+    let element = document.getElementById('snackbar');
+    if (element) { element.classList.add('show'); element.style.visibility = 'visible'; }
 }
 
 // Function to dismiss the snackbar
 function dismissSnackbar() {
-	var snackbar = document.getElementById('snackbar');
-	snackbar.classList.remove('show');
-	setCookie("hideSnackbar", "true", timeToStayHidden);
+    let element = document.getElementById('snackbar');
+    if (element) { element.classList.remove('show');  if (element) element.style.visibility = 'hidden'; }
+    setCookie("hideSnackbar", "true", timeToStayHidden);
 }
 
-if (!hideSnackbarCookie) {
-	showSnackbar();
-}
 //# sourceURL=index.js

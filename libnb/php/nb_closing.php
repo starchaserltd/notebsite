@@ -1,4 +1,4 @@
-	<div id="snackbar">
+	<div id="snackbar" style="visibility: hidden;">
         <i class="bi bi-exclamation-triangle-fill snackbar-icon"></i>
         <span class="snackbar-text">
             Unfortunately, <span class="noteb-link">Noteb.com</span> will be closing in May 2025 due to lack of funding.
@@ -10,3 +10,4 @@
     </div>
 	<!-- nb_closing css -->
 	<link rel="stylesheet" href="libnb/css/nb_closing.css" type="text/css" />
+	<script>if (typeof showSnackbar === 'function') {var hideSnackbarCookie = getCookie("hideSnackbar"); if (!(hideSnackbarCookie && hideSnackbarCookie === "true")){ showSnackbar(); } }</script>

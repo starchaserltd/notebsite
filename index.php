@@ -40,7 +40,10 @@ require_once("etc/conf.php");
 </head>
 
 <body>
-	<?php //require_once("libnb/php/nb_closing.php"); ?>
+	<?php //require_once("libnb/php/nb_closing.php"); 
+	//iF SESSIONS ALREADY EXISTS BECAUSE THE COOKIES IS IN THE BROWSER SESSIONS, RESET IT.
+	if(isset($_SESSION['nbclosing'])) { $_SESSION['nbclosing']=0;} 
+	?>
 	<!-- upper buttons desktop -->
 	<div class="container-fluid containerNavigation">
 		<div class="navigation container">

@@ -15,6 +15,25 @@ $absolute_url=explode("&page=",$absolute_url,2);
 if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 {
 	//$_SESSION['auth']=0;
+	
+	// snack bar message for Noteb closing
+	if(!isset($_SESSION['nbclosing']))
+	{
+		$_SESSION['nbclosing']=0;
+	}
+	else
+	{
+		if($_SESSION['nbclosing']==0) { $_SESSION['nbclosing']=1; }
+		else
+		{
+			if($_SESSION['nbclosing']>0)
+			{
+					require_once("../libnb/php/nb_closing.php");
+			}
+		}
+	}
+	//
+	
 	require_once("../etc/con_db.php");
 	
 	/********************************************************************/
