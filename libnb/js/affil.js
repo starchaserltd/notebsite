@@ -14,13 +14,12 @@ function create_affil_modal(set_link) {
 
 	affil_popup.addClass('visible');
 	$(document).keydown(function (e) { if (e.keyCode == 27) { close_popup_extra(affil_popup); } }); // escape
-	$(document).keydown(function (e) { if (e.keyCode == 13) { $('#yes-affil-btn').click(); close_popup_extra(affil_popup); } }); // enter
+	$(document).on('keypress', function (e) { if (e.keyCode == 13) { $('#yes-affil-btn').click(); $(document).off('keypress'); close_popup_extra(affil_popup); } }); //enter
 
 	if (listeners_set) return;
 
 	$('#learn-more-affil-btn').click(function (e) { e.preventDefault(); $('#learn-more-affil-btn').html(learnMoreEl); affil_popup.addClass('width'); });
 	$(document).click(function (event) { if (!$(event.target).closest("#modal-affil-content,a").length) { close_popup_extra(affil_popup); } });
-	$(document).on('keypress', function (e) { if (e.keyCode == 13) { choice_affil(1); $(document).off('keypress'); close_popup_extra(affil_popup); } }); //enter
 	$('#close-affil-btn').click(function () { $(document).off('keypress'); close_popup_extra(affil_popup); });
 
 	listeners_set = true;
