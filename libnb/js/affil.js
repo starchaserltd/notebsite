@@ -14,7 +14,7 @@ function create_affil_modal(set_link) {
 
 	affil_popup.addClass('visible');
 	$(document).keydown(function (e) { if (e.keyCode == 27) { close_popup_extra(affil_popup); } }); // escape
-	//$(document).keydown(function (e) { if (e.keyCode == 13) { choice_affil(1); close_popup_extra(affil_popup); } }); // enter
+	$(document).keydown(function (e) { if (e.keyCode == 13) { $('#yes-affil-btn').click(); close_popup_extra(affil_popup); } }); // enter
 
 	if (listeners_set) return;
 
