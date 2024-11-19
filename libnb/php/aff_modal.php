@@ -11,8 +11,8 @@
 				<p><b><span style="font-weight: 900; color:#0066cb;">Let the stores know you came from noteb?</span></b> <br/><span style="color:#636363; padding-top:20px;display: inline-block;">Your gratitude keeps us up and running. </span></p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" data-dismiss="modal" id="yes-affil-btn">Yes</button>
-				<button type="button" class="btn btn-secondary" data-dismiss="modal" id="no-affil-btn">No</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal" id="yes-affil-btn" onclick="choice_affil(1);">Yes</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal" id="no-affil-btn" onclick="choice_affil(0);">No</button>
 			</div>
 			<span id="learn-more-affil-btn" style="color:#000000;"><a href="#" style="color:#0066cb;">Learn More</a></span>
 		</div>
