@@ -291,8 +291,10 @@ function modelGen(data) {
   function priceRow() {
     var cols = '<td class="compare__data">Price</td>';
     data.forEach(function (laptop) {
-      var { EXCH_SIGN, PRICE_MAX, PRICE_MIN } = laptop[modelKey];
-      cols += `<td class="compare__data">${EXCH_SIGN}${PRICE_MIN} - ${PRICE_MAX}</td>`;
+      //var { EXCH_SIGN, PRICE_MAX, PRICE_MIN } = laptop[modelKey];
+      //cols += `<td class="compare__data">${EXCH_SIGN}${PRICE_MIN} - ${PRICE_MAX}</td>`;
+	  var { EXCH_SIGN, PRICE} = laptop[modelKey];
+      cols += `<td class="compare__data">${EXCH_SIGN}${PRICE}</td>`;
     });
     return makeRow(cols);
   }

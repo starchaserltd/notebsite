@@ -86,7 +86,8 @@ function similar_model_search()
 {
 	var sim_exch="USD"; var sim_failer=0; var price=0; var range=0; var key=null;
 	if(model_ex!=null&&model_ex!=undefined){sim_exch=model_ex;}
-	if(document.getElementById("config_price1")!=null){price=(parseInt(document.getElementById("config_price1").innerText)+parseInt(document.getElementById("config_price2").innerText))/2;}else{sim_failer=1;}
+	//if(document.getElementById("config_price1")!=null){price=(parseInt(document.getElementById("config_price1").innerText)+parseInt(document.getElementById("config_price2").innerText))/2;}else{sim_failer=1;}
+	if(document.getElementById("config_price")!=null){price=(parseInt(document.getElementById("config_price").innerText));}else{sim_failer=1;}
 	if(config_batlife!=null&&config_batlife!=undefined){ var batlife=acum.cap/config_batlife; range=0.25; sim_minbat=noteb_round(batlife*(1-range),2); sim_maxbat=noteb_round(batlife*(1+range*20),2);}
 	if(document.getElementById('dLabel').dataset.buyregions!=null&&document.getElementById('dLabel').dataset.buyregions!=undefined&&document.getElementById('dLabel').dataset.buyregions!="")
 	{ var sim_regions=document.getElementById('dLabel').dataset.buyregions.split(","); }

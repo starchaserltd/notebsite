@@ -120,8 +120,9 @@ for ($x = 0; $x <= $nrconf; $x++)
 	array_var_new[comp_conf_to_gen]["MODEL"]["BUY"]["mprod"]='<?php echo $resu['prod']; ?>';
 	array_var_new[comp_conf_to_gen]["MODEL"]["BUY"]["pmodel"]='<?php echo $resu["p_model"]; ?>';
 	array_var_new[comp_conf_to_gen]["MODEL"]["BUY"]["ref"]='<?php echo $ref_tag; ?>';
-	array_var_new[comp_conf_to_gen]["MODEL"]["PRICE_MIN"]='<?php echo round(($price_conf_price - $err_conf_err / 2) * $exch, 0); ?>';
-	array_var_new[comp_conf_to_gen]["MODEL"]["PRICE_MAX"]='<?php echo round(($price_conf_price + $err_conf_err / 2) * $exch, 0); ?>';
+	array_var_new[comp_conf_to_gen]["MODEL"]["PRICE"]='<?php echo round(($price_conf_price) * $exch, 0); ?>';
+	//array_var_new[comp_conf_to_gen]["MODEL"]["PRICE_MIN"]='<?php echo round(($price_conf_price - $err_conf_err / 2) * $exch, 0); ?>';
+	//array_var_new[comp_conf_to_gen]["MODEL"]["PRICE_MAX"]='<?php echo round(($price_conf_price + $err_conf_err / 2) * $exch, 0); ?>';
 	array_var_new[comp_conf_to_gen]["MODEL"]["BATLIFE"]='<?php echo $batlife_conf_batlife; ?>';
 	array_var_new[comp_conf_to_gen]["MODEL"]["RATING"]='<?php echo round($rate_conf_rate / 100, 1); ?>';
 	array_var_new[comp_conf_to_gen]["MODEL"]["EXCH_SIGN"]='<?php echo $exchsign; ?>';

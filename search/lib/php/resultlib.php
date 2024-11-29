@@ -95,7 +95,8 @@ function showpricebat($tab, $id, $exc)
 	$result = mysqli_query($GLOBALS['cons'], "SELECT price,err,batlife FROM ".$tab." WHERE id = '".$id."' LIMIT 1"); 
 	$item = mysqli_fetch_array($result);
 	echo "Estimated battery:";?><br class="sres">  <?php echo round($item['batlife']*0.96,1); echo " - "; echo round($item['batlife']*1.03,1); echo " h";
-	$conf_price_text=intval(($item['price']-($item['err']/2))*$exc)." - ".intval(($item['price']+($item['err']/2))*$exc);
+	//$conf_price_text=intval(($item['price']-($item['err']/2))*$exc)." - ".intval(($item['price']+($item['err']/2))*$exc);
+	$conf_price_text=intval(($item['price'])*$exc);
 	return intval($item['price']);
 }
 ?>

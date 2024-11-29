@@ -65,7 +65,6 @@ if ($underwork) {
 		if ($nonexistent) {
 			echo "<b>The model you are looking for doesn't exist.</b><br>";
 			echo "<a href='../index.php' target='_self'> Let's go back to the home page, shall we?</a>";
-			//http_response_code(410);
 		} else {
 		?>
 
@@ -259,7 +258,8 @@ if ($underwork) {
 												?>
 											</select>
 										</div>
-										<span class="price-range bold-font"><span id="config_price1"></span> - <span id="config_price2"></span></span>
+										<!-- <span class="price-range bold-font"><span id="config_price1"></span> - <span id="config_price2"></span></span> -->
+										<span class="price-range bold-font"><span id="config_price"></span> </span>
 									</div>
 									<div class="dropdown actionButton">
 										<button id="dLabel" class="btn btn-primary btn-lg addtocpmp buyBtn bold-font" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-ref="<?php if (isset($usertag) && $usertag != "") {
