@@ -1,0 +1,90 @@
+.container-fluid, .container {
+    width: 100%;
+}
+
+.containerNavigation {
+    background-color: #fff;
+    height: 80px;
+}
+
+.navigation {
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: 80px;
+}
+
+.controlSvg {
+    height: 40px;
+    width: 40px;
+    display: inline-block;
+    background-color: #ffcc33;
+    padding: 2px;
+    position: absolute;
+    left: -10px;
+    top: 0;
+    padding: 7px;
+    border-radius: 4px 0 0 4px;
+}
+
+.socialArea {
+    width: 100%;
+    background: rgb(253, 203, 54);
+    background: linear-gradient(
+        90deg,
+        rgba(253, 203, 54, 1) 4%,
+        rgba(133, 155, 124, 1) 32%,
+        rgba(0, 102, 203, 1) 78%
+    );
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 10px;
+    height: 64px;
+}
+
+.siteMenu {
+    height: 40px;
+    background-color: #fff !important;
+}
+
+.btn-group {
+    width: 100%;
+}
+
+.justify-content-around {
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px 0;
+}
+
+.containerContentIndex {
+    align-items: flex-start;
+    position: relative;
+    width: 100%;
+}
+
+.btn-group,
+.btn-group .multiselect {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.btn-group-justified.siteMenu > .btn,
+.btn-group-justified > .btn-group {
+  width: 100%;
+}
+
+.btn-group.siteMenu h1:nth-child(1) {
+  width: 20%;
+  font-size: 1px;
+}
