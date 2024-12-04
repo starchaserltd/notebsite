@@ -84,12 +84,12 @@ require_once("etc/conf.php");
 			<!-- right area -->
 		</div>
 	</div>
-	<div class="socialArea container-fluid">
+	<div class="socialArea">
 		<div class="container">
 			<div class="row">
 				<div class="col-12 col-sm-12 col-md-6 cssmenu"><a style="color:#1D94DA" onmousedown="OpenPage('content/brands.php',event); scrolltoid('content',1);"><span class="browseButton d-lg-inline-block d-md-inline-block d-sm-none d-none col-3" style="font-weight: bold;">Browse laptops</span></a>
 					<ul class="browseLaptopClass">
-						<li class='has-sub'><a>By brand</a>
+						<li class="has-sub"><a>By brand</a>
 							<ul>
 								<li><a onmousedown="OpenPage('search/search.php?prod=HP&browse_by=prod',event); scrolltoid('content',1);">HP</a></li>
 								<li><a onmousedown="OpenPage('search/search.php?prod=Lenovo&browse_by=prod',event); scrolltoid('content',1);">Lenovo</a></li>
@@ -103,7 +103,7 @@ require_once("etc/conf.php");
 						</li>
 					</ul>
 					<ul class="browseLaptopClass">
-						<li class='has-sub'><a>By class</a>
+						<li class="has-sub"><a>By class</a>
 							<ul>
 								<li><a onmousedown="OpenPage('search/search.php?browse_by=budget',event); scrolltoid('content',1);">Budget</a></li>
 								<li><a onmousedown="OpenPage('search/search.php?browse_by=mainstream',event); scrolltoid('content',1);">Mainstream</a></li>
@@ -115,7 +115,7 @@ require_once("etc/conf.php");
 						</li>
 					</ul>
 					<ul class="browseLaptopClass">
-						<li class='has-sub'><a>By screen size</a>
+						<li class="has-sub"><a>By screen size</a>
 							<ul>
 								<li><a onmousedown="OpenPage('search/search.php?browse_by=smalldisplay',event); scrolltoid('content',1);">10" - 13.9"</a></li>
 								<li><a onmousedown="OpenPage('search/search.php?browse_by=mediumdisplay',event); scrolltoid('content',1);">14" - 16.9" </a></li>
@@ -124,9 +124,9 @@ require_once("etc/conf.php");
 						</li>
 					</ul>
 					<ul class="d-lg-none d-sm-block d-md-none d-bloc">
-						<li class='has-sub'><a id="browse_menu">Browse laptops</a>
+						<li class="has-sub"><a id="browse_menu">Browse laptops</a>
 							<ul class="browseMobile">
-								<li class='has-sub'><a>By brand</a>
+								<li class="has-sub"><a>By brand</a>
 									<ul>
 										<li><a onmousedown="OpenPage('search/search.php?prod=HP&browse_by=prod',event); scrolltoid('content',0);">HP</a></li>
 										<li><a onmousedown="OpenPage('search/search.php?prod=Lenovo&browse_by=prod',event); scrolltoid('content',0);">Lenovo</a></li>
@@ -138,7 +138,7 @@ require_once("etc/conf.php");
 										<li><a style="color:#1D94DA" onmousedown="OpenPage('content/brands.php',event); scrolltoid('content',0);">Other brands</a></li>
 									</ul>
 								</li>
-								<li class='has-sub'><a>By class</a>
+								<li class="has-sub"><a>By class</a>
 									<ul>
 										<li><a onmousedown="OpenPage('search/search.php?browse_by=budget',event); scrolltoid('content',0);">Budget</a></li>
 										<li><a onmousedown="OpenPage('search/search.php?browse_by=mainstream',event); scrolltoid('content',0);">Mainstream</a></li>
@@ -148,7 +148,7 @@ require_once("etc/conf.php");
 										<li><a onmousedown="OpenPage('search/search.php?browse_by=professional',event); scrolltoid('content',0);">CAD/3D modeling</a></li>
 									</ul>
 								</li>
-								<li class='has-sub'><a>By screen size</a>
+								<li class="has-sub"><a>By screen size</a>
 									<ul>
 										<li><a onmousedown="OpenPage('search/search.php?browse_by=smalldisplay',event); scrolltoid('content',0);">10" - 13.9"</a></li>
 										<li><a onmousedown="OpenPage('search/search.php?browse_by=mediumdisplay',event); scrolltoid('content',0);">14" - 16.9" </a></li>
@@ -195,7 +195,7 @@ require_once("etc/conf.php");
 
 						<div class="col-md-12 col-xs-12 col-sm-12 cssmenu compareDropdown" style="padding:0px">
 							<ul>
-								<li class='has-sub'><a style="color: #fff;">Compare</a>
+								<li class="has-sub"><a style="color: #fff;">Compare</a>
 									<ul style="background-color: white;">
 										<li class="comparelistContainer">
 											<table class="table" id="comparelist" style="margin-bottom:2px;">
@@ -259,7 +259,7 @@ require_once("etc/conf.php");
 			</div>
 			<!-- end left promotional space-->
 			<!-- NOTOFICATIONS MODAL -->
-			<div class="modal fade notificationsModal" id="notificationsModal" tabindex="-1" role="dialog" aria-labelledby="notificationsModalLabel" aria-hidden="true">
+			<div class="modal fade notificationsModal" id="notificationsModal" tabindex="-1" role="dialog" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered" role="document">
 					<div class="modal-content">
 					</div>

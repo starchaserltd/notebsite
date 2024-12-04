@@ -44,8 +44,8 @@ require_once("etc/conf.php"); ?>
 			<div style="margin-top:10px;">
 				<span style="">Storage size:</span> <span id="s_hddval">32 - 1000</span> GB
 				<div onchange="presearch('#s_search');" class="checkbox ssdHome" style="float:right;margin-top:-2px;">
-					<input type="hidden" name="ssd" class="css-checkbox sme" id="checkboxpre" style="margin-left:0px;" checked />
-					<!-- <label for="checkboxpre" class="css-label sme depressed" style="font-weight:normal;min-height:16px;">SSD</label> -->
+					<input type="hidden" name="ssd" class="css-checkbox sme" id="checkboxpre" style="margin-left:0px;" >
+					<!-- <label for="checkboxpre" class="css-label sme depressed" style="font-weight:normal;min-height:16px;">SSD</label> -->			
 				</div>
 			</div>
 			<div style="padding:0px 15px 0px 10px">

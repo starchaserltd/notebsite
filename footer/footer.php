@@ -29,7 +29,7 @@
 						<span><img class="img-fluid" src="../res/img/payment/mastercard.png" alt="mastercard"/></span>
 						<span><img class="img-fluid" src="../res/img/payment/paypal.png" alt="paypal"/></span>						
 					</div>
-					<div class="safeSecure"><img class="img-fluid" src="../res/img/shield.svg" alt="safe"><span>Safe & Secure</span></div>
+					<div class="safeSecure"><img class="img-fluid" src="../res/img/shield.svg" alt="safe"><span>Safe &amp; Secure</span></div>
 				</div>
 			</div>			
 		</div>

@@ -10,7 +10,7 @@ $var_currency=""; $i=0;
 
 while ($row=mysqli_fetch_assoc($result))
 {
-	$var_currency.="<option value='".$row["code"]."' "; if($row["code"]==$excode){ $var_currency.="selected "; $basevalue=$row["code"];} $var_currency.=">".$row["sign"]."</option>";
+	$var_currency.='<option value="'.$row["code"].'" '; if($row["code"]==$excode){ $var_currency.="selected "; $basevalue=$row["code"];} $var_currency.=">".$row["sign"]."</option>";
 	$i++; 
 	$var_jsel[]=$row["code"].":".$row["convr"];
 }
