@@ -225,7 +225,7 @@ require_once("etc/conf.php");
 			<!-- end left area-->
 
 			<!-- main content -->
-			<div class="col-md-8 col-sm-12 col-xs-12 col-lg-9 mainContentDiv" id="content">
+			<div class="col-md-8 col-sm-12 col-xs-12 col-lg-9 mainContentDiv" id="content" style="width: 100%;">
 				Loading main content.... Please wait.<br>
 				This website requires modern browsers, it will not work on IE 9.0 or earlier.
 			</div>
