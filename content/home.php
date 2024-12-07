@@ -55,6 +55,7 @@ try {
 ?>
 
 <link rel="stylesheet" href="content/lib/css/home.css?v=0.48" type="text/css"/>
+
 <script>
     $.getScript("content/lib/js/home.js?v=0.21", function() { });
     document.title = "Noteb - Search, Compare and Find the Best Laptop for You";
@@ -65,13 +66,13 @@ try {
 </script>
 
 <!-- Noteb Quiz -->
-<link rel="stylesheet" href="search/quiz/lib/css/quiz.css?v=0.34" type="text/css"/>
+<link rel="stylesheet" href="search/quiz/lib/css/quiz.css?v=0.35" type="text/css"/>
 <div class="col-md-12 col-lg-12 col-12 col-sm-12 quizDisplay" style="padding:0px;">
-    <div id="quiz" class="col-md-12 col-lg-12 col-12 col-sm-12" style="position:relative;"></div>    
-</div>            
+    <div id="quiz" class="col-md-12 col-lg-12 col-12 col-sm-12" style="position:relative; height: 365px;"></div>
+</div>
 
 <!-- Top 10 laptops area -->
-<link rel="stylesheet" href="content/lib/css/infoarea.css?v=0.01" type="text/css"/>
+<link rel="stylesheet" href="content/lib/css/infoarea.css?v=0.02" type="text/css"/>
 <?php
 try {
     $query = mysqli_query($con, "SELECT * FROM notebro_site.top_laptops WHERE valid=1 ORDER BY TYPE, ORD ASC, PRICE");
@@ -96,6 +97,7 @@ try {
     echo 'Could not get information on laptop tops: ', $e->getMessage(), "\n";
 }
 ?>
+
 <!-- Info area start -->
 <div class="main-info-container">
     <div class="info-container">
@@ -142,7 +144,7 @@ try {
                         <input type="radio" name="carousel" id="slide<?php echo $index; ?>" <?php if($index === 1) echo 'checked'; ?>>
                         <div class="carousel-slide" id="carousel-slide<?php echo $index; ?>">
                             <h3><?php echo (stripos($category_label, "home") !== FALSE) ? "Home & Student" : $category_label; ?></h3>
-                            <a class="" href="javascript:void(0)" onmousedown="OpenPage('<?php echo "model/model.php?conf=".$laptop["id"]."&ex=USD"; ?>',event)">
+							<a class="" href="javascript:void(0)" onmousedown="OpenPage('<?php echo "model/model.php?conf=" . $laptop["id"] . "&ex=USD"; ?>',event)">
                                 <div class="image-container">
                                     <img src="<?php echo $laptop['img']; ?>" alt="<?php echo $laptop['name']; ?>">
                                 </div>
@@ -155,7 +157,7 @@ try {
                         <?php $index++; ?>
                     <?php endforeach; ?>
                 <?php endforeach; ?>
-                
+
                 <!-- Controls -->
                 <div class="carousel-controls">
                     <label for="prevSlide" class="prev">&#10094;</label>
@@ -176,38 +178,38 @@ try {
 <!-- Info area end -->
 
 <!-- Articles & reviews -->
-<article class="articleMobile row"> 
+<article class="articleMobile row">
     <h2 class="h2Articles col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">Articles</h2>
-    <?php 	
-    for ($y = 0; $y < 10; $y++) { 
+    <?php
+    for ($y = 0; $y < 10; $y++) {
         if(isset($recent_posts[$y]["ID"])) {
-            $category = get_the_category($recent_posts[$y]["ID"]); 
-            $categorie = $category[0]->cat_name; 
+            $category = get_the_category($recent_posts[$y]["ID"]);
+            $categorie = $category[0]->cat_name;
             if ($categorie == "Article") {
                 $linkart = str_replace($wpsite."/article.php/article/", "content/article.php?/", get_permalink($recent_posts[$y]["ID"]));
             } else {
                 $linkart = str_replace($wpsite."/article.php/review/", "content/review.php?/", get_permalink($recent_posts[$y]["ID"]));
             }
-            
+
             if (!empty($recent_posts[$y]["post_content"])) {
     ?>
     <div class="col-md-12 col-lg-12 col-sm-12 col-12 latest2">
         <div class="row">
             <div class="col-md-4 col-lg-3 col-sm-4 col-xs-4 latest3">
-                <a onmousedown="OpenPage('<?php echo $linkart; ?>',event);">    
-                    <img style="display:block; margin:0 auto;" src="<?php 
-                    $url = str_replace($wp_address.$wp_rmimg, $new_wp_address, wp_get_attachment_url(get_post_thumbnail_id($recent_posts[$y]["ID"]))); 
+                <a onmousedown="OpenPage('<?php echo $linkart; ?>',event);">
+                    <img style="display:block; margin:0 auto;" src="<?php
+                    $url = str_replace($wp_address.$wp_rmimg, $new_wp_address, wp_get_attachment_url(get_post_thumbnail_id($recent_posts[$y]["ID"])));
                     echo $url;?>" class="img-responsive img-fluid" alt="Image">
                 </a>
             </div>
             <div class="col-md-8 col-lg-9 col-sm-8 col-xs-9 latest4">
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-12 col-lg-9">
-                        <span class="categoryName"><?php echo $categorie;?></span>					
+                        <span class="categoryName"><?php echo $categorie;?></span>
                         <span class="categoryAuthor"><?php echo "by " . get_userdata($recent_posts[$y]["post_author"])->display_name . " - " . date('d M Y', strtotime($recent_posts[$y]["post_date"]));?></span><br/>
                         <a onmousedown="OpenPage('<?php echo $linkart; ?>',event);"><?php echo $recent_posts[$y]["post_title"]; ?></a>
                         <br>
-                        <?php 
+                        <?php
                         $review = nobrackets($recent_posts[$y]["post_content"]);
                         echo wp_trim_words($review, 35, ' ....');
                         ?>
@@ -215,15 +217,15 @@ try {
                     <div class="col-md-12 col-sm-12 col-12 col-lg-3 readMoreArticlesContainer">
                         <a class="rmore" onmousedown="OpenPage('<?php echo $linkart; ?>',event);">Read more</a>
                     </div>
-                </div>					
+                </div>
             </div>
-        </div>			
+        </div>
     </div>
-    <?php 
+    <?php
             }
         }
-    } 
-    ?>	
+    }
+    ?>
     <div class="readMoreArticles col-lg-12 col-sm-12 col-xs-12 col-lg-offset-12">
         <a onmousedown="OpenPage('content/articles.php');">View more articles</a>
     </div>

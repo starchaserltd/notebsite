@@ -105,13 +105,13 @@
     }
 
     .card {
-        width: 90%; 
+        width: 90%;
         padding: 15px 15px 0 15px;
         margin-bottom: 20px;
     }
 
     .carousel {
-        width: 90% !important; 
+        width: 90% !important;
         max-width: none !important;
         padding: 15px 15px 0 15px !important;
         margin-bottom: 20px;
@@ -130,14 +130,14 @@
     }
 
     .card {
-        width: 90%; 
+        width: 90%;
         padding: 15px 15px 0 15px;
         margin-bottom: 20px;
     }
 
     .carousel {
-        width: 90% !important; 
-        max-width: 90% !important;  
+        width: 90% !important;
+        max-width: 90% !important;
         padding: 15px 15px 0 15px !important;
         margin-bottom: 20px;
     }
@@ -147,13 +147,13 @@
     }
 
     .card {
-        width: 90%; 
+        width: 90%;
         padding: 15px 15px 0 15px;
         margin-bottom: 20px;
     }
 
     .carousel-container {
-        height: 280px; 
+        height: 280px;
         padding: 15px;
     }
 
@@ -182,14 +182,14 @@
     }
 
     .card {
-        width: 90%; 
+        width: 90%;
         padding: 15px 15px 0 15px;
         margin-bottom: 20px;
     }
 
     .carousel {
-        width: 90% !important; 
-        max-width: 90% !important; 
+        width: 90% !important;
+        max-width: 90% !important;
         padding: 15px 15px 0 15px !important;
         margin-bottom: 20px;
     }
@@ -249,7 +249,7 @@
     font-weight: 700;
     margin: 0;
     text-transform: uppercase;
-    letter-spacing: 1px; 
+    letter-spacing: 1px;
 }
 
 .carousel-title h3 {
@@ -264,7 +264,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between; 
+    justify-content: space-between;
     border-radius: 12px;
     overflow: hidden;
     padding: 20px;
@@ -290,8 +290,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-decoration: none; 
-    width: 100%; 
+    text-decoration: none;
+    width: 100%;
 }
 
 input[name="carousel"] {
@@ -306,20 +306,20 @@ input[name="carousel"]:checked + .carousel-slide {
 
 .image-container {
     width: 100%;
-    max-width: 200px; 
-    height: 150px; 
-    background-color: #f5f5f5; 
+    max-width: 200px;
+    height: 150px;
+    background-color: #f5f5f5;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 12px;
     margin-bottom: 10px;
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 .carousel-slide img {
     width: 90%;
-    object-fit: cover; 
+    object-fit: cover;
 }
 
 .product-info {
@@ -393,7 +393,7 @@ input[name="carousel"]:checked + .carousel-slide .product-info {
 
 .carousel-controls label:active {
     transform: translateY(-50%) scale(1);
-    background-color: #004a9f; 
+    background-color: #004a9f;
 }
 
 .carousel-dots {
