@@ -54,6 +54,7 @@ try {
 }
 ?>
 
+<link rel="stylesheet" href="search/quiz/lib/css/quiz.css?v=0.35" type="text/css"/>
 <link rel="stylesheet" href="content/lib/css/home.css?v=0.48" type="text/css"/>
 
 <script>
@@ -66,13 +67,12 @@ try {
 </script>
 
 <!-- Noteb Quiz -->
-<link rel="stylesheet" href="search/quiz/lib/css/quiz.css?v=0.35" type="text/css"/>
 <div class="col-md-12 col-lg-12 col-12 col-sm-12 quizDisplay" style="padding:0px;">
     <div id="quiz" class="col-md-12 col-lg-12 col-12 col-sm-12" style="position:relative; height: 365px;"></div>
 </div>
 
 <!-- Top 10 laptops area -->
-<link rel="stylesheet" href="content/lib/css/infoarea.css?v=0.02" type="text/css"/>
+<!-- <link rel="stylesheet" href="content/lib/css/infoarea.css?v=0.02" type="text/css"/> -->
 <?php
 try {
     $query = mysqli_query($con, "SELECT * FROM notebro_site.top_laptops WHERE valid=1 ORDER BY TYPE, ORD ASC, PRICE");
@@ -100,77 +100,75 @@ try {
 
 <!-- Info area start -->
 <div class="main-info-container">
-    <div class="info-container">
-        <div class="card">
-            <h2 class="card-title">Noteb stats</h2>
+    <div class="card1">
+        <h2 class="card1-title">Noteb stats</h2>
 
-            <div class="row">
-                <div class="icon">
-                    <i class="fas fa-calendar-check"></i>
-                </div>
-                <div class="main-info">Last Updated: <span class="highlight" id="latest-update">0</span> (UTC)</div>
+        <div class="row">
+            <div class="icon">
+                <i class="fas fa-calendar-check"></i>
             </div>
-
-            <div class="row">
-                <div class="icon">
-                    <i class="fas fa-store-alt"></i>
-                </div>
-                <div class="main-info">Online Shops: <span class="highlight" id="num-retailers">0</span></div>
-            </div>
-
-            <div class="row">
-                <div class="icon">
-                    <i class="fas fa-laptop"></i>
-                </div>
-                <div class="main-info">Laptop Models: <span class="highlight" id="num-models">0</span></div>
-            </div>
-
-            <div class="row">
-                <div class="icon">
-                    <i class="fas fa-cogs"></i>
-                </div>
-                <div class="main-info">Laptop Configurations: <span class="highlight" id="num-configurations">0</span></div>
-            </div>
+            <div class="main-info">Last Updated: <span class="highlight" id="latest-update">0</span> (UTC)</div>
         </div>
 
-        <!-- Carousel -->
-        <div class="carousel">
-            <div class="carousel-title">
-                <h2>RECOMMENDED</h2>
+        <div class="row">
+            <div class="icon">
+                <i class="fas fa-store-alt"></i>
             </div>
-            <div class="carousel-container">
-                <?php $index = 1; foreach ($tops as $category_label => $laptops): ?>
-                    <?php foreach ($laptops as $laptop): ?>
-                        <input type="radio" name="carousel" id="slide<?php echo $index; ?>" <?php if($index === 1) echo 'checked'; ?>>
-                        <div class="carousel-slide" id="carousel-slide<?php echo $index; ?>">
-                            <h3><?php echo (stripos($category_label, "home") !== FALSE) ? "Home & Student" : $category_label; ?></h3>
-							<a class="" href="javascript:void(0)" onmousedown="OpenPage('<?php echo "model/model.php?conf=" . $laptop["id"] . "&ex=USD"; ?>',event)">
-                                <div class="image-container">
-                                    <img src="<?php echo $laptop['img']; ?>" alt="<?php echo $laptop['name']; ?>">
-                                </div>
-                                <div class="product-info">
-                                    <h3><?php echo $laptop['name']; ?></h3>
-                                    <p>$<?php echo number_format($laptop['min_price']); ?> - $<?php echo number_format($laptop['max_price']); ?></p>
-                                </div>
-                            </a>
-                        </div>
-                        <?php $index++; ?>
-                    <?php endforeach; ?>
+            <div class="main-info">Online Shops: <span class="highlight" id="num-retailers">0</span></div>
+        </div>
+
+        <div class="row">
+            <div class="icon">
+                <i class="fas fa-laptop"></i>
+            </div>
+            <div class="main-info">Laptop Models: <span class="highlight" id="num-models">0</span></div>
+        </div>
+
+        <div class="row">
+            <div class="icon">
+                <i class="fas fa-cogs"></i>
+            </div>
+            <div class="main-info">Laptop Configurations: <span class="highlight" id="num-configurations">0</span></div>
+        </div>
+    </div>
+
+    <!-- Carousel -->
+    <div class="carousel">
+        <div class="carousel-title">
+            <h2>RECOMMENDED</h2>
+        </div>
+        <div class="carousel-container">
+            <?php $index = 1; foreach ($tops as $category_label => $laptops): ?>
+                <?php foreach ($laptops as $laptop): ?>
+                    <input type="radio" name="carousel" id="slide<?php echo $index; ?>" <?php if($index === 1) echo 'checked'; ?>>
+                    <div class="carousel-slide" id="carousel-slide<?php echo $index; ?>">
+                        <h3><?php echo (stripos($category_label, "home") !== FALSE) ? "Home & Student" : $category_label; ?></h3>
+                        <a class="" href="javascript:void(0)" onmousedown="OpenPage('<?php echo "model/model.php?conf=" . $laptop["id"] . "&ex=USD"; ?>',event)">
+                            <div class="image-container">
+                                <img src="<?php echo $laptop['img']; ?>" alt="<?php echo $laptop['name']; ?>">
+                            </div>
+                            <div class="product-info">
+                                <h3><?php echo $laptop['name']; ?></h3>
+                                <p>$<?php echo number_format($laptop['min_price']); ?> - $<?php echo number_format($laptop['max_price']); ?></p>
+                            </div>
+                        </a>
+                    </div>
+                    <?php $index++; ?>
                 <?php endforeach; ?>
+            <?php endforeach; ?>
 
-                <!-- Controls -->
-                <div class="carousel-controls">
-                    <label for="prevSlide" class="prev">&#10094;</label>
-                    <label for="nextSlide" class="next">&#10095;</label>
-                </div>
+            <!-- Controls -->
+            <div class="carousel-controls">
+                <label for="prevSlide" class="prev">&#10094;</label>
+                <label for="nextSlide" class="next">&#10095;</label>
+            </div>
 
-                <!-- Navigation Dots -->
-                <div class="carousel-dots">
-                    <?php $index = 1; foreach ($tops as $category_label => $laptops): ?>
-                        <label for="slide<?php echo $index; ?>" class="dot"></label>
-                        <?php $index++; ?>
-                    <?php endforeach; ?>
-                </div>
+            <!-- Navigation Dots -->
+            <div class="carousel-dots">
+                <?php $index = 1; foreach ($tops as $category_label => $laptops): ?>
+                    <label for="slide<?php echo $index; ?>" class="dot"></label>
+                    <?php $index++; ?>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>

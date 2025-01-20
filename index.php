@@ -17,6 +17,7 @@ require_once("etc/conf.php");
 	<link rel="stylesheet" href="lib/css/bootstrap.min.css" crossorigin="anonymous">
 	<link rel="stylesheet" href="lib/css/bootstrap-icons.min.css" type="text/css" />
 	<link rel="stylesheet" href="libnb/css/nbcore.css" type="text/css" />
+	<link rel="stylesheet" href="content/lib/css/infoarea.css" type="text/css"/>
 	<!-- JavaScript libraries -->
 	<script src="lib/js/jquery.min.js"></script>
 	<script src="lib/js/popper.min.js"></script>

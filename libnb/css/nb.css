@@ -575,31 +575,6 @@ a {
 
 /*loading */
 
-.loadingdiv {
-  background: rgba(122, 130, 136, 0.2) !important;
-  position: absolute;
-  height: 100vh;
-  vertical-align: middle;
-  display: flex;
-  border-radius: 15px;
-  z-index: 999;
-  right: 0;
-  left: 0;
-  min-width: 350px;
-}
-
-.loadingdivsec {
-  border-radius: 20px;
-}
-
-.loadingdivquiz {
-  background: rgba(122, 130, 136, 0.2) !important;
-  height: 90%;
-  vertical-align: middle;
-  display: flex;
-  z-index: 2 !important;
-}
-
 /* CIRCLED TEXT */
 
 .labelred {
@@ -1113,6 +1088,12 @@ li.active a:hover {
 
 .socialButtons a {
   border-radius: 0px;
+}
+
+.containerContentIndex {
+  align-items: flex-start;
+  position: relative;
+  width: 100%;
 }
 
 .btn-group,
@@ -2622,11 +2603,6 @@ div.orderByContainer span {
   margin-bottom: 10px;
 }
 
-.containerContentIndex {
-  align-items: flex-start;
-  position: relative;
-}
-
 .containerNavigation {
   background-color: #fff;
 }
@@ -3951,6 +3927,11 @@ div.menuItems.last {
   .orderByContainer > btn-group {
     flex: 1;
   }
+
+  .cssmenu ul ul li {
+    background-color: #0066ca;
+    z-index: 99;
+  }
 }
 @media all and (max-width: 922px) {
   .refineResultsContainer {
@@ -4006,6 +3987,11 @@ div.menuItems.last {
 
   .cssmenu .browseMobile > li:last-child:after {
     height: 0;
+  }
+
+  .cssmenu ul ul li {
+    background-color: #0066cc;
+    z-index: 99;
   }
 
   .cssmenu ul ul li.has-sub > a {
@@ -4064,11 +4050,11 @@ div.menuItems.last {
   }
 
   .socialArea .container {
-    margin-left: -15px;
-    margin-right: -15px;
     width: auto;
-    padding-left: 30px;
-    padding-right: 30px;
+  }
+
+  li.has-sub {
+    z-index: 99;
   }
 
   .footer-distributed {
@@ -4110,7 +4096,7 @@ div.menuItems.last {
   }
 
   .cssmenu > ul > li > a {
-    padding: 16px 22px 16px 0px;
+    /* padding: 16px 22px 16px 0px; */
     font-size: 18px;
   }
 
@@ -4247,6 +4233,7 @@ div.menuItems.last {
 
   .containerContentIndex {
     overflow: hidden;
+    width: auto;
   }
 
   .home .containerContentIndex {
