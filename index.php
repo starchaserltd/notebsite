@@ -91,7 +91,7 @@ require_once("etc/conf.php");
 				<div class="col-12 col-sm-12 col-md-6 cssmenu"><a style="color:#1D94DA" onmousedown="OpenPage('content/brands.php',event); scrolltoid('content',1);"><span class="browseButton d-lg-inline-block d-md-inline-block d-sm-none d-none col-3" style="font-weight: bold;">Browse laptops</span></a>
 					<ul class="browseLaptopClass">
 						<li class="has-sub"><a>By brand</a>
-							<ul>
+							<ul> <!-- test -->
 								<li><a onmousedown="OpenPage('search/search.php?prod=HP&browse_by=prod',event); scrolltoid('content',1);">HP</a></li>
 								<li><a onmousedown="OpenPage('search/search.php?prod=Lenovo&browse_by=prod',event); scrolltoid('content',1);">Lenovo</a></li>
 								<li><a onmousedown="OpenPage('search/search.php?prod=Dell&browse_by=prod',event); scrolltoid('content',1);">Dell</a></li>
@@ -129,31 +129,31 @@ require_once("etc/conf.php");
 							<ul class="browseMobile">
 								<li class="has-sub"><a>By brand</a>
 									<ul>
-										<li><a onmousedown="OpenPage('search/search.php?prod=HP&browse_by=prod',event); scrolltoid('content',0);">HP</a></li>
-										<li><a onmousedown="OpenPage('search/search.php?prod=Lenovo&browse_by=prod',event); scrolltoid('content',0);">Lenovo</a></li>
+										<li><a onmousedown="OpenPage('search/search.php?prod=HP&browse_by=prod',event); scrolltoid('content',0); closeMenu();">HP</a></li>
+										<li><a onmousedown="OpenPage('search/search.php?prod=Lenovo&browse_by=prod',event); scrolltoid('content',0); closeMenu();">Lenovo</a></li>
 										<li><a onmousedown="OpenPage('search/search.php?prod=Dell&browse_by=prod',event); scrolltoid('content',0);">Dell</a></li>
-										<li><a onmousedown="OpenPage('search/search.php?prod=Apple&browse_by=prod',event); scrolltoid('content',0);">Apple</a></li>
-										<li><a onmousedown="OpenPage('search/search.php?prod=Asus&browse_by=prod',event); scrolltoid('content',0);">Asus</a></li>
-										<li><a onmousedown="OpenPage('search/search.php?prod=Acer&browse_by=prod',event); scrolltoid('content',0);">Acer</a></li>
-										<li><a onmousedown="OpenPage('search/search.php?prod=Samsung&browse_by=prod',event); scrolltoid('content',0);">Samsung</a></li>
-										<li><a style="color:#1D94DA" onmousedown="OpenPage('content/brands.php',event); scrolltoid('content',0); document.querySelector('.browseMobile').style.display = 'none';">Other brands</a></li>
+										<li><a onmousedown="OpenPage('search/search.php?prod=Apple&browse_by=prod',event); scrolltoid('content',0); closeMenu();">Apple</a></li>
+										<li><a onmousedown="OpenPage('search/search.php?prod=Asus&browse_by=prod',event); scrolltoid('content',0); closeMenu();">Asus</a></li>
+										<li><a onmousedown="OpenPage('search/search.php?prod=Acer&browse_by=prod',event); scrolltoid('content',0); closeMenu();">Acer</a></li>
+										<li><a onmousedown="OpenPage('search/search.php?prod=Samsung&browse_by=prod',event); scrolltoid('content',0); closeMenu();">Samsung</a></li>
+										<li><a style="color:#1D94DA" onmousedown="OpenPage('content/brands.php',event); scrolltoid('content',0); closeMenu();">Other brands</a></li>
 									</ul>
 								</li>
 								<li class="has-sub"><a>By class</a>
 									<ul>
-										<li><a onmousedown="OpenPage('search/search.php?browse_by=budget',event); scrolltoid('content',0);">Budget</a></li>
-										<li><a onmousedown="OpenPage('search/search.php?browse_by=mainstream',event); scrolltoid('content',0);">Mainstream</a></li>
-										<li><a onmousedown="OpenPage('search/search.php?browse_by=ultraportable',event); scrolltoid('content',0);">Ultraportable</a></li>
-										<li><a onmousedown="OpenPage('search/search.php?browse_by=business',event); scrolltoid('content',0);">Business</a></li>
-										<li><a onmousedown="OpenPage('search/search.php?browse_by=gaming',event); scrolltoid('content',0);">Gaming</a></li>
-										<li><a onmousedown="OpenPage('search/search.php?browse_by=professional',event); scrolltoid('content',0);">CAD/3D modeling</a></li>
+										<li><a onmousedown="OpenPage('search/search.php?browse_by=budget',event); scrolltoid('content',0); closeMenu();">Budget</a></li>
+										<li><a onmousedown="OpenPage('search/search.php?browse_by=mainstream',event); scrolltoid('content',0); closeMenu();">Mainstream</a></li>
+										<li><a onmousedown="OpenPage('search/search.php?browse_by=ultraportable',event); scrolltoid('content',0); closeMenu();">Ultraportable</a></li>
+										<li><a onmousedown="OpenPage('search/search.php?browse_by=business',event); scrolltoid('content',0); closeMenu();">Business</a></li>
+										<li><a onmousedown="OpenPage('search/search.php?browse_by=gaming',event); scrolltoid('content',0); closeMenu();">Gaming</a></li>
+										<li><a onmousedown="OpenPage('search/search.php?browse_by=professional',event); scrolltoid('content',0); closeMenu();">CAD/3D modeling</a></li>
 									</ul>
 								</li>
 								<li class="has-sub"><a>By screen size</a>
 									<ul>
-										<li><a onmousedown="OpenPage('search/search.php?browse_by=smalldisplay',event); scrolltoid('content',0);">10" - 13.9"</a></li>
-										<li><a onmousedown="OpenPage('search/search.php?browse_by=mediumdisplay',event); scrolltoid('content',0);">14" - 16.9" </a></li>
-										<li><a onmousedown="OpenPage('search/search.php?browse_by=largedisplay',event); scrolltoid('content',0);">17" - 21" </a></li>
+										<li><a onmousedown="OpenPage('search/search.php?browse_by=smalldisplay',event); scrolltoid('content',0); closeMenu();">10" - 13.9"</a></li>
+										<li><a onmousedown="OpenPage('search/search.php?browse_by=mediumdisplay',event); scrolltoid('content',0); closeMenu();">14" - 16.9" </a></li>
+										<li><a onmousedown="OpenPage('search/search.php?browse_by=largedisplay',event); scrolltoid('content',0); closeMenu();">17" - 21" </a></li>
 									</ul>
 								</li>
 							</ul>
@@ -296,6 +296,23 @@ require_once("etc/conf.php");
 	<!-- Custom Theme JavaScript -->
 	<script>
 		<?php echo 'var siteroot = "' . $web_address . '";'; ?>
+	</script>
+
+	<script>
+	document.addEventListener('click', function(event) {
+		const menu = document.querySelector('.browseMobile');
+		const toggle = document.getElementById('browse_menu');
+
+		// Check if the menu is visible and the click is outside of it and the toggle button
+		if (menu.style.display === 'block' && !menu.contains(event.target) && event.target !== toggle) {
+		closeMenu();
+		}
+	});
+
+	function closeMenu() {
+		document.querySelector('.browseMobile').style.display = 'none';
+		document.querySelector('.has-sub.open').classList.remove('open');
+	}
 	</script>
 	<script src="libnb/js/tooltip.js"></script>
 	<script src="libnb/js/affil.js"></script>
