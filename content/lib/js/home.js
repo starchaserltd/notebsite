@@ -44,6 +44,7 @@ if (nextSlideBtn && prevSlideBtn) {
 }
 
 $(document).ready(function() {
+
     actbtn("Looking for a laptop? Search, compare or use our quiz to find the laptop for you with Noteb search engine.");
     actbtn("NOTEBROTHER", 1);
     OpenQuiz("search/quiz/quiz.php" + "?" + window.location.href);

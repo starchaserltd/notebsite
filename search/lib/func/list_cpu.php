@@ -293,9 +293,9 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 	}
 	
 	$sel_cpu.=" ORDER BY rating DESC";
+	#error_log($sel_cpu);
 	
 	// DO THE SEARCH
-
 	$result = mysqli_query($GLOBALS['con'], "$sel_cpu");
 	$cpu_return=array(); $cpu_model_proc=array(); 
 	while($rand = mysqli_fetch_row($result)) 

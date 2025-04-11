@@ -23,14 +23,18 @@ $to_search = array(
     "wnet"    => 1,
 	"regions" => 1
 );
+/** MODEL**/
+
+require_once("conv/compatibility/old_model_var.php");
+
 
 // BUDGET min si max
-if(isset($_GET['bdgminadv'])){ $budgetmin = (floatval($_GET['bdgminadv'])/$exch)-1; }
-if(isset($_GET['bdgmaxadv'])){ $budgetmax = (floatval($_GET['bdgmaxadv'])/$exch)+1; }
-if(isset($_GET['Producer_prod'])) { array_walk($_GET['Producer_prod'],'clean_string'); $prod_model = $_GET['Producer_prod']; }
-if(isset($_GET['Family_fam'] ))
+if(isset($_GET['model_pricemin'])){ $budgetmin = (floatval($_GET['model_pricemin'])/$exch)-1; }
+if(isset($_GET['model_pricemax'])){ $budgetmax = (floatval($_GET['model_pricemax'])/$exch)+1; }
+if(isset($_GET['model_Producer_id'])) { array_walk($_GET['model_Producer_id'],'clean_string'); $prod_model = $_GET['model_Producer_id']; }
+if(isset($_GET['model_Family_id'] ))
 {
-	foreach ($_GET['Family_fam'] as $element)
+	foreach ($_GET['model_Family_id'] as $element)
 	{
 		//var_dump($element);
 
@@ -62,7 +66,9 @@ if(isset($_GET['Family_fam'] ))
 }
 
 /* *** CPU *** */
-if(isset($_GET['CPU_prod_id'])) { array_walk($_GET['CPU_prod_id'],'clean_string');  $cpu_prod = $_GET['CPU_prod_id']; }
+require_once("conv/compatibility/old_cpu_var.php");
+
+if(isset($_GET['cpu_prod_id'])) { array_walk($_GET['cpu_prod_id'],'clean_string');  $cpu_prod = $_GET['cpu_prod_id']; }
 
 //THE CPU MODEL IS SPECIAL SO IT NEEDS SOME TRIMMING AND REBUILDING	
 if(isset($_GET['CPU_model_id']))
@@ -96,6 +102,7 @@ if(isset($_GET['CPU_socket_id']))
 { array_walk($_GET['CPU_socket_id'],'clean_string'); $cpu_socket = $_GET['CPU_socket_id']; }
 
 // CPU miscellaneous
+//var_dump($_GET);
 if(isset($_GET['CPU_msc_id']))
 { array_walk($_GET['CPU_msc_id'],'clean_string'); $cpu_misc = $_GET['CPU_msc_id']; }
 foreach($cpu_misc  as $key=>$el)
@@ -106,27 +113,27 @@ foreach($cpu_misc  as $key=>$el)
 	if(stripos($el,"Intel")!==FALSE){$cpu_prod[]="INTEL";}
 	if(stripos($el,"AMD")!==FALSE){$cpu_prod[]="AMD";}
 }
-if(isset($cpu_prod)){$cpu_prod=array_unique($cpu_prod);}
+
 // CPU Launch date
-if(isset($_GET['launchdatemin']))
-{ $cpu_ldmin = $_GET['launchdatemin']; }
+if(isset($_GET['cpu_ldatemin']))
+{ $cpu_ldmin = $_GET['cpu_ldatemin']; }
 $cpu_ldmin=$cpu_ldmin."-01-01";
 
-if(isset($_GET['launchdatemax']))
-{ $cpu_ldmax = $_GET['launchdatemax']; }
+if(isset($_GET['cpu_ldatemax']))
+{ $cpu_ldmax = $_GET['cpu_ldatemax']; }
 $cpu_ldmax=$cpu_ldmax."-12-31";
 
 // CPU nr cores
-if(isset($_GET['nrcoresmin']))
-{ $cpu_coremin = intval($_GET['nrcoresmin']); }
-if(isset($_GET['nrcoresmax']))
-{ $cpu_coremax = intval($_GET['nrcoresmax']); }
+if(isset($_GET['cpu_coremin']))
+{ $cpu_coremin = intval($_GET['cpu_coremin']); }
+if(isset($_GET['cpu_coremax']))
+{ $cpu_coremax = intval($_GET['cpu_coremax']); }
 
 // CPU TDP
-if(isset($_GET['cputdpmin']))
-{ $cpu_tdpmin = floatval($_GET['cputdpmin']); }
-if(isset($_GET['cputdpmax']))
-{ $cpu_tdpmax = floatval($_GET['cputdpmax']);	}		
+if(isset($_GET['cpu_tdpmin']))
+{ $cpu_tdpmin = floatval($_GET['cpu_tdpmin']); }
+if(isset($_GET['cpu_tdpmax']))
+{ $cpu_tdpmax = floatval($_GET['cpu_tdpmax']);	}		
 
 // CPU Frequency
 if(isset($_GET['cpufreqmin']))
@@ -142,12 +149,16 @@ if(isset($_GET['cputechmax']))
 			
 
 /* *** GPU *** */
+require_once("conv/compatibility/old_gpu_var.php");
  $gpu_typelist=array();
-if(isset($_GET['gputype']))
+if(isset($_GET['gpu_type']))
 {
-	$typegpu=intval($_GET['gputype']);
+	$typegpu=intval($_GET['gpu_type']);
 	if($typegpu==0)
 	{ $gpu_typelist[]=0;}
+
+	if($typegpu==1)
+	{ }
 
 	if($typegpu==2)
 	{ $gpu_typelist[]=0; $gpu_typelist[]=1; $gpu_typelist[]=2; $gpu_typelist[]=3; $gpu_typelist[]=4; }
@@ -159,18 +170,18 @@ else
 
 if($typegpu==1)
 {
-	if(isset($_GET['gputype2']))
+	if(isset($_GET['gpu_type2']))
 	{
-		foreach($_GET['gputype2'] as $x)
+		foreach($_GET['gpu_type2'] as $x)
 		{
-			switch(intval($x))
+			switch(strtolower($x))
 			{
-				case 0: { $gpu_typelist[]=0; $gpu_typelist[]=1; break; }
-				case 1: { $gpu_typelist[]=1; break; }
-				case 2: { $gpu_typelist[]=2; break; }
-				case 3: { $gpu_typelist[]=3; break; }
-				case 4: { $gpu_typelist[]=4; break; }
-				case 10: { $gpu_typelist[]=0; $gpu_ratemin=6; break; }
+				case "integrated + basic": { $gpu_typelist[]=0; $gpu_typelist[]=1; break; }
+				case "basic": { $gpu_typelist[]=1; break; }
+				case "gaming": { $gpu_typelist[]=2; break; }
+				case "cad/3d modeling": { $gpu_typelist[]=3; break; }
+				case "high-end": { $gpu_typelist[]=4; break; }
+				case "integrated pro": { $gpu_typelist[]=0; $gpu_ratemin=6; break; }
 				default: { $gpu_typelist[]=0; $gpu_typelist[]=1; break; }
 			}
 		}
@@ -207,18 +218,18 @@ if (isset($_GET['GPU_msc_id']))
 }
  
 // GPU Maxmem
-if(isset($_GET['gpumemmin']))
-{ $gpu_maxmemmin = intval($_GET['gpumemmin']); }
+if(isset($_GET['gpu_memmin']))
+{ $gpu_maxmemmin = intval($_GET['gpu_memmin'])*1024;; }
 
-if(isset($_GET['gpumemmax']))
-{ $gpu_maxmemmax = intval($_GET['gpumemmax']); }
+if(isset($_GET['gpu_memmax']))
+{ $gpu_maxmemmax = intval($_GET['gpu_memmax'])*1024; }
 			
 //  GPU Memory band
-if(isset($_GET['gpubusmin']))
-{ $gpu_mbwmin = intval($_GET['gpubusmin']); }
+if(isset($_GET['gpu_membusmin']))
+{ $gpu_mbwmin = intval($_GET['gpu_membusmin']); }
 
-if(isset($_GET['gpubusmax']))
-{ $gpu_mbwmax = intval($_GET['gpubusmax']); }
+if(isset($_GET['gpu_membusmax']))
+{ $gpu_mbwmax = intval($_GET['gpu_membusmax']); }
 
 // GPU Launch date
 if(isset($_GET['gpulaunchdatemin']))
@@ -231,6 +242,8 @@ $gpu_ldmax=$gpu_ldmax."-12-31";
 
 
 /* *** DISPLAY *** */
+require_once("conv/compatibility/old_display_var.php");
+
 if(isset($_GET['displaymin']))
 { $display_sizemin = floatval($_GET['displaymin']); }
 if(isset($_GET['displaymax']))
@@ -314,6 +327,8 @@ if(isset($_GET['verresmax']))
 { $display_vresmax = intval($_GET['verresmax']); }
 
 /* *** STORAGE *** */
+
+require_once("conv/compatibility/old_hdd_var.php");
 // STOR capacity
 if(isset($_GET['capacitymin']))
 { $hdd_capmin = intval($_GET['capacitymin']); }
@@ -334,11 +349,13 @@ if(isset($_GET['nrhdd']))
 
 /* *** Motherboard *** */
 /*
-if (isset($_GET['GPU_msc_id']))
-{ if  ($_GET['GPU_msc_id']== "G-Sync/FreeSync") {$addmsc[]="G-Sync/FreeSync";}
+if (isset($_GET['gpu_msc_id']))
+{ if  ($_GET['gpu_msc_id']== "G-Sync/FreeSync") {$addmsc[]="G-Sync/FreeSync";}
 else 
 }
 } */
+
+require_once("conv/compatibility/old_mdb_var.php");
 
 if (isset($_GET['mdbslots']))
 { $mdb_ramcap = intval($_GET['mdbslots']); }
@@ -346,7 +363,6 @@ if (isset($_GET['mdbslots']))
 if(isset($_GET['MDB_port_id']))
 { array_walk($_GET['MDB_port_id'],'clean_string'); $chassis_ports = $_GET['MDB_port_id']; } //var_dump($chassis_ports);
 
-$usb2_set=999; 	for($usbv=0;$usbv<3;$usbv++){ ${'usb3'.$usbv.'_set'}=999; ${'usb3c'.$usbv.'_set'}=999; }
 foreach($chassis_ports as $key => $x)
 {
 	if((stripos($x,"RS-232"))!==FALSE)
@@ -379,36 +395,22 @@ foreach($chassis_ports as $key => $x)
 	
 	if(stripos($x,"USB")!==FALSE)
 	{
-		$piparts=explode(" X ",$x);
-		if(stripos($piparts[1],"USB 2")!==FALSE)
-		{ 
-			if($usb2_set>intval($piparts[0]))
-			{ $chassis_ports[$key]=$piparts[0]." X "."USB"; $usb2_set=intval($piparts[0]);  }
-			else
-			{ unset($chassis_ports[$key]); }
+		if(stripos($x,"-A")!==FALSE || stripos($x,"-C")!==FALSE)
+		{
+		    $piparts=explode(" X ",$x);
+		    for ($nrpi=intval($piparts[0]);$nrpi<15;$nrpi++){ $chassis_addpi[$x][]=$nrpi." X ".$piparts[1]; }
 		}
 		else
 		{
-			for($usbv=0;$usbv<3;$usbv++)
-			{
-				if(stripos($piparts[1],"USB 3.".$usbv)!==FALSE||stripos($piparts[1],"USB-C 3.".$usbv)!==FALSE)
-				{
-					if(stripos($piparts[1],"USB-C")===FALSE)
-					{
-						if(${'usb3'.$usbv.'_set'}>intval($piparts[0]))
-						{ $chassis_ports[$key]=$piparts[0]." X "."USB 3.".$usbv; ${'usb3'.$usbv.'_set'}=intval($piparts[0]); for($usbv2=$usbv+1;$usbv2<3;$usbv2++){ for ($nrpi=intval($piparts[0]);$nrpi<7;$nrpi++){ $chassis_addpi[$piparts[0]." X "."USB 3.".$usbv][]=$nrpi." X "."USB 3.".$usbv2; } } }
-						else
-						{ unset($chassis_ports[$key]); }
-					}
-					else
-					{
-						if(${'usb3c'.$usbv.'_set'}>intval($piparts[0]))
-						{ $chassis_ports[$key]=$piparts[0]." X "."USB-C 3.".$usbv.""; ${'usb3c'.$usbv.'_set'}=intval($piparts[0]); for($usbv2=$usbv+1;$usbv2<3;$usbv2++){ for ($nrpi=intval($piparts[0]);$nrpi<7;$nrpi++){ $chassis_addpi[$piparts[0]." X "."USB-C 3.".$usbv.""][]=$nrpi." X "."USB-C 3.".$usbv2.""; } } }
-						else
-						{ unset($chassis_ports[$key]); }
-					}
-				}
-			}
+		    $piparts=explode(" X ",$x);
+		    $totalusb=intval($piparts[0]);
+		    $i=0;
+		    for ($nrpi=$totalusb;$nrpi>=0;$nrpi--)
+		    { 
+			if($nrpi>0){ $chassis_addpi[$x][$i][]=$nrpi." X USB-C";} 
+			if(($totalusb-$nrpi)>0){ $chassis_addpi[$x][$i][]=$totalusb-$nrpi." X USB"; }
+			$i++;
+		    }
 		}
 	}
 	//preg_replace("/([0-9] X )USB 2.[0-9a-z]/","$1 USB", "2 X USB 2.x"))
@@ -509,6 +511,8 @@ if (isset($_GET['mdbwwan']))
 { $mdb_wwan = intval($_GET['mdbwwan']); }
 
 /* *** RAM *** */
+
+require_once("conv/compatibility/old_mem_var.php");
 // RAM capacity
 if(isset($_GET['rammin']))
 { $mem_capmin = intval($_GET['rammin']); }
@@ -715,7 +719,7 @@ if(isset($_GET['opsist']))
 }
 /* *** REGIONS *** */
 
-if(isset($_GET['Regions']) && $_GET['Regions']) { array_walk($_GET['Regions'],'clean_string'); $regions_name = $_GET['Regions']; foreach($regions_name as $region){if(strcmp("All",$region)==0){$to_search["regions"]=0;}}} else {$to_search["regions"]=0;} 
+if(isset($_GET['Regions_id']) && $_GET['Regions_id']) { array_walk($_GET['Regions_id'],'clean_string'); $regions_name = $_GET['Regions_id']; foreach($regions_name as $region){if(strcmp("All",$region)==0){$to_search["regions"]=0;}}} else {$to_search["regions"]=0;} 
 
 /** OVERRIDE BUY BUTTON REGIONS FROM THE EXCHANGE RATE WITH THOSE OF THE REGION **/
 if($to_search["regions"])

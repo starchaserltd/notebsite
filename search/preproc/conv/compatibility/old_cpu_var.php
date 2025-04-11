@@ -1,0 +1,12 @@
+<?php
+if(isset($_GET['launchdatemin'])){$_GET['cpu_ldatemin']=$_GET['launchdatemin'];}
+if(isset($_GET['launchdatemax'])){$_GET['cpu_ldatemax']=$_GET['launchdatemax'];}
+if(isset($_GET['nrcoresmin'])){$_GET['cpu_coremin']=$_GET['nrcoresmin'];}
+if(isset($_GET['nrcoresmax'])){$_GET['cpu_coremax']=$_GET['nrcoresmax'];}
+if(isset($_GET['cputdpmin'])){$_GET['cpu_tdpmin']=$_GET['cputdpmin'];}
+if(isset($_GET['cputdpmax'])){$_GET['cpu_tdpmax']=$_GET['cputdpmax'];}
+if(isset($_GET['cpufreqmin'])){$_GET['cpu_freqmin']=$_GET['cpufreqmin'];}
+if(isset($_GET['cpufreqmax'])){$_GET['cpu_freqmax']=$_GET['cpufreqmax'];}
+if(isset($_GET['cputechmin'])){$_GET['cpu_techmin']=$_GET['cputechmin'];}
+if(isset($_GET['cputechmax'])){$_GET['cpu_techmax']=$_GET['cputechmax'];}
+?>

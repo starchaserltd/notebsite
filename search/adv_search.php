@@ -36,12 +36,13 @@
 						<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 							<div style="font-size:16px; font-weight:bold;">Availability:</div>
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top:5px">								
-								<select onchange="presearch('#advform');" class="multisearch js-example-responsive" id="Regions_name_id" name = "Regions[]" data-lcom='regions' data-lfield="name" data-placeholder="Ex. USA, Europe" data-initvalue="All" multiple="multiple" data-ajax--url="search/lib/func/list.php" style="width:100%;"></select>
+								<select onchange="presearch('#advform');" class="multisearch js-example-responsive" id="Regions_name_id" name = "MODEL_Regions[]" data-lcom='regions' data-lfield="name" data-placeholder="Ex. USA, Europe" data-initvalue="All" multiple="multiple" data-ajax--url="search/lib/func/list.php" style="width:100%;"></select>
 							</div>
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top:15px; font-size:15px;">
 								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">							
 									<span style="font-size:16px; font-weight:bold;">Budget:</span>
-									<span style="margin-left: 3px;" id="2"><input type="tel" name="bdgminadv" id="bdgminadv" value="<?php echo round(floatval($bdgmin)*floatval($basevalue)); ?>" size="1" maxlength="5" onchange="checkminadv();" class="budget">  -
+									<span style="margin-left: 3px;" id="2">
+									<input type="tel" name="bdgminadv" id="bdgminadv" value="<?php echo round(floatval($bdgmin)*floatval($basevalue)); ?>" size="1" maxlength="5" onchange="checkminadv();" class="budget">  -
 									<input type="tel" name="bdgmaxadv" id="bdgmaxadv" value="<?php echo round(floatval($bdgmax)*floatval($basevalue)); ?>" size="1" maxlength="5" onchange="checkmaxadv();"class="budget" ></span>						
 									<select name ="exchadv" id="currencyadv" onchange="sliderrangeadv(this); this.oldvalue = this.value; change_region(this.value);">
 										<?php echo $var_currency; //this variable comes from lib/currency.php ?>
@@ -56,9 +57,9 @@
 						<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" onchange="presearch('#advform');">
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top:5px">
 								<div style="font-size:16px; font-weight:bold;">Producer</div>			
-								<select class="multisearch js-example-responsive" id="Producer_prod_id" name ="Producer_prod[]" data-idtype=2 data-lcom='Family_fam' data-lfield="prod" data-placeholder="Ex. Lenovo, Dell, Apple" data-initvalue="All" multiple="multiple" data-ajax--url="search/lib/func/list.php" style="width: 100%;"></select>
+								<select class="multisearch js-example-responsive" id="Producer_prod_id" name ="MODEL_Producer_prod[]" data-idtype=2 data-lcom='Family_fam' data-lfield="prod" data-placeholder="Ex. Lenovo, Dell, Apple" data-initvalue="All" multiple="multiple" data-ajax--url="search/lib/func/list.php" style="width: 100%;"></select>
 								<div style="font-size:16px; font-weight:bold; margin-top:5px">Family</div>
-								<select class="multisearch js-example-responsive" id="Family_fam_id" name = "Family_fam[]" data-lcom='model' data-lfield="fam" data-placeholder="Ex. Thinkpad, EliteBook, Latitude" data-initvalue="All" multiple="multiple" data-ajax--url="search/lib/func/list.php" style="width:100%;"></select>
+								<select class="multisearch js-example-responsive" id="Family_fam_id" name = "MODEL_Family_fam[]" data-lcom='model' data-lfield="fam" data-placeholder="Ex. Thinkpad, EliteBook, Latitude" data-initvalue="All" multiple="multiple" data-ajax--url="search/lib/func/list.php" style="width:100%;"></select>
 							</div>	
 						</div>	
 					</div><!-- End Row -->					
@@ -599,6 +600,6 @@
 		</div>
 		<div id="adv-presearch-modal-close">&#10060;</div>
 	</div>
-	</form>		
+	</form>	
 	<?php if($gputype==1){ echo '<script>$(document).ready(function(){ $("#r-no").click(); });</script>'; }?>
 	<?php include_once("../etc/scripts_pages.php"); ?>

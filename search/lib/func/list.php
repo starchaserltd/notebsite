@@ -39,7 +39,7 @@ if($cpu_ldmax || $sockmax)
 	$sockmax=$sockmax."-12-30";
 }
 
-switch ($q)
+switch (strtoupper($q))
 {
 	case "CPU":
 	{
@@ -135,18 +135,84 @@ switch ($q)
 	{
 		switch ($select)
 		{
-			case "name":
+			case ("name"):
+			{
+				$select="model";
+			}
+			case ("model"):
 			{
 				require_once("list_gpu.php"); 
 				$gpu_ldmin.="-01-01"; $gpu_ldmax.="-12-31";
+				if($gpu_maxmemmax<100) { $gpu_maxmemmax=1024*intval($gpu_maxmemmax); }
+				if($gpu_maxmemmin<100) { $gpu_maxmemmin=1024*intval($gpu_maxmemmin); }
+				if(gettype($gpu_type)!="array") { $gpu_type=(array)$gpu_type; }
+				if(count($gpu_type)>0)
+				{
+					$key_to_delete=array();
+					$new_gpu_type=array();
+					foreach($gpu_type as $key=>$val)
+					{
+						if(strlen(strval($val))>2)
+						{
+							//Means it is a string, not an integer
+							switch(strtolower($val))
+							{
+								case "integrated pro":
+								{
+									break;
+								}
+								case "integrated + basic":
+								{
+									$new_gpu_type[]=1;
+									break;
+								}
+								case "basic":
+								{
+									$new_gpu_type[]=1;
+									break;
+								}
+								case "gaming":
+								{
+									$new_gpu_type[]=2;
+									break;
+								}
+								case "cad/3d modeling":
+								{
+									$new_gpu_type[]=3;
+									break;
+								}
+								case "high-end":
+								{
+									$new_gpu_type[]=4;
+									break;
+								}
+								default:
+								{ break; }
+							}
+						}
+						else
+						{
+							if($val==0 || $val==0){ $key_to_delete[]=$key; }
+						}
+					}
+					if(count($key_to_delete)>0){ foreach($key_to_delete as $val){ unset($gpu_type[$val]); } }
+					if(count($new_gpu_type)>0){ $gpu_type=array_unique($new_gpu_type);}
+				}
+				else
+				{
+					$gpu_type=[1,2,3,4,5,6,7];
+				}
+				//var_dump_error_log($gpu_type);
 				$list=search_gpu ($gpu_type, $gpu_prod, $gpu_model, $gpu_variant, $gpu_name, $gpu_arch, $gpu_techmin, $gpu_techmax, $gpu_shadermin, $gpu_cspeedmin, $gpu_cspeedmax, $gpu_sspeedmin, $gpu_sspeedmax, $gpu_mspeedmin, $gpu_mspeedmax, $gpu_mbwmin, $gpu_mbwmax, $gpu_mtype, $gpu_maxmemmin, $gpu_maxmemmax, $gpu_sharem, $gpu_powermin, $gpu_powermax, $gpu_ldmin, $gpu_ldmax, $gpu_misc, $gpu_ratemin, $gpu_ratemax, $gpu_pricemin,$gpu_pricemax, $seltdp);
 				$t=0;
 				if($keys)
-				foreach($list as &$list2)
 				{
-					if(stripos($list2["model"],$keys) === false)
-					{ unset($list[$t]); }
-					$t++;
+					foreach($list as &$list2)
+					{
+						if(stripos($list2["model"],$keys) === false)
+						{ unset($list[$t]); }
+						$t++;
+					}
 				}
 				break;
 			}
@@ -251,7 +317,7 @@ switch ($q)
 					foreach ($prop as $x){ $y.=" (prop='$x') OR"; }
 					$y=substr($y, 0, -3);
 				}	
-				$sel="SELECT id, name FROM notebro_site.nomen WHERE type=24 AND name LIKE $dis_res".$y." ORDER BY name ASC";
+				$sel="SELECT id, name FROM notebro_site.nomen WHERE (type=24 OR type=86) AND name LIKE $dis_res".$y." ORDER BY type DESC, name ASC";
 				$result = mysqli_query($con, $sel);
 				$list = array();
 				while($rand = mysqli_fetch_row($result)) 
@@ -307,53 +373,62 @@ switch ($q)
 		}
 		break;
 	}
-	case "Producer":
+	case "MODEL":
 	{
-		$prod='"%'.$keys.'%"';
-		$sel="SELECT DISTINCT id, prod FROM notebro_site.nomen_models WHERE prod LIKE $prod GROUP BY prod ORDER BY prod ASC";
-		$result = mysqli_query($con, $sel);
-		$list = array();
-		while($rand = mysqli_fetch_row($result)) 
-		{ $list[]=["id"=>intval($rand[0]),"model"=>strval($rand[1])]; }
-		mysqli_free_result($result);
-		break;
-	}
-	case "Family":
-	{
-		$search='"%'.$keys.'%"';
-		$y='WHERE fam!="" AND ';
-		if(isset($prod))
+		switch($select)
 		{
-			if(gettype($prod)!="array") { $prod=(array)$prod; }
-			foreach ($prod as $x)
-			{ $y.=" (prod='$x') OR"; }
-			$y=substr($y, 0, -3);
-			$y.=" AND";
+			case "Producer":
+			{
+				$prod='"%'.$keys.'%"';
+				$sel="SELECT DISTINCT id, prod FROM notebro_site.nomen_models WHERE prod LIKE $prod GROUP BY prod ORDER BY prod ASC";
+				$result = mysqli_query($con, $sel);
+				$list = array();
+				while($rand = mysqli_fetch_row($result)) 
+				{ $list[]=["id"=>intval($rand[0]),"model"=>strval($rand[1])]; }
+				mysqli_free_result($result);
+				break;
+			}
+			case "Family":
+			{
+				$search='"%'.$keys.'%"';
+				$y='WHERE fam!="" AND ';
+				if(isset($prod))
+				{
+					if(gettype($prod)!="array") { $prod=(array)$prod; }
+					foreach ($prod as $x)
+					{ $y.=" (prod='$x') OR"; }
+					$y=substr($y, 0, -3);
+					$y.=" AND";
+				}
+					
+				$sel="SELECT DISTINCT prod,fam,CONCAT(prod,' ',fam) as disfam FROM `FAMILIES` WHERE fam!='' AND CONCAT(prod,' ',fam) LIKE ".$search." ORDER BY `FAMILIES`.`prod` ASC, `FAMILIES`.`fam` ASC";
+				$result = mysqli_query($con, $sel);
+				$list = array();
+				$r=1;
+				$list[] = ["id"=>intval(11999),"model"=>strval("All business families")]; $list[] = ["id"=>intval(12000),"model"=>strval("All consumer families")];
+				while($rand = mysqli_fetch_row($result)) 
+				{ $list[]=["id"=>intval($r),"model"=>strval($rand[2])]; $r++; }
+				mysqli_free_result($result);
+				break;
+			}				
+			case "Regions":
+			{
+				$search='"%'.$keys.'%"';
+				$y="WHERE";
+				$sel="SELECT `id`,`name`,`valid` FROM `notebro_db`.`REGIONS` ".$y." `name` LIKE".$search." AND `valid`=1";
+				$sel.=" AND id>0";
+				$result = mysqli_query($con, $sel);
+				$list = array();
+				while($rand = mysqli_fetch_row($result)) 
+				{ $list[]=["id"=>intval($rand[0]),"model"=>strval($rand[1])]; }
+				mysqli_free_result($result);
+				break;
+			}
 		}
-			
-		$sel="SELECT DISTINCT prod,fam,CONCAT(prod,' ',fam) as disfam FROM `FAMILIES` WHERE fam!='' AND CONCAT(prod,' ',fam) LIKE ".$search." ORDER BY `FAMILIES`.`prod` ASC, `FAMILIES`.`fam` ASC";
-		$result = mysqli_query($con, $sel);
-		$list = array();
-		$r=1;
-		$list[] = ["id"=>intval(11999),"model"=>strval("All business families")]; $list[] = ["id"=>intval(12000),"model"=>strval("All consumer families")];
-		while($rand = mysqli_fetch_row($result)) 
-		{ $list[]=["id"=>intval($r),"model"=>strval($rand[2])]; $r++; }
-		mysqli_free_result($result);
-		break;
-	}				
-	case "Regions":
-	{
-		$search='"%'.$keys.'%"';
-		$y="WHERE";
-		$sel="SELECT `id`,`name`,`valid` FROM `notebro_db`.`REGIONS` ".$y." `name` LIKE".$search." AND `valid`=1";
-		$sel.=" AND id>0";
-		$result = mysqli_query($con, $sel);
-		$list = array();
-		while($rand = mysqli_fetch_row($result)) 
-		{ $list[]=["id"=>intval($rand[0]),"model"=>strval($rand[1])]; }
-		mysqli_free_result($result);
 		break;
 	}
+	default:
+	{ break; }
 }
 /*
 if(count($list)>20)

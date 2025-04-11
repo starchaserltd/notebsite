@@ -22,15 +22,15 @@ while ($row = mysqli_fetch_array($result)) {
 			<!-- Refine results button -->
 			<div class="refineResultsContainer">
 				<button type="button" <?php $nosearch = 0;
-															$search_ref = str_replace("/advanced_search", "/adv_search", $absolute_url[0], $nosearch);
-															if (!($nosearch)) {
-																$search_ref = str_replace("/search.php?", "/adv_search.php?", $absolute_url[0]);
-															}
-															$text = 'onmousedown="OpenPage(' . "'" . $search_ref;
-															foreach ($sortby as $sort) {
-															}
-															$text .= "',event)" . '"';
-															echo $text ?> class="btn btn-primary btn-md">Refine results</button>
+					$search_ref = str_replace("/advanced_search", "/adv_search", $absolute_url[0], $nosearch);
+					if (!($nosearch)) {
+						$search_ref = str_replace("/search.php?", "/adv_search.php?", $absolute_url[0]);
+					}
+					$text = 'onmousedown="OpenPage(' . "'" . $search_ref;
+					foreach ($sortby as $sort) {
+					}
+					$text .= "',event)" . '"';
+					echo $text ?> class="btn btn-primary btn-md">Refine results</button>
 			</div>
 			<!-- END Refine results button -->
 
@@ -156,13 +156,15 @@ while ($row = mysqli_fetch_array($result)) {
 						<div class="buttons-area row justify-content-between">
 							<div class="buy btn btn-primary buyBtn col-lg-6 col-md-5 col-sm-6 col-xs-6 col-xxs-12">
 								<div class="dropdown">
-									<div id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-ref="<?php if (isset($usertag) && $usertag != "") {
-																																																																				echo $usertag;
-																																																																			} else {
-																																																																				echo "";
-																																																																			} ?>" data-target="buylist-<?php echo $i; ?>" data-price="<?php echo $conf_price; ?>" data-mprod="<?php echo $prod; ?>" data-idmodel="<?php echo $rand['model']; ?>" data-buyregions="<?php echo $region_m_id; ?>" data-pmodel="<?php echo $p_model; ?>" data-lang="<?php echo $exch_id; ?>" <?php foreach ($laptop_comp_list as $comp) {
-																																																																																																																																																																																																																			echo " data-id" . $comp . "=" . '"' . $rand[$comp] . '"';
-																																																																																																																																																																																																																		} ?> onclick="get_buy_list(this);">
+									<div id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-ref="<?php if (isset($usertag) && $usertag != "")
+									{
+										echo $usertag;
+									} else {
+										echo "";
+									} ?>" data-target="buylist-<?php echo $i; ?>" data-price="<?php echo $conf_price; ?>" data-mprod="<?php echo $prod; ?>" data-idmodel="<?php echo $rand['model']; ?>" data-buyregions="<?php echo $region_m_id; ?>" data-pmodel="<?php echo $p_model; ?>" data-lang="<?php echo $exch_id; ?>" <?php foreach ($laptop_comp_list as $comp)
+									{
+										echo " data-id" . $comp . "=" . '"' . $rand[$comp] . '"';
+									} ?> onclick="get_buy_list(this);">
 										<span class="resultsBuyText">Buy</span>
 										<span class="caret"></span>
 									</div>
@@ -206,10 +208,10 @@ while ($row = mysqli_fetch_array($result)) {
 		<ul class="pagination" style="padding-top:20px;justify-content:center">
 			<li class="page-item"><a class="page-link" style="color:#000; cursor:pointer;" <?php echo 'onmousedown="OpenPage(' . "'" . $absolute_url[0] . "&page=1" . $sortext . "',event);" . 'scrolltoid(' . "'" . 'content' . "'" . ',0);"'; ?>>&lt;&lt;</a></li>
 			<li class="page-item"><a class="page-link" <?php $newpage = $page - 1;
-																									if ($newpage < 1) {
-																										$newpage = 1;
-																									}
-																									echo 'onmousedown="OpenPage(' . "'" . $absolute_url[0] . "&page=" . $newpage . $sortext . "',event);" . 'scrolltoid(' . "'" . 'content' . "'" . ',0);"'; ?> style="color:#000; cursor:pointer;">&lt;</a></li>
+			if ($newpage < 1) {
+				$newpage = 1;
+			}
+			echo 'onmousedown="OpenPage(' . "'" . $absolute_url[0] . "&page=" . $newpage . $sortext . "',event);" . 'scrolltoid(' . "'" . 'content' . "'" . ',0);"'; ?> style="color:#000; cursor:pointer;">&lt;</a></li>
 			<?php
 				$count = ceil($count / 20);
 				if ($count < 5) {
@@ -241,10 +243,10 @@ while ($row = mysqli_fetch_array($result)) {
 				}
 			?>
 			<li class="page-item"><a class="page-link" <?php $newpage = $page + 1;
-																									if ($newpage > $count) {
-																										$newpage = $count;
-																									}
-																									echo 'onmousedown="OpenPage(' . "'" . $absolute_url[0] . "&page=" . $newpage . $sortext . "',event);" . 'scrolltoid(' . "'" . 'content' . "'" . ',0);"';; ?> style="color:#000; cursor:pointer;">></a></li>
+			if ($newpage > $count) {
+				$newpage = $count;
+			}
+			echo 'onmousedown="OpenPage(' . "'" . $absolute_url[0] . "&page=" . $newpage . $sortext . "',event);" . 'scrolltoid(' . "'" . 'content' . "'" . ',0);"';; ?> style="color:#000; cursor:pointer;">></a></li>
 			<li class="page-item"><a class="page-link" <?php echo 'onmousedown="OpenPage(' . "'" . $absolute_url[0] . "&page=" . $count . $sortext . "',event);" . 'scrolltoid(' . "'" . 'content' . "'" . ',0);"'; ?> style="color:#000; cursor:pointer;">>></a></li>
 		</ul>
 
@@ -396,7 +398,7 @@ while ($row = mysqli_fetch_array($result)) {
 ?>
 <script type="text/javascript">
 	excode = '<?php echo $_SESSION['exchcode']; ?>';
-	$.getScript("search/lib/js/results.js");
+	$.getScript("search/lib/js/old_var_proc.js").done(function(){$.getScript("search/lib/js/results.js");});
 	var show_buy_list = 1;
 	<?php
 	if (isset($browse_by) && $browse_by !== 0) { ?>

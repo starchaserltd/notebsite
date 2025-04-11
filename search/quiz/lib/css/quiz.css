@@ -529,7 +529,7 @@ _:-ms-lang(x),
     #fff;
     transition: all 0.7s ease-in;
     font-weight: 100;
-    animation: bannerButton 1s ease 1 both;
+    /* animation: bannerButton 1s ease 1 both; */
     top: 50px;
     right: 50px;
     width: 500px;
@@ -558,7 +558,7 @@ _:-ms-lang(x),
     transition: all 0.5s ease-in;
     background-position: center center;
     cursor: pointer;
-    animation: bannerImg 1s ease 1 both;
+    /* animation: bannerImg 1s ease 1 both; */
 }
 
 .quiz_container .quizParagraf1 {
@@ -625,10 +625,6 @@ _:-ms-lang(x),
 
 .quiz_container>#tab2:checked~label.label_intro2 {
     top: -100%;
-}
-
-.quiz_container>#tab2:checked~.tab2_intro {
-    transform: translateY(-100%);
 }
 
 .startQuiz {

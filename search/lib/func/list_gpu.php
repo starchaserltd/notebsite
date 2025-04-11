@@ -346,7 +346,7 @@ function search_gpu ($typelist, $prod, $model, $variant, $name, $arch, $techmin,
 	
 	// DO THE SEARCH
 	$result = mysqli_query($GLOBALS['con'], $sel_gpu);
-	#error_log($sel_gpu);
+	//error_log($sel_gpu);
 	$gpu_return = array();
 	while($rand = mysqli_fetch_array($result)) 
 	{ 

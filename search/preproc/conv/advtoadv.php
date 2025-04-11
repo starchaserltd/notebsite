@@ -1,20 +1,20 @@
 <?php
-	if(isset($_GET['Regions']))
+	if(isset($_GET['MODEL_Regions_id']))
 	{	$regions="";
-		foreach ($_GET['Regions'] as $element)
+		foreach ($_GET['MODEL_Regions_id'] as $element)
 		{	$regions.='<option selected="selected">'.$element.'</option>'; }
 	}
 
-	if(isset($_GET['Family_fam']))
+	if(isset($_GET['MODEL_Family_id']))
 	{
-		foreach ($_GET['Family_fam'] as $element)
+		foreach ($_GET['MODEL_Family_id'] as $element)
 		{	if ($element =="All business families")	{$model_minclass=1;$model_maxclass =3;$model_advclass=1;} 
 			if ($element =="All consumer families")	{$model_minclass=0;$model_maxclass =1;$model_advclass=1;} 
 			$family.='<option selected="selected">'.$element.'</option>';}
 	}
 	
-	if(isset($_GET['Producer_prod']))
-	{	foreach ($_GET['Producer_prod'] as $element)
+	if(isset($_GET['MODEL_Producer_id']))
+	{	foreach ($_GET['MODEL_Producer_id'] as $element)
 		{	$producer.='<option selected="selected">'.$element.'</option>'; }
 	}
 	
@@ -41,11 +41,28 @@
 		$exch=floatval($value[0]);
 		$lang=$value[1]; $_SESSION['lang']=$lang;
 	}
-
+	/**/
+	//if(isset($_GET['model_pricemin'])){$_GET['bdgminadv']=$_GET['model_pricemin'];}
+	//if(isset($_GET['model_pricemax'])){$_GET['bdgmaxadv']=$_GET['model_pricemax'];}
+	/**/
 	if(isset($_GET['bdgminadv'])){ $bdgmin = floatval($_GET['bdgminadv'])/$exch; }else{$bdgmin=-10;}
 	if(isset($_GET['bdgmaxadv'])){ $bdgmax = floatval($_GET['bdgmaxadv'])/$exch; }else{$bdgmax=-10;}
 	
 	if(isset($_GET['CPU_prod_id'])) { $valuetype[11] = $_GET['CPU_prod_id']; } // values for CPU producer
+	
+	/* adaugat varibilele noi sa le preiau cele vechi*/
+	/*
+	if(isset($_GET['cpu_ldatemin'])){$_GET['launchdatemin']=$_GET['cpu_ldatemin'];}
+	if(isset($_GET['cpu_ldatemax'])){$_GET['launchdatemax']=$_GET['cpu_ldatemax'];}
+	if(isset($_GET['cpu_coremin'])){$_GET['nrcoresmin']=$_GET['cpu_coremin'];}
+	if(isset($_GET['cpu_coremax'])){$_GET['nrcoresmax']=$_GET['cpu_coremax'];}
+	if(isset($_GET['cpu_tdpmin'])){$_GET['cputdpmin']=$_GET['cpu_tdpmin'];}
+	if(isset($_GET['cpu_tdpmax'])){$_GET['cputdpmax']=$_GET['cpu_tdpmax'];}
+	if(isset($_GET['cpu_freqmin'])){$_GET['cpufreqmin']=$_GET['cpu_freqmin'];}
+	if(isset($_GET['cpu_freqmax'])){$_GET['cpufreqmax']=$_GET['cpu_freqmax'];}
+	if(isset($_GET['cpu_techmin'])){$_GET['cputechmin']=$_GET['cpu_techmin'];}
+	if(isset($_GET['cpu_techmax'])){$_GET['cputechmax']=$_GET['cpu_techmax'];}
+	*//**/
 	
 	if(isset($_GET['launchdatemin'])) { $cpumindate = $_GET['launchdatemin']; }else{$cpumindate=1900;}
 	if(isset($_GET['launchdatemax'])) { $cpumaxdate = $_GET['launchdatemax']; }else{$cpumaxdate=10500;}
@@ -97,9 +114,9 @@
 	
 	if(isset($_GET['displaymin'])){$displaysizemin = $_GET['displaymin'];}
 	if(isset($_GET['displaymax'])) { $displaysizemax = $_GET['displaymax'];	}
-	if(isset($_GET['DISPLAY_ratio']))
+	if(isset($_GET['DISPLAY_ratio_id']))
 	{ 
-		$valuetype[8] = $_GET['DISPLAY_ratio'];  // Display format
+		$valuetype[8] = $_GET['DISPLAY_ratio_id'];  // Display format
 	}
 	if(isset($_GET['DISPLAY_resol_id']))
 	{

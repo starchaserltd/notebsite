@@ -562,6 +562,7 @@
   padding: 5px;
   border-radius: 6px;
   border: 1px solid #000000;
+  width: 90%;
 }
 
 .modelContainer .specification-card .specification-content .expandContainer {
@@ -988,6 +989,7 @@
     .logoheightof {
     height: 18px;
   }
+
   .modelContainer .actionsContainer .buy .logoheight {
     height: 15px;
   }

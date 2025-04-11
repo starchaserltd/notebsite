@@ -136,7 +136,7 @@ require_once("etc/conf.php");
 										<li><a onmousedown="OpenPage('search/search.php?prod=Asus&browse_by=prod',event); scrolltoid('content',0);">Asus</a></li>
 										<li><a onmousedown="OpenPage('search/search.php?prod=Acer&browse_by=prod',event); scrolltoid('content',0);">Acer</a></li>
 										<li><a onmousedown="OpenPage('search/search.php?prod=Samsung&browse_by=prod',event); scrolltoid('content',0);">Samsung</a></li>
-										<li><a style="color:#1D94DA" onmousedown="OpenPage('content/brands.php',event); scrolltoid('content',0);">Other brands</a></li>
+										<li><a style="color:#1D94DA" onmousedown="OpenPage('content/brands.php',event); scrolltoid('content',0); document.querySelector('.browseMobile').style.display = 'none';">Other brands</a></li>
 									</ul>
 								</li>
 								<li class="has-sub"><a>By class</a>
