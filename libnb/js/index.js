@@ -58,7 +58,7 @@ setInterval(function()
 		currentPage=currentPage.replace("%20%20","%20").replace(")","\%29").replace("(","\%28");
 	}
 	if(cleanurl>0){cleanurl--;}else{cleanurl=20;}
-	
+
 	if (currentPage !== window.location.href)
 	{
 		currentPage = window.location.href;
@@ -81,6 +81,7 @@ function urlrequest(url,e,dontpush) {
         urltitle = urltitle[1];
         currentpage = url;
         if ($('#content').html(response)) { $('#loadingNB').hide(); }
+        window.scrollTo(0, 0);
         if (!dontpush) {
             dontpush = 0;
             if (first) {
@@ -103,7 +104,7 @@ function OpenPage(url, e, dontpush) {
     if (!window.location.href.includes('search') && $('.searchMenu h3').hasClass('open')) {
         $('.quickSearchContainer').slideToggle();
         $('.searchMenu h3').removeClass('open');
-    } 
+    }
 	for(var i in all_requests){ all_requests[i].abort();} all_requests=[]; clearTimeout(model_label_animation);
 	url=set_adv_search(url,"",0);
 	if(url.indexOf("search.php")>0&&url.indexOf("sort_by")<0&&url.indexOf("adv_search")<0){if(url.indexOf("browse_by")>0){url=url+"&sort_by="+global_sort_browse;}else{url=url+"&sort_by="+global_sort_search;}}
@@ -128,11 +129,11 @@ function OpenPage(url, e, dontpush) {
         default:
             go=1;
     }
-	
+
     if (go == 1) { urlrequest(url,e,dontpush); }
     if (go == 2)
-    { 
-        document.head.removeChild(nb_metaRobots); 
+    {
+        document.head.removeChild(nb_metaRobots);
         wopen=window.open(siteroot + "?" + url, "_blank"); if (wopen==null||typeof(wopen)=='undefined'){alert("Turn off your pop-up blocker!");}
     }
     if ( go>0 ) { try { document.head.removeChild(nb_metaRobots); } catch {} if(set_noindex == 1) { console.log("adding noindex"); document.head.appendChild(nb_metaRobots); } }
@@ -162,11 +163,11 @@ function delete_ref_url(url)
 }
 
 $(document).ready(function() {
-	
-    var flg=0;
-    $('#model_id').on("select2:open", function (){ flg++; if(flg==1){ $(".select2-results").append('<div class=""><a class="btn  blue advanceBtnSelect" onmousedown="OpenPage('+"'"+'search/adv_search.php'+"'"+',event);">Advanced Search</a></div>'); } });	
 
-    // Script for left menu  
+    var flg=0;
+    $('#model_id').on("select2:open", function (){ flg++; if(flg==1){ $(".select2-results").append('<div class=""><a class="btn  blue advanceBtnSelect" onmousedown="OpenPage('+"'"+'search/adv_search.php'+"'"+',event);">Advanced Search</a></div>'); } });
+
+    // Script for left menu
     $('.cssmenu li.active').addClass('open').children('ul').show();
     $('.cssmenu li.has-sub>a').on('click', function() {
         $(this).removeAttr('href');
@@ -185,7 +186,7 @@ $(document).ready(function() {
         }
     });
 
-    //Function for form model search left menu   
+    //Function for form model search left menu
     $('#model_id').on("select2:select", function(e) {
         scrolltoid('content',1);
         $('#loadingNB').show();
@@ -197,20 +198,20 @@ $(document).ready(function() {
 
     //Function for hidding learning message
      if($(".compareDropdown").css('display') === 'block' ) {$("#howToUse").css('display', 'none');}
-	
+
 	$( "#howToUse .glyphicon-remove" ).click(function(event) { remove_popup(); });
 
 	if(history.state!==null && history.state["back"]!==undefined){ window.location.href=history.state["back"]; }
-   
+
    //Load main content area
-	if (!(window.location.href.split('?')[1])) 
+	if (!(window.location.href.split('?')[1]))
 	{ currentpage = "content/home.php"; }
 	else
 	{
         var urlParts = window.location.href.split('?');
         var currentpage = urlParts.slice(1).join('?');
     }
-	
+
 	var ref_info=new Array(); var f_newref=null; var qmark=-1; var first_ref_run=true;
 	do
 	{
@@ -223,18 +224,18 @@ $(document).ready(function() {
 		}
 	}
 	while(ref_info[1]!==null);
-	
+
 	qmark=currentpage.indexOf("?")+1;
 	if(currentpage[qmark]!==null&&currentpage[qmark+1]!=undefined){qmark=-1;}else{qmark=1}
-		
+
 	if(f_newref!==null)
 	{
 		if(ref!=f_newref)
 		{
 			if (window.XMLHttpRequest)	{ var	xmlhttp = new XMLHttpRequest(); }
-			xmlhttp.onreadystatechange = function() 
+			xmlhttp.onreadystatechange = function()
 			{
-				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
 				{
 					if(parseInt(xmlhttp.responseText)==1)
 					{ ref=f_newref; if(qmark>=0&&qmark<5) { currentpage=currentpage+"ref="+ref; }else{ currentpage=currentpage+"&ref="+ref; } }
@@ -244,7 +245,7 @@ $(document).ready(function() {
 				}
 				else
 				{
-					if (xmlhttp.readyState == 4 && xmlhttp.status != 200) 
+					if (xmlhttp.readyState == 4 && xmlhttp.status != 200)
 					{
 						if(qmark>=0&&qmark<5) { currentpage=currentpage+"ref="+"starchaser"; }else{ currentpage=currentpage+"&ref="+"starchaser"; }
 						first = 1; OpenPage(currentpage);
@@ -307,12 +308,12 @@ $(document).ready(function() {
 
     //Make dropdown for search filters
 	$(".navbar-header").click(function() { $('.navbar-collapse').slideToggle("slow"); });
-	
+
     //toggle more options for adv_search
     $('.toggleHiddenButtons').click(function() { $('.hiddenOptions').toggleClass('show'); });
 });
 
-//THE SORT BY RESULTS BUTTONS 
+//THE SORT BY RESULTS BUTTONS
 
 function sortresults(sortby)
 {
@@ -328,7 +329,7 @@ function sortresults(sortby)
 		{
 			value = urlParts[key];
             if (first)
-			{ 
+			{
 				if (first > 1) { currentpage = currentpage + "?" + value; }
 				else { currentpage = currentpage + value; first++; }
             }
@@ -343,18 +344,18 @@ function sortresults(sortby)
 	{
 		if (ifexchange != null) { newpage = newcurrentpage[0] + "&exchange=" + ifexchange[2] + "&sort_by=" + sortby; }
 		else { newpage = newcurrentpage[0] + "&sort_by=" + sortby; }
-    } 
-	else 
+    }
+	else
 	{
 		if (ifexchange != null) { newpage = "search/search.php?exchange=" + ifexchange[2] + "&sort_by=" + sortby; } else { newpage = "search/search.php?exchange=1" + "&sort_by=" + sortby; }
     }
 	if (newpage.indexOf("browse_by") > -1){ global_sort_browse=sortby; }else{ if (newpage.indexOf("search") > -1) { global_sort_search=sortby; } }
-    
+
 	return newpage;
 }
 
 
-//CHANGE EXCHANGE RATE RESULTS BUTTONS 
+//CHANGE EXCHANGE RATE RESULTS BUTTONS
 function exchangeresults(exchange) {
 
     var urlParts = window.location.href.split('?');
@@ -477,7 +478,7 @@ $(".btn-group > .btn-sus").click(function() {
     $(this).addClass("active");
 });
 
-//FIELD SEARCH FOR SELECT2	
+//FIELD SEARCH FOR SELECT2
 function triggerchange(el, seltext, match_type) {
     var i = 0;
     var found = 0;
@@ -495,11 +496,11 @@ function triggerchange(el, seltext, match_type) {
 //CLICK FUNCTION FOR QUICK MENU
 $( ".leftMenuFilters" ).click(function()
 {
-	$( ".SearchParameters" ).toggle("slow"); $( ".leftMenuFilters" ).toggleClass("rotate"); 
+	$( ".SearchParameters" ).toggle("slow"); $( ".leftMenuFilters" ).toggleClass("rotate");
 	var button_el=document.getElementsByClassName("btn-title")[0];
 	if(button_el.getAttribute("aria-expanded") == "true"){button_el.setAttribute("aria-expanded", "false"); }
 	else if(button_el.getAttribute("aria-expanded") == "false" || button_el.getAttribute("aria-expanded") == "permanentfalse"){button_el.setAttribute("aria-expanded", "true");
-     // document.querySelector(".SearchParameters").style.display = "block"; 
+     // document.querySelector(".SearchParameters").style.display = "block";
  }
 });
 
@@ -575,8 +576,8 @@ if ($('#back-to-top').length) {
 }
 
 function getScripts(scripts, callback)
-{	
-	var progress = 0; 
+{
+	var progress = 0;
 	scripts.forEach(function(script) { $.getScript(script, function () { if (++progress == scripts.length) callback(); }); });
 }
 
@@ -593,7 +594,7 @@ const sync_sleep = ms => { const end = Date.now() + ms; while (Date.now() < end)
 function async_sleep(ms){ return new Promise(resolve => setTimeout(resolve, ms)); }
 function noteb_round(value, precision) { var multiplier = Math.pow(10, precision || 0); return Math.round(value * multiplier) / multiplier; }
 function hourminutes(str)
-{ 
+{
 	str=parseFloat(str); hours=parseInt(str); minutes=Math.round((((str-hours)*60)/5),0)*5;
 	if(minutes==60){hours++; minutes=0;}
 	if(minutes<10){zero="0";}else{zero="";}
@@ -661,7 +662,7 @@ function proc_search_param_to_array(param_array) {
 // PROGRESS BAR
 
 var PROGRESSBAR = (function () {
-  var DEFAULT_MIN = 0; 
+  var DEFAULT_MIN = 0;
   var DEFAULT_MAX = 100;
 
   function getPercentage(value, min, max)
@@ -760,14 +761,14 @@ var PROGRESSBAR = (function () {
 	}
 	else
 	{ throw new Error(`Progress bar ${target} not found.`); }
-	
+
     return;
   }
 
   return { create, update };
 })();
 
-// Update this time to decide the hidden time for the snackbar 
+// Update this time to decide the hidden time for the snackbar
 // Currently the time is 8 days
 const timeToStayHidden = 8;
 

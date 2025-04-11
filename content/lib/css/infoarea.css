@@ -96,27 +96,29 @@
     font-weight: 700;
 }
 
-@media screen and (min-width: 769px) and (max-width: 1600px) {
+@media screen and (min-width: 768px) and (max-width: 1600px) {
     .container {
         flex-direction: column;
         align-items: center;
     }
 
     .card1 {
-        width: 90%;
+        width: 100%;
         padding: 15px 15px 0 15px;
         margin-bottom: 20px;
+        min-width: 400px;
+        overflow: hidden;
     }
 
     .carousel {
-        width: 90% !important;
+        width: 100% !important;
         max-width: none !important;
         padding: 15px 15px 0 15px !important;
         margin-bottom: 20px;
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
 
     .main-info-container {
         justify-content: center;
@@ -128,9 +130,11 @@
     }
 
     .card1 {
-        width: 90%;
+        width: 100%;
         padding: 15px 15px 0 15px;
         margin-bottom: 20px;
+        min-width: 400px;
+        overflow: hidden;
     }
 
     .carousel {

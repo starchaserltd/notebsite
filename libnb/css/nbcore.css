@@ -126,7 +126,7 @@
 }
 
 .headerback {
-    min-height: 100vh;
+    /* min-height: 100vh; */
     padding: 0 15px;
 }
 
@@ -156,10 +156,6 @@
     --dark-grey: #666666;
     --main-font-bold: "poppinsbold";
     --main-font-regular: "poppinsregular";
-  }
-
-  html {
-    font-size: 14px;
   }
 
   /* TO DO: to be discussed */
@@ -1385,7 +1381,6 @@
     width: 220px;
     display: none;
     border-radius: 10px 10px 0 0;
-    z-index: 99;
     color: #000;
     background-color: #0066cb;
     box-shadow: 0 5px 20px 2px rgba(0, 102, 203, 0.3);
@@ -1635,73 +1630,8 @@ btn.active.focus,
 
 /* ddown menu stanga */
 
-.cssmenu,
-.cssmenu ul,
-.cssmenu ul li,
-.cssmenu ul li a {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  list-style: none;
-  line-height: 1;
-  display: block;
-  position: relative;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
 
-.cssmenu {
-  width: 100%;
-  color: #fff;
-}
-
-.cssmenu ul ul {
-  display: none;
-}
-
-.cssmenu > ul > li.active > ul {
-  display: block;
-}
-
-.align-right {
-  float: right;
-}
-
-.cssmenu > ul > li > a {
-  padding: 10px;
-  cursor: pointer;
-  z-index: 2;
-  font-size: 16px;
-  text-decoration: none;
-  color: #fff;
-  -webkit-transition: color 0.2s ease;
-  -o-transition: color 0.2s ease;
-  transition: color 0.2s ease;
-}
-
-.cssmenu > ul > li > a:hover {
-  color: #fff;
-  opacity: 1;
-  transition: all 0.3s ease-in;
-}
-
-.cssmenu ul > li.has-sub > a:after {
-  /* position: absolute; */
-  /* right: 26px;
-    top: 19px; */
-  z-index: 5;
-  display: block;
-  height: 10px;
-  width: 0px;
-  background: #fff;
-  content: "";
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  -ms-transition: all 0.1s ease-out;
-  -o-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out;
-}
+/* ddwon menu stanga finis */
 
 /* QUIZ CONTAINER */
 
@@ -1827,7 +1757,7 @@ btn.active.focus,
 }
 
 .browseLaptopClass li {
-  z-index: 99;
+  z-index: 1001;
 }
 
 .browseLaptopClass li ul:hover {
@@ -1844,4 +1774,379 @@ btn.active.focus,
   z-index: 98;
   border: 1px solid #fff;
   border-radius: 4px;
+}
+
+
+.slickMobile .slick-dots li button:before {
+  font-size: 24px;
+}
+
+.slickMobile .slick-dots li.slick-active button:before {
+  color: #0066cb;
+}
+
+ul.browseMobile:before {
+  content: "";
+  position: absolute;
+  right: 28px;
+  left: 15px;
+  background-color: #ccc;
+  height: 1px;
+  top: -1px;
+}
+
+.compContainer {
+  background-color: #fff;
+}
+
+.compContainer .row {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+@media (max-width: 450px) {
+  .advancedSearchBtn {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  .footer-distributed .footer-left p {
+    text-align: left;
+  }
+
+  .firstContainer h3::after {
+    content: "\f063";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+    right: 15px;
+    position: absolute;
+    top: 11px;
+    font-size: 16px;
+    display: none;
+  }
+
+  .firstContainer h3.open:after {
+    content: "\f062";
+  }
+
+  .cssmenu .browseMobile > li:last-child:after {
+    height: 0;
+  }
+
+  .cssmenu ul ul li {
+    background-color: #0066cc;
+    z-index: 99;
+  }
+
+  .cssmenu ul ul li.has-sub > a {
+    background-color: transparent;
+    color: #fff !important;
+  }
+
+  .cssmenu ul ul li.has-sub.open > a {
+    background-color: #fff;
+    color: #000 !important;
+  }
+
+  .cssmenu ul ul > li.has-sub > a:hover:before {
+    background: #fff;
+  }
+
+  .cssmenu ul ul > li.has-sub > a:hover:after {
+    background: #fff;
+  }
+
+  .cssmenu ul ul > li.has-sub.open > a:before {
+    background: #000;
+  }
+
+  .cssmenu ul ul > li.has-sub.open > a:after {
+    background: #000;
+  }
+
+  .firstContainer h3:after {
+    right: 26px;
+    top: 2px;
+    display: block;
+  }
+
+  .firstContainer h3:before {
+    right: 22px;
+    top: 10px;
+  }
+
+  .cssmenu .browseMobile {
+    margin-left: -15px;
+    margin-right: -15px;
+    padding-right: 15px;
+    padding-left: 15px;
+    background-color: #0066cb;
+  }
+
+  .cssmenu .browseMobile > li:after {
+    content: "";
+    position: absolute;
+    height: 1px;
+    left: 15px;
+    right: 15px;
+    bottom: 0;
+    background-color: #dadada;
+  }
+
+  .socialArea .container {
+    width: auto;
+  }
+
+  .footer-distributed {
+    margin-top: 10px;
+  }
+
+  .slickMobile.slick-dotted.slick-slider {
+    margin-bottom: 40px;
+  }
+
+  .socialArea {
+    margin-bottom: 10px;
+  }
+
+  .navigation {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .supportUs {
+    margin-top: 15px;
+  }
+
+  .footerLogo {
+    max-width: 130px;
+  }
+
+  .quickSearchContainer {
+    display: none;
+  }
+
+  .topLaptops h2 {
+    font-size: 20px;
+    padding: 20px 15px;
+  }
+
+  #modelfind span.select2-container:after {
+    content: "";
+  }
+
+  .cssmenu > ul > li > a {
+    /* padding: 16px 22px 16px 0px; */
+    font-size: 18px;
+  }
+
+  .firstContainer h3 {
+    text-align: left;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 18px;
+  }
+
+  .firstContainer {
+    padding: 16px 32px 4px 32px;
+  }
+
+  .footer-distributed .footer-right {
+    justify-content: flex-start;
+  }
+
+  .footerMenuContainer:after {
+    content: "";
+    position: absolute;
+    width: auto;
+    right: 15px;
+    left: 15px;
+  }
+
+  .footer-distributed .footer-right {
+    float: none;
+    margin: 0;
+  }
+
+  .footerMenu:after {
+    content: "";
+    position: absolute;
+    left: 15px;
+    right: 15px;
+    height: 1px;
+    background-color: #797979;
+    bottom: 0;
+  }
+
+  .donateFooter {
+    min-width: 160px;
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .modelContainer .modal-dialog {
+    top: 50px;
+  }
+
+  .modelContainer #learn-more-affil-btn {
+    padding: 5px;
+  }
+
+  .displayMobile {
+    display: block;
+  }
+
+  .hiddenMobile {
+    display: none;
+  }
+
+  .howToUse {
+    width: 120px;
+    z-index: 98;
+    padding: 25px 5px 5px 5px;
+    font-size: 12px;
+  }
+
+  .socialButton a.btn.btn-social span {
+    border: none;
+    text-align: center;
+    width: 100%;
+  }
+  .socialButton a.btn.btn-social {
+    text-indent: -5000px;
+  }
+  .btn.logonb {
+    background-size: 75%;
+  }
+  .btn.logonb:hover {
+    background-size: 75%;
+  }
+  .textModel {
+    font-size: 14px;
+  }
+  .backTop {
+    display: none;
+  }
+  #top-link-block.affix {
+    right: auto;
+    left: 20px;
+    bottom: 15px;
+  }
+
+  .home #content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  .home .quizDisplay {
+    -webkit-box-ordinal-group: 4;
+    -ms-flex-order: 3;
+    order: 3;
+  }
+
+  .home .topLaptops {
+    -webkit-box-ordinal-group: 2;
+    -ms-flex-order: 1;
+    order: 1;
+  }
+
+  .home .articleMobile.row {
+    -webkit-box-ordinal-group: 6;
+    -ms-flex-order: 5;
+    order: 5;
+    margin-top: 30px;
+  }
+
+  .searchDetails {
+    margin-top: 35px;
+    display: block;
+  }
+
+  .firstContainer {
+    margin-top: 0px;
+    margin-bottom: 30px;
+  }
+
+  .containerContentIndex {
+    overflow: hidden;
+    width: auto;
+  }
+
+  .home .containerContentIndex {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .home .showMoreArticles + .mobileShowMoreArticles {
+    -webkit-box-ordinal-group: 7;
+    -ms-flex-order: 6;
+    order: 6;
+  }
+
+  .home #quiz_container {
+    margin: 20px 0;
+  }
+
+  .addtocpmp > a {
+    padding: 0 5px;
+  }
+
+  .config .addtocpmp {
+    min-width: 135px;
+  }
+
+  .compareDropdown {
+    width: 150px;
+    font-size: 14px;
+  }
+
+  .cssmenu.compareDropdown ul ul li a {
+    margin-left: 10px;
+  }
+
+  button.btn.btnc {
+    padding: 5px 10px !important;
+  }
+
+  .cssmenu.compareDropdown ul > li.has-sub > a {
+    padding: 9px 15px;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .cssmenu.compareDropdown ul > li.has-sub > a:before {
+    top: 0;
+    right: 37px;
+  }
+
+  .cssmenu.compareDropdown ul > li.has-sub.open > a:before {
+    top: 10px;
+  }
+
+  td.text-center.comparecell3 {
+    display: none;
+  }
+
+  tr#toptrcomp {
+    font-size: 12px;
+  }
+
+  table#comparelist tr#toptrcomp > td {
+    padding: 3px !important;
+  }
+
+  .resultsShopBtn .dropdown-menu {
+    left: 0;
+  }
 }
