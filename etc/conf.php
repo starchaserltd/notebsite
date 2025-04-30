@@ -2,7 +2,7 @@
 $site_name="noteb.com";
 $admin_address="/../vault"; 				/* ADMIN FOLDER */
 $wp_rmimg="wp/wp-content/"; 								/* REWRITE WP IMG ADDRESS */
-$wp_address="http://34.194.182.255/vault/"; /* WORDPRESS INSTALATION ADDRESS */
+$wp_address="http://<address>/vault/"; /* WORDPRESS INSTALATION ADDRESS */
 $wp_new_address="https://noteb.com/";
 $port_type="https";
 $root_mod="";
