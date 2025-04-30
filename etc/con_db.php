@@ -1,4 +1,5 @@
 <?php
+/** This file configures the maine DB connection **/
 function db_connect()
 {
     static $link;
