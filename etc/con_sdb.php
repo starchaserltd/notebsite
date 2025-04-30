@@ -12,10 +12,10 @@
 /* ──────────────────────────────────────────────────────
    Example credentials (replace these!):
 ────────────────────────────────────────────────────── */
-define('DB_SUSER',     'example_sdb_user');       // e.g. 'notebro_sdb'
-define('DB_SPASSWORD', 'example_sdb_pass@123');   // e.g. 'nBdBnologinsdb2'
-define('DB_SNAME',     'example_database');       // e.g. 'notebro_temp'
-define('DB_SPORT',     '3306');                   // e.g. '3306'
+define('DB_SUSER',     'example_sdb_user');       
+define('DB_SPASSWORD', 'example_sdb_pass@123');  
+define('DB_SNAME',     'example_database');       
+define('DB_SPORT',     '3306');                   
 /* ────────────────────────────────────────────────────── */
 
 function dbs_connect($return_con_data = false)
