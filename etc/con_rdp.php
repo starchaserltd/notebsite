@@ -1,5 +1,6 @@
 <?php
 /**
+ * This file is for remote DB connection
  * Single-file “read” DB connection example.
  *
  * IMPORTANT:
