@@ -1,0 +1,1 @@
+<img referrerpolicy="no-referrer-when-downgrade" src="https://noteb.com/etc/traffic.php?idsite=1&amp;rec=1&amp;rand=<?php echo rand(); ?>"  style="border:0" alt="" />
