@@ -12,10 +12,10 @@
 /* ──────────────────────────────────────────────────────
    Example credentials (replace these!):
 ────────────────────────────────────────────────────── */
-define('DB_RUSER',     'example_read_user');        // e.g. 'notebro_db'
-define('DB_RPASSWORD', 'example_read_pass@123');    // e.g. 'nBdBnologin@2'
-define('DB_RNAME',     'example_database');         // e.g. 'notebro_db'
-define('DB_RHOST',     '203.0.113.5');              // e.g. '86.123.134.38'
+define('DB_RUSER',     'example_read_user');        
+define('DB_RPASSWORD', 'example_read_pass@123');    
+define('DB_RNAME',     'example_database');         
+define('DB_RHOST',     '203.0.113.5');              
 define('DB_RPORT',     '13306');
 /* ────────────────────────────────────────────────────── */
 
