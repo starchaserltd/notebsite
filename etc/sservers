@@ -1,3 +1,3 @@
-all 172.31.2.33 172.31.4.253 172.31.1.219
-active 172.31.2.33 172.31.4.253
-inactive 172.31.1.219
+all <Search Server 1 IP> <Search Server 2 IP> <Search Server 3 IP>
+active <Search Server 1 IP> <Search Server 2 IP>
+inactive <Search Server 3 IP>
