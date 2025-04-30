@@ -6,11 +6,11 @@ function db_connect()
     $link = mysqli_init();
 
     // Credentials and connection details should be set as environment variables
-    $user     = getenv('DB_USER');      // e.g. 'notebro_db'
-    $pass     = getenv('DB_PASSWORD');  // e.g. 'nBdBnologin&4'
-    $database = getenv('DB_NAME');      // e.g. 'notebro_db'
-    $host     = getenv('DB_HOST');      // e.g. '172.31.13.210'
-    $port     = getenv('DB_PORT');      // e.g. '3306'
+    $user     = getenv('DB_USER');      
+    $pass     = getenv('DB_PASSWORD');  
+    $database = getenv('DB_NAME');      
+    $host     = getenv('DB_HOST');      
+    $port     = getenv('DB_PORT');      
 
     // Attempt to connect
     $con = mysqli_real_connect($link, $host, $user, $pass, $database, (int)$port);
