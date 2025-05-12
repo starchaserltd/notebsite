@@ -1,2 +1,7 @@
 
 Unzip the contents of the zip file into this folder, the content of the thumbs folder in the zip files should go in the thumbs, and the content of the models folder should go into models.
+
+use to archive: zip -r -s 24m models.zip models/
+use to dearchive:
+zip -s 0 models.zip --out combined.zip
+unzip combined.zip
