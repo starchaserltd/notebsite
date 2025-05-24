@@ -72,7 +72,7 @@ html {
 
 /* ddown menu stanga */
 
-.cssmenu,
+/* .cssmenu,
 .cssmenu ul,
 .cssmenu ul li,
 .cssmenu ul li a {
@@ -86,7 +86,7 @@ html {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-}
+} */
 
 .cssmenu {
   width: 100%;
@@ -105,7 +105,7 @@ html {
   float: right;
 }
 
-.cssmenu > ul > li > a {
+/* .cssmenu > ul > li > a {
   padding: 10px;
   cursor: pointer;
   z-index: 2;
@@ -115,7 +115,7 @@ html {
   -webkit-transition: color 0.2s ease;
   -o-transition: color 0.2s ease;
   transition: color 0.2s ease;
-}
+} */
 
 .cssmenu > ul > li > a:hover {
   color: #fff;
@@ -1124,10 +1124,6 @@ div.orderByContainer span {
   padding: 5px;
 }
 
-.quickSearchContainer li a {
-  display: block;
-  color: #fff;
-}
 
 .multiselect-container label.checkbox {
   position: relative;
@@ -1233,13 +1229,6 @@ div.orderByContainer span {
 
 .socialArea .faTutorial {
   margin-right: 50px;
-}
-
-.firstContainer {
-  background-color: #0066cb;
-  padding: 20px 40px;
-  color: #fff;
-  font-weight: normal !important;
 }
 
 #s_search_btn {

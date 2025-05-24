@@ -1,3 +1,14 @@
+#content {
+  width: 100%;
+  /* flex: 1 0 auto; */
+  min-height: 600px;
+}
+
+.footer-distributed {
+  flex-shrink: 0;
+  min-height: 140px;
+}
+
 .containerNavigation {
     background-color: #fff;
     height: 80px;
@@ -145,6 +156,11 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff337ab7', endColorstr='#ff2e6da4', GradientType=0);
     background-repeat: repeat-x;
     color: #fff;
+}
+
+.quickSearchContainer li a {
+  display: block;
+  color: #fff;
 }
 
 /* Variables */
@@ -1283,6 +1299,8 @@
     padding: 20px 40px;
     color: #fff;
     font-weight: normal !important;
+    min-width: 280px;
+    min-height: 800px;
   }
 
   .firstContainer h3 {
@@ -1630,7 +1648,34 @@ btn.active.focus,
 
 /* ddown menu stanga */
 
+.cssmenu,
+.cssmenu ul,
+.cssmenu ul li,
+.cssmenu ul li a {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  list-style: none;
+  line-height: 1;
+  display: block;
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
 
+.cssmenu {
+  width: 100%;
+  color: #fff;
+}
+
+.cssmenu ul ul {
+  display: none;
+}
+
+.cssmenu > ul > li.active > ul {
+  display: block;
+}
 /* ddwon menu stanga finis */
 
 /* QUIZ CONTAINER */
@@ -1804,6 +1849,13 @@ ul.browseMobile:before {
   margin-left: 0;
 }
 
+@media screen and (max-width: 991px) {
+  .firstContainer {
+    min-width: auto;
+    min-height: auto;
+  }
+}
+
 @media (max-width: 450px) {
   .advancedSearchBtn {
     padding-right: 15px;
@@ -1945,6 +1997,15 @@ ul.browseMobile:before {
   .cssmenu > ul > li > a {
     /* padding: 16px 22px 16px 0px; */
     font-size: 18px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 2;
+    font-size: 16px;
+    text-decoration: none;
+    color: #fff;
+    -webkit-transition: color 0.2s ease;
+    -o-transition: color 0.2s ease;
+    transition: color 0.2s ease;
   }
 
   .firstContainer h3 {
@@ -2148,5 +2209,11 @@ ul.browseMobile:before {
 
   .resultsShopBtn .dropdown-menu {
     left: 0;
+  }
+
+  .searchDetailsFirstContainer {
+    order: 4;
+    width: 20%;
+    text-align: center;
   }
 }

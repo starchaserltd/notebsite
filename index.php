@@ -18,6 +18,7 @@ require_once("etc/conf.php");
 	<link rel="stylesheet" href="lib/css/bootstrap-icons.min.css" type="text/css" />
 	<link rel="stylesheet" href="libnb/css/nbcore.css" type="text/css" />
 	<link rel="stylesheet" href="content/lib/css/infoarea.css" type="text/css"/>
+
 	<!-- JavaScript libraries -->
 	<script src="lib/js/jquery.min.js"></script>
 	<script src="lib/js/popper.min.js"></script>
@@ -224,7 +225,6 @@ require_once("etc/conf.php");
 			</div>
 
 			<!-- end left area-->
-
 			<!-- main content -->
 			<div class="col-md-8 col-sm-12 col-xs-12 col-lg-9 mainContentDiv" id="content" style="width: 100%;">
 				Loading main content.... Please wait.<br>

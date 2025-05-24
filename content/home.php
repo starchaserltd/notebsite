@@ -54,8 +54,8 @@ try {
 }
 ?>
 
-<link rel="stylesheet" href="search/quiz/lib/css/quiz.css?v=0.35" type="text/css"/>
 <link rel="stylesheet" href="content/lib/css/home.css?v=0.48" type="text/css"/>
+<link rel="stylesheet" href="search/quiz/lib/css/quiz.css?v=0.35" type="text/css"/>
 
 <script>
     $.getScript("content/lib/js/home.js?v=0.21", function() { });
@@ -68,7 +68,7 @@ try {
 
 <!-- Noteb Quiz -->
 <div class="col-md-12 col-lg-12 col-12 col-sm-12 quizDisplay" style="padding:0px;">
-    <div id="quiz" class="col-md-12 col-lg-12 col-12 col-sm-12" style="position:relative; height: 365px;"></div>
+    <div id="quiz" class="col-md-12 col-lg-12 col-12 col-sm-12" style="position:relative; min-height: 365px;"></div>
 </div>
 
 <!-- Top 10 laptops area -->

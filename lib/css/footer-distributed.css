@@ -4,8 +4,8 @@
 	box-sizing: border-box;
 	width: 100%;
 	text-align: left;
-	font: normal 16px sans-serif;	
-	margin-top: 40px;	
+	font: normal 16px sans-serif;
+	margin-top: 40px;
 }
 
 .footer-distributed .footer-left p{
@@ -50,14 +50,14 @@
 }
 
 .footer-distributed .footer-right{
-	float: right;	
-	
+	float: right;
+
 }
 
 .footer-distributed .footer-right a{
 	display: inline-block;
 	width: 35px;
-	height: 35px;	
+	height: 35px;
 	border-radius: 2px;
 	font-size: 20px;
 	color: #ffffff;

@@ -130,59 +130,59 @@
 @keyframes bounce_loadingNoteB{
 	0%{
 	transform:scale(1);
-		background-color:rgb(40,95,143);
+		/* background-color:rgb(40,95,143); */
 	}
 
 	100%{
 	transform:scale(.3);
-		background-color:rgb(255,205,80);
+		/* background-color:rgb(255,205,80); */
 	}
 }
 
 @-o-keyframes bounce_loadingNoteB{
 	0%{
 	-o-transform:scale(1);
-		background-color:rgb(40,95,143);
+		/* background-color:rgb(40,95,143); */
 	}
 
 	100%{
 	-o-transform:scale(.3);
-		background-color:rgb(255,205,80);
+		/* background-color:rgb(255,205,80); */
 	}
 }
 
 @-ms-keyframes bounce_loadingNoteB{
 	0%{
 	-ms-transform:scale(1);
-		background-color:rgb(40,95,143);
+		/* background-color:rgb(40,95,143); */
 	}
 
 	100%{
 	-ms-transform:scale(.3);
-		background-color:rgb(255,205,80);
+		/* background-color:rgb(255,205,80); */
 	}
 }
 
 @-webkit-keyframes bounce_loadingNoteB{
 	0%{
 	-webkit-transform:scale(1);
-		background-color:rgb(40,95,143);
+		/* background-color:rgb(40,95,143); */
 	}
 
 	100%{
 	-webkit-transform:scale(.3);
-		background-color:rgb(255,205,80);
+		/* background-color:rgb(255,205,80); */
 	}
 }
 
 @-moz-keyframes bounce_loadingNoteB{
 	0%{
 	-moz-transform:scale(1);
-		background-color:rgb(40,95,143);
+		/* background-color:rgb(40,95,143); */
 	}
 
 	100%{
 	-moz-transform:scale(.3);
-		background-color:rgb(255,205,80);
+		/* background-color:rgb(255,205,80); */
 	}
 }
