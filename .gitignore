@@ -5,4 +5,5 @@ etc/con_hp_db.php
 etc/con_rdb.php
 etc/scripts_pages.php
 etc/scripts_gen.php
-res/img
+res/img/
+etc/
