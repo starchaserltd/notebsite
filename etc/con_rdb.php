@@ -4,10 +4,10 @@ function db_rconnect()
    static $link;
    $link = mysqli_init();
 
-	$user="notebro_db";
-	$pass="nBdBnologin@2";
+	$user="YOUR_DB_USER;
+	$pass="YOUR_DB_PASSWORD;
 	$database="notebro_db";
-	$host="86.123.134.38";
+	$host="YOUR_HOST";
 	$port="13306";
 			 
     $con = mysqli_real_connect($link, $host, $user, $pass, $database, $port);
