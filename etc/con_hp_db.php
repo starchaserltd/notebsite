@@ -5,10 +5,10 @@ function db_connect()
    $link = mysqli_init();
 	
 	#GRANT SELECT ON `stch_retail_data`.`hp_price_data` TO 'hp_data_select'@'%' IDENTIFIED BY 'mFBW2epYWWltIuKRzgom';
-	$user="hp_data_select";
-	$pass="mFBW2epYWWltIuKRzgom";
+	$user="YOUR_DB_USER;
+	$pass="YOUR_DB_PASSWORD;
 	$database="stch_retail_data";
-	$host="192.168.254.201";
+	$host="YOUR_HOST";
 	$port="13306";
 			 
     $con = mysqli_real_connect($link, $host, $user, $pass, $database, $port);
