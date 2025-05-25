@@ -1,10 +1,10 @@
 <?php
-$site_name="86.123.134.36/noteb";
+$site_name="YOUR_HOST";
 $admin_address="/../admin"; 					/* ADMIN FOLDER */
 
 $wp_rmimg="";									/* REWRITE WP IMG ADDRESS */
-$wp_address="http://86.123.134.36/notebro/admin/"; /* WORDPRESS INSTALATION ADDRESS */
-$new_wp_address="http://86.123.134.36/notebro/admin/";
+$wp_address="https://yourdomain.com"; /* WORDPRESS INSTALATION ADDRESS */
+$new_wp_address="https://yourdomain.com";
 
 $web_address="http://".$site_name."/";
 $root_mod="/../notebro/noteb";
