@@ -18,7 +18,7 @@ while ($row=mysqli_fetch_assoc($result))
 mysqli_free_result($result);
 $jscurrency=" currency_val={".implode(",",$var_jsel)."}; "; 
 
-$sel2 = "SELECT type,name FROM `".$global_notebro_db."`.nomen WHERE type=70 OR type=71";
+$sel2 = "SELECT type,name FROM `".$global_notebro_site."`.nomen WHERE type=70 OR type=71";
 $result = mysqli_query($con,$sel2);
 while ($row=mysqli_fetch_row($result))
 {
