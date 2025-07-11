@@ -65,7 +65,7 @@ function get_price_list($model,$noteb_pid=NULL,$retailer_pid=NULL,$retailer=NULL
 					if(isset($price_list["prod"]) && $price_list["prod"]!==NULL && $price_list["prod"]!="")
 					{ $prod=$price_list["prod"]; }
 					else
-					{ $sql="SELECT `prod` FROM `notebro_db`.`MODEL` WHERE `id`='".$model."'"; $prod=mysqli_fetch_assoc(mysqli_query($con,$sql))["prod"]; if(!(isset($prod) && $prod)) { $prod=""; } }
+					{ $sql="SELECT `prod` FROM `".$GLOBALS['global_notebro_db']."`.`MODEL` WHERE `id`='".$model."'"; $prod=mysqli_fetch_assoc(mysqli_query($con,$sql))["prod"]; if(!(isset($prod) && $prod)) { $prod=""; } }
 				}
 
 				if(isset($price_list["discounted_price"]) && $price_list["discounted_price"]!==NULL && $price_list["discounted_price"]!="")

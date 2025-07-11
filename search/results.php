@@ -3,9 +3,9 @@ ini_set('max_execution_time', 8);
 require_once("lib/php/resultlib.php");
 $temp_table = "all_conf";
 /* GETTING EXCHANGE LIST */
-$result = mysqli_query($GLOBALS['con'], "SELECT `code`,`sign`,ROUND(`convr`,5) AS `convr` FROM `notebro_site`.`exchrate` WHERE `valid`=1");
+$result = mysqli_query($GLOBALS['con'], "SELECT `code`,`sign`,ROUND(`convr`,5) AS `convr` FROM `".$GLOBALS['global_notebro_site']."`.`exchrate` WHERE `valid`=1");
 $exchangelist = mysqli_fetch_all($result);
-$result = mysqli_query($GLOBALS['con'], "SELECT id,disp FROM notebro_db.REGIONS");
+$result = mysqli_query($GLOBALS['con'], "SELECT id,disp FROM `".$GLOBALS['global_notebro_db']."`.REGIONS");
 while ($row = mysqli_fetch_array($result)) {
 	$regions[$row[0]] = $row[1];
 }
@@ -140,7 +140,7 @@ while ($row = mysqli_fetch_array($result)) {
 																						echo round(floatval($kgw), 2) . " Kg / " . round(floatval($kgw * 2.20462262), 2) . " lb"; ?></li>
 										<li class="resulspace"><?php showsist('sist,vers,type', 'SIST', $rand['sist']);
 																						echo " "; ?></li>
-										<li class="resulspace"><?php $conf_price = showpricebat('notebro_temp.all_conf_' . $rand['model'], $rand['id'], $exch_model);
+										<li class="resulspace"><?php $conf_price = showpricebat('`'.$GLOBALS['global_notebro_sdb'].'`.all_conf_' . $rand['model'], $rand['id'], $exch_model);
 																						echo " "; ?></li>
 									</ul>
 								</a>

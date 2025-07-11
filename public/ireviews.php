@@ -26,7 +26,7 @@ else { $errMsg = 'Please enter the captcha code:'; }
 if($ex_model_id&&!isset($_POST['model_name_ireviews']))
 {
 	require_once("../etc/con_db.php");
-	$sql="SELECT `model`.`id`,`idfam`,`prod`,`model`,`fam`.`fam`,`fam`.`subfam`,`fam`.`showsubfam`,`model`.`p_model` FROM `MODEL` AS `model` JOIN ( SELECT `id`,`fam`,`subfam`,`showsubfam` FROM `notebro_db`.`FAMILIES` ) AS `fam` ON `fam`.`id`=`model`.`idfam` WHERE `model`.`p_model`=".$ex_model_id." LIMIT 1";
+	$sql="SELECT `model`.`id`,`idfam`,`prod`,`model`,`fam`.`fam`,`fam`.`subfam`,`fam`.`showsubfam`,`model`.`p_model` FROM `MODEL` AS `model` JOIN ( SELECT `id`,`fam`,`subfam`,`showsubfam` FROM `".$GLOBALS['global_notebro_db']."`.`FAMILIES` ) AS `fam` ON `fam`.`id`=`model`.`idfam` WHERE `model`.`p_model`=".$ex_model_id." LIMIT 1";
 	$query=mysqli_query($con,$sql);
 	if(have_results($query))
 	{
