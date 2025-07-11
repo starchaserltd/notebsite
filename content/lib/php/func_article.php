@@ -10,7 +10,7 @@ function gettoolid($tname)
 		}
 		else
 		{
-			$sql = "SELECT id FROM `notebro_site`.`tooltip` WHERE name='$tname'";
+			$sql = "SELECT id FROM `".$GLOBALS['global_notebro_site']."`.`tooltip` WHERE name='".$tname."'";
 			$result = mysqli_query($GLOBALS['con'], $sql);
 			$row=mysqli_fetch_array($result, MYSQLI_NUM);
 			$tooltipid=$row[0];

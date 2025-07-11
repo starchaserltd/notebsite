@@ -11,7 +11,7 @@ if($test_gen_time==1)
 	if($last_gen_date!=false)
 	{
 		require("../../../etc/con_db.php");
-		mysqli_select_db($con,"notebro_site");
+		mysqli_select_db($con,$GLOBALS['global_notebro_site']);
 		$sql="SELECT `name` FROM `nomen` WHERE `type`=9998 AND `prop`='gen_time' AND STR_TO_DATE(`name`,'%Y-%m-%d %H:%i:%s')>'".$last_gen_date."' LIMIT 1;";
 
 		$result = mysqli_query($con,$sql);

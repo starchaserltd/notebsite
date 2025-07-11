@@ -42,13 +42,13 @@ function get_link_sellerid($links,$id_list,$con)
 	{
 		if(!is_array($id_list)){$newarray=array(); $newarray[0]=$id_list; $id_list=$newarray;}
 		foreach($id_list as $id)
-		{ $query.="SELECT `id`,`name`,`tag_name`,`first_tag`,`website`,`end_tag`,`encoded` FROM `notebro_buy`.`SELLERS` WHERE `SELLERS`.`id`=".$id." LIMIT 1; "; }
+		{ $query.="SELECT `id`,`name`,`tag_name`,`first_tag`,`website`,`end_tag`,`encoded` FROM `".$GLOBALS['global_notebro_buy']."`.`SELLERS` WHERE `SELLERS`.`id`=".$id." LIMIT 1; "; }
 	}
 	elseif($links)
 	{
 		if(!is_array($links)){$newarray=array(); $newarray[0]=$links; $links=$newlinks;}
 		foreach($links as $link)
-		{ $query.="SELECT `id`,`name`,`tag_name`,`first_tag`,`website`,`end_tag`,`encoded` FROM `notebro_buy`.`SELLERS` WHERE '".substr($link,0,50)."' LIKE CONCAT('%',website,'%') LIMIT 1; "; }
+		{ $query.="SELECT `id`,`name`,`tag_name`,`first_tag`,`website`,`end_tag`,`encoded` FROM `".$GLOBALS['global_notebro_buy']."`.`SELLERS` WHERE '".substr($link,0,50)."' LIKE CONCAT('%',website,'%') LIMIT 1; "; }
 	}
 	
 	if($query!=="")
@@ -77,7 +77,7 @@ function get_link_sellerid($links,$id_list,$con)
 
 if(isset($usertag)&&$usertag!=""&&$usertag!="noref")
 {
-	$result=mysqli_query($con,"SELECT * FROM `notebro_buy`.`TAGS` WHERE usertag='".$usertag."' LIMIT 1");
+	$result=mysqli_query($con,"SELECT * FROM `".$GLOBALS['global_notebro_buy']."`.`TAGS` WHERE usertag='".$usertag."' LIMIT 1");
 	if(!($result && mysqli_num_rows($result)>0)){ $usertag=""; }
 	else
 	{ $row=mysqli_fetch_array($result); $tags=json_decode($row[2],true); $ref_only=intval($row[3]); }
@@ -87,7 +87,7 @@ if($go>1)
 {
 	if(!(isset($tags)&&count($tags)>0))
 	{
-		$tags=array(); $query="SELECT * FROM `notebro_buy`.`TAGS` WHERE usertag='".$usertag."' LIMIT 1";
+		$tags=array(); $query="SELECT * FROM `".$GLOBALS['global_notebro_buy']."`.`TAGS` WHERE usertag='".$usertag."' LIMIT 1";
 		$tags=mysqli_query($con,$query);
 		if($result&&mysqli_num_rows($result)>0)
 		{ $row=mysqli_fetch_assoc($result); $tags=json_decode($row["tags"],true); }

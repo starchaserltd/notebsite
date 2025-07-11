@@ -1,7 +1,7 @@
 <?php
 $idmodel=''; $conf=''; $nonexistent=1; $lang=-1; $components_found=false; $pos_ex_change=false; $afismodel=0; $cprice=0; $init_conf=null; $exch_valid=array();
 
-$sel2="SELECT `id`,`convr`,`code`,`sign`,`regions`,`ex_war`,`valid` FROM `notebro_site`.`exchrate`";
+$sel2="SELECT `id`,`convr`,`code`,`sign`,`regions`,`ex_war`,`valid` FROM `".$GLOBALS['global_notebro_site']."`.`exchrate`";
 $result=mysqli_query($con,$sel2); $exchange_list=new stdClass(); $region_ex=array();
 while($row=mysqli_fetch_assoc($result))
 {
@@ -51,7 +51,7 @@ if(isset($_GET['model_id']) && $_GET['model_id']!="NaN")
 			$idmodel=$rows["cmodel"]; $cf=intval($rows["all"]["rating"]); $cprice=floatval($rows["all"]["price"]); $cperr=floatval($rows["all"]["err"]); $components_found=true;
 		}
 		else
-		{ $sql="SELECT id FROM `notebro_temp`.`all_conf_".$idmodel."` ORDER BY VALUE DESC LIMIT 1"; $result=mysqli_query($cons,$sql); if($result){ $id=mysqli_fetch_row($result); } }
+		{ $sql="SELECT id FROM `".$GLOBALS['global_notebro_sdb']."`.`all_conf_".$idmodel."` ORDER BY VALUE DESC LIMIT 1"; $result=mysqli_query($cons,$sql); if($result){ $id=mysqli_fetch_row($result); } }
 	}
 	mysqli_close($cons);
 }

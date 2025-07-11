@@ -18,7 +18,7 @@ if(isset($_GET["model_id"])&&isset($_GET["seller"]))
 	{
 		if($seller_id!=NULL && intval($seller_id)!=0)
 		{
-			$sql="SELECT `id`,`name`,`logo`,`region`,(SELECT `notebro_site`.`exchrate`.`sign` FROM `notebro_site`.`exchrate` WHERE `notebro_site`.`exchrate`.`id`=`notebro_buy`.`SELLERS`.`exchrate`) AS `exchsign` FROM `notebro_buy`.`SELLERS` WHERE `".$global_notebro_buy."`.`SELLERS`.`id`='".$seller_id."' LIMIT 1";
+			$sql="SELECT `id`,`name`,`logo`,`region`,(SELECT `".$GLOBALS['global_notebro_site']."`.`exchrate`.`sign` FROM `".$GLOBALS['global_notebro_site']."`.`exchrate` WHERE `".$GLOBALS['global_notebro_site']."`.`exchrate`.`id`=`notebro_buy`.`SELLERS`.`exchrate`) AS `exchsign` FROM `notebro_buy`.`SELLERS` WHERE `".$global_notebro_buy."`.`SELLERS`.`id`='".$seller_id."' LIMIT 1";
 			$result_s=mysqli_query($con,$sql);
 		}
 		else

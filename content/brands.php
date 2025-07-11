@@ -7,7 +7,7 @@ if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_n
 }
 require_once("../etc/con_db.php");
 
-$sel = "SELECT * FROM `notebro_site`.`brands` WHERE `inactive`!=1 ORDER BY ord ASC"; 
+$sel = "SELECT * FROM `".$GLOBALS['global_notebro_site']."`.`brands` WHERE `inactive`!=1 ORDER BY ord ASC"; 
 $results = mysqli_query($con, $sel); 
 ?>
 <div class="row">

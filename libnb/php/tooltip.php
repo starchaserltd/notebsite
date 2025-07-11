@@ -7,7 +7,7 @@ if (!$con)
     die('Could not connect: ' . mysqli_error($con));
 }
 
-mysqli_select_db($con,"notebro_site");
+mysqli_select_db($con,$GLOBALS['global_notebro_site']);
 $sql="SELECT text FROM tooltip WHERE id = '".$id."'";
 $result = mysqli_query($con,$sql);
 

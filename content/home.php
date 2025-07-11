@@ -75,7 +75,7 @@ try {
 <!-- <link rel="stylesheet" href="content/lib/css/infoarea.css?v=0.02" type="text/css"/> -->
 <?php
 try {
-    $query = mysqli_query($con, "SELECT * FROM notebro_site.top_laptops WHERE valid=1 ORDER BY TYPE, ORD ASC, PRICE");
+    $query = mysqli_query($con, "SELECT * FROM `".$GLOBALS['global_notebro_site']."`.top_laptops WHERE valid=1 ORDER BY TYPE, ORD ASC, PRICE");
 
     $tops = array();
     if (mysqli_num_rows($query) > 0) {

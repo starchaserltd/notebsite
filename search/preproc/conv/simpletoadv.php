@@ -1,7 +1,7 @@
 <?php
 	$valuetype[11]=array();
 	$hdd_type = array(); $displayhresmin = "1";	$displayhresmax = "99999"; 	$displayvresmin = "1"; 	$displayvresmax = "99999"; 	$mdbslotsel0 = 'selected="selected"';
-	$sel="SELECT `name`,`type` FROM `notebro_site`.`nomen` WHERE `type`='25' OR `type`='13'"; $result = mysqli_query($con, $sel); $valuetype[25]=array(); $valuetype[51]=[150]; $valuetype[13]=array(); $valuetype[13][0]=2;
+	$sel="SELECT `name`,`type` FROM `".$GLOBALS['global_notebro_site']."`.`nomen` WHERE `type`='25' OR `type`='13'"; $result = mysqli_query($con, $sel); $valuetype[25]=array(); $valuetype[51]=[150]; $valuetype[13]=array(); $valuetype[13][0]=2;
 	while($rand = mysqli_fetch_assoc($result)) { $valuetype[intval($rand["type"])][]=$rand["name"]; } mysqli_free_result($result);
 	$cpucoremin=intval($valuetype[13][0]);
 	if(isset($_GET['s_prod']))
@@ -329,7 +329,7 @@ if(isset($_GET['region_type']))
 if(isset($_GET['exchange'])&&is_string($_GET['exchange']))
 {
 	$excode=clean_string($_GET['exchange']);
-	$sel2 = "SELECT convr FROM notebro_site.exchrate WHERE code='".$excode."'";
+	$sel2 = "SELECT convr FROM `".$GLOBALS['global_notebro_site']."`.exchrate WHERE code='".$excode."'";
 	$result = mysqli_query($con,$sel2);
 	$value=mysqli_fetch_array($result);
 	$exch=floatval($value[0]);

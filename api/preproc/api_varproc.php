@@ -47,7 +47,7 @@ foreach ($search_array as $v)
 					//add frm date here as well
 					$param['model_id']=mysqli_real_escape_string($con,$param['model_id']);
 					if(isset($from_date)&&$from_date!=""){ $from_date=" AND `MODEL`.`ldate` >= '".$from_date."'"; }else{ $from_date=""; }
-					$result = mysqli_query($GLOBALS['con'], "SELECT `id` FROM `".$global_notebro_db."`.`MODEL` WHERE `MODEL`.`id` IN (".$param['model_id'].")".$from_date." LIMIT ".$nr_max_models);
+					$result = mysqli_query($GLOBALS['con'], "SELECT `id` FROM `".$GLOBALS['global_notebro_db']."`.`MODEL` WHERE `MODEL`.`id` IN (".$param['model_id'].")".$from_date." LIMIT ".$nr_max_models);
 
 					if($result && mysqli_num_rows($result)>0)
 					{ $id_set=$param['model_id']; }
@@ -72,10 +72,10 @@ foreach ($search_array as $v)
 			{
 				
 				$param['cpu_name'] = mysqli_real_escape_string($con,strtoupper($param['cpu_name']));
-				$result = mysqli_query($GLOBALS['con'], "SELECT name FROM notebro_site.nomen WHERE type = 11 ORDER BY type ASC");
+				$result = mysqli_query($GLOBALS['con'], "SELECT name FROM `".$GLOBALS['global_notebro_site']."`.nomen WHERE type = 11 ORDER BY type ASC");
 				while( $row=mysqli_fetch_array($result)){ $cpu_prod[]=$row[0]; } 
 				foreach($cpu_prod as $el){ $param['cpu_name'] = trim(str_replace($el,"",$param['cpu_name'])," "); } $cpu_prod=array(); $param['cpu_name']=str_replace(" ","%",$param['cpu_name']);
-				if($cpu_name = mysqli_fetch_row(mysqli_query($GLOBALS['con'],"SELECT model FROM `".$global_notebro_db."`.CPU where model like '%".$param['cpu_name']."%' limit 1")))
+				if($cpu_name = mysqli_fetch_row(mysqli_query($GLOBALS['con'],"SELECT model FROM `".$GLOBALS['global_notebro_db']."`.CPU where model like '%".$param['cpu_name']."%' limit 1")))
 				{ $cpu_model = $cpu_name[0]; $to_search['cpu'] = 1; }
 				else
 				{ $response->code=31; $response->message.=" Unable to identify the CPU by name."; }
@@ -99,7 +99,7 @@ foreach ($search_array as $v)
 			if (isset($param['display_type'])&& !empty($param['display_type']) && !$abort)
 			{
 				$param['display_type']=mysqli_real_escape_string($con,$param['display_type']);
-				$result = mysqli_query($GLOBALS['con'], "SELECT name FROM `notebro_site`.`nomen` WHERE name LIKE '%".$param['display_type']."%' AND type=10");
+				$result = mysqli_query($GLOBALS['con'], "SELECT name FROM `".$GLOBALS['global_notebro_site']."`.`nomen` WHERE name LIKE '%".$param['display_type']."%' AND type=10");
 				if($result && mysqli_num_rows($result)>0)
 				{
 					while( $row=mysqli_fetch_array($result)){$display_backt[] = $row[0];}
@@ -171,7 +171,7 @@ foreach ($search_array as $v)
 			if (isset($param['first_hdd_type'])&& !empty($param['first_hdd_type']) && !$abort)
 			{
 				$param['first_hdd_type']=str_replace(" ","%",mysqli_real_escape_string($con,$param['first_hdd_type']));
-				$result = mysqli_query($GLOBALS['con'], "SELECT name FROM `notebro_site`.`nomen` WHERE type=54 AND name LIKE '%".$param['first_hdd_type']."%'");
+				$result = mysqli_query($GLOBALS['con'], "SELECT name FROM `".$GLOBALS['global_notebro_site']."`.`nomen` WHERE type=54 AND name LIKE '%".$param['first_hdd_type']."%'");
 				if($result && mysqli_num_rows($result)>0)
 				{
 					while( $row=mysqli_fetch_array($result)){$hdd_type[] = $row[0];}
@@ -198,10 +198,10 @@ foreach ($search_array as $v)
 			if (isset($param['gpu_name'])&& !empty($param['gpu_name']) && !$abort)
 			{
 				$param['gpu_name']=str_replace(" ","%",mysqli_real_escape_string($con,$param['gpu_name']));
-				$result = mysqli_query($GLOBALS['con'], "SELECT `name` FROM `notebro_site`.`nomen` WHERE `type` = 12 ORDER BY `type` ASC");
+				$result = mysqli_query($GLOBALS['con'], "SELECT `name` FROM `".$GLOBALS['global_notebro_site']."`.`nomen` WHERE `type` = 12 ORDER BY `type` ASC");
 				while( $row=mysqli_fetch_array($result)){$gpu_prod[] = $row[0]; }
 				foreach($gpu_prod as $el) {	$param['gpu_name'] = trim(str_replace($el,"",$param['gpu_name'])," "); } $gpu_prod=array();
-				$sql = "SELECT `name` AS `model` FROM `".$global_notebro_db."`.`GPU` WHERE `name` '%".$param['gpu_name']."%' ";
+				$sql = "SELECT `name` AS `model` FROM `".$GLOBALS['global_notebro_db']."`.`GPU` WHERE `name` '%".$param['gpu_name']."%' ";
 				if (stripos($param['gpu_name'],"SLI")!==FALSE) { $sql.=' AND `name` LIKE "%SLI%" ORDER BY rating DESC limit 1'; }
 				else { $sql.=' AND `name` NOT LIKE "%SLI%" ORDER BY `rating` DESC LIMIT 1'; } 
 				$gpu_name = mysqli_fetch_row(mysqli_query($GLOBALS['con'],$sql));
@@ -218,10 +218,10 @@ foreach ($search_array as $v)
 			if (isset($param['wireless_name'])&& !empty($param['wireless_name']) && !$abort)
 			{
 				$param['wireless_name']=str_replace(" ","%",mysqli_real_escape_string($con,$param['wireless_name']));
-				$result = mysqli_query($GLOBALS['con'], "SELECT DISTINCT prod FROM `".$global_notebro_db."`.WNET WHERE 1=1");
+				$result = mysqli_query($GLOBALS['con'], "SELECT DISTINCT prod FROM `".$GLOBALS['global_notebro_db']."`.WNET WHERE 1=1");
 				while($row=mysqli_fetch_array($result)){$wnet_prod[] = $row[0]; }
 				foreach( $wnet_prod as $el){ $param['wireless_name'] = trim(str_replace($el,"",$param['wireless_name'])," "); } unset($wnet_prod);
-				if($result=mysqli_fetch_row(mysqli_query($GLOBALS['con'],"SELECT model FROM `".$global_notebro_db."`.WNET where model like '%".$param['wireless_name']."%' limit 1")))
+				if($result=mysqli_fetch_row(mysqli_query($GLOBALS['con'],"SELECT model FROM `".$GLOBALS['global_notebro_db']."`.WNET where model like '%".$param['wireless_name']."%' limit 1")))
 				{ $wnet_model = $result[0]; $to_search['wnet'] = 1; }
 				else
 				{ $response->code=31; $response->message.=" Unable to identify Wireless card."; }
@@ -235,7 +235,7 @@ foreach ($search_array as $v)
 			if (isset($param['odd_type'])&& !empty($param['odd_type']) && !$abort)
 			{
 				$param['odd_type']=strtoupper(str_replace(" ","%",mysqli_real_escape_string($con,$param['odd_type'])));
-				$result = mysqli_query($GLOBALS['con'], "SELECT name FROM `".$global_notebro_db."`.`nomen` WHERE name LIKE '%".$param['odd_type']."%' AND type=52");
+				$result = mysqli_query($GLOBALS['con'], "SELECT name FROM `".$GLOBALS['global_notebro_db']."`.`nomen` WHERE name LIKE '%".$param['odd_type']."%' AND type=52");
 				if($result && mysqli_num_rows($result)>0)
 				{
 					while( $row=mysqli_fetch_array($result)){$odd_type[] = $row[0];}
@@ -325,7 +325,7 @@ foreach ($search_array as $v)
 			if (isset($param['opsist'])&& !empty($param['opsist']) && !$abort)
 			{
 				$param['opsist']=mysqli_real_escape_string($con,str_replace(" ","%",$param['opsist']));
-				$result = mysqli_query($GLOBALS['con'], "SELECT name FROM `notebro_site`.`nomen` WHERE name LIKE '%".$param['opsist']."%' AND type=25 LIMIT 1");
+				$result = mysqli_query($GLOBALS['con'], "SELECT name FROM `".$GLOBALS['global_notebro_site']."`.`nomen` WHERE name LIKE '%".$param['opsist']."%' AND type=25 LIMIT 1");
 				if($result && mysqli_num_rows($result)>0)
 				{
 					while( $row=mysqli_fetch_array($result)){$opsist[] = $row[0];}

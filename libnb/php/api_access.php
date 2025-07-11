@@ -17,11 +17,11 @@ function httpPost($url, $data)
 
 function directPrice($conf,$cons)
 {
-	$sql="SELECT model FROM notebro_temp.all_conf WHERE id=".$conf." LIMIT 1";
+	$sql="SELECT model FROM `".$GLOBALS['global_notebro_sdb']."`.all_conf WHERE id=".$conf." LIMIT 1";
 	$result=mysqli_query($cons,$sql);
 	if(isset($result)&&mysqli_num_rows($result)>0)
 	{ 
-		$sql="SELECT price FROM notebro_temp.all_conf_".mysqli_fetch_row($result)[0]." WHERE id=".$conf." LIMIT 1";
+		$sql="SELECT price FROM `".$GLOBALS['global_notebro_sdb']."`.all_conf_".mysqli_fetch_row($result)[0]." WHERE id=".$conf." LIMIT 1";
 		$result=mysqli_query($cons,$sql);
 		return (mysqli_fetch_row($result)[0]);
 	}

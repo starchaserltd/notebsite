@@ -15,7 +15,7 @@ require_once("../libnb/php/api_access.php");
 $selected=array();
 $current_type="Business";
 
-	$sql = "SELECT * FROM notebro_site.top_laptops WHERE 1=1 ORDER BY type,ord ASC,price";
+	$sql = "SELECT * FROM `".$GLOBALS['global_notebro_site']."`.top_laptops WHERE 1=1 ORDER BY type,ord ASC,price";
 	if ($results=mysqli_query($con,$sql))
 	{
 		echo "<div style='float: left;'><br><span style='font-weight:bold;'>Top laptops</span><br><br><table style='background-color:white;'><tr><th>Id</th><th>Order</th><th>Name</th><th>Type</th><th>Config_id</th><th>Top Price</th><th>Top price min</th><th>Top price max</th><th>Valid</th><th colspan=1>Controls</th><th>Noteb price</th><th>Noteb price min</th><th>Noteb price max</th></tr>";
@@ -24,7 +24,7 @@ $current_type="Business";
 			if($current_type!==$row[1]){$current_type=$row[1]; echo "<tr><td colspan=8></tr>"; }
 			$conf = explode("_",$row[4]);
 			
-			$pricegood = mysqli_fetch_row(mysqli_query($rcon,"SELECT realprice,id from notebro_prices.pricing_all_conf where id = '".$conf[0]."'"));
+			$pricegood = mysqli_fetch_row(mysqli_query($rcon,"SELECT realprice,id from `".$GLOBALS['global_notebro_prices']."`.pricing_all_conf where id = '".$conf[0]."'"));
 			if ($pricegood[0] == NULL)
 			{
 				if(stripos($site_name,"noteb.com")!==FALSE){ require_once("../etc/con_sdb.php"); $prldata['result']['config_price']=intval(directPrice($conf[0],$cons));}
@@ -62,12 +62,12 @@ $current_type="Business";
 				if(stripos($site_name,"noteb.com")!==FALSE)
 				{
 					require_once("../etc/con_sdb.php"); 
-					$get_pmodel=mysqli_query($cons,'SELECT `m_map_table`.`pmodel` FROM `notebro_temp`.`m_map_table` WHERE `m_map_table`.`model_id`="'.$row[3].'" LIMIT 1');
+					$get_pmodel=mysqli_query($cons,'SELECT `m_map_table`.`pmodel` FROM `'.$GLOBALS['global_notebro_sdb'].'`.`m_map_table` WHERE `m_map_table`.`model_id`="'.$row[3].'" LIMIT 1');
 					$pmodel_found=False;
 					if($get_pmodel && mysqli_num_rows($get_pmodel)>0)
 					{
 						$pmodel=mysqli_fetch_assoc($get_pmodel)["pmodel"];
-						$result=mysqli_query($cons,'SELECT * FROM `notebro_temp`.`best_low_opt` WHERE `best_low_opt`.`id_model` LIKE "%p_'.$pmodel.'_2" LIMIT 1');
+						$result=mysqli_query($cons,'SELECT * FROM `'.$GLOBALS['global_notebro_sdb'].'`.`best_low_opt` WHERE `best_low_opt`.`id_model` LIKE "%p_'.$pmodel.'_2" LIMIT 1');
 						if($result && mysqli_num_rows($result)>0)
 						{
 							$pmodel_found=True;
@@ -80,7 +80,7 @@ $current_type="Business";
 
 					if(!$pmodel_found)
 					{	
-						$result=mysqli_query($cons,'SELECT * FROM `notebro_temp`.`best_low_opt` WHERE `best_low_opt`.`id_model`="'.$row[3].'_2" LIMIT 1');
+						$result=mysqli_query($cons,'SELECT * FROM `'.$GLOBALS['global_notebro_sdb'].'`.`best_low_opt` WHERE `best_low_opt`.`id_model`="'.$row[3].'_2" LIMIT 1');
 						if($result && mysqli_num_rows($result)>0)
 						{
 							$row=mysqli_fetch_assoc($result);

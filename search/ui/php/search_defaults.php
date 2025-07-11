@@ -10,12 +10,12 @@ $gen_new_data=1;
 if($gen_new_data==1)
 {
 	require("../../../etc/con_db.php");
-	mysqli_select_db($con,"notebro_site");
+	mysqli_select_db($con,$GLOBALS['global_notebro_site']);
 	$list_keys=["8","11","12","25","26","51","52","53","54","55","56"];
 
 	/** GETING NOMEN KEYS DATA **/
 	$nomen_key=array(); $row=null;
-	$sel="SELECT * FROM `notebro_site`.`nomen_key`";
+	$sel="SELECT * FROM `".$GLOBALS['global_notebro_site']."`.`nomen_key`";
 	$result=mysqli_query($con,$sel);
 	if(have_results($result))
 	{
@@ -31,7 +31,7 @@ if($gen_new_data==1)
 	if(count($nomen_key)>0)
 	{
 		$sel="";
-		$sel.=" SELECT `name`,`type` FROM `notebro_site`.`nomen`;";
+		$sel.=" SELECT `name`,`type` FROM `".$GLOBALS['global_notebro_site']."`.`nomen`;";
 
 		//echo $sel;
 		$result=mysqli_query($con,$sel);

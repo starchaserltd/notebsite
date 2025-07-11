@@ -21,20 +21,20 @@ $generated_buy_list=array(); $link_list=array(); $seller_list=array();
 $tags=array(); $ref_only=0;
 if(isset($usertag)&&$usertag!="")
 {
-	$result=mysqli_query($con,"SELECT * FROM `notebro_buy`.`TAGS` WHERE `usertag`='".$usertag."' LIMIT 1");
+	$result=mysqli_query($con,"SELECT * FROM `".$GLOBALS['global_notebro_buy']."`.`TAGS` WHERE `usertag`='".$usertag."' LIMIT 1");
 	if(!($result && mysqli_num_rows($result)>0)){ $usertag=""; }
 	else
 	{ $row=mysqli_fetch_array($result); $tags=json_decode($row[2],true); $ref_only=intval($row[3]); }
 }
 
 $excluded_sellers=array(); foreach($tags as $val_k){ foreach($val_k as $key=>$val){ $tags[$key]=$val; } }
-if($ref_only==1&&count($tags)>0){ $included_sellers=" AND `seller` IN ( SELECT `notebro_buy`.`SELLERS`.`id`  FROM `notebro_buy`.`SELLERS` WHERE "; foreach($tags as $key=>$val){ $included_sellers.=" `notebro_buy`.`SELLERS`.`name`='".$key."' OR"; } $included_sellers=substr($included_sellers, 0, -3).")"; } else { $included_sellers="";}
+if($ref_only==1&&count($tags)>0){ $included_sellers=" AND `seller` IN ( SELECT `".$GLOBALS['global_notebro_buy']."`.`SELLERS`.`id`  FROM `".$GLOBALS['global_notebro_buy']."`.`SELLERS` WHERE "; foreach($tags as $key=>$val){ $included_sellers.=" `".$GLOBALS['global_notebro_buy']."`.`SELLERS`.`name`='".$key."' OR"; } $included_sellers=substr($included_sellers, 0, -3).")"; } else { $included_sellers="";}
 
 $new_prices=0;
 if($conf_complete)
 {
 	if(in_array(1,$org_buy_regions_array)==False){ $gen_buy_regions=str_replace(" OR FIND_IN_SET(1,`regions`)>0","",$gen_buy_regions); }
-	$SELECT_NEW_PRICE="SELECT * FROM `notebro_buy`.`CONFIG` WHERE `type`='new_price_gen' AND `data_1`='".$model_prod."' ".str_replace("regions","data_2",$gen_buy_regions)." LIMIT 1";
+	$SELECT_NEW_PRICE="SELECT * FROM `".$GLOBALS['global_notebro_buy']."`.`CONFIG` WHERE `type`='new_price_gen' AND `data_1`='".$model_prod."' ".str_replace("regions","data_2",$gen_buy_regions)." LIMIT 1";
 	$new_price_q=mysqli_query($con,$SELECT_NEW_PRICE);
 	if(have_results($new_price_q))
 	{ $new_prices=1; mysqli_free_result($new_price_q);}
@@ -49,7 +49,7 @@ if($new_prices)
 	require_once("get_disabled_conf.php");
 	
 	//GETTING FIXED PRICES
-	$sql_price_q="SELECT `PRICES`.*,`SELLERS`.*,`SELLERS`.`id` AS `seller_id`,`PRICES`.`id` AS `price_id`,`EXCH`.`sign` AS `exch_sign` FROM `notebro_buy`.`FIXED_CONF_PRICES` AS `PRICES` JOIN `notebro_buy`.`SELLERS` AS `SELLERS` ON `PRICES`.`retailer`=`SELLERS`.`name` JOIN `notebro_site`.`exchrate` AS `EXCH` ON `SELLERS`.`exchrate`=`EXCH`.`id` WHERE `PRICES`.`model`='".$id_model."' AND (".$disabled_cond.") ORDER BY `PRICES`.`price` ASC";
+	$sql_price_q="SELECT `PRICES`.*,`SELLERS`.*,`SELLERS`.`id` AS `seller_id`,`PRICES`.`id` AS `price_id`,`EXCH`.`sign` AS `exch_sign` FROM `".$GLOBALS['global_notebro_buy']."`.`FIXED_CONF_PRICES` AS `PRICES` JOIN `".$GLOBALS['global_notebro_buy']."`.`SELLERS` AS `SELLERS` ON `PRICES`.`retailer`=`SELLERS`.`name` JOIN `".$GLOBALS['global_notebro_site']."`.`exchrate` AS `EXCH` ON `SELLERS`.`exchrate`=`EXCH`.`id` WHERE `PRICES`.`model`='".$id_model."' AND (".$disabled_cond.") ORDER BY `PRICES`.`price` ASC";
 	#var_dump($sql_price_q);
 	$price_data_q_r=mysqli_query($con,$sql_price_q);
 	$id_modifiers=array();
@@ -114,7 +114,7 @@ if($new_prices)
 		{ $tries--; }
 	}
 	//GETTING VAR PRICES
-	$sql_price_q="SELECT `PRICES`.*,`SELLERS`.*,`SELLERS`.`id` AS `seller_id`,`EXCH`.`sign` AS `exch_sign` FROM `notebro_buy`.`VAR_CONF_PRICES` AS `PRICES` JOIN `notebro_buy`.`SELLERS` AS `SELLERS` ON `PRICES`.`retailer`=`SELLERS`.`name` JOIN `notebro_site`.`exchrate` AS `EXCH` ON `SELLERS`.`exchrate`=`EXCH`.`id` WHERE `PRICES`.`model`='".$id_model."' AND (".$disabled_cond.") ORDER BY `PRICES`.`time` ASC";
+	$sql_price_q="SELECT `PRICES`.*,`SELLERS`.*,`SELLERS`.`id` AS `seller_id`,`EXCH`.`sign` AS `exch_sign` FROM `".$GLOBALS['global_notebro_buy']."`.`VAR_CONF_PRICES` AS `PRICES` JOIN `".$GLOBALS['global_notebro_buy']."`.`SELLERS` AS `SELLERS` ON `PRICES`.`retailer`=`SELLERS`.`name` JOIN `".$GLOBALS['global_notebro_site']."`.`exchrate` AS `EXCH` ON `SELLERS`.`exchrate`=`EXCH`.`id` WHERE `PRICES`.`model`='".$id_model."' AND (".$disabled_cond.") ORDER BY `PRICES`.`time` ASC";
 	$price_data_q_r=mysqli_query($con,$sql_price_q);
 	if(have_results($price_data_q_r))
 	{
@@ -158,13 +158,13 @@ if($new_prices)
 }
 else
 {	
-	$sql="SELECT `id` AS `models` FROM `".$global_notebro_db."`.`MODEL` WHERE `p_model`=".$pmodel." AND `id`!=".$id_model." AND FIND_IN_SET(".$id_cpu.",`cpu`)>0 AND FIND_IN_SET(".$id_gpu.",`gpu`)>0 AND FIND_IN_SET(".$id_display.",`display`)>0"." ".$gen_buy_regions."";
+	$sql="SELECT `id` AS `models` FROM `".$GLOBALS['global_notebro_db']."`.`MODEL` WHERE `p_model`=".$pmodel." AND `id`!=".$id_model." AND FIND_IN_SET(".$id_cpu.",`cpu`)>0 AND FIND_IN_SET(".$id_gpu.",`gpu`)>0 AND FIND_IN_SET(".$id_display.",`display`)>0"." ".$gen_buy_regions."";
 	$result=mysqli_query($con,$sql); $add_models=array();
 	if($result&&mysqli_num_rows($result)>0)
 	{
 		while($row=mysqli_fetch_row($result))
 		{
-			$sql="SELECT `id` FROM `notebro_temp`.`all_conf_".$row[0]."` WHERE `model`=".$row[0]." AND `cpu`=".$id_cpu." AND `gpu`=".$id_gpu." AND `display`=".$id_display." LIMIT 1";
+			$sql="SELECT `id` FROM `".$GLOBALS['global_notebro_sdb']."`.`all_conf_".$row[0]."` WHERE `model`=".$row[0]." AND `cpu`=".$id_cpu." AND `gpu`=".$id_gpu." AND `display`=".$id_display." LIMIT 1";
 			$result2=mysqli_query($cons,$sql);
 			if($result2&&mysqli_num_rows($result2)>0)
 			{ $add_models[]=$row[0]; mysqli_free_result($result2); }
@@ -178,22 +178,22 @@ else
 	if(isset($gen_buy_regions_sql[0]))
 	{
 		$gen_buy_regions_nodef=implode(" OR ",$gen_buy_regions_sql);
-		$test_current_sql="SELECT `regions` from `notebro_temp`.`ex_map_table` WHERE (".$gen_buy_regions_nodef.") AND `ex_id`=".$lang." LIMIT 1";
+		$test_current_sql="SELECT `regions` from `".$GLOBALS['global_notebro_sdb']."`.`ex_map_table` WHERE (".$gen_buy_regions_nodef.") AND `ex_id`=".$lang." LIMIT 1";
 		$result2=mysqli_query($cons,$test_current_sql);
 
 		if(!($result2&&mysqli_num_rows($result2)>0))
 		{
-			$test_current_sql="SELECT `regions`,`ex_id` from `notebro_temp`.`ex_map_table` WHERE (".$gen_buy_regions_nodef.") LIMIT 1";
+			$test_current_sql="SELECT `regions`,`ex_id` from `".$GLOBALS['global_notebro_sdb']."`.`ex_map_table` WHERE (".$gen_buy_regions_nodef.") LIMIT 1";
 			$result2=mysqli_query($cons,$test_current_sql);
 			if($result2&&mysqli_num_rows($result2)>0){ $lang=intval(mysqli_fetch_assoc($result2)["ex_id"]); mysqli_data_seek($result2,0); }
 		}
 	}
 	else
-	{ $result2=mysqli_query($cons,"SELECT `regions` FROM `notebro_temp`.`ex_map_table` WHERE `ex_id`=".$lang." LIMIT 1"); $buy_regions="0"; }
+	{ $result2=mysqli_query($cons,"SELECT `regions` FROM `".$GLOBALS['global_notebro_sdb']."`.`ex_map_table` WHERE `ex_id`=".$lang." LIMIT 1"); $buy_regions="0"; }
 
 	if($result2&&mysqli_num_rows($result2)>0)
 	{
-		$sql="SELECT GROUP_CONCAT(`ex_id`) as lang_regions FROM `notebro_temp`.`ex_map_table` WHERE 1=1";
+		$sql="SELECT GROUP_CONCAT(`ex_id`) as lang_regions FROM `".$GLOBALS['global_notebro_sdb']."`.`ex_map_table` WHERE 1=1";
 		foreach(explode(",",mysqli_fetch_assoc($result2)["regions"]) as $val){ $sql.=" AND FIND_IN_SET($val,`regions`)>0";}
 		mysqli_free_result($result2);
 		$result2=mysqli_query($cons,$sql);
@@ -206,8 +206,8 @@ else
 	mysqli_close($cons);
 	$add_models[]=$id_model;
 
-	if($buy_regions=="0"){ $region_sel=""; }else{ $region_sel=", (SELECT `notebro_buy`.`SELLERS`.`region` FROM `notebro_buy`.`SELLERS` WHERE `notebro_buy`.`PRICES`.`seller`=`notebro_buy`.`SELLERS`.id AND `notebro_buy`.`SELLERS`.`region` IN (".$buy_regions.") LIMIT 1) as region"; }
-	$sql="SELECT abs(`notebro_buy`.`PRICES`.`price`-".$price.") as diff, `notebro_buy`.`PRICES`.`seller`,`notebro_buy`.`PRICES`.`link`,`notebro_buy`.`PRICES`.`price`,(SELECT `notebro_buy`.`SELLERS`.`logo` FROM `notebro_buy`.`SELLERS` WHERE `notebro_buy`.`PRICES`.`seller`=`notebro_buy`.`SELLERS`.id LIMIT 1) AS `logo`,(SELECT `notebro_buy`.`SELLERS`.`id` FROM `notebro_buy`.`SELLERS` WHERE `notebro_buy`.`PRICES`.`seller`=`notebro_buy`.`SELLERS`.id LIMIT 1) AS `seller_id`,(SELECT `notebro_buy`.`SELLERS`.`exchrate` FROM `notebro_buy`.`SELLERS` WHERE `notebro_buy`.`PRICES`.`seller`=`notebro_buy`.`SELLERS`.id AND `notebro_buy`.`SELLERS`.`exchrate` IN (".$extended_lang.") LIMIT 1) AS `exch_test`,(SELECT `notebro_site`.`exchrate`.`sign` FROM `notebro_site`.`exchrate` WHERE `notebro_site`.`exchrate`.`id`=(SELECT `notebro_buy`.`SELLERS`.`exchrate` FROM `notebro_buy`.`SELLERS` WHERE `notebro_buy`.`PRICES`.`seller`=`notebro_buy`.`SELLERS`.id LIMIT 1) LIMIT 1) AS `exch` ".$region_sel." FROM `notebro_buy`.`PRICES` WHERE `notebro_buy`.`PRICES`.`model_id` IN (".implode(",",$add_models).")".$included_sellers." ORDER BY diff ASC,`notebro_buy`.`PRICES`.`price`";
+	if($buy_regions=="0"){ $region_sel=""; }else{ $region_sel=", (SELECT `".$GLOBALS['global_notebro_buy']."`.`SELLERS`.`region` FROM `".$GLOBALS['global_notebro_buy']."`.`SELLERS` WHERE `".$GLOBALS['global_notebro_buy']."`.`PRICES`.`seller`=`".$GLOBALS['global_notebro_buy']."`.`SELLERS`.id AND `".$GLOBALS['global_notebro_buy']."`.`SELLERS`.`region` IN (".$buy_regions.") LIMIT 1) as region"; }
+	$sql="SELECT abs(`".$GLOBALS['global_notebro_buy']."`.`PRICES`.`price`-".$price.") as diff, `".$GLOBALS['global_notebro_buy']."`.`PRICES`.`seller`,`".$GLOBALS['global_notebro_buy']."`.`PRICES`.`link`,`".$GLOBALS['global_notebro_buy']."`.`PRICES`.`price`,(SELECT `".$GLOBALS['global_notebro_buy']."`.`SELLERS`.`logo` FROM `".$GLOBALS['global_notebro_buy']."`.`SELLERS` WHERE `".$GLOBALS['global_notebro_buy']."`.`PRICES`.`seller`=`".$GLOBALS['global_notebro_buy']."`.`SELLERS`.id LIMIT 1) AS `logo`,(SELECT `".$GLOBALS['global_notebro_buy']."`.`SELLERS`.`id` FROM `".$GLOBALS['global_notebro_buy']."`.`SELLERS` WHERE `".$GLOBALS['global_notebro_buy']."`.`PRICES`.`seller`=`".$GLOBALS['global_notebro_buy']."`.`SELLERS`.id LIMIT 1) AS `seller_id`,(SELECT `".$GLOBALS['global_notebro_buy']."`.`SELLERS`.`exchrate` FROM `".$GLOBALS['global_notebro_buy']."`.`SELLERS` WHERE `".$GLOBALS['global_notebro_buy']."`.`PRICES`.`seller`=`".$GLOBALS['global_notebro_buy']."`.`SELLERS`.id AND `".$GLOBALS['global_notebro_buy']."`.`SELLERS`.`exchrate` IN (".$extended_lang.") LIMIT 1) AS `exch_test`,(SELECT `".$GLOBALS['global_notebro_site']."`.`exchrate`.`sign` FROM `".$GLOBALS['global_notebro_site']."`.`exchrate` WHERE `".$GLOBALS['global_notebro_site']."`.`exchrate`.`id`=(SELECT `".$GLOBALS['global_notebro_buy']."`.`SELLERS`.`exchrate` FROM `".$GLOBALS['global_notebro_buy']."`.`SELLERS` WHERE `".$GLOBALS['global_notebro_buy']."`.`PRICES`.`seller`=`".$GLOBALS['global_notebro_buy']."`.`SELLERS`.id LIMIT 1) LIMIT 1) AS `exch` ".$region_sel." FROM `".$GLOBALS['global_notebro_buy']."`.`PRICES` WHERE `".$GLOBALS['global_notebro_buy']."`.`PRICES`.`model_id` IN (".implode(",",$add_models).")".$included_sellers." ORDER BY diff ASC,`".$GLOBALS['global_notebro_buy']."`.`PRICES`.`price`";
 	$seller_count_links=array();
 
 	$result=mysqli_query($con,$sql);
@@ -269,10 +269,10 @@ if($new_prices && count($generated_buy_list)>0) { $excluded_sellers[]="4"; }
 if(count($excluded_sellers)>0){ /*$excluded_sellers[]="3";*/ $excluded_sellers="AND id NOT IN (".implode(",",$excluded_sellers).")"; } else { $excluded_sellers=""; }
 
 if(($buy_regions=="3" || $org_buy_regions=="3")&&$lang!=1&&$lang!=3){$lang=1;}
-if($buy_regions=="0" || $org_buy_regions=="0"){ $result=mysqli_query($con,"SELECT GROUP_CONCAT(`notebro_buy`.`SELLERS`.`id`) AS `id` FROM `notebro_buy`.`SELLERS` WHERE `exchrate` IN (".$lang.") AND id IN (2,3,4,5,6,7,8,9,10) ".$excluded_sellers." ORDER BY `priority` DESC"); }
-else { $result=mysqli_query($con,"SELECT GROUP_CONCAT(`notebro_buy`.`SELLERS`.`id`) AS `id` FROM `notebro_buy`.`SELLERS` WHERE `region` IN (".$buy_regions.") AND id IN (2,3,4,5,6,7,8,9,10) AND `exchrate` IN (".$lang.") ".$excluded_sellers." ORDER BY `priority` DESC"); }
-if(!(have_results($result))){ $result=mysqli_query($con,"SELECT GROUP_CONCAT(`notebro_buy`.`SELLERS`.`id`) AS `id` FROM `notebro_buy`.`SELLERS` WHERE `region` IN (".$buy_regions.") AND id IN (2,3,4,5,6,7,8,9,10) ".$excluded_sellers." ORDER BY `priority` DESC"); }
-if(!(have_results($result))){ $result=mysqli_query($con,"SELECT GROUP_CONCAT(`notebro_buy`.`SELLERS`.`id`) AS `id` FROM `notebro_buy`.`SELLERS` WHERE `region` IN (1,2) AND id IN (2,3,4,5,6,7,8,9,10) ".$excluded_sellers." ORDER BY `priority` DESC"); }
+if($buy_regions=="0" || $org_buy_regions=="0"){ $result=mysqli_query($con,"SELECT GROUP_CONCAT(`".$GLOBALS['global_notebro_buy']."`.`SELLERS`.`id`) AS `id` FROM `".$GLOBALS['global_notebro_buy']."`.`SELLERS` WHERE `exchrate` IN (".$lang.") AND id IN (2,3,4,5,6,7,8,9,10) ".$excluded_sellers." ORDER BY `priority` DESC"); }
+else { $result=mysqli_query($con,"SELECT GROUP_CONCAT(`".$GLOBALS['global_notebro_buy']."`.`SELLERS`.`id`) AS `id` FROM `".$GLOBALS['global_notebro_buy']."`.`SELLERS` WHERE `region` IN (".$buy_regions.") AND id IN (2,3,4,5,6,7,8,9,10) AND `exchrate` IN (".$lang.") ".$excluded_sellers." ORDER BY `priority` DESC"); }
+if(!(have_results($result))){ $result=mysqli_query($con,"SELECT GROUP_CONCAT(`".$GLOBALS['global_notebro_buy']."`.`SELLERS`.`id`) AS `id` FROM `".$GLOBALS['global_notebro_buy']."`.`SELLERS` WHERE `region` IN (".$buy_regions.") AND id IN (2,3,4,5,6,7,8,9,10) ".$excluded_sellers." ORDER BY `priority` DESC"); }
+if(!(have_results($result))){ $result=mysqli_query($con,"SELECT GROUP_CONCAT(`".$GLOBALS['global_notebro_buy']."`.`SELLERS`.`id`) AS `id` FROM `".$GLOBALS['global_notebro_buy']."`.`SELLERS` WHERE `region` IN (1,2) AND id IN (2,3,4,5,6,7,8,9,10) ".$excluded_sellers." ORDER BY `priority` DESC"); }
 $sellers=array(); if(have_results($result)){ $sellers=array_unique(explode(",",mysqli_fetch_assoc($result)["id"])); mysqli_free_result($result);}
 
 $_GET["seller"]=NULL; if(count($sellers)==1 && isset($sellers[0]) && $sellers[0]!="") {  $_GET["seller"]=$sellers;  }

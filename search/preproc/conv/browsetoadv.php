@@ -1,7 +1,7 @@
 <?php
 require_once("../etc/con_db.php");
 if(isset($_GET['prod'])){ $prod_id = $_GET['prod']; }
-$sql = "SELECT name FROM notebro_site.nomen WHERE type=70 OR type=71 OR type=25"; 
+$sql = "SELECT name FROM `".$GLOBALS['global_notebro_site']."`.nomen WHERE type=70 OR type=71 OR type=25"; 
 $result = mysqli_fetch_all(mysqli_query($con,$sql));
 $i=0;
 while(isset($result[$i][0]))
