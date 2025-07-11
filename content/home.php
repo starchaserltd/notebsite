@@ -194,9 +194,16 @@ try {
     <div class="col-md-12 col-lg-12 col-sm-12 col-12 latest2">
         <div class="row">
             <div class="col-md-4 col-lg-3 col-sm-4 col-xs-4 latest3">
-                <a onmousedown="OpenPage('<?php echo $linkart; ?>',event);">
+			<?php
+					/*
+					var_dump($wp_url.$wp_rmimg);
+					var_dump($new_wp_address);
+					var_dump(wp_get_attachment_url(get_post_thumbnail_id($recent_posts[$y]["ID"])));
+					*/
+				?>
+					<a onmousedown="OpenPage('<?php echo $linkart; ?>',event);">
                     <img style="display:block; margin:0 auto;" src="<?php
-                    $url = str_replace($wp_url.$wp_rmimg, $new_wp_address, wp_get_attachment_url(get_post_thumbnail_id($recent_posts[$y]["ID"])));
+                    $url = str_replace(array_map(fn($u) => $u . $wp_rmimg, $wp_urls), $new_wp_address, wp_get_attachment_url(get_post_thumbnail_id($recent_posts[$y]["ID"])));
                     echo $url;?>" class="img-responsive img-fluid" alt="Image">
                 </a>
             </div>
