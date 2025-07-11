@@ -67,7 +67,7 @@ $published_posts = $category->category_count;
 			<div class="row">
 				<div class="col-lg-5 col-md-4 col-sm-6 col-xs-12 centerImgFlex">	
 					<a onmousedown="OpenPage('<?php  echo $ad=str_replace($wpsite."/article.php/article/","content/article.php?/",get_permalink($recent_posts[$x]["ID"])); ?>',event);" style="cursor: pointer;" >
-						<img style="display:block; margin:15px auto;" src="<?php $url = str_replace($wp_url.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[$x]["ID"]) )); echo $url;?>" class="img-responsive img-fluid" alt="Article featured image">
+						<img style="display:block; margin:15px auto;" src="<?php $url = str_replace(array_map(fn($u) => $u . $wp_rmimg, $wp_urls), $new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[$x]["ID"]) )); echo $url;?>" class="img-responsive img-fluid" alt="Article featured image">
 					</a>
 				</div>
 				<div class="col-md-8 col-sm-6 col-xs-12 col-lg-7" style="font-size:20px; min-width: 170px;">

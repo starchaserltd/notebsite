@@ -71,7 +71,7 @@ $published_posts = $category->category_count;
 			<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
 				<a onmousedown="OpenPage('<?php  echo $ad=str_replace($wpsite."/article.php/review/","content/review.php?/",get_permalink($recent_posts[$x]["ID"])); ?>',event);" style="cursor: pointer;">
 					
-						<img src="<?php $url = str_replace($wp_url.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[$x]["ID"]) )); echo $url;?>" class="img-responsive img-fluid" alt="Review featured image">
+						<img src="<?php $url = str_replace(array_map(fn($u) => $u . $wp_rmimg, $wp_urls), $new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[$x]["ID"]) )); echo $url;?>" class="img-responsive img-fluid" alt="Review featured image">
 					
 				</a>
 			</div>

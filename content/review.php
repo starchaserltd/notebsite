@@ -15,13 +15,13 @@ if(isset($_SESSION['lang'])) { $lang=$_SESSION['lang']; } else { $lang=0; }
 
 $absolute_url = full_url( $_SERVER );
 $ad=explode("/review.php?", $absolute_url);
-$ad[1]=preg_replace("/\/&[azAZ]?.*($)/","/",$wp_url."wp/article.php/review".$ad[1]);
+$ad[1] = preg_replace(array_map(fn($b)=>'/^'.preg_quote($b,'/').'\/wp\/article\.php\/review(.*)$/',$wp_urls), '/$1', $ad[1]);
 $echoid = url_to_postid($ad[1]); //echo $echoid;
-$url = str_replace($wp_url.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($echoid) )); //var_dump($url);
+$url = str_replace(array_map(fn($u) => $u . $wp_rmimg, $wp_urls), $new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($echoid) )); //var_dump($url);
 $nrtabs=0;
 $tabnames=array();
 
-$content=str_replace($wp_url.$wp_rmimg,$new_wp_address,$content);
+$content=str_replace(array_map(fn($u) => $u . $wp_rmimg, $wp_urls), $new_wp_address,$content);
 $content=preg_replace_callback('/\[tooltip (.*)\](.*)\[tooltip\]/U',function ($m) {return maketooltip(gettoolid($m[1]),$m[2]);},apply_filters('the_content',get_post_field('post_content', $echoid, 'display')));
 echo preg_replace_callback('/\[ntab (.*)\](.*)(?=\[ntab .*\]|\Z)/Us',function ($m) {return maketab($m[1],$m[2]);},$content);
 $display_all_content="";
@@ -72,7 +72,7 @@ $post_date="1990-01-01";
 						else
 							{ echo '<div id="tab'.$i.'" class="tab">'; }
 	
-						$display_content=str_replace($wp_url.$wp_rmimg,$new_wp_address,$tabcontent[$i]);
+						$display_content=str_replace(array_map(fn($u) => $u . $wp_rmimg, $wp_urls), $new_wp_address,$tabcontent[$i]);
 						$display_all_content.="<br><br><br>".$display_content;
 						$current_tab_name=strtolower($tabnames[$i]);
 						if($current_tab_name=="conclusions" || $current_tab_name=="conclusion"){ $conclusion=$display_content;} 
