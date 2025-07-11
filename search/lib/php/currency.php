@@ -1,9 +1,9 @@
 <?php
 $rootpath = realpath($_SERVER["DOCUMENT_ROOT"]).$root_mod;
 require_once($rootpath.'/etc/con_db.php');
-mysqli_select_db($con,"notebro_site");
+mysqli_select_db($con,$global_notebro_site);
 //GET currency rates
-$sel2 = "SELECT `code`,`convr`,`sign` FROM `notebro_site`.`exchrate` WHERE `valid`=1";
+$sel2 = "SELECT `code`,`convr`,`sign` FROM `".$global_notebro_site"`.`exchrate` WHERE `valid`=1";
 $result = mysqli_query($con,$sel2);
 if(empty($_SESSION['exchcode'])||$reset){ $excode="USD"; } else { $excode=$_SESSION['exchcode']; }
 $var_currency=""; $i=0;
@@ -18,7 +18,7 @@ while ($row=mysqli_fetch_assoc($result))
 mysqli_free_result($result);
 $jscurrency=" currency_val={".implode(",",$var_jsel)."}; "; 
 
-$sel2 = "SELECT type,name FROM notebro_site.nomen WHERE type=70 OR type=71";
+$sel2 = "SELECT type,name FROM `".$global_notebro_db."`.nomen WHERE type=70 OR type=71";
 $result = mysqli_query($con,$sel2);
 while ($row=mysqli_fetch_row($result))
 {

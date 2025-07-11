@@ -38,7 +38,7 @@ if(isset($keysparts))
 {
 	foreach($keysparts as $el)
 	{
-		$conditions_model.="`notebro_db`.GEN_NAME(`MODEL`.`id`) LIKE '%".$el."%' AND ";
+		$conditions_model.="`".$global_notebro_db."`.GEN_NAME(`MODEL`.`id`) LIKE '%".$el."%' AND ";
 		$conditions_altmodel.="`alt_model`.`name` LIKE '%".$el."%' AND ";
 	}
 }
@@ -52,11 +52,11 @@ $conditions_model.=$valid_reg_sql;
 if($p_model_only){ $conditions_model.=" GROUP BY `p_model`,`show_smodel`"; $conditions_altmodel.=" GROUP BY `model`.`p_model`"; }
 
 // CONSTRUCTING THE SEARCH QUERY
-$sel="SELECT `MODEL`.`id`,`MODEL`.`mdb`,`MODEL`.`submodel`,`MODEL`.`p_model` AS `c_p_model`,(SELECT GROUP_CONCAT(`MODEL`.`regions`) FROM `notebro_db`.`MODEL` WHERE `MODEL`.`p_model`=`c_p_model`) AS `regions`,GEN_NAME(`MODEL`.`id`) AS `name`,'1' AS `pmodel_count`,`MODEL`.`extra_modelname` AS `extra_modelname` FROM `notebro_db`.`MODEL` WHERE ".$conditions_model;
+$sel="SELECT `MODEL`.`id`,`MODEL`.`mdb`,`MODEL`.`submodel`,`MODEL`.`p_model` AS `c_p_model`,(SELECT GROUP_CONCAT(`MODEL`.`regions`) FROM `".$global_notebro_db."`.`MODEL` WHERE `MODEL`.`p_model`=`c_p_model`) AS `regions`,GEN_NAME(`MODEL`.`id`) AS `name`,'1' AS `pmodel_count`,`MODEL`.`extra_modelname` AS `extra_modelname` FROM `".$global_notebro_db."`.`MODEL` WHERE ".$conditions_model;
 if(!(isset($id_set) && $id_set))
 {
 	$sel.=" UNION ";
-	$sel.="SELECT `model`.`id`,`model`.`mdb`,`model`.`submodel`,`model`.`p_model` AS `c_p_model`,`model`.`regions` AS `regions`,`alt_model`.`name` AS `name`,'0' AS `pmodel_count`,`model`.`extra_modelname` AS `extra_modelname` FROM `notebro_db`.`MODEL` `model`  JOIN `notebro_db`.`ALT` `alt_model` ON (`model`.id=`alt_model`.`model_id`) WHERE ".$conditions_altmodel." ORDER BY `name` ASC";
+	$sel.="SELECT `model`.`id`,`model`.`mdb`,`model`.`submodel`,`model`.`p_model` AS `c_p_model`,`model`.`regions` AS `regions`,`alt_model`.`name` AS `name`,'0' AS `pmodel_count`,`model`.`extra_modelname` AS `extra_modelname` FROM `".$global_notebro_db."`.`MODEL` `model`  JOIN `".$global_notebro_db."`.`ALT` `alt_model` ON (`model`.id=`alt_model`.`model_id`) WHERE ".$conditions_altmodel." ORDER BY `name` ASC";
 }
 
 //DOING THE SEARCH;
@@ -71,13 +71,13 @@ if((!$result)||($result&&mysqli_num_rows($result)<=0))
 	{
 		$conditions_model=""; $show_submodel=true;
 		foreach($keysparts as $el)
-		{ $conditions_model.="`notebro_db`.GEN_NAME_WSUBMODEL(`MODEL`.`id`) LIKE '%".$el."%' AND "; } $conditions_model=substr($conditions_model,0,-5);
+		{ $conditions_model.="`".$global_notebro_db."`.GEN_NAME_WSUBMODEL(`MODEL`.`id`) LIKE '%".$el."%' AND "; } $conditions_model=substr($conditions_model,0,-5);
 		if(isset($m_search_included)&&isset($from_date)){ $conditions_model.=" AND `MODEL`.`ldate` >= '".$from_date."'"; }
-		$sel="SELECT `MODEL`.`id`,`MODEL`.`mdb`,`MODEL`.`submodel`,`MODEL`.`p_model` as `c_p_model`,`MODEL`.`regions`,GEN_NAME_WSUBMODEL(`MODEL`.`id`) AS `name`,'nop' AS `np`,`MODEL`.`extra_modelname` AS `extra_modelname` FROM `notebro_db`.`MODEL` WHERE ".$conditions_model."".$reg_sql." ORDER BY `name` ASC";
+		$sel="SELECT `MODEL`.`id`,`MODEL`.`mdb`,`MODEL`.`submodel`,`MODEL`.`p_model` as `c_p_model`,`MODEL`.`regions`,GEN_NAME_WSUBMODEL(`MODEL`.`id`) AS `name`,'nop' AS `np`,`MODEL`.`extra_modelname` AS `extra_modelname` FROM `".$global_notebro_db."`.`MODEL` WHERE ".$conditions_model."".$reg_sql." ORDER BY `name` ASC";
 		$result=mysqli_query($con,$sel);
 		if(!($result&&mysqli_num_rows($result)>0)&&$reg_sql!="")
 		{
-			$sel="SELECT `MODEL`.`id`,`MODEL`.`mdb`,`MODEL`.`submodel`,`MODEL`.`p_model` AS `c_p_model`,`MODEL`.`regions`,GEN_NAME_WSUBMODEL(`MODEL`.`id`) AS `name`,'nop' AS `np`,`MODEL`.`extra_modelname` AS `extra_modelname` FROM `notebro_db`.`MODEL` WHERE ".$conditions_model." ORDER BY `name` ASC";
+			$sel="SELECT `MODEL`.`id`,`MODEL`.`mdb`,`MODEL`.`submodel`,`MODEL`.`p_model` AS `c_p_model`,`MODEL`.`regions`,GEN_NAME_WSUBMODEL(`MODEL`.`id`) AS `name`,'nop' AS `np`,`MODEL`.`extra_modelname` AS `extra_modelname` FROM `".$global_notebro_db."`.`MODEL` WHERE ".$conditions_model." ORDER BY `name` ASC";
 			$result=mysqli_query($con,$sel);
 		}
 	}
@@ -92,7 +92,7 @@ if($result&&mysqli_num_rows($result)>0)
 		if(strlen($rand["submodel"])>6 && !preg_match("/\(.*\)/",$rand["submodel"])){ if(isset($rand["submodel"][7])){ if($rand["submodel"][6]!=' '){  if($rand["submodel"][5]!=' '){$rand["submodel"]=substr($rand["submodel"],0,6).".";}else{$rand["submodel"]=substr($rand["submodel"],0,5)."";}}else{$rand["submodel"]=substr($rand["submodel"],0,6)."";} } }
 		$regions=array(); $regions=array_unique(explode(",",$rand["regions"])); $show_reg=1;  $region=array(); $region["disp"]=""; if(isset($rand["np"])&&$rand["np"]=="nop"){$add_np="_np";}else{$add_np="";}
 		foreach($regions as $el) { if(intval($el)===1 || intval($el)===0 ){ $show_reg=0; } else { foreach($current_regions_array as $el2) {if(intval($el)==intval($el2)){$show_reg=0;} } } }
-		if($show_reg) { $sel_r="SELECT `disp` FROM `notebro_db`.`REGIONS` WHERE `id`=".$regions[0]." LIMIT 1"; $result_r = mysqli_query($con, $sel_r); $region=mysqli_fetch_array($result_r); $region["disp"]="(".$region["disp"].")"; }
+		if($show_reg) { $sel_r="SELECT `disp` FROM `".$global_notebro_db."`.`REGIONS` WHERE `id`=".$regions[0]." LIMIT 1"; $result_r = mysqli_query($con, $sel_r); $region=mysqli_fetch_array($result_r); $region["disp"]="(".$region["disp"].")"; }
 		if(isset($rand["extra_modelname"])&&$rand["extra_modelname"]!==NULL&&$rand["extra_modelname"]!=""){ $extra_name=" (".strval($rand["extra_modelname"]).")"; }
 		//SENDING THE RESULTS
 		if(!isset($m_search_included)){ $rand["submodel"]=""; $pre_name=strval($rand["name"]." ".$rand["submodel"].$mdb_submodel); if(substr($pre_name,-1)!=" "&&isset($region["disp"])&&$region["disp"]!=""){ $pre_name.=" "; } $list[]=["id"=>intval($rand["id"]).$add_np,"model"=>strval($pre_name.$extra_name.$region["disp"])]; }

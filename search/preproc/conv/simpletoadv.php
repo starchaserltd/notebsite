@@ -240,7 +240,7 @@ if(isset($_GET['graphics']))
 				{
 					$gpupowermin = 25;
 					$gpumemmin = 1024;
-					$result=mysqli_query($con, "SELECT `name` FROM `notebro_db`.`GPU` WHERE `rating`<=30 AND `typegpu`=3 AND `power`>=25");
+					$result=mysqli_query($con, "SELECT `name` FROM `".$global_notebro_db."`.`GPU` WHERE `rating`<=30 AND `typegpu`=3 AND `power`>=25");
 					while($row=mysqli_fetch_row($result)) { $gpumodel.='<option selected="selected">'.$row[0].'</option>'; } mysqli_free_result($result);
 					$gputype=1;
 					$gputypesel[3]='selected="selected"';
@@ -266,7 +266,7 @@ if(isset($_GET['graphics']))
 				else if (($_GET['type'])==5) //PROFESIONAL
 				{
 					$gpumemmin = 2048;
-					$result=mysqli_query($con, "SELECT `name` FROM `notebro_db`.`GPU` WHERE `rating`<=50 AND `rating`>=25 AND `typegpu`=3 AND `power`>=25");
+					$result=mysqli_query($con, "SELECT `name` FROM `".$global_notebro_db."`.`GPU` WHERE `rating`<=50 AND `rating`>=25 AND `typegpu`=3 AND `power`>=25");
 					while($row=mysqli_fetch_row($result)) { $gpumodel.='<option selected="selected">'.$row[0].'</option>'; } mysqli_free_result($result);
 					$gputype=1;
 					$gputypesel[3]='selected="selected"';
@@ -292,7 +292,7 @@ if(isset($_GET['graphics']))
 				else if (($_GET['type'])==5) //PROFESIONAL
 				{
 					$gpumemmin = 2048;
-					$result=mysqli_query($con, "SELECT `name` FROM `notebro_db`.`GPU` WHERE `rating`>=50 AND `typegpu`=3 AND `power`>=25");
+					$result=mysqli_query($con, "SELECT `name` FROM `".$global_notebro_db."`.`GPU` WHERE `rating`>=50 AND `typegpu`=3 AND `power`>=25");
 					while($row=mysqli_fetch_row($result)) { $gpumodel.='<option selected="selected">'.$row[0].'</option>'; } mysqli_free_result($result);
 					$gputype=1;
 					$gputypesel[3]='selected="selected"';

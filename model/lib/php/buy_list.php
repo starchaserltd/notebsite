@@ -158,7 +158,7 @@ if($new_prices)
 }
 else
 {	
-	$sql="SELECT `id` AS `models` FROM `notebro_db`.`MODEL` WHERE `p_model`=".$pmodel." AND `id`!=".$id_model." AND FIND_IN_SET(".$id_cpu.",`cpu`)>0 AND FIND_IN_SET(".$id_gpu.",`gpu`)>0 AND FIND_IN_SET(".$id_display.",`display`)>0"." ".$gen_buy_regions."";
+	$sql="SELECT `id` AS `models` FROM `".$global_notebro_db."`.`MODEL` WHERE `p_model`=".$pmodel." AND `id`!=".$id_model." AND FIND_IN_SET(".$id_cpu.",`cpu`)>0 AND FIND_IN_SET(".$id_gpu.",`gpu`)>0 AND FIND_IN_SET(".$id_display.",`display`)>0"." ".$gen_buy_regions."";
 	$result=mysqli_query($con,$sql); $add_models=array();
 	if($result&&mysqli_num_rows($result)>0)
 	{

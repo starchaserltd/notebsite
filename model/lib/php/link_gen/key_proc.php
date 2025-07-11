@@ -21,7 +21,7 @@ function standard_key_proc($keys,$idmodel,$submodel)
 	
 	if(stripos($submodel,"dGPU")!==FALSE)
 	{ 
-		$sql="SELECT `notebro_db`.`GPU`.`name` FROM `notebro_db`.`GPU` WHERE FIND_IN_SET(`notebro_db`.`GPU`.`id`,(SELECT `notebro_db`.`MODEL`.`gpu` FROM `notebro_db`.`MODEL` WHERE `notebro_db`.`MODEL`.`id`=".$idmodel." LIMIT 1))>0 AND `notebro_db`.`GPU`.`typegpu`>0 LIMIT 1"; 
+		$sql="SELECT `".$global_notebro_db."`.`GPU`.`name` FROM `".$global_notebro_db."`.`GPU` WHERE FIND_IN_SET(`".$global_notebro_db."`.`GPU`.`id`,(SELECT `".$global_notebro_db."`.`MODEL`.`gpu` FROM `".$global_notebro_db."`.`MODEL` WHERE `".$global_notebro_db."`.`MODEL`.`id`=".$idmodel." LIMIT 1))>0 AND `".$global_notebro_db."`.`GPU`.`typegpu`>0 LIMIT 1"; 
 		$result=mysqli_query($GLOBALS['con'],$sql);
 		if($result && mysqli_num_rows($result)>0){ $gpu_name=mysqli_fetch_array($result)[0]; } else { $gpu_name=NULL; }
 		if(stripos($gpu_name,"radeon")!==FALSE) { $gpu_name=str_ireplace("radeon","",$gpu_name); }
@@ -45,7 +45,7 @@ function standard_key_proc($keys,$idmodel,$submodel)
 	elseif(stripos($submodel,"4K")!==FALSE) {  $keys.="+4K"; }
 	else
 	{
-		/*$sql="SELECT DISTINCT `notebro_db`.`DISPLAY`.`vres` FROM `notebro_db`.`DISPLAY` WHERE FIND_IN_SET(`notebro_db`.`DISPLAY`.`id`,(SELECT `notebro_db`.`MODEL`.`display` FROM `notebro_db`.`MODEL` WHERE `notebro_db`.`MODEL`.`id`=760 LIMIT 1))>0 ORDER BY vres ASC LIMIT 1"; 
+		/*$sql="SELECT DISTINCT `".$global_notebro_db."`.`DISPLAY`.`vres` FROM `".$global_notebro_db."`.`DISPLAY` WHERE FIND_IN_SET(`".$global_notebro_db."``.`DISPLAY`.`id`,(SELECT `".$global_notebro_db."`.`MODEL`.`display` FROM `".$global_notebro_db."`.`MODEL` WHERE `".$global_notebro_db."`.`MODEL`.`id`=760 LIMIT 1))>0 ORDER BY vres ASC LIMIT 1"; 
 		$result=mysqli_query($GLOBALS['con'],$sql);
 		if($result && mysqli_num_rows($result)>0){ $vres=mysqli_fetch_array($result)[0]; } else { $vres=NULL; }
 		if($vres!==""){ }*/
@@ -66,7 +66,7 @@ function valid_keys($keys,$prod,$fam,$cond)
 	$matches=array(); if(($prod=="Microsoft")&&preg_match("/(^|\s)[a-zA-Z]* \d{1}($|\s)/",$keys,$matches)){ $extra_key=trim($matches[0]);}else{$extra_key=NULL;}
 	$keys=explode(" ",$keys); if($extra_key){ array_push($keys,$extra_key); } array_push($keys,"!refurbished"); array_push($keys,"!used"); array_push($keys,"!service"); array_push($keys,"!discontinued");
 	if($fam==""||$fam==" ")
-	{ $sql2="SELECT DISTINCT fam from `notebro_db`.`FAMILIES` WHERE prod='".$prod."' AND fam !=' ' AND fam!='' AND fam IS NOT null".$cond; $result2=mysqli_query($GLOBALS['con'],$sql2); while($row2=mysqli_fetch_array($result2)){ array_push($keys,("!".$row2[0])); } } $keys=json_encode($keys);
+	{ $sql2="SELECT DISTINCT fam from `".$global_notebro_db."`.`FAMILIES` WHERE prod='".$prod."' AND fam !=' ' AND fam!='' AND fam IS NOT null".$cond; $result2=mysqli_query($GLOBALS['con'],$sql2); while($row2=mysqli_fetch_array($result2)){ array_push($keys,("!".$row2[0])); } } $keys=json_encode($keys);
 	return $keys;
 }
 

@@ -18,7 +18,7 @@ if(isset($_GET["model_id"])&&isset($_GET["seller"]))
 	{
 		if($seller_id!=NULL && intval($seller_id)!=0)
 		{
-			$sql="SELECT `id`,`name`,`logo`,`region`,(SELECT `notebro_site`.`exchrate`.`sign` FROM `notebro_site`.`exchrate` WHERE `notebro_site`.`exchrate`.`id`=`notebro_buy`.`SELLERS`.`exchrate`) AS `exchsign` FROM `notebro_buy`.`SELLERS` WHERE `notebro_buy`.`SELLERS`.`id`='".$seller_id."' LIMIT 1";
+			$sql="SELECT `id`,`name`,`logo`,`region`,(SELECT `notebro_site`.`exchrate`.`sign` FROM `notebro_site`.`exchrate` WHERE `notebro_site`.`exchrate`.`id`=`notebro_buy`.`SELLERS`.`exchrate`) AS `exchsign` FROM `notebro_buy`.`SELLERS` WHERE `".$global_notebro_buy."`.`SELLERS`.`id`='".$seller_id."' LIMIT 1";
 			$result_s=mysqli_query($con,$sql);
 		}
 		else
@@ -50,7 +50,7 @@ if(isset($_GET["model_id"])&&isset($_GET["seller"]))
 			{ $key_proc='standard_key_proc'; $link_gen='google_com_link'; $region=2; break;}
 		}
 		
-		$sql="SELECT `id`,(SELECT `notebro_db`.`MDB`.`submodel` FROM `notebro_db`.`MDB` WHERE FIND_IN_SET(`notebro_db`.`MDB`.`id`,`notebro_db`.`MODEL`.`mdb`)>0 LIMIT 1) AS `mdb`,`model`,`submodel`,`regions`,`prod`,`keywords`,REGEXP_REPLACE(CONCAT(IFNULL((SELECT `fam` FROM `notebro_db`.`FAMILIES` WHERE `id`=`idfam`),''),' ',IFNULL((SELECT `subfam` FROM `notebro_db`.`FAMILIES` WHERE `id`=`idfam` AND `showsubfam`=1),'')),'[[:space:]]+', ' ') AS `fam` FROM `notebro_db`.`MODEL`".$model_cond;
+		$sql="SELECT `id`,(SELECT `".$global_notebro_db."`.`MDB`.`submodel` FROM `".$global_notebro_db."`.`MDB` WHERE FIND_IN_SET(`".$global_notebro_db."`.`MDB`.`id`,`".$global_notebro_db."`.`MODEL`.`mdb`)>0 LIMIT 1) AS `mdb`,`model`,`submodel`,`regions`,`prod`,`keywords`,REGEXP_REPLACE(CONCAT(IFNULL((SELECT `fam` FROM `".$global_notebro_db."`.`FAMILIES` WHERE `id`=`idfam`),''),' ',IFNULL((SELECT `subfam` FROM `".$global_notebro_db."`.`FAMILIES` WHERE `id`=`idfam` AND `showsubfam`=1),'')),'[[:space:]]+', ' ') AS `fam` FROM `".$global_notebro_db."`.`MODEL`".$model_cond;
 		$result=mysqli_query($con,$sql);
 
 		while($row=mysqli_fetch_assoc($result))
@@ -173,7 +173,7 @@ if(isset($_GET["model_id"])&&isset($_GET["seller"]))
 						default:
 						{ break; }
 					}
-					$sql="SELECT `notebro_db`.`CPU`.`clocks` FROM `notebro_db`.`CPU` WHERE FIND_IN_SET(`notebro_db`.`CPU`.`id`,(SELECT `notebro_db`.`MODEL`.`cpu` FROM `notebro_db`.`MODEL` WHERE `notebro_db`.`MODEL`.`id`=".$row["id"]." LIMIT 1))>0 ORDER BY clocks ASC LIMIT 1"; 
+					$sql="SELECT `".$global_notebro_db."`.`CPU`.`clocks` FROM `".$global_notebro_db."`.`CPU` WHERE FIND_IN_SET(`".$global_notebro_db."`.`CPU`.`id`,(SELECT `".$global_notebro_db."`.`MODEL`.`cpu` FROM `".$global_notebro_db."`.`MODEL` WHERE `".$global_notebro_db."`.`MODEL`.`id`=".$row["id"]." LIMIT 1))>0 ORDER BY clocks ASC LIMIT 1"; 
 					$result2=mysqli_query($con,$sql); if($result2 && mysqli_num_rows($result2)>0){ if((stripos($row["model"],"2016")!==FALSE)&&($row["fam"]=="MacBook ")){ $freq=rtrim(rtrim(strval(floatval(mysqli_fetch_array($result2)[0])+0.1),"0"),"."); } else { $freq=rtrim(rtrim(strval(floatval(mysqli_fetch_array($result2)[0])+0),"0"),"."); } $row["model"].=" ".$freq; }
 					$row["model"]=strip_garbage($row["model"]);
 					$row["model"]=$row["fam"]." ".$row["model"];
@@ -344,7 +344,7 @@ if(isset($_GET["model_id"])&&isset($_GET["seller"]))
 				}
 				case (stripos($row["prod"],"Razer")!==FALSE):
 				{
-					$sql2="SELECT `notebro_db`.`DISPLAY`.`size` FROM `notebro_db`.`DISPLAY` WHERE FIND_IN_SET(`notebro_db`.`DISPLAY`.`id`,(SELECT `notebro_db`.`MODEL`.`display` FROM `notebro_db`.`MODEL` WHERE `notebro_db`.`MODEL`.`id`=".$row["id"]." LIMIT 1))>0 ORDER BY vres ASC LIMIT 1"; 
+					$sql2="SELECT `".$global_notebro_db."`.`DISPLAY`.`size` FROM `".$global_notebro_db."`.`DISPLAY` WHERE FIND_IN_SET(`".$global_notebro_db."`.`DISPLAY`.`id`,(SELECT `".$global_notebro_db."`.`MODEL`.`display` FROM `".$global_notebro_db."`.`MODEL` WHERE `".$global_notebro_db."`.`MODEL`.`id`=".$row["id"]." LIMIT 1))>0 ORDER BY vres ASC LIMIT 1"; 
 					$result2=mysqli_query($GLOBALS['con'],$sql2);
 					if($result2 && mysqli_num_rows($result2)>0){ $row["model"].=" ".rtrim(rtrim(strval(mysqli_fetch_array($result2)[0]), "0"), "."); }
 					switch($region)
