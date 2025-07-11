@@ -24,8 +24,8 @@ if($q>=0)
 	
 	if($q>=0)
 	{
-		mysqli_select_db($con,"notebro_db");
-		$sql="SELECT CONCAT(`prod`,' ',`model`) as `cpu_model` FROM `notebro_db`.`CPU` WHERE `valid`=1 AND `rating`>='".$cpu_min_rating."' AND `rating`<='".$cpu_max_rating."' AND `tdp`>='".$cpu_min_tdp."' AND `tdp`<='".$cpu_max_tdp."'";
+		mysqli_select_db($con, $global_notebro_db);
+		$sql="SELECT CONCAT(`prod`,' ',`model`) as `cpu_model` FROM `".$GLOBALS['global_notebro_db']."`.`CPU` WHERE `valid`=1 AND `rating`>='".$cpu_min_rating."' AND `rating`<='".$cpu_max_rating."' AND `tdp`>='".$cpu_min_tdp."' AND `tdp`<='".$cpu_max_tdp."'";
 		$result=mysqli_query($con,$sql);
 		$response["cpu"]=array();
 		if($result&&mysqli_num_rows($result)>0)
@@ -40,7 +40,7 @@ if($q>=0)
 		
 		if(!$skip_sql)
 		{
-			$sql="SELECT `name` as `gpu_model` FROM `notebro_db`.`GPU` WHERE `valid`=1 AND `rating`>='".$gpu_min_rating."' AND `rating`<='".$gpu_max_rating."' AND ".$type_gpu_sql."";
+			$sql="SELECT `name` as `gpu_model` FROM `".$GLOBALS['global_notebro_db']."`.`GPU` WHERE `valid`=1 AND `rating`>='".$gpu_min_rating."' AND `rating`<='".$gpu_max_rating."' AND ".$type_gpu_sql."";
 			$result=mysqli_query($con,$sql);
 			$response["gpu"]=array();
 			if($result&&mysqli_num_rows($result)>0)
@@ -50,7 +50,7 @@ if($q>=0)
 		$skip_sql=0;
 		if($get_os)
 		{
-			$sql="SELECT DISTINCT `sist` as `os_model` FROM `notebro_db`.`SIST` WHERE `valid`=1 AND `id`!=999"."";
+			$sql="SELECT DISTINCT `sist` as `os_model` FROM `".$GLOBALS['global_notebro_db']."`.`SIST` WHERE `valid`=1 AND `id`!=999"."";
 			$result=mysqli_query($con,$sql);
 			$response["os"]=array();
 			if($result&&mysqli_num_rows($result)>0)
@@ -75,7 +75,7 @@ if($q>=0)
 			mysqli_free_result($result);
 		}
 		
-		$sql="SELECT DISTINCT `name` as `region_name` FROM `notebro_db`.`REGIONS` WHERE `valid`=1 AND `id` IN (".implode(",",$regions_id).")";
+		$sql="SELECT DISTINCT `name` as `region_name` FROM `".$GLOBALS['global_notebro_db']."`.`REGIONS` WHERE `valid`=1 AND `id` IN (".implode(",",$regions_id).")";
 		$result=mysqli_query($con,$sql);
 		$response["regions"]=array();
 		if($result&&mysqli_num_rows($result)>0)

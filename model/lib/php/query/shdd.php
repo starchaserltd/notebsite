@@ -5,7 +5,7 @@ if($q>=0)
 	require("../../../../etc/con_db.php");
 	require("../../../../etc/rates_conf.php");
 	
-	mysqli_select_db($con,"notebro_db");
+	mysqli_select_db($con,$global_notebro_db);
 	$sql="SELECT * FROM HDD WHERE id = '".$q."'";
 	$result = mysqli_query($con,$sql);
 

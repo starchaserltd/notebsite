@@ -18,7 +18,7 @@ if($c)
 	require_once("get_best_low.php");
 	if(!$change_model_region){ if($force_new_ex){ $change_model_region=model_in_region($cons,$conf[0],$excode); }else{ $change_model_region=false;} }
 	if($getall){$all="*,";}else{$all="";} if(!isset($conf[1])){for($i=1;$i<14;$i++){if(!isset($conf[$i])){$conf[$i]="";}}}
-	$sql="SELECT ".$all."id,price,model,err FROM notebro_temp.all_conf_".$conf[0]." WHERE model=".$conf[0]." AND cpu=".$conf[1]." AND display=".$conf[2]." AND mem=".$conf[3]." AND hdd=".$conf[4]." AND shdd=".$conf[5]." AND gpu=".$conf[6]." AND wnet=".$conf[7]." AND odd=".$conf[8]." AND mdb=".$conf[9]." AND chassis=".$conf[10]." AND acum=".$conf[11]." AND war".$warnotin." IN (".$conf[12].") AND sist=".$conf[13]." LIMIT 1";
+	$sql="SELECT ".$all."id,price,model,err FROM `".$GLOBALS['global_notebro_sdb']."`.all_conf_".$conf[0]." WHERE model=".$conf[0]." AND cpu=".$conf[1]." AND display=".$conf[2]." AND mem=".$conf[3]." AND hdd=".$conf[4]." AND shdd=".$conf[5]." AND gpu=".$conf[6]." AND wnet=".$conf[7]." AND odd=".$conf[8]." AND mdb=".$conf[9]." AND chassis=".$conf[10]." AND acum=".$conf[11]." AND war".$warnotin." IN (".$conf[12].") AND sist=".$conf[13]." LIMIT 1";
 	
 	//Don't do the primary search when we need to change the region or exchange rate
 	if(!$change_model_region&&$comp!="EXCH"){$result=mysqli_query($cons,$sql);}
@@ -65,7 +65,7 @@ if($c)
 		
 		/*GET regions of interest and warranty limitations based exchange rate.*/
 		$found_excode=false; $ex_regions_gc=array();
-		$ex_result=mysqli_query($cons,"SELECT ex,regions,ex_war FROM `notebro_temp`.`ex_map_table`"); 
+		$ex_result=mysqli_query($cons,"SELECT ex,regions,ex_war FROM `".$GLOBALS['global_notebro_sdb']."`.`ex_map_table`"); 
 		if($ex_result)
 		{
 			while($row=mysqli_fetch_row($ex_result))
@@ -94,7 +94,7 @@ if($c)
 		{ $rows=search_valid_config(array($conf[0]),$conf[1],$conf[2],$conf[3],$conf[4],$conf[5],$conf[6],$conf[7],$conf[8],$conf[9],$conf[10],$conf[11],$conf[12],$conf[13],$filter,$cf,$current_region,$exclude_war); }
 		if($rows["cid"]==0 && !$conf_only_search)
 		{
-			$result=mysqli_query($cons,"SELECT * FROM `notebro_temp`.`m_map_table` WHERE `model_id`=".$conf[0]." LIMIT 1");
+			$result=mysqli_query($cons,"SELECT * FROM `".$GLOBALS['global_notebro_sdb']."`.`m_map_table` WHERE `model_id`=".$conf[0]." LIMIT 1");
 			if(have_results($result))
 			{
 				$m_map=mysqli_fetch_assoc($result);
@@ -172,7 +172,7 @@ if($c)
 	if($conf[0]!=$rows["cmodel"])
 	{	
 		if(!$include_getconf){ require_once("../../../../etc/con_db.php"); $extra_model_sql=""; }else{$extra_model_sql="`model`.`prod`, `families`.`fam`, `families`.`subfam`, `families`.`showsubfam`, `model`.`model`,`model`.`submodel`,`model`.`keywords`,";}
-		$result_model=mysqli_query($con,"SELECT ".$extra_model_sql."`model`.`regions`,`model`.`p_model` FROM `notebro_db`.`MODEL` model JOIN `notebro_db`.`FAMILIES` families ON `model`.`idfam`=`families`.`id` WHERE `model`.`id`=".$rows["cmodel"]." LIMIT 1");
+		$result_model=mysqli_query($con,"SELECT ".$extra_model_sql."`model`.`regions`,`model`.`p_model` FROM `".$GLOBALS['global_notebro_db']."`.`MODEL` model JOIN `".$GLOBALS['global_notebro_db']."`.`FAMILIES` families ON `model`.`idfam`=`families`.`id` WHERE `model`.`id`=".$rows["cmodel"]." LIMIT 1");
 		if($result_model&&mysqli_num_rows($result_model)>0)
 		{
 			$model_data=mysqli_fetch_array($result_model); $_SESSION['model']=$rows["cmodel"];
@@ -181,7 +181,7 @@ if($c)
 				$rows["mprod"]=$model_data["prod"]; if(isset($model_data["subfam"])&&$model_data["showsubfam"]!=0){ $model_data["subfam"]=" ".$model_data["subfam"]; } else { $model_data["subfam"]=""; } $rows["mfam"]=$model_data["fam"].$model_data["subfam"]; $rows["mmodel"]=$model_data["model"]; $rows["msubmodel"]=$model_data["submodel"];
 			}
 			$rows["mregion_id"]=explode(",",$model_data['regions']); 
-			if(array_search("1",$rows["mregion_id"])===FALSE){ foreach($ex_regions_gc as $key=>$el){ foreach($rows["mregion_id"] as $el2){ if(in_array($el2,$el)){if(in_array($el2,$current_ex_region)){$rows["exch"]=$excode;}else{$rows["exch"]=$key;} break 2;}}} if($include_getconf){ $resu=mysqli_fetch_array(mysqli_query($con,"SELECT `disp` FROM `notebro_db`.`REGIONS` WHERE `id`=".$rows["mregion_id"][0]." LIMIT 1")); $rows["mregion"]=$resu["disp"];} $rows["buy_regions"]=$model_data['regions']; } else { $rows["exch"]="USD"; $rows["mregion"]=""; $rows["buy_regions"]=0; }
+			if(array_search("1",$rows["mregion_id"])===FALSE){ foreach($ex_regions_gc as $key=>$el){ foreach($rows["mregion_id"] as $el2){ if(in_array($el2,$el)){if(in_array($el2,$current_ex_region)){$rows["exch"]=$excode;}else{$rows["exch"]=$key;} break 2;}}} if($include_getconf){ $resu=mysqli_fetch_array(mysqli_query($con,"SELECT `disp` FROM `".$GLOBALS['global_notebro_sdb']."`.`REGIONS` WHERE `id`=".$rows["mregion_id"][0]." LIMIT 1")); $rows["mregion"]=$resu["disp"];} $rows["buy_regions"]=$model_data['regions']; } else { $rows["exch"]="USD"; $rows["mregion"]=""; $rows["buy_regions"]=0; }
 			mysqli_free_result($result_model);
 			$get_best_low_func=true;
 		}
@@ -212,7 +212,7 @@ function search_valid_config($models,$cpu,$display,$mem,$hdd,$shdd,$gpu,$wnet,$o
 	{
 		$sql="";
 		foreach($models as $key=>$model)
-		{ $sql.="(SELECT * FROM `notebro_temp`.`all_conf_".$model."` WHERE model=".$model." AND ".$filter.$filter_complete." AND price>0 AND value>=".$cf." ORDER BY value ASC LIMIT 1) UNION (SELECT * FROM notebro_temp.all_conf_".$model." WHERE model=".$model." AND ".$filter.$filter_complete." AND price>0 AND value<".$cf." ORDER BY value DESC LIMIT 1) UNION "; }
+		{ $sql.="(SELECT * FROM `".$GLOBALS['global_notebro_sdb']."`.`all_conf_".$model."` WHERE model=".$model." AND ".$filter.$filter_complete." AND price>0 AND value>=".$cf." ORDER BY value ASC LIMIT 1) UNION (SELECT * FROM `".$GLOBALS['global_notebro_sdb']."`.all_conf_".$model." WHERE model=".$model." AND ".$filter.$filter_complete." AND price>0 AND value<".$cf." ORDER BY value DESC LIMIT 1) UNION "; }
 		$sql=substr($sql, 0, -6); $sql.="ORDER BY abs(value - ".$cf.") LIMIT 1";
 		$result = mysqli_query($cons,$sql);
 		
@@ -274,7 +274,7 @@ function search_any_config($models,$exclude_war)
 	{
 		$sql="";
 		foreach($models as $key=>$model)
-		{ $sql.="(SELECT * FROM `notebro_temp`.`all_conf_".$model."` WHERE model=".$model." ".$filter_complete." AND price>0 ORDER BY value DESC LIMIT 1) UNION "; }
+		{ $sql.="(SELECT * FROM `".$GLOBALS['global_notebro_sdb']."`.`all_conf_".$model."` WHERE model=".$model." ".$filter_complete." AND price>0 ORDER BY value DESC LIMIT 1) UNION "; }
 		$sql=substr($sql, 0, -6); $sql.="ORDER BY ABS(value) LIMIT 1";
 
 		$result = mysqli_query($cons,$sql);
@@ -302,7 +302,7 @@ function search_any_config($models,$exclude_war)
 function conf_presearch($models,$comps,$cons)
 {
 	$to_return=array();
-	$sql="SELECT GROUP_CONCAT(`model_id`) as models FROM notebro_temp`.`presearch_tbl` WHERE `model_id` IN (".implode(",",$models).")";
+	$sql="SELECT GROUP_CONCAT(`model_id`) as models FROM `".$GLOBALS['global_notebro_sdb']."`.`presearch_tbl` WHERE `model_id` IN (".implode(",",$models).")";
 	foreach($comps as $key=>$val)
 	{
 		$sql.=" AND FIND_IN_SET(".$val.",".$key.")>0";

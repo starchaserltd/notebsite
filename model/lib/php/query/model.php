@@ -4,7 +4,7 @@ if(isset($_GET['id'])){ $id=filter_var($_GET['id'], FILTER_VALIDATE_INT); if($id
 if($id>=0)
 {
 	require("../../../../etc/con_db.php");
-	mysqli_select_db($con,"notebro_db");
+	mysqli_select_db($con,$global_notebro_db);
 	
 	function show_vars($col, $tab, $id)
 	{

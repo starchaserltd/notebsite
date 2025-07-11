@@ -1,7 +1,7 @@
 <?php
 function show_msc($id)
 {
-	$sel2="SELECT `model`.`msc` as `model_msc`,GROUP_CONCAT(CONCAT(`comments`.`type`,'+-+',`comments`.`comment`) SEPARATOR '+++') as p_model_comment FROM `notebro_db`.`MODEL` model JOIN `notebro_db`.`COMMENTS` comments ON `model`.`p_model`=`comments`.`model` WHERE `model`.`id`=$id AND `comments`.`valid`=1 LIMIT 1";
+	$sel2="SELECT `model`.`msc` as `model_msc`,GROUP_CONCAT(CONCAT(`comments`.`type`,'+-+',`comments`.`comment`) SEPARATOR '+++') as p_model_comment FROM `".$GLOBALS['global_notebro_db']."`.`MODEL` model JOIN `".$GLOBALS['global_notebro_db']."`.`COMMENTS` comments ON `model`.`p_model`=`comments`.`model` WHERE `model`.`id`=$id AND `comments`.`valid`=1 LIMIT 1";
 	$resu=NULL;
 	$rea=mysqli_query($GLOBALS['con'], $sel2);
 	if($rea&&mysqli_num_rows($rea)>0)
