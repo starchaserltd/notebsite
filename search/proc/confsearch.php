@@ -86,11 +86,11 @@ foreach($comp_lists["model"] as $mkey=>$m)
 
 		if($conds_model)
 		{ 
-			$query_search[$i] = "SELECT * FROM `notebro_temp`.`all_conf_".$model."` WHERE " . implode(" AND ", $conds_model) . " " . $orderby . " LIMIT 1";
+			$query_search[$i] = "SELECT * FROM `".$GLOBALS['global_notebro_sdb']."`.`all_conf_".$model."` WHERE " . implode(" AND ", $conds_model) . " " . $orderby . " LIMIT 1";
 		}
 		else
 		{ 
-			$query_search[$i] = "SELECT * FROM `notebro_temp`.`all_conf_".$model."` " . $orderby . " LIMIT 1";
+			$query_search[$i] = "SELECT * FROM `".$GLOBALS['global_notebro_sdb']."`.`all_conf_".$model."` " . $orderby . " LIMIT 1";
 		}
 	}
 	/* DEBUGGING CODE */
@@ -108,7 +108,7 @@ foreach($comp_lists["model"] as $mkey=>$m)
 
 if(count($query_search)>0){ $query_search=sdb_query($cons,$query_search); }
 
-$query_search_pmodel="SELECT * FROM `notebro_temp`.`m_map_table` WHERE `notebro_temp`.`m_map_table`.`model_id` IN (".implode(",",array_keys($results)).")";
+$query_search_pmodel="SELECT * FROM `".$GLOBALS['global_notebro_sdb']."`.`m_map_table` WHERE `".$GLOBALS['global_notebro_sdb']."`.`m_map_table`.`model_id` IN (".implode(",",array_keys($results)).")";
 $result_pmodel_r=mysqli_query($cons,$query_search_pmodel);
 
 if($result_pmodel_r&&mysqli_num_rows($result_pmodel_r)>0)
@@ -126,12 +126,8 @@ foreach(array_keys($results) as $el)
 	$results[$el]["pmodel"]=$results_pmodel[$el]["pmodel"]; $results[$el]["show_smodel"]=intval($results_pmodel[$el]["show_smodel"]); $results_pmodel[$el]["mi_region"]=0; foreach($search_regions_array as $val){if(isset($results_pmodel[$el][$val])&&$results_pmodel[$el][$val]!=null){ if(in_array($results[$el]["model"],explode(",",$results_pmodel[$el][$val]))){ $results_pmodel[$el]["mi_region"]=1; } } } $results[$el]["mi_region"]=$results_pmodel[$el]["mi_region"];
 }
 
-	# $time_end_query = microtime(true);
-	# array_push($queries, array(
-	#	"query" => $query_search,
-	#	"time" => $time_end_query - $time_start_query));
-	
-/*
+
+
 	# $time_end_query = microtime(true);
 	# array_push($queries, array(
 	#	"query" => $query_search,
@@ -166,7 +162,7 @@ $count=count($results);
 if($count<1)
 {
 	//SEARCHING FOR LAPTOPS THAT MATCH EVERYTHING EXCEPT THE BUDGET
-	$sql_presearch=str_ireplace("((`min_price`<=".$budgetmax." AND `max_price`>=".$budgetmin.") OR `min_price`=0) AND","",str_ireplace($pre_sql_presearch,"SELECT COUNT(DISTINCT `p_model`) as `ids`,MIN(`min_batlife`) as `min_batlife` FROM `notebro_temp`.`presearch_tbl` WHERE ",$sql_presearch));
+	$sql_presearch=str_ireplace("((`min_price`<=".$budgetmax." AND `max_price`>=".$budgetmin.") OR `min_price`=0) AND","",str_ireplace($pre_sql_presearch,"SELECT COUNT(DISTINCT `p_model`) as `ids`,MIN(`min_batlife`) as `min_batlife` FROM `".$GLOBALS['global_notebro_sdb']."`.`presearch_tbl` WHERE ",$sql_presearch));
 	$sql_presearch.=" AND ".$sql_presearch_add_no_results."1=1";
 	$result_noresult=mysqli_query($cons,$sql_presearch); $presearch_models_nr=0; $presearch_min_batlife=0.0;
 	if($result_noresult&&mysqli_num_rows($result_noresult)>0)

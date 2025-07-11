@@ -32,7 +32,7 @@ if(!$abort)
 			$conds_model = $conds;
 			
 			if($conds_model)
-			{ $query_search = "SELECT id,model FROM notebro_temp.all_conf_".$model." WHERE " . implode(" AND ", $conds_model) . " AND price>0 ORDER BY value DESC LIMIT 1"; }
+			{ $query_search = "SELECT id,model FROM `".$GLOBALS['global_notebro_sdb']."`.all_conf_".$model." WHERE " . implode(" AND ", $conds_model) . " AND price>0 ORDER BY value DESC LIMIT 1"; }
 
 			/* DEBUGGING CODE */
 			$results=mysqli_query($cons, $query_search);

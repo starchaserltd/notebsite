@@ -57,10 +57,10 @@ if(strcmp("kMuGLmlIzCWmkNbtksAh",$_SESSION['auth'])==0)
 		if($conds_model)
 		{ 
 			if($qsearchtype=="p")
-			{ $query_search = "SELECT MAX(price) AS maxprice, MIN(price) AS minprice FROM notebro_temp.all_conf_".$model." WHERE " . implode(" AND ", $conds_model) . " AND (price < ".$presearch_budgetmin ." OR price > ". $presearch_budgetmax .") AND price>0" . " LIMIT 1"; }
+			{ $query_search = "SELECT MAX(price) AS maxprice, MIN(price) AS minprice FROM `".$GLOBALS['global_notebro_sdb']."`.all_conf_".$model." WHERE " . implode(" AND ", $conds_model) . " AND (price < ".$presearch_budgetmin ." OR price > ". $presearch_budgetmax .") AND price>0" . " LIMIT 1"; }
 			
 			if($qsearchtype=="b")
-			{ $query_search = "SELECT MAX(batlife) AS maxbatlife, MIN(batlife) AS minbatlife FROM notebro_temp.all_conf_".$model." WHERE " . implode(" AND ", $conds_model) . " AND price>0 LIMIT 1"; }
+			{ $query_search = "SELECT MAX(batlife) AS maxbatlife, MIN(batlife) AS minbatlife FROM `".$GLOBALS['global_notebro_sdb']."`.all_conf_".$model." WHERE " . implode(" AND ", $conds_model) . " AND price>0 LIMIT 1"; }
 		}
 
 		/* DEBUGGING CODE */

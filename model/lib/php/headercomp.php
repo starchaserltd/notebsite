@@ -17,7 +17,7 @@ for($i=0;$i<10;$i++)
 		if($t=table($getconfs[$nrgetconfs]))
 		{
 			$getconfs[$nrgetconfs]=$t[0]."_".$t[1];
-			$sql="SELECT * FROM notebro_temp.all_conf_".$t[1]." WHERE id = ".$t[0]."";
+			$sql="SELECT * FROM `".$GLOBALS['global_notebro_sdb']."`.all_conf_".$t[1]." WHERE id = ".$t[0]."";
 			if($result = mysqli_query($cons,$sql))
 			{
 				$_SESSION['compare_list'][$getconfs[$nrgetconfs]] = mysqli_fetch_assoc($result);
@@ -35,7 +35,7 @@ for($i=0;$i<10;$i++)
 			if(strpos($getconfs[$nrgetconfs],"_")!==FALSE)
 			{
 				$t=explode("_",$getconfs[$nrgetconfs]);
-				$sql="SELECT * FROM notebro_temp.all_conf_".$t[1]." WHERE value=(SELECT max(value) FROM notebro_temp.all_conf_".$t[1]." LIMIT 1) LIMIT 1";
+				$sql="SELECT * FROM `".$GLOBALS['global_notebro_sdb']."`.all_conf_".$t[1]." WHERE value=(SELECT max(value) FROM `".$GLOBALS['global_notebro_sdb']."`.all_conf_".$t[1]." LIMIT 1) LIMIT 1";
 				if($result = mysqli_query($cons,$sql))
 				{
 					$row=mysqli_fetch_assoc($result); $getconfs[$nrgetconfs]=$row['id']."_".$t[1];

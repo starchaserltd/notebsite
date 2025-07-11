@@ -34,7 +34,7 @@ if(isset($_GET["id"])&&isset($_GET["price"]))
 {
 	$ok_to_go=False;
 	$conf_id=strval($_GET["id"]);
-	$SELECT_1="SELECT `model` FROM `notebro_temp`.`all_conf` WHERE `id`='".$conf_id."' LIMIT 1";
+	$SELECT_1="SELECT `model` FROM `".$GLOBALS['global_notebro_sdb']."`.`all_conf` WHERE `id`='".$conf_id."' LIMIT 1";
 	$temp_result=mysqli_query($cons,$SELECT_1);
 	if(have_results($temp_result))
 	{
@@ -62,7 +62,7 @@ if(isset($_GET["id"])&&isset($_GET["price"]))
 	if(isset($_GET["retailer_pid"]) && $ok_to_go)
 	{
 		$retailer_pid=strval($_GET["retailer_pid"]);
-		$SELECT_TEST="SELECT * FROM `notebro_buy`.`FIXED_CONF_PRICES` WHERE `model`='".$model_id."' AND `retailer`='".$retailer."' AND `retailer_pid`='".$retailer_pid."' LIMIT 1";
+		$SELECT_TEST="SELECT * FROM `".$GLOBALS['global_notebro_buy']."`.`FIXED_CONF_PRICES` WHERE `model`='".$model_id."' AND `retailer`='".$retailer."' AND `retailer_pid`='".$retailer_pid."' LIMIT 1";
 		$temp_result=mysqli_query($con,$SELECT_TEST);
 		if(have_results($temp_result))
 		{
@@ -91,7 +91,7 @@ if(isset($_GET["id"])&&isset($_GET["price"]))
 		if(isset($_GET["org_price"]))
 		{
 			$org_price=intval($_GET["org_price"]);
-			$SELECT_TEST="SELECT `retailer_pid` FROM `notebro_buy`.`FIXED_CONF_PRICES` WHERE `model`='".$model_id."' AND `retailer`='".$retailer."' AND `price`='".$org_price."'";
+			$SELECT_TEST="SELECT `retailer_pid` FROM `".$GLOBALS['global_notebro_buy']."`.`FIXED_CONF_PRICES` WHERE `model`='".$model_id."' AND `retailer`='".$retailer."' AND `price`='".$org_price."'";
 			$temp_result=mysqli_query($con,$SELECT_TEST);
 			if(have_results($temp_result))
 			{
@@ -136,7 +136,7 @@ if(isset($_GET["id"])&&isset($_GET["price"]))
 	$conf_data=NULL;
 	if($ok_to_go)
 	{
-		$SELECT_2="SELECT * FROM `notebro_temp`.`all_conf_".$model_id."` WHERE `id`='".$conf_id."' LIMIT 1";
+		$SELECT_2="SELECT * FROM `".$GLOBALS['global_notebro_sdb']."`.`all_conf_".$model_id."` WHERE `id`='".$conf_id."' LIMIT 1";
 		$temp_result=mysqli_query($cons,$SELECT_2);
 		if(have_results($temp_result))
 		{
@@ -195,7 +195,7 @@ if(isset($_GET["id"])&&isset($_GET["price"]))
 		#UPDATE BUY LINK
 		if($insert_try)
 		{
-			$SQL_UPDATE="INSERT INTO `notebro_buy`.`FIXED_CONF_PRICES` SET `price`='".$price."' , `model`='".$model_id."' , `retailer`='".$retailer."' , `retailer_pid`='".$retailer_pid."' ";
+			$SQL_UPDATE="INSERT INTO `".$GLOBALS['global_notebro_buy']."`.`FIXED_CONF_PRICES` SET `price`='".$price."' , `model`='".$model_id."' , `retailer`='".$retailer."' , `retailer_pid`='".$retailer_pid."' ";
 			foreach($comp_list as $comp)
 			{
 				$SQL_UPDATE=$SQL_UPDATE." , `".$comp."`='".$conf_data[$comp]."'";
@@ -204,7 +204,7 @@ if(isset($_GET["id"])&&isset($_GET["price"]))
 		}
 		else
 		{
-			$SQL_UPDATE="UPDATE `notebro_buy`.`FIXED_CONF_PRICES` SET `price`='".$price."' WHERE `model`='".$model_id."' AND `retailer`='".$retailer."' AND `retailer_pid`='".$retailer_pid."' ";
+			$SQL_UPDATE="UPDATE `".$GLOBALS['global_notebro_buy']."`.`FIXED_CONF_PRICES` SET `price`='".$price."' WHERE `model`='".$model_id."' AND `retailer`='".$retailer."' AND `retailer_pid`='".$retailer_pid."' ";
 			foreach($comp_list as $comp)
 			{
 				$SQL_UPDATE=$SQL_UPDATE." AND `".$comp."`='".$conf_data[$comp]."'";
