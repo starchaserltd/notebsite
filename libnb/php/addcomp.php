@@ -39,7 +39,7 @@ if($config_id)
 	$r = mysqli_fetch_assoc($result2); 
 	$conf_cpu_name=$r["model"];
 
-	$sql2='SELECT `prod`,`name` FROM `notebro_db`.`GPU` WHERE `id`='.$row["gpu"];
+	$sql2='SELECT `prod`,`name` FROM `'.$global_notebro_db.'`.`GPU` WHERE `id`='.$row["gpu"];
 	$result2 = mysqli_query($con,$sql2);
 	$r = mysqli_fetch_assoc($result2); 
 	$conf_gpu_name=$r["prod"]." ".$r["name"];
@@ -88,8 +88,8 @@ if($already)
 	{ echo "Maximum number of compare configurations reached!++0++0++0++max"; }
 	else
 	{
-		mysqli_select_db($con,"notebro_db");
-		$sql="SELECT families.fam, model.model, model.submodel, img_1 FROM notebro_db.MODEL model JOIN notebro_db.FAMILIES families on model.idfam=families.id WHERE model.id=".$conf_model;
+		mysqli_select_db($con,$global_notebro_db);
+		$sql="SELECT families.fam, model.model, model.submodel, img_1 FROM ".$global_notebro_db.".MODEL model JOIN ".$global_notebro_db.".FAMILIES families on model.idfam=families.id WHERE model.id=".$conf_model;
 		$result = mysqli_query($con,$sql);
 		$currentconf["img"]="missing";
 		while ($row = mysqli_fetch_assoc($result)) { if(strlen($row["submodel"])>21 && !preg_match("/\(.*\)/",$row["submodel"])){ $row["submodel"]=substr($row["submodel"],0,20)."."; } $name=$row["fam"]." ".$row["model"]."".$row["submodel"]; $currentconf["img"]=$row["img_1"]; } 

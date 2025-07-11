@@ -13,7 +13,7 @@ switch($select)
 {
 	case "review_websites":
 	{
-		$query="SELECT DISTINCT site FROM `notebro_db`.`REVIEWS` WHERE site LIKE '%".$keys."%' ORDER BY site ASC";
+		$query="SELECT DISTINCT site FROM `".$global_notebro_db."`.`REVIEWS` WHERE site LIKE '%".$keys."%' ORDER BY site ASC";
 		$result=mysqli_query($con,$query);
 		$i=1;
 		while($rand = mysqli_fetch_row($result)) { $list[]=["id"=>$i,"name"=>strval($rand[0])]; $i++; }
@@ -21,7 +21,7 @@ switch($select)
 	}
 	case "com_info":
 	{
-		$query="SELECT DISTINCT `model`,`comment` FROM `notebro_db`.`COMMENTS` WHERE type='com' AND (model='".$keys."' OR model=(SELECT `p_model` FROM `notebro_db`.`MODEL` WHERE `notebro_db`.`MODEL`.`id`='".$keys."' LIMIT 1)) AND `update`=0 LIMIT 1";
+		$query="SELECT DISTINCT `model`,`comment` FROM `".$global_notebro_db."`.`COMMENTS` WHERE type='com' AND (model='".$keys."' OR model=(SELECT `p_model` FROM `".$global_notebro_db."`.`MODEL` WHERE `".$global_notebro_db."`.`MODEL`.`id`='".$keys."' LIMIT 1)) AND `update`=0 LIMIT 1";
 		$result=mysqli_query($con,$query);
 		$i=1;
 		while($rand = mysqli_fetch_row($result)) { $list[]=["model"=>$rand[0],"comment"=>strval($rand[1])]; $i++; }
@@ -29,7 +29,7 @@ switch($select)
 	}
 	case "source_info":
 	{
-		$query="SELECT DISTINCT `model`,`comment` FROM `notebro_db`.`COMMENTS` WHERE type='src' AND (model='".$keys."' OR model=(SELECT `p_model` FROM `notebro_db`.`MODEL` WHERE `notebro_db`.`MODEL`.`id`='".$keys."' LIMIT 1)) AND `update`=0 LIMIT 1";
+		$query="SELECT DISTINCT `model`,`comment` FROM `".$global_notebro_db."`.`COMMENTS` WHERE type='src' AND (model='".$keys."' OR model=(SELECT `p_model` FROM `".$global_notebro_db."`.`MODEL` WHERE `".$global_notebro_db."`.`MODEL`.`id`='".$keys."' LIMIT 1)) AND `update`=0 LIMIT 1";
 		$result=mysqli_query($con,$query);
 		$i=1;
 		while($rand = mysqli_fetch_row($result)) { $list[]=["model"=>$rand[0],"source"=>strval($rand[1])]; $i++; }
@@ -37,7 +37,7 @@ switch($select)
 	}
 	case "models_msc":
 	{
-		$query="SELECT GROUP_CONCAT(CONCAT(`MODEL`.`model`,`MODEL`.`submodel`,' - ',IFNULL(`MODEL`.`msc`,'')) SEPARATOR ' <br> ') as `models_msc` FROM `notebro_db`.`MODEL` WHERE `p_model`=(SELECT `p_model` FROM `notebro_db`.`MODEL` WHERE `notebro_db`.`MODEL`.`id`='".$keys."' LIMIT 1) LIMIT 1";
+		$query="SELECT GROUP_CONCAT(CONCAT(`MODEL`.`model`,`MODEL`.`submodel`,' - ',IFNULL(`MODEL`.`msc`,'')) SEPARATOR ' <br> ') as `models_msc` FROM `".$global_notebro_db."`.`MODEL` WHERE `p_model`=(SELECT `p_model` FROM `".$global_notebro_db."`.`MODEL` WHERE `".$global_notebro_db."`.`MODEL`.`id`='".$keys."' LIMIT 1) LIMIT 1";
 		$result=mysqli_query($con,$query);
 		$i=1;
 		while($rand = mysqli_fetch_row($result)) { $list[]=["models_msc"=>strval($rand[0])]; $i++; }
