@@ -11,7 +11,7 @@ if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'], $site_
 */
 
 $rootpath = realpath($_SERVER["DOCUMENT_ROOT"]) . $root_mod;
-require_once($rootpath . $admin_address . '/wp/wp-blog-header.php');
+require_once($rootpath . $wp_install_address . '/wp/wp-blog-header.php');
 require_once("../etc/con_db.php");
 require_once("lib/php/functions.php");
 
@@ -196,7 +196,7 @@ try {
             <div class="col-md-4 col-lg-3 col-sm-4 col-xs-4 latest3">
                 <a onmousedown="OpenPage('<?php echo $linkart; ?>',event);">
                     <img style="display:block; margin:0 auto;" src="<?php
-                    $url = str_replace($wp_address.$wp_rmimg, $new_wp_address, wp_get_attachment_url(get_post_thumbnail_id($recent_posts[$y]["ID"])));
+                    $url = str_replace($wp_url.$wp_rmimg, $new_wp_address, wp_get_attachment_url(get_post_thumbnail_id($recent_posts[$y]["ID"])));
                     echo $url;?>" class="img-responsive img-fluid" alt="Image">
                 </a>
             </div>

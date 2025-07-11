@@ -6,7 +6,7 @@ if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_n
 	die();
 }
 $rootpath = realpath($_SERVER["DOCUMENT_ROOT"]).$root_mod;
-require_once($rootpath.$admin_address.'/wp/wp-blog-header.php');
+require_once($rootpath.$wp_install_address.'/wp/wp-blog-header.php');
 require_once("../etc/con_db.php");
 require_once("lib/php/functions.php");
 
@@ -71,7 +71,7 @@ $published_posts = $category->category_count;
 			<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
 				<a onmousedown="OpenPage('<?php  echo $ad=str_replace($wpsite."/article.php/review/","content/review.php?/",get_permalink($recent_posts[$x]["ID"])); ?>',event);" style="cursor: pointer;">
 					
-						<img src="<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[$x]["ID"]) )); echo $url;?>" class="img-responsive img-fluid" alt="Review featured image">
+						<img src="<?php $url = str_replace($wp_url.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($recent_posts[$x]["ID"]) )); echo $url;?>" class="img-responsive img-fluid" alt="Review featured image">
 					
 				</a>
 			</div>

@@ -13,7 +13,7 @@ require_once("lib/php/func_article.php");
 if(isset($_SESSION['lang'])) { $lang=$_SESSION['lang']; } else { $lang=0; }
 $absolute_url = full_url( $_SERVER );
 $ad=explode("/article.php?", $absolute_url);
-$ad[1]=preg_replace("/\/&[azAZ]?.*($)/","/",$wp_address."wp/article.php/article".$ad[1]);
+$ad[1]=preg_replace("/\/&[azAZ]?.*($)/","/",$wp_url."wp/article.php/article".$ad[1]);
 $echoid = url_to_postid($ad[1]); //echo $echoid; 
 $post_date="1990-01-01";
 ?>
@@ -38,12 +38,12 @@ var istime=0;
 			</div>
 			<!--
 			<div class="col-md-8 col-sm-8 col-xs-8 col-lg-8" style="padding-left:0px">
-				<img src="<?php $url = str_replace($wp_address.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($echoid) )); echo $url;?>" class="img-responsive img-fluid" alt="articleImg">
+				<img src="<?php $url = str_replace($wp_url.$wp_rmimg,$new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($echoid) )); echo $url;?>" class="img-responsive img-fluid" alt="articleImg">
 			</div>
 			-->
 			<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 detaliicomp2" style= "font-size:16px; line-height:30px; padding:0px; text-align:justify;">
 				<div>
-					<div><?php  $content=preg_replace_callback('/\[tooltip (.*)\](.*)\[tooltip\]/U',function ($m) {return maketooltip(gettoolid($m[1]),$m[2]);},str_replace($wp_address.$wp_rmimg,$new_wp_address,apply_filters('the_content',get_post_field('post_content', $echoid, 'display')))); echo $content;
+					<div><?php  $content=preg_replace_callback('/\[tooltip (.*)\](.*)\[tooltip\]/U',function ($m) {return maketooltip(gettoolid($m[1]),$m[2]);},str_replace($wp_url.$wp_rmimg,$new_wp_address,apply_filters('the_content',get_post_field('post_content', $echoid, 'display')))); echo $content;
 					echo "<br>"; ?> </div>
 				</div>
 			</div>
