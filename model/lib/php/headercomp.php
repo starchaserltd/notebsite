@@ -71,7 +71,7 @@ if($nrgetconfs<2)
 			{
 				$session_idconf[$nrconf] = $k;
 				$t=table($_SESSION['conf'.$k]['id']); $_SESSION['conf'.$k]['id']=$t[0]."_".$t[1];
-				$sql="SELECT * FROM `notebro_temp`.`all_conf_".$t[1]."` WHERE id = ".$t[0]."";
+				$sql="SELECT * FROM `".$GLOBALS['global_notebro_sdb']."`.`all_conf_".$t[1]."` WHERE id = ".$t[0]."";
 				if($result = mysqli_query($cons,$sql))
 				{
 					$_SESSION['compare_list'][$_SESSION['conf'.$k]['id']] = mysqli_fetch_assoc($result);
