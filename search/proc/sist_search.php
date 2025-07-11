@@ -4,7 +4,7 @@
 
 function search_sist ($sist, $vers, $misc, $pricemin, $pricemax)
 {
-	$sel_sist="SELECT id,price,err FROM SIST WHERE 1=1";
+	$sel_sist="SELECT id,price,err FROM `".$GLOBALS['global_notebro_db']."`.`SIST` WHERE 1=1";
 	
 	// Add models to filter
 	$i=0;

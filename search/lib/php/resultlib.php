@@ -74,7 +74,7 @@ function showsist($col, $tab, $id)
 
 function getdetails($id)
 {
-	$result = mysqli_query($GLOBALS['con'], "SELECT model.img_1,model.prod, families.fam, families.subfam, families.showsubfam, model.model,model.submodel,model.regions,model.p_model FROM notebro_db.MODEL model JOIN notebro_db.FAMILIES families on model.idfam=families.id WHERE model.id = '".$id."' LIMIT 1"); 
+	$result = mysqli_query($GLOBALS['con'], "SELECT model.img_1,model.prod, families.fam, families.subfam, families.showsubfam, model.model,model.submodel,model.regions,model.p_model FROM `".$GLOBALS['global_notebro_db']."`.MODEL model JOIN `".$GLOBALS['global_notebro_db']."`.FAMILIES families on model.idfam=families.id WHERE model.id = '".$id."' LIMIT 1"); 
 	$item = mysqli_fetch_array($result);
 	
 	global $img; global $prod; global $fam; global $submodel; global $model; global $t_img; global $region_m_id; global $buy_regions; global $p_model;

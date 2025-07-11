@@ -19,11 +19,11 @@ else
 if($config_id)
 {
 	$t=table($config_id); $config_id=$t[0];
-	$sql="SELECT id,cpu,gpu,display,mem,hdd,model FROM notebro_temp.all_conf_".$t[1]." WHERE id=$config_id LIMIT 1";;
+	$sql="SELECT id,cpu,gpu,display,mem,hdd,model FROM `".$GLOBALS['global_notebro_sdb']."`.all_conf_".$t[1]." WHERE id=$config_id LIMIT 1";;
 }
 else
 {
-	$sql="SELECT id FROM notebro_temp.all_conf_".$conf_model." WHERE cpu=".$conf_cpu." AND gpu=".$conf_gpu." AND display=".$conf_disp." AND hdd=".$conf_hdd." AND shdd=".$conf_shdd." AND acum=".$conf_acum." AND mdb=".$conf_mdb." AND mem=".$conf_mem." AND odd=".$conf_odd." AND chassis=".$conf_chassis." AND wnet=".$conf_wnet." AND war=".$conf_war." AND sist=".$conf_sist." LIMIT 1";
+	$sql="SELECT id FROM `".$GLOBALS['global_notebro_sdb']."`.all_conf_".$conf_model." WHERE cpu=".$conf_cpu." AND gpu=".$conf_gpu." AND display=".$conf_disp." AND hdd=".$conf_hdd." AND shdd=".$conf_shdd." AND acum=".$conf_acum." AND mdb=".$conf_mdb." AND mem=".$conf_mem." AND odd=".$conf_odd." AND chassis=".$conf_chassis." AND wnet=".$conf_wnet." AND war=".$conf_war." AND sist=".$conf_sist." LIMIT 1";
 }
 $cons=dbs_connect();
 $result = mysqli_query($cons,$sql);

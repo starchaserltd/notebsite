@@ -4,7 +4,7 @@
 
 function search_model ($ids,$mmodel,$prodmodel,$fammodel,$msc,$regions,$minclass,$maxclass,$advclass)
 {
-	$sel_model="SELECT `id` FROM `notebro_db`.`MODEL` WHERE 1=1";
+	$sel_model="SELECT `id` FROM `".$GLOBALS['global_notebro_db']."`.`MODEL` WHERE 1=1";
 
 	// Add ids to filter
 	$i=0;

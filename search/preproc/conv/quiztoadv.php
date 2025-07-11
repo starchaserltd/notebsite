@@ -1,7 +1,7 @@
 <?php
 require_once("../search/proc/init.php");
 if(isset($_GET['qtype'])) { $qsearchtype = strval($_GET['qtype']); } else { $qsearchtype=""; }
-$result = mysqli_query($GLOBALS['con'], "SELECT * FROM notebro_site.nomen WHERE type = 18 OR type=21 OR type=22 OR type=33 OR type=34 OR type = 35 OR type = 36 OR type=59 OR type=60  OR type = 61 OR type = 62 OR type=67 OR type=68  OR type =70 OR type=71  OR type =81 ORDER BY type ASC");
+$result = mysqli_query($GLOBALS['con'], "SELECT * FROM `".$GLOBALS['global_notebro_site']."`.nomen WHERE type = 18 OR type=21 OR type=22 OR type=33 OR type=34 OR type = 35 OR type = 36 OR type=59 OR type=60  OR type = 61 OR type = 62 OR type=67 OR type=68  OR type =70 OR type=71  OR type =81 ORDER BY type ASC");
 while( $row=mysqli_fetch_array($result)){ $nomenvalues[]=$row; }
 
 $totalcapmin = round($nomenvalues[3][2]);
@@ -480,7 +480,7 @@ if($cadratemin!==0)
 {
 	$addgaming="";
 	if (isset($_GET['gaming']) && $_GET['gaming']==1) { if($gpu_powermax<1){$gpu_powermax=999999;} $addgaming=" AND (power>=".$gpu_powermin." AND power<=".$gpu_powermax.")"; }
-	$query = "SELECT DISTINCT `name` FROM `notebro_db`.`GPU` WHERE (rating>=".$cadratemin." AND rating<=".$cadratemax." AND typegpu=3) OR (rating>=".$gameratemin." AND rating<=".$gameratemax.$addgaming." AND typegpu IN (".implode(",",$gpu_typelist)."))";
+	$query = "SELECT DISTINCT `name` FROM `".$GLOBALS['global_notebro_db']."`.`GPU` WHERE (rating>=".$cadratemin." AND rating<=".$cadratemax." AND typegpu=3) OR (rating>=".$gameratemin." AND rating<=".$gameratemax.$addgaming." AND typegpu IN (".implode(",",$gpu_typelist)."))";
 	$result = mysqli_query($GLOBALS['con'],$query);
 	array_push($gpu_typelist,"3");
 	while($row=mysqli_fetch_row($result)){	$gpu_name[]=$row[0]; }
@@ -489,9 +489,9 @@ if($cadratemin!==0)
 		if(isset($_GET['gaming']) && $_GET['gaming']==1)
 		{
 			if($gameratemin<$gpu_powermin)
-			{ $query = "SELECT DISTINCT `name` FROM `notebro_db`.`GPU` WHERE (".$addgaming." AND `typegpu` IN (1,2,3,4))"; }
+			{ $query = "SELECT DISTINCT `name` FROM `".$GLOBALS['global_notebro_db']."`.`GPU` WHERE (".$addgaming." AND `typegpu` IN (1,2,3,4))"; }
 			else
-			{ $query = "SELECT DISTINCT `name` FROM `notebro_db`.`GPU` WHERE (`rating`>=".$cadratemin." AND `rating`<=".$cadratemax." AND typegpu=3) OR (rating>=".$gameratemin." AND rating<=".$gameratemax." AND typegpu IN (".implode(",",$gpu_typelist)."))"; }
+			{ $query = "SELECT DISTINCT `name` FROM `".$GLOBALS['global_notebro_db']."``GPU` WHERE (`rating`>=".$cadratemin." AND `rating`<=".$cadratemax." AND typegpu=3) OR (rating>=".$gameratemin." AND rating<=".$gameratemax." AND typegpu IN (".implode(",",$gpu_typelist)."))"; }
 			
 			$result = mysqli_query($GLOBALS['con'],$query);
 			array_push($gpu_typelist,"3");

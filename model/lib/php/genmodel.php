@@ -10,7 +10,7 @@ if(!$components_found)
 
 		if(isset($allow_model_region_change)){$change_model_region=$allow_model_region_change;}else{$change_model_region=false;}
 		foreach(get_regions_model($con,$t[1]) as $val){if(($val=="0")||($val=="1")||in_array($val,$ex_regions)){$change_model_region=false;} }
-		$sel3="SELECT * FROM notebro_temp.all_conf_".$t[1]." WHERE id=".$t[0]." LIMIT 1";
+		$sel3="SELECT * FROM `".$GLOBALS['global_notebro_sdb']."`.all_conf_".$t[1]." WHERE id=".$t[0]." LIMIT 1";
 		$cons=dbs_connect();
 		$result=mysqli_query($cons,$sel3);
 		if(have_results($result))
@@ -85,7 +85,7 @@ if(!$components_found)
 /* SELECT MODEL IDs */
 if($idmodel)
 {
-	$p_model=$idmodel; $sel3="SELECT `notebro_db`.`MODEL`.`p_model`,`notebro_db`.`MODEL`.`regions` FROM `notebro_db`.`MODEL` WHERE `id`=".$idmodel." LIMIT 1";
+	$p_model=$idmodel; $sel3="SELECT `".$GLOBALS['global_notebro_db']."`.`MODEL`.`p_model`,`".$GLOBALS['global_notebro_db']."`.`MODEL`.`regions` FROM `".$GLOBALS['global_notebro_db']."`.`MODEL` WHERE `id`=".$idmodel." LIMIT 1";
 	$result=mysqli_query($con,$sel3); $change_model_region=false; if($result->num_rows){$row=mysqli_fetch_assoc($result); $p_model=intval($row["p_model"]); if(isset($force_new_ex) && $force_new_ex){ $change_model_region=true;}else{$change_model_region=false;} $model_regions=array_map('strval', explode(",",$row["regions"])); foreach($model_regions as $val){ if(($val=="0")||($val=="1")||in_array($val,$ex_regions)){ $change_model_region=false;} if(!isset($model_ex)){ $model_ex=$region_ex[intval($val)][0];} } unset($row); }
 	if($model_ex!=$exchcode){ $change_model_region=true; }
 	?>
@@ -93,7 +93,7 @@ if($idmodel)
 	<?php
 	if(isset($model_ex))
 	{
-		$region_sel="SELECT `regions` FROM `notebro_site`.`exchrate` WHERE `code`='".$model_ex."' LIMIT 1";
+		$region_sel="SELECT `regions` FROM `".$GLOBALS['global_notebro_site']."`.`exchrate` WHERE `code`='".$model_ex."' LIMIT 1";
 		$region_result=mysqli_query($con,$region_sel);
 		if(have_results($region_result))
 		{
@@ -109,7 +109,7 @@ if($idmodel)
 	$sql_parts=[]; foreach($model_regions as $model_region){  $sql_parts[]="FIND_IN_SET(".$model_region.",`regions`)>0"; }
 	$sel3="SELECT `model`.*,GROUP_CONCAT(`model`.`cpu`) AS `gcpu`,GROUP_CONCAT(`model`.`display`) AS `gdisplay`,GROUP_CONCAT(`model`.`mem`) AS `gmem`,GROUP_CONCAT(`model`.`hdd`) AS `ghdd`,GROUP_CONCAT(`model`.`shdd`) AS `gshdd`,GROUP_CONCAT(`model`.`gpu`) AS `ggpu`,";
 	$sel3.="GROUP_CONCAT(`model`.`wnet`) AS `gwnet`,GROUP_CONCAT(`model`.`odd`) AS `godd`,GROUP_CONCAT(`model`.`mdb`) AS `gmdb`,GROUP_CONCAT(`model`.`chassis`) AS `gchassis`,GROUP_CONCAT(`model`.`acum`) AS `gacum`,";
-	$sel3.="GROUP_CONCAT(`model`.`warranty`) AS `gwarranty`,GROUP_CONCAT(`model`.`sist`) AS `gsist`,GROUP_CONCAT(CONCAT(`comments`.`type`,'+++',`comments`.`comment`)) AS `gcomments` FROM `notebro_db`.`MODEL` AS `model` LEFT JOIN `notebro_db`.`COMMENTS` AS `comments` ON `model`.`p_model`=`comments`.`model`";
+	$sel3.="GROUP_CONCAT(`model`.`warranty`) AS `gwarranty`,GROUP_CONCAT(`model`.`sist`) AS `gsist`,GROUP_CONCAT(CONCAT(`comments`.`type`,'+++',`comments`.`comment`)) AS `gcomments` FROM `".$GLOBALS['global_notebro_db']."`.`MODEL` AS `model` LEFT JOIN `".$GLOBALS['global_notebro_db']."`.`COMMENTS` AS `comments` ON `model`.`p_model`=`comments`.`model`";
 	$sel3.=" WHERE `model`.`p_model`=".$p_model." AND (".implode(" OR ",$sql_parts).") LIMIT 1";
 	unset($sql_parts);
 	$result=mysqli_query($con,$sel3);
@@ -157,7 +157,7 @@ if($idmodel)
 
 			require_once("../etc/con_sdb.php"); $cons=dbs_connect();
 
-			$sel3="SELECT * FROM `notebro_temp`.`m_map_table` WHERE `model_id`=".$idmodel." LIMIT 1";
+			$sel3="SELECT * FROM `".$GLOBALS['global_notebro_sdb']."`.`m_map_table` WHERE `model_id`=".$idmodel." LIMIT 1";
 			$model_ex_list=array();
 			$some_result=mysqli_query($cons,$sel3);
 			if(have_results($some_result))
@@ -184,7 +184,7 @@ if($idmodel)
 
 function get_regions_model($con,$idmodel)
 {
-	$sql="SELECT `regions` FROM `notebro_db`.`MODEL` WHERE `id`=".$idmodel." LIMIT 1";
+	$sql="SELECT `regions` FROM `".$GLOBALS['global_notebro_db']."`.`MODEL` WHERE `id`=".$idmodel." LIMIT 1";
 	$result=mysqli_query($con,$sql);
 	if($result && mysqli_num_rows($result)>0)
 	{ return explode(",",mysqli_fetch_assoc($result)["regions"]);}
@@ -197,7 +197,7 @@ function show_cpu($list)
 {
 	$s_list=false; if(count($list)<2){$s_list=true;}
 	
-	$sel="SELECT `id`,`prod`,`model`,`gpu` FROM `notebro_db`.`CPU` WHERE `id` IN (".implode(",",$list).") ORDER BY `rating` ASC";
+	$sel="SELECT `id`,`prod`,`model`,`gpu` FROM `".$GLOBALS['global_notebro_db']."`.`CPU` WHERE `id` IN (".implode(",",$list).") ORDER BY `rating` ASC";
 	if($s_list){$sel.=" LIMIT 1";}
 	
 	$result=mysqli_query($GLOBALS['con'], $sel);
@@ -231,7 +231,7 @@ function show_gpu($list)
 {
 	$s_list=false; if(count($list)<2){$s_list=true;}
 	
-	$sel="SELECT `id`,`prod`,`name`,`typegpu` FROM `notebro_db`.`GPU` WHERE `id` IN (".implode(",",$list).") ORDER BY `typegpu` ASC, `rating` ASC";
+	$sel="SELECT `id`,`prod`,`name`,`typegpu` FROM `".$GLOBALS['global_notebro_db']."`.`GPU` WHERE `id` IN (".implode(",",$list).") ORDER BY `typegpu` ASC, `rating` ASC";
 	if($s_list){$sel.=" LIMIT 1";}
 	
 	$a=false; $b=true; $havecpuint=0; $gpu_list=array(); $gpu_name=array(); $opt_nr=1; $gpulist=0; $no_select='var gpu_noselect=1;'; 
@@ -288,8 +288,8 @@ function show_display($list,$diff_id="")
 	{
 		function replace_surft_type($target,$backt)
 		{
-			$get_map="SELECT GROUP_CONCAT(`word`) AS `words` FROM `notebro_db`.`WORD_MAPS` WHERE `type`='display_type' AND `action`='replace_phrase';";
-			$get_map.="SELECT GROUP_CONCAT(`word`) AS `words` FROM `notebro_db`.`WORD_MAPS` WHERE `type`='display_surface' AND `action`='replace_phrase';";
+			$get_map="SELECT GROUP_CONCAT(`word`) AS `words` FROM `".$GLOBALS['global_notebro_db']."`.`WORD_MAPS` WHERE `type`='display_type' AND `action`='replace_phrase';";
+			$get_map.="SELECT GROUP_CONCAT(`word`) AS `words` FROM `".$GLOBALS['global_notebro_db']."`.`WORD_MAPS` WHERE `type`='display_surface' AND `action`='replace_phrase';";
 			$result=nb_multiquery($GLOBALS['con'], $get_map);
 			if(isset($result[0][0]))
 			{ $backt_types=explode(",",$result[0][0]["words"]); }
@@ -307,7 +307,7 @@ function show_display($list,$diff_id="")
 	if(count($list)>1) 
 	{
 		echo '<form><SELECT id="DISPLAY'.$diff_id.'" name="DISPLAY" onchange="getconf('."'".'DISPLAY'."'".',this.value);">';
-		$sel="SELECT id,model,touch,backt,lum FROM notebro_db.DISPLAY WHERE id IN (".implode(",",$list).") ORDER BY `rating` ASC";
+		$sel="SELECT id,model,touch,backt,lum FROM `".$GLOBALS['global_notebro_db']."`.DISPLAY WHERE id IN (".implode(",",$list).") ORDER BY `rating` ASC";
 		$result=mysqli_query($GLOBALS['con'], $sel);
 
 		if($result&&mysqli_num_rows($result)>0)
@@ -330,7 +330,7 @@ function show_display($list,$diff_id="")
 	{
 		foreach($list as $key=>$id)
 		{
-			$sel="SELECT model,backt FROM notebro_db.DISPLAY WHERE id=$id ORDER BY `rating` ASC";
+			$sel="SELECT model,backt FROM `".$GLOBALS['global_notebro_db']."`.DISPLAY WHERE id=$id ORDER BY `rating` ASC";
 			$result = mysqli_query($GLOBALS['con'], $sel);
 			$row = mysqli_fetch_array($result);
 			$row["model"]=replace_surft_type($row["model"],$row["backt"]);
@@ -344,7 +344,7 @@ function show_hdd ($list)
 {
 	$s_list=false; if(count($list)<2){$s_list=true;}
 	
-	$sel="SELECT `id`,`model`,`cap`,`rpm` FROM notebro_db.HDD WHERE `id` IN (".implode(",",$list).") ORDER BY `readspeed` ASC,`rating` ASC";
+	$sel="SELECT `id`,`model`,`cap`,`rpm` FROM `".$GLOBALS['global_notebro_db']."`.HDD WHERE `id` IN (".implode(",",$list).") ORDER BY `readspeed` ASC,`rating` ASC";
 	if($s_list){$sel.=" LIMIT 1";}
 	
 	$result=mysqli_query($GLOBALS['con'], $sel);
@@ -386,7 +386,7 @@ function show_shdd ($list,$diff_id="")
 	
 	$text='<form><SELECT id="SHDD'.$diff_id.'" name="SHDD" onchange="getconf('."'".'SHDD'."'".',this.value)">';
 
-	$sel="SELECT `id`,`model`,`cap`,`rpm`,`type` FROM `notebro_db`.`HDD` WHERE `id` IN (".implode(",",$list).") ORDER BY `readspeed` ASC,`rating` ASC"; 
+	$sel="SELECT `id`,`model`,`cap`,`rpm`,`type` FROM `".$GLOBALS['global_notebro_db']."`.`HDD` WHERE `id` IN (".implode(",",$list).") ORDER BY `readspeed` ASC,`rating` ASC"; 
 	$result = mysqli_query($GLOBALS['con'], $sel);
 
 	if(have_results($result))
@@ -432,7 +432,7 @@ function show_mdb($list)
 		echo '<form><SELECT name="MDB" onchange="getconf('."'".'MDB'."'".',this.value)">';
 		foreach($list as $key=>$id)
 		{
-			$sel="SELECT `prod`,`submodel` FROM `notebro_db`.`MDB` WHERE `id`=$id ORDER BY `rating` ASC"; 
+			$sel="SELECT `prod`,`submodel` FROM `".$GLOBALS['global_notebro_db']."`.`MDB` WHERE `id`=$id ORDER BY `rating` ASC"; 
 			$result = mysqli_query($GLOBALS['con'], $sel);
 			$row = mysqli_fetch_array($result);
 										
@@ -447,7 +447,7 @@ function show_mdb($list)
 	{
 		foreach($list as $key=>$id)
 		{
-			$sel="SELECT prod,submodel FROM notebro_db.MDB WHERE id=$id ORDER BY `rating` ASC"; 
+			$sel="SELECT prod,submodel FROM `".$GLOBALS['global_notebro_db']."`.MDB WHERE id=$id ORDER BY `rating` ASC"; 
 			$result = mysqli_query($GLOBALS['con'], $sel);
 			$row = mysqli_fetch_array($result);
 			echo $row["submodel"];
@@ -461,7 +461,7 @@ function show_mem($list)
 	if(count($list)>1) 
 	{
 		echo '<form><SELECT name="MEM" onchange="getconf('."'".'MEM'."'".',this.value)">';
-		$sel="SELECT `id`,`prod`,`cap`,`type` FROM `notebro_db`.`MEM` WHERE `id` IN (".implode(",",$list).") ORDER BY `rating` ASC";
+		$sel="SELECT `id`,`prod`,`cap`,`type` FROM `".$GLOBALS['global_notebro_db']."`.`MEM` WHERE `id` IN (".implode(",",$list).") ORDER BY `rating` ASC";
 		$result=mysqli_query($GLOBALS['con'], $sel);
 
 		if($result&&mysqli_num_rows($result)>0)
@@ -478,7 +478,7 @@ function show_mem($list)
 	}
 	else
 	{
-		$sel="SELECT prod,cap,type FROM notebro_db.MEM WHERE id=".reset($list)." ORDER BY `rating` ASC"; //echo $sel;
+		$sel="SELECT prod,cap,type FROM `".$GLOBALS['global_notebro_db']."`.MEM WHERE id=".reset($list)." ORDER BY `rating` ASC"; //echo $sel;
 		$result = mysqli_query($GLOBALS['con'], $sel);
 		$row = mysqli_fetch_array($result);
 		echo $extra." ".$row["cap"]." GB ".$row["type"]."";
@@ -496,7 +496,7 @@ function show_odd($list,$diff_id="")
 		echo '<form><SELECT id="ODD'.$diff_id.'" name="ODD" onchange="getconf('."'".'ODD'."'".',this.value)">';
 		foreach($list as $key=>$id)
 		{
-			$sel="SELECT type FROM notebro_db.ODD WHERE id=$id ORDER BY `rating` ASC"; 
+			$sel="SELECT type FROM `".$GLOBALS['global_notebro_db']."`.ODD WHERE id=$id ORDER BY `rating` ASC"; 
 			$result = mysqli_query($GLOBALS['con'], $sel);
 			$row = mysqli_fetch_array($result);
 			if(strcasecmp($row["type"],"NONE")==0){$row["type"]=ucfirst(strtolower($row["type"]));}
@@ -511,7 +511,7 @@ function show_odd($list,$diff_id="")
 	{
 		foreach($list as $key=>$id)
 		{
-			$sel="SELECT type FROM notebro_db.ODD WHERE id=$id ORDER BY `rating` ASC"; 
+			$sel="SELECT type FROM `".$GLOBALS['global_notebro_db']."`.ODD WHERE id=$id ORDER BY `rating` ASC"; 
 			$result = mysqli_query($GLOBALS['con'], $sel);
 			$row = mysqli_fetch_array($result);
 			if(strcasecmp($row["type"],"NONE")==0){$row["type"]=ucfirst(strtolower($row["type"]));}
@@ -532,7 +532,7 @@ function show_acum($list,$diff_id="")
 	{
 		echo '<form><SELECT name="ACUM" id="ACUM'.$diff_id.'" onchange="getconf('."'".'ACUM'."'".',this.value)">';
 		
-		$sel="SELECT `id`,`model`,`nrc`,`cap` FROM `notebro_db`.`ACUM` WHERE `id` IN (".implode(",",$list).") ORDER BY `rating` ASC";
+		$sel="SELECT `id`,`model`,`nrc`,`cap` FROM `".$GLOBALS['global_notebro_db']."`.`ACUM` WHERE `id` IN (".implode(",",$list).") ORDER BY `rating` ASC";
 		$result = mysqli_query($GLOBALS['con'], $sel);
 	
 		if($result&&mysqli_num_rows($result)>0)
@@ -551,7 +551,7 @@ function show_acum($list,$diff_id="")
 	{
 		foreach($list as $key=>$id)
 		{
-			$sel="SELECT cap FROM notebro_db.ACUM WHERE id=$id ORDER BY `rating` ASC"; 
+			$sel="SELECT cap FROM `".$GLOBALS['global_notebro_db']."`.ACUM WHERE id=$id ORDER BY `rating` ASC"; 
 			$result = mysqli_query($GLOBALS['con'], $sel);
 			$row = mysqli_fetch_array($result);
 			echo $row["cap"]." WHr";
@@ -568,7 +568,7 @@ function show_chassis($list)
 	{
 		$chassistext.='<form><SELECT name="CHASSIS" onchange="getconf('."'".'CHASSIS'."'".',this.value)">';
 		
-		$sel="SELECT `id`,`submodel` FROM `notebro_db`.`CHASSIS` WHERE `id` IN (".implode(",",$list).") ORDER BY `rating` ASC"; 
+		$sel="SELECT `id`,`submodel` FROM `".$GLOBALS['global_notebro_db']."`.`CHASSIS` WHERE `id` IN (".implode(",",$list).") ORDER BY `rating` ASC"; 
 		$result = mysqli_query($GLOBALS['con'], $sel);
 
 		if($result&&mysqli_num_rows($result)>0)
@@ -588,7 +588,7 @@ function show_chassis($list)
 	{
 		foreach($list as $key=>$id)
 		{
-			$sel="SELECT submodel,price,err FROM notebro_db.CHASSIS WHERE id=$id ORDER BY `rating` ASC"; 
+			$sel="SELECT submodel,price,err FROM `".$GLOBALS['global_notebro_db']."`.CHASSIS WHERE id=$id ORDER BY `rating` ASC"; 
 			$result = mysqli_query($GLOBALS['con'], $sel);
 			$row = mysqli_fetch_array($result);
 		}
@@ -604,7 +604,7 @@ function show_wnet($list)
 	{
 		echo '<form><SELECT name="WNET" onchange="getconf('."'".'WNET'."'".',this.value)">';
 		
-		$sel="SELECT `id`,`prod`,`model` FROM `notebro_db`.`WNET` WHERE `id` IN (".implode(",",$list).") ORDER BY `rating` ASC"; 
+		$sel="SELECT `id`,`prod`,`model` FROM `".$GLOBALS['global_notebro_db']."`.`WNET` WHERE `id` IN (".implode(",",$list).") ORDER BY `rating` ASC"; 
 		$result = mysqli_query($GLOBALS['con'], $sel);
 		
 		if($result&&mysqli_num_rows($result)>0)
@@ -624,7 +624,7 @@ function show_wnet($list)
 	{
 		foreach($list as $key=>$id)
 		{
-			$sel="SELECT prod,model,slot,price,err FROM notebro_db.WNET WHERE id=$id ORDER BY `rating` ASC"; 
+			$sel="SELECT prod,model,slot,price,err FROM `".$GLOBALS['global_notebro_db']."`.WNET WHERE id=$id ORDER BY `rating` ASC"; 
 			$result = mysqli_query($GLOBALS['con'], $sel);
 			$row = mysqli_fetch_array($result);
 			echo $row["prod"]." ".$row["model"];
@@ -640,7 +640,7 @@ function show_war($list)
 		echo '<form><SELECT name="WAR" onchange="getconf('."'".'WAR'."'".',this.value)">';
 		foreach($list as $key=>$id)
 		{
-			$sel="SELECT years,prod,price,err FROM notebro_db.WAR WHERE id=$id ORDER BY `rating` ASC"; 
+			$sel="SELECT years,prod,price,err FROM `".$GLOBALS['global_notebro_db']."`.WAR WHERE id=$id ORDER BY `rating` ASC"; 
 			$result = mysqli_query($GLOBALS['con'], $sel);
 			$row = mysqli_fetch_array($result);
 			
@@ -655,7 +655,7 @@ function show_war($list)
 	{
 		foreach($list as $key=>$id)
 		{
-			$sel="SELECT years,price,err FROM notebro_db.WAR WHERE id=$id ORDER BY `rating` ASC";
+			$sel="SELECT years,price,err FROM `".$GLOBALS['global_notebro_db']."`.WAR WHERE id=$id ORDER BY `rating` ASC";
 			$result = mysqli_query($GLOBALS['con'], $sel);
 			$row = mysqli_fetch_array($result);
 			echo $row["years"];
@@ -671,7 +671,7 @@ function show_sist($list)
 		echo '<form><SELECT name="SIST" onchange="getconf('."'".'SIST'."'".',this.value)">';
 		foreach($list as $key=>$id)
 		{
-			$sel="SELECT sist,vers,type,price,err FROM notebro_db.SIST WHERE id=$id ORDER BY `rating` ASC"; 
+			$sel="SELECT sist,vers,type,price,err FROM `".$GLOBALS['global_notebro_db']."`.SIST WHERE id=$id ORDER BY `rating` ASC"; 
 			$result = mysqli_query($GLOBALS['con'], $sel);
 			$row = mysqli_fetch_array($result);
 	
@@ -689,7 +689,7 @@ function show_sist($list)
 	{
 		foreach($list as $key=>$id)
 		{
-			$sel="SELECT sist,vers,price,type,err FROM notebro_db.SIST WHERE id=$id ORDER BY `rating` ASC"; 
+			$sel="SELECT sist,vers,price,type,err FROM `".$GLOBALS['global_notebro_db']."`.SIST WHERE id=$id ORDER BY `rating` ASC"; 
 			$result = mysqli_query($GLOBALS['con'], $sel);
 			$row = mysqli_fetch_array($result);
 			if(is_numeric($row['vers']))

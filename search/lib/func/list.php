@@ -64,7 +64,7 @@ switch (strtoupper($q))
 			case "prod":
 			{
 				$cpu_prod='"%'.$keys.'%"';
-				$sel="SELECT id, name FROM notebro_site.nomen WHERE type=11 AND name LIKE $cpu_prod";
+				$sel="SELECT id, name FROM `".$GLOBALS['global_notebro_site']."`.nomen WHERE type=11 AND name LIKE $cpu_prod";
 				$result = mysqli_query($con, $sel);
 				$list = array();
 				while($rand = mysqli_fetch_row($result)) 
@@ -108,7 +108,7 @@ switch (strtoupper($q))
 					$y.=" prop1>=".$socktechmax."";
 				}
 				$cpu_socket='"%'.$keys.'%"';
-				$sel="SELECT id, name FROM notebro_site.nomen WHERE type=1 AND name LIKE $cpu_socket".$y." ORDER BY `nomen`.`name` DESC";
+				$sel="SELECT id, name FROM `".$GLOBALS['global_notebro_site']."`.nomen WHERE type=1 AND name LIKE $cpu_socket".$y." ORDER BY `nomen`.`name` DESC";
 				$result = mysqli_query($con, $sel);
 				$list = array();
 				while($rand = mysqli_fetch_row($result)) 
@@ -120,7 +120,7 @@ switch (strtoupper($q))
 			{
 				$b=0; $y="";
 				$cpu_msc='"%'.$keys.'%"';
-				$sel="SELECT id, name FROM notebro_site.nomen WHERE type=7 AND name LIKE $cpu_msc".$y;
+				$sel="SELECT id, name FROM `".$GLOBALS['global_notebro_site']."`.nomen WHERE type=7 AND name LIKE $cpu_msc".$y;
 				$result = mysqli_query($con, $sel);
 				$list = array();
 				while($rand = mysqli_fetch_row($result)) 
@@ -219,7 +219,7 @@ switch (strtoupper($q))
 			case "prod":
 			{
 				$gpu_prod='"%'.$keys.'%"';
-				$sel="SELECT id, name FROM notebro_site.nomen WHERE type=12 AND name LIKE $gpu_prod";
+				$sel="SELECT id, name FROM `".$GLOBALS['global_notebro_site']."`.nomen WHERE type=12 AND name LIKE $gpu_prod";
 				$result = mysqli_query($con, $sel);
 				$list = array();
 				while($rand = mysqli_fetch_row($result)) 
@@ -231,7 +231,7 @@ switch (strtoupper($q))
 			{
 				$gpu_msc='"%'.$keys.'%"';
 				$b=0; $y="";
-				$sel="SELECT id, name FROM notebro_site.nomen WHERE type=4 AND name LIKE $gpu_msc".$y;
+				$sel="SELECT id, name FROM `".$GLOBALS['global_notebro_site']."`.nomen WHERE type=4 AND name LIKE $gpu_msc".$y;
 				$result = mysqli_query($con, $sel);
 				$list = array();
 				while($rand = mysqli_fetch_row($result)) 
@@ -252,7 +252,7 @@ switch (strtoupper($q))
 					$y=substr($y, 0, -3);;
 				}
 				$y.=" AND prop!='INTEL'";
-				$sel="SELECT id, name FROM notebro_site.nomen WHERE type=3 AND name LIKE $gpu_arch".$y." ORDER by name asc";
+				$sel="SELECT id, name FROM `".$GLOBALS['global_notebro_site']."`.nomen WHERE type=3 AND name LIKE $gpu_arch".$y." ORDER by name asc";
 				$result = mysqli_query($con, $sel);
 				$list = array();
 				while($rand = mysqli_fetch_row($result)) 
@@ -280,7 +280,7 @@ switch (strtoupper($q))
 				}
 				if(isset($vresmin)){ $y.=" AND CAST(prop1 AS UNSIGNED)>=".$vresmin; }
 				if(isset($vresmax)){ $y.=" AND CAST(prop1 AS UNSIGNED)<=".$vresmax; }
-				$sel="SELECT id, name FROM notebro_site.nomen WHERE type=9 AND name LIKE $dis_res".$y." ORDER BY name ASC";
+				$sel="SELECT id, name FROM `".$GLOBALS['global_notebro_site']."`.nomen WHERE type=9 AND name LIKE $dis_res".$y." ORDER BY name ASC";
 				$result = mysqli_query($con, $sel);
 				$list = array();
 				while($rand = mysqli_fetch_row($result)) 
@@ -291,7 +291,7 @@ switch (strtoupper($q))
 			case "msc":
 			{
 				$dis_msc='"%'.$keys.'%"';
-				$sel="SELECT `id`,`name` FROM `notebro_site`.`nomen` WHERE `type`=10 AND `name` LIKE $dis_msc ORDER BY CAST(`name` AS int) DESC";
+				$sel="SELECT `id`,`name` FROM `".$GLOBALS['global_notebro_site']."`.`nomen` WHERE `type`=10 AND `name` LIKE $dis_msc ORDER BY CAST(`name` AS int) DESC";
 				$result = mysqli_query($con, $sel);
 				$list = array();
 				while($rand = mysqli_fetch_row($result)) 
@@ -317,7 +317,7 @@ switch (strtoupper($q))
 					foreach ($prop as $x){ $y.=" (prop='$x') OR"; }
 					$y=substr($y, 0, -3);
 				}	
-				$sel="SELECT id, name FROM notebro_site.nomen WHERE (type=24 OR type=86) AND name LIKE $dis_res".$y." ORDER BY type DESC, name ASC";
+				$sel="SELECT id, name FROM `".$GLOBALS['global_notebro_site']."`.nomen WHERE (type=24 OR type=86) AND name LIKE $dis_res".$y." ORDER BY type DESC, name ASC";
 				$result = mysqli_query($con, $sel);
 				$list = array();
 				while($rand = mysqli_fetch_row($result)) 
@@ -336,7 +336,7 @@ switch (strtoupper($q))
 					foreach ($prop as $x){ $y.=" (prop='$x') OR"; }
 					$y=substr($y, 0, -3);
 				}	
-				$sel="SELECT id, name FROM notebro_site.nomen WHERE type=23 AND name LIKE $dis_res".$y." ORDER BY name ASC";
+				$sel="SELECT id, name FROM `".$GLOBALS['global_notebro_site']."`.nomen WHERE type=23 AND name LIKE $dis_res".$y." ORDER BY name ASC";
 				$result = mysqli_query($con, $sel);
 				$list = array(); $list[]=["id"=>intval(999),"model"=>strval("Any video port")];
 				while($rand = mysqli_fetch_row($result)) 
@@ -362,7 +362,7 @@ switch (strtoupper($q))
 					foreach ($prop as $x){ $y.=" (prop='$x') OR"; }
 					$y=substr($y, 0, -3);
 				}	
-				$sel="(SELECT id, name FROM notebro_site.nomen WHERE type=69 AND name LIKE $dis_res".$y." AND name NOT LIKE '%keyboard%' AND name NOT LIKE '%speaker%' AND name NOT LIKE '%subwoof%' ORDER BY name ASC) UNION (SELECT id, name FROM notebro_site.nomen WHERE type=69 AND name LIKE $dis_res".$y." AND name LIKE '%keyboard%' ORDER BY name ASC) UNION (SELECT id, name FROM notebro_site.nomen WHERE type=69 AND name LIKE $dis_res".$y." AND (name LIKE '%speaker%' OR name LIKE '%subwoof%')  ORDER BY name ASC)";
+				$sel="(SELECT id, name FROM `".$GLOBALS['global_notebro_site']."`.nomen WHERE type=69 AND name LIKE $dis_res".$y." AND name NOT LIKE '%keyboard%' AND name NOT LIKE '%speaker%' AND name NOT LIKE '%subwoof%' ORDER BY name ASC) UNION (SELECT id, name FROM `".$GLOBALS['global_notebro_site']."`.nomen WHERE type=69 AND name LIKE $dis_res".$y." AND name LIKE '%keyboard%' ORDER BY name ASC) UNION (SELECT id, name FROM `".$GLOBALS['global_notebro_site']."`.nomen WHERE type=69 AND name LIKE $dis_res".$y." AND (name LIKE '%speaker%' OR name LIKE '%subwoof%')  ORDER BY name ASC)";
 				$result = mysqli_query($con, $sel);
 				$list = array();
 				while($rand = mysqli_fetch_row($result)) 
@@ -380,7 +380,7 @@ switch (strtoupper($q))
 			case "Producer":
 			{
 				$prod='"%'.$keys.'%"';
-				$sel="SELECT DISTINCT id, prod FROM notebro_site.nomen_models WHERE prod LIKE $prod GROUP BY prod ORDER BY prod ASC";
+				$sel="SELECT DISTINCT id, prod FROM `".$GLOBALS['global_notebro_site']."`.nomen_models WHERE prod LIKE $prod GROUP BY prod ORDER BY prod ASC";
 				$result = mysqli_query($con, $sel);
 				$list = array();
 				while($rand = mysqli_fetch_row($result)) 
@@ -415,7 +415,7 @@ switch (strtoupper($q))
 			{
 				$search='"%'.$keys.'%"';
 				$y="WHERE";
-				$sel="SELECT `id`,`name`,`valid` FROM `notebro_db`.`REGIONS` ".$y." `name` LIKE".$search." AND `valid`=1";
+				$sel="SELECT `id`,`name`,`valid` FROM `".$GLOBALS['global_notebro_db']."`.`REGIONS` ".$y." `name` LIKE".$search." AND `valid`=1";
 				$sel.=" AND id>0";
 				$result = mysqli_query($con, $sel);
 				$list = array();

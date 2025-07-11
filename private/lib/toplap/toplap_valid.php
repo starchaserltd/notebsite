@@ -3,7 +3,7 @@ require_once("../../../etc/con_rdb.php");
 require_once("../../../etc/con_db.php");
 require_once("../../../etc/con_sdb.php");
 require_once("../../../etc/conf.php");
-mysqli_select_db($rcon,"notebro_site");
+mysqli_select_db($rcon,$GLOBALS['r_global_notebro_site']);
 function clean($x){ return mysqli_real_escape_string($GLOBALS['con'],clean_string($x));}
 
 if(isset($_POST['id'])){ $id = intval($_POST['id']);} $price_range=0;
@@ -16,14 +16,14 @@ if (isset($_POST['action']) && $id)
 	$_POST['action']=clean($_POST['action']);
 	if ($_POST['action'] == 'Delete')
 	{
-		$sql = "DELETE FROM notebro_site.top_laptops WHERE id=".$id.""; 
+		$sql = "DELETE FROM ".$GLOBALS['r_global_notebro_site'].".top_laptops WHERE id=".$id.""; 
 		if ($rcon->query($sql) === TRUE){ echo "Record deleted successfully"; }
 		else { echo "Error deleting record: " . $rcon->error; }
 		echo "<meta http-equiv=\"refresh\" content=\"0;URL=..\\..\\toplap.php\">";
 	}
 	if ($_POST['action'] == 'Update' && (isset($_POST['conf_id'])&&(clean($_POST['conf_id'])==clean($_POST['conf_id2']))))
 	{
-		$sql = "UPDATE notebro_site.top_laptops SET type = '".clean($_POST['typenew'])."',ord = ".$_POST['order'].",name = '".clean($_POST['name'])."', price = ".intval($_POST['price']).", min_price = ".$price_min.", max_price = ".$price_max.", price_range = ".$price_range." WHERE id=".$id.""; //echo $sql;
+		$sql = "UPDATE ".$GLOBALS['r_global_notebro_site'].".top_laptops SET type = '".clean($_POST['typenew'])."',ord = ".$_POST['order'].",name = '".clean($_POST['name'])."', price = ".intval($_POST['price']).", min_price = ".$price_min.", max_price = ".$price_max.", price_range = ".$price_range." WHERE id=".$id.""; //echo $sql;
 		if ($rcon->query($sql) === TRUE){ echo "Record updated successfully"; } 
 				else { echo "Error updating record: " . mysqli_error($rcon); }
 		echo "<meta http-equiv=\"refresh\" content=\"0;URL=..\\..\\toplap.php\">";
@@ -36,13 +36,13 @@ if (isset($_POST['type']) && isset($_POST['conf_id']))
 { 
 	$_POST['conf_id']=clean($_POST['conf_id']);
 	if(stripos($_POST['conf_id'],"_")!==FALSE){ $_POST['conf_id']=explode("_",$_POST['conf_id'])[0]; }
-	$model = mysqli_fetch_row(mysqli_query($cons,"SELECT model FROM notebro_temp.all_conf WHERE  id =".$_POST['conf_id']."")); //echo $lastid[0]; 
+	$model = mysqli_fetch_row(mysqli_query($cons,"SELECT model FROM ".$GLOBALS['global_notebro_sdb'].".all_conf WHERE  id =".$_POST['conf_id']."")); //echo $lastid[0]; 
 	if($model==NULL) { echo "Counldn't find this config!<br><br>"; }
 	else
 	{
-		$allconfids = mysqli_fetch_row(mysqli_query($cons,"SELECT * FROM notebro_temp.all_conf_".$model[0]." WHERE id=".$_POST['conf_id'])); //echo $allconfids[1]; 
-		$name = mysqli_fetch_row(mysqli_query($con,"SELECT model,submodel,idfam,prod,img_1 FROM notebro_db.MODEL WHERE  id =".$model[0]."")); //print_r($name);
-		$fam =  mysqli_fetch_row(mysqli_query($con,"SELECT fam,(SELECT subfam FROM notebro_db.FAMILIES WHERE id =".$name[2]." AND showsubfam=1) as subfam FROM notebro_db.FAMILIES WHERE  id =".$name[2].""));
+		$allconfids = mysqli_fetch_row(mysqli_query($cons,"SELECT * FROM ".$GLOBALS['global_notebro_sdb'].".all_conf_".$model[0]." WHERE id=".$_POST['conf_id'])); //echo $allconfids[1]; 
+		$name = mysqli_fetch_row(mysqli_query($con,"SELECT model,submodel,idfam,prod,img_1 FROM ".$GLOBALS['global_notebro_db'].".MODEL WHERE  id =".$model[0]."")); //print_r($name);
+		$fam =  mysqli_fetch_row(mysqli_query($con,"SELECT fam,(SELECT subfam FROM ".$GLOBALS['global_notebro_db'].".FAMILIES WHERE id =".$name[2]." AND showsubfam=1) as subfam FROM ".$GLOBALS['global_notebro_db'].".FAMILIES WHERE  id =".$name[2].""));
 		if(isset($fam[1]) && $fam[1]!==NULL){ $fams = $fam[0]." ".$fam[1]; } else { $fams = $fam[0]; }	
 		
 		$ids = 0;
@@ -70,7 +70,7 @@ if (isset($_POST['type']) && isset($_POST['conf_id']))
 
 		if (isset($_POST['action']) && $id && $_POST['action'] == 'Update')
 		{
-			$sql = "UPDATE notebro_site.top_laptops SET type = '".clean($_POST['typenew'])."',ord = ".$_POST['order'].",name = '".clean($_POST['name'])."', price = ".intval($_POST['price']).", min_price = ".$price_min.", max_price = ".$price_max.", price_range = ".$price_range.", m_id='".$m_id."'".", c_id='".$c_id."_".$m_id."'".", m_id='".$m_id."'".", img='".$img."'".", cpu='".$cpu."'".", display='".$display."'".", mem='".$mem."'".", hdd='".$hdd."'".", shdd='".$shdd."'".", gpu='".$gpu."'".", wnet='".$wnet."'".", odd='".$odd."'".", mdb='".$mdb."'".", chassis='".$chassis."'".", acum='".$acum."'".", warranty='".$war."'".", sist='".$sist."'".", valid=1 WHERE id=".$id.""; //echo $sql;
+			$sql = "UPDATE ".$GLOBALS['r_global_notebro_site'].".top_laptops SET type = '".clean($_POST['typenew'])."',ord = ".$_POST['order'].",name = '".clean($_POST['name'])."', price = ".intval($_POST['price']).", min_price = ".$price_min.", max_price = ".$price_max.", price_range = ".$price_range.", m_id='".$m_id."'".", c_id='".$c_id."_".$m_id."'".", m_id='".$m_id."'".", img='".$img."'".", cpu='".$cpu."'".", display='".$display."'".", mem='".$mem."'".", hdd='".$hdd."'".", shdd='".$shdd."'".", gpu='".$gpu."'".", wnet='".$wnet."'".", odd='".$odd."'".", mdb='".$mdb."'".", chassis='".$chassis."'".", acum='".$acum."'".", warranty='".$war."'".", sist='".$sist."'".", valid=1 WHERE id=".$id.""; //echo $sql;
 			if ($rcon->query($sql) === TRUE){ echo "Record updated successfully"; } 
 			else { echo "Error updating record: " . mysqli_error($rcon); }
 			echo "<meta http-equiv=\"refresh\" content=\"0;URL=..\\..\\toplap.php\">";
@@ -85,12 +85,12 @@ if (isset($_POST['type']) && isset($_POST['conf_id']))
 				if(stripos($site_name,"noteb.com")!==FALSE)
 				{
 					require_once("../../../etc/con_sdb.php"); 
-					$get_pmodel=mysqli_query($cons,'SELECT `m_map_table`.`pmodel` FROM `notebro_temp`.`m_map_table` WHERE `m_map_table`.`model_id`="'.$m_id.'" LIMIT 1');
+					$get_pmodel=mysqli_query($cons,'SELECT `m_map_table`.`pmodel` FROM `'.$GLOBALS['global_notebro_sdb'].'`.`m_map_table` WHERE `m_map_table`.`model_id`="'.$m_id.'" LIMIT 1');
 					$pmodel_found=False;
 					if($get_pmodel && mysqli_num_rows($get_pmodel)>0)
 					{
 						$pmodel=mysqli_fetch_assoc($get_pmodel)["pmodel"];
-						$result=mysqli_query($cons,'SELECT * FROM `notebro_temp`.`best_low_opt` WHERE `best_low_opt`.`id_model` LIKE "%p_'.$pmodel.'_2" LIMIT 1');
+						$result=mysqli_query($cons,'SELECT * FROM `'.$GLOBALS['global_notebro_sdb'].'`.`best_low_opt` WHERE `best_low_opt`.`id_model` LIKE "%p_'.$pmodel.'_2" LIMIT 1');
 						if($result && mysqli_num_rows($result)>0)
 						{
 							$pmodel_found=True;
@@ -104,7 +104,7 @@ if (isset($_POST['type']) && isset($_POST['conf_id']))
 
 					if(!$pmodel_found)
 					{	
-						$result=mysqli_query($cons,'SELECT * FROM `notebro_temp`.`best_low_opt` WHERE `best_low_opt`.`id_model`="'.$m_id.'_2" LIMIT 1');
+						$result=mysqli_query($cons,'SELECT * FROM `'.$GLOBALS['global_notebro_sdb'].'`.`best_low_opt` WHERE `best_low_opt`.`id_model`="'.$m_id.'_2" LIMIT 1');
 						if($result && mysqli_num_rows($result)>0)
 						{
 							$row=mysqli_fetch_assoc($result);
@@ -125,7 +125,7 @@ if (isset($_POST['type']) && isset($_POST['conf_id']))
 			if ($ord ==''){$ord = 'DEFAULT';} else {$ord = $ord;}
 			if(!isset($price_min)){ $price_min='DEFAULT';} if(!isset($price_max)){ $price_max='DEFAULT';} if(!isset($price_range)){ $price_range='DEFAULT';}
 			
-			$query = "INSERT INTO notebro_site.top_laptops (id, type, ord, m_id, c_id, img, name, cpu, display, mem, hdd, shdd, gpu, wnet, odd, mdb, chassis, acum, warranty, sist, price, valid, min_price, max_price,price_range) values (".$ids.",'".$types."',".$ord.",".$m_id.",'".$c_id."_".$m_id."','".$img."','".$names."',".$cpu.",".$display.",".$mem.",".$hdd.",".$shdd.",".$gpu.",".$wnet.",".$odd.",".$mdb.",".$chassis.",".$acum.",".$war.",".$sist.",".$price.",1,".$price_min.",".$price_max.",".$price_range.")"; 
+			$query = "INSERT INTO ".$GLOBALS['r_global_notebro_site'].".top_laptops (id, type, ord, m_id, c_id, img, name, cpu, display, mem, hdd, shdd, gpu, wnet, odd, mdb, chassis, acum, warranty, sist, price, valid, min_price, max_price,price_range) values (".$ids.",'".$types."',".$ord.",".$m_id.",'".$c_id."_".$m_id."','".$img."','".$names."',".$cpu.",".$display.",".$mem.",".$hdd.",".$shdd.",".$gpu.",".$wnet.",".$odd.",".$mdb.",".$chassis.",".$acum.",".$war.",".$sist.",".$price.",1,".$price_min.",".$price_max.",".$price_range.")"; 
 			
 			if (mysqli_query($rcon,$query))
 			{

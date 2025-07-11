@@ -9,13 +9,13 @@ if($api_key!==""&&$api_key!==NULL)
 {
 	require_once("../etc/con_db.php");
 	$api_key=mysqli_real_escape_string($con,$api_key);
-	$result = mysqli_query($con,"SELECT daily_hits FROM notebro_site.api_keys WHERE api_key = '".$api_key."'");
+	$result = mysqli_query($con,"SELECT daily_hits FROM `".$GLOBALS['global_notebro_site']."`.api_keys WHERE api_key = '".$api_key."'");
 	if($result&&mysqli_num_rows($result)>0)
 	{
 		$hits_left=mysqli_fetch_row($result)[0];
 		if(intval($hits_left)>0)
 		{
-			$sql = 'UPDATE `notebro_site`.`api_keys` SET `notebro_site`.`api_keys`.`daily_hits` = `notebro_site`.`api_keys`.`daily_hits`-1 WHERE `notebro_site`.`api_keys`.`api_key` = "'.$api_key.'"';  mysqli_query($con, $sql);
+			$sql = 'UPDATE `'.$GLOBALS['global_notebro_site'].'`.`api_keys` SET `'.$GLOBALS['global_notebro_site'].'`.`api_keys`.`daily_hits` = `'.$GLOBALS['global_notebro_site'].'`.`api_keys`.`daily_hits`-1 WHERE `'.$GLOBALS['global_notebro_site'].'`.`api_keys`.`api_key` = "'.$api_key.'"';  mysqli_query($con, $sql);
 			if($method!==NULL && $method!=="")
 			{
 				switch($method)
@@ -29,7 +29,7 @@ if($api_key!==""&&$api_key!==NULL)
 						if(isset($idmodel[0]))
 						{
 							require_once("lib/model_param.php");
-							$resulti = mysqli_query($GLOBALS['cons'], "SELECT * FROM notebro_temp.all_conf_".$idmodel[0]." WHERE id = ".$result['id']." LIMIT 1");
+							$resulti = mysqli_query($GLOBALS['cons'], "SELECT * FROM `".$GLOBALS['global_notebro_sdb']."`.all_conf_".$idmodel[0]." WHERE id = ".$result['id']." LIMIT 1");
 							$i=0;
 							while( $row=mysqli_fetch_assoc($resulti))
 							{
@@ -78,7 +78,7 @@ if($api_key!==""&&$api_key!==NULL)
 						require_once("lib/model_param.php");
 						if(isset($idmodel[0]))
 						{
-							$resulti = mysqli_query($GLOBALS['cons'], "SELECT * FROM notebro_temp.all_conf_".$idmodel[0]." WHERE id = ".$result['id']." LIMIT 1");
+							$resulti = mysqli_query($GLOBALS['cons'], "SELECT * FROM `".$GLOBALS['global_notebro_sdb']."`.all_conf_".$idmodel[0]." WHERE id = ".$result['id']." LIMIT 1");
 							$i=0;
 							while( $row=mysqli_fetch_assoc($resulti))
 							{
@@ -170,11 +170,11 @@ if($api_key!==""&&$api_key!==NULL)
 						if(isset($param['conf_id'])&&$param['conf_id']!=NULL)
 						{
 							$param['conf_id']=mysqli_real_escape_string($con,$param['conf_id']);
-							$result=mysqli_query($cons,"SELECT model FROM `notebro_temp`.`all_conf` WHERE id=".$param['conf_id']." LIMIT 1");
+							$result=mysqli_query($cons,"SELECT model FROM `".$GLOBALS['global_notebro_sdb']."`.`all_conf` WHERE id=".$param['conf_id']." LIMIT 1");
 							if($result && mysqli_num_rows($result)>0)
 							{
 								$model_id=mysqli_fetch_assoc($result)["model"];
-								$result=mysqli_query($cons,"SELECT model,rating,price,err,batlife,capacity FROM notebro_temp.all_conf_".$model_id." WHERE id=".$param['conf_id']." LIMIT 1");
+								$result=mysqli_query($cons,"SELECT model,rating,price,err,batlife,capacity FROM `".$GLOBALS['global_notebro_sdb']."`.all_conf_".$model_id." WHERE id=".$param['conf_id']." LIMIT 1");
 								$row=mysqli_fetch_assoc($result);
 							}
 							else
@@ -199,20 +199,20 @@ if($api_key!==""&&$api_key!==NULL)
 							if(!$abort){ if(isset($param['operating_system_id']) && $param['operating_system_id']!=NULL && $param['operating_system_id']!=""){ $sist_id=intval($param['operating_system_id']); } else { $response->code=28; $response->message.=" Fatal error: No operating system id provided."; $abort=1; } }
 							if(!$abort)
 							{
-								$result=mysqli_query($cons,"SELECT model,rating,price,err,batlife,capacity FROM notebro_temp.all_conf_".$model_id." WHERE model=".$model_id." AND cpu=".$cpu_id." AND display=".$display_id." AND mem=".$mem_id." AND hdd=".$hdd_id." AND shdd=".$shdd_id." AND gpu=".$gpu_id." AND wnet=".$wnet_id." AND odd=".$odd_id." AND mdb=".$mdb_id." AND chassis=".$chassis_id." AND acum=".$acum_id." AND war=".$war_id." AND sist=".$sist_id." LIMIT 1");
+								$result=mysqli_query($cons,"SELECT model,rating,price,err,batlife,capacity FROM `".$GLOBALS['global_notebro_sdb']."`.all_conf_".$model_id." WHERE model=".$model_id." AND cpu=".$cpu_id." AND display=".$display_id." AND mem=".$mem_id." AND hdd=".$hdd_id." AND shdd=".$shdd_id." AND gpu=".$gpu_id." AND wnet=".$wnet_id." AND odd=".$odd_id." AND mdb=".$mdb_id." AND chassis=".$chassis_id." AND acum=".$acum_id." AND war=".$war_id." AND sist=".$sist_id." LIMIT 1");
 								if(!($result && mysqli_num_rows($result)>0))
 								{
-									$result=mysqli_query($con,"SELECT typegpu FROM `notebro_db`.`GPU` WHERE id=".$gpu_id." LIMIT 1");
+									$result=mysqli_query($con,"SELECT typegpu FROM `".$GLOBALS['global_notebro_db']."`.`GPU` WHERE id=".$gpu_id." LIMIT 1");
 									if($result && mysqli_num_rows($result)>0)
 									{
 										if(intval(mysqli_fetch_assoc($result)["typegpu"])===0)
 										{
-											$result=mysqli_query($con, "SELECT gpu FROM `notebro_db`.`CPU` WHERE id=".$cpu_id." LIMIT 1");
+											$result=mysqli_query($con, "SELECT gpu FROM `".$GLOBALS['global_notebro_db']."`.`CPU` WHERE id=".$cpu_id." LIMIT 1");
 											$cpugpu=intval(mysqli_fetch_assoc($result)["gpu"]);
 											if($cpugpu!==$gpu_id)
 											{	
 												$gpu_id=$cpugpu; $response->code=29; $response->message.=" Wrong GPU id provided, attempting to correct.";
-												$result=mysqli_query($cons,"SELECT model,rating,price,err,batlife,capacity FROM notebro_temp.all_conf_".$model_id." WHERE model=".$model_id." AND cpu=".$cpu_id." AND display=".$display_id." AND mem=".$mem_id." AND hdd=".$hdd_id." AND shdd=".$shdd_id." AND gpu=".$gpu_id." AND wnet=".$wnet_id." AND odd=".$odd_id." AND mdb=".$mdb_id." AND chassis=".$chassis_id." AND acum=".$acum_id." AND war=".$war_id." AND sist=".$sist_id." LIMIT 1");
+												$result=mysqli_query($cons,"SELECT model,rating,price,err,batlife,capacity FROM `".$GLOBALS['global_notebro_sdb']."`.all_conf_".$model_id." WHERE model=".$model_id." AND cpu=".$cpu_id." AND display=".$display_id." AND mem=".$mem_id." AND hdd=".$hdd_id." AND shdd=".$shdd_id." AND gpu=".$gpu_id." AND wnet=".$wnet_id." AND odd=".$odd_id." AND mdb=".$mdb_id." AND chassis=".$chassis_id." AND acum=".$acum_id." AND war=".$war_id." AND sist=".$sist_id." LIMIT 1");
 												if($result && mysqli_num_rows($result)>0)
 												{
 													$response->message.=" GPU correction successful.";
@@ -252,11 +252,11 @@ if($api_key!==""&&$api_key!==NULL)
 						if(isset($param['conf_id'])&&$param['conf_id']!=NULL)
 						{
 							$param['conf_id']=mysqli_real_escape_string($cons,$param['conf_id']);
-							$result=mysqli_query($cons,"SELECT model FROM `notebro_temp`.`all_conf` WHERE id=".$param['conf_id']." LIMIT 1");
+							$result=mysqli_query($cons,"SELECT model FROM `".$GLOBALS['global_notebro_sdb']."`.`all_conf` WHERE id=".$param['conf_id']." LIMIT 1");
 							if($result && mysqli_num_rows($result)>0)
 							{
 								$model_id=mysqli_fetch_assoc($result)["model"];
-								$result=mysqli_query($cons,"SELECT * FROM notebro_temp.all_conf_".$model_id." WHERE id=".$param['conf_id']." LIMIT 1");
+								$result=mysqli_query($cons,"SELECT * FROM `".$GLOBALS['global_notebro_sdb']."`.all_conf_".$model_id." WHERE id=".$param['conf_id']." LIMIT 1");
 								$row=mysqli_fetch_assoc($result);
 								$search_array=array("model"); $param['model_id']=$model_id; $nr_models=1;
 								require_once("preproc/api_varproc.php");
@@ -307,12 +307,12 @@ if($api_key!==""&&$api_key!==NULL)
 						{
 							$param['exchange_code']=mysqli_real_escape_string($con,$param['exchange_code']);
 							$get_code=" WHERE code='".$param['exchange_code']."'";
-							$result=mysqli_query($con,"SELECT code FROM `notebro_site`.`exchrate`".$get_code." LIMIT 1");
+							$result=mysqli_query($con,"SELECT code FROM `".$GLOBALS['global_notebro_site']."`.`exchrate`".$get_code." LIMIT 1");
 							if(!($result && mysqli_num_rows($result)>0)){ $get_code="";  $response->message.=" Invalid exchange_code, retrieving full list."; }
 						}
 						else { $get_code=""; }
 
-						$result=mysqli_query($con,"SELECT code,convr,sign FROM `notebro_site`.`exchrate`".$get_code);
+						$result=mysqli_query($con,"SELECT code,convr,sign FROM `".$GLOBALS['global_notebro_site']."`.`exchrate`".$get_code);
 						if($result && mysqli_num_rows($result)>0)
 						{
 							$i=0;
@@ -346,11 +346,11 @@ if($api_key!==""&&$api_key!==NULL)
 							$no_p_model=False;
 							if($for_pmodel)
 							{
-								$get_pmodel=mysqli_query($cons,'SELECT `m_map_table`.`pmodel` FROM `notebro_temp`.`m_map_table` WHERE `m_map_table`.`model_id`="'.$model_id.'" LIMIT 1');
+								$get_pmodel=mysqli_query($cons,'SELECT `m_map_table`.`pmodel` FROM `'.$GLOBALS['global_notebro_sdb'].'`.`m_map_table` WHERE `m_map_table`.`model_id`="'.$model_id.'" LIMIT 1');
 								if($get_pmodel && mysqli_num_rows($get_pmodel)>0)
 								{
 									$pmodel=mysqli_fetch_assoc($get_pmodel)["pmodel"];
-									$result=mysqli_query($cons,'SELECT * FROM `notebro_temp`.`best_low_opt` WHERE `best_low_opt`.`id_model` LIKE "%p_'.$pmodel.'_'.$region_id.'" LIMIT 1');
+									$result=mysqli_query($cons,'SELECT * FROM `'.$GLOBALS['global_notebro_sdb'].'`.`best_low_opt` WHERE `best_low_opt`.`id_model` LIKE "%p_'.$pmodel.'_'.$region_id.'" LIMIT 1');
 									if(!($result && mysqli_num_rows($result)>0))
 									{ $no_p_model=True; }
 									else
@@ -361,13 +361,13 @@ if($api_key!==""&&$api_key!==NULL)
 								{ $no_p_model=True;}
 							
 								if($no_p_model)
-								{ $result=mysqli_query($cons,'SELECT * FROM `notebro_temp`.`best_low_opt` WHERE `best_low_opt`.`id_model`="'.$model_id.'_'.$region_id.'" LIMIT 1'); }
+								{ $result=mysqli_query($cons,'SELECT * FROM `'.$GLOBALS['global_notebro_sdb'].'`.`best_low_opt` WHERE `best_low_opt`.`id_model`="'.$model_id.'_'.$region_id.'" LIMIT 1'); }
 							}
 							else
-							{ $no_p_model=True; $result=mysqli_query($cons,"SELECT * FROM `notebro_temp`.`best_low_opt` WHERE `id_model`='".$model_id."_".$region_id."' LIMIT 1"); }
+							{ $no_p_model=True; $result=mysqli_query($cons,"SELECT * FROM `".$GLOBALS['global_notebro_sdb']."`.`best_low_opt` WHERE `id_model`='".$model_id."_".$region_id."' LIMIT 1"); }
 						
 							if(!($result && mysqli_num_rows($result)>0))
-							{ $model_id=$org_model_id; $result=mysqli_query($cons,"SELECT * FROM `notebro_temp`.`best_low_opt` WHERE `id_model` LIKE '%".$model_id."%' LIMIT 1"); }
+							{ $model_id=$org_model_id; $result=mysqli_query($cons,"SELECT * FROM `".$GLOBALS['global_notebro_sdb']."`.`best_low_opt` WHERE `id_model` LIKE '%".$model_id."%' LIMIT 1"); }
 
 							if(!($result && mysqli_num_rows($result)>0)){$response->code=29; $response->message.=" Invalid model id or database is inaccesible, aborting."; }
 							else
@@ -376,19 +376,19 @@ if($api_key!==""&&$api_key!==NULL)
 								{
 									$response->result->{$org_model_id}=new stdClass(); $object_addr=$response->result->{$org_model_id};
 									if(!$no_p_model){ $explode_result=explode("_",$row['lowest_price']); $row['lowest_price']=$explode_result[0]; $model_id=$explode_result[1];}
-									$query="SELECT price FROM notebro_temp.all_conf_".$model_id." WHERE id=".$row['lowest_price'];
+									$query="SELECT price FROM `".$GLOBALS['global_notebro_sdb']."`.all_conf_".$model_id." WHERE id=".$row['lowest_price'];
 									$result_sdb=mysqli_query($cons,$query);
 									if($result_sdb && mysqli_num_rows($result_sdb)>0){ $row_sdb=mysqli_fetch_assoc($result_sdb); $object_addr->lowest_price_id=$row['lowest_price']; $object_addr->lowest_price=$row_sdb['price'];}
 									else
 									{ $response->code=30; $response->message.=" Unable to retrieve data for ".'lowest price id'; }
 									if(!$no_p_model){ $explode_result=explode("_",$row['best_performance']); $row['best_performance']=$explode_result[0]; $model_id=$explode_result[1];}
-									$query="SELECT price FROM notebro_temp.all_conf_".$model_id." WHERE id=".$row['best_performance'];
+									$query="SELECT price FROM `".$GLOBALS['global_notebro_sdb']."`.all_conf_".$model_id." WHERE id=".$row['best_performance'];
 									$result_sdb=mysqli_query($cons,$query);
 									if($result_sdb && mysqli_num_rows($result_sdb)>0){ $row_sdb=mysqli_fetch_assoc($result_sdb); $object_addr->best_performance_id=$row['best_performance']; $object_addr->best_performance=$row_sdb['price'];}
 									else
 									{ $response->code=30; $response->message.=" Unable to retrieve data for ".'best performance id'; }
 									if(!$no_p_model){ $explode_result=explode("_",$row['best_value']); $row['best_value']=$explode_result[0]; $model_id=$explode_result[1];}
-									$query="SELECT price FROM notebro_temp.all_conf_".$model_id." WHERE id=".$row['best_value'];
+									$query="SELECT price FROM `".$GLOBALS['global_notebro_sdb']."`.all_conf_".$model_id." WHERE id=".$row['best_value'];
 									$result_sdb=mysqli_query($cons,$query);
 									if($result_sdb && mysqli_num_rows($result_sdb)>0){ $row_sdb=mysqli_fetch_assoc($result_sdb); $object_addr->best_value_id=$row['best_value']; $object_addr->best_value=$row_sdb['price'];}
 									else

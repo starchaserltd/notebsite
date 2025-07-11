@@ -4,7 +4,7 @@
 
 function search_wnet ($prod, $model, $misc, $speedmin, $speedmax, $bt, $ratemin, $ratemax, $pricemin, $pricemax)
 {
-	$sel_wnet="SELECT id,price,rating,err FROM WNET WHERE 1=1 AND valid=1";
+	$sel_wnet="SELECT id,price,rating,err FROM `".$GLOBALS['global_notebro_db']."`.`WNET` WHERE 1=1 AND valid=1";
 	
 	// Add producers to filter
 	$i=0;

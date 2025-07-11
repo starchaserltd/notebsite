@@ -4,9 +4,9 @@
 function search_gpu ($typelist, $prod, $model, $variant, $name, $arch, $techmin, $techmax, $shadermin, $cspeedmin, $cspeedmax, $sspeedmin, $sspeedmax, $mspeedmin, $mspeedmax, $mbwmin, $mbwmax, $mtype, $maxmemmin, $maxmemmax, $sharem, $powermin, $powermax, $ldmin, $ldmax, $misc, $ratemin, $ratemax, $pricemin, $pricemax, $seltdp, $idlist)
 {
 	if($seltdp>0)
-	{ $sel_gpu="SELECT `id`,`typegpu`,`price`,`rating`,`err`,`power` FROM `notebro_db`.`GPU` WHERE 1=1 AND `valid`=1"; }
+	{ $sel_gpu="SELECT `id`,`typegpu`,`price`,`rating`,`err`,`power` FROM `".$GLOBALS['global_notebro_db']."`.`GPU` WHERE 1=1 AND `valid`=1"; }
 	else
-	{ $sel_gpu="SELECT `id`,`typegpu`,`price`,`rating`,`err` FROM `notebro_db`.`GPU` WHERE 1=1 AND `valid`=1"; }
+	{ $sel_gpu="SELECT `id`,`typegpu`,`price`,`rating`,`err` FROM `".$GLOBALS['global_notebro_db']."`.`GPU` WHERE 1=1 AND `valid`=1"; }
 	
 	// Add Type filter (Integrated / Dedicated / Professional)
 	$i=0; $k=0; $dend=0;
@@ -402,9 +402,9 @@ function search_gpu ($typelist, $prod, $model, $variant, $name, $arch, $techmin,
 		if(isset($model[0]))
 		{
 			if($seltdp>0)
-			{ $sel_gpu="SELECT `id`,`typegpu`,`price`,`rating`,`err`,`power` FROM `notebro_db`.`GPU` WHERE 1=1 AND `valid`=1"; }
+			{ $sel_gpu="SELECT `id`,`typegpu`,`price`,`rating`,`err`,`power` FROM `".$GLOBALS['global_notebro_db']."`.`GPU` WHERE 1=1 AND `valid`=1"; }
 			else
-			{ $sel_gpu="SELECT `id`,`typegpu`,`price`,`rating`,`err` FROM `notebro_db`.`GPU` WHERE 1=1 AND `valid`=1"; }
+			{ $sel_gpu="SELECT `id`,`typegpu`,`price`,`rating`,`err` FROM `".$GLOBALS['global_notebro_db']."`.`GPU` WHERE 1=1 AND `valid`=1"; }
 		
 			$i=0;
 			if(gettype($model)!="array") { $model=(array)$model; }
@@ -427,8 +427,15 @@ function search_gpu ($typelist, $prod, $model, $variant, $name, $arch, $techmin,
 			if($i>0) { $sel_gpu.=" ) "; }
 			$result=mysqli_query($GLOBALS['con'],$sel_gpu);
 		}
-	}
 	
+		// DO THE SEARCH
+		# echo "Query to select the GPU:";
+		# echo "<br>";
+		# echo "<pre>Second GPU search:" . $sel_gpu. "</pre>";
+	
+	}
+
+	 
 	while($rand = mysqli_fetch_array($result)) 
 	{ 
 		if($seltdp>0)

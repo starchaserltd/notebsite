@@ -4,7 +4,7 @@ require_once("../etc/con_db.php");
 
 if ($table == 'COMMENTS')
 {   
-	$sql="SELECT `model`.`id`,`idfam`,`prod`,`model`,`fam`.`fam`,`fam`.`subfam`,`fam`.`showsubfam`,`model`.`p_model` FROM MODEL model JOIN ( SELECT id,fam,subfam,showsubfam FROM notebro_db.FAMILIES ) fam ON fam.id=model.idfam WHERE model.id IN (".implode(",",$model_id).") LIMIT ".count($model_id);
+	$sql="SELECT `model`.`id`,`idfam`,`prod`,`model`,`fam`.`fam`,`fam`.`subfam`,`fam`.`showsubfam`,`model`.`p_model` FROM MODEL model JOIN ( SELECT id,fam,subfam,showsubfam FROM `".$GLOBALS['global_notebro_db']."`.FAMILIES ) fam ON fam.id=model.idfam WHERE model.id IN (".implode(",",$model_id).") LIMIT ".count($model_id);
 	$query=mysqli_query($con,$sql);
 	$fatal_error=1;	$i=0; $source_com_parts_final=array();  $insert_com=false; $insert_source=false;
 	
@@ -64,11 +64,11 @@ else
 function insert_function($con,$rcon,$value,$field,$model_id,$model_name,$form_redirect)
 {
 	global $alerted;
-	$query1 = "SELECT `model` FROM `notebro_db`.`COMMENTS` WHERE (model=".$model_id." OR model IN (SELECT `id` FROM `notebro_db`.`MODEL` WHERE `notebro_db`.`MODEL`.`p_model`=".$model_id.")) AND type='".$field."'"; //echo $query1;
+	$query1 = "SELECT `model` FROM `".$GLOBALS['global_notebro_db']."`.`COMMENTS` WHERE (model=".$model_id." OR model IN (SELECT `id` FROM `".$GLOBALS['global_notebro_db']."`.`MODEL` WHERE `".$GLOBALS['global_notebro_db']."`.`MODEL`.`p_model`=".$model_id.")) AND type='".$field."'"; //echo $query1;
 	$result = mysqli_query($rcon,$query1);
 	if($result && !(mysqli_num_rows($result)>0))
 	{
-		$sql = "INSERT INTO `notebro_db`.`COMMENTS` (`model`, `type`, `comment`,`valid`,`update`) VALUES ('".$model_id."','".$field."','".$value."',0,0)";
+		$sql = "INSERT INTO `".$GLOBALS['global_notebro_db']."`.`COMMENTS` (`model`, `type`, `comment`,`valid`,`update`) VALUES ('".$model_id."','".$field."','".$value."',0,0)";
 		if(mysqli_query($rcon, $sql))
 		{
 			if(!$alerted){ echo "<script>alert('Comment on $model_name submitted successfully. Thank you!')</script>"; $error=0; $alerted=true;}
@@ -79,13 +79,13 @@ function insert_function($con,$rcon,$value,$field,$model_id,$model_name,$form_re
 	}
 	else
 	{
-		$query1 = "SELECT COUNT(`model`) as `count` FROM `notebro_db`.`COMMENTS` WHERE (model=".$model_id." OR model IN (SELECT `id` FROM `notebro_db`.`MODEL` WHERE `notebro_db`.`MODEL`.`p_model`=".$model_id.")) AND `type`='".$field."' AND `update`>0"; //echo $query1;
+		$query1 = "SELECT COUNT(`model`) as `count` FROM `".$GLOBALS['global_notebro_db']."`.`COMMENTS` WHERE (model=".$model_id." OR model IN (SELECT `id` FROM `".$GLOBALS['global_notebro_db']."`.`MODEL` WHERE `".$GLOBALS['global_notebro_db']."`.`MODEL`.`p_model`=".$model_id.")) AND `type`='".$field."' AND `update`>0"; //echo $query1;
 		$result = mysqli_query($rcon,$query1);
 		$update_count=0;
 		if($result && mysqli_num_rows($result)>0)
 		{ $update_count=intval(mysqli_fetch_assoc($result)['count']); }
 		
-		$sql="INSERT INTO `notebro_db`.`COMMENTS` (`model`, `type`, `comment`,`valid`,`update`) VALUES ('".$model_id."','".$field."','".$value."',0,".($update_count+1).")";
+		$sql="INSERT INTO `".$GLOBALS['global_notebro_db']."`.`COMMENTS` (`model`, `type`, `comment`,`valid`,`update`) VALUES ('".$model_id."','".$field."','".$value."',0,".($update_count+1).")";
 		if(mysqli_query($rcon, $sql))
 		{
 			if(!$alerted){ echo "<script>alert('Update comment on $model_name submitted successfully. Thank you!')</script>"; $error=0; $alerted=true;}

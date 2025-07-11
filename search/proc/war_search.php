@@ -4,7 +4,7 @@
 
 function search_war ($prod, $yearsmin, $yearsmax, $typewar, $misc, $ratemin, $ratemax, $pricemin, $pricemax)
 {
-	$sel_war="SELECT id,price,rating,err FROM WAR WHERE 1=1";
+	$sel_war="SELECT id,price,rating,err FROM `".$GLOBALS['global_notebro_db']."`.`WAR` WHERE 1=1";
 	
 	// Add models to filter
 	$i=0;

@@ -6,9 +6,9 @@ function search_display ($model, $sizemin, $sizemax, $format, $hresmin, $hresmax
 {
 	//var_dump($srgb);
 	if($selsize>0)
-	{ $sel_display="SELECT id,price,rating,err,size FROM notebro_db.DISPLAY WHERE 1=1 AND valid=1"; }
+	{ $sel_display="SELECT id,price,rating,err,size FROM `".$GLOBALS['global_notebro_db']."`.DISPLAY WHERE 1=1 AND valid=1"; }
 	else
-	{ $sel_display="SELECT id,price,rating,err FROM notebro_db.DISPLAY WHERE 1=1 AND valid=1"; }
+	{ $sel_display="SELECT id,price,rating,err FROM `".$GLOBALS['global_notebro_db']."`.DISPLAY WHERE 1=1 AND valid=1"; }
 	
 	// Add model to filter
 	$i=0;
@@ -264,7 +264,7 @@ function search_display ($model, $sizemin, $sizemax, $format, $hresmin, $hresmax
 	// DO THE SEARCH
 	# echo "Query to select the DISPLAYs:";
     # echo "<br>";
-#	echo "<pre>" . $sel_display . "</pre>";
+	# echo "<pre>" . $sel_display . "</pre>";
 
 	$result = mysqli_query($GLOBALS['con'], "$sel_display");
 	$display_return = array();

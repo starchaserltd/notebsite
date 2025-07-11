@@ -5,9 +5,9 @@
 function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, $techmax, $cachemin, $cachemax, $clockmin, $clockmax, $turbomin, $turbomax, $tdpmax, $tdpmin, $coremin, $coremax, $intgpu, $misc, $ratemin, $ratemax, $pricemin, $pricemax, $seltdp)
 {
 	if($seltdp>0)
-	{ $sel_cpu="SELECT id,price,rating,err,gpu,tdp FROM `".$global_notebro_db."`.CPU WHERE 1=1 AND valid=1"; }
+	{ $sel_cpu="SELECT id,price,rating,err,gpu,tdp FROM `".$GLOBALS['global_notebro_db']."`.CPU WHERE 1=1 AND valid=1"; }
 	else
-	{ $sel_cpu="SELECT id,price,rating,err,gpu FROM `".$global_notebro_db."`.CPU WHERE 1=1 AND valid=1"; }
+	{ $sel_cpu="SELECT id,price,rating,err,gpu FROM `".$GLOBALS['global_notebro_db']."`.CPU WHERE 1=1 AND valid=1"; }
 	
 	// Add producers to filter
 	$i=0;
@@ -338,7 +338,7 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 	// DO THE SEARCH
 	# echo "Query to select the CPUs:";
     # echo "<br>";
-    #echo "<pre>" . $sel_cpu . "</pre>";
+    # echo "<pre>" . $sel_cpu . "</pre>";
 
 	$result=mysqli_query($GLOBALS['con'],$sel_cpu);
 	$cpu_return = array();
@@ -348,9 +348,9 @@ function search_cpu ($prod, $model, $ldmin, $ldmax, $status, $socket, $techmin, 
 		if(isset($model[0]))
 		{
 			if($seltdp>0)
-			{ $sel_cpu="SELECT id,price,rating,err,gpu,tdp FROM `".$global_notebro_db."`.CPU WHERE 1=1 AND valid=1"; }
+			{ $sel_cpu="SELECT id,price,rating,err,gpu,tdp FROM `".$GLOBALS['global_notebro_db']."`.CPU WHERE 1=1 AND valid=1"; }
 			else
-			{ $sel_cpu="SELECT id,price,rating,err,gpu FROM `".$global_notebro_db."`.CPU WHERE 1=1 AND valid=1"; }
+			{ $sel_cpu="SELECT id,price,rating,err,gpu FROM `".$GLOBALS['global_notebro_db']."`.CPU WHERE 1=1 AND valid=1"; }
 			
 			$i=0;
 			if(gettype($model)!="array") { $model=(array)$model; }

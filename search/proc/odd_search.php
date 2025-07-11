@@ -4,7 +4,7 @@
 
 function search_odd ($type, $prod, $misc, $speedmin, $speedmax, $ratemin, $ratemax, $pricemin, $pricemax)
 {
-	$sel_odd="SELECT id,price,rating,err FROM ODD WHERE 1=1";
+	$sel_odd="SELECT id,price,rating,err FROM `".$GLOBALS['global_notebro_db']."`.`ODD` WHERE 1=1";
 
 	// Add producers to filter
 	$i=0;

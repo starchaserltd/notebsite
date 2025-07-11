@@ -4,7 +4,7 @@
 
 function search_regions ($name,$valid)
 {
-	$sel_regions="SELECT `id`,`code`,`name`,`disp`,`valid` FROM REGIONS WHERE 1=1";
+	$sel_regions="SELECT `id`,`code`,`name`,`disp`,`valid` FROM `".$GLOBALS['global_notebro_db']."`.`REGIONS` WHERE 1=1";
 	// Add models to filter
 	if(intval($valid)>0){ $sel_regions=$sel_regions." AND `valid`='".$valid."'"; }
 	

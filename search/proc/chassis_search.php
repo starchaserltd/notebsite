@@ -6,7 +6,7 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 {
 	
 //var_dump($addmsc);
-	$sel_chassis="SELECT id,price,rating,err FROM notebro_db.CHASSIS WHERE 1=1 AND valid=1";
+	$sel_chassis="SELECT id,price,rating,err FROM `".$GLOBALS['global_notebro_db']."`.CHASSIS WHERE 1=1 AND valid=1";
 	
 	// Add producers to filter
 	$i=0;
@@ -189,10 +189,26 @@ function search_chassis ($prod, $model, $thicmin, $thicmax, $depthmin, $depthmax
 			{
 				foreach($addpi[$x] as $x3)
 				{
+				    if(is_array($x3))
+				    {
+					$sel_chassis.=" OR (";
+					foreach($x3 as $x4)
+					{
+					    $sel_chassis.='pi LIKE "';
+					    $sel_chassis.=$x4;
+					    $sel_chassis.='%"';
+					    $sel_chassis.=' AND ';
+					 }
+					 $sel_chassis=substr($sel_chassis,0,-4);
+					 $sel_chassis.=')';
+				    }
+				    else
+				    {
 					$sel_chassis.=" OR ";
 					$sel_chassis.="FIND_IN_SET('";
 					$sel_chassis.=$x3;
 					$sel_chassis.="',pi)>0";
+				    }
 				}
 			}
 			

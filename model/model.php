@@ -75,7 +75,7 @@ if ($underwork) {
 							<h2 class="modelHeader bold-font">
 								<?php
 								$_SESSION['model'] = $idmodel;
-								$model_data = show_vars('model.prod, families.fam, families.subfam, families.showsubfam, model.model,model.submodel,model.regions,model.keywords', 'notebro_db.MODEL model JOIN notebro_db.FAMILIES families ON model.idfam=families.id', $idmodel);
+								$model_data = show_vars('model.prod, families.fam, families.subfam, families.showsubfam, model.model,model.submodel,model.regions,model.keywords', $GLOBALS['global_notebro_db'].'.MODEL model JOIN `'.$GLOBALS['global_notebro_db'].'`.FAMILIES families ON model.idfam=families.id', $idmodel);
 								$mprod = $model_data["prod"];
 								if (isset($model_data["subfam"]) && $model_data["showsubfam"] != 0) {
 									$model_data["subfam"] = " " . $model_data["subfam"];
@@ -87,7 +87,7 @@ if ($underwork) {
 								if ($model_data["submodel"] != "" && $model_data["submodel"] != NULL) {
 									$msubmodel = "" . $model_data["submodel"];
 								}
-								$veto_mname = show_vars('value', 'notebro_site.vars', 2);
+								$veto_mname = show_vars('value', $GLOBALS['global_notebro_site'].'.vars', 2);
 								$mregion_id = explode(",", $model_data['regions']);
 								if (array_search("1", $mregion_id) === FALSE) {
 									$mregion = " (" . show_vars("disp", "REGIONS", intval($mregion_id[0])) . ")";
@@ -220,7 +220,7 @@ if ($underwork) {
 											<p>Official Site:</p>
 										</div>
 										<div class="officialSite officialSiteLogo">
-											<?php $imgprod = mysqli_fetch_array(mysqli_query($con, "SELECT pic,pic2 FROM notebro_site.brands WHERE brand='" . $mprod . "'"));
+											<?php $imgprod = mysqli_fetch_array(mysqli_query($con, "SELECT pic,pic2 FROM `".$GLOBALS['global_notebro_site']."`.brands WHERE brand='" . $mprod . "'"));
 											show_vars('link,link2', 'MODEL', $idmodel);
 											$aff_link = null;
 											if (isset($show_vars["link2"]) && $show_vars["link2"] && isset($usertag) && $usertag != "" && $usertag != "noref") {
