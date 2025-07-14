@@ -13,7 +13,7 @@ for($i=0;$i<10;$i++)
 	if(isset($_GET["conf$i"]))
 	{
 		$retry=0;
-		$getconfs[$nrgetconfs]=mysqli_real_escape_string($con,filter_var($_GET["conf$i"],FILTER_SANITIZE_STRING));
+		$getconfs[$nrgetconfs] = mysqli_real_escape_string($con, strip_tags($_GET["conf$i"] ?? ''));
 		if($t=table($getconfs[$nrgetconfs]))
 		{
 			$getconfs[$nrgetconfs]=$t[0]."_".$t[1];
