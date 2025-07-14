@@ -137,7 +137,7 @@ for ($x = 0; $x <= $nrconf; $x++)
 			$object = "{";
 			$object_parts = array();
 			foreach ($array as $key => $val) {
-				$val = str_replace('"', '\"', $val);
+				$val = str_replace('"', '\"', $val ?? '');
 				$object_parts[] = $key . ':' . '"' . $val . '"';
 			}
 			$object_parts[] = "tags" . ':' . '[]';

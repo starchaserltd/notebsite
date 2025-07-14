@@ -164,7 +164,7 @@ function show($tab, $id)
 		{
 			if ($resu['touch'] == 1) {$resu['touch'] = "YES";}
 			else {$resu['touch'] = "NO";}
-			$resu['msc']=str_replace(",", ", ",$resu['msc']);
+			$resu['msc'] = str_replace(",", ", ", $resu['msc'] ?? '');
 			if(intval($resu['hz'])>0){ $resu['msc']=add_comma($resu['msc']).$resu['hz']."Hz"; }
 			if(intval($resu['hdr'])>0){ $resu['msc']=add_comma($resu['msc'])."HDR"; }
 			if(intval($resu['sRGB'])>0){ $resu['msc']=add_comma($resu['msc']).$resu['sRGB']."% sRGB"; }

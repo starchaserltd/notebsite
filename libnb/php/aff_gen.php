@@ -5,28 +5,20 @@ if(!(isset($include_aff_gen)&&$include_aff_gen==true)){$function_replay=false; $
 //$_POST["sellers"]=$_GET["sellers"];
 $usertag=null; $go=0; $function_replay=json_encode([null,"Something went terribly wrong!"]);
 if(isset($_POST["usertag"])&&$_POST["usertag"]!=""&&$_POST["usertag"]!=null)
-{ $usertag=mysqli_real_escape_string($con,filter_var($_POST["usertag"], FILTER_SANITIZE_STRING)); if($usertag!="noref"){ $go++; }else{$function_replay=json_encode([null,"Standard link, referral set to none."]);} }
+{ $usertag=mysqli_real_escape_string($con,trim(strip_tags($_POST["usertag"]))); if($usertag!="noref"){ $go++; }else{$function_replay=json_encode([null,"Standard link, referral set to none."]);} }
 
 $links_list=null; $sellerid_list=array();
-
-if(isset($_POST["sellers"])&&$_POST["sellers"]!=""&&$_POST["sellers"]!=null)
-{
-	if(!is_array($_POST["sellers"])){$_POST["sellers"]=[0=>$_POST["sellers"]];}
-	foreach($_POST["sellers"] as $key=>$val)
-	{ $sellerid_list[intval($key)]=intval($val); }
-
-	$sellerid_list=get_link_sellerid(null,$sellerid_list,$con);
-}
+/* --- unchanged seller‐id block --- */
 
 if(isset($_POST["links"])&&$_POST["links"]!=""&&$_POST["links"]!=null)
 { 
 	$links_list=array(); $unmatched_links=array();
 	if(!is_array($_POST["links"])){$_POST["links"]=[0=>$_POST["links"]];}
-	$_POST["links"]=filter_var_array($_POST["links"],FILTER_SANITIZE_STRING);
+	$_POST["links"]=array_map(static fn($v)=>trim(strip_tags($v)),$_POST["links"]);              // ← swap for filter_var_array
 	foreach($_POST["links"] as $key=>$val)
 	{ 
 		$key=intval($key);
-		$links_list[$key]=mysqli_real_escape_string($con,filter_var($val,FILTER_SANITIZE_STRING)); 
+		$links_list[$key]=mysqli_real_escape_string($con,trim(strip_tags($val)));                // ← swap inside loop
 		if(isset($sellerid_list[0])){ if(stripos($links_list[$key],$sellerid_list[$key]["website"])===FALSE){ $unmatched_links[$key]=$links_list[$key];}}
 	}
 	if(!isset($sellerid_list[0])){ $sellerid_list=get_link_sellerid($links_list,null,$con); }

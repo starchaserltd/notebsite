@@ -5,12 +5,13 @@ if(isset($include_getconf)){$include_getconf=true; $getall=true; $c=true; if(!is
 else
 {
 	$include_getconf=false; $conf_only_search=false; $warnotin=""; $getall=false; $pre_search=array(); $presearch_filter=array();
-	if(isset($_GET['c'])){ $c=preg_replace('~[\x00\x0A\x0D\x1A\x22\x27\x5C]~u', '\\\$0', filter_var($_GET['c'],FILTER_SANITIZE_STRING)); if(stripos($c,"undefined")===FALSE){ $conf=explode("-",$c);} else {$c=0;} } else {$conf=array(); $c=0;}
-	if(isset($_GET['comp'])){ $comp=preg_replace('~[\x00\x0A\x0D\x1A\x22\x27\x5C]~u', '\\\$0', filter_var($_GET['comp'],FILTER_SANITIZE_STRING)); if(stripos($comp,"undefined")!==FALSE){ $comp=NULL; } }
+	if(isset($_GET['c'])){ $c=preg_replace('~[\x00\x0A\x0D\x1A\x22\x27\x5C]~u','\\\$0',trim(strip_tags($_GET['c']))); if(stripos($c,"undefined")===FALSE){ $conf=explode("-",$c);} else {$c=0;} } else {$conf=array(); $c=0;}
+	if(isset($_GET['comp'])){ $comp=preg_replace('~[\x00\x0A\x0D\x1A\x22\x27\x5C]~u','\\\$0',trim(strip_tags($_GET['comp']))); if(stripos($comp,"undefined")!==FALSE){ $comp=NULL; } }
 	if(isset($_GET['cf'])&&($_GET['cf']!="undefined")){ $cf=floatval($_GET['cf']); } else {$cf=0;} /* config rating */
-	if(isset($_GET['ex'])){ $excode=preg_replace('~[\x00\x0A\x0D\x1A\x22\x27\x5C]~u', '\\\$0', filter_var($_GET['ex'],FILTER_SANITIZE_STRING)); if(stripos($excode,"undefined")!==FALSE){ $excode="USD"; } }
+	if(isset($_GET['ex'])){ $excode=preg_replace('~[\x00\x0A\x0D\x1A\x22\x27\x5C]~u','\\\$0',trim(strip_tags($_GET['ex']))); if(stripos($excode,"undefined")!==FALSE){ $excode="USD"; } }
 	if(isset($_GET['force_new_ex'])){ $force_new_ex=intval($_GET['force_new_ex']); } else {$force_new_ex=0; }
 }
+
 $get_best_low_func=false;
 if($c)
 {

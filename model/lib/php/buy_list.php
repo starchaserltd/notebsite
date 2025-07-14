@@ -3,7 +3,7 @@ require_once("../../../etc/con_db.php");
 require_once("../../../etc/conf.php");
 function intsanitize($somestring)
 {
-	$somestring=explode(",",filter_var($somestring, FILTER_SANITIZE_STRING));
+	$somestring = explode(',', trim(strip_tags($somestring)));
 	foreach($somestring as $key=>$el){ $somestring[$key]=intval($el); }
 	return implode(",",$somestring);
 }
@@ -273,7 +273,7 @@ if($buy_regions=="0" || $org_buy_regions=="0"){ $result=mysqli_query($con,"SELEC
 else { $result=mysqli_query($con,"SELECT GROUP_CONCAT(`".$GLOBALS['global_notebro_buy']."`.`SELLERS`.`id`) AS `id` FROM `".$GLOBALS['global_notebro_buy']."`.`SELLERS` WHERE `region` IN (".$buy_regions.") AND id IN (2,3,4,5,6,7,8,9,10) AND `exchrate` IN (".$lang.") ".$excluded_sellers." ORDER BY `priority` DESC"); }
 if(!(have_results($result))){ $result=mysqli_query($con,"SELECT GROUP_CONCAT(`".$GLOBALS['global_notebro_buy']."`.`SELLERS`.`id`) AS `id` FROM `".$GLOBALS['global_notebro_buy']."`.`SELLERS` WHERE `region` IN (".$buy_regions.") AND id IN (2,3,4,5,6,7,8,9,10) ".$excluded_sellers." ORDER BY `priority` DESC"); }
 if(!(have_results($result))){ $result=mysqli_query($con,"SELECT GROUP_CONCAT(`".$GLOBALS['global_notebro_buy']."`.`SELLERS`.`id`) AS `id` FROM `".$GLOBALS['global_notebro_buy']."`.`SELLERS` WHERE `region` IN (1,2) AND id IN (2,3,4,5,6,7,8,9,10) ".$excluded_sellers." ORDER BY `priority` DESC"); }
-$sellers=array(); if(have_results($result)){ $sellers=array_unique(explode(",",mysqli_fetch_assoc($result)["id"])); mysqli_free_result($result);}
+$sellers=[]; if(have_results($result)){ $sellers=array_values(array_unique(array_filter(explode(',',(string)(mysqli_fetch_assoc($result)['id']??'')),'strlen'))); mysqli_free_result($result); }
 
 $_GET["seller"]=NULL; if(count($sellers)==1 && isset($sellers[0]) && $sellers[0]!="") {  $_GET["seller"]=$sellers;  }
 $_GET["model_id"]=$id_model; $_GET["keys"]=0;
