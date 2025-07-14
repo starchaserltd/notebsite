@@ -1,6 +1,7 @@
 <?php
 function normal_rating($x){ $x*=10; return(((1.25/1000000*pow($x,2))+1.305*$x+(-4.3/100000000000*pow($x,3)))/10); }
-function add_comma($x){ if(is_string($x)&&isset($x[0])){ return $x.=", "; }else{return $x;}}
+function add_comma($x){ if (is_string($x) && isset($x[0])) { return $x . ", "; } return (string) $x; }
+
 function show($tab, $id)
 {
 	if(stripos($tab,"JOIN")!==FALSE)
@@ -22,7 +23,7 @@ function show($tab, $id)
 			$resu['ldate'] = date('F Y', strtotime($resu['ldate']));
 			$resu['tdp']=floatval($resu['tdp']);
 			$resu['price']=floatval($resu['price']);
-			$resu['msc']=str_replace(",", ", ",$resu['msc']);
+			$resu['msc'] = str_replace(",", ", ", (string) $resu['msc']);
 			switch (true)
 			{
 				case ((in_array($resu['tdp'],range(0,15))) && ($resu['price'])>=200): {	$resu['class']="Ultrabook"; break; }
@@ -68,7 +69,7 @@ function show($tab, $id)
 				default: 										 { $resu['class']="Undefined"; break; }
 			}
 			$resu['gpuclass']=$class;
-			$resu['msc']=str_replace(",", ", ",$resu['msc']);
+			$resu['msc'] = str_replace(",", ", ", (string) $resu['msc']);
 			break;
 		}
 	
@@ -77,17 +78,21 @@ function show($tab, $id)
 			if(!($resu['ram']) || $resu['ram']=="0" ){$resu['ram']="Soldered";}
 			if(!($resu['interface'])){$resu['interface']="-";}
 			if(!($resu['hdd'])){$resu['hdd']="-";}
+			if(!$resu['msc']) { $resu['msc']="-"; }
 			if(strcasecmp($resu['netw'],"NONE")==0){$resu['netw']="No";}
-			$resu['interface']=str_replace(",", ", ",$resu['interface']);
-			$resu['hdd']=str_replace(",", ", ",$resu['hdd']);
-			$resu['msc']=str_replace(",", ", ",$resu['msc']);
+			$resu['interface'] = str_replace(",", ", ", (string) $resu['interface']);
+			$resu['hdd']       = str_replace(",", ", ", (string) $resu['hdd']);
+			$resu['msc']       = str_replace(",", ", ", (string) $resu['msc']);
+			if ($resu['gpu'] == 1) {$resu['gpu'] = "On Board";}
+			else if ($resu['gpu'] == 2) {$resu['gpu'] = "Replaceable";}
+				else {$resu['gpu'] = "MXM replaceable"; }
 			break;
 		}
 	
 		case 'MEM':
 		{
 			$resu['type']=$resu['type']." - ".$resu['freq'];
-			$resu['msc']=str_replace(",", ", ",$resu['msc']);
+			$resu['msc'] = str_replace(",", ", ", (string) $resu['msc']);
 			break;
 		}
 
@@ -115,14 +120,14 @@ function show($tab, $id)
 			if($resu['keyboard']=="" || !($resu['keyboard']))
 			{ $resu['keyboard']="Standard"; }
 	
-			$resu['pi']=str_replace(",", ", ",$resu['pi']);
-			$resu['vi']=str_replace(",", ", ",$resu['vi']);	
+			$resu['pi']      = str_replace(",", ", ", (string) $resu['pi']);
+			$resu['vi']      = str_replace(",", ", ", (string) $resu['vi']);
 			$resu['made']=explode(",",$resu['made']);
 			if(!empty($resu['s_made'])){$resu['made']=array_unique(array_merge($resu['made'],explode(",",$resu['s_made'])));}
 			$resu['made']=implode(", ",$resu['made']);
-			$resu['color']=str_replace(",", ", ",$resu['color']);
-			$resu['keyboard']=str_replace(",", ", ",$resu['keyboard']);
-			$resu['msc']=str_replace(",", ", ",$resu['msc']);
+			$resu['color']   = str_replace(",", ", ", (string) $resu['color']);
+			$resu['keyboard']= str_replace(",", ", ", (string) $resu['keyboard']);
+			$resu['msc']     = str_replace(",", ", ", (string) $resu['msc']);
 			if(!$resu['vi']) { if(stripos($resu['pi'],"thunderbolt")!==FALSE) { $resu['vi']="1 X mDP (Thunderbolt)"; } else { $resu['vi']="-"; } }else { if(stripos($resu['pi'],"thunderbolt")!==FALSE&&stripos($resu['vi'],"DP")===FALSE) { $resu['vi'].=", 1 X mDP (Thunderbolt)"; } }		
 			if(!($resu['pi'])){$resu['pi']="-";}
 			if(!($resu['color'])){$resu['color']="-";}	
@@ -171,22 +176,10 @@ function show($tab, $id)
 			if(intval($resu['lum'])>0){ $resu['msc']=add_comma($resu['msc']).$resu['lum']." nits"; }
 			break;
 		} 
-	
-		case 'MDB':
-		{
-			if ($resu['gpu'] == 1) {$resu['gpu'] = "On Board";}
-			if(!$resu['interface']) { $resu['interface']="-"; }
-			if(!$resu['hdd']) { $resu['hdd']="-"; }
-			if(!$resu['msc']) { $resu['msc']="-"; }
-			if(!$resu['ram'] || $resu['ram']=="0") { $resu['ram']="Soldered"; }
-			else if ($resu['gpu'] == 2) {$resu['gpu'] = "Replaceable";}
-				else {$resu['gpu'] = "MXM replaceable";}
-			break;
-		}
 		
 		case 'WNET':
 		{
-			if(!$resu['msc']){$resu['msc']="-";}else{$resu['msc']=str_replace(",", ", ",$resu['msc']);}
+			if(!$resu['msc']){$resu['msc']="-";}else{$resu['msc'] = str_replace(",", ", ", (string) $resu['msc']);}
 			$resu['model']=$resu['prod']." ".$resu['model'];
 			break;
 		}
