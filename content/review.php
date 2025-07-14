@@ -13,10 +13,15 @@ require_once("lib/php/func_article.php");
 
 if(isset($_SESSION['lang'])) { $lang=$_SESSION['lang']; } else { $lang=0; }
 
-$absolute_url = full_url( $_SERVER );
-$ad=explode("/review.php?", $absolute_url);
-$ad[1] = preg_replace(array_map(fn($b)=>'/^'.preg_quote($b,'/').'\/wp\/article\.php\/review(.*)$/',$wp_urls), '/$1', $ad[1]);
-$echoid = url_to_postid($ad[1]); //echo $echoid;
+$absolute_url = full_url( $_SERVER );   // e.g. https://noteb.eu/review.php?/2022/04/26/asus-tuf-f15-2022-review/
+$parts = explode( '/review.php?', $absolute_url, 2 );
+if ( empty( $parts[1] ) ) {     wp_die( 'No review slug found in the URL.' );   }
+$slug = trim( $parts[1], '/' );   // strip any leading / or trailing /
+$slug = trailingslashit( $slug ); // add exactly one trailing slash
+$permalink = trailingslashit( home_url() ) . 'article.php/review/' . $slug;
+$echoid = url_to_postid( $permalink );
+//echo 'Permalink tested: ' . esc_html( $permalink ) . '<br>';
+//echo 'Post-ID: ' . intval( $echoid );
 $url = str_replace(array_map(fn($u) => $u . $wp_rmimg, $wp_urls), $new_wp_address,wp_get_attachment_url( get_post_thumbnail_id($echoid) )); //var_dump($url);
 $nrtabs=0;
 $tabnames=array();

@@ -6,15 +6,19 @@ if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'],$site_n
 	die();
 }
 $rootpath = realpath($_SERVER["DOCUMENT_ROOT"]).$root_mod;
-require_once($rootpath.$admin_address.'/wp/wp-blog-header.php');
+require_once($rootpath.$wp_install_address.'/wp/wp-blog-header.php');
 require_once("../etc/con_db.php");
 require_once("lib/php/func_article.php");
 
-if(isset($_SESSION['lang'])) { $lang=$_SESSION['lang']; } else { $lang=0; }
-$absolute_url = full_url( $_SERVER );
-$ad=explode("/article.php?", $absolute_url);
-$ad[1] = preg_replace(array_map(fn($b)=>'/^'.preg_quote($b,'/').'\/wp\/article\.php\/article\/&?[a-zA-Z]?.*$/',$wp_urls), '/', $ad[1]);
-$echoid = url_to_postid($ad[1]); //echo $echoid; 
+$absolute_url = full_url( $_SERVER );   // e.g. https://noteb.eu/review.php?/2022/04/26/asus-tuf-f15-2022-review/
+$parts = explode( '/article.php?', $absolute_url, 2 );
+if ( empty( $parts[1] ) ) {     wp_die( 'No review slug found in the URL.' );   }
+$slug = trim( $parts[1], '/' );   // strip any leading / or trailing /
+$slug = trailingslashit( $slug ); // add exactly one trailing slash
+$permalink = trailingslashit( home_url() ) . 'article.php/article/' . $slug;
+$echoid = url_to_postid( $permalink );
+//echo 'Permalink tested: ' . esc_html( $permalink ) . '<br>';
+//echo 'Post-ID: ' . intval( $echoid );
 $post_date="1990-01-01";
 ?>
 <script type="text/javascript">
