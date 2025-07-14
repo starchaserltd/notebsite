@@ -53,11 +53,11 @@ foreach($_GET['gpu_type2'] as $key=>$val)
 		if($val==0 || $val==0){ $key_to_delete[]=$key; }
 	}
 }
-if(isset($_GET['gputype'])){$_GET['gpu_type']=$_GET['gputype'];}
-if(isset($_GET['gpupowermax'])){$_GET['gpu_powermax']=$_GET['gpupowermax'];}
-if(isset($_GET['gpumemmin'])){$_GET['gpu_memmin']=$_GET['gpumemmin'];}
-if(isset($_GET['gpu_memmin'])){if(intval($_GET['gpu_memmin'])>500){ $_GET['gpu_memmin']=floatval($_GET['gpu_memmin']/1024); }}
-if(isset($_GET['gpumemmax'])){$_GET['gpu_memmax']=$_GET['gpumemmax'];}
-if(isset($_GET['gpu_memmax']))(intval($_GET['gpu_memmax'])>500){ $_GET['gpu_memmax']=floatval($_GET['gpu_memmax']/1024); }}
+if (isset($_GET['gputype']))     { $_GET['gpu_type']    = $_GET['gputype']; }
+if (isset($_GET['gpupowermax'])) { $_GET['gpu_powermax'] = $_GET['gpupowermax']; }
+if (isset($_GET['gpumemmin']))   { $_GET['gpu_memmin']  = $_GET['gpumemmin']; }
+if (isset($_GET['gpu_memmin']))  { if (intval($_GET['gpu_memmin']) > 500) { $_GET['gpu_memmin'] = floatval($_GET['gpu_memmin'] / 1024); } }
+if (isset($_GET['gpumemmax']))   { $_GET['gpu_memmax']  = $_GET['gpumemmax']; }
+if (isset($_GET['gpu_memmax']))  { if (intval($_GET['gpu_memmax']) > 500) { $_GET['gpu_memmax'] = floatval($_GET['gpu_memmax'] / 1024); } }
 
 ?>
