@@ -12,10 +12,10 @@ if($q>=0)
 	while($r = mysqli_fetch_assoc($result)) 
 	{
 		
-		 while($elm=each($r))
-		{
-			if(is_numeric($r[$elm["key"]]))
-			{ $r[$elm["key"]]+=0; }
+		foreach ($r as $key => $value) {
+			if (is_numeric($value)) {
+				$r[$key] += 0;          // cast numeric strings to numbers
+			}
 		}
 		
 		$rows[] = $r;
