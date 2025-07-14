@@ -29,7 +29,7 @@ if($id>=0)
 		else { return false; }
 	}
 
-	$_SESSION['model']=$id; $model_data=show_vars('model.prod, families.fam, families.subfam, families.showsubfam, model.model, model.submodel, model.regions, model.keywords, model.msc', $GLOBALS['global_notebro_db'].'.MODEL model JOIN notebro_db.FAMILIES families ON model.idfam=families.id',$id);
+	$_SESSION['model']=$id; $model_data=show_vars('model.prod, families.fam, families.subfam, families.showsubfam, model.model, model.submodel, model.regions, model.keywords, model.msc', $GLOBALS['global_notebro_db'].'.MODEL model JOIN '.$GLOBALS['global_notebro_db'].'.FAMILIES families ON model.idfam=families.id',$id);
 	if($model_data)
 	{
 		if(isset($model_data["submodel"])&&($model_data["submodel"]=="NULL"||$model_data["submodel"]==NULL)){$model_data["submodel"]="";}

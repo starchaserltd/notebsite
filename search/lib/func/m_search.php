@@ -5,8 +5,8 @@ require_once($relativepath."etc/session.php");
 require_once($relativepath."etc/con_db.php");
 
 //WE GET THE INPUTS
-$keys = mysqli_real_escape_string($con,filter_var($_POST["keys"], FILTER_SANITIZE_STRING));
-if(isset($_POST["ex"])){$excode=mysqli_real_escape_string($con,filter_var($_POST["ex"], FILTER_SANITIZE_STRING));}else{$excode=false;}
+$keys = mysqli_real_escape_string($con, trim(strip_tags($_POST["keys"])));
+if(isset($_POST["ex"])){$excode=mysqli_real_escape_string($con, trim(strip_tags($_POST["ex"])));}else{$excode=false;}
 $show_submodel=false; $reg_sql=""; $current_regions_array=array();
 //$keys="7%20aspire";
 
@@ -56,7 +56,7 @@ $sel="SELECT `MODEL`.`id`,`MODEL`.`mdb`,`MODEL`.`submodel`,`MODEL`.`p_model` AS 
 if(!(isset($id_set) && $id_set))
 {
 	$sel.=" UNION ";
-	$sel.="SELECT `model`.`id`,`model`.`mdb`,`model`.`submodel`,`model`.`p_model` AS `c_p_model`,`model`.`regions` AS `regions`,`alt_model`.`name` AS `name`,'0' AS `pmodel_count`,`model`.`extra_modelname` AS `extra_modelname` FROM `".$GLOBALS['global_notebro_db']."`.`MODEL` `model`  JOIN `".$GLOBALS['global_notebro_db']."`ALT` `alt_model` ON (`model`.id=`alt_model`.`model_id`) WHERE ".$conditions_altmodel." ORDER BY `name` ASC";
+	$sel.="SELECT `model`.`id`,`model`.`mdb`,`model`.`submodel`,`model`.`p_model` AS `c_p_model`,`model`.`regions` AS `regions`,`alt_model`.`name` AS `name`,'0' AS `pmodel_count`,`model`.`extra_modelname` AS `extra_modelname` FROM `".$GLOBALS['global_notebro_db']."`.`MODEL` `model`  JOIN `".$GLOBALS['global_notebro_db']."`.`ALT` `alt_model` ON (`model`.id=`alt_model`.`model_id`) WHERE ".$conditions_altmodel." ORDER BY `name` ASC";
 }
 
 //DOING THE SEARCH;
