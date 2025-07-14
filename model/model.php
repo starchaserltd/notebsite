@@ -6,7 +6,7 @@ if (!isset($_SERVER['HTTP_REFERER']) || stripos($_SERVER['HTTP_REFERER'], $site_
 	die();
 }
 $rootpath = realpath($_SERVER["DOCUMENT_ROOT"]) . $root_mod;
-require_once($rootpath . $admin_address . '/wp/wp-blog-header.php');
+require_once($rootpath.$wp_install_address.'/wp/wp-blog-header.php');
 require_once("../etc/session.php");
 require_once("../etc/con_db.php");
 if ($underwork) {
