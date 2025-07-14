@@ -87,18 +87,30 @@ class CodexWorldCaptcha
 		$circles	= 20;
 		$points		= 32;
 
-		for ($i = 0; $i < ($circles * $points) - 1; $i++){
-			$theta = $theta + $thetac;
-			$rad = $radius * ($i / $points );
-			$x = ($rad * cos($theta)) + $x_axis;
-			$y = ($rad * sin($theta)) + $y_axis;
-			$theta = $theta + $thetac;
-			$rad1 = $radius * (($i + 1) / $points);
-			$x1 = ($rad1 * cos($theta)) + $x_axis;
-			$y1 = ($rad1 * sin($theta )) + $y_axis;
-			imageline($im, $x, $y, $x1, $y1, $grid_color);
-			$theta = $theta - $thetac;
-		}
+	/* ===== Spiral pattern ===== */
+	for ($i = 0; $i < ($circles * $points) - 1; $i++) {
+		$theta = $theta + $thetac;
+		$rad   = $radius * ($i / $points);
+		$x     = ($rad * cos($theta)) + $x_axis;
+		$y     = ($rad * sin($theta)) + $y_axis;
+
+		$theta = $theta + $thetac;
+		$rad1  = $radius * (($i + 1) / $points);
+		$x1    = ($rad1 * cos($theta)) + $x_axis;
+		$y1    = ($rad1 * sin($theta)) + $y_axis;
+
+		/* ---- only this line changed ---- */
+		imageline(
+			$im,
+			(int) round($x),
+			(int) round($y),
+			(int) round($x1),
+			(int) round($y1),
+			$grid_color
+		);
+
+		$theta = $theta - $thetac;
+	}
 
 		/* Write the text in image */
 		$use_font = ($this->font_path != '' AND file_exists($this->font_path) AND function_exists('imagettftext')) ? TRUE : FALSE;
