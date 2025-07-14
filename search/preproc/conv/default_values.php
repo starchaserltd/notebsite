@@ -207,7 +207,7 @@ echo "</script>";
 
 //CODE FOR LIST IN SEARCH   
 
-$sel="SELECT name,type FROM notebro_site.nomen WHERE type=8 OR type=11 OR type=12 OR type=25 OR type=26 OR type=51 OR type=52 OR type=53 OR type=54 OR type=55 OR type=56 ORDER BY `type` ASC";
+$sel="SELECT name,type FROM `".$GLOBALS['global_notebro_site']."`.nomen WHERE type=8 OR type=11 OR type=12 OR type=25 OR type=26 OR type=51 OR type=52 OR type=53 OR type=54 OR type=55 OR type=56 ORDER BY `type` ASC";
 $result = mysqli_query($con, $sel);
 $droplists=array();
 
