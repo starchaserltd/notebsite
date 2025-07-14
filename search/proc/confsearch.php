@@ -176,7 +176,7 @@ if($count<1)
     $sql_presearch.=" AND ".$sql_presearch_add_no_results."1=1";
     $result_noresult=mysqli_query($cons,$sql_presearch); $presearch_models_nr=0; $presearch_min_batlife=0.0;
     if($result_noresult&&mysqli_num_rows($result_noresult)>0)
-    { if($row=mysqli_fetch_assoc($result_noresult)){ if(isset($row["ids"])&&$row["ids"]){ $presearch_models_nr=intval($row["ids"); $presearch_min_batlife=round(floatval($row["min_batlife"]),1,PHP_ROUND_HALF_DOWN); if($batlife_min<$presearch_min_batlife){$presearch_min_batlife=$batlife_min;} } } }
+    { if($row=mysqli_fetch_assoc($result_noresult)){ if(isset($row["ids"])&&$row["ids"]){ $presearch_models_nr=intval($row["ids"]); $presearch_min_batlife=round(floatval($row["min_batlife"]),1,PHP_ROUND_HALF_DOWN); if($batlife_min<$presearch_min_batlife){$presearch_min_batlife=$batlife_min;} } } }
 }
 else
 { $sort_func($results); del_duplicate_pmodel($results); $count=count($results); }
