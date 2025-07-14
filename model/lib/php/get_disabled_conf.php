@@ -1,7 +1,7 @@
 <?php
 
 //GETTING DISABLED_CONF AND ENABLED_CONF FOR RETAILER
-$SELECT_PRICE_DATA="SELECT * FROM `notebro_buy`.`DISABLED_CONF` WHERE  ( `comp`=0 OR `comp`=1 )  AND `model`='".$id_model."' AND (`retailer` IS NOT NULL AND `retailer`!='' AND `retailer`!='1')";
+$SELECT_PRICE_DATA="SELECT * FROM `".$GLOBALS['global_notebro_buy']."`.`DISABLED_CONF` WHERE  ( `comp`=0 OR `comp`=1 )  AND `model`='".$id_model."' AND (`retailer` IS NOT NULL AND `retailer`!='' AND `retailer`!='1')";
 $select_q_r=mysqli_query($con,$SELECT_PRICE_DATA); $var_conf_disabled=array(); $var_conf_enabled=array(); $total_enabled=0;
 if(have_results($select_q_r))
 {

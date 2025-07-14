@@ -12,7 +12,7 @@ if (isset($_SESSION['excomp']))
 {
 	$exchcode = $_SESSION['excomp'];
 	$_SESSION['exchcode'] = $exchcode;
-	$query = mysqli_query($con, "SELECT * FROM notebro_site.exchrate");
+	$query = mysqli_query($con, "SELECT * FROM `".$GLOBALS['global_notebro_site']."`.exchrate");
 
 	while ($row = mysqli_fetch_assoc($query))
 	{
@@ -45,7 +45,7 @@ if (isset($_SESSION['excomp']))
 } 
 else
 {
-	$query = mysqli_query($con, "SELECT GROUP_CONCAT(regions) as regions FROM notebro_site.exchrate LIMIT 1");
+	$query = mysqli_query($con, "SELECT GROUP_CONCAT(regions) as regions FROM `"$GLOBALS['global_notebro_site']."`.exchrate LIMIT 1");
 	$row = mysqli_fetch_assoc($query);
 	$buy_regions = implode(",", array_unique(explode($row["regions"])));
 	if (isset($_SESSION['lang'])){ $lang = $_SESSION['lang']; } else { $lang = 0; }
@@ -94,7 +94,7 @@ for ($x = 0; $x <= $nrconf; $x++)
 	array_var_new[comp_conf_to_gen]["INFO"]={};
 	array_var_new[comp_conf_to_gen]["MODEL"]={};
 	<?php
-	show('notebro_db.MODEL model JOIN notebro_db.FAMILIES families on model.idfam=families.id', $conf_model);
+	show('`'.$GLOBALS['global_notebro_db'].'`.MODEL model JOIN `'.$GLOBALS['global_notebro_db'].'`.FAMILIES families on model.idfam=families.id', $conf_model);
 	preg_match('/(.*)\.(jpg|png)/', $resu["img_1"], $img);
 	$img = $img[1];
 	$resu['mdbname'] = "";
