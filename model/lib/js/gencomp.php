@@ -45,7 +45,7 @@ if (isset($_SESSION['excomp']))
 } 
 else
 {
-	$query = mysqli_query($con, "SELECT GROUP_CONCAT(regions) as regions FROM `"$GLOBALS['global_notebro_site']."`.exchrate LIMIT 1");
+	$query = mysqli_query($con, "SELECT GROUP_CONCAT(regions) as regions FROM `".$GLOBALS['global_notebro_site']."`.exchrate LIMIT 1");
 	$row = mysqli_fetch_assoc($query);
 	$buy_regions = implode(",", array_unique(explode($row["regions"])));
 	if (isset($_SESSION['lang'])){ $lang = $_SESSION['lang']; } else { $lang = 0; }
