@@ -259,35 +259,40 @@ function sliderrange(old)
 }
 
 $('#s_prod_id').select2({
-	tags: false, multiple: true, maximumSelectionLength: 8, minimumInputLength: 1,
-	language: {
-		noResults: function(term) {
-			return "Type something...";
-				}
-            },
-		ajax: { quietMillis: 100, cache: false, dataType: "json", type: "POST", url: "search/lib/func/list.php",
-		data: function (params) {
-			$idtype=2;
+    tags: false, multiple: true, maximumSelectionLength: 8, minimumInputLength: 1,
+    language: {
+        noResults: function(term) {
+            return "Type something...";
+        }
+    },
+    ajax: {                                 // ← everything else stays the same
+        delay: 100,                        // ‘quietMillis’ is deprecated → use ‘delay’
+        cache: false,
+        dataType: "json",
+        type: "POST",
+        url: "search/lib/func/list.php",
+        data: function (params) {
             var queryParameters = {
-                q: "Producer",
-				list: "prod",
-				keys: params.term,
-			}
-			queryParameters=$.extend(queryParameters, "Producer_prod")
-			return queryParameters;
+                q:    "MODEL",             // MUST match PHP branch
+                list: "Producer",          // …and the sub-branch
+                keys: params.term          // the user’s search term
+            };
+            // Extra filters? Add them here, e.g. queryParameters.prod = "Lenovo";
+            return queryParameters;
         },
         processResults: function (data) {
             return { 
                 results: $.map(data, function (item) {
-					return {
-						id: item.model,
-                        text: item.model,
-                    }
-				})
+                    return {
+                        id:   item.id,
+                        text: item.model
+                    };
+                })
             };
         }
     }
- })
+});
+
  
 //Function for form submissions left menu   
 $("#s_search_btn").on("mousedown",function(e) {
