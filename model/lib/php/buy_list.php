@@ -8,7 +8,7 @@ function intsanitize($somestring)
 	return implode(",",$somestring);
 }
 
-$id_model=intval($_POST["idmodel"]); $model_prod=clean_string(strval($_POST["mprod"])); $org_buy_regions=intsanitize($_POST["buyregions"]); $buy_regions=$org_buy_regions.",1"; $lang=intval(intsanitize($_POST["lang"])); $price=intsanitize($_POST["price"]); $usertag=mysqli_real_escape_string($con,filter_var($_POST["usertag"], FILTER_SANITIZE_STRING));if(isset($_POST["pmodel"])&&$_POST["pmodel"]!=NULL&&$_POST["pmodel"]!=""){$pmodel=intval($_POST["pmodel"]);}else{$pmodel=$id_model;}
+$id_model=intval($_POST["idmodel"]); $model_prod=clean_string(strval($_POST["mprod"])); $org_buy_regions=intsanitize($_POST["buyregions"]); $buy_regions=$org_buy_regions.",1"; $lang=intval(intsanitize($_POST["lang"])); $price=intsanitize($_POST["price"]); $usertag=mysqli_real_escape_string($con,trim(strip_tags($_POST["usertag"])));if(isset($_POST["pmodel"])&&$_POST["pmodel"]!=NULL&&$_POST["pmodel"]!=""){$pmodel=intval($_POST["pmodel"]);}else{$pmodel=$id_model;}
 $conf_complete=True; foreach($laptop_comp_list as $comp){ if(isset($_POST[$comp])){ ${"id_".$comp}=intval($_POST[$comp]); }else{ if($comp!="shdd"){ $conf_complete=False; } else { $id_shdd=0;} } }
 
 /** FIND OTHER MODELS WITH SIMILAR CONFIG **/
