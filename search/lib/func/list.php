@@ -364,6 +364,17 @@ switch (strtoupper($q))
 	}
 	case "MODEL":
 	{
+		$sel = strtolower($select);
+		$aliases = [
+		'producer' => 'Producer',
+		'prod'     => 'Producer', 
+		'family'   => 'Family',
+		'fam'      => 'Family',
+		'regions'  => 'Regions',
+		'region'   => 'Regions',
+		];
+		$select = $aliases[$sel] ?? $select; 
+		
 		switch($select)
 		{
 			case "Producer":
