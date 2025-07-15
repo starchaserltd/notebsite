@@ -28,7 +28,19 @@ if(!isset($cpu_ldmin)){ $cpu_ldmin=""; } if(!isset($cpu_ldmax)){ $cpu_ldmax=""; 
 if($cpu_ldmin||$sockmin){ $cpu_ldmin.="-01-01"; $sockmin.="-01-01"; }
 if($cpu_ldmax||$sockmax){ $cpu_ldmax.="-12-30"; $sockmax.="-12-30"; }
 
-switch (strtoupper($q))
+
+$q = strtoupper($q);
+$aliases_q = [
+'PRODUCER' => 'MODEL',
+'PROD'     => 'MODEL', 
+'FAMILY'   => 'MODEL',
+'FAM'      => 'MODEL',
+'REGIONS'  => 'MODEL',
+'REGION'   => 'MODEL'
+];
+$q = $aliases_q[$q] ?? $q; 
+
+switch ($q)
 {
 	case "CPU":
 	{
@@ -364,7 +376,7 @@ switch (strtoupper($q))
 	}
 	case "MODEL":
 	{
-		$sel = strtolower($select);
+		$select_mod = strtolower($select);
 		$aliases = [
 		'producer' => 'Producer',
 		'prod'     => 'Producer', 
@@ -373,8 +385,8 @@ switch (strtoupper($q))
 		'regions'  => 'Regions',
 		'region'   => 'Regions',
 		];
-		$select = $aliases[$sel] ?? $select; 
-		
+		$select = $aliases[$select_mod] ?? $select; 
+
 		switch($select)
 		{
 			case "Producer":
