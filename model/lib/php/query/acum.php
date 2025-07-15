@@ -19,7 +19,7 @@ if($q>=0)
 		}
 		
 		$rows[] = $r;
-		$rows[0]['msc']=str_replace(",", ", ",$rows[0]['msc']);
+		$rows[0]['msc'] = str_replace(",", ", ", (string) $rows[0]['msc']);
 		if(!$rows[0]['msc']) { $rows[0]['msc']="-"; }
 		if(!$rows[0]['tipc']) { $rows[0]['tipc']="-"; }
 		if(!$rows[0]['nrc']) { $rows[0]['nrc']="-"; }
