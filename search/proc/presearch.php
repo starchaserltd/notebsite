@@ -17,7 +17,7 @@ foreach($list_comps_to_ignore as $val)
 	$i++;
 }
 
-$pre_sql_presearch="SELECT `model_id`,`p_model`,`min_batlife`,`".implode("`,`",$comp_pre_list)."` FROM `".$GLOBALS['global_notebro_db']."`.`presearch_tbl` WHERE "; $model_id_new=array(); $start_id_model=0; $has_or=0;
+$pre_sql_presearch="SELECT `model_id`,`p_model`,`min_batlife`,`".implode("`,`",$comp_pre_list)."` FROM `".$GLOBALS['global_notebro_sdb']."`.`presearch_tbl` WHERE "; $model_id_new=array(); $start_id_model=0; $has_or=0;
 $sql_presearch=$pre_sql_presearch;
 $sql_presearch_add_no_results=""; $no_results_has_or=0;
 
