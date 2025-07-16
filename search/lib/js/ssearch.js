@@ -280,16 +280,16 @@ $('#s_prod_id').select2({
             // Extra filters? Add them here, e.g. queryParameters.prod = "Lenovo";
             return queryParameters;
         },
-        processResults: function (data) {
-            return { 
-                results: $.map(data, function (item) {
-                    return {
-                        id:   item.id,
-                        text: item.model
-                    };
-                })
-            };
-        }
+		processResults: function (data) {
+			return {
+				results: data.map(function (item) {
+					return {
+						id:   item.model,   //  value sent to the server
+						text: item.model    //  text shown to the user
+					};
+				})
+			};
+		}
     }
 });
 
