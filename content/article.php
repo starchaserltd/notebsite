@@ -21,9 +21,9 @@ $echoid = url_to_postid( $permalink );
 //echo 'Post-ID: ' . intval( $echoid );
 $post_date="1990-01-01";
 ?>
-<script type="text/javascript">
-var lang = <?php echo $lang; ?>;
-var istime=0;
+<script>
+var lang = <?= json_encode(isset($lang) ? (int)$lang : 1) ?>;
+var istime = 0;
 </script>
 <?php
 	if($echoid)
@@ -118,4 +118,5 @@ $content_title=clean_text($content_title); $conclusion=clean_text($conclusion); 
 "articleBody": "<?php echo $content; ?>"
 }
 </script>
+
 <?php include_once("../etc/scripts_pages.php"); ?>
